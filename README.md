@@ -2,17 +2,14 @@
 
 This repository contains a collection of [TTP](https://github.com/dmulyalin/ttp) templates.
 
-Templates developed by community. If you come across problem that 
-you was able to solve using TTP and feel that your work can be 
-useful to other people, do not hesitate to raise an issue or submit 
-pull request to include your template in this repository.
-
+If you was able to solve some problem using TTP and feel that your work can be 
+useful to other people, feel free to raise an issue or submit pull request to 
+include your template in this repository.
 
 ## Sample usage
 
-A couple of examples.
-
-<details><summary>This example demonstrates how to parse `Test Platform` output for `show run | sec interface` command using `platform/test_platform_show_run_pipe_sec_interface.txt` template.</summary>
+This example demonstrates how to parse `Test Platform` output for `show run | sec interface` command using `platform/test_platform_show_run_pipe_sec_interface.txt` template.
+<details><summary>Code</summary>
 
 ```python
 from ttp import ttp
@@ -56,7 +53,8 @@ pprint.pprint(result)
 ```
 </details>
 
-<details><summary>Sample code to parse `Cisco IOS` output in a structure compatible with `ietf-interfaces` YANG module</summary>
+Sample code to parse `Cisco IOS` output in a structure compatible with `ietf-interfaces` YANG module
+<details><summary>Code</summary>
 
 ```python
 data1 = """
@@ -159,15 +157,25 @@ pprint.pprint(res)
 
 This repository contains three collections corresponding to folder names:
 
-* platform - mimics [ntc-templates](https://github.com/networktocode/ntc-templates) API and follows same naming rule - `{{ vendor_os }}_{{ command_with_underscores }}.txt` - lower case only
-* yang - contains templates capable of producing YANG compatible structures out of text data, naming `{{ YANG module name}}_{{ platform_name}}.txt` - lower case only
-* misc - miscellaneous templates for various usecases organized in folders, naming - `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
+* `platform` collection - mimics [ntc-templates](https://github.com/networktocode/ntc-templates) API and follows same 
+* `yang` collection - contains templates capable of producing YANG compatible structures out of text data
+* `misc` collection - miscellaneous templates for various use cases organized in folders
+
+## Platform collection
+
+Naming rule - `{{ vendor_os }}_{{ command_with_underscores }}.txt` - lower case only
+
+## YANG collection
+
+Naming rule - `{{ YANG module name}}_{{ platform_name}}.txt` - lower case only
+
+## Misc collection
+
+Naming rule - `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
 
 # API reference
 
-Function `ttp_templates.parse_output`:
-```
-Function to load template text and parse data provided
+`ttp_templates.parse_output`: Function to load template text and parse data provided
 
 **Attributes**
 
@@ -188,11 +196,9 @@ Function to load template text and parse data provided
 * ``platfrom="cisco_ios", command="show version"``
 * ``yang="ietf-interfaces", platform="cisco_ios"``
 * ``misc="foo_folder/bar_template.txt"`` 
-```
 
-Function `ttp_templates.get_template`:
-```
-Function to locate template file and return it's content
+
+`ttp_templates.get_template`: Function to locate template file and return it's content
 
 **Attributes**
 
@@ -210,7 +216,7 @@ Function to locate template file and return it's content
 * ``platfrom="cisco_ios", command="show version"``
 * ``yang="ietf-interfaces", platform="cisco_ios"``
 * ``misc="foo_folder/bar_template.txt"`` 
-```	
+
 	
 # Contributions
 Feel free to submit an issue, report a bug or ask a question, feature requests are welcomed.
