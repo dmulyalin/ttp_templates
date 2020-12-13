@@ -12,8 +12,8 @@ This example demonstrates how to parse `Test Platform` output for `show run | se
 <details><summary>Code</summary>
 
 ```python
-from ttp import ttp
 from ttp_templates import parse_output
+import pprint
 
 data = """
 interface GigabitEthernet1/3.251
@@ -53,10 +53,14 @@ pprint.pprint(result)
 ```
 </details>
 
-Sample code to parse `Cisco IOS` output in a structure compatible with `ietf-interfaces` YANG module
+Sample code to parse `Cisco IOS` output in a structure compatible with `ietf-interfaces` YANG module.
 <details><summary>Code</summary>
 
 ```python
+from ttp_templates import parse_output
+from ttp import ttp
+import pprint
+
 data1 = """
 interface GigabitEthernet1/3.251
  description Customer #32148
@@ -157,19 +161,19 @@ pprint.pprint(res)
 
 This repository contains three collections corresponding to folder names:
 
-* `platform` collection - mimics [ntc-templates](https://github.com/networktocode/ntc-templates) API and follows same 
+* `platform` collection - mimics [ntc-templates](https://github.com/networktocode/ntc-templates) API and follows same naming rule
 * `yang` collection - contains templates capable of producing YANG compatible structures out of text data
 * `misc` collection - miscellaneous templates for various use cases organized in folders
 
-## Platform collection
+**Platform collection templates files naming rule**
 
-Naming rule - `{{ vendor_os }}_{{ command_with_underscores }}.txt` - lower case only
+`{{ vendor_os }}_{{ command_with_underscores }}.txt` - lower case only
 
-## YANG collection
+**YANG collection templates files naming rule**
 
-Naming rule - `{{ YANG module name}}_{{ platform_name}}.txt` - lower case only
+`{{ YANG module name}}_{{ platform_name}}.txt` - lower case only
 
-## Misc collection
+**Misc collection templates files naming rule**
 
 Naming rule - `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
 
