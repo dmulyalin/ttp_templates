@@ -1,0 +1,7 @@
+<group>
+interface {{ interface }}
+ description {{ description | re(".+") }}
+ encapsulation dot1q {{ dot1q }}
+ ip address {{ ip }} {{ mask }}
+ shutdown {{ disabled | set(True) }}
+</group>
