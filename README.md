@@ -2,9 +2,9 @@
 
 This repository contains a collection of [TTP](https://github.com/dmulyalin/ttp) templates.
 
-If you was able to solve some problem using TTP and feel that your work can be 
+If you solved a problem using TTP and feel that your work can be 
 useful to other people, feel free to raise an issue or submit pull request to 
-include your template in this repository.
+include your template(s) in this repository.
 
 ## Sample usage
 
@@ -57,7 +57,7 @@ Sample code to parse `Cisco IOS` output in a structure compatible with `ietf-int
 <details><summary>Code</summary>
 
 ```python
-from ttp_templates import parse_output
+from ttp_templates import get_template
 from ttp import ttp
 import pprint
 
@@ -159,7 +159,7 @@ pprint.pprint(res)
 
 # How templates collections structured
 
-This repository contains three collections corresponding to folder names:
+This repository contains three collections of templates corresponding to folder names:
 
 * `platform` collection - mimics [ntc-templates](https://github.com/networktocode/ntc-templates) API and follows same naming rule
 * `yang` collection - contains templates capable of producing YANG compatible structures out of text data
@@ -171,11 +171,11 @@ This repository contains three collections corresponding to folder names:
 
 **YANG collection templates files naming rule**
 
-`{{ YANG module name}}_{{ platform_name}}.txt` - lower case only
+`{{ YANG module name }}_{{ platform_name }}.txt` - lower case only
 
 **Misc collection templates files naming rule**
 
-Naming rule - `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
+`{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
 
 # API reference
 
