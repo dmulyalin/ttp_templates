@@ -1,0 +1,1 @@
+recursive-include ttp_templates *.txt *.py *.ttp
