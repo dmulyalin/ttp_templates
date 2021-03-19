@@ -23,7 +23,7 @@ module: openconfig-lldp
                  +--ro capabilities
                     +--ro capability* [name]
                        +--ro name
-					   
+                       
 Full model is:
 module: openconfig-lldp
   +--rw lldp
@@ -118,9 +118,9 @@ def process(data):
     compatible with openconfig-lldp YANG module.
     
     Parsing results are a dictionary keyed by interface name, that 
-	is done to combine 	multiple neighbours in a list under the 
-	interface, while in opencofnig-lldp model structure under 
-	"lldp.interfaces.inderface" must be a list.
+    is done to combine     multiple neighbours in a list under the 
+    interface, while in opencofnig-lldp model structure under 
+    "lldp.interfaces.inderface" must be a list.
     
     Moreover, neighbours must contain "id" key and use "state" key to
     store information about neighbour details.

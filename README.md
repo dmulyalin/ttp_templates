@@ -6,6 +6,16 @@ If you solved a problem using TTP and feel that your work can be
 useful to other people, feel free to raise an issue or submit pull request to 
 include your template(s) in this repository.
 
+## Installation
+
+From PyPi:
+
+`pip install ttp-templates`
+
+or latest from GitHub master branch (need Git installed on the system):
+
+`pip install git+https://github.com/dmulyalin/ttp_templates.git`
+ 
 ## Sample usage
 
 This example demonstrates how to parse `Test Platform` output for `show run | sec interface` command using `platform/test_platform_show_run_pipe_sec_interface.txt` template.
