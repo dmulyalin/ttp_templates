@@ -1,0 +1,203 @@
+<doc>
+This TTP template produce results compatible with below subset of openconfig-lldp
+YANG model
+
+module: openconfig-lldp
+  +--rw lldp
+     +--rw interfaces
+        +--rw interface* [name]
+           +--rw name         
+           +--ro neighbors
+              +--ro neighbor* [id]
+                 +--ro id              
+                 +--ro state
+                 |  +--ro system-name?               string
+                 |  +--ro system-description?        string
+                 |  +--ro chassis-id?                string
+                 |  +--ro chassis-id-type?           oc-lldp-types:chassis-id-type
+                 |  +--ro id?                        string 
+                 |  +--ro port-id?                   string
+                 |  +--ro port-id-type?              oc-lldp-types:port-id-type
+                 |  +--ro port-description?          string
+                 |  +--ro management-address?        string
+                 +--ro capabilities
+                    +--ro capability* [name]
+                       +--ro name
+					   
+Full model is:
+module: openconfig-lldp
+  +--rw lldp
+     +--rw config
+     |  +--rw enabled?                      boolean
+     |  +--rw hello-timer?                  uint64
+     |  +--rw suppress-tlv-advertisement*   identityref
+     |  +--rw system-name?                  string
+     |  +--rw system-description?           string
+     |  +--rw chassis-id?                   string
+     |  +--rw chassis-id-type?              oc-lldp-types:chassis-id-type
+     +--ro state
+     |  +--ro enabled?                      boolean
+     |  +--ro hello-timer?                  uint64
+     |  +--ro suppress-tlv-advertisement*   identityref
+     |  +--ro system-name?                  string
+     |  +--ro system-description?           string
+     |  +--ro chassis-id?                   string
+     |  +--ro chassis-id-type?              oc-lldp-types:chassis-id-type
+     |  +--ro counters
+     |     +--ro frame-in?           yang:counter64
+     |     +--ro frame-out?          yang:counter64
+     |     +--ro frame-error-in?     yang:counter64
+     |     +--ro frame-discard?      yang:counter64
+     |     +--ro tlv-discard?        yang:counter64
+     |     +--ro tlv-unknown?        yang:counter64
+     |     +--ro last-clear?         yang:date-and-time
+     |     +--ro tlv-accepted?       yang:counter64
+     |     +--ro entries-aged-out?   yang:counter64
+     +--rw interfaces
+        +--rw interface* [name]
+           +--rw name         -> ../config/name
+           +--rw config
+           |  +--rw name?      oc-if:base-interface-ref
+           |  +--rw enabled?   boolean
+           +--ro state
+           |  +--ro name?       oc-if:base-interface-ref
+           |  +--ro enabled?    boolean
+           |  +--ro counters
+           |     +--ro frame-in?          yang:counter64
+           |     +--ro frame-out?         yang:counter64
+           |     +--ro frame-error-in?    yang:counter64
+           |     +--ro frame-discard?     yang:counter64
+           |     +--ro tlv-discard?       yang:counter64
+           |     +--ro tlv-unknown?       yang:counter64
+           |     +--ro last-clear?        yang:date-and-time
+           |     +--ro frame-error-out?   yang:counter64
+           +--ro neighbors
+              +--ro neighbor* [id]
+                 +--ro id              -> ../state/id
+                 +--ro config
+                 +--ro state
+                 |  +--ro system-name?               string
+                 |  +--ro system-description?        string
+                 |  +--ro chassis-id?                string
+                 |  +--ro chassis-id-type?           oc-lldp-types:chassis-id-type
+                 |  +--ro id?                        string
+                 |  +--ro age?                       uint64
+                 |  +--ro last-update?               int64
+                 |  +--ro ttl?                       uint16
+                 |  +--ro port-id?                   string
+                 |  +--ro port-id-type?              oc-lldp-types:port-id-type
+                 |  +--ro port-description?          string
+                 |  +--ro management-address?        string
+                 |  +--ro management-address-type?   string
+                 +--ro custom-tlvs
+                 |  +--ro tlv* [type oui oui-subtype]
+                 |     +--ro type           -> ../state/type
+                 |     +--ro oui            -> ../state/oui
+                 |     +--ro oui-subtype    -> ../state/oui-subtype
+                 |     +--ro config
+                 |     +--ro state
+                 |        +--ro type?          int32
+                 |        +--ro oui?           string
+                 |        +--ro oui-subtype?   string
+                 |        +--ro value?         binary
+                 +--ro capabilities
+                    +--ro capability* [name]
+                       +--ro name      -> ../state/name
+                       +--ro config
+                       +--ro state
+                          +--ro name?      identityref
+                          +--ro enabled?   boolean
+</doc>
+
+
+
+<macro>
+def process(data):
+    """
+    Function to process parsing results in a structure
+    compatible with openconfig-lldp YANG module.
+    
+    Parsing results are a dictionary keyed by interface name, that 
+	is done to combine 	multiple neighbours in a list under the 
+	interface, while in opencofnig-lldp model structure under 
+	"lldp.interfaces.inderface" must be a list.
+    
+    Moreover, neighbours must contain "id" key and use "state" key to
+    store information about neighbour details.
+    """
+    ret = {"lldp": {"interfaces": {"interface": []}}}
+    
+    # transform dictionary of interfaces into a list
+    interfaces = data.get("lldp", {}).get("interfaces", {}).get("inderface", {})
+    for interface_name, interface_data in interfaces.items():
+
+        # set neigbours IDs and from structure with "state" key
+        neigbours = interface_data["neighbors"]["neighbor"]
+        interface_data["neighbors"]["neighbor"] = []
+        for id, neigbour in enumerate(neigbours, 1):
+            interface_data["neighbors"]["neighbor"].append(
+                {
+                    "id": id,
+                    "state": {"id": id, **neigbour}
+                }            
+            )
+
+        # form final interface structure
+        ret["lldp"]["interfaces"]["interface"].append(
+            {
+                "name": interface_name,
+                **interface_data
+            }
+        )
+            
+    return ret
+    
+def map_capabilities(data):
+    """
+    Function to map capabilities
+    """
+    ret = []
+    
+    mapper = {
+        "B": {"name": "MAC_BRIDGE"},
+        "R": {"name": "ROUTER"}
+    }
+    
+    for code in data.get("codes", []):
+        if code in mapper:
+            ret.append(mapper[code])
+    
+    return {"capability": ret}
+</macro>
+
+<vars include="interface_names.py" load="python"/>
+
+<group name="lldp.interfaces.inderface**.{{ name }}**" output="process">
+##
+##  Parses "show lldp neighbors detail" output
+##
+Local Interface: {{ name | resuball(ifmap) }}
+
+<group name="neighbors.neighbor*">
+Chassis id: {{ chassis-id | mac_eui }}
+Port id: {{ port-id | resuball(ifmap) }}
+Port Description: {{ port-description | re(".+") | default(None) }}
+System Name: {{ system-name }}
+  IPv4 address: {{ management-address | default(None) }}
+  
+<group name="_">
+System Description: {{ _start_ }}
+{{ system-description | _line_ | strip | joinmatches(" ") }}
+Time remaining: {{ ignore }} seconds {{ _end_ }}
+</group>
+
+<group name="capabilities" macro="map_capabilities">
+System Capabilities: {{ codes | split(",") }}
+</group>
+
+{{ port-id-type | set("INTERFACE_NAME") }}
+{{ chassis-id-type | set("MAC_ADDRESS") }}
+</group>
+</group>
+
+<output name="process" macro="process"/>

@@ -25,6 +25,9 @@ setup(
             ]
     },
     data_files=[('', ['LICENSE'])],
+    install_requires=[
+        "ttp>=0.6.0"
+    ],
     classifiers=[
         "Topic :: Utilities",
         "Programming Language :: Python :: 2.7",
