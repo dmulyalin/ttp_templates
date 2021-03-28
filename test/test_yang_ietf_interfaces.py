@@ -31,7 +31,7 @@ interface GigabitEthernet1/7
     """
     template = get_template(yang="ietf-interfaces", platform="cisco_ios")
     # print(template)
-    parser = ttp(template=template)
+    parser = ttp(template=template, vars={"validate_with_yangson": True})
     parser.add_input(data1)
     parser.add_input(data2)
     parser.parse()

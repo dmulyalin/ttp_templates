@@ -189,6 +189,6 @@ interface {{ name | macro(add_iftype) }}
  
 </group>
 
-<output>
+<output condition="validate_with_yangson, True">
 validate_yangson="'./yang-modules/ietf/'"
 </output>

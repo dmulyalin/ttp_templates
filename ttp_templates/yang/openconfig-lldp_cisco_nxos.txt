@@ -29,7 +29,7 @@ module: openconfig-lldp
                  |  +--ro management-address?        string
                  +--ro capabilities
                     +--ro capability* [name]
-                       +--ro name                    
+                       +--ro name           									  
 </doc>
 
 
@@ -41,12 +41,12 @@ def process(data):
     compatible with openconfig-lldp YANG module.
     
     Parsing results are a dictionary keyed by interface name, that 
-    is done to combine     multiple neighbors in a list under the 
+    is done to combine multiple neighbors in a list under the 
     interface, while in opencofnig-lldp model structure under 
     "lldp.interfaces.inderface" must be a list.
     
     Moreover, neighbors must contain "id" key and use "state" key to
-    store information about neighbour details.
+    store information about neighbor details.
     """
     ret = []
 
@@ -143,36 +143,29 @@ ifmap = {
 hostname="gethostname"
 </vars>
 
-<group name="lldp.interfaces.inderface**.{{ name }}">
+<group name="lldp.interfaces.inderface**.{{ local_port }}**.neighbors.neighbor*">
 ##
 ##  Parses "show lldp neighbors detail" output
 ##
-Local Intf: {{ name | resuball(ifmap) }}
-
-<group name="neighbors.neighbor*">
 Chassis id: {{ chassis-id | mac_eui }}
 Port id: {{ port-id | resuball(ifmap) }}
+Local Port id: {{ local_port | resuball(ifmap) }}
 Port Description: {{ port-description | re(".+") | default(None) }}
 System Name: {{ system-name }}
-    IP: {{ management-address | default(None) }}
-    
+Management Address: {{ management-address | default(None) }}
+  
 <group name="_">
-System Description: {{ _start_ }}
-{{ system-description | _line_ | strip | joinmatches(" ") }}
+System Description: {{ system-description | re(".+") | joinmatches(" ") }}
+{{ system-description | _line_ | joinmatches(" ") }}
 Time remaining: {{ ignore }} seconds {{ _end_ }}
 </group>
 
 <group name="capabilities" macro="map_capabilities">
-System Capabilities: {{ codes | split(",") }}
+System Capabilities: {{ codes | ORPHRASE | split(", ") }}
 </group>
 
 {{ port-id-type | set("INTERFACE_NAME") }}
 {{ chassis-id-type | set("MAC_ADDRESS") }}
 </group>
-</group>
 
 <output macro="process"/>
-
-<output condition="validate_with_yangson, True">
-validate_yangson="'./yang-modules/openconfig/lldp/'"
-</output>
