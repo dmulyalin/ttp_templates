@@ -1,0 +1,19 @@
+<doc>
+This template used in to test Netmiko run_ttp method
+</doc>
+
+
+
+<template name="interfaces" results="per_template">
+<input>
+commands = [
+    "show run | sec interface"
+]
+</input>
+
+<group name="intf_cfg" chain="record_all">
+interface {{ interface }}
+ description {{ description | ORPHRASE }}
+ ip address {{ ip }} {{ mask }}
+</group>
+</template>

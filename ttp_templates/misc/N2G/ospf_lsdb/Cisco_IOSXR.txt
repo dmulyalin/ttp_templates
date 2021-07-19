@@ -1,0 +1,163 @@
+<doc>
+This template designed for use with N2G library to produce network diagrams based on OSPF 
+link state database of Cisco IOS-XR devices. 
+
+Caveats:
+ - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+ - output must contain device's prompt to properly extract hostname
+ 
+Produces this structre for each input datum/device output:
+[[{'ospf_processes': {'1': {'external_lsa': [{'mask': '0',
+                                              'metric': '1',
+                                              'metric_type': '2',
+                                              'originator_rid': '10.3.22.190',
+                                              'subnet': '0.0.0.0',
+                                              'tag': '10'}],
+                            'local_rid': '10.1.2.2',
+                            'router_lsa': [{'area': '0.0.0.0',
+                                            'asbr': True,
+                                            'bma_peers': [{'link_data': '10.3.162.14',
+                                                           'link_id': '10.3.162.13',
+                                                           'metric': '1'}],
+                                            'connected_stub': [{'link_data': '255.255.255.252',
+                                                                'link_id': '10.0.61.0',
+                                                                'metric': '9100'}],
+                                            'originator_rid': '10.1.0.91',
+                                            'ptp_peers': [{'link_data': '10.0.61.1',
+                                                           'link_id': '10.1.1.251',
+                                                           'metric': '9100'}]},
+                                           {'area': '0.0.0.0',
+                                            'asbr': True,
+                                            'connected_stub': [{'link_data': '255.255.255.252',
+                                                                'link_id': '10.0.61.96',
+                                                                'metric': '9000'}],
+                                            'originator_rid': '10.1.0.92',
+                                            'ptp_peers': [{'link_data': '0.0.2.5',
+                                                           'link_id': '10.1.2.6',
+                                                           'metric': '1100'}]}],
+                            'summary_lsa': [{'area': '0.0.0.0',
+                                             'mask': '32',
+                                             'metric': '2312',
+                                             'originator_rid': '10.0.24.1',
+                                             'subnet': '10.1.0.1'}
+                                            {'area': '0.0.0.32',
+                                             'mask': '32',
+                                             'metric': '2312',
+                                             'originator_rid': '10.0.24.1',
+                                             'subnet': '10.1.0.1'}]}},
+   'vars': {'hostname': 'router-1'}},
+  {'ospf_processes': {'1': {'local_rid': '10.1.2.2',
+                            'router_lsa': [{'area': '0.0.0.0',
+                                            'asbr': True,
+                                            'connected_stub': [{'link_data': '255.255.255.252',
+                                                                'link_id': '10.0.60.204',
+                                                                'metric': '9000'}],
+                                            'originator_rid': '10.1.0.91',
+                                            'ptp_peers': [{'link_data': '10.0.60.206',
+                                                           'link_id': '10.0.24.6',
+                                                           'metric': '9000'}]},
+                                           {'area': '0.0.0.1',
+                                            'asbr': True,
+                                            'originator_rid': '10.1.0.91',
+                                            'ptp_peers': [{'link_data': '10.0.60.206',
+                                                           'link_id': '10.0.24.6',
+                                                           'metric': '9000'}]}],
+                            'summary_lsa': [{'area': '0.0.0.0',
+                                             'mask': '32',
+                                             'metric': '2312',
+                                             'originator_rid': '10.0.24.1',
+                                             'subnet': '10.1.0.1'}]},
+                      '10': {'external_lsa': [{'mask': '0',
+                                               'metric': '1',
+                                               'metric_type': '2',
+                                               'originator_rid': '10.3.22.190',
+                                               'subnet': '0.0.0.0',
+                                               'tag': '10'}],
+                             'local_rid': '10.3.22.75'}},
+   'vars': {'hostname': 'router-1'}}]]
+
+</doc>
+
+<input load="python">
+# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
+commands = [
+    "show ospf database router",
+    "show ospf database summary",
+    "show ospf database external",
+]
+kwargs = {
+    "strip_prompt": False
+}
+method = "send_command"
+</input>
+
+<vars name="vars">
+hostname="gethostname"
+</vars>
+
+<group name="ospf_processes.{{ pid }}**">
+            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})
+            
+<group name="router_lsa*" record="area" del="area" void="">
+                Router Link States (Area {{ area }})
+
+  <group set="area">
+  LS age: 1765 {{ _start_ }}
+  Advertising Router: {{ originator_rid }}
+  Area Border Router {{ asbr | set(True) | default(False) }}
+
+    <group name="ptp_peers*">
+    Link connected to: another Router (point-to-point) {{ _start_ }}
+     (Link ID) Neighboring Router ID: {{ link_id }}
+     (Link Data) Router Interface address: {{ link_data }}
+       TOS 0 Metrics: {{ metric }}
+{{ _end_ }}
+    </group>
+
+    <group name="connected_stub*">
+    Link connected to: a Stub Network {{ _start_ }}
+     (Link ID) Network/subnet number: {{ link_id }}
+     (Link Data) Network Mask: {{ link_data }}
+       TOS 0 Metrics: {{ metric }}
+{{ _end_ }}
+    </group>
+
+    <group name="bma_peers*">
+    Link connected to: a Transit Network {{ _start_ }}
+     (Link ID) Designated Router address: {{ link_id }}
+     (Link Data) Router Interface address: {{ link_data }}
+       TOS 0 Metrics: {{ metric }}
+{{ _end_ }}
+    </group>
+  </group>
+</group>
+
+<group name="external_lsa">
+                Type-5 AS External Link States {{ _start_ }}
+
+  <group>
+  LS age: 498 {{ _start_ }}
+  Link State ID: {{ subnet }} (External Network Number)
+  Advertising Router: {{ originator_rid }}
+  Network Mask: /{{ mask }}
+        Metric Type: {{ metric_type }} {{ ignore(".+") }}
+        Metric: {{ metric }}  
+        External Route Tag: {{ tag }}
+{{ _end_ }}
+  </group>
+</group>
+
+<group name="summary_lsa*" record="area" del="area" void="">
+                Summary Net Link States (Area {{ area }})
+
+<group set="area">
+  LS age: 1590 {{ _start_ }}
+  Link State ID: {{ subnet }} (Summary Network Number)
+  Advertising Router: {{ originator_rid }}
+  Network Mask: /{{ mask }}
+        TOS: 0  Metric: {{ metric }} 
+{{ _end_ }}        
+</group>
+</group>
+
+</group>

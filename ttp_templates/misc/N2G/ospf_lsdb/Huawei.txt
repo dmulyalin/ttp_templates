@@ -1,0 +1,28 @@
+<vars name="vars">
+filename='getfilename' 
+hostname='gethostname'
+</vars>
+
+<group name="OSPF_PROCESSES.{{ PROCESS_ID }}**">
+{{ ignore(" +") }}  OSPF Process {{ PROCESS_ID }} with Router ID {{ local_rid }}
+
+<group name="router_lsa.{{ area }}">          
+{{ ignore(" +") }}  Area: {{ area }}         
+						  
+<group name="LSAs">
+  Type      : Router {{ _start_ }}
+  Adv rtr   : {{ Originator_rid }}
+  
+<group name="{{ link_type }}*" contains="link_type">
+   * Link ID: {{ link_id | _start_ }}
+     Link ID: {{ link_id | _start_ }}
+     Data   : {{ link_data }}
+     Link Type: StubNet {{ link_type | set(connected_stub) }}
+     Link Type: P-2-P {{ link_type | set(ptp_peers) }}
+     Link Type: TransNet  {{ link_type | set(bma_peers) }}
+     Metric : {{ metric }}
+</group>
+
+</group>
+</group>
+</group>
