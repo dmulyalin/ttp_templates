@@ -3,12 +3,12 @@ from ttp import ttp
 from typing import Optional, List, Dict
 
 
-def get_template(
+def get_template( 
+    path: Optional[str] = None,
     platform: Optional[str] = None,
     command: Optional[str] = None,
     yang: Optional[str] = None,
     misc: Optional[str] = None,
-    path: Optional[str] = None,
 ):
     """
     Function to locate template file and return it's content
@@ -32,7 +32,8 @@ def get_template(
     """
     # form path to template file
     if path:
-        pass
+        if path.strip().startswith("ttp://"):
+            path = path.strip()[6:]
     elif platform and command:
         platform = platform.lower()
         command = command.lower()

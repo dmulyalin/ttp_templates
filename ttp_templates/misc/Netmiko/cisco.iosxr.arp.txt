@@ -38,12 +38,12 @@ Template can be invoked using Netmiko run_ttp method like this:
 </doc>
 
 
-<input name="arp">
+<input>
 commands = [
     "show arp vrf all"
 ]
 </input>
 
-<group method="table" input="arp" to_int="age">
+<group method="table" to_int="age">
 {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }}  {{ state | lower }}  {{ type }} {{ interface | resuball("short_interface_names") }}
 </group>

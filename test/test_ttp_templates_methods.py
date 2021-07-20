@@ -7,13 +7,28 @@ from ttp_templates import get_template
 from ttp_templates import parse_output
 
 
-def test_get_template():
+def test_get_template_by_path():
     template = get_template(path="yang/ietf-interfaces_cisco_ios.txt")
     # print(template)
     assert isinstance(template, str)
 
+# test_get_template()
+
+
+def test_get_template_by_ttp_path_explicit():
+    template = get_template(path="ttp://yang/ietf-interfaces_cisco_ios.txt")
+    # print(template)
+    assert isinstance(template, str)
 
 # test_get_template()
+
+
+def test_get_template_by_ttp_path_implicit():
+    template = get_template("ttp://yang/ietf-interfaces_cisco_ios.txt")
+    # print(template)
+    assert isinstance(template, str)
+
+# test_get_template_by_ttp_path_implicit()
 
 
 def test_parse_output_platform():
@@ -103,3 +118,93 @@ interface GigabitEthernet1
 
 
 # test_parse_output_misc()
+
+
+def test_parse_output_ttp_path():
+    data = """
+interface GigabitEthernet1/3.251
+ description Customer #32148
+ encapsulation dot1q 251
+ ip address 172.16.33.10 255.255.255.128
+ shutdown
+!
+interface GigabitEthernet1/3.251
+ description Customer #32148
+ encapsulation dot1q 251
+ ip address 172.16.33.10 255.255.255.128
+ shutdown
+    """
+    result = parse_output(
+        data=data, path="ttp://platform/test_platform_show_run_pipe_sec_interface.txt"
+    )
+    # pprint.pprint(result)
+    assert result == [
+        [
+            [
+                {
+                    "description": "Customer #32148",
+                    "disabled": True,
+                    "dot1q": "251",
+                    "interface": "GigabitEthernet1/3.251",
+                    "ip": "172.16.33.10",
+                    "mask": "255.255.255.128",
+                },
+                {
+                    "description": "Customer #32148",
+                    "disabled": True,
+                    "dot1q": "251",
+                    "interface": "GigabitEthernet1/3.251",
+                    "ip": "172.16.33.10",
+                    "mask": "255.255.255.128",
+                },
+            ]
+        ]
+    ]
+
+
+# test_parse_output_ttp_path()
+
+
+def test_parse_output_path():
+    data = """
+interface GigabitEthernet1/3.251
+ description Customer #32148
+ encapsulation dot1q 251
+ ip address 172.16.33.10 255.255.255.128
+ shutdown
+!
+interface GigabitEthernet1/3.251
+ description Customer #32148
+ encapsulation dot1q 251
+ ip address 172.16.33.10 255.255.255.128
+ shutdown
+    """
+    result = parse_output(
+        data=data, path="platform/test_platform_show_run_pipe_sec_interface.txt"
+    )
+    # pprint.pprint(result)
+    assert result == [
+        [
+            [
+                {
+                    "description": "Customer #32148",
+                    "disabled": True,
+                    "dot1q": "251",
+                    "interface": "GigabitEthernet1/3.251",
+                    "ip": "172.16.33.10",
+                    "mask": "255.255.255.128",
+                },
+                {
+                    "description": "Customer #32148",
+                    "disabled": True,
+                    "dot1q": "251",
+                    "interface": "GigabitEthernet1/3.251",
+                    "ip": "172.16.33.10",
+                    "mask": "255.255.255.128",
+                },
+            ]
+        ]
+    ]
+
+
+# test_parse_output_path() 

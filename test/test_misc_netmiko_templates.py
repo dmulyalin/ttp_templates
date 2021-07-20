@@ -4,7 +4,7 @@ import pprint
 sys.path.insert(0, "..")
 
 from netmiko import ConnectHandler
-from ttp_templates import get_template
+from ttp_templates import get_template 
 from ttp_templates import ttp_vars
 
 
@@ -59,6 +59,29 @@ Address         Age        Hardware Addr   State      Type  Interface
     return outputs[command_string]
 
 
+def mock_output_huawei_vrp(command_string, *args, **kwargs):
+    outputs = {
+        "display current-configuration interface": """
+<router_23>display current-configuration interface
+interface Eth-Trunk1.100
+ description Link description  here
+ ip address 10.1.130.2 255.255.255.252
+ ip address 10.1.130.3 255.255.255.252 sub 
+ ip binding vpn-instance VRF2 
+#
+interface vlanif10
+ description Link description  here 2
+ ip binding vpn-instance VRF2 
+ ip address 10.2.130.2 255.255.255.252
+ vrrp vrid 1 virtual-ip 10.1.1.2
+ ipv6 address fc00:1::2/64
+ vrrp6 vrid 1 virtual-ip 2001:DB8::100 
+#
+        """
+    }
+    return outputs[command_string]
+    
+    
 lab_cisco_ios = {
     "device_type": "cisco_ios",
     "host": "1.2.3.4",
@@ -79,6 +102,17 @@ lab_cisco_ios_xr = {
 }
 connection_cisco_ios_xr = ConnectHandler(**lab_cisco_ios_xr)
 setattr(connection_cisco_ios_xr, "send_command", mock_output_cisco_ios_xr)
+
+
+lab_huawei_vrp = {
+    "device_type": "huawei",
+    "host": "1.2.3.4",
+    "username": "huawei",
+    "password": "huawei",
+    "auto_connect": False,  # stop Netmiko trying connect to device
+}
+connection_huawei_vrp = ConnectHandler(**lab_huawei_vrp)
+setattr(connection_huawei_vrp, "send_command", mock_output_huawei_vrp)
 
 
 def test_cisco_ios_arp_original_intf_names():
@@ -150,17 +184,19 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "vrf": "VRF1",
         },
         {
+            "mask": "64",
             "description": "Some  description",
             "hostname": "router-1",
             "interface": "Vlan1234",
-            "ipv6": "AAAA::1/64",
+            "ipv6": "AAAA::1",
             "vrf": "VRF1",
         },
         {
+            "mask": "64",
             "description": "Some  description",
             "hostname": "router-1",
             "interface": "Vlan1234",
-            "ipv6": "BBBB::1/64",
+            "ipv6": "BBBB::1",
             "vrf": "VRF1",
         },
         {
@@ -221,17 +257,19 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "vrf": "VRF1",
         },
         {
+            "mask": "64",
             "description": "Some  description",
             "hostname": "router-1",
             "interface": "Vlan1234",
-            "ipv6": "AAAA::1/64",
+            "ipv6": "AAAA::1",
             "vrf": "VRF1",
         },
         {
+            "mask": "64",
             "description": "Some  description",
             "hostname": "router-1",
             "interface": "Vlan1234",
-            "ipv6": "BBBB::1/64",
+            "ipv6": "BBBB::1",
             "vrf": "VRF1",
         },
         {
@@ -345,3 +383,101 @@ def test_cisco_ios_xr_arp_original_intf_names():
 
 
 # test_cisco_ios_xr_arp_original_intf_names()
+
+
+def test_huawei_vrp_cfg_ip_original_intf_names():
+    res = connection_huawei_vrp.run_ttp(
+        "ttp://misc/netmiko/huawei.vrp.cfg.ip.txt", res_kwargs={"structure": "flat_list"}
+    )
+    # pprint.pprint(res)
+    assert res == [{'description': 'Link description  here',
+                    'hostname': 'router_23',
+                    'interface': 'Eth-Trunk1.100',
+                    'ipv4': '10.1.130.2',
+                    'mask': '255.255.255.252',
+                    'vrf': 'vrf'},
+                   {'description': 'Link description  here',
+                    'hostname': 'router_23',
+                    'interface': 'Eth-Trunk1.100',
+                    'ipv4': '10.1.130.3',
+                    'mask': '255.255.255.252',
+                    'secondary': True,
+                    'vrf': 'vrf'},
+                   {'description': 'Link description  here 2',
+                    'hostname': 'router_23',
+                    'interface': 'vlanif10',
+                    'ipv4': '10.2.130.2',
+                    'mask': '255.255.255.252',
+                    'vrf': 'VRF2'},
+                   {'description': 'Link description  here 2',
+                    'hostname': 'router_23',
+                    'interface': 'vlanif10',
+                    'ipv4': '10.1.1.2',
+                    'vip': True,
+                    'vip_type': 'VRRP',
+                    'vrf': 'VRF2'},
+                   {'description': 'Link description  here 2',
+                    'hostname': 'router_23',
+                    'interface': 'vlanif10',
+                    'ipv6': 'fc00:1::2',
+                    'mask': '64',
+                    'vrf': 'VRF2'},
+                   {'description': 'Link description  here 2',
+                    'hostname': 'router_23',
+                    'interface': 'vlanif10',
+                    'ipv6': '2001:DB8::100',
+                    'vip': True,
+                    'vip_type': 'VRRP',
+                    'vrf': 'VRF2'}]
+  
+# test_huawei_vrp_cfg_ip_original_intf_names()
+
+
+def test_huawei_vrp_cfg_ip_short_intf_names():
+    res = connection_huawei_vrp.run_ttp(
+        "ttp://misc/netmiko/huawei.vrp.cfg.ip.txt", 
+        res_kwargs={"structure": "flat_list"},
+        vars=ttp_vars.all_vars
+    )
+    # pprint.pprint(res)
+    assert res == [{'description': 'Link description  here',
+                    'hostname': 'router_23',
+                    'interface': 'LAG1.100',
+                    'ipv4': '10.1.130.2',
+                    'mask': '255.255.255.252',
+                    'vrf': 'vrf'},
+                   {'description': 'Link description  here',
+                    'hostname': 'router_23',
+                    'interface': 'LAG1.100',
+                    'ipv4': '10.1.130.3',
+                    'mask': '255.255.255.252',
+                    'secondary': True,
+                    'vrf': 'vrf'},
+                   {'description': 'Link description  here 2',
+                    'hostname': 'router_23',
+                    'interface': 'VLAN10',
+                    'ipv4': '10.2.130.2',
+                    'mask': '255.255.255.252',
+                    'vrf': 'VRF2'},
+                   {'description': 'Link description  here 2',
+                    'hostname': 'router_23',
+                    'interface': 'VLAN10',
+                    'ipv4': '10.1.1.2',
+                    'vip': True,
+                    'vip_type': 'VRRP',
+                    'vrf': 'VRF2'},
+                   {'description': 'Link description  here 2',
+                    'hostname': 'router_23',
+                    'interface': 'VLAN10',
+                    'ipv6': 'fc00:1::2',
+                    'mask': '64',
+                    'vrf': 'VRF2'},
+                   {'description': 'Link description  here 2',
+                    'hostname': 'router_23',
+                    'interface': 'VLAN10',
+                    'ipv6': '2001:DB8::100',
+                    'vip': True,
+                    'vip_type': 'VRRP',
+                    'vrf': 'VRF2'}]
+  
+# test_huawei_vrp_cfg_ip_short_intf_names()

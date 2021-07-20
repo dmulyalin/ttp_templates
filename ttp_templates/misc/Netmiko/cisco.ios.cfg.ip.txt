@@ -63,7 +63,7 @@ Template can be invoked using Netmiko run_ttp method like this:
 
 
 
-<input name="ip">
+<input>
 # optional definition of Netmiko parameters
 method_name = "strip_prompt"
 commands = [
@@ -94,15 +94,16 @@ set_all = [
 ]
 </vars>
 
-<group name="ip" chain="record_all">
+<group chain="record_all">
 interface {{ interface | resuball("short_interface_names") }}
  description {{ description | re(".+") }}
  vrf forwarding {{ vrf }}
  <group name="/" chain="set_all" method="table">
  ip address {{ ipv4 | IP }} {{ mask }}
  ip address {{ ipv4 | IP | let("secondary", True) }} {{ mask }} secondary
- ipv6 address {{ ipv6 | _exact_ }}
+ ipv6 address {{ ipv6 | IPV6 | _exact_ }}/{{ mask }}
  vrrp 1 ip  {{ ipv4 | IP | let("vip", True) | let("vip_type", "VRRP") }}
  standby 1 ip {{ ipv4 | IP | let("vip", True) | let("vip_type", "HSRP") }}
  </group>
+! {{ _end_ }}
 </group>
