@@ -1,5 +1,5 @@
 <doc>
-TTP template to parse Cisco IOS "show ip arp" output. 
+TTP template to parse Cisco IOS "show ip arp" output.
 
 Template can be invoked using Netmiko run_ttp method like this:
 

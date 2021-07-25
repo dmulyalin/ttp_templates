@@ -53,8 +53,6 @@ Template supports Netmiko run_ttp method:
 
 
 <input>
-# optional definition of Netmiko parameters
-method_name = "strip_prompt"
 commands = [
     "display current-configuration interface"
 ]
@@ -86,7 +84,7 @@ set_all = [
 <group chain="record_all">
 interface {{ interface | resuball("short_interface_names") }}
  description {{ description | re(".+") }}
- ip binding vpn-instance {{ vrf }}
+ ip binding vpn-instance {{ vrf | default("default") }}
  <group name="/" chain="set_all" method="table">
  ip address {{ ipv4 | IP }} {{ mask }}
  ip address {{ ipv4 | IP | let("secondary", True) }} {{ mask }} sub

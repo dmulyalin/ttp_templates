@@ -1,6 +1,6 @@
 <doc>
 Template to parse "show running-config | section interface" output.
-This template produces one dictionary item per IP address configured 
+This template produces one dictionary item per IP address configured
 on device's interfaces including secondary and VRRP/HSRP IP addresses. 
 
 Output is a list of dictionaries. 
@@ -64,8 +64,6 @@ Template can be invoked using Netmiko run_ttp method like this:
 
 
 <input>
-# optional definition of Netmiko parameters
-method_name = "strip_prompt"
 commands = [
     "show running-config | section interface"
 ]
@@ -97,7 +95,7 @@ set_all = [
 <group chain="record_all">
 interface {{ interface | resuball("short_interface_names") }}
  description {{ description | re(".+") }}
- vrf forwarding {{ vrf }}
+ vrf forwarding {{ vrf | default("default") }}
  <group name="/" chain="set_all" method="table">
  ip address {{ ipv4 | IP }} {{ mask }}
  ip address {{ ipv4 | IP | let("secondary", True) }} {{ mask }} secondary

@@ -4,7 +4,7 @@ import pprint
 sys.path.insert(0, "..")
 
 from netmiko import ConnectHandler
-from ttp_templates import get_template 
+from ttp_templates import get_template
 from ttp_templates import ttp_vars
 
 
@@ -20,7 +20,6 @@ Internet  172.29.50.3             -   0024.f7dd.7741  ARPA   Vlan21
 router-1# show running-config | section interface
 interface Vlan1234
  description Some  description
- vrf forwarding VRF1
  ip address 10.1.251.170 255.255.255.0
  ip address 10.1.251.171 255.255.255.0 secondary
  standby 1234 ip 172.20.128.3
@@ -34,6 +33,75 @@ interface GigabitEthernet1
  vrrp 123 ip  10.2.251.1
 !
         """,
+        "show running-config | section bgp": """
+router bgp 65001
+ !
+ bgp router-id 10.5.1.1
+ bgp log-neighbor-changes
+ neighbor 2001:db8::1 remote-as 65003
+ neighbor 2001:db8::1 description Peer1-Global
+ neighbor 10.11.0.81 remote-as 65002
+ neighbor 10.11.0.81 description Peer2-Global
+ neighbor 10.11.0.81 shutdown
+ neighbor RR-CLIENTS peer-group
+ neighbor RR-CLIENTS remote-as 65001
+ neighbor RR-CLIENTS description [ibgp - rr clients]
+ neighbor RR-CLIENTS update-source GigabitEthernet1
+ neighbor 10.0.0.3 peer-group RR-CLIENTS
+ neighbor 10.0.0.5 peer-group RR-CLIENTS
+ !
+ address-family ipv4
+  network 10.255.10.0 mask 255.255.248.0
+  network 10.255.10.0 mask 255.255.255.0
+  redistribute connected route-map PORTABLE-v4
+  neighbor 10.11.0.81 activate
+  neighbor 10.11.0.81 description Peer2-IPv4
+  neighbor RR-CLIENTS route-reflector-client
+  neighbor RR-CLIENTS route-map PASS-IN in
+  neighbor RR-CLIENTS route-map PASS-OUT out
+  neighbor RR-CLIENTS maximum-prefix 1000 80 restart 15
+  neighbor 10.0.0.3 activate
+  neighbor 10.0.0.5 activate
+ exit-address-family
+ !
+ address-family ipv6
+  redistribute connected
+  network 2001:db8::/48
+  neighbor 2001:db8::1 activate
+  neighbor 2001:db8::1 description Peer1-IPv6
+ exit-address-family
+ !
+ address-family ipv4 multicast
+ exit-address-family
+ !
+ address-family vpnv4 unicast
+  neighbor 3.3.3.3 activate
+ exit-address-family 
+ !
+ address-family ipv4 vrf VoIP
+  network 10.255.10.0 mask 255.255.248.0 
+  bgp router-id 10.2.1.193
+  redistribute connected route-map tospokes
+  neighbor 10.2.1.65 remote-as 65001
+  neighbor 10.2.1.65 description voip peer 1
+  neighbor 10.2.1.65 activate
+  neighbor 10.2.1.78 remote-as 65001
+  neighbor 10.2.1.78 description voip peer 2
+  neighbor 10.2.1.78 shutdown
+  neighbor 10.2.1.78 activate
+  neighbor 10.2.1.78 next-hop-self
+  neighbor 10.2.1.78 prefix-list VoIP-prefixes out
+ exit-address-family
+!
+ address-family ipv4 vrf CUST-2
+  bgp router-id 1.1.1.1
+  redistribute connected
+  neighbor 2.2.2.2 remote-as 65002
+  neighbor 2.2.2.2 description peer 12
+  neighbor 2.2.2.2 activate
+ exit-address-family
+!
+    """
     }
     return outputs[command_string]
 
@@ -54,6 +122,47 @@ Address         Age        Hardware Addr   State      Type  Interface
 Address         Age        Hardware Addr   State      Type  Interface
 10.2.3.33     00:10:50   1234.dd60.1f88  Dynamic    ARPA  MgmtEth0/RP0/CPU0/0
 10.5.3.34     -          7cad.4fe6.a49a  Interface  ARPA  MgmtEth0/RP0/CPU0/0
+        """,
+        "show running-config interface": """
+RP/0/RP0/CPU0:r1#show running-config interface
+interface Bundle-Ether1
+ description Description of interface
+ ipv4 address 10.1.2.54 255.255.255.252
+ ipv6 address fd00:1:2::31/126
+!
+interface Loopback123
+ description VRF 123
+ vrf VRF-1123
+ ipv4 address 10.1.0.10 255.255.255.255
+!
+        """,
+        "show running-config router vrrp": """
+RP/0/RP0/CPU0:r1#show running-config router vrrp
+router vrrp
+ interface Bundle-Ether1
+  address-family ipv4
+   vrrp 1
+    address 1.1.1.1
+   !
+  !
+  address-family ipv6
+   vrrp 1
+    address global fd::1
+!
+        """,
+        "show running-config router hsrp": """
+RP/0/RP0/CPU0:r1#show running-config router hsrp
+router hsrp
+ interface Bundle-Ether1
+  address-family ipv4
+   hsrp 1
+    address 3.3.3.3
+   !
+  !
+  address-family ipv6
+   hsrp 1
+    address global fd::3
+!
         """
     }
     return outputs[command_string]
@@ -163,7 +272,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "interface": "Vlan1234",
             "ipv4": "10.1.251.170",
             "mask": "255.255.255.0",
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "description": "Some  description",
@@ -172,7 +281,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "ipv4": "10.1.251.171",
             "mask": "255.255.255.0",
             "secondary": True,
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "description": "Some  description",
@@ -181,7 +290,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "ipv4": "172.20.128.3",
             "vip": True,
             "vip_type": "HSRP",
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "mask": "64",
@@ -189,7 +298,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "hostname": "router-1",
             "interface": "Vlan1234",
             "ipv6": "AAAA::1",
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "mask": "64",
@@ -197,7 +306,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "hostname": "router-1",
             "interface": "Vlan1234",
             "ipv6": "BBBB::1",
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "description": "Workstations subnet 1",
@@ -236,7 +345,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "interface": "Vlan1234",
             "ipv4": "10.1.251.170",
             "mask": "255.255.255.0",
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "description": "Some  description",
@@ -245,7 +354,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "ipv4": "10.1.251.171",
             "mask": "255.255.255.0",
             "secondary": True,
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "description": "Some  description",
@@ -254,7 +363,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "ipv4": "172.20.128.3",
             "vip": True,
             "vip_type": "HSRP",
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "mask": "64",
@@ -262,7 +371,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "hostname": "router-1",
             "interface": "Vlan1234",
             "ipv6": "AAAA::1",
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "mask": "64",
@@ -270,7 +379,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "hostname": "router-1",
             "interface": "Vlan1234",
             "ipv6": "BBBB::1",
-            "vrf": "VRF1",
+            'vrf': 'default',
         },
         {
             "description": "Workstations subnet 1",
@@ -395,14 +504,14 @@ def test_huawei_vrp_cfg_ip_original_intf_names():
                     'interface': 'Eth-Trunk1.100',
                     'ipv4': '10.1.130.2',
                     'mask': '255.255.255.252',
-                    'vrf': 'vrf'},
+                    'vrf': 'default'},
                    {'description': 'Link description  here',
                     'hostname': 'router_23',
                     'interface': 'Eth-Trunk1.100',
                     'ipv4': '10.1.130.3',
                     'mask': '255.255.255.252',
                     'secondary': True,
-                    'vrf': 'vrf'},
+                    'vrf': 'default'},
                    {'description': 'Link description  here 2',
                     'hostname': 'router_23',
                     'interface': 'vlanif10',
@@ -445,14 +554,14 @@ def test_huawei_vrp_cfg_ip_short_intf_names():
                     'interface': 'LAG1.100',
                     'ipv4': '10.1.130.2',
                     'mask': '255.255.255.252',
-                    'vrf': 'vrf'},
+                    'vrf': 'default'},
                    {'description': 'Link description  here',
                     'hostname': 'router_23',
                     'interface': 'LAG1.100',
                     'ipv4': '10.1.130.3',
                     'mask': '255.255.255.252',
                     'secondary': True,
-                    'vrf': 'vrf'},
+                    'vrf': 'default'},
                    {'description': 'Link description  here 2',
                     'hostname': 'router_23',
                     'interface': 'VLAN10',
@@ -481,3 +590,111 @@ def test_huawei_vrp_cfg_ip_short_intf_names():
                     'vrf': 'VRF2'}]
   
 # test_huawei_vrp_cfg_ip_short_intf_names()
+
+
+def test_cisco_iosxr_cfg_ip_original_intf_names():
+    res = connection_cisco_ios_xr.run_ttp(
+        "ttp://misc/netmiko/cisco.iosxr.cfg.ip.txt", 
+        res_kwargs={"structure": "flat_list"}
+    )
+    # pprint.pprint(res)
+    assert res == [{'description': 'Description of interface',
+                    'hostname': 'r1',
+                    'interface': 'Bundle-Ether1',
+                    'ipv4': '10.1.2.54',
+                    'mask': '255.255.255.252',
+                    'vrf': 'default'},
+                    {'description': 'Description of interface',
+                    'hostname': 'r1',
+                    'interface': 'Bundle-Ether1',
+                    'ipv6': 'fd00:1:2::31',
+                    'mask': '126',
+                    'vrf': 'default'},
+                    {'description': 'VRF 123',
+                    'hostname': 'r1',
+                    'interface': 'Loopback123',
+                    'ipv4': '10.1.0.10',
+                    'mask': '255.255.255.255',
+                    'vrf': 'VRF-1123'},
+                    {'description': 'Description of interface',
+                    'hostname': 'r1',
+                    'interface': 'Bundle-Ether1',
+                    'ipv4': '1.1.1.1',
+                    'vip': True,
+                    'vip_type': 'VRRP',
+                    'vrf': 'default'},
+                    {'description': 'Description of interface',
+                    'hostname': 'r1',
+                    'interface': 'Bundle-Ether1',
+                    'ipv6': 'fd::1',
+                    'vip': True,
+                    'vip_type': 'VRRP',
+                    'vrf': 'default'},
+                    {'description': 'Description of interface',
+                    'hostname': 'r1',
+                    'interface': 'Bundle-Ether1',
+                    'ipv4': '3.3.3.3',
+                    'vip': True,
+                    'vip_type': 'HSRP',
+                    'vrf': 'default'},
+                    {'description': 'Description of interface',
+                    'hostname': 'r1',
+                    'interface': 'Bundle-Ether1',
+                    'ipv6': 'fd::3',
+                    'vip': True,
+                    'vip_type': 'HSRP',
+                    'vrf': 'default'}]
+  
+# test_cisco_iosxr_cfg_ip_original_intf_names()
+
+
+def test_cisco_ios_cfg_bgp():
+    res = connection_cisco_ios.run_ttp(
+        "ttp://misc/netmiko/cisco.ios.cfg.bgp.txt", 
+        # res_kwargs={"structure": "flat_list"}
+    )
+    # pprint.pprint(res, width=150) 
+    assert res == [[{'bgp': {'afis': {'ipv4_multicast': {},
+                    'ipv4_unicast': {'config': {'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'},
+                                                             {'mask': '255.255.255.0', 'network': '10.255.10.0'}],
+                                                'redistribute_connected': True,
+                                                'redistribute_connected_rpl': 'PORTABLE-v4'},
+                                     'neighbors': {'10.0.0.3': {'activate': True},
+                                                   '10.0.0.5': {'activate': True},
+                                                   '10.11.0.81': {'activate': True},
+                                                   'RR-CLIENTS': {'max_prefix_action': 'restart',
+                                                                  'max_prefix_limit': '1000',
+                                                                  'max_prefix_restart_interval': '15',
+                                                                  'max_prefix_threshold': '80',
+                                                                  'rpl_out': 'PASS-OUT',
+                                                                  'rr_client': True}}},
+                    'ipv6_unicast': {'config': {'networks': [{'mask': '48', 'network': '2001:db8::'}], 'redistribute_connected': True},
+                                     'neighbors': {'2001:db8::1': {'activate': True}}},
+                    'vpnv4_unicast': {'neighbors': {'3.3.3.3': {'activate': True}}}},
+           'asn': '65001',
+           'config': {'bgp_rid': '10.5.1.1', 'log_neighbor_changes': True},
+           'neighbors': {'10.0.0.3': {'peer_group': 'RR-CLIENTS'},
+                         '10.0.0.5': {'peer_group': 'RR-CLIENTS'},
+                         '10.11.0.81': {'asn': '65002', 'description': 'Peer2-Global', 'disabled': True},
+                         '2001:db8::1': {'asn': '65003', 'description': 'Peer1-Global'},
+                         'RR-CLIENTS': {'asn': '65001',
+                                        'description': '[ibgp - rr clients]',
+                                        'is_peer_group': True,
+                                        'update_source': 'GigabitEthernet1'}},
+           'vrfs': {'CUST-2': {'afi': 'ipv4',
+                               'config': {'bgp_rid': '1.1.1.1', 'redistribute_connected': True},
+                               'neighbors': {'2.2.2.2': {'activate': True, 'asn': '65002', 'description': 'peer 12'}}},
+                    'VoIP': {'afi': 'ipv4',
+                             'config': {'bgp_rid': '10.2.1.193',
+                                        'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'}],
+                                        'redistribute_connected': True,
+                                        'redistribute_connected_rpl': 'tospokes'},
+                             'neighbors': {'10.2.1.65': {'activate': True, 'asn': '65001', 'description': 'voip peer 1'},
+                                           '10.2.1.78': {'activate': True,
+                                                         'asn': '65001',
+                                                         'description': 'voip peer 2',
+                                                         'disabled': True,
+                                                         'next_hop_self': True,
+                                                         'pfl_out': 'VoIP-prefixes'}}}}}}]]
+    
+# test_cisco_ios_cfg_bgp()
