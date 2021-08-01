@@ -16,7 +16,7 @@ Internet  172.29.50.1             8   84b8.0276.ac0e  ARPA
 Internet  172.29.50.2           221   0019.0725.344a  ARPA   Vlan20
 Internet  172.29.50.3             -   0024.f7dd.7741  ARPA   Vlan21       
         """,
-        "show running-config | section interface": """
+        "show running-configuration | section interface": """
 router-1# show running-config | section interface
 interface Vlan1234
  description Some  description
@@ -33,7 +33,7 @@ interface GigabitEthernet1
  vrrp 123 ip  10.2.251.1
 !
         """,
-        "show running-config | section bgp": """
+        "show running-configuration | section bgp": """
 router bgp 65001
  !
  bgp router-id 10.5.1.1

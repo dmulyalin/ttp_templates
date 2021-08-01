@@ -44,7 +44,4 @@ commands = [
 ]
 </input>
 
-<group method="table" to_int="age">
-{{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type | let("interface", "Uncknown") }}    
-{{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type }} {{ interface | resuball("short_interface_names") }}
-</group>
+<extend template="ttp://platform/cisco_ios_show_ip_arp.txt"/>

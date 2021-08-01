@@ -1,0 +1,7 @@
+<doc>
+TTP template to parse Cisco IOS XR "show arp vrf all" output. 
+</doc>
+
+<group method="table" to_int="age">
+{{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }}  {{ state | lower }}  {{ type }} {{ interface | resuball("short_interface_names") }}
+</group>

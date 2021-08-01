@@ -56,16 +56,11 @@ Template can be invoked using Netmiko run_ttp method like this:
     res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
     
     pprint.pprint(res)
-    
-    # prints something along the lines of:
-    # 
 </doc>
-
-
 
 <input>
 commands = [
-    "show running-config | section interface"
+    "show running-configuration | section interface"
 ]
 # need to keep prompt for "gethostname" to work
 kwargs = {

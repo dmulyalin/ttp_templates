@@ -1,5 +1,5 @@
 <doc>
-TTP template to parse Cisco IOS XR "show arp vrf all" output. 
+TTP template to parse Cisco IOS XR "show arp vrf all" output with Netmiko. 
 
 Template can be invoked using Netmiko run_ttp method like this:
 
@@ -44,6 +44,4 @@ commands = [
 ]
 </input>
 
-<group method="table" to_int="age">
-{{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }}  {{ state | lower }}  {{ type }} {{ interface | resuball("short_interface_names") }}
-</group>
+<extend template="ttp://platform/cisco_xr_show_arp_vrf_all.txt"/>
