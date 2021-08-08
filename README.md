@@ -1,3 +1,6 @@
+[![Downloads](https://pepy.tech/badge/ttp_templates)](https://pepy.tech/project/ttp_templates)
+[![PyPI versions](https://img.shields.io/pypi/pyversions/ttp.svg)](https://pypi.python.org/pypi/ttp_templates/)
+
 # Template Text Parser Templates
 
 This repository contains a collection of [TTP](https://github.com/dmulyalin/ttp) templates.
@@ -211,6 +214,7 @@ This repository contains three collections of templates corresponding to folder 
 * ``yang="ietf-interfaces", platform="cisco_ios"``
 * ``misc="foo_folder/bar_template.txt"`` 
 
+---
 
 `ttp_templates.get_template`: Function to locate template file and return it's content
 

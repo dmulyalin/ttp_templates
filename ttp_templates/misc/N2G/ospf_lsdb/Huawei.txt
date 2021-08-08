@@ -1,28 +1,9 @@
-<vars name="vars">
-filename='getfilename' 
-hostname='gethostname'
-</vars>
+<doc>
+This template designed for use with N2G library to produce network diagrams based on OSPF 
+link state database of Huawei devices. 
 
-<group name="OSPF_PROCESSES.{{ PROCESS_ID }}**">
-{{ ignore(" +") }}  OSPF Process {{ PROCESS_ID }} with Router ID {{ local_rid }}
+Caveats:
+ - need ttp>=0.8.0 for extend to work
+</doc>
 
-<group name="router_lsa.{{ area }}">          
-{{ ignore(" +") }}  Area: {{ area }}         
-						  
-<group name="LSAs">
-  Type      : Router {{ _start_ }}
-  Adv rtr   : {{ Originator_rid }}
-  
-<group name="{{ link_type }}*" contains="link_type">
-   * Link ID: {{ link_id | _start_ }}
-     Link ID: {{ link_id | _start_ }}
-     Data   : {{ link_data }}
-     Link Type: StubNet {{ link_type | set(connected_stub) }}
-     Link Type: P-2-P {{ link_type | set(ptp_peers) }}
-     Link Type: TransNet  {{ link_type | set(bma_peers) }}
-     Metric : {{ metric }}
-</group>
-
-</group>
-</group>
-</group>
+<extend template="ttp://platform/huawei_display_ospf_lsdb_router.txt"/>

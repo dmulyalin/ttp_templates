@@ -1,1 +1,1 @@
- 
+Collection of templates for [N2G library](https://pypi.org/project/N2G/) 

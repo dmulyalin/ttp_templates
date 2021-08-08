@@ -1,0 +1,86 @@
+
+IOL4#show ip ospf database summary
+
+            OSPF Router with ID (10.0.0.4) (Process ID 1)
+
+                Summary Net Link States (Area 0)
+
+  LS age: 214
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.1.45.2 (summary Network Number)
+  Advertising Router: 10.0.0.4
+  LS Seq Number: 80000001
+  Checksum: 0xE10A
+  Length: 28
+  Network Mask: /31
+        MTID: 0         Metric: 10
+
+
+                Summary Net Link States (Area 100)
+
+  LS age: 165
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.0.0.7 (summary Network Number)
+  Advertising Router: 10.0.0.4
+  LS Seq Number: 80000002
+  Checksum: 0xBA57
+  Length: 28
+  Network Mask: /32
+        MTID: 0         Metric: 11
+
+  LS age: 204
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.0.0.10 (summary Network Number)
+  Advertising Router: 10.0.0.4
+  LS Seq Number: 80000001
+  Checksum: 0x9E71
+  Length: 28
+  Network Mask: /32
+        MTID: 0         Metric: 11
+
+  LS age: 214
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.1.14.0 (summary Network Number)
+  Advertising Router: 10.0.0.4
+  LS Seq Number: 80000001
+  Checksum: 0x5536
+  Length: 28
+  Network Mask: /25
+        MTID: 0         Metric: 10
+
+  LS age: 165
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.1.37.0 (summary Network Number)
+  Advertising Router: 10.0.0.4
+  LS Seq Number: 80000002
+  Checksum: 0xB633
+  Length: 28
+  Network Mask: /24
+        MTID: 0         Metric: 20
+
+  LS age: 204
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.1.107.0 (summary Network Number)
+  Advertising Router: 10.0.0.4
+  LS Seq Number: 80000001
+  Checksum: 0xA106
+  Length: 28
+  Network Mask: /30
+        MTID: 0         Metric: 20
+
+  LS age: 214
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.1.117.0 (summary Network Number)
+  Advertising Router: 10.0.0.4
+  LS Seq Number: 80000001
+  Checksum: 0xE0C3
+  Length: 28
+  Network Mask: /24
+        MTID: 0         Metric: 10

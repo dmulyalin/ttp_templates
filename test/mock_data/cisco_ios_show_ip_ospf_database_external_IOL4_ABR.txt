@@ -1,0 +1,97 @@
+IOL4#show ip ospf database external
+
+            OSPF Router with ID (10.0.0.4) (Process ID 1)
+
+                Type-5 AS External Link States
+
+  LS age: 231
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: AS External Link
+  Link State ID: 10.0.0.100 (External Network Number )
+  Advertising Router: 10.0.0.10
+  LS Seq Number: 80000001
+  Checksum: 0xE23B
+  Length: 36
+  Network Mask: /32
+        Metric Type: 2 (Larger than any link state path)
+        MTID: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+  LS age: 231
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: AS External Link
+  Link State ID: 10.0.0.101 (External Network Number )
+  Advertising Router: 10.0.0.10
+  LS Seq Number: 80000001
+  Checksum: 0xD844
+  Length: 36
+  Network Mask: /32
+        Metric Type: 2 (Larger than any link state path)
+        MTID: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+  LS age: 231
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: AS External Link
+  Link State ID: 10.0.0.102 (External Network Number )
+  Advertising Router: 10.0.0.10
+  LS Seq Number: 80000001
+  Checksum: 0xCE4D
+  Length: 36
+  Network Mask: /32
+        Metric Type: 2 (Larger than any link state path)
+        MTID: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+  LS age: 231
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: AS External Link
+  Link State ID: 10.0.0.103 (External Network Number )
+  Advertising Router: 10.0.0.10
+  LS Seq Number: 80000001
+  Checksum: 0xC456
+  Length: 36
+  Network Mask: /32
+        Metric Type: 2 (Larger than any link state path)
+        MTID: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+  LS age: 219
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: AS External Link
+  Link State ID: 10.0.5.100 (External Network Number )
+  Advertising Router: 10.0.5.101
+  LS Seq Number: 80000001
+  Checksum: 0x6454
+  Length: 36
+  Network Mask: /32
+        Metric Type: 2 (Larger than any link state path)
+        MTID: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+  LS age: 219
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: AS External Link
+  Link State ID: 10.0.5.101 (External Network Number )
+  Advertising Router: 10.0.5.101
+  LS Seq Number: 80000001
+  Checksum: 0x5A5D
+  Length: 36
+  Network Mask: /32
+        Metric Type: 2 (Larger than any link state path)
+        MTID: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+IOL4#

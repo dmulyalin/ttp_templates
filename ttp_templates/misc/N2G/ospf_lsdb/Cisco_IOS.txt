@@ -1,56 +1,11 @@
-<vars name="vars">
-filename='getfilename'
-hostname='gethostname'
-</vars>
+<doc>
+This template designed for use with N2G library to produce network diagrams based on OSPF 
+link state database of Cisco IOS-XR devices. 
 
+Caveats:
+ - need ttp>=0.8.0 for extend to work
+</doc>
 
-<group name="OSPF_PROCESSES.{{ PROCESS_ID }}**">
-            OSPF Router with ID ({{ local_rid }}) (Process ID {{ PROCESS_ID }})
-            
-<group name="router_lsa.{{ area }}">
-                Router Link States (Area {{ area }})     
-<group name="LSAs">
-  LS age: 1207 {{ _start_ }}
-  Advertising Router: {{ Originator_rid }}
-  AS Boundary Router {{ asbr | set(True) | default(False) }}
-<group name="ptp_peers*">
-    Link connected to: another Router (point-to-point) {{ _start_ }}
-     (Link ID) Neighboring Router ID: {{ link_id }}
-     (Link Data) Router Interface address: {{ link_data }}
-       TOS 0 Metrics: {{ metric }}
-{{ _end_ }}
-</group>
-<group name="connected_stub*">
-    Link connected to: a Stub Network {{ _start_ }}
-     (Link ID) Network/subnet number: {{ link_id }}
-     (Link Data) Network Mask: {{ link_data }}
-       TOS 0 Metrics: {{ metric }}
-{{ _end_ }}
-</group>
-<group name="bma_peers*">
-    Link connected to: a Transit Network {{ _start_ }}
-     (Link ID) Designated Router address: {{ link_id }}
-     (Link Data) Router Interface address: {{ link_data }}
-       TOS 0 Metrics: {{ metric }}
-{{ _end_ }}
-</group>
-</group>
-</group>
-
-
-<group name="external_lsa**">
-                Type-5 AS External Link States {{ _start_ }}
-<group name="{{ subnet }}/{{ mask }}*">
-  LS age: 1271 {{ _start_ }}
-  Link State ID: {{ subnet }} (External Network Number )
-  Advertising Router: {{ Originator_rid }}
-  Network Mask: /{{ mask }}
-        Metric Type: {{ metric_type }} (Larger than any link state path)
-        Metric: {{ metric }} 
-        External Route Tag: {{ tag }}
-{{ _end_ }}
-</group>
-</group>
-
-
-</group>
+<extend template="ttp://platform/cisco_ios_show_ip_ospf_database_router.txt"/>
+<extend template="ttp://platform/cisco_ios_show_ip_ospf_database_external.txt"/>
+<extend template="ttp://platform/cisco_ios_show_ip_ospf_database_summary.txt"/>

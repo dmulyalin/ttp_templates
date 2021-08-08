@@ -1,0 +1,46 @@
+<router-1>dis ospf lsdb router 
+
+          OSPF Process 123 with Router ID 123.123.24.158
+                          Area: 0.0.0.123
+                  Link State Database
+
+
+  Type      : Router
+  Ls id     : 10.123.0.91
+  Adv rtr   : 10.123.0.91
+  Ls age    : 780
+  Len       : 288
+  Options   :  ABR  E
+  seq#      : 80007971
+  chksum    : 0xd13e
+  Link count: 22
+     Link ID: 123.123.24.6
+     Data   : 123.123.60.206
+     Link Type: P-2-P
+     Metric : 9000
+   * Link ID: 10.123.2.7
+     Data   : 123.123.1.220
+     Link Type: P-2-P
+     Metric : 3000
+
+  Type      : Router
+  Ls id     : 10.123.0.92
+  Adv rtr   : 10.123.0.92
+  Ls age    : 1521
+  Len       : 312
+  Options   :  ABR  E
+  seq#      : 8000dee9
+  chksum    : 0xe664
+  Link count: 24
+     Link ID: 123.123.24.31
+     Data   : 123.123.60.109
+     Link Type: P-2-P
+     Metric : 1
+     Link ID: 123.123.60.108
+     Data   : 255.255.255.252
+     Link Type: StubNet
+     Metric : 1
+     Link ID: 123.123.24.5
+     Data   : 123.123.60.201
+     Link Type: P-2-P
+     Metric : 9000
