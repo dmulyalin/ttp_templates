@@ -11,7 +11,7 @@ commands = [
 ]
 </input>
 
-<group name="intf_cfg" chain="record_all">
+<group name="intf_cfg">
 interface {{ interface }}
  description {{ description | ORPHRASE }}
  ip address {{ ip }} {{ mask }}

@@ -1,0 +1,8 @@
+site_name: TTP Templates
+theme: readthedocs
+
+nav:
+  - Home: index.md
+  - Templates:
+    - misc.N2G.cdp_lldp.Cisco_IOS: "misc\\N2G\\cdp_lldp\\Cisco_IOS.md"
+    

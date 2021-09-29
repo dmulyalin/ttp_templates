@@ -230,9 +230,9 @@ interface {{ interface | resuball("short_interface_names") }}
 <group name="intf" record="interface">
 interface {{ interface | resuball("short_interface_names") }}
  <group name="/ip*" chain="set_all" method="table">
- ipv4 address {{ ipv4 | IP | _exact_ }} {{ mask }}
- ipv4 address {{ ipv4 | IP | _exact_ | let("secondary", True) }} {{ mask }} secondary
- ipv6 address {{ ipv6 | IPV6 | _exact_ }}/{{ mask }}
+ ipv4 address {{ ipv4 | IP | _exact_ }} {{ mask4 }}
+ ipv4 address {{ ipv4 | IP | _exact_ | let("secondary", True) }} {{ mask4 }} secondary
+ ipv6 address {{ ipv6 | IPV6 | _exact_ }}/{{ mask6 }}
  </group>
 ! {{ _end_ }}
 </group>

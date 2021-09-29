@@ -1,0 +1,16 @@
+<doc>
+This template designed for use with N2G library to produce network diagrams based on ISIS 
+link state database of Cisco IOS-XR devices. 
+
+Caveats:
+ - need ttp>=0.8.0 for extend to work
+</doc>
+
+<input load="python">
+# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
+commands = [
+    "show isis database verbose",
+]
+</input>
+
+<extend template="ttp://platform/cisco_xr_show_isis_database_verbose.txt"/>

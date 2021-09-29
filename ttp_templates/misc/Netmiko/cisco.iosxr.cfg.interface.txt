@@ -1,0 +1,9 @@
+<doc>
+Template to parse "show running-config interface" output.
+</doc>
+
+<input>
+commands = ["show running-config interface"]
+</input>
+
+<extend template="ttp://platform/cisco_xr_show_run_interface.txt"/>
