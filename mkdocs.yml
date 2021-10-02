@@ -57,6 +57,7 @@ site_description: TTP, parser, parsing, templates
 site_name: TTP Templates Collection
 site_url: https://ttp_templates.github.io/
 theme:
+  custom_dir: docs/overrides
   icon:
     repo: fontawesome/brands/github-alt
   name: material

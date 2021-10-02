@@ -1,3 +1,10 @@
+
+---
+
+**Templates count: 35**
+
+---
+
 [![Downloads](https://pepy.tech/badge/ttp_templates)](https://pepy.tech/project/ttp_templates)
 [![PyPI versions](https://img.shields.io/pypi/pyversions/ttp.svg)](https://pypi.python.org/pypi/ttp_templates/)
 
@@ -8,6 +15,8 @@ This repository contains a collection of [TTP](https://github.com/dmulyalin/ttp)
 If you solved a problem using TTP and feel that your work can be 
 useful to other people, feel free to raise an issue or submit pull request to 
 include your template(s) in this repository.
+
+Documentation: https://dmulyalin.github.io/ttp_templates/
 
 ## Installation
 

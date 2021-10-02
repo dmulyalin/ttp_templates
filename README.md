@@ -9,6 +9,8 @@ If you solved a problem using TTP and feel that your work can be
 useful to other people, feel free to raise an issue or submit pull request to 
 include your template(s) in this repository.
 
+Documentation: https://dmulyalin.github.io/ttp_templates/
+
 ## Installation
 
 From PyPi:

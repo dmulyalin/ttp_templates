@@ -98,4 +98,15 @@ with open("mkdocs.yml", "w") as f:
 # copy README.md content to index.md
 with open("README.md") as readme_file:
     with open("docs/index.md", "w") as index_file:
-        index_file.write(readme_file.read())
+        index_file.write("""
+---
+
+**Templates count: {}**
+
+---
+
+{}""".format(
+        templates_count,
+        readme_file.read()
+    )
+    )
