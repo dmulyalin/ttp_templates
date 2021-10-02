@@ -1,0 +1,1385 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="TTP, parser, parsing, templates">
+      
+      
+      
+        <meta name="author" content="Denis Mulyalin">
+      
+      
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
+    
+    
+      
+        <title>cisco_ios_show_running_configuration_pipe_section_bgp - TTP Templates Collection</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1118c9be.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#2094f3">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="teal">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="TTP Templates Collection" class="md-header__button md-logo" aria-label="TTP Templates Collection" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TTP Templates Collection
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              cisco_ios_show_running_configuration_pipe_section_bgp
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/dmulyalin/ttp_templates/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dmulyalin/ttp_templates
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="TTP Templates Collection" class="md-nav__button md-logo" aria-label="TTP Templates Collection" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    TTP Templates Collection
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/dmulyalin/ttp_templates/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dmulyalin/ttp_templates
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../writing_docs/" class="md-nav__link">
+        Writing docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Templates
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Templates" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Templates
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Misc
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Misc" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Misc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" >
+      
+      <label class="md-nav__link" for="__nav_3_1_1">
+        N2G
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="N2G" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          N2G
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cdp_lldp.Cisco_IOS/" class="md-nav__link">
+        cdp_lldp.Cisco_IOS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cdp_lldp.Cisco_IOSXR/" class="md-nav__link">
+        cdp_lldp.Cisco_IOSXR
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cdp_lldp.Cisco_NXOS/" class="md-nav__link">
+        cdp_lldp.Cisco_NXOS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cdp_lldp.Huawei/" class="md-nav__link">
+        cdp_lldp.Huawei
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.N2G.isis_lsdb.Cisco_IOSXR/" class="md-nav__link">
+        isis_lsdb.Cisco_IOSXR
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.N2G.ospf_lsdb.Cisco_IOS/" class="md-nav__link">
+        ospf_lsdb.Cisco_IOS
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.N2G.ospf_lsdb.Cisco_IOSXR/" class="md-nav__link">
+        ospf_lsdb.Cisco_IOSXR
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.N2G.ospf_lsdb.Huawei/" class="md-nav__link">
+        ospf_lsdb.Huawei
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_2" type="checkbox" id="__nav_3_1_2" >
+      
+      <label class="md-nav__link" for="__nav_3_1_2">
+        Netmiko
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Netmiko
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.ios.arp/" class="md-nav__link">
+        cisco.ios.arp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.ios.cfg.bgp/" class="md-nav__link">
+        cisco.ios.cfg.bgp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.ios.cfg.ip/" class="md-nav__link">
+        cisco.ios.cfg.ip
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.iosxr.arp/" class="md-nav__link">
+        cisco.iosxr.arp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.iosxr.cfg.interface/" class="md-nav__link">
+        cisco.iosxr.cfg.interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.iosxr.cfg.ip/" class="md-nav__link">
+        cisco.iosxr.cfg.ip
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.huawei.vrp.cfg.ip/" class="md-nav__link">
+        huawei.vrp.cfg.ip
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_3" type="checkbox" id="__nav_3_1_3" >
+      
+      <label class="md-nav__link" for="__nav_3_1_3">
+        ttp_templates_tests
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          ttp_templates_tests
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip/" class="md-nav__link">
+        cisco_ios_interfaces_cfg_per_ip
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.ttp_templates_tests.netmiko_cisco_ios_interfaces/" class="md-nav__link">
+        netmiko_cisco_ios_interfaces
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_4" type="checkbox" id="__nav_3_1_4" >
+      
+      <label class="md-nav__link" for="__nav_3_1_4">
+        vars
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="vars" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          vars
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.vars.short_interface_names/" class="md-nav__link">
+        short_interface_names
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+      
+      <label class="md-nav__link" for="__nav_3_2">
+        Platform
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Platform" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Platform
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_ip_arp/" class="md-nav__link">
+        cisco_ios_show_ip_arp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_ip_ospf_database_external/" class="md-nav__link">
+        cisco_ios_show_ip_ospf_database_external
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_ip_ospf_database_router/" class="md-nav__link">
+        cisco_ios_show_ip_ospf_database_router
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_ip_ospf_database_summary/" class="md-nav__link">
+        cisco_ios_show_ip_ospf_database_summary
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        cisco_ios_show_running_configuration_pipe_section_bgp
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
+        cisco_xr_show_arp_vrf_all
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_isis_database_verbose/" class="md-nav__link">
+        cisco_xr_show_isis_database_verbose
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_ospf_database_external/" class="md-nav__link">
+        cisco_xr_show_ospf_database_external
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_ospf_database_router/" class="md-nav__link">
+        cisco_xr_show_ospf_database_router
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_ospf_database_summary/" class="md-nav__link">
+        cisco_xr_show_ospf_database_summary
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_interface/" class="md-nav__link">
+        cisco_xr_show_run_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.huawei_display_ospf_lsdb_router/" class="md-nav__link">
+        huawei_display_ospf_lsdb_router
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.test_platform_show_run_pipe_sec_interface/" class="md-nav__link">
+        test_platform_show_run_pipe_sec_interface
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      <label class="md-nav__link" for="__nav_3_3">
+        YANG
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="YANG" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          YANG
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yang.ietf-interfaces_cisco_ios/" class="md-nav__link">
+        ietf-interfaces_cisco_ios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yang.openconfig-lldp_cisco_ios/" class="md-nav__link">
+        openconfig-lldp_cisco_ios
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yang.openconfig-lldp_cisco_nxos/" class="md-nav__link">
+        openconfig-lldp_cisco_nxos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yang.openconfig-lldp_cisco_xr/" class="md-nav__link">
+        openconfig-lldp_cisco_xr
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>cisco_ios_show_running_configuration_pipe_section_bgp</h1>
+                
+                <p>Reference path:</p>
+<pre><code>ttp://platform.cisco_ios_show_running_configuration_pipe_section_bgp.txt
+</code></pre>
+<hr />
+<p>Template to parse Cisco IOS BGP configuration.</p>
+<p>Requirements: TTP &gt;= 0.7.x</p>
+<p>Structure produced by this template does not follow any known convention 
+or schema for example openconfig-bgp, but rather was the easiest one to 
+produce using TTP built-in features without overwhelming template with
+post-processing python code. Resulted structure follows Cisco native 
+configuration style and capable of parsing subsets of: </p>
+<ul>
+<li>BGP global configuration</li>
+<li>BGP global neighbors and peer-groups definition</li>
+<li>AFI configuration including neighbors and networks</li>
+<li>VRF configuration including neighbors, networks and other parameters</li>
+</ul>
+<p>Sample device output:</p>
+<pre><code>router bgp 65001
+ !
+ bgp router-id 10.5.1.1
+ bgp log-neighbor-changes
+ neighbor 2001:db8::1 remote-as 65003
+ neighbor 2001:db8::1 description Peer1-Global
+ neighbor 10.11.0.81 remote-as 65002
+ neighbor 10.11.0.81 description Peer2-Global
+ neighbor 10.11.0.81 shutdown
+ neighbor RR-CLIENTS peer-group
+ neighbor RR-CLIENTS remote-as 65001
+ neighbor RR-CLIENTS description [ibgp - rr clients]
+ neighbor RR-CLIENTS update-source GigabitEthernet1
+ neighbor 10.0.0.3 peer-group RR-CLIENTS
+ neighbor 10.0.0.5 peer-group RR-CLIENTS
+ !
+ address-family ipv4
+  network 10.255.10.0 mask 255.255.248.0
+  network 10.255.10.0 mask 255.255.255.0
+  redistribute connected route-map PORTABLE-v4
+  neighbor 10.11.0.81 activate
+  neighbor 10.11.0.81 description Peer2-IPv4
+  neighbor RR-CLIENTS route-reflector-client
+  neighbor RR-CLIENTS route-map PASS-IN in
+  neighbor RR-CLIENTS route-map PASS-OUT out
+  neighbor RR-CLIENTS maximum-prefix 1000 80 restart 15
+  neighbor 10.0.0.3 activate
+  neighbor 10.0.0.5 activate
+ exit-address-family
+ !
+ address-family ipv6
+  redistribute connected
+  network 2001:db8::/48
+  neighbor 2001:db8::1 activate
+  neighbor 2001:db8::1 description Peer1-IPv6
+ exit-address-family
+ !
+ address-family ipv4 multicast
+ exit-address-family
+ !
+ address-family vpnv4 unicast
+  neighbor 3.3.3.3 activate
+ exit-address-family 
+ !
+ address-family ipv4 vrf VoIP
+  network 10.255.10.0 mask 255.255.248.0 
+  bgp router-id 10.2.1.193
+  redistribute connected route-map tospokes
+  neighbor 10.2.1.65 remote-as 65001
+  neighbor 10.2.1.65 description voip peer 1
+  neighbor 10.2.1.65 activate
+  neighbor 10.2.1.78 remote-as 65001
+  neighbor 10.2.1.78 description voip peer 2
+  neighbor 10.2.1.78 shutdown
+  neighbor 10.2.1.78 activate
+  neighbor 10.2.1.78 next-hop-self
+  neighbor 10.2.1.78 prefix-list VoIP-prefixes out
+ exit-address-family
+!
+ address-family ipv4 vrf CUST-2
+  bgp router-id 1.1.1.1
+  redistribute connected
+  neighbor 2.2.2.2 remote-as 65002
+  neighbor 2.2.2.2 description peer 12
+  neighbor 2.2.2.2 activate
+ exit-address-family
+!
+</code></pre>
+<p>After parsing above output, TTP should produce these results:</p>
+<pre><code>[[{'bgp': {'afis': {'ipv4_multicast': {},
+                    'ipv4_unicast': {'config': {'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'},
+                                                             {'mask': '255.255.255.0', 'network': '10.255.10.0'}],
+                                                'redistribute_connected': True,
+                                                'redistribute_connected_rpl': 'PORTABLE-v4'},
+                                     'neighbors': {'10.0.0.3': {'activate': True},
+                                                   '10.0.0.5': {'activate': True},
+                                                   '10.11.0.81': {'activate': True},
+                                                   'RR-CLIENTS': {'max_prefix_action': 'restart',
+                                                                  'max_prefix_limit': '1000',
+                                                                  'max_prefix_restart_interval': '15',
+                                                                  'max_prefix_threshold': '80',
+                                                                  'rpl_out': 'PASS-OUT',
+                                                                  'rr_client': True}}},
+                    'ipv6_unicast': {'config': {'networks': [{'mask': '48', 'network': '2001:db8::'}], 'redistribute_connected': True},
+                                     'neighbors': {'2001:db8::1': {'activate': True}}},
+                    'vpnv4_unicast': {'neighbors': {'3.3.3.3': {'activate': True}}}},
+           'asn': '65001',
+           'config': {'bgp_rid': '10.5.1.1', 'log_neighbor_changes': True},
+           'neighbors': {'10.0.0.3': {'peer_group': 'RR-CLIENTS'},
+                         '10.0.0.5': {'peer_group': 'RR-CLIENTS'},
+                         '10.11.0.81': {'asn': '65002', 'description': 'Peer2-Global', 'disabled': True},
+                         '2001:db8::1': {'asn': '65003', 'description': 'Peer1-Global'},
+                         'RR-CLIENTS': {'asn': '65001',
+                                        'description': '[ibgp - rr clients]',
+                                        'is_peer_group': True,
+                                        'update_source': 'GigabitEthernet1'}},
+           'vrfs': {'CUST-2': {'afi': 'ipv4',
+                               'config': {'bgp_rid': '1.1.1.1', 'redistribute_connected': True},
+                               'neighbors': {'2.2.2.2': {'activate': True, 'asn': '65002', 'description': 'peer 12'}}},
+                    'VoIP': {'afi': 'ipv4',
+                             'config': {'bgp_rid': '10.2.1.193',
+                                        'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'}],
+                                        'redistribute_connected': True,
+                                        'redistribute_connected_rpl': 'tospokes'},
+                             'neighbors': {'10.2.1.65': {'activate': True, 'asn': '65001', 'description': 'voip peer 1'},
+                                           '10.2.1.78': {'activate': True,
+                                                         'asn': '65001',
+                                                         'description': 'voip peer 2',
+                                                         'disabled': True,
+                                                         'next_hop_self': True,
+                                                         'pfl_out': 'VoIP-prefixes'}}}}}}]]
+</code></pre>
+<p>To use this template with Netmiko (&gt;=3.4.x) run_ttp method:</p>
+<pre><code>import pprint
+from netmiko import ConnectHandler
+
+net_connect = ConnectHandler(
+    device_type="cisco_ios",
+    host="1.2.3.4",
+    username="admin",
+    password="admin",
+)
+
+res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.bgp.txt")
+
+pprint.pprint(res)
+</code></pre>
+<hr />
+<details><summary>Template Content</summary>
+
+<pre><code>&lt;doc&gt;
+Template to parse Cisco IOS BGP configuration.
+
+Requirements: TTP &gt;= 0.7.x
+
+Structure produced by this template does not follow any known convention 
+or schema for example openconfig-bgp, but rather was the easiest one to 
+produce using TTP built-in features without overwhelming template with
+post-processing python code. Resulted structure follows Cisco native 
+configuration style and capable of parsing subsets of: 
+
+- BGP global configuration
+- BGP global neighbors and peer-groups definition
+- AFI configuration including neighbors and networks
+- VRF configuration including neighbors, networks and other parameters
+
+Sample device output:
+
+    router bgp 65001
+     !
+     bgp router-id 10.5.1.1
+     bgp log-neighbor-changes
+     neighbor 2001:db8::1 remote-as 65003
+     neighbor 2001:db8::1 description Peer1-Global
+     neighbor 10.11.0.81 remote-as 65002
+     neighbor 10.11.0.81 description Peer2-Global
+     neighbor 10.11.0.81 shutdown
+     neighbor RR-CLIENTS peer-group
+     neighbor RR-CLIENTS remote-as 65001
+     neighbor RR-CLIENTS description [ibgp - rr clients]
+     neighbor RR-CLIENTS update-source GigabitEthernet1
+     neighbor 10.0.0.3 peer-group RR-CLIENTS
+     neighbor 10.0.0.5 peer-group RR-CLIENTS
+     !
+     address-family ipv4
+      network 10.255.10.0 mask 255.255.248.0
+      network 10.255.10.0 mask 255.255.255.0
+      redistribute connected route-map PORTABLE-v4
+      neighbor 10.11.0.81 activate
+      neighbor 10.11.0.81 description Peer2-IPv4
+      neighbor RR-CLIENTS route-reflector-client
+      neighbor RR-CLIENTS route-map PASS-IN in
+      neighbor RR-CLIENTS route-map PASS-OUT out
+      neighbor RR-CLIENTS maximum-prefix 1000 80 restart 15
+      neighbor 10.0.0.3 activate
+      neighbor 10.0.0.5 activate
+     exit-address-family
+     !
+     address-family ipv6
+      redistribute connected
+      network 2001:db8::/48
+      neighbor 2001:db8::1 activate
+      neighbor 2001:db8::1 description Peer1-IPv6
+     exit-address-family
+     !
+     address-family ipv4 multicast
+     exit-address-family
+     !
+     address-family vpnv4 unicast
+      neighbor 3.3.3.3 activate
+     exit-address-family 
+     !
+     address-family ipv4 vrf VoIP
+      network 10.255.10.0 mask 255.255.248.0 
+      bgp router-id 10.2.1.193
+      redistribute connected route-map tospokes
+      neighbor 10.2.1.65 remote-as 65001
+      neighbor 10.2.1.65 description voip peer 1
+      neighbor 10.2.1.65 activate
+      neighbor 10.2.1.78 remote-as 65001
+      neighbor 10.2.1.78 description voip peer 2
+      neighbor 10.2.1.78 shutdown
+      neighbor 10.2.1.78 activate
+      neighbor 10.2.1.78 next-hop-self
+      neighbor 10.2.1.78 prefix-list VoIP-prefixes out
+     exit-address-family
+    !
+     address-family ipv4 vrf CUST-2
+      bgp router-id 1.1.1.1
+      redistribute connected
+      neighbor 2.2.2.2 remote-as 65002
+      neighbor 2.2.2.2 description peer 12
+      neighbor 2.2.2.2 activate
+     exit-address-family
+    !
+
+After parsing above output, TTP should produce these results:
+
+    [[{'bgp': {'afis': {'ipv4_multicast': {},
+                        'ipv4_unicast': {'config': {'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'},
+                                                                 {'mask': '255.255.255.0', 'network': '10.255.10.0'}],
+                                                    'redistribute_connected': True,
+                                                    'redistribute_connected_rpl': 'PORTABLE-v4'},
+                                         'neighbors': {'10.0.0.3': {'activate': True},
+                                                       '10.0.0.5': {'activate': True},
+                                                       '10.11.0.81': {'activate': True},
+                                                       'RR-CLIENTS': {'max_prefix_action': 'restart',
+                                                                      'max_prefix_limit': '1000',
+                                                                      'max_prefix_restart_interval': '15',
+                                                                      'max_prefix_threshold': '80',
+                                                                      'rpl_out': 'PASS-OUT',
+                                                                      'rr_client': True}}},
+                        'ipv6_unicast': {'config': {'networks': [{'mask': '48', 'network': '2001:db8::'}], 'redistribute_connected': True},
+                                         'neighbors': {'2001:db8::1': {'activate': True}}},
+                        'vpnv4_unicast': {'neighbors': {'3.3.3.3': {'activate': True}}}},
+               'asn': '65001',
+               'config': {'bgp_rid': '10.5.1.1', 'log_neighbor_changes': True},
+               'neighbors': {'10.0.0.3': {'peer_group': 'RR-CLIENTS'},
+                             '10.0.0.5': {'peer_group': 'RR-CLIENTS'},
+                             '10.11.0.81': {'asn': '65002', 'description': 'Peer2-Global', 'disabled': True},
+                             '2001:db8::1': {'asn': '65003', 'description': 'Peer1-Global'},
+                             'RR-CLIENTS': {'asn': '65001',
+                                            'description': '[ibgp - rr clients]',
+                                            'is_peer_group': True,
+                                            'update_source': 'GigabitEthernet1'}},
+               'vrfs': {'CUST-2': {'afi': 'ipv4',
+                                   'config': {'bgp_rid': '1.1.1.1', 'redistribute_connected': True},
+                                   'neighbors': {'2.2.2.2': {'activate': True, 'asn': '65002', 'description': 'peer 12'}}},
+                        'VoIP': {'afi': 'ipv4',
+                                 'config': {'bgp_rid': '10.2.1.193',
+                                            'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'}],
+                                            'redistribute_connected': True,
+                                            'redistribute_connected_rpl': 'tospokes'},
+                                 'neighbors': {'10.2.1.65': {'activate': True, 'asn': '65001', 'description': 'voip peer 1'},
+                                               '10.2.1.78': {'activate': True,
+                                                             'asn': '65001',
+                                                             'description': 'voip peer 2',
+                                                             'disabled': True,
+                                                             'next_hop_self': True,
+                                                             'pfl_out': 'VoIP-prefixes'}}}}}}]]
+
+To use this template with Netmiko (&gt;=3.4.x) run_ttp method:
+
+    import pprint
+    from netmiko import ConnectHandler
+
+    net_connect = ConnectHandler(
+        device_type=&quot;cisco_ios&quot;,
+        host=&quot;1.2.3.4&quot;,
+        username=&quot;admin&quot;,
+        password=&quot;admin&quot;,
+    )
+
+    res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.bgp.txt&quot;)
+
+    pprint.pprint(res)
+&lt;/doc&gt;
+
+&lt;vars&gt;
+bgp_default = {
+    &quot;asn&quot;: &quot;&quot;,
+    &quot;config&quot;: {},
+    &quot;afis&quot;: {},
+    &quot;neighbors&quot;: {},
+    &quot;vrfs&quot;: {}
+}
+&lt;/vars&gt;
+
+&lt;group name=&quot;bgp&quot; default=&quot;bgp_default&quot;&gt;
+router bgp {{ asn }}
+
+ &lt;group name=&quot;config**&quot; method=&quot;table&quot;&gt;
+ bgp router-id {{ bgp_rid }}
+ bgp log-neighbor-changes {{ log_neighbor_changes | set(True) }}
+ &lt;/group&gt;
+
+ &lt;group name=&quot;neighbors**.{{ neighbor }}**&quot; method=&quot;table&quot;&gt;
+ neighbor {{ neighbor | let(&quot;is_peer_group&quot;, True) }} peer-group
+ neighbor {{ neighbor }} remote-as {{ asn }}
+ neighbor {{ neighbor }} description {{ description | re(&quot;.+&quot;) }}
+ neighbor {{ neighbor }} update-source {{ update_source }}
+ neighbor {{ neighbor }} peer-group {{ peer_group }}
+ neighbor {{ neighbor | let(&quot;disabled&quot;, True) }} shutdown
+ &lt;/group&gt;
+
+ &lt;group name=&quot;afis**.{{ afi }}_{{ safi }}&quot;&gt;
+ address-family {{ afi }}
+ address-family {{ afi }} {{ safi | default(unicast) | _start_ }}
+
+  &lt;group name=&quot;config**.networks*&quot; method=&quot;table&quot;&gt;
+  network {{ network | IP }} mask {{ mask }}
+  network {{ network | IPV6 }}/{{ mask }}
+  &lt;/group&gt;
+
+  &lt;group name=&quot;config**&quot; method=&quot;table&quot;&gt;
+  redistribute connected route-map {{ redistribute_connected_rpl | let(&quot;redistribute_connected&quot;, True) }}
+  redistribute connected {{ redistribute_connected | set(True) }} 
+  &lt;/group&gt;
+
+  &lt;group name=&quot;neighbors**.{{ neighbor }}**&quot; method=&quot;table&quot;&gt;
+  neighbor {{ neighbor | let(&quot;activate&quot;, True) }} activate
+  neighbor {{ neighbor | let(&quot;next_hop_self&quot;, True) }} next-hop-self
+  neighbor {{ neighbor | let(&quot;rr_client&quot;, True) }} route-reflector-client
+  neighbor {{ neighbor }} prefix-list {{ pfl_out }} out
+  neighbor {{ neighbor }} prefix-list {{ pfl_in }} in
+  neighbor {{ neighbor }} route-map {[ rpl_in }} in
+  neighbor {{ neighbor }} route-map {{ rpl_out }} out
+  neighbor {{ neighbor }} maximum-prefix {{ max_prefix_limit | let(&quot;max_prefix_action&quot;, &quot;restart&quot;) }} {{ max_prefix_threshold }} restart {{ max_prefix_restart_interval }}
+  &lt;/group&gt;
+
+ exit-address-family {{ _end_ }}
+ &lt;/group&gt;
+
+ &lt;group name=&quot;vrfs**.{{ vrf }}&quot;&gt;
+ address-family {{ afi }} vrf {{ vrf }}
+
+  &lt;group name=&quot;config**.networks*&quot; method=&quot;table&quot;&gt;
+  network {{ network | IP }} mask {{ mask }}
+  network {{ network | IPV6 }}/{{ mask }}
+  &lt;/group&gt;
+
+  &lt;group name=&quot;config**&quot; method=&quot;table&quot;&gt;
+  bgp router-id {{ bgp_rid }}
+  redistribute connected route-map {{ redistribute_connected_rpl | let(&quot;redistribute_connected&quot;, True) }}
+  redistribute connected {{ redistribute_connected | set(True) }}
+  &lt;/group&gt;
+
+  &lt;group name=&quot;neighbors**.{{ neighbor }}**&quot; method=&quot;table&quot;&gt;  
+  neighbor {{ neighbor }} remote-as {{ asn }}
+  neighbor {{ neighbor }} description {{ description | re(&quot;.+&quot;) }}
+  neighbor {{ neighbor | let(&quot;activate&quot;, True) }} activate
+  neighbor {{ neighbor | let(&quot;disabled&quot;, True) }} shutdown
+  neighbor {{ neighbor | let(&quot;next_hop_self&quot;, True) }} next-hop-self
+  neighbor {{ neighbor | let(&quot;rr_client&quot;, True) }} route-reflector-client
+  neighbor {{ neighbor }} prefix-list {{ pfl_out }} out
+  neighbor {{ neighbor }} prefix-list {{ pfl_in }} in
+  neighbor {{ neighbor }} route-map {[ rpl_in }} in
+  neighbor {{ neighbor }} route-map {{ rpl_out }} out
+  neighbor {{ neighbor }} maximum-prefix {{ max_prefix_limit | let(&quot;max_prefix_action&quot;, &quot;restart&quot;) }} {{ max_prefix_threshold }} restart {{ max_prefix_restart_interval }}
+  &lt;/group&gt;
+
+ exit-address-family {{ _end_ }}
+ &lt;/group&gt;
+&lt;/group&gt;
+</code></pre>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../platform.cisco_ios_show_ip_ospf_database_summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_ios_show_ip_ospf_database_summary" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              cisco_ios_show_ip_ospf_database_summary
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_xr_show_arp_vrf_all" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              cisco_xr_show_arp_vrf_all
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/dmulyalin" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/DMulyalin" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
+      
+    
+  </body>
+</html>
