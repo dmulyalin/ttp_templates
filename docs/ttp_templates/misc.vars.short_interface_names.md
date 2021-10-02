@@ -1,3 +1,21 @@
+Reference path:
+```
+ttp://misc.vars.short_interface_names.txt
+```
+
+---
+
+
+
+Template to contain variable to use with [resuball match variable function](https://ttp.readthedocs.io/en/latest/Match%20Variables/Functions.html#resuball)
+to shorten and normalize names of the network devices interfaces
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <doc>
 Template to contain variable to use with [resuball match variable function](https://ttp.readthedocs.io/en/latest/Match%20Variables/Functions.html#resuball)
 to shorten and normalize names of the network devices interfaces
@@ -33,3 +51,5 @@ short_interface_names = {
     'WLAN': ['^Wlan-GigabitEthernet'],
 }
 </vars>
+```
+</details>

@@ -1,8 +1,65 @@
-site_name: TTP Templates
-theme: readthedocs
-
+extra:
+  social:
+  - icon: fontawesome/brands/github-alt
+    link: https://github.com/dmulyalin
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/DMulyalin
 nav:
-  - Home: index.md
-  - Templates:
-    - misc.N2G.cdp_lldp.Cisco_IOS: "misc\\N2G\\cdp_lldp\\Cisco_IOS.md"
-    
+- Overview: index.md
+- Writing docs: writing_docs.md
+- Templates:
+  - Misc:
+    - N2G:
+      - cdp_lldp.Cisco_IOS: ttp_templates/misc.N2G.cdp_lldp.Cisco_IOS.md
+      - cdp_lldp.Cisco_IOSXR: ttp_templates/misc.N2G.cdp_lldp.Cisco_IOSXR.md
+      - cdp_lldp.Cisco_NXOS: ttp_templates/misc.N2G.cdp_lldp.Cisco_NXOS.md
+      - cdp_lldp.Huawei: ttp_templates/misc.N2G.cdp_lldp.Huawei.md
+      - isis_lsdb.Cisco_IOSXR: ttp_templates/misc.N2G.isis_lsdb.Cisco_IOSXR.md
+      - ospf_lsdb.Cisco_IOS: ttp_templates/misc.N2G.ospf_lsdb.Cisco_IOS.md
+      - ospf_lsdb.Cisco_IOSXR: ttp_templates/misc.N2G.ospf_lsdb.Cisco_IOSXR.md
+      - ospf_lsdb.Huawei: ttp_templates/misc.N2G.ospf_lsdb.Huawei.md
+    - Netmiko:
+      - cisco.ios.arp: ttp_templates/misc.Netmiko.cisco.ios.arp.md
+      - cisco.ios.cfg.bgp: ttp_templates/misc.Netmiko.cisco.ios.cfg.bgp.md
+      - cisco.ios.cfg.ip: ttp_templates/misc.Netmiko.cisco.ios.cfg.ip.md
+      - cisco.iosxr.arp: ttp_templates/misc.Netmiko.cisco.iosxr.arp.md
+      - cisco.iosxr.cfg.interface: ttp_templates/misc.Netmiko.cisco.iosxr.cfg.interface.md
+      - cisco.iosxr.cfg.ip: ttp_templates/misc.Netmiko.cisco.iosxr.cfg.ip.md
+      - huawei.vrp.cfg.ip: ttp_templates/misc.Netmiko.huawei.vrp.cfg.ip.md
+    - ttp_templates_tests:
+      - cisco_ios_interfaces_cfg_per_ip: ttp_templates/misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip.md
+      - netmiko_cisco_ios_interfaces: ttp_templates/misc.ttp_templates_tests.netmiko_cisco_ios_interfaces.md
+    - vars:
+      - short_interface_names: ttp_templates/misc.vars.short_interface_names.md
+  - Platform:
+    - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md
+    - cisco_ios_show_ip_ospf_database_external: ttp_templates/platform.cisco_ios_show_ip_ospf_database_external.md
+    - cisco_ios_show_ip_ospf_database_router: ttp_templates/platform.cisco_ios_show_ip_ospf_database_router.md
+    - cisco_ios_show_ip_ospf_database_summary: ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary.md
+    - cisco_ios_show_running_configuration_pipe_section_bgp: ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp.md
+    - cisco_xr_show_arp_vrf_all: ttp_templates/platform.cisco_xr_show_arp_vrf_all.md
+    - cisco_xr_show_isis_database_verbose: ttp_templates/platform.cisco_xr_show_isis_database_verbose.md
+    - cisco_xr_show_ospf_database_external: ttp_templates/platform.cisco_xr_show_ospf_database_external.md
+    - cisco_xr_show_ospf_database_router: ttp_templates/platform.cisco_xr_show_ospf_database_router.md
+    - cisco_xr_show_ospf_database_summary: ttp_templates/platform.cisco_xr_show_ospf_database_summary.md
+    - cisco_xr_show_run_interface: ttp_templates/platform.cisco_xr_show_run_interface.md
+    - huawei_display_ospf_lsdb_router: ttp_templates/platform.huawei_display_ospf_lsdb_router.md
+    - test_platform_show_run_pipe_sec_interface: ttp_templates/platform.test_platform_show_run_pipe_sec_interface.md
+  - YANG:
+    - ietf-interfaces_cisco_ios: ttp_templates/yang.ietf-interfaces_cisco_ios.md
+    - openconfig-lldp_cisco_ios: ttp_templates/yang.openconfig-lldp_cisco_ios.md
+    - openconfig-lldp_cisco_nxos: ttp_templates/yang.openconfig-lldp_cisco_nxos.md
+    - openconfig-lldp_cisco_xr: ttp_templates/yang.openconfig-lldp_cisco_xr.md
+repo_name: dmulyalin/ttp_templates
+repo_url: https://github.com/dmulyalin/ttp_templates
+site_author: Denis Mulyalin
+site_description: TTP, parser, parsing, templates
+site_name: TTP Templates Collection
+site_url: https://ttp_templates.github.io/
+theme:
+  icon:
+    repo: fontawesome/brands/github-alt
+  name: material
+  palette:
+    accent: teal
+    primary: blue

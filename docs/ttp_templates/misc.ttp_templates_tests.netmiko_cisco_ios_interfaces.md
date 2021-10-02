@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc.ttp_templates_tests.netmiko_cisco_ios_interfaces.txt
+```
+
+---
+
+
+
+This template used in to test Netmiko run_ttp method
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="interfaces" results="per_template">
 
 <doc>
@@ -17,3 +34,5 @@ interface {{ interface }}
  ip address {{ ip }} {{ mask }}
 </group>
 </template>
+```
+</details>

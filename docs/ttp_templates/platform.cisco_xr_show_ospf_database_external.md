@@ -1,0 +1,99 @@
+Reference path:
+```
+ttp://platform.cisco_xr_show_ospf_database_external.txt
+```
+
+---
+
+
+
+This template initially designed for use with N2G library to produce network 
+diagrams based on OSPF link state database of Cisco IOS-XR devices.
+
+This template parses external-lsa only out of output produced by 
+"show ospf database external" command.
+
+Caveats:
+ - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+ 
+Produces this structure for each input datum/device output:
+[[{'ospf_processes': {'1': {'external_lsa': [{'mask': '0',
+                                              'metric': '1',
+                                              'metric_type': '2',
+                                              'originator_rid': '10.3.22.190',
+                                              'subnet': '0.0.0.0',
+                                              'tag': '10'},
+                                             {'mask': '0',
+                                              'metric': '1',
+                                              'metric_type': '2',
+                                              'originator_rid': '10.3.25.22',
+                                              'subnet': '0.0.0.0',
+                                              'tag': '10'},
+                                             {'mask': '8',
+                                              'metric': '20',
+                                              'metric_type': '2',
+                                              'originator_rid': '10.3.20.95',
+                                              'subnet': '10.0.0.0',
+                                              'tag': '0'}],
+                            'local_rid': '10.1.2.2'}},
+   'vars': {'hostname': 'router-1'}}]]
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<doc>
+This template initially designed for use with N2G library to produce network 
+diagrams based on OSPF link state database of Cisco IOS-XR devices.
+
+This template parses external-lsa only out of output produced by 
+"show ospf database external" command.
+
+Caveats:
+ - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+ 
+Produces this structure for each input datum/device output:
+[[{'ospf_processes': {'1': {'external_lsa': [{'mask': '0',
+                                              'metric': '1',
+                                              'metric_type': '2',
+                                              'originator_rid': '10.3.22.190',
+                                              'subnet': '0.0.0.0',
+                                              'tag': '10'},
+                                             {'mask': '0',
+                                              'metric': '1',
+                                              'metric_type': '2',
+                                              'originator_rid': '10.3.25.22',
+                                              'subnet': '0.0.0.0',
+                                              'tag': '10'},
+                                             {'mask': '8',
+                                              'metric': '20',
+                                              'metric_type': '2',
+                                              'originator_rid': '10.3.20.95',
+                                              'subnet': '10.0.0.0',
+                                              'tag': '0'}],
+                            'local_rid': '10.1.2.2'}},
+   'vars': {'hostname': 'router-1'}}]]
+</doc>
+
+<group name="ospf_processes.{{ pid }}**">
+            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})
+
+<group name="external_lsa*" functions="void">
+                Type-5 AS External Link States {{ _start_ }}
+
+  <group contains="subnet">
+  LS Type: AS External Link {{ _start_ }}
+  Link State ID: {{ subnet }} (External Network Number)
+  Advertising Router: {{ originator_rid }}
+  Network Mask: /{{ mask }}
+        Metric Type: {{ metric_type }} {{ ignore(".+") }}
+        Metric: {{ metric }}  
+        External Route Tag: {{ tag }}
+{{ _end_ }}
+  </group>
+</group>
+</group>
+```
+</details>

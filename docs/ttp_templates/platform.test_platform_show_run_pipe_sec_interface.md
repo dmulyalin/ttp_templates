@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://platform.test_platform_show_run_pipe_sec_interface.txt
+```
+
+---
+
+
+
+Template to help with testing ttp_templates api
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <doc>
 Template to help with testing ttp_templates api
 </doc>
@@ -9,3 +26,5 @@ interface {{ interface }}
  ip address {{ ip }} {{ mask }}
  shutdown {{ disabled | set(True) }}
 </group>
+```
+</details>
