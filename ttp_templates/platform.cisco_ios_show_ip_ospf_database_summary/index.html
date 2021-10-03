@@ -906,44 +906,12 @@
 diagrams based on OSPF link state database of Cisco IOS devices.</p>
 <p>This template parses summary-lsa only out of output produced by 
 "show ip ospf database summary" command.</p>
-<p>Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it</p>
-<p>Produces this structure for each input datum/device output:
-[
-    [
-        {
-            "ospf_processes": {
-                "1": {
-                    "local_rid": "10.0.0.4",
-                    "summary_lsa": [
-                        {
-                            "area": "0",
-                            "mask": "31",
-                            "metric": "10",
-                            "originator_rid": "10.0.0.4",
-                            "subnet": "10.1.45.2",
-                        }
-                    ],
-                }
-            }
-        }
-    ]
-]</p>
-<hr />
-<details><summary>Template Content</summary>
-
-<pre><code>&lt;doc&gt;
-This template initially designed for use with N2G library to produce network 
-diagrams based on OSPF link state database of Cisco IOS devices.
-
-This template parses summary-lsa only out of output produced by 
-&quot;show ip ospf database summary&quot; command.
-
-Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it
-
-Produces this structure for each input datum/device output:
-[
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
+</ul>
+<p>Produces this structure for each input datum/device output:</p>
+<pre><code>[
     [
         {
             &quot;ospf_processes&quot;: {
@@ -963,7 +931,46 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
-&lt;/doc&gt;
+</code></pre>
+<hr />
+<details><summary>Template Content</summary>
+
+<pre><code>&lt;doc&gt;
+This template initially designed for use with N2G library to produce network 
+diagrams based on OSPF link state database of Cisco IOS devices.
+
+This template parses summary-lsa only out of output produced by 
+&quot;show ip ospf database summary&quot; command.
+
+Caveats:
+
+ - need `ttp&gt;=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
+
+Produces this structure for each input datum/device output:
+</code></pre>
+
+[
+    [
+        {
+            "ospf_processes": {
+                "1": {
+                    "local_rid": "10.0.0.4",
+                    "summary_lsa": [
+                        {
+                            "area": "0",
+                            "mask": "31",
+                            "metric": "10",
+                            "originator_rid": "10.0.0.4",
+                            "subnet": "10.1.45.2",
+                        }
+                    ],
+                }
+            }
+        }
+    ]
+]
+
+<pre><code>&lt;/doc&gt;
 
 &lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
             OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})

@@ -906,12 +906,14 @@
 <hr />
 <p>This template designed for use with N2G library to produce network diagrams based on ISIS 
 link state database of Cisco IOS-XR devices. </p>
-<p>Caveats:
- - need ttp&gt;=0.8.0 for extend to work</p>
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.8.0</code> for extend to work</li>
+</ul>
 <p>Template to parse ISIS LSDP of Cisco IOS-XR devices as produced
 by "show isis database verbose" command.</p>
 <p>This template produces this structure:</p>
-<p>[[{'isis_processes': {'100': {'LSP': [{'hostname': 'R1-X1',
+<pre><code>[[{'isis_processes': {'100': {'LSP': [{'hostname': 'R1-X1',
                                        'isis_area': '49.0001',
                                        'level': 'Level-2',
                                        'links': [{'affinity': '0x00000000',
@@ -972,7 +974,8 @@ by "show isis database verbose" command.</p>
                                        'lsp_id': 'R1-X2',
                                        'networks': [{'metric': '0',
                                                      'network': 'fdff::/36'}],
-                                       'rid': 'fddd:2:c101::2'}]}}}]]</p>
+                                       'rid': 'fddd:2:c101::2'}]}}}]]
+</code></pre>
 <hr />
 <details><summary>Template Content</summary>
 
@@ -981,7 +984,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Cisco IOS-XR devices. 
 
 Caveats:
- - need ttp&gt;=0.8.0 for extend to work
+
+ - need `ttp&gt;=0.8.0` for extend to work
 &lt;/doc&gt;
 
 &lt;input load=&quot;python&quot;&gt;

@@ -235,9 +235,39 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Writing docs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         Writing docs
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generating-documentation" class="md-nav__link">
+    Generating Documentation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -901,6 +931,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#generating-documentation" class="md-nav__link">
+    Generating Documentation
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -918,10 +963,25 @@
                 
                 <h1 id="writing-docs-for-ttp-templates">Writing docs for TTP Templates</h1>
 <p>TTP Templates have <code>&lt;doc&gt;</code> tag that can be used to embed documentation strings into the templates.</p>
-<p>Templates <code>&lt;doc&gt;</code> tags content supports markdown.</p>
+<p>Templates <code>&lt;doc&gt;</code> tags content is just a text, but TTP Templates documentation assumes markdown
+syntaxes used to populate docs.</p>
+<p>TTP Templates use <a href="https://www.mkdocs.org">mkdocs</a> with <a href="https://squidfunk.github.io/mkdocs-material/">material theme</a> 
+to produce documentation. </p>
 <p>TTP Templates Collection comes with <code>generate_docs.py</code> script, this script iterates over all
 folders within <code>ttp_templates</code> repository, loads templates and extracts <code>&lt;doc&gt;</code> tags content
-to form <code>.md</code> files and construct navigation tree.</p>
+to form <code>.md</code> files, saves <code>.md</code> files in <code>docs/ttp_templates</code> folder and construct navigation tree 
+within <code>mkdocs.yml</code> file.</p>
+<h2 id="generating-documentation">Generating Documentation</h2>
+<p>First, need to write docs within the templates.</p>
+<p>Next, generate <code>.md</code> doc files out of TTP templates:</p>
+<pre><code>python3 generate_docs.py
+</code></pre>
+<p>Finally, use <code>mkdocs</code> to serve, build or deploy docs using commands:</p>
+<ul>
+<li><code>mkdocs serve</code> - serve docs locally to view docs content via browser</li>
+<li><code>mkdocs build</code> - build docs</li>
+<li><code>mkdocs gh-deploy</code> - deploy docs to GitHub</li>
+</ul>
                 
               
               

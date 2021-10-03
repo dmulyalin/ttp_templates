@@ -922,6 +922,62 @@ interface Eth-Trunk1.100
 <p>Sample results, structure="flat_list":</p>
 <pre><code>[
     {
+        &quot;description&quot;: &quot;description&quot;,
+        &quot;hostname&quot;: &quot;Huawei-box-1&quot;,
+        &quot;interface&quot;: &quot;Eth-Trunk1.100&quot;,
+        &quot;ip&quot;: &quot;10.1.130.2&quot;,
+        &quot;mask&quot;: &quot;255.255.255.252&quot;,
+        &quot;vrf&quot;: &quot;VRF1&quot;
+    }
+]
+</code></pre>
+<p>Template supports Netmiko run_ttp method:</p>
+<pre><code>import pprint
+from netmiko import ConnectHandler
+
+net_connect = ConnectHandler(
+    device_type=&quot;huawei&quot;,
+    host=&quot;1.2.3.4&quot;,
+    username=&quot;admin&quot;,
+    password=&quot;admin&quot;,
+)
+
+res = net_connect.run_ttp(&quot;ttp://misc/netmiko/huawei.vrp.cfg.ip.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
+
+pprint.pprint(res)
+
+# prints something along the lines of:
+# 
+</code></pre>
+<hr />
+<details><summary>Template Content</summary>
+
+<pre><code>&lt;doc&gt;
+Template to parse &quot;display current-configuration interface&quot; output.
+This template produces one dictionary item per IP address configured 
+on device's interfaces including secondary and VRRP IP addresses. 
+
+Output is a list of dictionaries. 
+
+Sample data:
+</code></pre>
+
+Huawei-box-1-dis cur interface
+interface Eth-Trunk1.100
+ vlan-type dot1q 100
+ mtu 9600
+ description Link description  here
+ ip address 10.1.130.2 255.255.255.252
+ ip binding vpn-instance VRF1
+ vrrp6 vrid 1 virtual-ip 2001:db8::100
+#
+
+<pre><code>
+Sample results, structure=&quot;flat_list&quot;:
+</code></pre>
+
+[
+    {
         "description": "description",
         "hostname": "Huawei-box-1",
         "interface": "Eth-Trunk1.100",
@@ -930,9 +986,12 @@ interface Eth-Trunk1.100
         "vrf": "VRF1"
     }
 ]
+
+<pre><code>
+Template supports Netmiko run_ttp method:
 </code></pre>
-<p>Template supports Netmiko run_ttp method:</p>
-<pre><code>import pprint
+
+import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
@@ -947,62 +1006,9 @@ res = net_connect.run_ttp("ttp://misc/netmiko/huawei.vrp.cfg.ip.txt", res_kwargs
 pprint.pprint(res)
 
 # prints something along the lines of:
-#
-</code></pre>
-<hr />
-<details><summary>Template Content</summary>
+# 
 
-<pre><code>&lt;doc&gt;
-Template to parse &quot;display current-configuration interface&quot; output.
-This template produces one dictionary item per IP address configured 
-on device's interfaces including secondary and VRRP IP addresses. 
-
-Output is a list of dictionaries. 
-
-Sample data:
-
-    Huawei-box-1-dis cur interface
-    interface Eth-Trunk1.100
-     vlan-type dot1q 100
-     mtu 9600
-     description Link description  here
-     ip address 10.1.130.2 255.255.255.252
-     ip binding vpn-instance VRF1
-     vrrp6 vrid 1 virtual-ip 2001:db8::100
-    #
-
-Sample results, structure=&quot;flat_list&quot;:
-
-    [
-        {
-            &quot;description&quot;: &quot;description&quot;,
-            &quot;hostname&quot;: &quot;Huawei-box-1&quot;,
-            &quot;interface&quot;: &quot;Eth-Trunk1.100&quot;,
-            &quot;ip&quot;: &quot;10.1.130.2&quot;,
-            &quot;mask&quot;: &quot;255.255.255.252&quot;,
-            &quot;vrf&quot;: &quot;VRF1&quot;
-        }
-    ]
-
-Template supports Netmiko run_ttp method:
-
-    import pprint
-    from netmiko import ConnectHandler
-
-    net_connect = ConnectHandler(
-        device_type=&quot;huawei&quot;,
-        host=&quot;1.2.3.4&quot;,
-        username=&quot;admin&quot;,
-        password=&quot;admin&quot;,
-    )
-
-    res = net_connect.run_ttp(&quot;ttp://misc/netmiko/huawei.vrp.cfg.ip.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
-
-    pprint.pprint(res)
-
-    # prints something along the lines of:
-    # 
-&lt;/doc&gt;
+<pre><code>&lt;/doc&gt;
 
 
 

@@ -906,10 +906,12 @@
 diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
 <p>This template parses external-lsa only out of output produced by 
 "show ospf database external" command.</p>
-<p>Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it</p>
-<p>Produces this structure for each input datum/device output:
-[[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
+</ul>
+<p>Produces this structure for each input datum/device output:</p>
+<pre><code>[[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
                             'summary_lsa': [{'area': '0.0.0.0',
                                              'mask': '32',
                                              'metric': '2312',
@@ -935,7 +937,8 @@ diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
                                              'metric': '2312',
                                              'originator_rid': '10.0.24.1',
                                              'subnet': '10.1.0.1'}]}},
-   'vars': {'hostname': 'router-1'}}]]</p>
+   'vars': {'hostname': 'router-1'}}]]
+</code></pre>
 <hr />
 <details><summary>Template Content</summary>
 
@@ -947,9 +950,12 @@ This template parses external-lsa only out of output produced by
 &quot;show ospf database external&quot; command.
 
 Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp&gt;=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
 
 Produces this structure for each input datum/device output:
+</code></pre>
+
 [[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
                             'summary_lsa': [{'area': '0.0.0.0',
                                              'mask': '32',
@@ -977,7 +983,8 @@ Produces this structure for each input datum/device output:
                                              'originator_rid': '10.0.24.1',
                                              'subnet': '10.1.0.1'}]}},
    'vars': {'hostname': 'router-1'}}]]
-&lt;/doc&gt;
+
+<pre><code>&lt;/doc&gt;
 
 &lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
             OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})

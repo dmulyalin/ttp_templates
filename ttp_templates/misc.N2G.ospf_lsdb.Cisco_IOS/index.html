@@ -906,45 +906,49 @@
 <hr />
 <p>This template designed for use with N2G library to produce network diagrams based on OSPF 
 link state database of Cisco IOS-XR devices. </p>
-<p>Caveats:
- - need ttp&gt;=0.8.0 for extend to work</p>
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.8.0</code> for extend to work</li>
+</ul>
 <p>This template initially designed for use with N2G library to produce network 
 diagrams based on OSPF link state database of Cisco IOS devices.</p>
 <p>This template parses router-lsa only out of output produced by 
 "show ip ospf database router" command.</p>
-<p>Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it</p>
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
+</ul>
 <p>Produces this structure for each input datum/device output:</p>
-<p>[
+<pre><code>[
     [
         {
-            "ospf_processes": {
-                "1": {
-                    "local_rid": "10.0.0.4",
-                    "router_lsa": [
+            &quot;ospf_processes&quot;: {
+                &quot;1&quot;: {
+                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
+                    &quot;router_lsa&quot;: [
                         {
-                            "area": "0",
-                            "asbr": False,
-                            "bma_peers": [
+                            &quot;area&quot;: &quot;0&quot;,
+                            &quot;asbr&quot;: False,
+                            &quot;bma_peers&quot;: [
                                 {
-                                    "link_data": "10.1.117.4",
-                                    "link_id": "10.1.117.7",
-                                    "metric": "10",
+                                    &quot;link_data&quot;: &quot;10.1.117.4&quot;,
+                                    &quot;link_id&quot;: &quot;10.1.117.7&quot;,
+                                    &quot;metric&quot;: &quot;10&quot;,
                                 }
                             ],
-                            "connected_stub": [
+                            &quot;connected_stub&quot;: [
                                 {
-                                    "link_data": "255.255.255.128",
-                                    "link_id": "10.1.14.0",
-                                    "metric": "10",
+                                    &quot;link_data&quot;: &quot;255.255.255.128&quot;,
+                                    &quot;link_id&quot;: &quot;10.1.14.0&quot;,
+                                    &quot;metric&quot;: &quot;10&quot;,
                                 }
                             ],
-                            "originator_rid": "10.0.0.4",
-                            "ptp_peers": [
+                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
+                            &quot;ptp_peers&quot;: [
                                 {
-                                    "link_data": "10.1.14.4",
-                                    "link_id": "10.0.0.10",
-                                    "metric": "10",
+                                    &quot;link_data&quot;: &quot;10.1.14.4&quot;,
+                                    &quot;link_id&quot;: &quot;10.0.0.10&quot;,
+                                    &quot;metric&quot;: &quot;10&quot;,
                                 }
                             ],
                         }
@@ -953,62 +957,69 @@ diagrams based on OSPF link state database of Cisco IOS devices.</p>
             }
         }
     ]
-]</p>
+]
+</code></pre>
 <p>This template initially designed for use with N2G library to produce network 
 diagrams based on OSPF link state database of Cisco IOS devices.</p>
 <p>This template parses external-lsa only out of output produced by 
 "show ip ospf database external" command.</p>
-<p>Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it</p>
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
+</ul>
 <p>Produces this structure for each input datum/device output:</p>
-<p>[
+<pre><code>[
     [
         {
-            "ospf_processes": {
-                "1": {
-                    "external_lsa": [
+            &quot;ospf_processes&quot;: {
+                &quot;1&quot;: {
+                    &quot;external_lsa&quot;: [
                         {
-                            "mask": "32",
-                            "metric": "20",
-                            "metric_type": "2",
-                            "originator_rid": "10.0.0.10",
-                            "subnet": "10.0.0.100",
-                            "tag": "0",
+                            &quot;mask&quot;: &quot;32&quot;,
+                            &quot;metric&quot;: &quot;20&quot;,
+                            &quot;metric_type&quot;: &quot;2&quot;,
+                            &quot;originator_rid&quot;: &quot;10.0.0.10&quot;,
+                            &quot;subnet&quot;: &quot;10.0.0.100&quot;,
+                            &quot;tag&quot;: &quot;0&quot;,
                         }
                     ],
-                    "local_rid": "10.0.0.4",
+                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
                 }
             }
         }
     ]
-]</p>
+]
+</code></pre>
 <p>This template initially designed for use with N2G library to produce network 
 diagrams based on OSPF link state database of Cisco IOS devices.</p>
 <p>This template parses summary-lsa only out of output produced by 
 "show ip ospf database summary" command.</p>
-<p>Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it</p>
-<p>Produces this structure for each input datum/device output:
-[
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
+</ul>
+<p>Produces this structure for each input datum/device output:</p>
+<pre><code>[
     [
         {
-            "ospf_processes": {
-                "1": {
-                    "local_rid": "10.0.0.4",
-                    "summary_lsa": [
+            &quot;ospf_processes&quot;: {
+                &quot;1&quot;: {
+                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
+                    &quot;summary_lsa&quot;: [
                         {
-                            "area": "0",
-                            "mask": "31",
-                            "metric": "10",
-                            "originator_rid": "10.0.0.4",
-                            "subnet": "10.1.45.2",
+                            &quot;area&quot;: &quot;0&quot;,
+                            &quot;mask&quot;: &quot;31&quot;,
+                            &quot;metric&quot;: &quot;10&quot;,
+                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
+                            &quot;subnet&quot;: &quot;10.1.45.2&quot;,
                         }
                     ],
                 }
             }
         }
     ]
-]</p>
+]
+</code></pre>
 <hr />
 <details><summary>Template Content</summary>
 
@@ -1017,7 +1028,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Cisco IOS-XR devices. 
 
 Caveats:
- - need ttp&gt;=0.8.0 for extend to work
+
+ - need `ttp&gt;=0.8.0` for extend to work
 &lt;/doc&gt;
 
 &lt;extend template=&quot;ttp://platform/cisco_ios_show_ip_ospf_database_router.txt&quot;/&gt;

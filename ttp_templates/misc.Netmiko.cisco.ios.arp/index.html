@@ -910,13 +910,13 @@
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
-    device_type="cisco_ios",
-    host="1.2.3.4",
-    username="admin",
-    password="admin",
+    device_type=&quot;cisco_ios&quot;,
+    host=&quot;1.2.3.4&quot;,
+    username=&quot;admin&quot;,
+    password=&quot;admin&quot;,
 )
 
-res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.arp.txt", res_kwargs={"structure": "flat_list"})
+res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
 
 pprint.pprint(res)
 
@@ -947,40 +947,42 @@ pprint.pprint(res)
 TTP template to parse Cisco IOS &quot;show ip arp&quot; output.
 
 Template can be invoked using Netmiko run_ttp method like this:
+</code></pre>
 
-    import pprint 
-    from netmiko import ConnectHandler
+import pprint 
+from netmiko import ConnectHandler
 
-    net_connect = ConnectHandler(
-        device_type=&quot;cisco_ios&quot;,
-        host=&quot;1.2.3.4&quot;,
-        username=&quot;admin&quot;,
-        password=&quot;admin&quot;,
-    )
+net_connect = ConnectHandler(
+    device_type="cisco_ios",
+    host="1.2.3.4",
+    username="admin",
+    password="admin",
+)
 
-    res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
+res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.arp.txt", res_kwargs={"structure": "flat_list"})
 
-    pprint.pprint(res)
+pprint.pprint(res)
 
-    # prints something along the lines of:
-    # [{'age': 8,
-    #   'ip': '172.29.50.1',
-    #   'mac': '84:b8:02:76:ac:0e',
-    #   'protocol': 'Internet',
-    #   'type': 'ARPA'},
-    #  {'age': 221,
-    #   'interface': 'Vlan20',
-    #   'ip': '172.29.50.2',
-    #   'mac': '00:19:07:25:34:4a',
-    #   'protocol': 'Internet',
-    #   'type': 'ARPA'},
-    #  {'age': -1,
-    #   'interface': 'Vlan21',
-    #   'ip': '172.29.50.3',
-    #   'mac': '00:24:f7:dd:77:41',
-    #   'protocol': 'Internet',
-    #   'type': 'ARPA'}]
-&lt;/doc&gt;
+# prints something along the lines of:
+# [{'age': 8,
+#   'ip': '172.29.50.1',
+#   'mac': '84:b8:02:76:ac:0e',
+#   'protocol': 'Internet',
+#   'type': 'ARPA'},
+#  {'age': 221,
+#   'interface': 'Vlan20',
+#   'ip': '172.29.50.2',
+#   'mac': '00:19:07:25:34:4a',
+#   'protocol': 'Internet',
+#   'type': 'ARPA'},
+#  {'age': -1,
+#   'interface': 'Vlan21',
+#   'ip': '172.29.50.3',
+#   'mac': '00:24:f7:dd:77:41',
+#   'protocol': 'Internet',
+#   'type': 'ARPA'}]
+
+<pre><code>&lt;/doc&gt;
 
 
 &lt;input&gt;

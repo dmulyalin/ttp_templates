@@ -904,24 +904,24 @@
 <pre><code>ttp://misc.Netmiko.cisco.ios.cfg.bgp.txt
 </code></pre>
 <hr />
-<p>Requirements: TTP &gt;= 0.8.x</p>
-<p>To use this template with Netmiko (&gt;=3.4.x) run_ttp method:</p>
+<p>Requirements: <code>TTP &gt;= 0.8.x</code></p>
+<p>To use this template with Netmiko (&gt;=3.4.x) <code>run_ttp</code> method:</p>
 <pre><code>import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
-    device_type="cisco_ios",
-    host="1.2.3.4",
-    username="admin",
-    password="admin",
+    device_type=&quot;cisco_ios&quot;,
+    host=&quot;1.2.3.4&quot;,
+    username=&quot;admin&quot;,
+    password=&quot;admin&quot;,
 )
 
-res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.bgp.txt")
+res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.bgp.txt&quot;)
 
 pprint.pprint(res)
 </code></pre>
 <p>Template to parse Cisco IOS BGP configuration.</p>
-<p>Requirements: TTP &gt;= 0.7.x</p>
+<p>Requirements: <code>TTP &gt;= 0.7.x</code></p>
 <p>Structure produced by this template does not follow any known convention 
 or schema for example openconfig-bgp, but rather was the easiest one to 
 produce using TTP built-in features without overwhelming template with
@@ -1051,6 +1051,29 @@ configuration style and capable of parsing subsets of: </p>
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
+    device_type=&quot;cisco_ios&quot;,
+    host=&quot;1.2.3.4&quot;,
+    username=&quot;admin&quot;,
+    password=&quot;admin&quot;,
+)
+
+res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.bgp.txt&quot;)
+
+pprint.pprint(res)
+</code></pre>
+<hr />
+<details><summary>Template Content</summary>
+
+<pre><code>&lt;doc&gt;
+Requirements: `TTP &gt;= 0.8.x`
+
+To use this template with Netmiko (&gt;=3.4.x) `run_ttp` method:
+</code></pre>
+
+import pprint
+from netmiko import ConnectHandler
+
+net_connect = ConnectHandler(
     device_type="cisco_ios",
     host="1.2.3.4",
     username="admin",
@@ -1060,29 +1083,8 @@ net_connect = ConnectHandler(
 res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.bgp.txt")
 
 pprint.pprint(res)
-</code></pre>
-<hr />
-<details><summary>Template Content</summary>
 
-<pre><code>&lt;doc&gt;
-Requirements: TTP &gt;= 0.8.x
-
-To use this template with Netmiko (&gt;=3.4.x) run_ttp method:
-
-    import pprint
-    from netmiko import ConnectHandler
-
-    net_connect = ConnectHandler(
-        device_type=&quot;cisco_ios&quot;,
-        host=&quot;1.2.3.4&quot;,
-        username=&quot;admin&quot;,
-        password=&quot;admin&quot;,
-    )
-
-    res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.bgp.txt&quot;)
-
-    pprint.pprint(res)
-&lt;/doc&gt;
+<pre><code>&lt;/doc&gt;
 
 &lt;input&gt;
 commands = [

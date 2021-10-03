@@ -906,40 +906,42 @@
 <hr />
 <p>This template designed for use with N2G library to produce network diagrams based on OSPF 
 link state database of Huawei devices. </p>
-<p>Caveats:
- - need ttp&gt;=0.8.0 for extend to work</p>
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.8.0</code> for extend to work</li>
+</ul>
 <p>This template initially designed for use with N2G library to produce network 
 diagrams based on OSPF link state database of Huawei devices.</p>
 <p>This template parses router-lsa only out of output produced by 
 "display ospf lsdb router" command.</p>
-<p>Produces this structure for each input datum/device output:
-[
+<p>Produces this structure for each input datum/device output:</p>
+<pre><code>[
     [
         {
-            "ospf_processes": {
-                "123": {
-                    "local_rid": "123.123.24.158",
-                    "router_lsa": [
+            &quot;ospf_processes&quot;: {
+                &quot;123&quot;: {
+                    &quot;local_rid&quot;: &quot;123.123.24.158&quot;,
+                    &quot;router_lsa&quot;: [
                         {
-                            "area": "0.0.0.123",
-                            "connected_stub": [
+                            &quot;area&quot;: &quot;0.0.0.123&quot;,
+                            &quot;connected_stub&quot;: [
                                 {
-                                    "link_data": "255.255.255.252",
-                                    "link_id": "123.123.60.108",
-                                    "metric": "1",
+                                    &quot;link_data&quot;: &quot;255.255.255.252&quot;,
+                                    &quot;link_id&quot;: &quot;123.123.60.108&quot;,
+                                    &quot;metric&quot;: &quot;1&quot;,
                                 }
                             ],
-                            "originator_rid": "10.123.0.92",
-                            "ptp_peers": [
+                            &quot;originator_rid&quot;: &quot;10.123.0.92&quot;,
+                            &quot;ptp_peers&quot;: [
                                 {
-                                    "link_data": "123.123.60.109",
-                                    "link_id": "123.123.24.31",
-                                    "metric": "1",
+                                    &quot;link_data&quot;: &quot;123.123.60.109&quot;,
+                                    &quot;link_id&quot;: &quot;123.123.24.31&quot;,
+                                    &quot;metric&quot;: &quot;1&quot;,
                                 },
                                 {
-                                    "link_data": "123.123.60.201",
-                                    "link_id": "123.123.24.5",
-                                    "metric": "9000",
+                                    &quot;link_data&quot;: &quot;123.123.60.201&quot;,
+                                    &quot;link_id&quot;: &quot;123.123.24.5&quot;,
+                                    &quot;metric&quot;: &quot;9000&quot;,
                                 },
                             ],
                         },
@@ -948,7 +950,8 @@ diagrams based on OSPF link state database of Huawei devices.</p>
             }
         }
     ]
-]</p>
+]
+</code></pre>
 <hr />
 <details><summary>Template Content</summary>
 
@@ -957,7 +960,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Huawei devices. 
 
 Caveats:
- - need ttp&gt;=0.8.0 for extend to work
+
+ - need `ttp&gt;=0.8.0` for extend to work
 &lt;/doc&gt;
 
 &lt;extend template=&quot;ttp://platform/huawei_display_ospf_lsdb_router.txt&quot;/&gt;

@@ -902,21 +902,23 @@
 <pre><code>ttp://yang.openconfig-lldp_cisco_nxos.txt
 </code></pre>
 <hr />
-<p>Required devices' commands output:
- - show lldp neighbors detail</p>
+<p>Required devices' commands output:</p>
+<ul>
+<li>show lldp neighbors detail</li>
+</ul>
 <p>Device output should contain device prompt, otherwise device hostname will not be extracted.</p>
-<p>Returns result compatible with this subset of openconfig-lldp
+<p>Returns result compatible with this subset of <code>openconfig-lldp</code>
 YANG model:</p>
-<p>module: openconfig-lldp
+<pre><code>module: openconfig-lldp
   +--rw lldp
      +--rw config
      |  +--rw system-name?                  string
      +--rw interfaces
-        +--rw interface<em> [name]
-           +--rw name       <br />
+        +--rw interface* [name]
+           +--rw name         
            +--ro neighbors
-              +--ro neighbor</em> [id]
-                 +--ro id            <br />
+              +--ro neighbor* [id]
+                 +--ro id              
                  +--ro state
                  |  +--ro system-name?               string
                  |  +--ro system-description?        string
@@ -929,18 +931,21 @@ YANG model:</p>
                  |  +--ro management-address?        string
                  +--ro capabilities
                     +--ro capability* [name]
-                       +--ro name                                                 </p>
+                       +--ro name    
+</code></pre>
 <hr />
 <details><summary>Template Content</summary>
 
 <pre><code>&lt;doc&gt;
 Required devices' commands output:
+
  - show lldp neighbors detail
 
 Device output should contain device prompt, otherwise device hostname will not be extracted.
 
-Returns result compatible with this subset of openconfig-lldp
+Returns result compatible with this subset of `openconfig-lldp`
 YANG model:
+</code></pre>
 
 module: openconfig-lldp
   +--rw lldp
@@ -964,8 +969,9 @@ module: openconfig-lldp
                  |  +--ro management-address?        string
                  +--ro capabilities
                     +--ro capability* [name]
-                       +--ro name                                                 
-&lt;/doc&gt;
+                       +--ro name    
+
+<pre><code>&lt;/doc&gt;
 
 
 

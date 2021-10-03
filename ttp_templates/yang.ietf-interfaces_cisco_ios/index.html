@@ -924,16 +924,18 @@
 <pre><code>ttp://yang.ietf-interfaces_cisco_ios.txt
 </code></pre>
 <hr />
+<p>This templates produces structured data compatible with ietf-interfaces YANG module
+out of Cisco IOS <code>show run</code> configuration output.</p>
 <p>YANG ietf-interfaces module tree:</p>
-<p>+--rw ietf-interfaces:interfaces
-|  +--rw interface<em> [name]
+<pre><code>+--rw ietf-interfaces:interfaces
+|  +--rw interface* [name]
 |     +--ro admin-status {enumeration}
 |     +--rw description? {string}
 |     +--rw enabled? {boolean}
-|     +--ro higher-layer-if</em> {interface-ref(leafref)}
+|     +--ro higher-layer-if* {interface-ref(leafref)}
 |     +--ro if-index {int32}
 |     +--rw ietf-ip:ipv4!
-|     |  +--rw address<em> [ip]
+|     |  +--rw address* [ip]
 |     |  |  +--rw ip {ipv4-address-no-zone(string)}
 |     |  |  +--ro origin? {ip-address-origin(enumeration)}
 |     |  |  +--rw (subnet)
@@ -944,12 +946,12 @@
 |     |  +--rw enabled? {boolean}
 |     |  +--rw forwarding? {boolean}
 |     |  +--rw mtu? {uint16}
-|     |  +--rw neighbor</em> [ip]
+|     |  +--rw neighbor* [ip]
 |     |     +--rw ip {ipv4-address-no-zone(string)}
 |     |     +--rw link-layer-address {phys-address(string)}
 |     |     +--ro origin? {neighbor-origin(enumeration)}
 |     +--rw ietf-ip:ipv6!
-|     |  +--rw address<em> [ip]
+|     |  +--rw address* [ip]
 |     |  |  +--rw ip {ipv6-address-no-zone(string)}
 |     |  |  +--ro origin? {ip-address-origin(enumeration)}
 |     |  |  +--rw prefix-length {uint8}
@@ -963,7 +965,7 @@
 |     |  +--rw enabled? {boolean}
 |     |  +--rw forwarding? {boolean}
 |     |  +--rw mtu? {uint32}
-|     |  +--rw neighbor</em> [ip]
+|     |  +--rw neighbor* [ip]
 |     |     +--rw ip {ipv6-address-no-zone(string)}
 |     |     +--ro is-router? {empty}
 |     |     +--rw link-layer-address {phys-address(string)}
@@ -971,7 +973,7 @@
 |     |     +--ro state? {enumeration}
 |     +--ro last-change? {date-and-time(string)}
 |     +--rw link-up-down-trap-enable? {enumeration}
-|     +--ro lower-layer-if<em> {interface-ref(leafref)}
+|     +--ro lower-layer-if* {interface-ref(leafref)}
 |     +--rw name {string}
 |     +--ro oper-status {enumeration}
 |     +--ro phys-address? {phys-address(string)}
@@ -993,12 +995,12 @@
 |     |  +--ro out-unicast-pkts? {counter64(uint64)}
 |     +--rw type {identityref}
 +--ro ietf-interfaces:interfaces-state
-   +--ro interface</em> [name]
+   +--ro interface* [name]
       +--ro admin-status {enumeration}
-      +--ro higher-layer-if<em> {interface-state-ref(leafref)}
+      +--ro higher-layer-if* {interface-state-ref(leafref)}
       +--ro if-index {int32}
       +--ro ietf-ip:ipv4!
-      |  +--ro address</em> [ip]
+      |  +--ro address* [ip]
       |  |  +--ro ip {ipv4-address-no-zone(string)}
       |  |  +--ro origin? {ip-address-origin(enumeration)}
       |  |  +--ro (subnet)?
@@ -1008,26 +1010,26 @@
       |  |        +--ro prefix-length? {uint8}
       |  +--ro forwarding? {boolean}
       |  +--ro mtu? {uint16}
-      |  +--ro neighbor<em> [ip]
+      |  +--ro neighbor* [ip]
       |     +--ro ip {ipv4-address-no-zone(string)}
       |     +--ro link-layer-address? {phys-address(string)}
       |     +--ro origin? {neighbor-origin(enumeration)}
       +--ro ietf-ip:ipv6!
-      |  +--ro address</em> [ip]
+      |  +--ro address* [ip]
       |  |  +--ro ip {ipv6-address-no-zone(string)}
       |  |  +--ro origin? {ip-address-origin(enumeration)}
       |  |  +--ro prefix-length {uint8}
       |  |  +--ro status? {enumeration}
       |  +--ro forwarding? {boolean}
       |  +--ro mtu? {uint32}
-      |  +--ro neighbor<em> [ip]
+      |  +--ro neighbor* [ip]
       |     +--ro ip {ipv6-address-no-zone(string)}
       |     +--ro is-router? {empty}
       |     +--ro link-layer-address? {phys-address(string)}
       |     +--ro origin? {neighbor-origin(enumeration)}
       |     +--ro state? {enumeration}
       +--ro last-change? {date-and-time(string)}
-      +--ro lower-layer-if</em> {interface-state-ref(leafref)}
+      +--ro lower-layer-if* {interface-state-ref(leafref)}
       +--ro name {string}
       +--ro oper-status {enumeration}
       +--ro phys-address? {phys-address(string)}
@@ -1047,9 +1049,72 @@
       |  +--ro out-multicast-pkts? {counter64(uint64)}
       |  +--ro out-octets? {counter64(uint64)}
       |  +--ro out-unicast-pkts? {counter64(uint64)}
-      +--ro type {identityref}</p>
-<p>moc_data:</p>
-<p>expected_result:</p>
+      +--ro type {identityref}
+</code></pre>
+<p>Sample data:</p>
+<pre><code>interface GigabitEthernet1/3.251
+ description Customer #32148
+ encapsulation dot1q 251
+ ip address 172.16.33.10 255.255.255.128
+ shutdown
+!
+interface GigabitEthernet1/4
+ description vCPEs access control
+ ip address 172.16.33.10 255.255.255.128
+! 
+</code></pre>
+<p>Sample results:</p>
+<pre><code>{
+    &quot;ietf-interfaces:interfaces&quot;: {
+        &quot;interface&quot;: [
+            {
+                &quot;admin-status&quot;: &quot;down&quot;,
+                &quot;description&quot;: &quot;Customer &quot; &quot;#32148&quot;,
+                &quot;enabled&quot;: False,
+                &quot;ietf-ip:ipv4&quot;: {
+                    &quot;address&quot;: [
+                        {
+                            &quot;ip&quot;: &quot;172.16.33.10&quot;,
+                            &quot;netmask&quot;: &quot;255.255.255.128&quot;,
+                            &quot;origin&quot;: &quot;static&quot;,
+                        }
+                    ]
+                },
+                &quot;if-index&quot;: 1,
+                &quot;link-up-down-trap-enable&quot;: &quot;enabled&quot;,
+                &quot;name&quot;: &quot;GigabitEthernet1/3.251&quot;,
+                &quot;oper-status&quot;: &quot;unknown&quot;,
+                &quot;statistics&quot;: {
+                    &quot;discontinuity-time&quot;: &quot;1970-01-01T00:00:00+00:00&quot;
+                },
+                &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+            },
+            {
+                &quot;admin-status&quot;: &quot;up&quot;,
+                &quot;description&quot;: &quot;vCPEs &quot; &quot;access &quot; &quot;control&quot;,
+                &quot;enabled&quot;: True,
+                &quot;ietf-ip:ipv4&quot;: {
+                    &quot;address&quot;: [
+                        {
+                            &quot;ip&quot;: &quot;172.16.33.10&quot;,
+                            &quot;netmask&quot;: &quot;255.255.255.128&quot;,
+                            &quot;origin&quot;: &quot;static&quot;,
+                        }
+                    ]
+                },
+                &quot;if-index&quot;: 1,
+                &quot;link-up-down-trap-enable&quot;: &quot;enabled&quot;,
+                &quot;name&quot;: &quot;GigabitEthernet1/4&quot;,
+                &quot;oper-status&quot;: &quot;unknown&quot;,
+                &quot;statistics&quot;: {
+                    &quot;discontinuity-time&quot;: &quot;1970-01-01T00:00:00+00:00&quot;
+                },
+                &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
+            },
+        ]
+    }
+}
+</code></pre>
 <h1 id="-">----------------------------------------------------------------------------</h1>
 <h1 id="cisco-ios-interfaces-groups-and-inputs">Cisco IOS interfaces groups and inputs</h1>
 <h1 id="-_1">----------------------------------------------------------------------------</h1>
@@ -1057,7 +1122,11 @@
 <details><summary>Template Content</summary>
 
 <pre><code>&lt;doc&gt;
+This templates produces structured data compatible with ietf-interfaces YANG module
+out of Cisco IOS `show run` configuration output.
+
 YANG ietf-interfaces module tree:
+</code></pre>
 
 +--rw ietf-interfaces:interfaces
 |  +--rw interface* [name]
@@ -1183,13 +1252,77 @@ YANG ietf-interfaces module tree:
       |  +--ro out-unicast-pkts? {counter64(uint64)}
       +--ro type {identityref}
 
-moc_data:
+<pre><code>
+Sample data:
+</code></pre>
 
+interface GigabitEthernet1/3.251
+ description Customer #32148
+ encapsulation dot1q 251
+ ip address 172.16.33.10 255.255.255.128
+ shutdown
+!
+interface GigabitEthernet1/4
+ description vCPEs access control
+ ip address 172.16.33.10 255.255.255.128
+! 
 
-expected_result:
+<pre><code>
+Sample results:
+</code></pre>
 
+{
+    "ietf-interfaces:interfaces": {
+        "interface": [
+            {
+                "admin-status": "down",
+                "description": "Customer " "#32148",
+                "enabled": False,
+                "ietf-ip:ipv4": {
+                    "address": [
+                        {
+                            "ip": "172.16.33.10",
+                            "netmask": "255.255.255.128",
+                            "origin": "static",
+                        }
+                    ]
+                },
+                "if-index": 1,
+                "link-up-down-trap-enable": "enabled",
+                "name": "GigabitEthernet1/3.251",
+                "oper-status": "unknown",
+                "statistics": {
+                    "discontinuity-time": "1970-01-01T00:00:00+00:00"
+                },
+                "type": "iana-if-type:ethernetCsmacd",
+            },
+            {
+                "admin-status": "up",
+                "description": "vCPEs " "access " "control",
+                "enabled": True,
+                "ietf-ip:ipv4": {
+                    "address": [
+                        {
+                            "ip": "172.16.33.10",
+                            "netmask": "255.255.255.128",
+                            "origin": "static",
+                        }
+                    ]
+                },
+                "if-index": 1,
+                "link-up-down-trap-enable": "enabled",
+                "name": "GigabitEthernet1/4",
+                "oper-status": "unknown",
+                "statistics": {
+                    "discontinuity-time": "1970-01-01T00:00:00+00:00"
+                },
+                "type": "iana-if-type:ethernetCsmacd",
+            },
+        ]
+    }
+}
 
-&lt;/doc&gt;
+<pre><code>&lt;/doc&gt;
 
 
 &lt;macro&gt;

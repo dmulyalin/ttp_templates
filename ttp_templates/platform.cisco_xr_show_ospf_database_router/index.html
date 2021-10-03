@@ -906,10 +906,12 @@
 diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
 <p>This template parses router-lsa only out of output produced by 
 "show ospf database router" command.</p>
-<p>Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it</p>
-<p>Produces this structure for each input datum/device output:
-[[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
+<p>Caveats:</p>
+<ul>
+<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
+</ul>
+<p>Produces this structure for each input datum/device output:</p>
+<pre><code>[[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
                             'router_lsa': [{'area': '0.0.0.0',
                                             'asbr': True,
                                             'bma_peers': [{'link_data': '10.3.162.14',
@@ -946,7 +948,8 @@ diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
                                             'originator_rid': '10.1.0.91',
                                             'ptp_peers': [{'link_data': '10.0.60.206',
                                                            'link_id': '10.0.24.6',
-                                                           'metric': '9000'}]}]}}}]]</p>
+                                                           'metric': '9000'}]}]}}}]]
+</code></pre>
 <hr />
 <details><summary>Template Content</summary>
 
@@ -958,9 +961,12 @@ This template parses router-lsa only out of output produced by
 &quot;show ospf database router&quot; command.
 
 Caveats:
- - need ttp&gt;=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp&gt;=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
 
 Produces this structure for each input datum/device output:
+</code></pre>
+
 [[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
                             'router_lsa': [{'area': '0.0.0.0',
                                             'asbr': True,
@@ -1000,7 +1006,7 @@ Produces this structure for each input datum/device output:
                                                            'link_id': '10.0.24.6',
                                                            'metric': '9000'}]}]}}}]]
 
-&lt;/doc&gt;
+<pre><code>&lt;/doc&gt;
 
 &lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
             OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})
