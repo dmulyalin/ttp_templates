@@ -976,8 +976,7 @@ Template to parse ISIS LSDP of Cisco IOS-XR devices as produced
 by &quot;show isis database verbose&quot; command.
 
 This template produces this structure:
-</code></pre>
-
+'''
 [[{'isis_processes': {'100': {'LSP': [{'hostname': 'R1-X1',
                                        'isis_area': '49.0001',
                                        'level': 'Level-2',
@@ -1040,8 +1039,8 @@ This template produces this structure:
                                        'networks': [{'metric': '0',
                                                      'network': 'fdff::/36'}],
                                        'rid': 'fddd:2:c101::2'}]}}}]]
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 &lt;group name=&quot;isis_processes.{{ pid }}**&quot; functions=&quot;record('level') | del('level')&quot;&gt;
 IS-IS {{ pid }} ({{ level }}) Link State Database

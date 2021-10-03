@@ -945,34 +945,33 @@ This template parses external-lsa only out of output produced by
 
 Caveats:
 
- - need `ttp&gt;=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
+ - need 'ttp&gt;=0.7.0', 'ttp==0.6.0' will not work due to bugs in it
 
 Produces this structure for each input datum/device output:
-</code></pre>
-
+'''
 [
     [
         {
-            "ospf_processes": {
-                "1": {
-                    "external_lsa": [
+            &quot;ospf_processes&quot;: {
+                &quot;1&quot;: {
+                    &quot;external_lsa&quot;: [
                         {
-                            "mask": "32",
-                            "metric": "20",
-                            "metric_type": "2",
-                            "originator_rid": "10.0.0.10",
-                            "subnet": "10.0.0.100",
-                            "tag": "0",
+                            &quot;mask&quot;: &quot;32&quot;,
+                            &quot;metric&quot;: &quot;20&quot;,
+                            &quot;metric_type&quot;: &quot;2&quot;,
+                            &quot;originator_rid&quot;: &quot;10.0.0.10&quot;,
+                            &quot;subnet&quot;: &quot;10.0.0.100&quot;,
+                            &quot;tag&quot;: &quot;0&quot;,
                         }
                     ],
-                    "local_rid": "10.0.0.4",
+                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
                 }
             }
         }
     ]
 ]
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 &lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
             OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})

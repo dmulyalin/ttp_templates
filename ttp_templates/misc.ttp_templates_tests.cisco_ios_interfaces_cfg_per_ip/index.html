@@ -961,8 +961,7 @@ interface GigabitEthernet1
 This template produces one dictionary item per ip address configured on device's interfaces including secondary and VRRP IPs. Output is a list of dictionaries.
 
 Sample data:
-</code></pre>
-
+'''
 r1#show run | sec interface
 interface GigabitEthernet1
  vrf forwarding MGMT
@@ -975,48 +974,46 @@ interface GigabitEthernet1
  negotiation auto
  no mop enabled
  no mop sysid
+'''
 
-<pre><code>
 Sample results, structure=&quot;flat_list&quot;:
-</code></pre>
-
+'''
 [
     {
-        "description": "description",
-        "hostname": "r1",
-        "interface": "GigabitEthernet1",
-        "ip": "10.223.89.55",
-        "mask": "255.255.255.0",
-        "vrf": "MGMT"
+        &quot;description&quot;: &quot;description&quot;,
+        &quot;hostname&quot;: &quot;r1&quot;,
+        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
+        &quot;ip&quot;: &quot;10.223.89.55&quot;,
+        &quot;mask&quot;: &quot;255.255.255.0&quot;,
+        &quot;vrf&quot;: &quot;MGMT&quot;
     },
     {
-        "description": "description",
-        "hostname": "r1",
-        "interface": "GigabitEthernet1",
-        "ip": "10.223.89.56",
-        "mask": "255.255.255.0",
-        "vrf": "MGMT"
+        &quot;description&quot;: &quot;description&quot;,
+        &quot;hostname&quot;: &quot;r1&quot;,
+        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
+        &quot;ip&quot;: &quot;10.223.89.56&quot;,
+        &quot;mask&quot;: &quot;255.255.255.0&quot;,
+        &quot;vrf&quot;: &quot;MGMT&quot;
     }
 ]
+'''
 
-<pre><code>
 How to use::
-</code></pre>
-
+'''
     from ttp import ttp
     from ttp_templates import get_template
     from pprint import pprint
 
-    data = "text output from device"
+    data = &quot;text output from device&quot;
 
     parser = ttp(
-        template=get_template(misc="ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt")
+        template=get_template(misc=&quot;ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt&quot;)
     )
-    parser.add_input(data, template_name="interfaces")
+    parser.add_input(data, template_name=&quot;interfaces&quot;)
     parser.parse()
     pprint(parser.result())
-
-<pre><code>&lt;/doc&gt;
+''' 
+&lt;/doc&gt;
 
 &lt;input&gt;
 commands = [

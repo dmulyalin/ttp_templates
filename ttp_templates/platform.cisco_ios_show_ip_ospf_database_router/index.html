@@ -963,41 +963,40 @@ This template parses router-lsa only out of output produced by
 
 Caveats:
 
- - need `ttp&gt;=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
+ - need 'ttp&gt;=0.7.0', 'ttp==0.6.0' will not work due to bugs in it
 
 Produces this structure for each input datum/device output:
-</code></pre>
-
+'''
 [
     [
         {
-            "ospf_processes": {
-                "1": {
-                    "local_rid": "10.0.0.4",
-                    "router_lsa": [
+            &quot;ospf_processes&quot;: {
+                &quot;1&quot;: {
+                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
+                    &quot;router_lsa&quot;: [
                         {
-                            "area": "0",
-                            "asbr": False,
-                            "bma_peers": [
+                            &quot;area&quot;: &quot;0&quot;,
+                            &quot;asbr&quot;: False,
+                            &quot;bma_peers&quot;: [
                                 {
-                                    "link_data": "10.1.117.4",
-                                    "link_id": "10.1.117.7",
-                                    "metric": "10",
+                                    &quot;link_data&quot;: &quot;10.1.117.4&quot;,
+                                    &quot;link_id&quot;: &quot;10.1.117.7&quot;,
+                                    &quot;metric&quot;: &quot;10&quot;,
                                 }
                             ],
-                            "connected_stub": [
+                            &quot;connected_stub&quot;: [
                                 {
-                                    "link_data": "255.255.255.128",
-                                    "link_id": "10.1.14.0",
-                                    "metric": "10",
+                                    &quot;link_data&quot;: &quot;255.255.255.128&quot;,
+                                    &quot;link_id&quot;: &quot;10.1.14.0&quot;,
+                                    &quot;metric&quot;: &quot;10&quot;,
                                 }
                             ],
-                            "originator_rid": "10.0.0.4",
-                            "ptp_peers": [
+                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
+                            &quot;ptp_peers&quot;: [
                                 {
-                                    "link_data": "10.1.14.4",
-                                    "link_id": "10.0.0.10",
-                                    "metric": "10",
+                                    &quot;link_data&quot;: &quot;10.1.14.4&quot;,
+                                    &quot;link_id&quot;: &quot;10.0.0.10&quot;,
+                                    &quot;metric&quot;: &quot;10&quot;,
                                 }
                             ],
                         }
@@ -1007,8 +1006,8 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 &lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
             OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})

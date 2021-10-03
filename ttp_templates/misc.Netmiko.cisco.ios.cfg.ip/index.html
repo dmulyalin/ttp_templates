@@ -968,8 +968,7 @@ on device's interfaces including secondary and VRRP/HSRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
-</code></pre>
-
+'''
 r1#show run | sec interface
 interface GigabitEthernet1
  vrf forwarding MGMT
@@ -982,49 +981,47 @@ interface GigabitEthernet1
  negotiation auto
  no mop enabled
  no mop sysid
+'''
 
-<pre><code>
 Sample results, structure=&quot;flat_list&quot;:
-</code></pre>
-
+'''
 [
     {
-        "description": "description",
-        "hostname": "r1",
-        "interface": "GigabitEthernet1",
-        "ip": "10.7.89.55",
-        "mask": "255.255.255.0",
-        "vrf": "MGMT"
+        &quot;description&quot;: &quot;description&quot;,
+        &quot;hostname&quot;: &quot;r1&quot;,
+        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
+        &quot;ip&quot;: &quot;10.7.89.55&quot;,
+        &quot;mask&quot;: &quot;255.255.255.0&quot;,
+        &quot;vrf&quot;: &quot;MGMT&quot;
     },
     {
-        "description": "description",
-        "hostname": "r1",
-        "interface": "GigabitEthernet1",
-        "ip": "10.7.89.56",
-        "mask": "255.255.255.0",
-        "vrf": "MGMT"
+        &quot;description&quot;: &quot;description&quot;,
+        &quot;hostname&quot;: &quot;r1&quot;,
+        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
+        &quot;ip&quot;: &quot;10.7.89.56&quot;,
+        &quot;mask&quot;: &quot;255.255.255.0&quot;,
+        &quot;vrf&quot;: &quot;MGMT&quot;
     }
 ]
+'''
 
-<pre><code>
 Template can be invoked using Netmiko run_ttp method like this:
-</code></pre>
-
+'''
 import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
-    device_type="cisco_ios",
-    host="1.2.3.4",
-    username="admin",
-    password="admin",
+    device_type=&quot;cisco_ios&quot;,
+    host=&quot;1.2.3.4&quot;,
+    username=&quot;admin&quot;,
+    password=&quot;admin&quot;,
 )
 
-res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
+res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.ip.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
 
 pprint.pprint(res)
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 &lt;input&gt;
 commands = [

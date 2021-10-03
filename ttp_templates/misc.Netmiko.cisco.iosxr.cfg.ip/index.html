@@ -1102,8 +1102,7 @@ on device's interfaces including secondary and VRRP/HSRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
-</code></pre>
-
+'''
 RP/0/RP0/CPU0:r1#show running-config interface
 interface Bundle-Ether1
  description Description of interface
@@ -1138,50 +1137,48 @@ router hsrp
   address-family ipv6
    hsrp 1
     address global fd::3
+'''
 
-<pre><code>
 Sample results, structure=&quot;flat_list&quot;:
-</code></pre>
-
+'''
 [
     {
-        "description": "description",
-        "hostname": "r1",
-        "interface": "GigabitEthernet1",
-        "ip": "10.7.89.55",
-        "mask": "255.255.255.0",
-        "vrf": "MGMT"
+        &quot;description&quot;: &quot;description&quot;,
+        &quot;hostname&quot;: &quot;r1&quot;,
+        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
+        &quot;ip&quot;: &quot;10.7.89.55&quot;,
+        &quot;mask&quot;: &quot;255.255.255.0&quot;,
+        &quot;vrf&quot;: &quot;MGMT&quot;
     },
     {
-        "description": "description",
-        "hostname": "r1",
-        "interface": "GigabitEthernet1",
-        "ip": "10.7.89.56",
-        "mask": "255.255.255.0",
-        "vrf": "MGMT"
+        &quot;description&quot;: &quot;description&quot;,
+        &quot;hostname&quot;: &quot;r1&quot;,
+        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
+        &quot;ip&quot;: &quot;10.7.89.56&quot;,
+        &quot;mask&quot;: &quot;255.255.255.0&quot;,
+        &quot;vrf&quot;: &quot;MGMT&quot;
     }
 ]
+'''
 
-<pre><code>
-Template can be invoked using Netmiko `run_ttp` method like this:
+Template can be invoked using Netmiko 'run_ttp' method like this:
 
-</code></pre>
-
+'''
 import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
-    device_type="cisco_ios",
-    host="1.2.3.4",
-    username="admin",
-    password="admin",
+    device_type=&quot;cisco_ios&quot;,
+    host=&quot;1.2.3.4&quot;,
+    username=&quot;admin&quot;,
+    password=&quot;admin&quot;,
 )
 
-res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
+res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.ip.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
 
 pprint.pprint(res)
+'''
 
-<pre><code>
 How this template works:
 
 1. Parses output from device using group with name=&quot;intf_lookup**.{{ interface }}&quot; to 
@@ -1192,8 +1189,7 @@ using intf_lookup lookup table
 4. HSRP VIP parsed, adding info about interface using intf_lookup lookup table
 
 This is sample structure produced after above parsing finishes:
-</code></pre>
-
+'''
 [{'intf': [{'interface': 'Bundle-Ether1'}, {'interface': 'Loopback123'}],
   'intf_lookup': {'Bundle-Ether1': {'description': 'Description of interface',
                                     'vrf': 'customer_1'},
@@ -1246,12 +1242,11 @@ This is sample structure produced after above parsing finishes:
           'vip': True,
           'vip_type': 'HSRP',
           'vrf': 'customer_1'}]}]
+'''
 
-<pre><code>
 Above structure passed through output with &quot;process&quot; macro function to transform results into a list of IP
 address dictionaries such as:
-</code></pre>
-
+'''
 [{'description': 'Description of interface',
   'hostname': 'r1',
   'interface': 'Bundle-Ether1',
@@ -1298,8 +1293,8 @@ address dictionaries such as:
   'vip': True,
   'vip_type': 'HSRP',
   'vrf': 'customer_1'}]
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 
 

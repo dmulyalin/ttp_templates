@@ -1049,7 +1049,7 @@ pprint.pprint(res)
 <pre><code>&lt;doc&gt;
 Template to parse Cisco IOS BGP configuration.
 
-Requirements: `TTP &gt;= 0.7.x`
+Requirements: 'TTP &gt;= 0.7.x'
 
 Structure produced by this template does not follow any known convention 
 or schema for example openconfig-bgp, but rather was the easiest one to 
@@ -1063,8 +1063,7 @@ configuration style and capable of parsing subsets of:
 - VRF configuration including neighbors, networks and other parameters
 
 Sample device output:
-</code></pre>
-
+'''
 router bgp 65001
  !
  bgp router-id 10.5.1.1
@@ -1132,11 +1131,10 @@ router bgp 65001
   neighbor 2.2.2.2 activate
  exit-address-family
 !
+'''
 
-<pre><code>
 After parsing above output, TTP should produce these results:
-</code></pre>
-
+'''
 [[{'bgp': {'afis': {'ipv4_multicast': {},
                     'ipv4_unicast': {'config': {'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'},
                                                              {'mask': '255.255.255.0', 'network': '10.255.10.0'}],
@@ -1179,26 +1177,25 @@ After parsing above output, TTP should produce these results:
                                                          'disabled': True,
                                                          'next_hop_self': True,
                                                          'pfl_out': 'VoIP-prefixes'}}}}}}]]
+'''
 
-<pre><code>
 To use this template with Netmiko (&gt;=3.4.x) run_ttp method:
-</code></pre>
-
+'''
 import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
-    device_type="cisco_ios",
-    host="1.2.3.4",
-    username="admin",
-    password="admin",
+    device_type=&quot;cisco_ios&quot;,
+    host=&quot;1.2.3.4&quot;,
+    username=&quot;admin&quot;,
+    password=&quot;admin&quot;,
 )
 
-res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.bgp.txt")
+res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.bgp.txt&quot;)
 
 pprint.pprint(res)
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 &lt;vars&gt;
 bgp_default = {

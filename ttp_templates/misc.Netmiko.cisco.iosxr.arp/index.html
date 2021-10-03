@@ -947,19 +947,18 @@ pprint.pprint(res)
 TTP template to parse Cisco IOS XR &quot;show arp vrf all&quot; output with Netmiko. 
 
 Template can be invoked using Netmiko run_ttp method like this:
-</code></pre>
-
+'''
 import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
-    device_type="cisco_xr",
-    host="1.2.3.4",
-    username="admin",
-    password="admin",
+    device_type=&quot;cisco_xr&quot;,
+    host=&quot;1.2.3.4&quot;,
+    username=&quot;admin&quot;,
+    password=&quot;admin&quot;,
 )
 
-res = net_connect.run_ttp("ttp://misc/netmiko/cisco.iosxr.arp.txt", res_kwargs={"structure": "flat_list"})
+res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.iosxr.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
 
 pprint.pprint(res)
 
@@ -981,8 +980,8 @@ pprint.pprint(res)
 #   'mac': '00:24:f7:dd:77:41',
 #   'protocol': 'Internet',
 #   'type': 'ARPA'}]
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 
 &lt;input&gt;

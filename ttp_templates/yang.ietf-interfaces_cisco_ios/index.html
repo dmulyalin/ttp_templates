@@ -1123,11 +1123,10 @@ interface GigabitEthernet1/4
 
 <pre><code>&lt;doc&gt;
 This templates produces structured data compatible with ietf-interfaces YANG module
-out of Cisco IOS `show run` configuration output.
+out of Cisco IOS 'show run' configuration output.
 
 YANG ietf-interfaces module tree:
-</code></pre>
-
+'''
 +--rw ietf-interfaces:interfaces
 |  +--rw interface* [name]
 |     +--ro admin-status {enumeration}
@@ -1251,11 +1250,10 @@ YANG ietf-interfaces module tree:
       |  +--ro out-octets? {counter64(uint64)}
       |  +--ro out-unicast-pkts? {counter64(uint64)}
       +--ro type {identityref}
+'''
 
-<pre><code>
 Sample data:
-</code></pre>
-
+'''
 interface GigabitEthernet1/3.251
  description Customer #32148
  encapsulation dot1q 251
@@ -1266,63 +1264,62 @@ interface GigabitEthernet1/4
  description vCPEs access control
  ip address 172.16.33.10 255.255.255.128
 ! 
+'''
 
-<pre><code>
 Sample results:
-</code></pre>
-
+'''
 {
-    "ietf-interfaces:interfaces": {
-        "interface": [
+    &quot;ietf-interfaces:interfaces&quot;: {
+        &quot;interface&quot;: [
             {
-                "admin-status": "down",
-                "description": "Customer " "#32148",
-                "enabled": False,
-                "ietf-ip:ipv4": {
-                    "address": [
+                &quot;admin-status&quot;: &quot;down&quot;,
+                &quot;description&quot;: &quot;Customer &quot; &quot;#32148&quot;,
+                &quot;enabled&quot;: False,
+                &quot;ietf-ip:ipv4&quot;: {
+                    &quot;address&quot;: [
                         {
-                            "ip": "172.16.33.10",
-                            "netmask": "255.255.255.128",
-                            "origin": "static",
+                            &quot;ip&quot;: &quot;172.16.33.10&quot;,
+                            &quot;netmask&quot;: &quot;255.255.255.128&quot;,
+                            &quot;origin&quot;: &quot;static&quot;,
                         }
                     ]
                 },
-                "if-index": 1,
-                "link-up-down-trap-enable": "enabled",
-                "name": "GigabitEthernet1/3.251",
-                "oper-status": "unknown",
-                "statistics": {
-                    "discontinuity-time": "1970-01-01T00:00:00+00:00"
+                &quot;if-index&quot;: 1,
+                &quot;link-up-down-trap-enable&quot;: &quot;enabled&quot;,
+                &quot;name&quot;: &quot;GigabitEthernet1/3.251&quot;,
+                &quot;oper-status&quot;: &quot;unknown&quot;,
+                &quot;statistics&quot;: {
+                    &quot;discontinuity-time&quot;: &quot;1970-01-01T00:00:00+00:00&quot;
                 },
-                "type": "iana-if-type:ethernetCsmacd",
+                &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
             },
             {
-                "admin-status": "up",
-                "description": "vCPEs " "access " "control",
-                "enabled": True,
-                "ietf-ip:ipv4": {
-                    "address": [
+                &quot;admin-status&quot;: &quot;up&quot;,
+                &quot;description&quot;: &quot;vCPEs &quot; &quot;access &quot; &quot;control&quot;,
+                &quot;enabled&quot;: True,
+                &quot;ietf-ip:ipv4&quot;: {
+                    &quot;address&quot;: [
                         {
-                            "ip": "172.16.33.10",
-                            "netmask": "255.255.255.128",
-                            "origin": "static",
+                            &quot;ip&quot;: &quot;172.16.33.10&quot;,
+                            &quot;netmask&quot;: &quot;255.255.255.128&quot;,
+                            &quot;origin&quot;: &quot;static&quot;,
                         }
                     ]
                 },
-                "if-index": 1,
-                "link-up-down-trap-enable": "enabled",
-                "name": "GigabitEthernet1/4",
-                "oper-status": "unknown",
-                "statistics": {
-                    "discontinuity-time": "1970-01-01T00:00:00+00:00"
+                &quot;if-index&quot;: 1,
+                &quot;link-up-down-trap-enable&quot;: &quot;enabled&quot;,
+                &quot;name&quot;: &quot;GigabitEthernet1/4&quot;,
+                &quot;oper-status&quot;: &quot;unknown&quot;,
+                &quot;statistics&quot;: {
+                    &quot;discontinuity-time&quot;: &quot;1970-01-01T00:00:00+00:00&quot;
                 },
-                "type": "iana-if-type:ethernetCsmacd",
+                &quot;type&quot;: &quot;iana-if-type:ethernetCsmacd&quot;,
             },
         ]
     }
 }
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 
 &lt;macro&gt;

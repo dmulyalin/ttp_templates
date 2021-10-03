@@ -944,24 +944,23 @@ This template parses summary-lsa only out of output produced by
 
 Caveats:
 
- - need `ttp&gt;=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
+ - need 'ttp&gt;=0.7.0', 'ttp==0.6.0' will not work due to bugs in it
 
 Produces this structure for each input datum/device output:
-</code></pre>
-
+'''
 [
     [
         {
-            "ospf_processes": {
-                "1": {
-                    "local_rid": "10.0.0.4",
-                    "summary_lsa": [
+            &quot;ospf_processes&quot;: {
+                &quot;1&quot;: {
+                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
+                    &quot;summary_lsa&quot;: [
                         {
-                            "area": "0",
-                            "mask": "31",
-                            "metric": "10",
-                            "originator_rid": "10.0.0.4",
-                            "subnet": "10.1.45.2",
+                            &quot;area&quot;: &quot;0&quot;,
+                            &quot;mask&quot;: &quot;31&quot;,
+                            &quot;metric&quot;: &quot;10&quot;,
+                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
+                            &quot;subnet&quot;: &quot;10.1.45.2&quot;,
                         }
                     ],
                 }
@@ -969,8 +968,8 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 &lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
             OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})

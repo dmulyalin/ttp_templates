@@ -955,35 +955,34 @@ This template parses router-lsa only out of output produced by
 &quot;display ospf lsdb router&quot; command.
 
 Produces this structure for each input datum/device output:
-</code></pre>
-
+'''
 [
     [
         {
-            "ospf_processes": {
-                "123": {
-                    "local_rid": "123.123.24.158",
-                    "router_lsa": [
+            &quot;ospf_processes&quot;: {
+                &quot;123&quot;: {
+                    &quot;local_rid&quot;: &quot;123.123.24.158&quot;,
+                    &quot;router_lsa&quot;: [
                         {
-                            "area": "0.0.0.123",
-                            "connected_stub": [
+                            &quot;area&quot;: &quot;0.0.0.123&quot;,
+                            &quot;connected_stub&quot;: [
                                 {
-                                    "link_data": "255.255.255.252",
-                                    "link_id": "123.123.60.108",
-                                    "metric": "1",
+                                    &quot;link_data&quot;: &quot;255.255.255.252&quot;,
+                                    &quot;link_id&quot;: &quot;123.123.60.108&quot;,
+                                    &quot;metric&quot;: &quot;1&quot;,
                                 }
                             ],
-                            "originator_rid": "10.123.0.92",
-                            "ptp_peers": [
+                            &quot;originator_rid&quot;: &quot;10.123.0.92&quot;,
+                            &quot;ptp_peers&quot;: [
                                 {
-                                    "link_data": "123.123.60.109",
-                                    "link_id": "123.123.24.31",
-                                    "metric": "1",
+                                    &quot;link_data&quot;: &quot;123.123.60.109&quot;,
+                                    &quot;link_id&quot;: &quot;123.123.24.31&quot;,
+                                    &quot;metric&quot;: &quot;1&quot;,
                                 },
                                 {
-                                    "link_data": "123.123.60.201",
-                                    "link_id": "123.123.24.5",
-                                    "metric": "9000",
+                                    &quot;link_data&quot;: &quot;123.123.60.201&quot;,
+                                    &quot;link_id&quot;: &quot;123.123.24.5&quot;,
+                                    &quot;metric&quot;: &quot;9000&quot;,
                                 },
                             ],
                         },
@@ -993,8 +992,8 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
-
-<pre><code>&lt;/doc&gt;
+'''
+&lt;/doc&gt;
 
 &lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
 {{ ignore(&quot; +&quot;) }}  OSPF Process {{ pid }} with Router ID {{ local_rid }}
