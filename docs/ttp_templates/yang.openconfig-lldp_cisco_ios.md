@@ -41,7 +41,7 @@ module: openconfig-lldp
                  +--ro capabilities
                     +--ro capability* [name]
                        +--ro name 
-```					   
+```                       
 
 
 
@@ -84,7 +84,7 @@ module: openconfig-lldp
                  +--ro capabilities
                     +--ro capability* [name]
                        +--ro name 
-```					   
+```                       
 </doc>
 
 
