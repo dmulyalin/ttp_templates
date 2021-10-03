@@ -74,7 +74,7 @@ on device's interfaces including secondary and VRRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
-```
+'''
 Huawei-box-1-dis cur interface
 interface Eth-Trunk1.100
  vlan-type dot1q 100
@@ -84,10 +84,10 @@ interface Eth-Trunk1.100
  ip binding vpn-instance VRF1
  vrrp6 vrid 1 virtual-ip 2001:db8::100
 #
-```
+'''
    
 Sample results, structure="flat_list":
-```
+'''
 [
     {
         "description": "description",
@@ -98,10 +98,10 @@ Sample results, structure="flat_list":
         "vrf": "VRF1"
     }
 ]
-```
+'''
   
 Template supports Netmiko run_ttp method:
-```
+'''
 import pprint
 from netmiko import ConnectHandler
 
@@ -118,7 +118,7 @@ pprint.pprint(res)
 
 # prints something along the lines of:
 # 
-```
+'''
 </doc>
 
 

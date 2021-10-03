@@ -98,7 +98,7 @@ Sample structure produced by this template:
 <template name="Cisco_IOSXR" results="per_template">
 <doc>
 Sample structure produced by this template:
-```
+'''
 {'Cisco_IOSXR': {'switch-1': {'cdp_peers': [{'source': 'switch-1', 
                                            'src_label': 'Ge4/6',
                                            'target': {'bottom_label': 'cisco WS-C6509',
@@ -177,7 +177,7 @@ Sample structure produced by this template:
                                                      'lag_mode': 'active',
                                                      'trunk_vlans': '200,201,202,203,204,205'}
                             'node_facts': {'vlans': {'101': 'test_vlan', '200': 'ProdVMS'}}}}}
-```
+'''
 </doc>
 
 <vars>local_hostname="gethostname"</vars>

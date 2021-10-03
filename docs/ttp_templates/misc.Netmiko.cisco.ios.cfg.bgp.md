@@ -183,10 +183,10 @@ pprint.pprint(res)
 <details><summary>Template Content</summary>
 ```
 <doc>
-Requirements: `TTP >= 0.8.x`
+Requirements: 'TTP >= 0.8.x'
 
-To use this template with Netmiko (>=3.4.x) `run_ttp` method:
-```
+To use this template with Netmiko (>=3.4.x) 'run_ttp' method:
+'''
 import pprint
 from netmiko import ConnectHandler
 
@@ -200,7 +200,7 @@ net_connect = ConnectHandler(
 res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.bgp.txt")
 
 pprint.pprint(res)
-```
+'''
 </doc>
 
 <input>

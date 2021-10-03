@@ -165,7 +165,7 @@ pprint.pprint(res)
 <doc>
 Template to parse Cisco IOS BGP configuration.
 
-Requirements: `TTP >= 0.7.x`
+Requirements: 'TTP >= 0.7.x'
 
 Structure produced by this template does not follow any known convention 
 or schema for example openconfig-bgp, but rather was the easiest one to 
@@ -179,7 +179,7 @@ configuration style and capable of parsing subsets of:
 - VRF configuration including neighbors, networks and other parameters
 
 Sample device output:
-```
+'''
 router bgp 65001
  !
  bgp router-id 10.5.1.1
@@ -247,10 +247,10 @@ router bgp 65001
   neighbor 2.2.2.2 activate
  exit-address-family
 !
-```
+'''
 	
 After parsing above output, TTP should produce these results:
-```
+'''
 [[{'bgp': {'afis': {'ipv4_multicast': {},
                     'ipv4_unicast': {'config': {'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'},
                                                              {'mask': '255.255.255.0', 'network': '10.255.10.0'}],
@@ -293,10 +293,10 @@ After parsing above output, TTP should produce these results:
                                                          'disabled': True,
                                                          'next_hop_self': True,
                                                          'pfl_out': 'VoIP-prefixes'}}}}}}]]
-```
+'''
 
 To use this template with Netmiko (>=3.4.x) run_ttp method:
-```
+'''
 import pprint
 from netmiko import ConnectHandler
 
@@ -310,7 +310,7 @@ net_connect = ConnectHandler(
 res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.bgp.txt")
 
 pprint.pprint(res)
-```
+'''
 </doc>
 
 <vars>

@@ -218,10 +218,10 @@ Sample results:
 ```
 <doc>
 This templates produces structured data compatible with ietf-interfaces YANG module
-out of Cisco IOS `show run` configuration output.
+out of Cisco IOS 'show run' configuration output.
 
 YANG ietf-interfaces module tree:
-```
+'''
 +--rw ietf-interfaces:interfaces
 |  +--rw interface* [name]
 |     +--ro admin-status {enumeration}
@@ -345,10 +345,10 @@ YANG ietf-interfaces module tree:
       |  +--ro out-octets? {counter64(uint64)}
       |  +--ro out-unicast-pkts? {counter64(uint64)}
       +--ro type {identityref}
-```
+'''
 
 Sample data:
-```
+'''
 interface GigabitEthernet1/3.251
  description Customer #32148
  encapsulation dot1q 251
@@ -359,10 +359,10 @@ interface GigabitEthernet1/4
  description vCPEs access control
  ip address 172.16.33.10 255.255.255.128
 ! 
-```
+'''
 
 Sample results:
-```
+'''
 {
     "ietf-interfaces:interfaces": {
         "interface": [
@@ -413,7 +413,7 @@ Sample results:
         ]
     }
 }
-```
+'''
 </doc>
 
 

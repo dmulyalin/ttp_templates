@@ -58,7 +58,7 @@ TTP template to parse Cisco IOS XR "show arp vrf all" output.
 TTP template to parse Cisco IOS XR "show arp vrf all" output with Netmiko. 
 
 Template can be invoked using Netmiko run_ttp method like this:
-```
+'''
 import pprint
 from netmiko import ConnectHandler
 
@@ -91,7 +91,7 @@ pprint.pprint(res)
 #   'mac': '00:24:f7:dd:77:41',
 #   'protocol': 'Internet',
 #   'type': 'ARPA'}]
-```
+'''
 </doc>
 
 

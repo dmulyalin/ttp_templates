@@ -74,10 +74,10 @@ This template parses router-lsa only out of output produced by
 
 Caveats:
 
- - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
+ - need 'ttp>=0.7.0', 'ttp==0.6.0' will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
-```
+'''
 [[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
                             'router_lsa': [{'area': '0.0.0.0',
                                             'asbr': True,
@@ -116,7 +116,7 @@ Produces this structure for each input datum/device output:
                                             'ptp_peers': [{'link_data': '10.0.60.206',
                                                            'link_id': '10.0.24.6',
                                                            'metric': '9000'}]}]}}}]]
-```
+'''
 </doc>
 
 <group name="ospf_processes.{{ pid }}**">

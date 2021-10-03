@@ -82,7 +82,7 @@ on device's interfaces including secondary and VRRP/HSRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
-```
+'''
 r1#show run | sec interface
 interface GigabitEthernet1
  vrf forwarding MGMT
@@ -95,10 +95,10 @@ interface GigabitEthernet1
  negotiation auto
  no mop enabled
  no mop sysid
-```
+'''
 
 Sample results, structure="flat_list":
-```
+'''
 [
     {
         "description": "description",
@@ -117,10 +117,10 @@ Sample results, structure="flat_list":
         "vrf": "MGMT"
     }
 ]
-```
+'''
   
 Template can be invoked using Netmiko run_ttp method like this:
-```
+'''
 import pprint
 from netmiko import ConnectHandler
 
@@ -134,7 +134,7 @@ net_connect = ConnectHandler(
 res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
 
 pprint.pprint(res)
-```
+'''
 </doc>
 
 <input>

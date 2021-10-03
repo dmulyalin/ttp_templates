@@ -63,10 +63,10 @@ This template parses external-lsa only out of output produced by
 
 Caveats:
 
- - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
+ - need 'ttp>=0.7.0', 'ttp==0.6.0' will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
-```
+'''
 [[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
                             'summary_lsa': [{'area': '0.0.0.0',
                                              'mask': '32',
@@ -94,7 +94,7 @@ Produces this structure for each input datum/device output:
                                              'originator_rid': '10.0.24.1',
                                              'subnet': '10.1.0.1'}]}},
    'vars': {'hostname': 'router-1'}}]]
-```
+'''
 </doc>
 
 <group name="ospf_processes.{{ pid }}**">

@@ -57,10 +57,10 @@ This template parses external-lsa only out of output produced by
 
 Caveats:
 
- - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
+ - need 'ttp>=0.7.0', 'ttp==0.6.0' will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
-```
+'''
 [
     [
         {
@@ -82,7 +82,7 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
-```
+'''
 </doc>
 
 <group name="ospf_processes.{{ pid }}**">

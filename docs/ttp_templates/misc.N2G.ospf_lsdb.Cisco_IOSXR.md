@@ -156,7 +156,7 @@ link state database of Cisco IOS-XR devices.
 
 Caveats:
 
- - need `ttp>=0.8.0` for extend to work
+ - need 'ttp>=0.8.0' for extend to work
 </doc>
 
 <input load="python">

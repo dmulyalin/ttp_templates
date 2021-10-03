@@ -60,7 +60,7 @@ not be extracted.
 
 Returns result compatible with this subset of openconfig-lldp YANG model:
 
-```
+'''
 module: openconfig-lldp
   +--rw lldp
      +--rw config
@@ -84,7 +84,7 @@ module: openconfig-lldp
                  +--ro capabilities
                     +--ro capability* [name]
                        +--ro name 
-```                       
+'''                       
 </doc>
 
 

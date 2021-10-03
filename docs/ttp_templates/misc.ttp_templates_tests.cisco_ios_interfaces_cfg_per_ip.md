@@ -74,7 +74,7 @@ How to use::
 This template produces one dictionary item per ip address configured on device's interfaces including secondary and VRRP IPs. Output is a list of dictionaries.
 
 Sample data:
-```
+'''
 r1#show run | sec interface
 interface GigabitEthernet1
  vrf forwarding MGMT
@@ -87,10 +87,10 @@ interface GigabitEthernet1
  negotiation auto
  no mop enabled
  no mop sysid
-```
+'''
 
 Sample results, structure="flat_list":
-```
+'''
 [
     {
         "description": "description",
@@ -109,10 +109,10 @@ Sample results, structure="flat_list":
         "vrf": "MGMT"
     }
 ]
-```
+'''
 
 How to use::
-```
+'''
     from ttp import ttp
 	from ttp_templates import get_template
     from pprint import pprint
@@ -125,7 +125,7 @@ How to use::
     parser.add_input(data, template_name="interfaces")
     parser.parse()
     pprint(parser.result())
-```	
+'''	
 </doc>
 
 <input>

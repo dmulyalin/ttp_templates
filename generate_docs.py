@@ -71,7 +71,7 @@ for dirpath, dirnames, filenames in os.walk(top="ttp_templates"):
         doc_string = page_template.format(
             path=".".join(splitted_path[1:]) + "." + filename, 
             doc=doc_string if doc_string.strip() else "No `<doc>` tags found",
-            template_content=template_content
+            template_content=template_content.replace("`", "'")
         )
         docs_filename = ".".join(splitted_path[1:]) + "." + filename.replace(".txt", ".md")
         with open(os.path.join("docs", "ttp_templates", docs_filename), "w") as f:

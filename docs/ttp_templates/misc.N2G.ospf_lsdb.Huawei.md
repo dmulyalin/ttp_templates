@@ -73,7 +73,7 @@ link state database of Huawei devices.
 
 Caveats:
 
- - need `ttp>=0.8.0` for extend to work
+ - need 'ttp>=0.8.0' for extend to work
 </doc>
 
 <extend template="ttp://platform/huawei_display_ospf_lsdb_router.txt"/>
