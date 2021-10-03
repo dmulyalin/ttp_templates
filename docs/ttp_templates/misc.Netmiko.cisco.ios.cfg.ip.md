@@ -14,56 +14,59 @@ on device's interfaces including secondary and VRRP/HSRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
+```
+r1#show run | sec interface
+interface GigabitEthernet1
+ vrf forwarding MGMT
+ ip address 10.7.89.55 255.255.255.0
+ negotiation auto
+ no mop enabled
+interface GigabitEthernet1
+ vrf forwarding MGMT
+ ip address 10.7.89.56 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+```
 
-    r1#show run | sec interface
-    interface GigabitEthernet1
-     vrf forwarding MGMT
-     ip address 10.7.89.55 255.255.255.0
-     negotiation auto
-     no mop enabled
-    interface GigabitEthernet1
-     vrf forwarding MGMT
-     ip address 10.7.89.56 255.255.255.0
-     negotiation auto
-     no mop enabled
-     no mop sysid
-     
 Sample results, structure="flat_list":
-
-    [
-        {
-            "description": "description",
-            "hostname": "r1",
-            "interface": "GigabitEthernet1",
-            "ip": "10.7.89.55",
-            "mask": "255.255.255.0",
-            "vrf": "MGMT"
-        },
-        {
-            "description": "description",
-            "hostname": "r1",
-            "interface": "GigabitEthernet1",
-            "ip": "10.7.89.56",
-            "mask": "255.255.255.0",
-            "vrf": "MGMT"
-        }
-    ]
-    
+```
+[
+    {
+        "description": "description",
+        "hostname": "r1",
+        "interface": "GigabitEthernet1",
+        "ip": "10.7.89.55",
+        "mask": "255.255.255.0",
+        "vrf": "MGMT"
+    },
+    {
+        "description": "description",
+        "hostname": "r1",
+        "interface": "GigabitEthernet1",
+        "ip": "10.7.89.56",
+        "mask": "255.255.255.0",
+        "vrf": "MGMT"
+    }
+]
+```
+  
 Template can be invoked using Netmiko run_ttp method like this:
+```
+import pprint
+from netmiko import ConnectHandler
 
-    import pprint
-    from netmiko import ConnectHandler
-    
-    net_connect = ConnectHandler(
-        device_type="cisco_ios",
-        host="1.2.3.4",
-        username="admin",
-        password="admin",
-    )
-    
-    res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
-    
-    pprint.pprint(res)
+net_connect = ConnectHandler(
+    device_type="cisco_ios",
+    host="1.2.3.4",
+    username="admin",
+    password="admin",
+)
+
+res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
+
+pprint.pprint(res)
+```
 
 
 
@@ -79,56 +82,59 @@ on device's interfaces including secondary and VRRP/HSRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
+```
+r1#show run | sec interface
+interface GigabitEthernet1
+ vrf forwarding MGMT
+ ip address 10.7.89.55 255.255.255.0
+ negotiation auto
+ no mop enabled
+interface GigabitEthernet1
+ vrf forwarding MGMT
+ ip address 10.7.89.56 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+```
 
-    r1#show run | sec interface
-    interface GigabitEthernet1
-     vrf forwarding MGMT
-     ip address 10.7.89.55 255.255.255.0
-     negotiation auto
-     no mop enabled
-    interface GigabitEthernet1
-     vrf forwarding MGMT
-     ip address 10.7.89.56 255.255.255.0
-     negotiation auto
-     no mop enabled
-     no mop sysid
-     
 Sample results, structure="flat_list":
-
-    [
-        {
-            "description": "description",
-            "hostname": "r1",
-            "interface": "GigabitEthernet1",
-            "ip": "10.7.89.55",
-            "mask": "255.255.255.0",
-            "vrf": "MGMT"
-        },
-        {
-            "description": "description",
-            "hostname": "r1",
-            "interface": "GigabitEthernet1",
-            "ip": "10.7.89.56",
-            "mask": "255.255.255.0",
-            "vrf": "MGMT"
-        }
-    ]
-    
+```
+[
+    {
+        "description": "description",
+        "hostname": "r1",
+        "interface": "GigabitEthernet1",
+        "ip": "10.7.89.55",
+        "mask": "255.255.255.0",
+        "vrf": "MGMT"
+    },
+    {
+        "description": "description",
+        "hostname": "r1",
+        "interface": "GigabitEthernet1",
+        "ip": "10.7.89.56",
+        "mask": "255.255.255.0",
+        "vrf": "MGMT"
+    }
+]
+```
+  
 Template can be invoked using Netmiko run_ttp method like this:
+```
+import pprint
+from netmiko import ConnectHandler
 
-    import pprint
-    from netmiko import ConnectHandler
-    
-    net_connect = ConnectHandler(
-        device_type="cisco_ios",
-        host="1.2.3.4",
-        username="admin",
-        password="admin",
-    )
-    
-    res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
-    
-    pprint.pprint(res)
+net_connect = ConnectHandler(
+    device_type="cisco_ios",
+    host="1.2.3.4",
+    username="admin",
+    password="admin",
+)
+
+res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
+
+pprint.pprint(res)
+```
 </doc>
 
 <input>

@@ -11,7 +11,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Cisco IOS-XR devices. 
 
 Caveats:
- - need ttp>=0.8.0 for extend to work
+
+ - need `ttp>=0.8.0` for extend to work
 
 
 This template initially designed for use with N2G library to produce network 
@@ -21,9 +22,11 @@ This template parses router-lsa only out of output produced by
 "show ospf database router" command.
 
 Caveats:
- - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
+```
 [[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
                             'router_lsa': [{'area': '0.0.0.0',
                                             'asbr': True,
@@ -62,7 +65,7 @@ Produces this structure for each input datum/device output:
                                             'ptp_peers': [{'link_data': '10.0.60.206',
                                                            'link_id': '10.0.24.6',
                                                            'metric': '9000'}]}]}}}]]
-
+```
 
 
 This template initially designed for use with N2G library to produce network 
@@ -72,9 +75,11 @@ This template parses external-lsa only out of output produced by
 "show ospf database external" command.
 
 Caveats:
- - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
+```
 [[{'ospf_processes': {'1': {'external_lsa': [{'mask': '0',
                                               'metric': '1',
                                               'metric_type': '2',
@@ -95,6 +100,7 @@ Produces this structure for each input datum/device output:
                                               'tag': '0'}],
                             'local_rid': '10.1.2.2'}},
    'vars': {'hostname': 'router-1'}}]]
+```
 
 
 This template initially designed for use with N2G library to produce network 
@@ -104,9 +110,11 @@ This template parses external-lsa only out of output produced by
 "show ospf database external" command.
 
 Caveats:
- - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
+```
 [[{'ospf_processes': {'1': {'local_rid': '10.1.2.2',
                             'summary_lsa': [{'area': '0.0.0.0',
                                              'mask': '32',
@@ -134,6 +142,7 @@ Produces this structure for each input datum/device output:
                                              'originator_rid': '10.0.24.1',
                                              'subnet': '10.1.0.1'}]}},
    'vars': {'hostname': 'router-1'}}]]
+```
 
 
 
@@ -146,7 +155,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Cisco IOS-XR devices. 
 
 Caveats:
- - need ttp>=0.8.0 for extend to work
+
+ - need `ttp>=0.8.0` for extend to work
 </doc>
 
 <input load="python">

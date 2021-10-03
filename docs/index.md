@@ -18,6 +18,10 @@ include your template(s) in this repository.
 
 Documentation: [https://dmulyalin.github.io/ttp_templates/](https://dmulyalin.github.io/ttp_templates/)
 
+Repository: [https://github.com/dmulyalin/ttp_templates](https://github.com/dmulyalin/ttp_templates)
+
+TTP: [https://ttp.readthedocs.io/](https://ttp.readthedocs.io/)
+
 ## Installation
 
 From PyPi:
@@ -179,7 +183,7 @@ pprint.pprint(res)
 </details>
 
 
-# How templates collections structured
+## How templates collections structured
 
 This repository contains three collections of templates corresponding to folder names:
 
@@ -199,7 +203,7 @@ This repository contains three collections of templates corresponding to folder 
 
 `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
 
-# API reference
+## API reference
 
 `ttp_templates.parse_output`: Function to load template text and parse data provided
 
@@ -245,7 +249,7 @@ This repository contains three collections of templates corresponding to folder 
 * ``misc="foo_folder/bar_template.txt"`` 
 
 	
-# Contributions
+## Contributions
 Feel free to submit an issue, report a bug or ask a question, feature requests are welcomed.
 
 It is always good idea to document as much as you can and give context on the problem you was 

@@ -11,7 +11,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Huawei devices. 
 
 Caveats:
- - need ttp>=0.8.0 for extend to work
+
+ - need `ttp>=0.8.0` for extend to work
 
 
 This template initially designed for use with N2G library to produce network 
@@ -21,6 +22,7 @@ This template parses router-lsa only out of output produced by
 "display ospf lsdb router" command.
  
 Produces this structure for each input datum/device output:
+```
 [
     [
         {
@@ -57,6 +59,7 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
+```
 
 
 
@@ -69,7 +72,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Huawei devices. 
 
 Caveats:
- - need ttp>=0.8.0 for extend to work
+
+ - need `ttp>=0.8.0` for extend to work
 </doc>
 
 <extend template="ttp://platform/huawei_display_ospf_lsdb_router.txt"/>

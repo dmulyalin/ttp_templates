@@ -14,6 +14,7 @@ This template parses router-lsa only out of output produced by
 "display ospf lsdb router" command.
  
 Produces this structure for each input datum/device output:
+```
 [
     [
         {
@@ -50,6 +51,7 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
+```
 
 
 
@@ -65,6 +67,7 @@ This template parses router-lsa only out of output produced by
 "display ospf lsdb router" command.
  
 Produces this structure for each input datum/device output:
+```
 [
     [
         {
@@ -101,6 +104,7 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
+```
 </doc>
 
 <group name="ospf_processes.{{ pid }}**">

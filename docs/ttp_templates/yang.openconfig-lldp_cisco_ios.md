@@ -7,14 +7,17 @@ ttp://yang.openconfig-lldp_cisco_ios.txt
 
 
 
-Required devices' commands output:
+Template to produce openconfig-lldp compatible structure by parsing output 
+of this Cisco IOS command:
+
  - show lldp neighbors detail
  
-Device output should contain device prompt, otherwise device hostname will not be extracted.
+Device output should contain device prompt, otherwise device hostname will 
+not be extracted.
 
-Returns result compatible with this subset of openconfig-lldp
-YANG model:
+Returns result compatible with this subset of openconfig-lldp YANG model:
 
+```
 module: openconfig-lldp
   +--rw lldp
      +--rw config
@@ -37,7 +40,8 @@ module: openconfig-lldp
                  |  +--ro management-address?        string
                  +--ro capabilities
                     +--ro capability* [name]
-                       +--ro name                    
+                       +--ro name 
+```					   
 
 
 
@@ -46,14 +50,17 @@ module: openconfig-lldp
 <details><summary>Template Content</summary>
 ```
 <doc>
-Required devices' commands output:
+Template to produce openconfig-lldp compatible structure by parsing output 
+of this Cisco IOS command:
+
  - show lldp neighbors detail
  
-Device output should contain device prompt, otherwise device hostname will not be extracted.
+Device output should contain device prompt, otherwise device hostname will 
+not be extracted.
 
-Returns result compatible with this subset of openconfig-lldp
-YANG model:
+Returns result compatible with this subset of openconfig-lldp YANG model:
 
+```
 module: openconfig-lldp
   +--rw lldp
      +--rw config
@@ -76,7 +83,8 @@ module: openconfig-lldp
                  |  +--ro management-address?        string
                  +--ro capabilities
                     +--ro capability* [name]
-                       +--ro name                    
+                       +--ro name 
+```					   
 </doc>
 
 

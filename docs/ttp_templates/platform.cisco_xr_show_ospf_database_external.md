@@ -14,9 +14,11 @@ This template parses external-lsa only out of output produced by
 "show ospf database external" command.
 
 Caveats:
- - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
+```
 [[{'ospf_processes': {'1': {'external_lsa': [{'mask': '0',
                                               'metric': '1',
                                               'metric_type': '2',
@@ -37,6 +39,7 @@ Produces this structure for each input datum/device output:
                                               'tag': '0'}],
                             'local_rid': '10.1.2.2'}},
    'vars': {'hostname': 'router-1'}}]]
+```
 
 
 
@@ -52,9 +55,11 @@ This template parses external-lsa only out of output produced by
 "show ospf database external" command.
 
 Caveats:
- - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
+```
 [[{'ospf_processes': {'1': {'external_lsa': [{'mask': '0',
                                               'metric': '1',
                                               'metric_type': '2',
@@ -75,6 +80,7 @@ Produces this structure for each input datum/device output:
                                               'tag': '0'}],
                             'local_rid': '10.1.2.2'}},
    'vars': {'hostname': 'router-1'}}]]
+```
 </doc>
 
 <group name="ospf_processes.{{ pid }}**">

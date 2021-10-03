@@ -6,48 +6,51 @@ on device's interfaces including secondary and VRRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
-
-    Huawei-box-1-dis cur interface
-    interface Eth-Trunk1.100
-     vlan-type dot1q 100
-     mtu 9600
-     description Link description  here
-     ip address 10.1.130.2 255.255.255.252
-     ip binding vpn-instance VRF1
-     vrrp6 vrid 1 virtual-ip 2001:db8::100
-    #
-     
+```
+Huawei-box-1-dis cur interface
+interface Eth-Trunk1.100
+ vlan-type dot1q 100
+ mtu 9600
+ description Link description  here
+ ip address 10.1.130.2 255.255.255.252
+ ip binding vpn-instance VRF1
+ vrrp6 vrid 1 virtual-ip 2001:db8::100
+#
+```
+   
 Sample results, structure="flat_list":
-
-    [
-        {
-            "description": "description",
-            "hostname": "Huawei-box-1",
-            "interface": "Eth-Trunk1.100",
-            "ip": "10.1.130.2",
-            "mask": "255.255.255.252",
-            "vrf": "VRF1"
-        }
-    ]
-    
+```
+[
+    {
+        "description": "description",
+        "hostname": "Huawei-box-1",
+        "interface": "Eth-Trunk1.100",
+        "ip": "10.1.130.2",
+        "mask": "255.255.255.252",
+        "vrf": "VRF1"
+    }
+]
+```
+  
 Template supports Netmiko run_ttp method:
+```
+import pprint
+from netmiko import ConnectHandler
 
-    import pprint
-    from netmiko import ConnectHandler
-    
-    net_connect = ConnectHandler(
-        device_type="huawei",
-        host="1.2.3.4",
-        username="admin",
-        password="admin",
-    )
-    
-    res = net_connect.run_ttp("ttp://misc/netmiko/huawei.vrp.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
-    
-    pprint.pprint(res)
-    
-    # prints something along the lines of:
-    # 
+net_connect = ConnectHandler(
+    device_type="huawei",
+    host="1.2.3.4",
+    username="admin",
+    password="admin",
+)
+
+res = net_connect.run_ttp("ttp://misc/netmiko/huawei.vrp.cfg.ip.txt", res_kwargs={"structure": "flat_list"})
+
+pprint.pprint(res)
+
+# prints something along the lines of:
+# 
+```
 </doc>
 
 

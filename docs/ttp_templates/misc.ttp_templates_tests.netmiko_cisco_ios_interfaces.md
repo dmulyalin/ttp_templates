@@ -7,7 +7,7 @@ ttp://misc.ttp_templates_tests.netmiko_cisco_ios_interfaces.txt
 
 
 
-This template used in to test Netmiko run_ttp method
+This template used in to test Netmiko `run_ttp` method
 
 
 
@@ -18,7 +18,7 @@ This template used in to test Netmiko run_ttp method
 <template name="interfaces" results="per_template">
 
 <doc>
-This template used in to test Netmiko run_ttp method
+This template used in to test Netmiko `run_ttp` method
 </doc>
 
 

@@ -8,13 +8,14 @@ ttp://yang.openconfig-lldp_cisco_xr.txt
 
 
 Required devices' commands output:
+
  - show lldp neighbors detail
  
 Device output should contain device prompt, otherwise device hostname will not be extracted.
 
-Returns result compatible with this subset of openconfig-lldp
+Returns result compatible with this subset of `openconfig-lldp`
 YANG model:
-
+```
 module: openconfig-lldp
   +--rw lldp
      +--rw config
@@ -37,7 +38,8 @@ module: openconfig-lldp
                  |  +--ro management-address?        string
                  +--ro capabilities
                     +--ro capability* [name]
-                       +--ro name           				  
+                       +--ro name        
+```					   
 
 
 
@@ -47,13 +49,14 @@ module: openconfig-lldp
 ```
 <doc>
 Required devices' commands output:
+
  - show lldp neighbors detail
  
 Device output should contain device prompt, otherwise device hostname will not be extracted.
 
-Returns result compatible with this subset of openconfig-lldp
+Returns result compatible with this subset of `openconfig-lldp`
 YANG model:
-
+```
 module: openconfig-lldp
   +--rw lldp
      +--rw config
@@ -76,7 +79,8 @@ module: openconfig-lldp
                  |  +--ro management-address?        string
                  +--ro capabilities
                     +--ro capability* [name]
-                       +--ro name           				  
+                       +--ro name        
+```					   
 </doc>
 
 

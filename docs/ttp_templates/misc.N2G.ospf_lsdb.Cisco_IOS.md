@@ -11,7 +11,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Cisco IOS-XR devices. 
 
 Caveats:
- - need ttp>=0.8.0 for extend to work
+
+ - need `ttp>=0.8.0` for extend to work
 
 
 This template initially designed for use with N2G library to produce network 
@@ -21,10 +22,11 @@ This template parses router-lsa only out of output produced by
 "show ip ospf database router" command.
 
 Caveats:
- - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
-
+```
 [
     [
         {
@@ -64,7 +66,7 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
-
+```
 
 
 This template initially designed for use with N2G library to produce network 
@@ -74,10 +76,11 @@ This template parses external-lsa only out of output produced by
 "show ip ospf database external" command.
 
 Caveats:
- - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
-
+```
 [
     [
         {
@@ -99,6 +102,7 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
+```
 
 
 This template initially designed for use with N2G library to produce network 
@@ -108,9 +112,11 @@ This template parses summary-lsa only out of output produced by
 "show ip ospf database summary" command.
 
 Caveats:
- - need ttp>=0.7.0, ttp==0.6.0 will not work due to bugs in it
+
+ - need `ttp>=0.7.0`, `ttp==0.6.0` will not work due to bugs in it
  
 Produces this structure for each input datum/device output:
+```
 [
     [
         {
@@ -131,6 +137,7 @@ Produces this structure for each input datum/device output:
         }
     ]
 ]
+```
 
 
 
@@ -143,7 +150,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Cisco IOS-XR devices. 
 
 Caveats:
- - need ttp>=0.8.0 for extend to work
+
+ - need `ttp>=0.8.0` for extend to work
 </doc>
 
 <extend template="ttp://platform/cisco_ios_show_ip_ospf_database_router.txt"/>

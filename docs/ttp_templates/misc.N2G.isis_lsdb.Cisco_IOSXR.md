@@ -11,14 +11,15 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Cisco IOS-XR devices. 
 
 Caveats:
- - need ttp>=0.8.0 for extend to work
+
+ - need `ttp>=0.8.0` for extend to work
 
 
 Template to parse ISIS LSDP of Cisco IOS-XR devices as produced
 by "show isis database verbose" command.
 
 This template produces this structure:
-
+```
 [[{'isis_processes': {'100': {'LSP': [{'hostname': 'R1-X1',
                                        'isis_area': '49.0001',
                                        'level': 'Level-2',
@@ -81,6 +82,7 @@ This template produces this structure:
                                        'networks': [{'metric': '0',
                                                      'network': 'fdff::/36'}],
                                        'rid': 'fddd:2:c101::2'}]}}}]]
+```
 
 
 
@@ -93,7 +95,8 @@ This template designed for use with N2G library to produce network diagrams base
 link state database of Cisco IOS-XR devices. 
 
 Caveats:
- - need ttp>=0.8.0 for extend to work
+
+ - need `ttp>=0.8.0` for extend to work
 </doc>
 
 <input load="python">

@@ -11,11 +11,6 @@ Template to produce list of dictionaries with interface
 configuration details using Cisco IOS-XR "show run interface"
 command output.
 
-Results structure:
-
-    TBD
-	
-
 
 
 ---
@@ -26,11 +21,6 @@ Results structure:
 Template to produce list of dictionaries with interface 
 configuration details using Cisco IOS-XR "show run interface"
 command output.
-
-Results structure:
-
-    TBD
-	
 </doc>
 
 <group>
