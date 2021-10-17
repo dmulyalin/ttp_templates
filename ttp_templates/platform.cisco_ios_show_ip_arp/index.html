@@ -899,15 +899,127 @@
                   <h1>cisco_ios_show_ip_arp</h1>
                 
                 <p>Reference path:</p>
-<pre><code>ttp://platform.cisco_ios_show_ip_arp.txt
+<pre><code>ttp://platform/cisco_ios_show_ip_arp.txt
 </code></pre>
 <hr />
 <p>TTP Template to parse Cisco IOS "show ip arp output".</p>
+<p>This template produces list of dictionaries results where each
+dictionary item compatible to this model:</p>
+<pre><code>module arp-table {
+
+yang-version 1.1;
+
+namespace
+  &quot;ttp://platform/cisco_ios_show_ip_arp&quot;;
+
+list entry {
+        config false;
+        key &quot;ip&quot;;
+
+        leaf protocol {
+            type string;
+        }
+
+        leaf ip {
+            type string;
+            mandatory true;
+            description
+                &quot;IP address&quot;;
+        }
+
+        leaf age {
+            type uint32;
+            description
+                &quot;IP address&quot;;
+        }
+
+        leaf mac {
+            type string;
+            mandatory &quot;true&quot;;
+            description
+                &quot;MAC address&quot;;
+        }    
+
+        leaf type {
+            type string;
+        }
+
+        leaf interface {
+            type string;
+            default &quot;Uncknown&quot;;
+            mandatory false;
+            description
+                &quot;Interface name&quot;;
+        }        
+    }
+}
+</code></pre>
+<p>Sample instance data:</p>
+<pre><code>TBD
+</code></pre>
 <hr />
 <details><summary>Template Content</summary>
 
 <pre><code>&lt;doc&gt;
 TTP Template to parse Cisco IOS &quot;show ip arp output&quot;.
+
+This template produces list of dictionaries results where each
+dictionary item compatible to this model:
+'''
+module arp-table {
+
+yang-version 1.1;
+
+namespace
+  &quot;ttp://platform/cisco_ios_show_ip_arp&quot;;
+
+list entry {
+        config false;
+        key &quot;ip&quot;;
+
+        leaf protocol {
+            type string;
+        }
+
+        leaf ip {
+            type string;
+            mandatory true;
+            description
+                &quot;IP address&quot;;
+        }
+
+        leaf age {
+            type uint32;
+            description
+                &quot;IP address&quot;;
+        }
+
+        leaf mac {
+            type string;
+            mandatory &quot;true&quot;;
+            description
+                &quot;MAC address&quot;;
+        }    
+
+        leaf type {
+            type string;
+        }
+
+        leaf interface {
+            type string;
+            default &quot;Uncknown&quot;;
+            mandatory false;
+            description
+                &quot;Interface name&quot;;
+        }        
+    }
+}
+'''
+
+Sample instance data:
+'''
+TBD
+'''
 &lt;/doc&gt;
 
 &lt;group method=&quot;table&quot; to_int=&quot;age&quot;&gt;

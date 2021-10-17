@@ -899,11 +899,11 @@
                   <h1>cisco_xr_show_isis_database_verbose</h1>
                 
                 <p>Reference path:</p>
-<pre><code>ttp://platform.cisco_xr_show_isis_database_verbose.txt
+<pre><code>ttp://platform/cisco_xr_show_isis_database_verbose.txt
 </code></pre>
 <hr />
-<p>Template to parse ISIS LSDP of Cisco IOS-XR devices as produced
-by "show isis database verbose" command.</p>
+<p>Template to parse ISIS LSDB of Cisco IOS-XR devices out of 
+"show isis database verbose" command output.</p>
 <p>This template produces this structure:</p>
 <pre><code>[[{'isis_processes': {'100': {'LSP': [{'hostname': 'R1-X1',
                                        'isis_area': '49.0001',
@@ -972,8 +972,8 @@ by "show isis database verbose" command.</p>
 <details><summary>Template Content</summary>
 
 <pre><code>&lt;doc&gt;
-Template to parse ISIS LSDP of Cisco IOS-XR devices as produced
-by &quot;show isis database verbose&quot; command.
+Template to parse ISIS LSDB of Cisco IOS-XR devices out of 
+&quot;show isis database verbose&quot; command output.
 
 This template produces this structure:
 '''
