@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform.cisco_xr_show_arp_vrf_all.txt
+ttp://platform/cisco_xr_show_arp_vrf_all.txt
 ```
 
 ---

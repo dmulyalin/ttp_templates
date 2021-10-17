@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform.cisco_ios_show_ip_ospf_database_summary.txt
+ttp://platform/cisco_ios_show_ip_ospf_database_summary.txt
 ```
 
 ---

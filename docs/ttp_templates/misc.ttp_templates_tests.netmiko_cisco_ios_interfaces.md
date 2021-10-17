@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.ttp_templates_tests.netmiko_cisco_ios_interfaces.txt
+ttp://misc/ttp_templates_tests/netmiko_cisco_ios_interfaces.txt
 ```
 
 ---

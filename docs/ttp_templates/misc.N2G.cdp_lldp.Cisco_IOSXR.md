@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.N2G.cdp_lldp.Cisco_IOSXR.txt
+ttp://misc/N2G/cdp_lldp/Cisco_IOSXR.txt
 ```
 
 ---

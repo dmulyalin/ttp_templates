@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform.test_platform_show_run_pipe_sec_interface.txt
+ttp://platform/test_platform_show_run_pipe_sec_interface.txt
 ```
 
 ---

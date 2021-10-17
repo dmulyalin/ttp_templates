@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.Netmiko.cisco.ios.cfg.bgp.txt
+ttp://misc/Netmiko/cisco.ios.cfg.bgp.txt
 ```
 
 ---

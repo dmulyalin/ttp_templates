@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform.huawei_display_ospf_lsdb_router.txt
+ttp://platform/huawei_display_ospf_lsdb_router.txt
 ```
 
 ---

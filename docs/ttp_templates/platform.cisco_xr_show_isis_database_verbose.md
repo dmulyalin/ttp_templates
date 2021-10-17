@@ -1,14 +1,14 @@
 Reference path:
 ```
-ttp://platform.cisco_xr_show_isis_database_verbose.txt
+ttp://platform/cisco_xr_show_isis_database_verbose.txt
 ```
 
 ---
 
 
 
-Template to parse ISIS LSDP of Cisco IOS-XR devices as produced
-by "show isis database verbose" command.
+Template to parse ISIS LSDB of Cisco IOS-XR devices out of 
+"show isis database verbose" command output.
 
 This template produces this structure:
 ```
@@ -83,8 +83,8 @@ This template produces this structure:
 <details><summary>Template Content</summary>
 ```
 <doc>
-Template to parse ISIS LSDP of Cisco IOS-XR devices as produced
-by "show isis database verbose" command.
+Template to parse ISIS LSDB of Cisco IOS-XR devices out of 
+"show isis database verbose" command output.
 
 This template produces this structure:
 '''

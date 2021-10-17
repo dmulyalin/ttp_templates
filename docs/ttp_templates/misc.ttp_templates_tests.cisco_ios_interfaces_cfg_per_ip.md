@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip.txt
+ttp://misc/ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt
 ```
 
 ---

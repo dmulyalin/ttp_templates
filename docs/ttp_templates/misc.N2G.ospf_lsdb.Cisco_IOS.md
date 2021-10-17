@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.N2G.ospf_lsdb.Cisco_IOS.txt
+ttp://misc/N2G/ospf_lsdb/Cisco_IOS.txt
 ```
 
 ---

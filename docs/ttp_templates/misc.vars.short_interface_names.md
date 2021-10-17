@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.vars.short_interface_names.txt
+ttp://misc/vars/short_interface_names.txt
 ```
 
 ---

@@ -68,8 +68,9 @@ for dirpath, dirnames, filenames in os.walk(top="ttp_templates"):
         
         # save doc string to .md files
         splitted_path = dirpath.split(os.sep)
+        # form template doc page content using template
         doc_string = page_template.format(
-            path=".".join(splitted_path[1:]) + "." + filename, 
+            path="/".join(splitted_path[1:]) + "/" + filename, 
             doc=doc_string if doc_string.strip() else "No `<doc>` tags found",
             template_content=template_content.replace("`", "'")
         )

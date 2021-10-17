@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.Netmiko.cisco.iosxr.cfg.interface.txt
+ttp://misc/Netmiko/cisco.iosxr.cfg.interface.txt
 ```
 
 ---

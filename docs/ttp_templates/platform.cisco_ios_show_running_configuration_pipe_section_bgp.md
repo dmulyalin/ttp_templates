@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform.cisco_ios_show_running_configuration_pipe_section_bgp.txt
+ttp://platform/cisco_ios_show_running_configuration_pipe_section_bgp.txt
 ```
 
 ---

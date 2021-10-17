@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform.cisco_xr_show_ospf_database_summary.txt
+ttp://platform/cisco_xr_show_ospf_database_summary.txt
 ```
 
 ---

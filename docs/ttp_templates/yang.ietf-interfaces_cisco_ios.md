@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://yang.ietf-interfaces_cisco_ios.txt
+ttp://yang/ietf-interfaces_cisco_ios.txt
 ```
 
 ---

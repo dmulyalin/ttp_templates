@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.N2G.isis_lsdb.Cisco_IOSXR.txt
+ttp://misc/N2G/isis_lsdb/Cisco_IOSXR.txt
 ```
 
 ---
@@ -15,8 +15,8 @@ Caveats:
  - need `ttp>=0.8.0` for extend to work
 
 
-Template to parse ISIS LSDP of Cisco IOS-XR devices as produced
-by "show isis database verbose" command.
+Template to parse ISIS LSDB of Cisco IOS-XR devices out of 
+"show isis database verbose" command output.
 
 This template produces this structure:
 ```

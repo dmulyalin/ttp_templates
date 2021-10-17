@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.Netmiko.cisco.iosxr.arp.txt
+ttp://misc/Netmiko/cisco.iosxr.arp.txt
 ```
 
 ---

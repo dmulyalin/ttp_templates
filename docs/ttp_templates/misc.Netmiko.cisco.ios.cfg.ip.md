@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.Netmiko.cisco.ios.cfg.ip.txt
+ttp://misc/Netmiko/cisco.ios.cfg.ip.txt
 ```
 
 ---

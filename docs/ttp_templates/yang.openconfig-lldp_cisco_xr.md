@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://yang.openconfig-lldp_cisco_xr.txt
+ttp://yang/openconfig-lldp_cisco_xr.txt
 ```
 
 ---

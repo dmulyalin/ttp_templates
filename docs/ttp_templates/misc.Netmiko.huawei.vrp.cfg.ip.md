@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.Netmiko.huawei.vrp.cfg.ip.txt
+ttp://misc/Netmiko/huawei.vrp.cfg.ip.txt
 ```
 
 ---

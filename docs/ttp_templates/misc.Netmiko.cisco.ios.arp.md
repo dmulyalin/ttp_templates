@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc.Netmiko.cisco.ios.arp.txt
+ttp://misc/Netmiko/cisco.ios.arp.txt
 ```
 
 ---
@@ -47,6 +47,64 @@ pprint.pprint(res)
 
 
 TTP Template to parse Cisco IOS "show ip arp output".
+
+This template produces list of dictionaries results where each
+dictionary item compatible to this model:
+```
+module arp-table {
+
+yang-version 1.1;
+
+namespace
+  "ttp://platform/cisco_ios_show_ip_arp";
+  
+list entry {
+        config false;
+        key "ip";
+        
+        leaf protocol {
+            type string;
+        }
+        
+        leaf ip {
+            type string;
+            mandatory true;
+            description
+                "IP address";
+        }
+
+        leaf age {
+            type uint32;
+            description
+                "IP address";
+        }
+
+        leaf mac {
+            type string;
+            mandatory "true";
+            description
+                "MAC address";
+        }    
+
+        leaf type {
+            type string;
+        }
+
+        leaf interface {
+            type string;
+            default "Uncknown";
+			mandatory false;
+            description
+                "Interface name";
+        }        
+    }
+}
+```
+
+Sample instance data:
+```
+TBD
+```
 
 
 
