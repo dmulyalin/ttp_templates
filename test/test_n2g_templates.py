@@ -12,7 +12,7 @@ def test_N2G_ospf_lsdb_Cisco_IOSXR():
         data1 = f.read()
     with open("./mock_data/cisco_xr_show_ip_ospf_database_router_external_summary_router-2.txt", "r") as f:
         data2 = f.read()
-    template = get_template(path="misc/N2G/ospf_lsdb/Cisco_IOSXR.txt")
+    template = get_template(path="misc/N2G/cli_ospf_data/Cisco_IOSXR.txt")
     # print(template)
     parser = ttp(template=template)
     parser.add_input(data1)
@@ -194,7 +194,7 @@ def test_N2G_ospf_lsdb_Cisco_IOSXR():
 def test_N2G_ospf_lsdb_Cisco_IOS():
     with open("./mock_data/cisco_ios_show_ip_ospf_database_router_external_summary_IOL4_ABR.txt", "r") as f:
         data = f.read()
-    template = get_template(path="misc/N2G/ospf_lsdb/Cisco_IOS.txt")
+    template = get_template(path="misc/N2G/cli_ospf_data/Cisco_IOS.txt")
     # print(template)
     parser = ttp(data=data, template=template)
     parser.parse()
@@ -351,7 +351,7 @@ def test_N2G_ospf_lsdb_Cisco_IOS():
 def test_N2G_ospf_lsdb_huawei():
     with open("./mock_data/huawei_display_ospf_lsdb_router.txt", "r") as f:
         data = f.read()
-    template = get_template(path="misc/N2G/ospf_lsdb/Huawei.txt")
+    template = get_template(path="misc/N2G/cli_ospf_data/Huawei.txt")
     # print(template)
     parser = ttp(data=data, template=template)
     parser.parse()

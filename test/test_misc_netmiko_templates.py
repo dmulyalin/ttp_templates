@@ -342,7 +342,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
         {
             "description": "Some  description",
             "hostname": "router-1",
-            "interface": "Vlan1234",
+            "interface": "VLAN1234",
             "ipv4": "10.1.251.170",
             "mask": "255.255.255.0",
             'vrf': 'default',
@@ -350,7 +350,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
         {
             "description": "Some  description",
             "hostname": "router-1",
-            "interface": "Vlan1234",
+            "interface": "VLAN1234",
             "ipv4": "10.1.251.171",
             "mask": "255.255.255.0",
             "secondary": True,
@@ -359,7 +359,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
         {
             "description": "Some  description",
             "hostname": "router-1",
-            "interface": "Vlan1234",
+            "interface": "VLAN1234",
             "ipv4": "172.20.128.3",
             "vip": True,
             "vip_type": "HSRP",
@@ -369,7 +369,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "mask": "64",
             "description": "Some  description",
             "hostname": "router-1",
-            "interface": "Vlan1234",
+            "interface": "VLAN1234",
             "ipv6": "AAAA::1",
             'vrf': 'default',
         },
@@ -377,7 +377,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "mask": "64",
             "description": "Some  description",
             "hostname": "router-1",
-            "interface": "Vlan1234",
+            "interface": "VLAN1234",
             "ipv6": "BBBB::1",
             'vrf': 'default',
         },
@@ -430,7 +430,7 @@ def test_cisco_ios_xr_arp_short_intf_names():
         },
         {
             "age": "00:10:50",
-            "interface": "MGMTEth0/RP0/CPU0/0",
+            "interface": "MGMT0/RP0/CPU0/0",
             "ip": "10.2.3.33",
             "mac": "12:34:dd:60:1f:88",
             "state": "dynamic",
@@ -438,7 +438,7 @@ def test_cisco_ios_xr_arp_short_intf_names():
         },
         {
             "age": -1,
-            "interface": "MGMTEth0/RP0/CPU0/0",
+            "interface": "MGMT0/RP0/CPU0/0",
             "ip": "10.5.3.34",
             "mac": "7c:ad:4f:e6:a4:9a",
             "state": "interface",
