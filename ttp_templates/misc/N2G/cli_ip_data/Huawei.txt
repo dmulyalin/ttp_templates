@@ -1,6 +1,6 @@
 <doc>
 Template produces this dictionary:
-{'Huawei': {'switch_1': {'interfaces': {'SVI123': {'arp': [{'age': '-',
+{'huawei': {'switch_1': {'interfaces': {'SVI123': {'arp': [{'age': '-',
                                                                'ip': '10.123.111.1',
                                                                'mac': 'd094.6643.1111',
                                                                'type': 'ARPA'}],
@@ -42,7 +42,7 @@ Template produces this dictionary:
                                                                             'subnet'}}}}}
 </doc>
 
-<template name="Huawei" results="per_template">
+<template name="huawei" results="per_template">
 <vars>local_hostname="gethostname"</vars>
 
 <!-- Interfaces configuration group -->

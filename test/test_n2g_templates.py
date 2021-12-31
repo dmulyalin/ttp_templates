@@ -12,7 +12,7 @@ def test_N2G_ospf_lsdb_Cisco_IOSXR():
         data1 = f.read()
     with open("./mock_data/cisco_xr_show_ip_ospf_database_router_external_summary_router-2.txt", "r") as f:
         data2 = f.read()
-    template = get_template(path="misc/N2G/cli_ospf_data/Cisco_IOSXR.txt")
+    template = get_template(path="misc/N2G/cli_ospf_data/cisco_xr.txt")
     # print(template)
     parser = ttp(template=template)
     parser.add_input(data1)

@@ -42,7 +42,7 @@ Template produces this dictionary:
                                                                             'subnet'}}}}}
 </doc>
 
-<template name="A10" results="per_template">
+<template name="a10" results="per_template">
 <vars>local_hostname="gethostname"</vars>
 
 <!-- Interfaces configuration group -->

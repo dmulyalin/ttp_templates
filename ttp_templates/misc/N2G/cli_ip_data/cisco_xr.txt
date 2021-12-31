@@ -1,6 +1,9 @@
 <doc>
+Commands:
+- show run
+
 Template produces this dictionary:
-{'Fortigate': {'switch_1': {'interfaces': {'SVI123': {'arp': [{'age': '-',
+{'cisco_xr': {'switch_1': {'interfaces': {'SVI123': {'arp': [{'age': '-',
                                                                'ip': '10.123.111.1',
                                                                'mac': 'd094.6643.1111',
                                                                'type': 'ARPA'}],
@@ -42,30 +45,22 @@ Template produces this dictionary:
                                                                             'subnet'}}}}}
 </doc>
 
-<template name="Fortigate" results="per_template">
+<template name="cisco_xr" results="per_template">
 <vars>local_hostname="gethostname"</vars>
 
-<!-- Interfaces configuration group -->
-<group name="{{ local_hostname }}.interfaces**">
-config system interface {{ _start_ }}
-    <group name="{{ interface }}">
-    edit "{{ interface }}"
-        set description "{{ port_description | re(".+") }}"
-        set vdom "{{ vrf }}"
-        set allowaccess {{ ACL_IN | ORPHRASE }}
-        set interface "{{ parent_interface }}"
-        set vlanid {{ vid }}
-        <group name="ip_addresses*" chain="add_network()" method="table">
-        set ip {{ ip | IP }} {{ netmask }}
-                set ip {{ ip | IP }} {{ netmask }}
-        </group>
-    next{{ _end_ }}
-    </group>    
-</group>    
-
-<!-- ARP cache group -->
-<group name="{{ local_hostname }}.interfaces.{{ interface }}.arp*" method="table">
-{{ ip | IP }}      {{ age }}   {{ mac | MAC | mac_eui }}    {{ interface }}
+<group record="local_hostname" void="">
+hostname {{ local_hostname }}
 </group>
 
+<!-- Interfaces configuration group -->
+<group name="{{ local_hostname }}.interfaces.{{ interface }}">
+interface {{ interface | resuball("IfsNormalize") }}
+ description {{ port_description | re(".+") }}
+ vrf {{ vrf }}
+ <group name="ip_addresses*" chain="add_network()" method="table">
+ ipv4 address {{ ip | IP }} {{ netmask }}
+ ipv4 address {{ ip | IP }} {{ netmask }} secondary
+ </group>
+! {{ _end_ }}
+</group>
 </template>
