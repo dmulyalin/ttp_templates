@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/yang.openconfig-lldp_cisco_nxos/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_ip_data.fortinet/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
-        <title>openconfig-lldp_cisco_nxos - TTP Templates Collection</title>
+        <title>cli_ip_data.fortinet - TTP Templates Collection</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              openconfig-lldp_cisco_nxos
+              cli_ip_data.fortinet
             
           </span>
         </div>
@@ -257,12 +257,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
       
       <label class="md-nav__link" for="__nav_3_1">
         Misc
@@ -278,12 +280,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" checked>
       
       <label class="md-nav__link" for="__nav_3_1_1">
         N2G
@@ -347,11 +351,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../misc.N2G.cli_ip_data.fortinet/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         cli_ip_data.fortinet
       </a>
+      
     </li>
   
 
@@ -923,14 +935,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
       
       <label class="md-nav__link" for="__nav_3_3">
         YANG
@@ -970,19 +980,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../yang.openconfig-lldp_cisco_nxos/" class="md-nav__link">
         openconfig-lldp_cisco_nxos
       </a>
-      
     </li>
   
 
@@ -1023,224 +1025,53 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/yang.openconfig-lldp_cisco_nxos.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_ip_data.fortinet.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>openconfig-lldp_cisco_nxos</h1>
+                  <h1>cli_ip_data.fortinet</h1>
                 
                 <p>Reference path:</p>
-<pre><code>ttp://yang/openconfig-lldp_cisco_nxos.txt
+<pre><code>ttp://misc/N2G/cli_ip_data/fortinet.txt
 </code></pre>
 <hr />
-<p>Required devices' commands output:</p>
-<ul>
-<li>show lldp neighbors detail</li>
-</ul>
-<p>Device output should contain device prompt, otherwise device hostname will not be extracted.</p>
-<p>Returns result compatible with this subset of <code>openconfig-lldp</code>
-YANG model:</p>
-<pre><code>module: openconfig-lldp
-  +--rw lldp
-     +--rw config
-     |  +--rw system-name?                  string
-     +--rw interfaces
-        +--rw interface* [name]
-           +--rw name         
-           +--ro neighbors
-              +--ro neighbor* [id]
-                 +--ro id              
-                 +--ro state
-                 |  +--ro system-name?               string
-                 |  +--ro system-description?        string
-                 |  +--ro chassis-id?                string
-                 |  +--ro chassis-id-type?           oc-lldp-types:chassis-id-type
-                 |  +--ro id?                        string
-                 |  +--ro port-id?                   string
-                 |  +--ro port-id-type?              oc-lldp-types:port-id-type
-                 |  +--ro port-description?          string
-                 |  +--ro management-address?        string
-                 +--ro capabilities
-                    +--ro capability* [name]
-                       +--ro name    
-</code></pre>
+<p>Template to parse Fortinet fortigate firewalls interfaces configuration and ARP cache.</p>
 <hr />
 <details><summary>Template Content</summary>
 
-<pre><code>&lt;doc&gt;
-Required devices' commands output:
+<pre><code>&lt;template name=&quot;fortinet&quot; results=&quot;per_template&quot;&gt;
 
- - show lldp neighbors detail
-
-Device output should contain device prompt, otherwise device hostname will not be extracted.
-
-Returns result compatible with this subset of 'openconfig-lldp'
-YANG model:
-'''
-module: openconfig-lldp
-  +--rw lldp
-     +--rw config
-     |  +--rw system-name?                  string
-     +--rw interfaces
-        +--rw interface* [name]
-           +--rw name         
-           +--ro neighbors
-              +--ro neighbor* [id]
-                 +--ro id              
-                 +--ro state
-                 |  +--ro system-name?               string
-                 |  +--ro system-description?        string
-                 |  +--ro chassis-id?                string
-                 |  +--ro chassis-id-type?           oc-lldp-types:chassis-id-type
-                 |  +--ro id?                        string
-                 |  +--ro port-id?                   string
-                 |  +--ro port-id-type?              oc-lldp-types:port-id-type
-                 |  +--ro port-description?          string
-                 |  +--ro management-address?        string
-                 +--ro capabilities
-                    +--ro capability* [name]
-                       +--ro name    
-'''                    
+&lt;doc&gt;
+Template to parse Fortinet fortigate firewalls interfaces configuration and ARP cache.
 &lt;/doc&gt;
 
+&lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
 
+&lt;!-- Interfaces configuration group --&gt;
+&lt;group name=&quot;{{ local_hostname }}.interfaces**&quot;&gt;
+config system interface {{ _start_ }}
+    &lt;group name=&quot;{{ interface }}&quot;&gt;
+    edit &quot;{{ interface }}&quot;
+        set description &quot;{{ port_description | re(&quot;.+&quot;) }}&quot;
+        set vdom &quot;{{ vrf }}&quot;
+        set allowaccess {{ ACL_IN | ORPHRASE }}
+        set interface &quot;{{ parent_interface }}&quot;
+        set vlanid {{ vid }}
+        &lt;group name=&quot;ip_addresses*&quot; chain=&quot;add_network()&quot; method=&quot;table&quot;&gt;
+        set ip {{ ip | IP }} {{ netmask }}
+                set ip {{ ip | IP }} {{ netmask }}
+        &lt;/group&gt;
+    next{{ _end_ }}
+    &lt;/group&gt;    
+&lt;/group&gt;    
 
-&lt;macro&gt;
-def process(data):
-    &quot;&quot;&quot;
-    Function to process parsing results in a structure
-    compatible with openconfig-lldp YANG module.
-
-    Parsing results are a dictionary keyed by interface name, that 
-    is done to combine multiple neighbors in a list under the 
-    interface, while in opencofnig-lldp model structure under 
-    &quot;lldp.interfaces.inderface&quot; must be a list.
-
-    Moreover, neighbors must contain &quot;id&quot; key and use &quot;state&quot; key to
-    store information about neighbor details.
-    &quot;&quot;&quot;
-    ret = []
-
-    for res_item in data:
-        # transform dictionary of interfaces into a list
-        ret_template = {
-                &quot;opencondig-lldp&quot;: {
-                    &quot;lldp&quot;: {
-                        &quot;interfaces&quot;: {&quot;interface&quot;: []},
-                        &quot;config&quot;: {
-                            &quot;system-name&quot;: res_item.get(&quot;system_name&quot;, {}).get(&quot;hostname&quot;)
-                        }
-                    }
-                }
-        }
-        interfaces = res_item.get(&quot;lldp&quot;, {}).get(&quot;interfaces&quot;, {}).get(&quot;inderface&quot;, {})
-        for interface_name, interface_data in interfaces.items():
-
-            # set neighbors IDs and form structure with &quot;state&quot; key
-            neighbors = interface_data[&quot;neighbors&quot;][&quot;neighbor&quot;]
-            interface_data[&quot;neighbors&quot;][&quot;neighbor&quot;] = []
-            for id, neigbour in enumerate(neighbors, 1):
-                interface_data[&quot;neighbors&quot;][&quot;neighbor&quot;].append(
-                    {
-                        &quot;id&quot;: id,
-                        &quot;state&quot;: {&quot;id&quot;: id, **neigbour}
-                    }            
-                )
-
-            # form final interface structure
-            ret_template[&quot;opencondig-lldp&quot;][&quot;lldp&quot;][&quot;interfaces&quot;][&quot;interface&quot;].append(
-                {
-                    &quot;name&quot;: interface_name,
-                    **interface_data
-                }
-            )
-        ret.append(ret_template)
-
-    return ret
-
-def map_capabilities(data):
-    &quot;&quot;&quot;
-    Function to map capabilities
-    &quot;&quot;&quot;
-    ret = []
-
-    mapper = {
-        &quot;B&quot;: {&quot;name&quot;: &quot;MAC_BRIDGE&quot;},
-        &quot;R&quot;: {&quot;name&quot;: &quot;ROUTER&quot;}
-    }
-
-    for code in data.get(&quot;codes&quot;, []):
-        if code in mapper:
-            ret.append(mapper[code])
-
-    return {&quot;capability&quot;: ret}
-&lt;/macro&gt;
-
-&lt;vars&gt;
-ifmap = {
-    'ATM': ['^ATM', '^AT'],
-    'BDI': ['^Bd', '^Bdi'],
-    'EOBC': ['^EOBC', '^EO'],
-    'Eth': ['^Ethernet', '^Eth', '^eth', r'^Et(?=\d)', r'^et(?=\d)'],
-    'FE': ['^FastEthernet', '^FastEth', '^FastE', '^Fast', '^Fas', '^FE', '^Fa', '^fa'],
-    'Fddi': ['^Fddi', '^FD'],
-    '50GE': ['^FiftyGigabitEthernet', '^FiftyGigEthernet', '^FiftyGigEth', '^FiftyGigE', '^FI', '^Fi', '^fi'],
-    '40GE': ['^FortyGigabitEthernet', '^FortyGigEthernet', '^FortyGigEth', '^FortyGigE', '^FortyGig', '^FGE', '^FO', '^Fo'],
-    '400GE': ['^FourHundredGigabitEthernet', '^FourHundredGigEthernet', '^FourHundredGigEth', '^FourHundredGigE', '^FourHundredGig', '^F', '^f'],
-    'GE': ['^GigabitEthernet', '^GigEthernet', '^GigEth', '^GigE', '^Gig', '^GE', '^Ge', '^ge', '^Gi', '^gi'],
-    '100GE': ['^HundredGigabitEthernet', '^HundredGigEthernet', '^HundredGigEth', '^HundredGigE', '^HundredGig', '^Hu'],
-    'Lo': ['^Loopback', '^loopback', '^Lo', '^lo'],
-    'MFR': ['^MFR'], 
-    'Ma': ['^Management_short'],
-    'MGMT': ['^Management', '^Mgmt', '^mgmt', '^Ma'],
-    'Multilink': ['^Multilink', '^Mu'],
-    'POS': ['^POS', '^PO'],
-    'LAG': ['^PortChannel', '^Port-channel', '^Port-Channel', '^port-channel', '^po', '^Po', &quot;^Bundle-Ether&quot;, &quot;^BE&quot;],
-    'Serial': ['^Serial', '^Se', '^S'],
-    '10GE': ['^TenGigabitEthernet', '^TenGigEthernet', '^TenGigEth', '^TenGigE', '^TenGig', '^TeGig', '^Ten', '^Te', '^te'],
-    'Tunnel': ['^Tunnel', '^Tun', '^Tu'],
-    '25GE': ['^TwentyFiveGigabitEthernet', '^TwentyFiveGigEthernet', '^TwentyFiveGigEth', '^TwentyFiveGigE', '^TwentyFiveGig', '^Twe', '^TF', '^Tf', '^tf'],
-    '2GE': ['^Tw', '^Two'],
-    '200GE': ['^TwoHundredGigabitEthernet', '^TwoHundredGigEthernet', '^TwoHundredGigEth', '^TwoHundredGigE', '^TwoHundredGig', '^TH', '^Th', '^th'],
-    'VLAN': ['^VLAN', '^V', '^Vl'],
-    'Virtual-Access': ['^Virtual-Access', '^Vi'],
-    'Virtual-Template': ['^Virtual-Template', '^Vt'],
-    'WLAN': ['^Wlan-GigabitEthernet'],
-    'nve': ['^n', '^nv', '^nve']
-}
-&lt;/vars&gt;
-
-&lt;vars name=&quot;system_name&quot;&gt;
-hostname=&quot;gethostname&quot;
-&lt;/vars&gt;
-
-&lt;group name=&quot;lldp.interfaces.inderface**.{{ local_port }}**.neighbors.neighbor*&quot;&gt;
-##
-##  Parses &quot;show lldp neighbors detail&quot; output
-##
-Chassis id: {{ chassis-id | mac_eui }}
-Port id: {{ port-id | resuball(ifmap) }}
-Local Port id: {{ local_port | resuball(ifmap) }}
-Port Description: {{ port-description | re(&quot;.+&quot;) | default(None) }}
-System Name: {{ system-name }}
-Management Address: {{ management-address | default(None) }}
-
-&lt;group name=&quot;_&quot;&gt;
-System Description: {{ system-description | re(&quot;.+&quot;) | joinmatches(&quot; &quot;) }}
-{{ system-description | _line_ | joinmatches(&quot; &quot;) }}
-Time remaining: {{ ignore }} seconds {{ _end_ }}
+&lt;!-- ARP cache group --&gt;
+&lt;group name=&quot;{{ local_hostname }}.interfaces.{{ interface }}.arp*&quot; method=&quot;table&quot;&gt;
+{{ ip | IP }}      {{ age }}   {{ mac | MAC | mac_eui }}    {{ interface }}
 &lt;/group&gt;
 
-&lt;group name=&quot;capabilities&quot; macro=&quot;map_capabilities&quot;&gt;
-System Capabilities: {{ codes | ORPHRASE | split(&quot;, &quot;) }}
-&lt;/group&gt;
-
-{{ port-id-type | set(&quot;INTERFACE_NAME&quot;) }}
-{{ chassis-id-type | set(&quot;MAC_ADDRESS&quot;) }}
-&lt;/group&gt;
-
-&lt;output macro=&quot;process&quot;/&gt;
+&lt;/template&gt;
 </code></pre>
 
 </details>
@@ -1263,7 +1094,7 @@ System Capabilities: {{ codes | ORPHRASE | split(&quot;, &quot;) }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../yang.openconfig-lldp_cisco_ios/" class="md-footer__link md-footer__link--prev" aria-label="Previous: openconfig-lldp_cisco_ios" rel="prev">
+        <a href="../misc.N2G.cli_ip_data.cisco_xr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_ip_data.cisco_xr" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1272,20 +1103,20 @@ System Capabilities: {{ codes | ORPHRASE | split(&quot;, &quot;) }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              openconfig-lldp_cisco_ios
+              cli_ip_data.cisco_xr
             </div>
           </div>
         </a>
       
       
         
-        <a href="../yang.openconfig-lldp_cisco_xr/" class="md-footer__link md-footer__link--next" aria-label="Next: openconfig-lldp_cisco_xr" rel="next">
+        <a href="../misc.N2G.cli_ip_data.huawei/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_ip_data.huawei" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              openconfig-lldp_cisco_xr
+              cli_ip_data.huawei
             </div>
           </div>
           <div class="md-footer__button md-icon">
