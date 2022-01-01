@@ -1,7 +1,7 @@
 
 ---
 
-**Templates count: 35**
+**Templates count: 46**
 
 ---
 
@@ -250,7 +250,16 @@ This repository contains three collections of templates corresponding to folder 
 
 	
 ## Contributions
+
 Feel free to submit an issue, report a bug or ask a question, feature requests are welcomed.
 
 It is always good idea to document as much as you can and give context on the problem you was 
 trying to solve. TTP templates have ``<doc>`` tag exactly for that.
+
+## Additional Template resources
+
+List of resources with TTP templates:
+
+- TTP SrosParser - https://pypi.org/project/ttp-sros-parser/ by [h4ndzdatm0ld](https://github.com/h4ndzdatm0ld)
+- Template for parsing "show run" for Cisco IOS - https://github.com/tbotnz/ios-show-run-ttp by [tbotnz](https://github.com/tbotnz)
+- Template for Cisco ASA configuration - https://gist.github.com/consentfactory/85872fc83453d1735b15aed3e47a9763 by [consentfactory](https://gist.github.com/consentfactory)

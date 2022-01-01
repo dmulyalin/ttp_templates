@@ -1,18 +1,14 @@
 Reference path:
 ```
-ttp://misc/N2G/ospf_lsdb/Cisco_IOSXR.txt
+ttp://misc/N2G/cli_ospf_data/cisco_xr.txt
 ```
 
 ---
 
 
 
-This template designed for use with N2G library to produce network diagrams based on OSPF 
-link state database of Cisco IOS-XR devices. 
+Template to parse Cisco IOSXR OSPF database content.
 
-Caveats:
-
- - need `ttp>=0.8.0` for extend to work
 
 
 This template initially designed for use with N2G library to produce network 
@@ -151,12 +147,8 @@ Produces this structure for each input datum/device output:
 <details><summary>Template Content</summary>
 ```
 <doc>
-This template designed for use with N2G library to produce network diagrams based on OSPF 
-link state database of Cisco IOS-XR devices. 
+Template to parse Cisco IOSXR OSPF database content.
 
-Caveats:
-
- - need 'ttp>=0.8.0' for extend to work
 </doc>
 
 <input load="python">

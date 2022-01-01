@@ -1,18 +1,13 @@
 Reference path:
 ```
-ttp://misc/N2G/isis_lsdb/Cisco_IOSXR.txt
+ttp://misc/N2G/cli_isis_data/cisco_xr.txt
 ```
 
 ---
 
 
 
-This template designed for use with N2G library to produce network diagrams based on ISIS 
-link state database of Cisco IOS-XR devices. 
-
-Caveats:
-
- - need `ttp>=0.8.0` for extend to work
+Template to parse Cisco IOSXR "show isis database verbose" output.
 
 
 Template to parse ISIS LSDB of Cisco IOS-XR devices out of 
@@ -91,12 +86,7 @@ This template produces this structure:
 <details><summary>Template Content</summary>
 ```
 <doc>
-This template designed for use with N2G library to produce network diagrams based on ISIS 
-link state database of Cisco IOS-XR devices. 
-
-Caveats:
-
- - need 'ttp>=0.8.0' for extend to work
+Template to parse Cisco IOSXR "show isis database verbose" output.
 </doc>
 
 <input load="python">

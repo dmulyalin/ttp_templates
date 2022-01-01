@@ -1,18 +1,13 @@
 Reference path:
 ```
-ttp://misc/N2G/ospf_lsdb/Cisco_IOS.txt
+ttp://misc/N2G/cli_ospf_data/cisco_ios.txt
 ```
 
 ---
 
 
 
-This template designed for use with N2G library to produce network diagrams based on OSPF 
-link state database of Cisco IOS-XR devices. 
-
-Caveats:
-
- - need `ttp>=0.8.0` for extend to work
+Template to parse Cisco IOS OSPF database content.
 
 
 This template initially designed for use with N2G library to produce network 
@@ -146,13 +141,19 @@ Produces this structure for each input datum/device output:
 <details><summary>Template Content</summary>
 ```
 <doc>
-This template designed for use with N2G library to produce network diagrams based on OSPF 
-link state database of Cisco IOS-XR devices. 
-
-Caveats:
-
- - need 'ttp>=0.8.0' for extend to work
+Template to parse Cisco IOS OSPF database content.
 </doc>
+
+<input load="python">
+# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
+commands = [
+    "show ip ospf database router",
+    "show ip ospf database summary",
+    "show ip ospf database external",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+</input>
 
 <extend template="ttp://platform/cisco_ios_show_ip_ospf_database_router.txt"/>
 <extend template="ttp://platform/cisco_ios_show_ip_ospf_database_external.txt"/>

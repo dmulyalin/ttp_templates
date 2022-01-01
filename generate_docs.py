@@ -48,44 +48,66 @@ for item in mkdocs_yaml["nav"]:
 # load templates docs and form mkdocs.yml nav section
 for dirpath, dirnames, filenames in os.walk(top="ttp_templates"):
     for filename in filenames:
-        if not filename.endswith(".txt"):
+        
+        # process readme files
+        if filename == "readme.md":
+            # read readme.md content
+            filepath = os.path.join(dirpath, filename)
+            with open(filepath) as tf:
+                doc_string = tf.read()
+            
+            splitted_path = dirpath.split(os.sep)
+            docs_filename = ".".join(splitted_path[1:]) + "." + filename
+            
+            # save md file
+            with open(os.path.join("docs", "ttp_templates", docs_filename), "w") as f:
+                f.write(doc_string)
+                
+            # form nav section of mkdocs.yaml
+            if splitted_path[1] == "misc":
+                misc_dict.setdefault(splitted_path[2], [])
+                misc_dict[splitted_path[2]].append({docs_filename.split(".")[2] + ".readme": "ttp_templates/" + docs_filename})
+            
+        # process TTP templates files
+        elif filename.endswith(".txt"):
+            # load doc strings from template
+            doc_string = ""
+            filepath = os.path.join(dirpath, filename)
+            parser = ttp(template=filepath)
+            for template in parser._templates:
+                doc_string += "\n" + template.__doc__
+                
+            # list templates without docs
+            if doc_string.strip() == "":
+                print("Template has no docs: {}".format(filepath))
+                
+            # open template file content
+            with open(filepath) as tf:
+                template_content = tf.read()
+                
+            # form template doc page content using template
+            splitted_path = dirpath.split(os.sep)
+            doc_string = page_template.format(
+                path="/".join(splitted_path[1:]) + "/" + filename, 
+                doc=doc_string if doc_string.strip() else "No `<doc>` tags found",
+                template_content=template_content.replace("`", "'")
+            )
+            docs_filename = ".".join(splitted_path[1:]) + "." + filename.replace(".txt", ".md")
+            
+            # save md file
+            with open(os.path.join("docs", "ttp_templates", docs_filename), "w") as f:
+                f.write(doc_string)
+                    
+            # form nav section of mkdocs.yaml
+            if splitted_path[1] == "misc":
+                misc_dict.setdefault(splitted_path[2], [])
+                misc_dict[splitted_path[2]].append({".".join(docs_filename.split(".")[2:-1]): "ttp_templates/" + docs_filename})
+            elif splitted_path[1] == "platform":
+                platform.append({".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename})
+            elif splitted_path[1] == "yang":
+                yang.append({".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename})
+        else:
             continue
-            
-        # load doc strings from template
-        doc_string = ""
-        filepath = os.path.join(dirpath, filename)
-        parser = ttp(template=filepath)
-        for template in parser._templates:
-            doc_string += "\n" + template.__doc__
-            
-        # list templates without docs
-        if doc_string.strip() == "":
-            print("Template has no docs: {}".format(filepath))
-            
-        # open template file content
-        with open(filepath) as tf:
-            template_content = tf.read()
-        
-        # save doc string to .md files
-        splitted_path = dirpath.split(os.sep)
-        # form template doc page content using template
-        doc_string = page_template.format(
-            path="/".join(splitted_path[1:]) + "/" + filename, 
-            doc=doc_string if doc_string.strip() else "No `<doc>` tags found",
-            template_content=template_content.replace("`", "'")
-        )
-        docs_filename = ".".join(splitted_path[1:]) + "." + filename.replace(".txt", ".md")
-        with open(os.path.join("docs", "ttp_templates", docs_filename), "w") as f:
-            f.write(doc_string)
-        
-        # form nav section of mkdocs.yaml
-        if splitted_path[1] == "misc":
-            misc_dict.setdefault(splitted_path[2], [])
-            misc_dict[splitted_path[2]].append({".".join(docs_filename.split(".")[2:-1]): "ttp_templates/" + docs_filename})
-        elif splitted_path[1] == "platform":
-            platform.append({".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename})
-        elif splitted_path[1] == "yang":
-            yang.append({".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename})
         
         templates_count += 1
         

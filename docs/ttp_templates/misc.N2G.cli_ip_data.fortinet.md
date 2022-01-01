@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_ip_data/fortinet.txt
+```
+
+---
+
+
+
+Template to parse Fortinet fortigate firewalls interfaces configuration and ARP cache.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="fortinet" results="per_template">
 
 <doc>
@@ -30,3 +47,5 @@ config system interface {{ _start_ }}
 </group>
 
 </template>
+```
+</details>

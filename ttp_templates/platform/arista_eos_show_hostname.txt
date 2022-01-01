@@ -1,2 +1,8 @@
+<doc>
+Template to parse Arista EOS "show hostname" command output
+</doc>
+
+<group>
 Hostname: {{ hostname }}
 FQDN:     {{ fqdn }}
+</group>

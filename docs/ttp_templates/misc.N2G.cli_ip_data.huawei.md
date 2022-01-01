@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_ip_data/huawei.txt
+```
+
+---
+
+
+
+Template to parse Huawei interfaces configuration and ARP cache.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="huawei" results="per_template">
 
 <doc>
@@ -31,3 +48,5 @@ interface {{ interface | resuball("IfsNormalize") }}
 </group>
 
 </template>
+```
+</details>

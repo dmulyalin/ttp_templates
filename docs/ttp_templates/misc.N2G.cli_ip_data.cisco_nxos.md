@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_ip_data/cisco_nxos.txt
+```
+
+---
+
+
+
+Template to parse Cisco NXOS interfaces configuration and ARP cache.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="cisco_nxos" results="per_template">
 
 <doc>
@@ -37,3 +54,5 @@ interface {{ interface | resuball("IfsNormalize") }}
 </group>
 
 </template>
+```
+</details>

@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_l2_data/cisco_nxos.txt
+```
+
+---
+
+
+
+This template designed to parse Cisco NXOS configuration and CDP and LLDP neighbors.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="cisco_nxos" results="per_template">
 
 <doc>
@@ -88,3 +105,5 @@ Physical Location: {{ data.peer_location | ORPHRASE }}
 {{ source | set("local_hostname") }}
 </group>
 </template>
+```
+</details>

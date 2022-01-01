@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_l2_data/cisco_ios.txt
+```
+
+---
+
+
+
+This template designed to parse Cisco IOS configuration and CDP and LLDP neighbors.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="cisco_ios" results="per_template">
 
 <doc>
@@ -70,3 +87,5 @@ Interface: {{ src_label | resuball(IfsNormalize) }},  Port ID (outgoing port): {
 {{ source | set("local_hostname") }}
 </group>
 </template>
+```
+</details>

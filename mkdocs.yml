@@ -10,14 +10,24 @@ nav:
 - Templates:
   - Misc:
     - N2G:
-      - cdp_lldp.Cisco_IOS: ttp_templates/misc.N2G.cdp_lldp.Cisco_IOS.md
-      - cdp_lldp.Cisco_IOSXR: ttp_templates/misc.N2G.cdp_lldp.Cisco_IOSXR.md
-      - cdp_lldp.Cisco_NXOS: ttp_templates/misc.N2G.cdp_lldp.Cisco_NXOS.md
-      - cdp_lldp.Huawei: ttp_templates/misc.N2G.cdp_lldp.Huawei.md
-      - isis_lsdb.Cisco_IOSXR: ttp_templates/misc.N2G.isis_lsdb.Cisco_IOSXR.md
-      - ospf_lsdb.Cisco_IOS: ttp_templates/misc.N2G.ospf_lsdb.Cisco_IOS.md
-      - ospf_lsdb.Cisco_IOSXR: ttp_templates/misc.N2G.ospf_lsdb.Cisco_IOSXR.md
-      - ospf_lsdb.Huawei: ttp_templates/misc.N2G.ospf_lsdb.Huawei.md
+      - cli_ip_data.a10: ttp_templates/misc.N2G.cli_ip_data.a10.md
+      - cli_ip_data.cisco_ios: ttp_templates/misc.N2G.cli_ip_data.cisco_ios.md
+      - cli_ip_data.cisco_nxos: ttp_templates/misc.N2G.cli_ip_data.cisco_nxos.md
+      - cli_ip_data.cisco_xr: ttp_templates/misc.N2G.cli_ip_data.cisco_xr.md
+      - cli_ip_data.fortinet: ttp_templates/misc.N2G.cli_ip_data.fortinet.md
+      - cli_ip_data.huawei: ttp_templates/misc.N2G.cli_ip_data.huawei.md
+      - cli_ip_data.readme: ttp_templates/misc.N2G.cli_ip_data.readme.md
+      - cli_isis_data.cisco_xr: ttp_templates/misc.N2G.cli_isis_data.cisco_xr.md
+      - cli_isis_data.readme: ttp_templates/misc.N2G.cli_isis_data.readme.md
+      - cli_l2_data.cisco_ios: ttp_templates/misc.N2G.cli_l2_data.cisco_ios.md
+      - cli_l2_data.cisco_nxos: ttp_templates/misc.N2G.cli_l2_data.cisco_nxos.md
+      - cli_l2_data.cisco_xr: ttp_templates/misc.N2G.cli_l2_data.cisco_xr.md
+      - cli_l2_data.huawei: ttp_templates/misc.N2G.cli_l2_data.huawei.md
+      - cli_l2_data.readme: ttp_templates/misc.N2G.cli_l2_data.readme.md
+      - cli_ospf_data.cisco_ios: ttp_templates/misc.N2G.cli_ospf_data.cisco_ios.md
+      - cli_ospf_data.cisco_xr: ttp_templates/misc.N2G.cli_ospf_data.cisco_xr.md
+      - cli_ospf_data.huawei: ttp_templates/misc.N2G.cli_ospf_data.huawei.md
+      - cli_ospf_data.readme: ttp_templates/misc.N2G.cli_ospf_data.readme.md
     - Netmiko:
       - cisco.ios.arp: ttp_templates/misc.Netmiko.cisco.ios.arp.md
       - cisco.ios.cfg.bgp: ttp_templates/misc.Netmiko.cisco.ios.cfg.bgp.md
@@ -32,6 +42,7 @@ nav:
     - vars:
       - short_interface_names: ttp_templates/misc.vars.short_interface_names.md
   - Platform:
+    - arista_eos_show_hostname: ttp_templates/platform.arista_eos_show_hostname.md
     - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md
     - cisco_ios_show_ip_ospf_database_external: ttp_templates/platform.cisco_ios_show_ip_ospf_database_external.md
     - cisco_ios_show_ip_ospf_database_router: ttp_templates/platform.cisco_ios_show_ip_ospf_database_router.md

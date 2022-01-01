@@ -1,18 +1,13 @@
 Reference path:
 ```
-ttp://misc/N2G/ospf_lsdb/Huawei.txt
+ttp://misc/N2G/cli_ospf_data/huawei.txt
 ```
 
 ---
 
 
 
-This template designed for use with N2G library to produce network diagrams based on OSPF 
-link state database of Huawei devices. 
-
-Caveats:
-
- - need `ttp>=0.8.0` for extend to work
+Template to parse Huawei devices OSPF database content.
 
 
 This template initially designed for use with N2G library to produce network 
@@ -68,13 +63,17 @@ Produces this structure for each input datum/device output:
 <details><summary>Template Content</summary>
 ```
 <doc>
-This template designed for use with N2G library to produce network diagrams based on OSPF 
-link state database of Huawei devices. 
-
-Caveats:
-
- - need 'ttp>=0.8.0' for extend to work
+Template to parse Huawei devices OSPF database content.
 </doc>
+
+<input load="python">
+# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
+commands = [
+    "display ospf lsdb router",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+</input>
 
 <extend template="ttp://platform/huawei_display_ospf_lsdb_router.txt"/>
 ```

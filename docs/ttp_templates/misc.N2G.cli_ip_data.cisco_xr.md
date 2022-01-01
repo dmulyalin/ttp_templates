@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_ip_data/cisco_xr.txt
+```
+
+---
+
+
+
+Template to parse Cisco IOSXR interfaces configuration and ARP cache.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="cisco_xr" results="per_template">
 
 <doc>
@@ -28,3 +45,5 @@ interface {{ interface | resuball("IfsNormalize") }}
 </group>
 
 </template>
+```
+</details>

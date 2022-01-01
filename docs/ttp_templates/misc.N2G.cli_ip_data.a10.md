@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_ip_data/a10.txt
+```
+
+---
+
+
+
+Template to parse A10 devices interfaces configuration and IP ARP cache.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="a10" results="per_template">
 
 <doc>
@@ -21,3 +38,5 @@ interface {{ interface | PHRASE | resuball("IfsNormalize") }}
 </group>
 
 </template>
+```
+</details>

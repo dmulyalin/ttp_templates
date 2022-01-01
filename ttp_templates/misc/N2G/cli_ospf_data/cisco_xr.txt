@@ -1,10 +1,6 @@
 <doc>
-This template designed for use with N2G library to produce network diagrams based on OSPF 
-link state database of Cisco IOS-XR devices. 
+Template to parse Cisco IOSXR OSPF database content.
 
-Caveats:
-
- - need `ttp>=0.8.0` for extend to work
 </doc>
 
 <input load="python">

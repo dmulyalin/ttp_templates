@@ -1,3 +1,21 @@
+Reference path:
+```
+ttp://misc/N2G/cli_l2_data/cisco_xr.txt
+```
+
+---
+
+
+
+This template designed to parse Cisco IOSXR configuration and CDP and LLDP neighbors.
+
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="cisco_xr" results="per_template">
 
 <doc>
@@ -67,3 +85,5 @@ Port ID (outgoing port): {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
 {{ source | set("local_hostname") }}
 </group>
 </template>
+```
+</details>

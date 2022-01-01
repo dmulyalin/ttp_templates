@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_ip_data/cisco_ios.txt
+```
+
+---
+
+
+
+Template to parse Cisco IOS interfaces configuration and ARP cache.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="cisco_ios" results="per_template">
 
 <doc>
@@ -31,3 +48,5 @@ Internet  {{ ip | IP }}     {{ age }}   {{ mac | MAC | mac_eui }}  {{ type }}   
 </group>
 
 </template>
+```
+</details>

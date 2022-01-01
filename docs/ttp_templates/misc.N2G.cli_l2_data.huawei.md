@@ -1,3 +1,20 @@
+Reference path:
+```
+ttp://misc/N2G/cli_l2_data/huawei.txt
+```
+
+---
+
+
+
+This template designed to parse Huawei configuration and LLDP neighbors.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
 <template name="huawei" results="per_template">
 
 <doc>
@@ -77,3 +94,5 @@ Management address                 :{{ target.top_label }}
 {{ source | set("local_hostname") }}
 </group>
 </template>
+```
+</details>
