@@ -14,17 +14,33 @@ Describe details of the issue you facing.
 
 Provide sample data to reproduce the issue.
 
+```
+Sample data here
+```
+
 # Sample Template
 
 TTP Template content used to parse sample data.
+
+```
+Sample template here
+```
 
 # Current Output
 
 Provide current output produced by TTP.
 
+```
+Current output here
+```
+
 # Expected Output
 
 Provide details on expected/desired output produced by TTP.
+
+```
+Expected/desirable output here
+```
 
 # Version Report
 
