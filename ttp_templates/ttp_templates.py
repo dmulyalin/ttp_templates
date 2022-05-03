@@ -56,11 +56,13 @@ def get_template(
     print("!!!!!!!!!!")
     print("path: ", path)
     print("template_dir: ", template_dir)
+    print("os.path.isdir(template_dir): ", os.path.isdir(template_dir))
+    print('template_dir.count("ttp_templates"): ', template_dir.count("ttp_templates"))
     
     # Ubuntu returns path that looks like this when calling run_ttp for Netmiko:
-    # '/home/runner/work/ttp_templates/ttp_templates'
+    # '/home/runner/work/ttp_templates/ttp_templates/ttp_templates'
     # below code is to ensure we go two levels up
-    if not os.path.isdir(template_dir) and template_dir.count("ttp_templates") == 2:
+    if not os.path.isdir(template_dir) and template_dir.count("ttp_templates") == 3:
         template_dir = os.path.dirname(os.path.dirname(template_dir))
         
     template_filename = os.path.join(template_dir, path)
