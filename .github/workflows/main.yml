@@ -35,7 +35,7 @@ jobs:
           python -m pip install --upgrade pip setuptools
           pip install -r ../requirements-dev.txt
       - name: Run pytest
-        run: pytest -vv
+        run: pytest -vv -s
         
   run_tests_windows:
     name: Testing on Python ${{ matrix.python-version }} (${{ matrix.platform}})
