@@ -73,6 +73,7 @@ for dirpath, dirnames, filenames in os.walk(top="ttp_templates"):
             # load doc strings from template
             doc_string = ""
             filepath = os.path.join(dirpath, filename)
+            print(filepath)
             parser = ttp(template=filepath)
             for template in parser._templates:
                 doc_string += "\n" + template.__doc__

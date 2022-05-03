@@ -1,7 +1,7 @@
 
 ---
 
-**Templates count: 46**
+**Templates count: 50**
 
 ---
 
@@ -202,59 +202,6 @@ This repository contains three collections of templates corresponding to folder 
 **Misc collection templates files naming rule**
 
 `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
-
-## API reference
-
-`ttp_templates.parse_output`: Function to load template text and parse data provided
-
-**Attributes**
-
-* data (str) - data to parse
-* path (str) - OS path to template to load
-* platform (str) - name of the platform to load template for
-* command (str) - command to load template for
-* yang (str) - name of YANG module to load template for
-* misc (str) - OS path to template within repository misc folder    
-* structure (str) - results structure list, dictionary or flat_list
-* template_vars (dict) - variables to load in template object
-
-**Valid combinations of template location**
-
-``path`` attribute is always more preferred
-
-* ``path="./misc/foo/bar.txt"`` 
-* ``platfrom="cisco_ios", command="show version"``
-* ``yang="ietf-interfaces", platform="cisco_ios"``
-* ``misc="foo_folder/bar_template.txt"`` 
-
----
-
-`ttp_templates.get_template`: Function to locate template file and return it's content
-
-**Attributes**
-
-* path (str) - OS path to template to load
-* platform (str) - name of the platform to load template for
-* command (str) - command to load template for
-* yang (str) - name of YANG module to load template for
-* misc (str) - OS path to template within repository misc folder    
-
-**Valid combinations of template location**
-
-``path`` attribute is always more preferred
-
-* ``path="./misc/foo/bar.txt"`` 
-* ``platfrom="cisco_ios", command="show version"``
-* ``yang="ietf-interfaces", platform="cisco_ios"``
-* ``misc="foo_folder/bar_template.txt"`` 
-
-	
-## Contributions
-
-Feel free to submit an issue, report a bug or ask a question, feature requests are welcomed.
-
-It is always good idea to document as much as you can and give context on the problem you was 
-trying to solve. TTP templates have ``<doc>`` tag exactly for that.
 
 ## Additional Template resources
 

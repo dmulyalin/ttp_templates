@@ -10,7 +10,7 @@ ttp://platform/cisco_xr_show_ospf_database_summary.txt
 This template initially designed for use with N2G library to produce network 
 diagrams based on OSPF link state database of Cisco IOS-XR devices.
 
-This template parses external-lsa only out of output produced by 
+This template parses external-lsa only out of output produced by
 "show ospf database external" command.
 
 Caveats:
@@ -58,7 +58,7 @@ Produces this structure for each input datum/device output:
 This template initially designed for use with N2G library to produce network 
 diagrams based on OSPF link state database of Cisco IOS-XR devices.
 
-This template parses external-lsa only out of output produced by 
+This template parses external-lsa only out of output produced by
 "show ospf database external" command.
 
 Caveats:

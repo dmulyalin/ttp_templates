@@ -1,0 +1,9 @@
+<doc>
+Template to parse "display current-configuration interface" output for Huawei devices.
+</doc>
+
+<input>
+commands = ["display current-configuration interface"]
+</input>
+
+<extend template="ttp://platform/huawei_display_current_configuration_interface.txt"/>

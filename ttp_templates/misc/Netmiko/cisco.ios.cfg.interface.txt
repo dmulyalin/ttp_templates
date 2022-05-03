@@ -1,0 +1,9 @@
+<doc>
+Template to parse "show running-config | section interface" output for Cisco IOS.
+</doc>
+
+<input>
+commands = ["show running-config | section interface"]
+</input>
+
+<extend template="ttp://platform/cisco_ios_show_running_config_pipe_section_interface.txt"/>

@@ -1,6 +1,6 @@
 import os
 from ttp import ttp
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Union
 
 
 def get_template( 
@@ -9,17 +9,9 @@ def get_template(
     command: Optional[str] = None,
     yang: Optional[str] = None,
     misc: Optional[str] = None,
-):
+) -> str:
     """
     Function to locate template file and return it's content
-
-    **Attributes**
-
-    * path (str) - OS path to template to load
-    * platform (str) - name of the platform to load template for
-    * command (str) - command to load template for
-    * yang (str) - name of YANG module to load template for
-    * misc (str) - OS path to template within repository misc folder
 
     **Valid combinations of template location**
 
@@ -29,6 +21,12 @@ def get_template(
     * ``platfrom="cisco_ios", command="show version"``
     * ``yang="ietf-interfaces", platform="cisco_ios"``
     * ``misc="foo_folder/bar_template.txt"``
+    
+    :param path: OS path to template to load
+    :param platform: name of the platform to load template for
+    :param command: command to load template for
+    :param yang: name of YANG module to load template for
+    :param misc: OS path to template within repository misc folder
     """
     # form path to template file
     if path:
@@ -69,21 +67,10 @@ def parse_output(
     yang: Optional[str] = None,
     misc: Optional[str] = None,
     structure: Optional[str] = "list",
-    template_vars: Optional[Dict] = {},
-):
+    template_vars: Optional[Dict] = None,
+) -> Union[Dict, List]:
     """
     Function to load template text and parse data provided
-
-    **Attributes**
-
-    * data (str) - data to parse
-    * path (str) - OS path to template to load
-    * platform (str) - name of the platform to load template for
-    * command (str) - command to load template for
-    * yang (str) - name of YANG module to load template for
-    * misc (str) - OS path to template within repository misc folder
-    * structure (str) - results structure list, dictionary or flat_list
-    * template_vars (dict) - variables to load in template object
 
     **Valid combinations of template location**
 
@@ -93,7 +80,17 @@ def parse_output(
     * ``platfrom="cisco_ios", command="show version"``
     * ``yang="ietf-interfaces", platform="cisco_ios"``
     * ``misc="foo_folder/bar_template.txt"``
+    
+    :param data: data to parse
+    :param path: OS path to template to load
+    :param platform: name of the platform to load template for
+    :param command: command to load template for
+    :param yang: name of YANG module to load template for
+    :param misc: OS path to template within repository misc folder
+    :param structure: results structure list, dictionary or flat_list
+    :param template_vars: variables to load in template object
     """
+    template_vars = template_vars or {}
     # get template text
     template = get_template(
         platform=platform, command=command, path=path, yang=yang, misc=misc

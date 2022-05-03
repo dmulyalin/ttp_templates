@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform/cisco_xr_show_run_interface.txt
+ttp://platform/cisco_xr_show_running_config_interface.txt
 ```
 
 ---
