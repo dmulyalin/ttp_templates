@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/writing_docs/">
+        <link rel="canonical" href="https://ttp_templates.github.io/contribute/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-7.2.2">
     
     
       
-        <title>Writing docs - TTP Templates Collection</title>
+        <title>Contribute - TTP Templates Collection</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#writing-docs-for-ttp-templates" class="md-skip">
+        <a href="#contribute" class="md-skip">
           Skip to content
         </a>
       
@@ -103,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Writing docs
+              Contribute
             
           </span>
         </div>
@@ -226,21 +226,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../contribute/" class="md-nav__link">
-        Contribute
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -253,12 +238,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Writing docs
+          Contribute
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Writing docs
+        Contribute
       </a>
       
         
@@ -276,8 +261,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#generating-documentation" class="md-nav__link">
-    Generating Documentation
+  <a href="#contribute-templates-by-opening-github-issue" class="md-nav__link">
+    Contribute Templates by Opening GitHub Issue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute-templates-by-pull-request" class="md-nav__link">
+    Contribute Templates by Pull Request
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-ttp-templates-tests" class="md-nav__link">
+    Writing TTP Templates Tests
   </a>
   
 </li>
@@ -286,6 +285,21 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../writing_docs/" class="md-nav__link">
+        Writing docs
+      </a>
     </li>
   
 
@@ -1150,8 +1164,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#generating-documentation" class="md-nav__link">
-    Generating Documentation
+  <a href="#contribute-templates-by-opening-github-issue" class="md-nav__link">
+    Contribute Templates by Opening GitHub Issue
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contribute-templates-by-pull-request" class="md-nav__link">
+    Contribute Templates by Pull Request
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-ttp-templates-tests" class="md-nav__link">
+    Writing TTP Templates Tests
   </a>
   
 </li>
@@ -1168,32 +1196,121 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/writing_docs.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/contribute.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="writing-docs-for-ttp-templates">Writing docs for TTP Templates</h1>
-<p>TTP Templates have <code>&lt;doc&gt;</code> tag that can be used to embed documentation strings into the templates.</p>
-<p>Templates <code>&lt;doc&gt;</code> tags content is just a text, but TTP Templates documentation assumes markdown
-syntaxes used to populate docs.</p>
-<p>TTP Templates use <a href="https://www.mkdocs.org">mkdocs</a> with <a href="https://squidfunk.github.io/mkdocs-material/">material theme</a> 
-to produce documentation. </p>
-<p>TTP Templates Collection comes with <code>generate_docs.py</code> script, this script iterates over all
-folders within <code>ttp_templates</code> repository, loads templates and extracts <code>&lt;doc&gt;</code> tags content
-to form <code>.md</code> files, saves <code>.md</code> files in <code>docs/ttp_templates</code> folder and construct navigation tree 
-within <code>mkdocs.yml</code> file.</p>
-<h2 id="generating-documentation">Generating Documentation</h2>
-<p>First, need to write docs within the templates.</p>
-<p>Next, generate <code>.md</code> doc files out of TTP templates:</p>
-<div class="highlight"><pre><span></span><code>python3 generate_docs.py
-</code></pre></div>
-<p>Finally, use <code>mkdocs</code> to serve, build or deploy docs using commands:</p>
+                <h1 id="contribute">Contribute</h1>
+<p>There are several things you can do to help TTP Templates project.</p>
 <ul>
-<li><code>mkdocs serve</code> - serve docs locally to view docs content via browser</li>
-<li><code>mkdocs build</code> - build docs</li>
-<li><code>mkdocs gh-deploy</code> - deploy docs to GitHub</li>
+<li>Spread the word about TTP and TTP Templates</li>
+<li>Suggest great features and ideas</li>
+<li>Report bugs</li>
+<li>Fix typos in code, templates and documentation</li>
+<li>Write documentation</li>
+<li>Contribute new templates</li>
+<li>Improve existing templates</li>
 </ul>
+<h2 id="contribute-templates-by-opening-github-issue">Contribute Templates by Opening GitHub Issue</h2>
+<p>Open <a href="https://github.com/dmulyalin/ttp_templates/issues">GitHub issue</a> using 
+<code>Contribute Template</code> type and fill in required details.</p>
+<h2 id="contribute-templates-by-pull-request">Contribute Templates by Pull Request</h2>
+<p>Before you start, make sure to think of for each template:</p>
+<ul>
+<li>Template Category and Template Name</li>
+<li>Template Content</li>
+<li>Sample Data</li>
+<li>Expected Output</li>
+</ul>
+<p><em>Sample Data</em> and <em>Expected Output</em> used to compose template test.</p>
+<p><em>Template Content</em> placed in one of <em>Template Category</em> folder below using <em>Template Name</em> as a filename:</p>
+<ul>
+<li><code>platform</code> category - mimics <a href="https://github.com/networktocode/ntc-templates">ntc-templates</a> 
+  API and follows same naming rule - <code>{{ vendor_os }}_{{ command_with_underscores }}.txt</code> - lower case only</li>
+<li><code>yang</code> category - contains templates capable of producing YANG compatible structures out of text data,
+  and uses naming rule - <code>{{ YANG module name }}_{{ platform_name }}.txt</code> - lower case only</li>
+<li><code>misc</code> category - miscellaneous templates for various use cases organized in folders, naming
+  rule is - <code>{{ usecase folder }}/{{ template name }}.txt</code> - upper or lower case</li>
+</ul>
+<p>To prepare your working environment might need to install required packages using requirements 
+files located in TTP Templates repository e.g.:</p>
+<div class="highlight"><pre><span></span><code>python3 -m pip install -r requirements-dev.txt
+python3 -m pip install -r requirements-docs.txt
+</code></pre></div>
+<p>To add new template or multiple templates follow these steps:</p>
+<ol>
+<li>Fork <a href="https://github.com/dmulyalin/ttp_templates">TTP Templates</a> repository to your GitHub account</li>
+<li>Git clone forked TTP Templates repository to your local machine</li>
+<li>Add new TTP template file to <code>ttp_templates/platform/</code>, <code>ttp_templates/misc/&lt;usecase&gt;/</code> or 
+   <code>ttp_templates/yang/</code> folder</li>
+<li>Add <a href="https://pypi.org/project/pytest/">PyTest</a> tests under <code>test</code> folder inside one of the existing 
+   files or create new file, might be good to look at existing tests for ideas on how to test the template</li>
+<li>Generate documentation using <a href="../writing_docs/">Writing Docs guide</a>, omitting <code>gh-deploy</code> portion</li>
+<li>Commit changes and push them to GitHub</li>
+<li>Raise GitHub pull request to merge your changes into TTP Templates repository</li>
+</ol>
+<h2 id="writing-ttp-templates-tests">Writing TTP Templates Tests</h2>
+<p>TTP templates use <a href="https://pypi.org/project/pytest/">PyTest</a> for testing.</p>
+<p>Composing tests is fairly straightforward once you figured out TTP template content, sample data
+and expected output. </p>
+<p>Assuming template category is <code>platform</code>, platform name <code>cisco_ios</code>, template filename is 
+<code>ttp_templates/platform/cisco_ios_show_running_config_pipe_section_interface.txt</code> and template 
+content is:</p>
+<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+Author: Author Name
+Contact: Contact Details
+Version: 0.1.0
+
+Template to produce list of dictionaries with interface configuration details using 
+Cisco IOSXE &quot;show running-config | section interface&quot; command output.
+
+The exact command is &quot;show running-config&quot; and not &quot;show running-configuration&quot;,
+as it is changed in later versions of IOSXE.
+&lt;/doc&gt;
+
+&lt;group&gt;
+interface {{ interface }}
+ description {{ description | ORPHRASE }}
+ ip address {{ ip }} {{ mask }}
+! {{ _end_ }}
+&lt;/group&gt;
+</code></pre></div>
+<p>test to validate above template might look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">ttp_templates</span> <span class="kn">import</span> <span class="n">get_template</span>
+<span class="kn">from</span> <span class="nn">ttp</span> <span class="kn">import</span> <span class="n">ttp</span>
+
+<span class="k">def</span> <span class="nf">test_cisco_ios_show_run_pipe_section_interface</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">interface Loopback0</span>
+<span class="s2"> description RID loopback</span>
+<span class="s2"> ip address 192.168.31.44 255.255.255.255</span>
+<span class="s2">!</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="n">expected_output</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;RID loopback&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;interface&quot;</span><span class="p">:</span> <span class="s2">&quot;Loopback0&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;192.168.31.44&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;mask&quot;</span><span class="p">:</span> <span class="s2">&quot;255.255.255.255&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">]</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">get_template</span><span class="p">(</span><span class="n">platform</span><span class="o">=</span><span class="s2">&quot;cisco_ios&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;show running-config | section interface&quot;</span><span class="p">)</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">ttp</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">res</span> <span class="o">==</span> <span class="n">expected_output</span>
+</code></pre></div>
+<p>That test can be placed inside <code>test_platform_cisco_ios.py</code> file and run using command:</p>
+<div class="highlight"><pre><span></span><code>pytest -vv test_platform_cisco_ios::test_cisco_ios_show_run_pipe_section_interface
+</code></pre></div>
                 
               
               
@@ -1213,7 +1330,7 @@ within <code>mkdocs.yml</code> file.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../contribute/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Contribute" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1222,20 +1339,20 @@ within <code>mkdocs.yml</code> file.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Contribute
+              Overview
             </div>
           </div>
         </a>
       
       
         
-        <a href="../api_reference/" class="md-footer__link md-footer__link--next" aria-label="Next: API Reference" rel="next">
+        <a href="../writing_docs/" class="md-footer__link md-footer__link--next" aria-label="Next: Writing docs" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              API Reference
+              Writing docs
             </div>
           </div>
           <div class="md-footer__button md-icon">

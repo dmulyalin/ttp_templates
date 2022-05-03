@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/platform.cisco_xr_show_run_interface/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.Netmiko.cisco.ios.cfg.interface/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco_xr_show_run_interface - TTP Templates Collection</title>
+        <title>cisco.ios.cfg.interface - TTP Templates Collection</title>
       
     
     
@@ -45,6 +45,8 @@
       
     
     
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
     
       
@@ -96,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco_xr_show_run_interface
+              cisco.ios.cfg.interface
             
           </span>
         </div>
@@ -142,7 +144,7 @@
     
       <div class="md-header__source">
         
-<a href="https://github.com/dmulyalin/ttp_templates/" title="Go to repository" class="md-source" data-md-component="source">
+<a href="https://github.com/dmulyalin/ttp_templates" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
@@ -185,7 +187,7 @@
   
     <div class="md-nav__source">
       
-<a href="https://github.com/dmulyalin/ttp_templates/" title="Go to repository" class="md-source" data-md-component="source">
+<a href="https://github.com/dmulyalin/ttp_templates" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
@@ -221,8 +223,38 @@
   
   
     <li class="md-nav__item">
+      <a href="../../contribute/" class="md-nav__link">
+        Contribute
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../writing_docs/" class="md-nav__link">
         Writing docs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api_reference/" class="md-nav__link">
+        API Reference
       </a>
     </li>
   
@@ -241,14 +273,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
       
-      <label class="md-nav__link" for="__nav_3">
+      <label class="md-nav__link" for="__nav_5">
         Templates
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Templates" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
+        <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Templates
         </label>
@@ -257,19 +289,21 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
       
-      <label class="md-nav__link" for="__nav_3_1">
+      <label class="md-nav__link" for="__nav_5_1">
         Misc
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Misc" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_1">
+        <label class="md-nav__title" for="__nav_5_1">
           <span class="md-nav__icon md-icon"></span>
           Misc
         </label>
@@ -283,14 +317,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_1" type="checkbox" id="__nav_3_1_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
       
-      <label class="md-nav__link" for="__nav_3_1_1">
+      <label class="md-nav__link" for="__nav_5_1_1">
         N2G
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="N2G" data-md-level="3">
-        <label class="md-nav__title" for="__nav_3_1_1">
+        <label class="md-nav__title" for="__nav_5_1_1">
           <span class="md-nav__icon md-icon"></span>
           N2G
         </label>
@@ -521,19 +555,21 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_2" type="checkbox" id="__nav_3_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" checked>
       
-      <label class="md-nav__link" for="__nav_3_1_2">
+      <label class="md-nav__link" for="__nav_5_1_2">
         Netmiko
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
-        <label class="md-nav__title" for="__nav_3_1_2">
+        <label class="md-nav__title" for="__nav_5_1_2">
           <span class="md-nav__icon md-icon"></span>
           Netmiko
         </label>
@@ -559,6 +595,26 @@
       <a href="../misc.Netmiko.cisco.ios.cfg.bgp/" class="md-nav__link">
         cisco.ios.cfg.bgp
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        cisco.ios.cfg.interface
+      </a>
+      
     </li>
   
 
@@ -616,6 +672,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../misc.Netmiko.huawei.vrp.cfg.interface/" class="md-nav__link">
+        huawei.vrp.cfg.interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../misc.Netmiko.huawei.vrp.cfg.ip/" class="md-nav__link">
         huawei.vrp.cfg.ip
       </a>
@@ -637,14 +705,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_3" type="checkbox" id="__nav_3_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
       
-      <label class="md-nav__link" for="__nav_3_1_3">
+      <label class="md-nav__link" for="__nav_5_1_3">
         ttp_templates_tests
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
-        <label class="md-nav__title" for="__nav_3_1_3">
+        <label class="md-nav__title" for="__nav_5_1_3">
           <span class="md-nav__icon md-icon"></span>
           ttp_templates_tests
         </label>
@@ -688,14 +756,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_4" type="checkbox" id="__nav_3_1_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
       
-      <label class="md-nav__link" for="__nav_3_1_4">
+      <label class="md-nav__link" for="__nav_5_1_4">
         vars
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="vars" data-md-level="3">
-        <label class="md-nav__title" for="__nav_3_1_4">
+        <label class="md-nav__title" for="__nav_5_1_4">
           <span class="md-nav__icon md-icon"></span>
           vars
         </label>
@@ -728,21 +796,19 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
       
-      <label class="md-nav__link" for="__nav_3_2">
+      <label class="md-nav__link" for="__nav_5_2">
         Platform
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Platform" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_2">
+        <label class="md-nav__title" for="__nav_5_2">
           <span class="md-nav__icon md-icon"></span>
           Platform
         </label>
@@ -825,6 +891,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_running_config_pipe_section_interface/" class="md-nav__link">
+        cisco_ios_show_running_config_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         cisco_xr_show_arp_vrf_all
       </a>
@@ -883,19 +961,23 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        cisco_xr_show_run_interface
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_running_config_interface/" class="md-nav__link">
+        cisco_xr_show_running_config_interface
       </a>
-      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.huawei_display_current_configuration_interface/" class="md-nav__link">
+        huawei_display_current_configuration_interface
+      </a>
     </li>
   
 
@@ -938,14 +1020,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
       
-      <label class="md-nav__link" for="__nav_3_3">
+      <label class="md-nav__link" for="__nav_5_3">
         YANG
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="YANG" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_3">
+        <label class="md-nav__title" for="__nav_5_3">
           <span class="md-nav__icon md-icon"></span>
           YANG
         </label>
@@ -1023,46 +1105,34 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.cisco_xr_show_run_interface.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.Netmiko.cisco.ios.cfg.interface.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco_xr_show_run_interface</h1>
+                  <h1>cisco.ios.cfg.interface</h1>
                 
-                <p>Reference path:</p>
-<pre><code>ttp://platform/cisco_xr_show_run_interface.txt
-</code></pre>
+                <p>Reference path:
+<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.ios.cfg.interface.txt
+</code></pre></div></p>
 <hr />
-<p>Template to produce list of dictionaries with interface 
-configuration details using Cisco IOS-XR "show run interface"
-command output.</p>
+<p>Template to parse "show running-config | section interface" output for Cisco IOS.</p>
+<p>Template to produce list of dictionaries with interface configuration details using 
+Cisco IOSXE "show running-config | section interface" command output.</p>
+<p>The exact command is "show running-config" and not "show running-configuration",
+as it is changed in later versions of IOSXE.</p>
 <hr />
 <details><summary>Template Content</summary>
-
-<pre><code>&lt;doc&gt;
-Template to produce list of dictionaries with interface 
-configuration details using Cisco IOS-XR &quot;show run interface&quot;
-command output.
+<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+Template to parse &quot;show running-config | section interface&quot; output for Cisco IOS.
 &lt;/doc&gt;
 
-&lt;group&gt;
-interface {{ interface | _start_ }}
-interface {{ interface | _start_ }} l2transport
- description {{ description | re(&quot;.*&quot;) }}
- mtu {{ mtu }}
- service-policy input {{ qos_policy_in }}
- service-policy output {{ qos_policy_out }}
- ipv4 address {{ ipv4 }} {{ mask_v4 }}
- ipv6 address {{ ipv6 }}/{{ mask_v6 }}
- encapsulation dot1q {{ dot1q }}
- vrf {{ vrf }}
- bundle id {{ lag_id }} mode {{ ignore }}
- shutdown {{ disabled | set(True) }}
-! {{ _end_ }}
-&lt;/group&gt;
-</code></pre>
+&lt;input&gt;
+commands = [&quot;show running-config | section interface&quot;]
+&lt;/input&gt;
 
+&lt;extend template=&quot;ttp://platform/cisco_ios_show_running_config_pipe_section_interface.txt&quot;/&gt;
+</code></pre></div>
 </details>
                 
               
@@ -1083,7 +1153,7 @@ interface {{ interface | _start_ }} l2transport
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../platform.cisco_xr_show_ospf_database_summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_xr_show_ospf_database_summary" rel="prev">
+        <a href="../misc.Netmiko.cisco.ios.cfg.bgp/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco.ios.cfg.bgp" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1092,20 +1162,20 @@ interface {{ interface | _start_ }} l2transport
               <span class="md-footer__direction">
                 Previous
               </span>
-              cisco_xr_show_ospf_database_summary
+              cisco.ios.cfg.bgp
             </div>
           </div>
         </a>
       
       
         
-        <a href="../platform.huawei_display_ospf_lsdb_router/" class="md-footer__link md-footer__link--next" aria-label="Next: huawei_display_ospf_lsdb_router" rel="next">
+        <a href="../misc.Netmiko.cisco.ios.cfg.ip/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco.ios.cfg.ip" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              huawei_display_ospf_lsdb_router
+              cisco.ios.cfg.ip
             </div>
           </div>
           <div class="md-footer__button md-icon">
@@ -1156,7 +1226,7 @@ interface {{ interface | _start_ }} l2transport
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.709b4209.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
