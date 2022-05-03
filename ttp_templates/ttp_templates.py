@@ -52,14 +52,7 @@ def get_template(
     else:
         return None
 
-    template_dir = os.path.abspath(os.path.dirname(__file__))
-
-    # Ubuntu returns path that looks like this when calling run_ttp for Netmiko:
-    # '/home/runner/work/ttp_templates/ttp_templates/ttp_templates'
-    # below code is to ensure we go two levels up and fix FileNotFoundError
-    if template_dir.count("/ttp_templates") == 3:
-        template_dir = os.path.dirname(os.path.dirname(template_dir))
-        
+    template_dir = os.path.abspath(os.path.dirname(__file__))        
     template_filename = os.path.join(template_dir, path)
 
     # open template file and return content
