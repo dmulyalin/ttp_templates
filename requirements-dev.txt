@@ -10,3 +10,4 @@ tabulate==0.*
 ttp_templates==0.*
 yangson==1.*
 ttp==0.*
+netmiko==3.*
