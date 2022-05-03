@@ -52,10 +52,13 @@ def get_template(
     else:
         return None
 
-    template_filename = os.path.join(os.path.dirname(__file__), path)
+    template_filename = os.path.join(
+        os.path.abspath(os.path.dirname(__file__)), 
+        path
+    )
 
     # open template file and return content
-    with open(template_filename, "r") as f:
+    with open(template_filename, mode="r", encoding="utf-8") as f:
         return f.read()
 
 
