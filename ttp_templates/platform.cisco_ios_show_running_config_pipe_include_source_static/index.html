@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.Netmiko.huawei.vrp.cfg.ip/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-7.2.2">
     
     
       
-        <title>huawei.vrp.cfg.ip - TTP Templates Collection</title>
+        <title>cisco_ios_show_running_config_pipe_include_source_static - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              huawei.vrp.cfg.ip
+              cisco_ios_show_running_config_pipe_include_source_static
             
           </span>
         </div>
@@ -289,14 +289,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
       
       <label class="md-nav__link" for="__nav_5_1">
         Misc
@@ -555,14 +553,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
       
       <label class="md-nav__link" for="__nav_5_1_2">
         Netmiko
@@ -686,19 +682,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.huawei.vrp.cfg.ip/" class="md-nav__link">
         huawei.vrp.cfg.ip
       </a>
-      
     </li>
   
 
@@ -808,12 +796,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
       
       <label class="md-nav__link" for="__nav_5_2">
         Platform
@@ -901,11 +891,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.cisco_ios_show_running_config_pipe_include_source_static/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         cisco_ios_show_running_config_pipe_include_source_static
       </a>
+      
     </li>
   
 
@@ -1129,162 +1127,234 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.Netmiko.huawei.vrp.cfg.ip.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>huawei.vrp.cfg.ip</h1>
+                  <h1>cisco_ios_show_running_config_pipe_include_source_static</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/huawei.vrp.cfg.ip.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/cisco_ios_show_running_config_pipe_include_source_static.txt
 </code></pre></div></p>
 <hr />
-<p>Template to parse "display current-configuration interface" output.
-This template produces one dictionary item per IP address configured 
-on device's interfaces including secondary and VRRP IP addresses. </p>
-<p>Output is a list of dictionaries. </p>
-<p>Sample data:
-<div class="highlight"><pre><span></span><code>Huawei-box-1-dis cur interface
-interface Eth-Trunk1.100
- vlan-type dot1q 100
- mtu 9600
- description Link description  here
- ip address 10.1.130.2 255.255.255.252
- ip binding vpn-instance VRF1
- vrrp6 vrid 1 virtual-ip 2001:db8::100
-#
-</code></pre></div></p>
-<p>Sample results, structure="flat_list":
+<p>GitHub Issue: https://github.com/dmulyalin/ttp_templates/issues/1</p>
+<p>Author: Denis Mulyalin in cooperation with abhi1693</p>
+<p>Template to parse Cisco IOS <code>show run | include source static</code> command output.</p>
+<p>Template's YANG model (not tested):</p>
+<div class="highlight"><pre><span></span><code>module nat {
+
+    yang-version 1.1;
+    namespace &quot;ttp://platform/cisco_ios_show_running_config_pipe_include_source_static.txt&quot;;
+    prefix nat;
+    revision &quot;2022-May-04&quot; { description &quot;Initial Revision&quot;; }
+    description &quot;Template to parse Cisco IOS static NAT configuration&quot;;
+
+    list static {
+        key inside_ip;
+        leaf inside_ip {
+            type string;
+        }
+        leaf location { 
+            type string;
+        }
+        leaf global_ip {
+            type string;
+        }
+        leaf interface {
+            type string;
+        }
+        leaf inside_port {
+            type uint32;
+        }
+        leaf global_port {
+            type uint32;
+        }
+        leaf vrf {
+            type string;
+        }
+    }
+}
+</code></pre></div>
+<p>Sample data:</p>
+<div class="highlight"><pre><span></span><code>ip nat inside source static 10.10.10.10 3.3.3.3 extendable
+ip nat inside source static tcp 192.168.1.10 443 3.3.4.4 443 vrf VRF1000 extendable
+ip nat inside source static 192.168.2.10 3.3.4.5 vrf VRF1002 extendable
+ip nat inside source static tcp 192.168.3.10 3389 3.3.5.6 13389 extendable
+ip nat inside source static 20.20.20.20 6.6.6.6 extendable
+ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/0 1443
+</code></pre></div>
+<p>Expected output:</p>
 <div class="highlight"><pre><span></span><code>[
     {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;Huawei-box-1&quot;,
-        &quot;interface&quot;: &quot;Eth-Trunk1.100&quot;,
-        &quot;ip&quot;: &quot;10.1.130.2&quot;,
-        &quot;mask&quot;: &quot;255.255.255.252&quot;,
-        &quot;vrf&quot;: &quot;VRF1&quot;
+        &quot;nat&quot;: {
+            &quot;static&quot;: [
+                {
+                    &quot;global_ip&quot;: &quot;3.3.3.3&quot;,
+                    &quot;inside_ip&quot;: &quot;10.10.10.10&quot;,
+                    &quot;location&quot;: &quot;inside&quot;
+                },
+                {
+                    &quot;global_ip&quot;: &quot;3.3.4.4&quot;,
+                    &quot;global_port&quot;: 443,
+                    &quot;inside_ip&quot;: &quot;192.168.1.10&quot;,
+                    &quot;inside_port&quot;: 443,
+                    &quot;location&quot;: &quot;inside&quot;,
+                    &quot;protocol&quot;: &quot;tcp&quot;,
+                    &quot;vrf&quot;: &quot;VRF1000&quot;
+                },
+                {
+                    &quot;global_ip&quot;: &quot;3.3.4.5&quot;,
+                    &quot;inside_ip&quot;: &quot;192.168.2.10&quot;,
+                    &quot;location&quot;: &quot;inside&quot;,
+                    &quot;vrf&quot;: &quot;VRF1002&quot;
+                },
+                {
+                    &quot;global_ip&quot;: &quot;3.3.5.6&quot;,
+                    &quot;global_port&quot;: 13389,
+                    &quot;inside_ip&quot;: &quot;192.168.3.10&quot;,
+                    &quot;inside_port&quot;: 3389,
+                    &quot;location&quot;: &quot;inside&quot;,
+                    &quot;protocol&quot;: &quot;tcp&quot;
+                },
+                {
+                    &quot;global_ip&quot;: &quot;6.6.6.6&quot;,
+                    &quot;inside_ip&quot;: &quot;20.20.20.20&quot;,
+                    &quot;location&quot;: &quot;inside&quot;
+                },
+                {
+                    &quot;global_port&quot;: 1443,
+                    &quot;inside_ip&quot;: &quot;30.30.30.30&quot;,
+                    &quot;inside_port&quot;: 443,
+                    &quot;interface&quot;: &quot;TenGigabitEthernet0/0/0&quot;,
+                    &quot;location&quot;: &quot;inside&quot;,
+                    &quot;protocol&quot;: &quot;tcp&quot;
+                }
+            ]
+        }
     }
 ]
-</code></pre></div></p>
-<p>Template supports Netmiko run_ttp method:
-<div class="highlight"><pre><span></span><code>import pprint
-from netmiko import ConnectHandler
-
-net_connect = ConnectHandler(
-    device_type=&quot;huawei&quot;,
-    host=&quot;1.2.3.4&quot;,
-    username=&quot;admin&quot;,
-    password=&quot;admin&quot;,
-)
-
-res = net_connect.run_ttp(&quot;ttp://misc/netmiko/huawei.vrp.cfg.ip.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
-
-pprint.pprint(res)
-
-# prints something along the lines of:
-# 
-</code></pre></div></p>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;doc&gt;
-Template to parse &quot;display current-configuration interface&quot; output.
-This template produces one dictionary item per IP address configured 
-on device&#39;s interfaces including secondary and VRRP IP addresses. 
+GitHub Issue: https://github.com/dmulyalin/ttp_templates/issues/1
 
-Output is a list of dictionaries. 
+Author: Denis Mulyalin in cooperation with abhi1693
+
+Template to parse Cisco IOS &#39;show run | include source static&#39; command output.
+
+Template&#39;s YANG model (not tested):
+
+&#39;&#39;&#39;
+module nat {
+
+    yang-version 1.1;
+    namespace &quot;ttp://platform/cisco_ios_show_running_config_pipe_include_source_static.txt&quot;;
+    prefix nat;
+    revision &quot;2022-May-04&quot; { description &quot;Initial Revision&quot;; }
+    description &quot;Template to parse Cisco IOS static NAT configuration&quot;;
+
+    list static {
+        key inside_ip;
+        leaf inside_ip {
+            type string;
+        }
+        leaf location { 
+            type string;
+        }
+        leaf global_ip {
+            type string;
+        }
+        leaf interface {
+            type string;
+        }
+        leaf inside_port {
+            type uint32;
+        }
+        leaf global_port {
+            type uint32;
+        }
+        leaf vrf {
+            type string;
+        }
+    }
+}
+&#39;&#39;&#39;
 
 Sample data:
+
 &#39;&#39;&#39;
-Huawei-box-1-dis cur interface
-interface Eth-Trunk1.100
- vlan-type dot1q 100
- mtu 9600
- description Link description  here
- ip address 10.1.130.2 255.255.255.252
- ip binding vpn-instance VRF1
- vrrp6 vrid 1 virtual-ip 2001:db8::100
-#
+ip nat inside source static 10.10.10.10 3.3.3.3 extendable
+ip nat inside source static tcp 192.168.1.10 443 3.3.4.4 443 vrf VRF1000 extendable
+ip nat inside source static 192.168.2.10 3.3.4.5 vrf VRF1002 extendable
+ip nat inside source static tcp 192.168.3.10 3389 3.3.5.6 13389 extendable
+ip nat inside source static 20.20.20.20 6.6.6.6 extendable
+ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/0 1443
 &#39;&#39;&#39;
 
-Sample results, structure=&quot;flat_list&quot;:
+Expected output:
+
 &#39;&#39;&#39;
 [
     {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;Huawei-box-1&quot;,
-        &quot;interface&quot;: &quot;Eth-Trunk1.100&quot;,
-        &quot;ip&quot;: &quot;10.1.130.2&quot;,
-        &quot;mask&quot;: &quot;255.255.255.252&quot;,
-        &quot;vrf&quot;: &quot;VRF1&quot;
+        &quot;nat&quot;: {
+            &quot;static&quot;: [
+                {
+                    &quot;global_ip&quot;: &quot;3.3.3.3&quot;,
+                    &quot;inside_ip&quot;: &quot;10.10.10.10&quot;,
+                    &quot;location&quot;: &quot;inside&quot;
+                },
+                {
+                    &quot;global_ip&quot;: &quot;3.3.4.4&quot;,
+                    &quot;global_port&quot;: 443,
+                    &quot;inside_ip&quot;: &quot;192.168.1.10&quot;,
+                    &quot;inside_port&quot;: 443,
+                    &quot;location&quot;: &quot;inside&quot;,
+                    &quot;protocol&quot;: &quot;tcp&quot;,
+                    &quot;vrf&quot;: &quot;VRF1000&quot;
+                },
+                {
+                    &quot;global_ip&quot;: &quot;3.3.4.5&quot;,
+                    &quot;inside_ip&quot;: &quot;192.168.2.10&quot;,
+                    &quot;location&quot;: &quot;inside&quot;,
+                    &quot;vrf&quot;: &quot;VRF1002&quot;
+                },
+                {
+                    &quot;global_ip&quot;: &quot;3.3.5.6&quot;,
+                    &quot;global_port&quot;: 13389,
+                    &quot;inside_ip&quot;: &quot;192.168.3.10&quot;,
+                    &quot;inside_port&quot;: 3389,
+                    &quot;location&quot;: &quot;inside&quot;,
+                    &quot;protocol&quot;: &quot;tcp&quot;
+                },
+                {
+                    &quot;global_ip&quot;: &quot;6.6.6.6&quot;,
+                    &quot;inside_ip&quot;: &quot;20.20.20.20&quot;,
+                    &quot;location&quot;: &quot;inside&quot;
+                },
+                {
+                    &quot;global_port&quot;: 1443,
+                    &quot;inside_ip&quot;: &quot;30.30.30.30&quot;,
+                    &quot;inside_port&quot;: 443,
+                    &quot;interface&quot;: &quot;TenGigabitEthernet0/0/0&quot;,
+                    &quot;location&quot;: &quot;inside&quot;,
+                    &quot;protocol&quot;: &quot;tcp&quot;
+                }
+            ]
+        }
     }
 ]
 &#39;&#39;&#39;
-
-Template supports Netmiko run_ttp method:
-&#39;&#39;&#39;
-import pprint
-from netmiko import ConnectHandler
-
-net_connect = ConnectHandler(
-    device_type=&quot;huawei&quot;,
-    host=&quot;1.2.3.4&quot;,
-    username=&quot;admin&quot;,
-    password=&quot;admin&quot;,
-)
-
-res = net_connect.run_ttp(&quot;ttp://misc/netmiko/huawei.vrp.cfg.ip.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
-
-pprint.pprint(res)
-
-# prints something along the lines of:
-# 
-&#39;&#39;&#39;
 &lt;/doc&gt;
 
-
-
-&lt;input&gt;
-commands = [
-    &quot;display current-configuration interface&quot;
-]
-# need to keep prompt for &quot;gethostname&quot; to work
-kwargs = {
-    &quot;strip_prompt&quot;: False,
-    &quot;strip_command&quot;: False
-}
-&lt;/input&gt;
-
-&lt;vars&gt;
-hostname=&quot;gethostname&quot;
-
-record_all = [
-    &quot;record(interface)&quot;,
-    &quot;record(description)&quot;,
-    &quot;record(vrf)&quot;,
-    &quot;void()&quot;
-]
-
-set_all = [
-    &quot;set(interface)&quot;,
-    &quot;set(description)&quot;,
-    &quot;set(vrf)&quot;,
-    &quot;set(hostname)&quot;
-]
-&lt;/vars&gt;
-
-&lt;group chain=&quot;record_all&quot;&gt;
-interface {{ interface | resuball(&quot;short_interface_names&quot;) }}
- description {{ description | re(&quot;.+&quot;) }}
- ip binding vpn-instance {{ vrf | default(&quot;default&quot;) }}
- &lt;group name=&quot;/&quot; chain=&quot;set_all&quot; method=&quot;table&quot;&gt;
- ip address {{ ipv4 | IP }} {{ mask }}
- ip address {{ ipv4 | IP | let(&quot;secondary&quot;, True) }} {{ mask }} sub
- ipv6 address {{ ipv6 | IPV6 | _exact_ }}/{{ mask }}
- vrrp vrid 1 virtual-ip {{ ipv4 | IP | let(&quot;vip&quot;, True) | let(&quot;vip_type&quot;, &quot;VRRP&quot;) }}
- vrrp6 vrid 1 virtual-ip {{ ipv6 | IPV6 | let(&quot;vip&quot;, True) | let(&quot;vip_type&quot;, &quot;VRRP&quot;) | _exact_ }}
- &lt;/group&gt;
-# {{ _end_ }}
+&lt;group name=&quot;nat**.static*&quot; method=&quot;table&quot;&gt;
+ip nat {{ location }} source static {{ inside_ip | IP }} {{ global_ip | IP }} extendable
+ip nat {{ location }} source static {{ inside_ip | IP }} interface {{ interface }}
+ip nat {{ location }} source static {{ inside_ip | IP }} {{ global_ip | IP }} vrf {{ vrf }} extendable
+ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | INT | to_int }} interface {{ interface }} {{ global_port | INT | to_int }}
+ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | INT | to_int }} {{ global_ip | IP }} {{ global_port | INT | to_int }} extendable
+ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | INT | to_int }} {{ global_ip | IP }} {{ global_port | INT | to_int }} vrf {{ vrf }} extendable
 &lt;/group&gt;
 </code></pre></div>
 </details>
@@ -1307,7 +1377,7 @@ interface {{ interface | resuball(&quot;short_interface_names&quot;) }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.Netmiko.huawei.vrp.cfg.interface/" class="md-footer__link md-footer__link--prev" aria-label="Previous: huawei.vrp.cfg.interface" rel="prev">
+        <a href="../platform.cisco_ios_show_running_configuration_pipe_section_bgp/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_ios_show_running_configuration_pipe_section_bgp" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1316,20 +1386,20 @@ interface {{ interface | resuball(&quot;short_interface_names&quot;) }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              huawei.vrp.cfg.interface
+              cisco_ios_show_running_configuration_pipe_section_bgp
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_ios_interfaces_cfg_per_ip" rel="next">
+        <a href="../platform.cisco_ios_show_running_config_pipe_section_interface/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_ios_show_running_config_pipe_section_interface" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cisco_ios_interfaces_cfg_per_ip
+              cisco_ios_show_running_config_pipe_section_interface
             </div>
           </div>
           <div class="md-footer__button md-icon">

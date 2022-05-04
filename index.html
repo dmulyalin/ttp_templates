@@ -264,11 +264,38 @@
     How templates collections structured
   </a>
   
+    <nav class="md-nav" aria-label="How templates collections structured">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#platform-collection-templates-files-naming-rule" class="md-nav__link">
+    Platform collection templates files naming rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yang-collection-templates-files-naming-rule" class="md-nav__link">
+    YANG collection templates files naming rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc-collection-templates-files-naming-rule" class="md-nav__link">
+    Misc collection templates files naming rule
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-template-resources" class="md-nav__link">
-    Additional Template resources
+  <a href="#additional-templates-resources" class="md-nav__link">
+    Additional Templates Resources
   </a>
   
 </li>
@@ -688,6 +715,18 @@
   
   
     <li class="md-nav__item">
+      <a href="ttp_templates/misc.Netmiko.cisco.ios.cfg.nat.static/" class="md-nav__link">
+        cisco.ios.cfg.nat.static
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="ttp_templates/misc.Netmiko.cisco.iosxr.arp/" class="md-nav__link">
         cisco.iosxr.arp
       </a>
@@ -933,6 +972,18 @@
     <li class="md-nav__item">
       <a href="ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp/" class="md-nav__link">
         cisco_ios_show_running_configuration_pipe_section_bgp
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static/" class="md-nav__link">
+        cisco_ios_show_running_config_pipe_include_source_static
       </a>
     </li>
   
@@ -1189,11 +1240,38 @@
     How templates collections structured
   </a>
   
+    <nav class="md-nav" aria-label="How templates collections structured">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#platform-collection-templates-files-naming-rule" class="md-nav__link">
+    Platform collection templates files naming rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yang-collection-templates-files-naming-rule" class="md-nav__link">
+    YANG collection templates files naming rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#misc-collection-templates-files-naming-rule" class="md-nav__link">
+    Misc collection templates files naming rule
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-template-resources" class="md-nav__link">
-    Additional Template resources
+  <a href="#additional-templates-resources" class="md-nav__link">
+    Additional Templates Resources
   </a>
   
 </li>
@@ -1216,15 +1294,15 @@
                 
                 
                 <hr />
-<p><strong>Templates count: 50</strong></p>
+<p><strong>Templates count: 52</strong></p>
 <hr />
 <p><a href="https://pepy.tech/project/ttp_templates"><img alt="Downloads" src="https://pepy.tech/badge/ttp_templates" /></a>
 <a href="https://pypi.python.org/pypi/ttp_templates/"><img alt="PyPI versions" src="https://img.shields.io/pypi/pyversions/ttp.svg" /></a></p>
 <h1 id="template-text-parser-templates">Template Text Parser Templates</h1>
 <p>This repository contains a collection of <a href="https://github.com/dmulyalin/ttp">TTP</a> templates.</p>
-<p>If you solved a problem using TTP and feel that your work can be 
-useful to other people, feel free to raise an issue or submit pull request to 
-include your template(s) in this repository.</p>
+<p>If you solved a problem using TTP and feel that your work can be useful to other people, feel 
+free to raise an issue or submit pull request to include your template(s) in this repository.
+Refer to <a href="contribute/">Contribute Guide</a> for details.</p>
 <p>Documentation: <a href="https://dmulyalin.github.io/ttp_templates/">https://dmulyalin.github.io/ttp_templates/</a></p>
 <p>Repository: <a href="https://github.com/dmulyalin/ttp_templates">https://github.com/dmulyalin/ttp_templates</a></p>
 <p>TTP: <a href="https://ttp.readthedocs.io/">https://ttp.readthedocs.io/</a></p>
@@ -1387,13 +1465,34 @@ include your template(s) in this repository.</p>
 <li><code>yang</code> collection - contains templates capable of producing YANG compatible structures out of text data</li>
 <li><code>misc</code> collection - miscellaneous templates for various use cases organized in folders</li>
 </ul>
-<p><strong>Platform collection templates files naming rule</strong></p>
-<p><code>{{ vendor_os }}_{{ command_with_underscores }}.txt</code> - lower case only</p>
-<p><strong>YANG collection templates files naming rule</strong></p>
+<h3 id="platform-collection-templates-files-naming-rule">Platform collection templates files naming rule</h3>
+<p><code>{{ vendor_os }}_{{ command_with_underscores }}.txt</code> - lower case only. </p>
+<p>Naming rules details:</p>
+<ul>
+<li>All space symbols <code>' '</code> replaced with underscores.</li>
+<li>Pipe symbol <code>|</code> replaced with <code>pipe</code> in template name. For example, 
+  template to parse Cisco IOS <code>show run | section interface</code> command output 
+  must be named <code>cisco_ios_show_running_config_pipe_section_interface.txt</code></li>
+<li>Dash symbols <code>-</code> replaced with underscores. For example, template to parse 
+  Huawei <code>display current-configuration interface</code> command output  must be 
+  named <code>huawei_display_current_configuration_interface.txt</code></li>
+</ul>
+<h3 id="yang-collection-templates-files-naming-rule">YANG collection templates files naming rule</h3>
 <p><code>{{ YANG module name }}_{{ platform_name }}.txt</code> - lower case only</p>
-<p><strong>Misc collection templates files naming rule</strong></p>
+<p>Naming rules details:</p>
+<ul>
+<li>All space symbols <code>' '</code> replaced with underscore.</li>
+<li>Dash symbol <code>-</code> <strong>does not</strong> replaced with underscore. For example, template
+  to produce output compatible with openconfig-lldp YANG model for Cisco IOS
+  must be named <code>openconfig-lldp_cisco_xr.txt</code></li>
+</ul>
+<h3 id="misc-collection-templates-files-naming-rule">Misc collection templates files naming rule</h3>
 <p><code>{{ usecase folder }}/{{ template name }}.txt</code> - upper or lower case</p>
-<h2 id="additional-template-resources">Additional Template resources</h2>
+<p>Naming rules details:</p>
+<ul>
+<li>Nothing replaced with anything, provided template name used as is.</li>
+</ul>
+<h2 id="additional-templates-resources">Additional Templates Resources</h2>
 <p>List of resources with TTP templates:</p>
 <ul>
 <li>TTP SrosParser - https://pypi.org/project/ttp-sros-parser/ by <a href="https://github.com/h4ndzdatm0ld">h4ndzdatm0ld</a></li>
