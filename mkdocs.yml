@@ -41,6 +41,7 @@ nav:
       - cisco.ios.cfg.bgp: ttp_templates/misc.Netmiko.cisco.ios.cfg.bgp.md
       - cisco.ios.cfg.interface: ttp_templates/misc.Netmiko.cisco.ios.cfg.interface.md
       - cisco.ios.cfg.ip: ttp_templates/misc.Netmiko.cisco.ios.cfg.ip.md
+      - cisco.ios.cfg.nat.static: ttp_templates/misc.Netmiko.cisco.ios.cfg.nat.static.md
       - cisco.iosxr.arp: ttp_templates/misc.Netmiko.cisco.iosxr.arp.md
       - cisco.iosxr.cfg.interface: ttp_templates/misc.Netmiko.cisco.iosxr.cfg.interface.md
       - cisco.iosxr.cfg.ip: ttp_templates/misc.Netmiko.cisco.iosxr.cfg.ip.md
@@ -58,6 +59,7 @@ nav:
     - cisco_ios_show_ip_ospf_database_router: ttp_templates/platform.cisco_ios_show_ip_ospf_database_router.md
     - cisco_ios_show_ip_ospf_database_summary: ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary.md
     - cisco_ios_show_running_configuration_pipe_section_bgp: ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp.md
+    - cisco_ios_show_running_config_pipe_include_source_static: ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static.md
     - cisco_ios_show_running_config_pipe_section_interface: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_interface.md
     - cisco_xr_show_arp_vrf_all: ttp_templates/platform.cisco_xr_show_arp_vrf_all.md
     - cisco_xr_show_isis_database_verbose: ttp_templates/platform.cisco_xr_show_isis_database_verbose.md

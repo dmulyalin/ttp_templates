@@ -1,0 +1,30 @@
+<doc>
+Template to parse Cisco IOS `show run | include source static` command output
+Using Netmiko run_ttp method.
+
+Extends template: `ttp://platform/cisco_ios_show_running_config_pipe_include_source_static.txt`
+
+Code to invoke this template Netmiko `run_ttp` method:
+
+```
+from netmiko import ConnectHandler
+
+net_connect = ConnectHandler(
+    device_type="cisco_ios",
+    host="1.2.3.4",
+    username="admin",
+    password="admin",
+)
+
+res = net_connect.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.nat.static.txt")
+```
+</doc>
+
+
+<input>
+commands = [
+    "show running-config | include source static"
+]
+</input>
+
+<extend template="ttp://platform/cisco_ios_show_running_config_pipe_include_source_static.txt"/>

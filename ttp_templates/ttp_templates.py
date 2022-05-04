@@ -36,7 +36,7 @@ def get_template(
         platform = platform.lower()
         command = command.lower()
         command = command.replace("|", "pipe")
-        for symbol in [" "]:
+        for symbol in [" ", "-"]:
             platform = platform.replace(symbol, "_")
             command = command.replace(symbol, "_")
         path = "platform/{}_{}.txt".format(platform, command)

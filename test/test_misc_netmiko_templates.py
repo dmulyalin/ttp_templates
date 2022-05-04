@@ -101,6 +101,14 @@ router bgp 65001
   neighbor 2.2.2.2 activate
  exit-address-family
 !
+    """,
+    "show running-config | include source static": """
+ip nat inside source static 10.10.10.10 3.3.3.3 extendable
+ip nat inside source static tcp 192.168.1.10 443 3.3.4.4 443 vrf VRF1000 extendable
+ip nat inside source static 192.168.2.10 3.3.4.5 vrf VRF1002 extendable
+ip nat inside source static tcp 192.168.3.10 3389 3.3.5.6 13389 extendable
+ip nat inside source static 20.20.20.20 6.6.6.6 extendable
+ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/0 1443  
     """
     }
     return outputs[command_string]
@@ -698,3 +706,36 @@ def test_cisco_ios_cfg_bgp():
                                                          'pfl_out': 'VoIP-prefixes'}}}}}}]]
     
 # test_cisco_ios_cfg_bgp()
+
+def test_cisco_ios_cfg_nat_static():
+    res = connection_cisco_ios.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.nat.static.txt")
+    pprint.pprint(res, width=150) 
+    assert res == [[{'nat': {'static': [{'global_ip': '3.3.3.3',
+                                         'inside_ip': '10.10.10.10',
+                                         'location': 'inside'},
+                                        {'global_ip': '3.3.4.4',
+                                         'global_port': 443,
+                                         'inside_ip': '192.168.1.10',
+                                         'inside_port': 443,
+                                         'location': 'inside',
+                                         'protocol': 'tcp',
+                                         'vrf': 'VRF1000'},
+                                        {'global_ip': '3.3.4.5',
+                                         'inside_ip': '192.168.2.10',
+                                         'location': 'inside',
+                                         'vrf': 'VRF1002'},
+                                        {'global_ip': '3.3.5.6',
+                                         'global_port': 13389,
+                                         'inside_ip': '192.168.3.10',
+                                         'inside_port': 3389,
+                                         'location': 'inside',
+                                         'protocol': 'tcp'},
+                                        {'global_ip': '6.6.6.6',
+                                         'inside_ip': '20.20.20.20',
+                                         'location': 'inside'},
+                                        {'global_port': 1443,
+                                         'inside_ip': '30.30.30.30',
+                                         'inside_port': 443,
+                                         'interface': 'TenGigabitEthernet0/0/0',
+                                         'location': 'inside',
+                                         'protocol': 'tcp'}]}}]]   

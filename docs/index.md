@@ -1,7 +1,7 @@
 
 ---
 
-**Templates count: 50**
+**Templates count: 52**
 
 ---
 
@@ -12,9 +12,9 @@
 
 This repository contains a collection of [TTP](https://github.com/dmulyalin/ttp) templates.
 
-If you solved a problem using TTP and feel that your work can be 
-useful to other people, feel free to raise an issue or submit pull request to 
-include your template(s) in this repository.
+If you solved a problem using TTP and feel that your work can be useful to other people, feel 
+free to raise an issue or submit pull request to include your template(s) in this repository.
+Refer to [Contribute Guide](contribute.md) for details.
 
 Documentation: [https://dmulyalin.github.io/ttp_templates/](https://dmulyalin.github.io/ttp_templates/)
 
@@ -182,7 +182,6 @@ pprint.pprint(res)
 ```
 </details>
 
-
 ## How templates collections structured
 
 This repository contains three collections of templates corresponding to folder names:
@@ -191,19 +190,40 @@ This repository contains three collections of templates corresponding to folder 
 * `yang` collection - contains templates capable of producing YANG compatible structures out of text data
 * `misc` collection - miscellaneous templates for various use cases organized in folders
 
-**Platform collection templates files naming rule**
+### Platform collection templates files naming rule
 
-`{{ vendor_os }}_{{ command_with_underscores }}.txt` - lower case only
+`{{ vendor_os }}_{{ command_with_underscores }}.txt` - lower case only. 
 
-**YANG collection templates files naming rule**
+Naming rules details:
+
+* All space symbols `' '` replaced with underscores.
+* Pipe symbol `|` replaced with `pipe` in template name. For example, 
+  template to parse Cisco IOS `show run | section interface` command output 
+  must be named `cisco_ios_show_running_config_pipe_section_interface.txt`
+* Dash symbols `-` replaced with underscores. For example, template to parse 
+  Huawei `display current-configuration interface` command output  must be 
+  named `huawei_display_current_configuration_interface.txt`
+
+### YANG collection templates files naming rule
 
 `{{ YANG module name }}_{{ platform_name }}.txt` - lower case only
 
-**Misc collection templates files naming rule**
+Naming rules details:
+
+* All space symbols `' '` replaced with underscore.
+* Dash symbol `-` **does not** replaced with underscore. For example, template
+  to produce output compatible with openconfig-lldp YANG model for Cisco IOS
+  must be named `openconfig-lldp_cisco_xr.txt`
+
+### Misc collection templates files naming rule
 
 `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
 
-## Additional Template resources
+Naming rules details:
+
+* Nothing replaced with anything, provided template name used as is.
+
+## Additional Templates Resources
 
 List of resources with TTP templates:
 
