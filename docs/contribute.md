@@ -12,7 +12,7 @@ There are several things you can do to help TTP Templates project.
 
 ## Contribute Templates by Opening GitHub Issue
 
-Open [GitHub issue](https://github.com/dmulyalin/ttp_templates/issues) using 
+Open [GitHub issue](https://github.com/dmulyalin/ttp_templates/issues/new/choose) using
 `Contribute Template` type and fill in required details.
 
 ## Contribute Templates by Pull Request
