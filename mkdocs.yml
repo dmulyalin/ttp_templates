@@ -104,3 +104,9 @@ theme:
   palette:
     accent: teal
     primary: blue
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
+    - toc.follow
