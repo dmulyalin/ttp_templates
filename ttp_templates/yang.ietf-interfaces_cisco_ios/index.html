@@ -1254,13 +1254,13 @@
                 
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://yang/ietf-interfaces_cisco_ios.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://yang/ietf-interfaces_cisco_ios.txt
+</pre></div></p>
 <hr />
 <p>This templates produces structured data compatible with ietf-interfaces YANG module
 out of Cisco IOS <code>show run</code> configuration output.</p>
 <p>YANG ietf-interfaces module tree:
-<div class="highlight"><pre><span></span><code>+--rw ietf-interfaces:interfaces
+<div class="highlight"><pre><span></span>+--rw ietf-interfaces:interfaces
 |  +--rw interface* [name]
 |     +--ro admin-status {enumeration}
 |     +--rw description? {string}
@@ -1383,9 +1383,9 @@ out of Cisco IOS <code>show run</code> configuration output.</p>
       |  +--ro out-octets? {counter64(uint64)}
       |  +--ro out-unicast-pkts? {counter64(uint64)}
       +--ro type {identityref}
-</code></pre></div></p>
+</pre></div></p>
 <p>Sample data:
-<div class="highlight"><pre><span></span><code>interface GigabitEthernet1/3.251
+<div class="highlight"><pre><span></span>interface GigabitEthernet1/3.251
  description Customer #32148
  encapsulation dot1q 251
  ip address 172.16.33.10 255.255.255.128
@@ -1395,9 +1395,9 @@ interface GigabitEthernet1/4
  description vCPEs access control
  ip address 172.16.33.10 255.255.255.128
 ! 
-</code></pre></div></p>
+</pre></div></p>
 <p>Sample results:
-<div class="highlight"><pre><span></span><code>{
+<div class="highlight"><pre><span></span>{
     &quot;ietf-interfaces:interfaces&quot;: {
         &quot;interface&quot;: [
             {
@@ -1447,13 +1447,13 @@ interface GigabitEthernet1/4
         ]
     }
 }
-</code></pre></div></p>
+</pre></div></p>
 <h1 id="-">----------------------------------------------------------------------------</h1>
 <h1 id="cisco-ios-interfaces-groups-and-inputs">Cisco IOS interfaces groups and inputs</h1>
 <h1 id="-_1">----------------------------------------------------------------------------</h1>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 This templates produces structured data compatible with ietf-interfaces YANG module
 out of Cisco IOS &#39;show run&#39; configuration output.
 
@@ -1712,7 +1712,7 @@ interface {{ name | macro(add_iftype) }}
 &lt;output condition=&quot;validate_with_yangson, True&quot;&gt;
 validate_yangson=&quot;&#39;./yang-modules/ietf/&#39;&quot;
 &lt;/output&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

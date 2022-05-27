@@ -1232,8 +1232,8 @@
                   <h1>openconfig-lldp_cisco_nxos</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://yang/openconfig-lldp_cisco_nxos.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://yang/openconfig-lldp_cisco_nxos.txt
+</pre></div></p>
 <hr />
 <p>Required devices' commands output:</p>
 <ul>
@@ -1242,7 +1242,7 @@
 <p>Device output should contain device prompt, otherwise device hostname will not be extracted.</p>
 <p>Returns result compatible with this subset of <code>openconfig-lldp</code>
 YANG model:
-<div class="highlight"><pre><span></span><code>module: openconfig-lldp
+<div class="highlight"><pre><span></span>module: openconfig-lldp
   +--rw lldp
      +--rw config
      |  +--rw system-name?                  string
@@ -1265,10 +1265,10 @@ YANG model:
                  +--ro capabilities
                     +--ro capability* [name]
                        +--ro name    
-</code></pre></div></p>
+</pre></div></p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 Required devices&#39; commands output:
 
  - show lldp neighbors detail
@@ -1441,7 +1441,7 @@ System Capabilities: {{ codes | ORPHRASE | split(&quot;, &quot;) }}
 &lt;/group&gt;
 
 &lt;output macro=&quot;process&quot;/&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

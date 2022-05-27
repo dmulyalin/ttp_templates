@@ -1234,14 +1234,14 @@
                   <h1>cisco.ios.cfg.nat.static</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.ios.cfg.nat.static.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://misc/Netmiko/cisco.ios.cfg.nat.static.txt
+</pre></div></p>
 <hr />
 <p>Template to parse Cisco IOS <code>show run | include source static</code> command output
 Using Netmiko run_ttp method.</p>
 <p>Extends template: <code>ttp://platform/cisco_ios_show_running_config_pipe_include_source_static.txt</code></p>
 <p>Code to invoke this template Netmiko <code>run_ttp</code> method:</p>
-<div class="highlight"><pre><span></span><code>from netmiko import ConnectHandler
+<div class="highlight"><pre><span></span>from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
     device_type=&quot;cisco_ios&quot;,
@@ -1251,12 +1251,12 @@ net_connect = ConnectHandler(
 )
 
 res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.nat.static.txt&quot;)
-</code></pre></div>
+</pre></div>
 <p>GitHub Issue: https://github.com/dmulyalin/ttp_templates/issues/1</p>
 <p>Author: Denis Mulyalin in cooperation with abhi1693</p>
 <p>Template to parse Cisco IOS <code>show run | include source static</code> command output.</p>
 <p>Template's YANG model (not tested):</p>
-<div class="highlight"><pre><span></span><code>module nat {
+<div class="highlight"><pre><span></span>module nat {
 
     yang-version 1.1;
     namespace &quot;ttp://platform/cisco_ios_show_running_config_pipe_include_source_static.txt&quot;;
@@ -1289,17 +1289,17 @@ res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.nat.static.txt&
         }
     }
 }
-</code></pre></div>
+</pre></div>
 <p>Sample data:</p>
-<div class="highlight"><pre><span></span><code>ip nat inside source static 10.10.10.10 3.3.3.3 extendable
+<div class="highlight"><pre><span></span>ip nat inside source static 10.10.10.10 3.3.3.3 extendable
 ip nat inside source static tcp 192.168.1.10 443 3.3.4.4 443 vrf VRF1000 extendable
 ip nat inside source static 192.168.2.10 3.3.4.5 vrf VRF1002 extendable
 ip nat inside source static tcp 192.168.3.10 3389 3.3.5.6 13389 extendable
 ip nat inside source static 20.20.20.20 6.6.6.6 extendable
 ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/0 1443
-</code></pre></div>
+</pre></div>
 <p>Expected output:</p>
-<div class="highlight"><pre><span></span><code>[
+<div class="highlight"><pre><span></span>[
     {
         &quot;nat&quot;: {
             &quot;static&quot;: [
@@ -1348,10 +1348,10 @@ ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/
         }
     }
 ]
-</code></pre></div>
+</pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 Template to parse Cisco IOS &#39;show run | include source static&#39; command output
 Using Netmiko run_ttp method.
 
@@ -1381,7 +1381,7 @@ commands = [
 &lt;/input&gt;
 
 &lt;extend template=&quot;ttp://platform/cisco_ios_show_running_config_pipe_include_source_static.txt&quot;/&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

@@ -1232,13 +1232,13 @@
                   <h1>cisco_xr_show_isis_database_verbose</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://platform/cisco_xr_show_isis_database_verbose.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://platform/cisco_xr_show_isis_database_verbose.txt
+</pre></div></p>
 <hr />
 <p>Template to parse ISIS LSDB of Cisco IOS-XR devices out of 
 "show isis database verbose" command output.</p>
 <p>This template produces this structure:
-<div class="highlight"><pre><span></span><code>[[{&#39;isis_processes&#39;: {&#39;100&#39;: {&#39;LSP&#39;: [{&#39;hostname&#39;: &#39;R1-X1&#39;,
+<div class="highlight"><pre><span></span>[[{&#39;isis_processes&#39;: {&#39;100&#39;: {&#39;LSP&#39;: [{&#39;hostname&#39;: &#39;R1-X1&#39;,
                                        &#39;isis_area&#39;: &#39;49.0001&#39;,
                                        &#39;level&#39;: &#39;Level-2&#39;,
                                        &#39;links&#39;: [{&#39;affinity&#39;: &#39;0x00000000&#39;,
@@ -1300,10 +1300,10 @@
                                        &#39;networks&#39;: [{&#39;metric&#39;: &#39;0&#39;,
                                                      &#39;network&#39;: &#39;fdff::/36&#39;}],
                                        &#39;rid&#39;: &#39;fddd:2:c101::2&#39;}]}}}]]
-</code></pre></div></p>
+</pre></div></p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 Template to parse ISIS LSDB of Cisco IOS-XR devices out of 
 &quot;show isis database verbose&quot; command output.
 
@@ -1417,7 +1417,7 @@ IS-IS {{ pid }} ({{ level }}) Link State Database
 
 &lt;/group&gt;
 &lt;/group&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

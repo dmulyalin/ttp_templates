@@ -1234,12 +1234,12 @@
                   <h1>cisco_ios_interfaces_cfg_per_ip</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://misc/ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt
+</pre></div></p>
 <hr />
 <p>This template produces one dictionary item per ip address configured on device's interfaces including secondary and VRRP IPs. Output is a list of dictionaries.</p>
 <p>Sample data:
-<div class="highlight"><pre><span></span><code>r1#show run | sec interface
+<div class="highlight"><pre><span></span>r1#show run | sec interface
 interface GigabitEthernet1
  vrf forwarding MGMT
  ip address 10.223.89.55 255.255.255.0
@@ -1251,9 +1251,9 @@ interface GigabitEthernet1
  negotiation auto
  no mop enabled
  no mop sysid
-</code></pre></div></p>
+</pre></div></p>
 <p>Sample results, structure="flat_list":
-<div class="highlight"><pre><span></span><code>[
+<div class="highlight"><pre><span></span>[
     {
         &quot;description&quot;: &quot;description&quot;,
         &quot;hostname&quot;: &quot;r1&quot;,
@@ -1271,9 +1271,9 @@ interface GigabitEthernet1
         &quot;vrf&quot;: &quot;MGMT&quot;
     }
 ]
-</code></pre></div></p>
+</pre></div></p>
 <p>How to use::
-<div class="highlight"><pre><span></span><code>    from ttp import ttp
+<div class="highlight"><pre><span></span>    from ttp import ttp
     from ttp_templates import get_template
     from pprint import pprint
 
@@ -1285,10 +1285,10 @@ interface GigabitEthernet1
     parser.add_input(data, template_name=&quot;interfaces&quot;)
     parser.parse()
     pprint(parser.result())
-</code></pre></div></p>
+</pre></div></p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;interfaces&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span>&lt;template name=&quot;interfaces&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
 This template produces one dictionary item per ip address configured on device&#39;s interfaces including secondary and VRRP IPs. Output is a list of dictionaries.
 
@@ -1383,7 +1383,7 @@ interface {{ interface }}
  &lt;/group&gt;
 &lt;/group&gt;
 &lt;/template&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

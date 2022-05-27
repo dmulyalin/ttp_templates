@@ -1234,15 +1234,15 @@
                   <h1>cisco.iosxr.cfg.ip</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.iosxr.cfg.ip.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://misc/Netmiko/cisco.iosxr.cfg.ip.txt
+</pre></div></p>
 <hr />
 <p>Template to parse "show running-config interface" output.
 This template produces one dictionary item per IP address configured 
 on device's interfaces including secondary and VRRP/HSRP IP addresses.</p>
 <p>Output is a list of dictionaries. </p>
 <p>Sample data:
-<div class="highlight"><pre><span></span><code>RP/0/RP0/CPU0:r1#show running-config interface
+<div class="highlight"><pre><span></span>RP/0/RP0/CPU0:r1#show running-config interface
 interface Bundle-Ether1
  description Description of interface
  ipv4 address 10.1.2.54 255.255.255.252
@@ -1276,9 +1276,9 @@ router hsrp
   address-family ipv6
    hsrp 1
     address global fd::3
-</code></pre></div></p>
+</pre></div></p>
 <p>Sample results, structure="flat_list":
-<div class="highlight"><pre><span></span><code>[
+<div class="highlight"><pre><span></span>[
     {
         &quot;description&quot;: &quot;description&quot;,
         &quot;hostname&quot;: &quot;r1&quot;,
@@ -1296,9 +1296,9 @@ router hsrp
         &quot;vrf&quot;: &quot;MGMT&quot;
     }
 ]
-</code></pre></div></p>
+</pre></div></p>
 <p>Template can be invoked using Netmiko <code>run_ttp</code> method like this:</p>
-<div class="highlight"><pre><span></span><code>import pprint
+<div class="highlight"><pre><span></span>import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
@@ -1311,7 +1311,7 @@ net_connect = ConnectHandler(
 res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.ip.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
 
 pprint.pprint(res)
-</code></pre></div>
+</pre></div>
 <p>How this template works:</p>
 <ol>
 <li>Parses output from device using group with name="intf_lookup**.{{ interface }}" to 
@@ -1322,7 +1322,7 @@ using intf_lookup lookup table</li>
 <li>HSRP VIP parsed, adding info about interface using intf_lookup lookup table</li>
 </ol>
 <p>This is sample structure produced after above parsing finishes:
-<div class="highlight"><pre><span></span><code>[{&#39;intf&#39;: [{&#39;interface&#39;: &#39;Bundle-Ether1&#39;}, {&#39;interface&#39;: &#39;Loopback123&#39;}],
+<div class="highlight"><pre><span></span>[{&#39;intf&#39;: [{&#39;interface&#39;: &#39;Bundle-Ether1&#39;}, {&#39;interface&#39;: &#39;Loopback123&#39;}],
   &#39;intf_lookup&#39;: {&#39;Bundle-Ether1&#39;: {&#39;description&#39;: &#39;Description of interface&#39;,
                                     &#39;vrf&#39;: &#39;customer_1&#39;},
                   &#39;Loopback123&#39;: {&#39;description&#39;: &#39;VRF 123&#39;, &#39;vrf&#39;: &#39;VRF-1123&#39;}},
@@ -1374,10 +1374,10 @@ using intf_lookup lookup table</li>
           &#39;vip&#39;: True,
           &#39;vip_type&#39;: &#39;HSRP&#39;,
           &#39;vrf&#39;: &#39;customer_1&#39;}]}]
-</code></pre></div></p>
+</pre></div></p>
 <p>Above structure passed through output with "process" macro function to transform results into a list of IP
 address dictionaries such as:
-<div class="highlight"><pre><span></span><code>[{&#39;description&#39;: &#39;Description of interface&#39;,
+<div class="highlight"><pre><span></span>[{&#39;description&#39;: &#39;Description of interface&#39;,
   &#39;hostname&#39;: &#39;r1&#39;,
   &#39;interface&#39;: &#39;Bundle-Ether1&#39;,
   &#39;ipv4&#39;: &#39;10.1.2.54&#39;,
@@ -1423,10 +1423,10 @@ address dictionaries such as:
   &#39;vip&#39;: True,
   &#39;vip_type&#39;: &#39;HSRP&#39;,
   &#39;vrf&#39;: &#39;customer_1&#39;}]
-</code></pre></div></p>
+</pre></div></p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 Template to parse &quot;show running-config interface&quot; output.
 This template produces one dictionary item per IP address configured 
 on device&#39;s interfaces including secondary and VRRP/HSRP IP addresses.
@@ -1706,7 +1706,7 @@ def process(data):
         ret.extend(input_res_item.get(&quot;ip&quot;, []))
     return ret
 &lt;/macro&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

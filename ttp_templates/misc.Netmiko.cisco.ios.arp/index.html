@@ -1234,12 +1234,12 @@
                   <h1>cisco.ios.arp</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.ios.arp.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://misc/Netmiko/cisco.ios.arp.txt
+</pre></div></p>
 <hr />
 <p>TTP template to parse Cisco IOS "show ip arp" output.</p>
 <p>Template can be invoked using Netmiko run_ttp method like this:
-<div class="highlight"><pre><span></span><code>import pprint 
+<div class="highlight"><pre><span></span>import pprint 
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
@@ -1271,11 +1271,11 @@ pprint.pprint(res)
 #   &#39;mac&#39;: &#39;00:24:f7:dd:77:41&#39;,
 #   &#39;protocol&#39;: &#39;Internet&#39;,
 #   &#39;type&#39;: &#39;ARPA&#39;}]
-</code></pre></div></p>
+</pre></div></p>
 <p>TTP Template to parse Cisco IOS "show ip arp output".</p>
 <p>This template produces list of dictionaries results where each
 dictionary item compatible to this model:
-<div class="highlight"><pre><span></span><code>module arp-table {
+<div class="highlight"><pre><span></span>module arp-table {
 
 yang-version 1.1;
 
@@ -1323,13 +1323,13 @@ list entry {
         }        
     }
 }
-</code></pre></div></p>
+</pre></div></p>
 <p>Sample instance data:
-<div class="highlight"><pre><span></span><code>TBD
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>TBD
+</pre></div></p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 TTP template to parse Cisco IOS &quot;show ip arp&quot; output.
 
 Template can be invoked using Netmiko run_ttp method like this:
@@ -1377,7 +1377,7 @@ commands = [
 &lt;/input&gt;
 
 &lt;extend template=&quot;ttp://platform/cisco_ios_show_ip_arp.txt&quot;/&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

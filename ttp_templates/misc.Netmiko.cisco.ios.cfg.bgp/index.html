@@ -1234,12 +1234,12 @@
                   <h1>cisco.ios.cfg.bgp</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.ios.cfg.bgp.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://misc/Netmiko/cisco.ios.cfg.bgp.txt
+</pre></div></p>
 <hr />
 <p>Requirements: <code>TTP &gt;= 0.8.x</code></p>
 <p>To use this template with Netmiko (&gt;=3.4.x) <code>run_ttp</code> method:
-<div class="highlight"><pre><span></span><code>import pprint
+<div class="highlight"><pre><span></span>import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
@@ -1252,7 +1252,7 @@ net_connect = ConnectHandler(
 res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.bgp.txt&quot;)
 
 pprint.pprint(res)
-</code></pre></div></p>
+</pre></div></p>
 <p>Template to parse Cisco IOS BGP configuration.</p>
 <p>Requirements: <code>TTP &gt;= 0.7.x</code></p>
 <p>Structure produced by this template does not follow any known convention 
@@ -1267,7 +1267,7 @@ configuration style and capable of parsing subsets of: </p>
 <li>VRF configuration including neighbors, networks and other parameters</li>
 </ul>
 <p>Sample device output:
-<div class="highlight"><pre><span></span><code>router bgp 65001
+<div class="highlight"><pre><span></span>router bgp 65001
  !
  bgp router-id 10.5.1.1
  bgp log-neighbor-changes
@@ -1334,9 +1334,9 @@ configuration style and capable of parsing subsets of: </p>
   neighbor 2.2.2.2 activate
  exit-address-family
 !
-</code></pre></div></p>
+</pre></div></p>
 <p>After parsing above output, TTP should produce these results:
-<div class="highlight"><pre><span></span><code>[[{&#39;bgp&#39;: {&#39;afis&#39;: {&#39;ipv4_multicast&#39;: {},
+<div class="highlight"><pre><span></span>[[{&#39;bgp&#39;: {&#39;afis&#39;: {&#39;ipv4_multicast&#39;: {},
                     &#39;ipv4_unicast&#39;: {&#39;config&#39;: {&#39;networks&#39;: [{&#39;mask&#39;: &#39;255.255.248.0&#39;, &#39;network&#39;: &#39;10.255.10.0&#39;},
                                                              {&#39;mask&#39;: &#39;255.255.255.0&#39;, &#39;network&#39;: &#39;10.255.10.0&#39;}],
                                                 &#39;redistribute_connected&#39;: True,
@@ -1378,9 +1378,9 @@ configuration style and capable of parsing subsets of: </p>
                                                          &#39;disabled&#39;: True,
                                                          &#39;next_hop_self&#39;: True,
                                                          &#39;pfl_out&#39;: &#39;VoIP-prefixes&#39;}}}}}}]]
-</code></pre></div></p>
+</pre></div></p>
 <p>To use this template with Netmiko (&gt;=3.4.x) run_ttp method:
-<div class="highlight"><pre><span></span><code>import pprint
+<div class="highlight"><pre><span></span>import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
@@ -1393,10 +1393,10 @@ net_connect = ConnectHandler(
 res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.cfg.bgp.txt&quot;)
 
 pprint.pprint(res)
-</code></pre></div></p>
+</pre></div></p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 Requirements: &#39;TTP &gt;= 0.8.x&#39;
 
 To use this template with Netmiko (&gt;=3.4.x) &#39;run_ttp&#39; method:
@@ -1424,7 +1424,7 @@ commands = [
 &lt;/input&gt;
 
 &lt;extend template=&quot;ttp://platform/cisco_ios_show_running_configuration_pipe_section_bgp.txt&quot;/&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

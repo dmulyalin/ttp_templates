@@ -1412,7 +1412,7 @@ Refer to <a href="contribute/">Contribute Guide</a> for details.</p>
 <p>This example demonstrates how to parse <code>Test Platform</code> output for <code>show run | sec interface</code> command using <code>platform/test_platform_show_run_pipe_sec_interface.txt</code> template.</p>
 <details><summary>Code</summary>
 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ttp_templates</span> <span class="kn">import</span> <span class="n">parse_output</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ttp_templates</span> <span class="kn">import</span> <span class="n">parse_output</span>
 <span class="kn">import</span> <span class="nn">pprint</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
@@ -1450,13 +1450,13 @@ Refer to <a href="contribute/">Contribute Guide</a> for details.</p>
 <span class="c1">#     &#39;interface&#39;: &#39;GigabitEthernet1/3.251&#39;,</span>
 <span class="c1">#     &#39;ip&#39;: &#39;172.16.33.10&#39;,</span>
 <span class="c1">#     &#39;mask&#39;: &#39;255.255.255.128&#39;}]]]</span>
-</code></pre></div>
+</pre></div>
 </details>
 
 <p>Sample code to parse <code>Cisco IOS</code> output in a structure compatible with <code>ietf-interfaces</code> YANG module.</p>
 <details><summary>Code</summary>
 
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ttp_templates</span> <span class="kn">import</span> <span class="n">get_template</span>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ttp_templates</span> <span class="kn">import</span> <span class="n">get_template</span>
 <span class="kn">from</span> <span class="nn">ttp</span> <span class="kn">import</span> <span class="n">ttp</span>
 <span class="kn">import</span> <span class="nn">pprint</span>
 
@@ -1552,7 +1552,7 @@ Refer to <a href="contribute/">Contribute Guide</a> for details.</p>
 <span class="c1">#                                                             &#39;statistics&#39;: {&#39;discontinuity-time&#39;: &#39;1970-01-01T00:00:00+00:00&#39;},</span>
 <span class="c1">#                                                             &#39;type&#39;: &#39;iana-if-type:ethernetCsmacd&#39;}]}}],</span>
 <span class="c1">#   &#39;valid&#39;: {0: True, 1: True}}]</span>
-</code></pre></div>
+</pre></div>
 </details>
 
 <h2 id="how-templates-collections-structured">How templates collections structured</h2>

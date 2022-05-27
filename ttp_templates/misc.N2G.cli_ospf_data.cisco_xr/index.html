@@ -1234,8 +1234,8 @@
                   <h1>cli_ospf_data.cisco_xr</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_ospf_data/cisco_xr.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://misc/N2G/cli_ospf_data/cisco_xr.txt
+</pre></div></p>
 <hr />
 <p>Template to parse Cisco IOSXR OSPF database content.</p>
 <p>This template initially designed for use with N2G library to produce network 
@@ -1247,7 +1247,7 @@ diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
 <li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
 </ul>
 <p>Produces this structure for each input datum/device output:
-<div class="highlight"><pre><span></span><code>[[{&#39;ospf_processes&#39;: {&#39;1&#39;: {&#39;local_rid&#39;: &#39;10.1.2.2&#39;,
+<div class="highlight"><pre><span></span>[[{&#39;ospf_processes&#39;: {&#39;1&#39;: {&#39;local_rid&#39;: &#39;10.1.2.2&#39;,
                             &#39;router_lsa&#39;: [{&#39;area&#39;: &#39;0.0.0.0&#39;,
                                             &#39;asbr&#39;: True,
                                             &#39;bma_peers&#39;: [{&#39;link_data&#39;: &#39;10.3.162.14&#39;,
@@ -1285,7 +1285,7 @@ diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
                                             &#39;ptp_peers&#39;: [{&#39;link_data&#39;: &#39;10.0.60.206&#39;,
                                                            &#39;link_id&#39;: &#39;10.0.24.6&#39;,
                                                            &#39;metric&#39;: &#39;9000&#39;}]}]}}}]]
-</code></pre></div></p>
+</pre></div></p>
 <p>This template initially designed for use with N2G library to produce network 
 diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
 <p>This template parses external-lsa only out of output produced by 
@@ -1295,7 +1295,7 @@ diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
 <li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
 </ul>
 <p>Produces this structure for each input datum/device output:
-<div class="highlight"><pre><span></span><code>[[{&#39;ospf_processes&#39;: {&#39;1&#39;: {&#39;external_lsa&#39;: [{&#39;mask&#39;: &#39;0&#39;,
+<div class="highlight"><pre><span></span>[[{&#39;ospf_processes&#39;: {&#39;1&#39;: {&#39;external_lsa&#39;: [{&#39;mask&#39;: &#39;0&#39;,
                                               &#39;metric&#39;: &#39;1&#39;,
                                               &#39;metric_type&#39;: &#39;2&#39;,
                                               &#39;originator_rid&#39;: &#39;10.3.22.190&#39;,
@@ -1315,7 +1315,7 @@ diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
                                               &#39;tag&#39;: &#39;0&#39;}],
                             &#39;local_rid&#39;: &#39;10.1.2.2&#39;}},
    &#39;vars&#39;: {&#39;hostname&#39;: &#39;router-1&#39;}}]]
-</code></pre></div></p>
+</pre></div></p>
 <p>This template initially designed for use with N2G library to produce network 
 diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
 <p>This template parses external-lsa only out of output produced by
@@ -1325,7 +1325,7 @@ diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
 <li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
 </ul>
 <p>Produces this structure for each input datum/device output:
-<div class="highlight"><pre><span></span><code>[[{&#39;ospf_processes&#39;: {&#39;1&#39;: {&#39;local_rid&#39;: &#39;10.1.2.2&#39;,
+<div class="highlight"><pre><span></span>[[{&#39;ospf_processes&#39;: {&#39;1&#39;: {&#39;local_rid&#39;: &#39;10.1.2.2&#39;,
                             &#39;summary_lsa&#39;: [{&#39;area&#39;: &#39;0.0.0.0&#39;,
                                              &#39;mask&#39;: &#39;32&#39;,
                                              &#39;metric&#39;: &#39;2312&#39;,
@@ -1352,10 +1352,10 @@ diagrams based on OSPF link state database of Cisco IOS-XR devices.</p>
                                              &#39;originator_rid&#39;: &#39;10.0.24.1&#39;,
                                              &#39;subnet&#39;: &#39;10.1.0.1&#39;}]}},
    &#39;vars&#39;: {&#39;hostname&#39;: &#39;router-1&#39;}}]]
-</code></pre></div></p>
+</pre></div></p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 Template to parse Cisco IOSXR OSPF database content.
 
 &lt;/doc&gt;
@@ -1374,7 +1374,7 @@ method = &quot;send_command&quot;
 &lt;extend template=&quot;ttp://platform/cisco_xr_show_ospf_database_router.txt&quot;/&gt;
 &lt;extend template=&quot;ttp://platform/cisco_xr_show_ospf_database_external.txt&quot;/&gt;
 &lt;extend template=&quot;ttp://platform/cisco_xr_show_ospf_database_summary.txt&quot;/&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

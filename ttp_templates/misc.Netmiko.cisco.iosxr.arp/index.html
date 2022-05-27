@@ -1234,12 +1234,12 @@
                   <h1>cisco.iosxr.arp</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.iosxr.arp.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://misc/Netmiko/cisco.iosxr.arp.txt
+</pre></div></p>
 <hr />
 <p>TTP template to parse Cisco IOS XR "show arp vrf all" output with Netmiko. </p>
 <p>Template can be invoked using Netmiko run_ttp method like this:
-<div class="highlight"><pre><span></span><code>import pprint
+<div class="highlight"><pre><span></span>import pprint
 from netmiko import ConnectHandler
 
 net_connect = ConnectHandler(
@@ -1271,11 +1271,11 @@ pprint.pprint(res)
 #   &#39;mac&#39;: &#39;00:24:f7:dd:77:41&#39;,
 #   &#39;protocol&#39;: &#39;Internet&#39;,
 #   &#39;type&#39;: &#39;ARPA&#39;}]
-</code></pre></div></p>
+</pre></div></p>
 <p>TTP template to parse Cisco IOS XR "show arp vrf all" output. </p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 TTP template to parse Cisco IOS XR &quot;show arp vrf all&quot; output with Netmiko. 
 
 Template can be invoked using Netmiko run_ttp method like this:
@@ -1323,7 +1323,7 @@ commands = [
 &lt;/input&gt;
 
 &lt;extend template=&quot;ttp://platform/cisco_xr_show_arp_vrf_all.txt&quot;/&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               

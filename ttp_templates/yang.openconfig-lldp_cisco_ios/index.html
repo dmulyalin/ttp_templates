@@ -1232,8 +1232,8 @@
                   <h1>openconfig-lldp_cisco_ios</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://yang/openconfig-lldp_cisco_ios.txt
-</code></pre></div></p>
+<div class="highlight"><pre><span></span>ttp://yang/openconfig-lldp_cisco_ios.txt
+</pre></div></p>
 <hr />
 <p>Template to produce openconfig-lldp compatible structure by parsing output 
 of this Cisco IOS command:</p>
@@ -1243,7 +1243,7 @@ of this Cisco IOS command:</p>
 <p>Device output should contain device prompt, otherwise device hostname will 
 not be extracted.</p>
 <p>Returns result compatible with this subset of openconfig-lldp YANG model:</p>
-<div class="highlight"><pre><span></span><code>module: openconfig-lldp
+<div class="highlight"><pre><span></span>module: openconfig-lldp
   +--rw lldp
      +--rw config
      |  +--rw system-name?                  string
@@ -1266,10 +1266,10 @@ not be extracted.</p>
                  +--ro capabilities
                     +--ro capability* [name]
                        +--ro name 
-</code></pre></div>
+</pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+<div class="highlight"><pre><span></span>&lt;doc&gt;
 Template to produce openconfig-lldp compatible structure by parsing output 
 of this Cisco IOS command:
 
@@ -1451,7 +1451,7 @@ System Capabilities: {{ codes | split(&quot;,&quot;) }}
 &lt;output condition=&quot;validate_with_yangson, True&quot;&gt;
 validate_yangson=&quot;&#39;./yang-modules/openconfig/lldp/&#39;&quot;
 &lt;/output&gt;
-</code></pre></div>
+</pre></div>
 </details>
                 
               
