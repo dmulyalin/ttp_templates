@@ -98,15 +98,15 @@ site_name: TTP Templates Collection
 site_url: https://ttp_templates.github.io/
 theme:
   custom_dir: docs/overrides
+  features:
+  - navigation.tabs
+  - navigation.tabs.sticky
+  - navigation.sections
+  - navigation.top
+  - toc.follow
   icon:
     repo: fontawesome/brands/github-alt
   name: material
   palette:
     accent: teal
     primary: blue
-  features:
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.top
-    - toc.follow

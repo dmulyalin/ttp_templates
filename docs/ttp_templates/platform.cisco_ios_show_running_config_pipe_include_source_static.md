@@ -237,9 +237,9 @@ Expected output:
 ip nat {{ location }} source static {{ inside_ip | IP }} {{ global_ip | IP }} extendable
 ip nat {{ location }} source static {{ inside_ip | IP }} interface {{ interface }}
 ip nat {{ location }} source static {{ inside_ip | IP }} {{ global_ip | IP }} vrf {{ vrf }} extendable
-ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | INT | to_int }} interface {{ interface }} {{ global_port | INT | to_int }}
-ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | INT | to_int }} {{ global_ip | IP }} {{ global_port | INT | to_int }} extendable
-ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | INT | to_int }} {{ global_ip | IP }} {{ global_port | INT | to_int }} vrf {{ vrf }} extendable
+ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | DIGIT | to_int }} interface {{ interface }} {{ global_port | DIGIT | to_int }}
+ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | DIGIT | to_int }} {{ global_ip | IP }} {{ global_port | DIGIT | to_int }} extendable
+ip nat {{ location }} source static {{ protocol }} {{ inside_ip | IP }} {{ inside_port | DIGIT | to_int }} {{ global_ip | IP }} {{ global_port | DIGIT | to_int }} vrf {{ vrf }} extendable
 </group>
 ```
 </details>

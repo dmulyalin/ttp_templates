@@ -1,11 +1,13 @@
 import sys
 import pprint
+import logging
 
 sys.path.insert(0, "..")
 
 from ttp_templates import get_template
 from ttp import ttp
 
+logging.basicConfig(level=logging.INFO)
 
 def test_cisco_ios_show_ip_ospf_database_router():
     with open(
@@ -389,3 +391,4 @@ ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/
                                          'location': 'inside',
                                          'protocol': 'tcp'}]}}]]   
                                          
+# test_cisco_ios_cisco_ios_show_running_config_pipe_include_source_static()
