@@ -1,0 +1,2 @@
+Hostname: ceos1
+FQDN:     ceos1

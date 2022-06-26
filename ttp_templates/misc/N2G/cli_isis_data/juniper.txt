@@ -1,0 +1,12 @@
+<doc>
+Template to parse Juniper JunOS "show isis database extensive | no-more" output.
+</doc>
+
+<input load="python">
+# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
+commands = [
+    "show isis database extensive | no-more",
+]
+</input>
+
+<extend template="ttp://platform/juniper_show_isis_database_verbose_pipe_no_more.txt"/>

@@ -5,7 +5,7 @@ sys.path.insert(0, "..")
 
 from ttp_templates import get_template
 from ttp import ttp
-
+from ttp_templates.ttp_vars import all_vars
 
 def test_N2G_ospf_lsdb_Cisco_IOSXR():
     with open("./mock_data/cisco_xr_show_ip_ospf_database_router_external_summary_router-1.txt", "r") as f:
@@ -379,3 +379,135 @@ def test_N2G_ospf_lsdb_huawei():
                                                              'metric': '9000'}]}]}}}]]
                                                              
 # test_N2G_ospf_lsdb_huawei()
+
+def test_N2G_isis_lsdb_juniper():
+    with open("./mock_data/juniper_show_isis_database_verbose_pipe_no_more.txt", "r") as f:
+        data = f.read()
+    template = get_template(path="misc/N2G/cli_isis_data/juniper.txt")
+    print(template)
+    parser = ttp(data=data, template=template)
+    parser.parse()
+    res = parser.result()
+    pprint.pprint(res)    
+    assert res == [[{'isis_processes': {'ISIS': {'R1-X1': [{'isis_area': '49.0001',
+                                          'level': '2',
+                                          'links': [{'bw_gbit': '10',
+                                                     'local_intf_id': '332',
+                                                     'local_ip': '10.123.111.238',
+                                                     'metric': '20',
+                                                     'peer_intf_id': '461',
+                                                     'peer_ip': '10.123.111.237',
+                                                     'peer_name': 'R1-X2'}],
+                                          'networks': [{'metric': '0',
+                                                        'network': '10.123.123.31/32'},
+                                                       {'metric': '0',
+                                                        'network': '10.123.123.41/32'},
+                                                       {'metric': '20',
+                                                        'network': '::ffff:10.123.111.236/126'}],
+                                          'rid': '10.123.123.31',
+                                          'rid_v6': '2001::10:123:123:31'}]}}}]]
+                                          
+# test_N2G_isis_lsdb_juniper()
+
+def test_N2G_cli_l2_data_juniper():
+    with open("./mock_data/test_N2G_cli_l2_data_juniper.txt", "r") as f:
+        data = f.read()
+    template = get_template(path="misc/N2G/cli_l2_data/juniper.txt")
+    print(template)
+    parser = ttp(data=data, template=template, vars={"IfsNormalize": all_vars["short_interface_names"], "physical_ports": all_vars["physical_ports"]})
+    parser.parse()
+    res = parser.result()
+    pprint.pprint(res)       
+    assert res == [{'switch-1.net.acme1.lab': {'interfaces': {'GE0/0/0': {'description': 'useful '
+                                                                       'staff',
+                                                        'lag_id': '31',
+                                                        'lag_mode': 'active',
+                                                        'mtu': '9234',
+                                                        'state': {'admin': 'Enabled',
+                                                                  'description': 'useful '
+                                                                                 'staff',
+                                                                  'is_physical_port': True,
+                                                                  'line': 'Up',
+                                                                  'mac': '84:03:28:15:11:13'}}},
+                             'interfaces_id': [{'description': 'em0',
+                                                'id': '17',
+                                                'interface': 'em0',
+                                                'parent': '-',
+                                                'status': 'Up'},
+                                               {'description': '-',
+                                                'id': '521',
+                                                'interface': '100GE0/0/31',
+                                                'parent': '-',
+                                                'status': 'Down'},
+                                               {'description': 'CID-BN-P-env4207-env4208-0004 '
+                                                               '| BACKHAUL',
+                                                'id': '612',
+                                                'interface': '100GE0/0/32',
+                                                'parent': '-',
+                                                'status': 'Up'},
+                                               {'description': '-',
+                                                'id': '522',
+                                                'interface': '100GE0/0/33',
+                                                'parent': '-',
+                                                'status': 'Down'},
+                                               {'description': 'BACKHAUL',
+                                                'id': '615',
+                                                'interface': '100GE0/0/34',
+                                                'parent': '-',
+                                                'status': 'Up'},
+                                               {'description': '-',
+                                                'id': '602',
+                                                'interface': '100GE0/0/35',
+                                                'parent': '-',
+                                                'status': 'Down'}],
+                             'lldp_peers': [{'data': {'chassis_id': '04:3f:72:cf:43:21',
+                                                      'parent_interface': '-',
+                                                      'peer_port_description': '04:3f:72:cf:12:34'},
+                                             'source': 'switch-1.net.acme1.lab',
+                                             'src_label': '100GE0/0/12',
+                                             'target': {'id': '04:3f:72:cf:43:21'},
+                                             'trgt_label': ''},
+                                            {'data': {'chassis_id': '11:22:33:1b:7a:80',
+                                                      'parent_interface': '-',
+                                                      'peer_port_description': 'Eth0'},
+                                             'source': 'switch-1.net.acme1.lab',
+                                             'src_label': '100GE0/0/13',
+                                             'target': {'id': 'CSW31'},
+                                             'trgt_label': ''},
+                                            {'data': {'chassis_id': '9c:e1:76:9d:11:23',
+                                                      'parent_interface': '-',
+                                                      'peer_port_description': 'HundredGigE0/0/1/0.12'},
+                                             'source': 'switch-1.net.acme1.lab',
+                                             'src_label': '100GE0/0/14',
+                                             'target': {'id': 'nsw02-env1.env4208.net.acme1.lab'},
+                                             'trgt_label': '100GE0/0/1/0.12'},
+                                            {'data': {'chassis_id': '9c:e1:76:9d:11:23',
+                                                      'parent_interface': '-',
+                                                      'peer_port_description': 'HundredGigE0/0/1/0.34'},
+                                             'source': 'switch-1.net.acme1.lab',
+                                             'src_label': '100GE0/0/15',
+                                             'target': {'id': 'nsw02-env1.env4208.net.acme1.lab'},
+                                             'trgt_label': '100GE0/0/1/0.34'}],
+                             'node_facts': {'system': {'chassis_id': '84:03:28:15:12:34',
+                                                       'description': 'Juniper '
+                                                                      'Networks, '
+                                                                      'Inc. '
+                                                                      'ssm5123-64c '
+                                                                      'Ethernet '
+                                                                      'Switch, '
+                                                                      'kernel '
+                                                                      'JUNOS '
+                                                                      '12.2R3-S1.3, '
+                                                                      'Build '
+                                                                      'date: '
+                                                                      '2011-05-12 '
+                                                                      '12:34:56 '
+                                                                      'UTC '
+                                                                      'Copyright '
+                                                                      '(c) '
+                                                                      '1996-2021 '
+                                                                      'Juniper '
+                                                                      'Networks, '
+                                                                      'Inc.'}}}}]
+                                                                      
+# test_N2G_cli_l2_data_juniper()

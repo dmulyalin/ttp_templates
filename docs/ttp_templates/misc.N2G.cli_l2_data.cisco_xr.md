@@ -9,6 +9,13 @@ ttp://misc/N2G/cli_l2_data/cisco_xr.txt
 
 This template designed to parse Cisco IOSXR configuration and CDP and LLDP neighbors.
 
+Commands parsed:
+
+- show lldp - to extract local hostname
+- show lldp neighbors detail - to extract LLDP neighbors
+- show running-config interface - to extract interfaces description and LAGs
+- show cdp neighbors detail - show extract CDP neighbors
+- show interfaces - to extract interface state to add all connected nodes
 
 
 
@@ -21,8 +28,16 @@ This template designed to parse Cisco IOSXR configuration and CDP and LLDP neigh
 <doc>
 This template designed to parse Cisco IOSXR configuration and CDP and LLDP neighbors.
 
+Commands parsed:
+
+- show lldp - to extract local hostname
+- show lldp neighbors detail - to extract LLDP neighbors
+- show running-config interface - to extract interfaces description and LAGs
+- show cdp neighbors detail - show extract CDP neighbors
+- show interfaces - to extract interface state to add all connected nodes
 </doc>
 
+<!-- gethostname used if no show lldp output provided -->
 <vars>local_hostname="gethostname"</vars>
 
 <macro>
@@ -31,7 +46,26 @@ def check_is_physical_port(data):
         if data.startswith(item) and not "." in item:
             return data, {"is_physical_port": True}
     return data
+    
+def add_lldp_target_id(data):
+    """
+    Some LLDP peers output does not contain System Name, this macro 
+    is to make sure we assign chassis_id as target.id in that case.
+    """
+    if (
+        not data.get("target", {}).get("id") and 
+        data.get("data", {}).get("chassis_id")
+    ):
+        data.setdefault("target", {})
+        data["target"]["id"] = data["data"]["chassis_id"]
+    return data
 </macro>
+
+<!-- show lldp - parse global params -->
+<group void="">
+Global LLDP information: {{ _start_ }}
+        LLDP System Name: {{ local_hostname | record("local_hostname") }}
+</group>
 
 <!-- Interfaces configuration group -->
 <group name="{{ local_hostname }}.interfaces**.{{ interface }}**">
@@ -63,15 +97,24 @@ interface {{ interface | resuball(IfsNormalize) }}
 </group>
 
 <!-- LLDP peers group -->
-<group name="{{ local_hostname }}.lldp_peers*" expand="">
+<group name="{{ local_hostname }}.lldp_peers*" functions="expand() | macro(add_lldp_target_id)">
 Local Interface: {{ src_label | resuball(IfsNormalize) }}
 Chassis id: {{ data.chassis_id }}
 Port id: {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
 Port Description: {{ data.peer_port_description | re(".+") }}
-System Name: {{ target.id | split(".") | item(0) | split("(") | item(0) }}
+System Name: {{ target.id | split("(") | item(0) }}
+System Name: {{ data.peer_system_name | PHRASE }}
 System Capabilities: {{ data.peer_capabilities | ORPHRASE }}
   IPv4 address: {{ target.top_label }}
 {{ source | set("local_hostname") }}
+
+<group name="data**">
+System Description: {{ _start_ }}
+ {{ peer_system_description | ORPHRASE | contains(",") }}
+{{ peer_system_description | ORPHRASE | contains(",") }}
+{{ _end_ }}
+</group>
+
 </group>
 
 

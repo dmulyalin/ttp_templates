@@ -1,0 +1,113 @@
+user1@switch-1> show lldp local-information 
+
+LLDP Local Information details
+
+Chassis ID   : 84:03:28:15:12:34
+System name  : switch-1.net.acme1.lab
+System descr : Juniper Networks, Inc. ssm5123-64c Ethernet Switch, kernel JUNOS 12.2R3-S1.3, Build date: 2011-05-12 12:34:56 UTC Copyright (c) 1996-2021 Juniper Networks, Inc.
+
+System Capabilities
+    Supported       : Bridge Router 
+    Enabled         : Bridge Router 
+
+Management Information
+    Interface Name  : em0
+    Address Subtype : IPv4(1)
+    Address         : 10.123.204.39
+    Interface Number               : 17
+    Interface Numbering Subtype    : ifIndex(2)
+
+Interface name      Parent Interface   Interface ID       Interface description    Status
+em0                 -                  17                 em0                      Up      
+et-0/0/31           -                  521                -                        Down    
+et-0/0/32           -                  612                CID-BN-P-env4207-env4208-0004 | BACKHAUL Up      
+et-0/0/33           -                  522                -                        Down    
+et-0/0/34           -                  615                BACKHAUL Up      
+et-0/0/35           -                  602                -                        Down       
+
+{master:0}
+user1@switch-1> show lldp neighbors 
+Local Interface    Parent Interface    Chassis Id          Port info          System Name
+et-0/0/12          -                   04:3f:72:cf:43:21   04:3f:72:cf:12:34
+et-0/0/13          -                   11:22:33:1b:7a:80   Eth0               CSW31
+et-0/0/14          -                   9c:e1:76:9d:11:23   HundredGigE0/0/1/0.12 nsw02-env1.env4208.net.acme1.lab
+et-0/0/15          -                   9c:e1:76:9d:11:23   HundredGigE0/0/1/0.34 nsw02-env1.env4208.net.acme1.lab
+
+{master:0}
+user1@switch-1> show configuration interfaces | display set | no-more 
+set interfaces ge-0/0/0 description "useful staff"
+set interfaces ge-0/0/0 ether-options 802.3ad 31
+set interfaces ge-0/0/0 mtu 9234
+set interfaces ge-0/0/0 aggregated-ether-options lacp active
+{master:0}
+
+user1@switch-1> show interfaces detail | no-more 
+Physical interface: ge-0/0/0, Enabled, Physical link is Up
+  Interface index: 123, SNMP ifIndex: 4321, Generation: 141
+  Description: useful staff
+  Link-level type: Ethernet, MTU: 9234, LAN-PHY mode, Speed: 100Gbps, BPDU Error: None, Loop Detect PDU Error: None, Ethernet-Switching Error: None, MAC-REWRITE Error: None, Loopback: Disabled,
+  Source filtering: Disabled, Flow control: Disabled, Media type: Fiber
+  Device flags   : Present Running
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : None
+  CoS queues     : 10 supported, 10 maximum usable queues
+  Hold-times     : Up 0 ms, Down 0 ms
+  Current address: 84:03:28:15:11:13, Hardware address: 84:03:28:15:11:34
+  Last flapped   : 2022-23-12 11:31:41 UTC (4d 11:48 ago)
+  Statistics last cleared: 2022-43-51 11:31:41 UTC (50w0d 07:51 ago)
+  Traffic statistics:
+   Input  bytes  :    16307027457109123           7839570216 bps
+   Output bytes  :     4957883264478488           2023686896 bps
+   Input  packets:        2693554359960               161652 pps
+   Output packets:         818438758751                41759 pps
+   IPv6 transit statistics:
+   Input  bytes  :                    0
+   Output bytes  :                    0
+   Input  packets:                    0
+   Output packets:                    0
+  Egress queues: 10 supported, 5 in use
+  Queue counters:       Queued packets  Transmitted packets      Dropped packets
+    0                     818438658689         818438658689                    0
+    3                                0                    0                    0
+    4                                0                    0                    0
+    7                           195101               195101                    0
+    8                                0                    0                    0
+  Queue number:         Mapped forwarding classes
+    0                   best-effort
+    3                   fcoe
+    4                   no-loss
+    7                   network-control
+    8                   mcast
+  Active alarms  : None
+  Active defects : None
+ Pre-emphasis(reg 236/237)
+                       Register-value                 0
+ Ctle(reg 234/235)
+                    Register-value                 0
+ Differential-amplitude(reg 238/239)
+                        Register-value                 0
+  PCS statistics                      Seconds
+    Bit errors                             0
+    Errored blocks                         0
+  Ethernet FEC Mode  :                  FEC91
+  Ethernet FEC statistics              Errors
+    FEC Corrected Errors                    0
+    FEC Uncorrected Errors                  0
+    FEC Corrected Errors Rate               0
+    FEC Uncorrected Errors Rate             0
+  PRBS Statistics : Disabled
+  Interface transmit statistics: Disabled
+  MACSec statistics:
+    Output
+        Secure Channel Transmitted
+        Protected Packets               : 0
+        Encrypted Packets               : 0
+        Protected Bytes                 : 0
+        Encrypted Bytes                 : 0
+     Input
+        Secure Channel Received
+        Accepted Packets                : 0
+        Validated Bytes                 : 0
+        Decrypted Bytes                 : 0
+{master:0}
+user1@switch-1>

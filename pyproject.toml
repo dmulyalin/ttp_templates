@@ -1,0 +1,59 @@
+[tool.poetry]
+name = "ttp_templates"
+version = "0.2.0"
+description = "Template Text Parser Templates collections"
+license = "MIT"
+include = [
+	"platform/*.txt",
+	"yang/*.txt",
+	"misc/*/*.txt",
+]
+authors = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
+maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/dmulyalin/ttp_templates"
+repository = "https://github.com/dmulyalin/ttp_templates"
+documentation = "https://dmulyalin.github.io/ttp_templates/"
+keywords = ["Parsing", "TTP", "regex"]
+classifiers = [
+    "Topic :: Utilities",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+ttp = { version = ">=0.6.0" }
+
+# docs dependencies for extras definition
+mkdocs = { version = ">=1.1", optional = true, markers = "python_version >= '3.7'" }
+mkdocs-material = { version = "7.2.2", optional = true, markers = "python_version >= '3.7'" }
+mkdocs-material-extensions = { version = "1.0.1", optional = true, markers = "python_version >= '3.7'" }
+mkdocstrings = { version = "0.18.*", optional = true, markers = "python_version >= '3.7'", extras = ["python"] } 
+
+[tool.poetry.dev-dependencies]
+bandit = { version = "1.7.*", markers = "python_version >= '3.7'" }
+black = { version = "22.3.*", markers = "python_version >= '3.7'" }
+flake8 = { version = "4.0.*", markers = "python_version >= '3.7'" }
+pre-commit = { version = "2.15.*", markers = "python_version >= '3.7'" }
+pyenchant = { version = "3.2.*", markers = "python_version >= '3.7'" }
+pylint = { version = "2.12.*", markers = "python_version >= '3.7'" }
+pytest = { version = "^7.1.*", markers = "python_version >= '3.7'" }
+cerberus = { version = "1.3.*", markers = "python_version >= '3.7'" }
+jinja2 = { version = "3.0.*", markers = "python_version >= '3.7'" }
+pyyaml = { version = "6.0", markers = "python_version >= '3.7'" }
+deepdiff = { version = "5.8.*", markers = "python_version >= '3.7'" }
+openpyxl = { version = "3.0.*", markers = "python_version >= '3.7'" }
+tabulate = { version = "0.8.*", markers = "python_version >= '3.7'" }
+yangson = { version = "1.4.*", markers = "python_version >= '3.7'" }
+netmiko = { version = "3.4.0", markers = "python_version >= '3.7'" }
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

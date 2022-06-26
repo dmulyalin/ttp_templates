@@ -1,0 +1,81 @@
+<template name="juniper" results="per_template">
+
+<doc>
+This template designed to parse Juniper JunOS configuration and LLDP neighbors.
+
+Commands parsed:
+
+- show lldp local-information - to extract local hostname
+- show lldp neighbors - to extract LLDP neighbors
+- show configuration interfaces | display set | no-more - to extract interfaces confgiuration and LAG details
+- show interfaces detail | no-more - to extract interfaces state to add all connected devices
+</doc>
+
+<input>
+commands = [
+    "show lldp local-information",
+    "show lldp neighbors",
+    "show configuration interfaces | display set | no-more",
+    "show interfaces detail | no-more",
+]    
+</input>
+
+<!-- gethostname used if no show lldp output provided -->
+<vars>local_hostname="gethostname"</vars>
+
+<macro>
+def check_is_physical_port(data):
+    for item in _ttp_["vars"]["physical_ports"]:
+        if data.startswith(item) and not "." in item:
+            return data, {"is_physical_port": True}
+    return data
+    
+def extract_lldp_peer(data):
+    if " " in data["info"]:
+        *port_info, peer_name = data.pop("info").split(" ")
+        data["data.peer_port_description"] = " ".join(port_info).strip()
+    else:
+        port_info, peer_name = data.pop("info"), data["data.chassis_id"]
+        data["data.peer_port_description"] = port_info
+    
+    data["target.id"] = peer_name
+    data["trgt_label"] = ""
+    
+    # check if port_info is name of the interface, use it as link trgt_label
+    if len(port_info) == 1 and not port_info[0].isdigit():
+        data["trgt_label"], _ = _ttp_["match"]["resuball"](port_info[0], "IfsNormalize")
+</macro>
+
+<!-- show lldp local-information - parse global params -->
+<group name="{{ local_hostname }}.node_facts.system**">
+LLDP Local Information details {{ _start_ }}
+Chassis ID   : {{ chassis_id }}
+System name  : {{ local_hostname | record(local_hostname) }}
+System descr : {{ description | PHRASE }}
+<group name="/{{ local_hostname }}.interfaces_id*">
+{{ interface | resuball(IfsNormalize) }} {{ parent }} {{ id | DIGIT }} {{ description | ORPHRASE }} {{ status }}
+</group>
+</group>
+
+<!-- Interfaces configuration group -->
+<group name="{{ local_hostname }}.interfaces**.{{ interface }}**">
+set interfaces {{ interface | resuball(IfsNormalize) }} description "{{ description | re(".+") }}"
+set interfaces {{ interface | resuball(IfsNormalize) }} ether-options 802.3ad {{ lag_id | DIGIT }}
+set interfaces {{ interface | resuball(IfsNormalize) }} mtu {{ mtu }}
+set interfaces {{ interface | resuball(IfsNormalize) }} aggregated-ether-options lacp {{ lag_mode }}
+</group>
+
+<!-- Interfaces state group -->
+<group name="{{ local_hostname }}.interfaces**.{{ interface }}**.state">    
+Physical interface: {{ interface | _start_ | resuball(IfsNormalize) | macro("check_is_physical_port") }}, {{ admin | ORPHRASE }}, Physical link is {{ line | ORPHRASE }}
+  Description: {{ description | re(".+") }}
+  Link-level type: Ethernet, MTU: {{ mtu }}, Speed: {{ bw_gbits }}Gbps, {{ ignore(PHRASE) }}
+  Current address: {{ mac }}, Hardware address: {{ ignore }}
+</group>
+
+<!-- LLDP peers group -->
+<group name="{{ local_hostname }}.lldp_peers*" functions="macro('extract_lldp_peer') | expand()">
+{{ src_label | resuball(IfsNormalize) }}  {{ data.parent_interface }} {{ data.chassis_id | MAC }} {{ info | re(".+") }}
+{{ source | set("local_hostname") }}
+</group>
+</template>
