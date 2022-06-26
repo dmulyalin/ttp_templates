@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_ip_data.huawei/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_l2_data.juniper/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cli_ip_data.huawei - TTP Templates Collection</title>
+        <title>cli_l2_data.juniper - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cli_ip_data.huawei
+              cli_l2_data.juniper
             
           </span>
         </div>
@@ -488,19 +488,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cli_ip_data.huawei/" class="md-nav__link">
         cli_ip_data.huawei
       </a>
-      
     </li>
   
 
@@ -604,11 +596,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../misc.N2G.cli_l2_data.juniper/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         cli_l2_data.juniper
       </a>
+      
     </li>
   
 
@@ -1262,52 +1262,107 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_ip_data.huawei.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_l2_data.juniper.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cli_ip_data.huawei</h1>
+                  <h1>cli_l2_data.juniper</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_ip_data/huawei.txt
+<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_l2_data/juniper.txt
 </code></pre></div></p>
 <hr />
-<p>Template to parse Huawei interfaces configuration and ARP cache.</p>
+<p>This template designed to parse Juniper JunOS configuration and LLDP neighbors.</p>
+<p>Commands parsed:</p>
+<ul>
+<li>show lldp local-information - to extract local hostname</li>
+<li>show lldp neighbors - to extract LLDP neighbors</li>
+<li>show configuration interfaces | display set | no-more - to extract interfaces confgiuration and LAG details</li>
+<li>show interfaces detail | no-more - to extract interfaces state to add all connected devices</li>
+</ul>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;huawei&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;juniper&quot; results=&quot;per_template&quot;&gt;
 
 &lt;doc&gt;
-Template to parse Huawei interfaces configuration and ARP cache.
+This template designed to parse Juniper JunOS configuration and LLDP neighbors.
+
+Commands parsed:
+
+- show lldp local-information - to extract local hostname
+- show lldp neighbors - to extract LLDP neighbors
+- show configuration interfaces | display set | no-more - to extract interfaces confgiuration and LAG details
+- show interfaces detail | no-more - to extract interfaces state to add all connected devices
 &lt;/doc&gt;
 
+&lt;input&gt;
+commands = [
+    &quot;show lldp local-information&quot;,
+    &quot;show lldp neighbors&quot;,
+    &quot;show configuration interfaces | display set | no-more&quot;,
+    &quot;show interfaces detail | no-more&quot;,
+]    
+&lt;/input&gt;
+
+&lt;!-- gethostname used if no show lldp output provided --&gt;
 &lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
 
+&lt;macro&gt;
+def check_is_physical_port(data):
+    for item in _ttp_[&quot;vars&quot;][&quot;physical_ports&quot;]:
+        if data.startswith(item) and not &quot;.&quot; in item:
+            return data, {&quot;is_physical_port&quot;: True}
+    return data
+
+def extract_lldp_peer(data):
+    if &quot; &quot; in data[&quot;info&quot;]:
+        *port_info, peer_name = data.pop(&quot;info&quot;).split(&quot; &quot;)
+        data[&quot;data.peer_port_description&quot;] = &quot; &quot;.join(port_info).strip()
+    else:
+        port_info, peer_name = data.pop(&quot;info&quot;), data[&quot;data.chassis_id&quot;]
+        data[&quot;data.peer_port_description&quot;] = port_info
+
+    data[&quot;target.id&quot;] = peer_name
+    data[&quot;trgt_label&quot;] = &quot;&quot;
+
+    # check if port_info is name of the interface, use it as link trgt_label
+    if len(port_info) == 1 and not port_info[0].isdigit():
+        data[&quot;trgt_label&quot;], _ = _ttp_[&quot;match&quot;][&quot;resuball&quot;](port_info[0], &quot;IfsNormalize&quot;)
+&lt;/macro&gt;
+
+&lt;!-- show lldp local-information - parse global params --&gt;
+&lt;group name=&quot;{{ local_hostname }}.node_facts.system**&quot;&gt;
+LLDP Local Information details {{ _start_ }}
+Chassis ID   : {{ chassis_id }}
+System name  : {{ local_hostname | record(local_hostname) }}
+System descr : {{ description | PHRASE }}
+&lt;group name=&quot;/{{ local_hostname }}.interfaces_id*&quot;&gt;
+{{ interface | resuball(IfsNormalize) }} {{ parent }} {{ id | DIGIT }} {{ description | ORPHRASE }} {{ status }}
+&lt;/group&gt;
+&lt;/group&gt;
+
 &lt;!-- Interfaces configuration group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces.{{ interface }}&quot;&gt;
-interface {{ interface | resuball(&quot;IfsNormalize&quot;) }}
- description {{ port_description | re(&quot;.+&quot;) }}
- ip binding vpn-instance {{ vrf }}
- &lt;group name=&quot;ip_addresses*&quot; chain=&quot;add_network()&quot; method=&quot;table&quot;&gt;
- ip address {{ ip | IP }} {{ netmask }}
- ip address {{ ip | IP }} {{ netmask }} sub
- ipv6 address {{ ip | IPV6 }}/{{ netmask }}
- ipv6 address {{ ip | IPV6 }}/{{ netmask }} sub
- &lt;/group&gt;
- &lt;group name=&quot;fhrp*&quot; method=&quot;table&quot;&gt;
- vrrp vrid {{ group | let(&quot;type&quot;, &quot;VRRP&quot;) }} virtual-ip {{ ip | IP }}
- &lt;/group&gt;
+&lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**&quot;&gt;
+set interfaces {{ interface | resuball(IfsNormalize) }} description &quot;{{ description | re(&quot;.+&quot;) }}&quot;
+set interfaces {{ interface | resuball(IfsNormalize) }} ether-options 802.3ad {{ lag_id | DIGIT }}
+set interfaces {{ interface | resuball(IfsNormalize) }} mtu {{ mtu }}
+set interfaces {{ interface | resuball(IfsNormalize) }} aggregated-ether-options lacp {{ lag_mode }}
 &lt;/group&gt;
 
-&lt;!-- ARP cache group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces.{{ interface }}.arp*&quot; method=&quot;table&quot;&gt;
-{{ ip | IP }}   {{ mac | MAC | mac_eui }}  {{ expire | re(&quot;\\d+&quot;) }}  {{ type | notdigit }}  {{ interface | resuball(&quot;IfsNormalize&quot;) }}   {{ vrf }}
-{{ ip | IP }}   {{ mac | MAC | mac_eui }}                             {{ type | notdigit }}  {{ interface | resuball(&quot;IfsNormalize&quot;) }}   {{ vrf }}
-{{ ip | IP }}   {{ mac | MAC | mac_eui }}  {{ expire | re(&quot;\\d+&quot;) }}  {{ type | notdigit }}  {{ interface | resuball(&quot;IfsNormalize&quot;) }}
-{{ ip | IP }}   {{ mac | MAC | mac_eui }}                             {{ type | notdigit }}  {{ interface | resuball(&quot;IfsNormalize&quot;) }}
+&lt;!-- Interfaces state group --&gt;
+&lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**.state&quot;&gt;    
+Physical interface: {{ interface | _start_ | resuball(IfsNormalize) | macro(&quot;check_is_physical_port&quot;) }}, {{ admin | ORPHRASE }}, Physical link is {{ line | ORPHRASE }}
+  Description: {{ description | re(&quot;.+&quot;) }}
+  Link-level type: Ethernet, MTU: {{ mtu }}, Speed: {{ bw_gbits }}Gbps, {{ ignore(PHRASE) }}
+  Current address: {{ mac }}, Hardware address: {{ ignore }}
 &lt;/group&gt;
 
+&lt;!-- LLDP peers group --&gt;
+&lt;group name=&quot;{{ local_hostname }}.lldp_peers*&quot; functions=&quot;macro(&#39;extract_lldp_peer&#39;) | expand()&quot;&gt;
+{{ src_label | resuball(IfsNormalize) }}  {{ data.parent_interface }} {{ data.chassis_id | MAC }} {{ info | re(&quot;.+&quot;) }}
+{{ source | set(&quot;local_hostname&quot;) }}
+&lt;/group&gt;
 &lt;/template&gt;
 </code></pre></div>
 </details>
@@ -1335,7 +1390,7 @@ interface {{ interface | resuball(&quot;IfsNormalize&quot;) }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.N2G.cli_ip_data.fortinet/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_ip_data.fortinet" rel="prev">
+        <a href="../misc.N2G.cli_l2_data.huawei/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_l2_data.huawei" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1344,20 +1399,20 @@ interface {{ interface | resuball(&quot;IfsNormalize&quot;) }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              cli_ip_data.fortinet
+              cli_l2_data.huawei
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.N2G.cli_ip_data.readme/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_ip_data.readme" rel="next">
+        <a href="../misc.N2G.cli_l2_data.readme/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_l2_data.readme" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_ip_data.readme
+              cli_l2_data.readme
             </div>
           </div>
           <div class="md-footer__button md-icon">

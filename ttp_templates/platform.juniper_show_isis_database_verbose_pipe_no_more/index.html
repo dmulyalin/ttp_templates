@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_ip_data.huawei/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/platform.juniper_show_isis_database_verbose_pipe_no_more/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cli_ip_data.huawei - TTP Templates Collection</title>
+        <title>juniper_show_isis_database_verbose_pipe_no_more - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cli_ip_data.huawei
+              juniper_show_isis_database_verbose_pipe_no_more
             
           </span>
         </div>
@@ -380,16 +380,14 @@
             
   
   
-    
-  
   
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
       
       <label class="md-nav__link" for="__nav_5_1">
         Misc
@@ -405,14 +403,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
       
       <label class="md-nav__link" for="__nav_5_1_1">
         N2G
@@ -488,19 +484,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cli_ip_data.huawei/" class="md-nav__link">
         cli_ip_data.huawei
       </a>
-      
     </li>
   
 
@@ -925,14 +913,16 @@
             
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
       
       <label class="md-nav__link" for="__nav_5_2">
         Platform
@@ -1140,11 +1130,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.juniper_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         juniper_show_isis_database_verbose_pipe_no_more
       </a>
+      
     </li>
   
 
@@ -1262,53 +1260,215 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_ip_data.huawei.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.juniper_show_isis_database_verbose_pipe_no_more.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cli_ip_data.huawei</h1>
+                  <h1>juniper_show_isis_database_verbose_pipe_no_more</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_ip_data/huawei.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/juniper_show_isis_database_verbose_pipe_no_more.txt
 </code></pre></div></p>
 <hr />
-<p>Template to parse Huawei interfaces configuration and ARP cache.</p>
+<p>Template to parse ISIS LSDB of Juniper JunOS devices out of 
+"show isis database extensive | no-more" command output.</p>
+<p>For this sample data:
+<div class="highlight"><pre><span></span><code>IS-IS level 2 link-state database:
+
+R1-X1.00-00 Sequence: 0x22425, Checksum: 0x8904, Lifetime: 463 secs
+   IS neighbor: R1-X2.00                       Metric:       20
+     Two-way fragment: R1-X2.00-00, Two-way first fragment: R1-X2.00-00
+   IP prefix: 10.123.123.31/32                 Metric:        0 Internal Up
+   IP prefix: 10.123.123.41/32                 Metric:        0 Internal Up
+   V6 prefix: ::ffff:10.123.111.236/126        Metric:       20 Internal Up
+
+  Header: LSP ID: R1-X1.00-00, Length: 233 bytes
+    Allocated length: 284 bytes, Router ID: 10.123.123.31
+    Remaining lifetime: 463 secs, Level: 2, Interface: 80
+    Estimated free bytes: 51, Actual free bytes: 51
+    Aging timer expires in: 463 secs
+    Protocols: IP, IPv6
+
+  Packet: LSP ID: R1-X1.00-00, Length: 233 bytes, Lifetime : 1194 secs
+    Checksum: 0x8904, Sequence: 0x22425, Attributes: 0x3 L1 L2
+    NLPID: 0x83, Fixed length: 27 bytes, Version: 1, Sysid length: 0 bytes
+    Packet type: 20, Packet version: 1, Max area: 0
+
+  TLVs:
+    Area address: 49.0001 (3)
+    LSP Buffer Size: 1492
+    Speaks: IP
+    Speaks: IPV6
+    IP router id: 10.123.123.31
+    IP address: 10.123.123.31
+    IPv6 TE Router ID: 2001::10:123:123:31
+    Hostname: R1-X1
+    Extended IS Reachability TLV, Type: 22, Length: 85
+    IS extended neighbor: R1-X2.00, Metric: default 20 SubTLV len: 74
+      IP address: 10.123.111.238
+      Neighbor&#39;s IP address: 10.123.111.237
+      Local interface index: 332, Remote interface index: 461
+      Current reservable bandwidth:
+        Priority 0 : 7Gbps
+        Priority 1 : 7Gbps
+        Priority 2 : 7Gbps
+        Priority 3 : 7Gbps
+        Priority 4 : 7Gbps
+        Priority 5 : 7Gbps
+        Priority 6 : 6.7Gbps
+        Priority 7 : 6.7Gbps
+      Maximum reservable bandwidth: 7Gbps
+      Maximum bandwidth: 10Gbps
+      Administrative groups:  0 none
+    IPv6 prefix: ::ffff:10.123.111.236/126 Metric 20 Up
+    IP extended prefix: 10.123.123.31/32 metric 0 up
+    IP extended prefix: 10.123.123.41/32 metric 0 up
+    IP extended prefix: 10.123.111.236/30 metric 20 up
+    IP address: 10.123.123.41
+    Authentication data: 17 bytes
+  No queued transmissions
+</code></pre></div></p>
+<p>This template produces this result:
+<div class="highlight"><pre><span></span><code>[[{&#39;isis_processes&#39;: {&#39;ISIS&#39;: {&#39;R1-X1&#39;: [{&#39;isis_area&#39;: &#39;49.0001&#39;,
+                                          &#39;level&#39;: &#39;2&#39;,
+                                          &#39;links&#39;: [{&#39;bw_gbit&#39;: &#39;10&#39;,
+                                                     &#39;local_intf_id&#39;: &#39;332&#39;,
+                                                     &#39;local_ip&#39;: &#39;10.123.111.238&#39;,
+                                                     &#39;metric&#39;: &#39;20&#39;,
+                                                     &#39;peer_intf_id&#39;: &#39;461&#39;,
+                                                     &#39;peer_ip&#39;: &#39;10.123.111.237&#39;,
+                                                     &#39;peer_name&#39;: &#39;R1-X2&#39;}],
+                                          &#39;networks&#39;: [{&#39;metric&#39;: &#39;0&#39;,
+                                                        &#39;network&#39;: &#39;10.123.123.31/32&#39;},
+                                                       {&#39;metric&#39;: &#39;0&#39;,
+                                                        &#39;network&#39;: &#39;10.123.123.41/32&#39;},
+                                                       {&#39;metric&#39;: &#39;20&#39;,
+                                                        &#39;network&#39;: &#39;::ffff:10.123.111.236/126&#39;}],
+                                          &#39;rid&#39;: &#39;10.123.123.31&#39;,
+                                          &#39;rid_v6&#39;: &#39;2001::10:123:123:31&#39;}]}}}]]
+</code></pre></div></p>
+<p>Notes:</p>
+<ul>
+<li>Process ID (PID) always set to <code>ISIS</code> value as PID does not present in 
+  "show isis database extensive | no-more" command output on Juniper devices.</li>
+</ul>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;huawei&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+Template to parse ISIS LSDB of Juniper JunOS devices out of 
+&quot;show isis database extensive | no-more&quot; command output.
 
-&lt;doc&gt;
-Template to parse Huawei interfaces configuration and ARP cache.
+For this sample data:
+&#39;&#39;&#39;
+IS-IS level 2 link-state database:
+
+R1-X1.00-00 Sequence: 0x22425, Checksum: 0x8904, Lifetime: 463 secs
+   IS neighbor: R1-X2.00                       Metric:       20
+     Two-way fragment: R1-X2.00-00, Two-way first fragment: R1-X2.00-00
+   IP prefix: 10.123.123.31/32                 Metric:        0 Internal Up
+   IP prefix: 10.123.123.41/32                 Metric:        0 Internal Up
+   V6 prefix: ::ffff:10.123.111.236/126        Metric:       20 Internal Up
+
+  Header: LSP ID: R1-X1.00-00, Length: 233 bytes
+    Allocated length: 284 bytes, Router ID: 10.123.123.31
+    Remaining lifetime: 463 secs, Level: 2, Interface: 80
+    Estimated free bytes: 51, Actual free bytes: 51
+    Aging timer expires in: 463 secs
+    Protocols: IP, IPv6
+
+  Packet: LSP ID: R1-X1.00-00, Length: 233 bytes, Lifetime : 1194 secs
+    Checksum: 0x8904, Sequence: 0x22425, Attributes: 0x3 L1 L2
+    NLPID: 0x83, Fixed length: 27 bytes, Version: 1, Sysid length: 0 bytes
+    Packet type: 20, Packet version: 1, Max area: 0
+
+  TLVs:
+    Area address: 49.0001 (3)
+    LSP Buffer Size: 1492
+    Speaks: IP
+    Speaks: IPV6
+    IP router id: 10.123.123.31
+    IP address: 10.123.123.31
+    IPv6 TE Router ID: 2001::10:123:123:31
+    Hostname: R1-X1
+    Extended IS Reachability TLV, Type: 22, Length: 85
+    IS extended neighbor: R1-X2.00, Metric: default 20 SubTLV len: 74
+      IP address: 10.123.111.238
+      Neighbor&#39;s IP address: 10.123.111.237
+      Local interface index: 332, Remote interface index: 461
+      Current reservable bandwidth:
+        Priority 0 : 7Gbps
+        Priority 1 : 7Gbps
+        Priority 2 : 7Gbps
+        Priority 3 : 7Gbps
+        Priority 4 : 7Gbps
+        Priority 5 : 7Gbps
+        Priority 6 : 6.7Gbps
+        Priority 7 : 6.7Gbps
+      Maximum reservable bandwidth: 7Gbps
+      Maximum bandwidth: 10Gbps
+      Administrative groups:  0 none
+    IPv6 prefix: ::ffff:10.123.111.236/126 Metric 20 Up
+    IP extended prefix: 10.123.123.31/32 metric 0 up
+    IP extended prefix: 10.123.123.41/32 metric 0 up
+    IP extended prefix: 10.123.111.236/30 metric 20 up
+    IP address: 10.123.123.41
+    Authentication data: 17 bytes
+  No queued transmissions
+&#39;&#39;&#39;
+
+This template produces this result:
+&#39;&#39;&#39;
+[[{&#39;isis_processes&#39;: {&#39;ISIS&#39;: {&#39;R1-X1&#39;: [{&#39;isis_area&#39;: &#39;49.0001&#39;,
+                                          &#39;level&#39;: &#39;2&#39;,
+                                          &#39;links&#39;: [{&#39;bw_gbit&#39;: &#39;10&#39;,
+                                                     &#39;local_intf_id&#39;: &#39;332&#39;,
+                                                     &#39;local_ip&#39;: &#39;10.123.111.238&#39;,
+                                                     &#39;metric&#39;: &#39;20&#39;,
+                                                     &#39;peer_intf_id&#39;: &#39;461&#39;,
+                                                     &#39;peer_ip&#39;: &#39;10.123.111.237&#39;,
+                                                     &#39;peer_name&#39;: &#39;R1-X2&#39;}],
+                                          &#39;networks&#39;: [{&#39;metric&#39;: &#39;0&#39;,
+                                                        &#39;network&#39;: &#39;10.123.123.31/32&#39;},
+                                                       {&#39;metric&#39;: &#39;0&#39;,
+                                                        &#39;network&#39;: &#39;10.123.123.41/32&#39;},
+                                                       {&#39;metric&#39;: &#39;20&#39;,
+                                                        &#39;network&#39;: &#39;::ffff:10.123.111.236/126&#39;}],
+                                          &#39;rid&#39;: &#39;10.123.123.31&#39;,
+                                          &#39;rid_v6&#39;: &#39;2001::10:123:123:31&#39;}]}}}]]
+&#39;&#39;&#39;
+
+Notes:
+
+- Process ID (PID) always set to &#39;ISIS&#39; value as PID does not present in 
+  &quot;show isis database extensive | no-more&quot; command output on Juniper devices.
 &lt;/doc&gt;
 
-&lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
+&lt;group name=&quot;isis_processes.ISIS**&quot; functions=&quot;record(&#39;level&#39;) | del(&#39;level&#39;)&quot;&gt;
+IS-IS level {{ level }} link-state database:
 
-&lt;!-- Interfaces configuration group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces.{{ interface }}&quot;&gt;
-interface {{ interface | resuball(&quot;IfsNormalize&quot;) }}
- description {{ port_description | re(&quot;.+&quot;) }}
- ip binding vpn-instance {{ vrf }}
- &lt;group name=&quot;ip_addresses*&quot; chain=&quot;add_network()&quot; method=&quot;table&quot;&gt;
- ip address {{ ip | IP }} {{ netmask }}
- ip address {{ ip | IP }} {{ netmask }} sub
- ipv6 address {{ ip | IPV6 }}/{{ netmask }}
- ipv6 address {{ ip | IPV6 }}/{{ netmask }} sub
- &lt;/group&gt;
- &lt;group name=&quot;fhrp*&quot; method=&quot;table&quot;&gt;
- vrrp vrid {{ group | let(&quot;type&quot;, &quot;VRRP&quot;) }} virtual-ip {{ ip | IP }}
- &lt;/group&gt;
+&lt;group name=&quot;{{ hostname }}*&quot; set=&quot;level&quot;&gt;
+{{ hostname }}.00-00 Sequence: {{ ignore }}, Checksum: {{ ignore }}, Lifetime: {{ ignore }} secs
+
+    Area address: {{ isis_area }} (3)
+    IP router id: {{ rid }}
+    IPv6 TE Router ID: {{ rid_v6 }}
+
+  &lt;group name=&quot;networks*&quot;&gt;
+   IP prefix: {{ network }}       Metric:       {{ metric | _start_ }} Internal Up
+   V6 prefix: {{ network }}       Metric:       {{ metric | _start_ }} Internal Up
+  &lt;/group&gt;
+
+  &lt;group name=&quot;links*&quot;&gt;
+    IS extended neighbor: {{ peer_name }}.00, Metric: default {{ metric | _start_ }} SubTLV len: 74
+      IP address: {{ local_ip }}
+      Neighbor&#39;s IP address: {{ peer_ip }}
+      Local interface index: {{ local_intf_id }}, Remote interface index: {{ peer_intf_id }}
+      Maximum bandwidth: {{ bw_gbit }}Gbps
+  &lt;/group&gt;
+
 &lt;/group&gt;
-
-&lt;!-- ARP cache group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces.{{ interface }}.arp*&quot; method=&quot;table&quot;&gt;
-{{ ip | IP }}   {{ mac | MAC | mac_eui }}  {{ expire | re(&quot;\\d+&quot;) }}  {{ type | notdigit }}  {{ interface | resuball(&quot;IfsNormalize&quot;) }}   {{ vrf }}
-{{ ip | IP }}   {{ mac | MAC | mac_eui }}                             {{ type | notdigit }}  {{ interface | resuball(&quot;IfsNormalize&quot;) }}   {{ vrf }}
-{{ ip | IP }}   {{ mac | MAC | mac_eui }}  {{ expire | re(&quot;\\d+&quot;) }}  {{ type | notdigit }}  {{ interface | resuball(&quot;IfsNormalize&quot;) }}
-{{ ip | IP }}   {{ mac | MAC | mac_eui }}                             {{ type | notdigit }}  {{ interface | resuball(&quot;IfsNormalize&quot;) }}
 &lt;/group&gt;
-
-&lt;/template&gt;
 </code></pre></div>
 </details>
                 
@@ -1335,7 +1495,7 @@ interface {{ interface | resuball(&quot;IfsNormalize&quot;) }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.N2G.cli_ip_data.fortinet/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_ip_data.fortinet" rel="prev">
+        <a href="../platform.huawei_display_ospf_lsdb_router/" class="md-footer__link md-footer__link--prev" aria-label="Previous: huawei_display_ospf_lsdb_router" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1344,20 +1504,20 @@ interface {{ interface | resuball(&quot;IfsNormalize&quot;) }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              cli_ip_data.fortinet
+              huawei_display_ospf_lsdb_router
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.N2G.cli_ip_data.readme/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_ip_data.readme" rel="next">
+        <a href="../platform.test_platform_show_run_pipe_sec_interface/" class="md-footer__link md-footer__link--next" aria-label="Next: test_platform_show_run_pipe_sec_interface" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_ip_data.readme
+              test_platform_show_run_pipe_sec_interface
             </div>
           </div>
           <div class="md-footer__button md-icon">
