@@ -14,6 +14,7 @@ on device's interfaces including secondary and VRRP/HSRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
+
 ```
 r1#show run | sec interface
 interface GigabitEthernet1
@@ -30,6 +31,7 @@ interface GigabitEthernet1
 ```
 
 Sample results, structure="flat_list":
+
 ```
 [
     {
@@ -52,6 +54,7 @@ Sample results, structure="flat_list":
 ```
   
 Template can be invoked using Netmiko run_ttp method like this:
+
 ```
 import pprint
 from netmiko import ConnectHandler
@@ -82,6 +85,7 @@ on device's interfaces including secondary and VRRP/HSRP IP addresses.
 Output is a list of dictionaries. 
 
 Sample data:
+
 '''
 r1#show run | sec interface
 interface GigabitEthernet1
@@ -98,6 +102,7 @@ interface GigabitEthernet1
 '''
 
 Sample results, structure="flat_list":
+
 '''
 [
     {
@@ -120,6 +125,7 @@ Sample results, structure="flat_list":
 '''
   
 Template can be invoked using Netmiko run_ttp method like this:
+
 '''
 import pprint
 from netmiko import ConnectHandler

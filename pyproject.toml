@@ -4,9 +4,9 @@ version = "0.2.0"
 description = "Template Text Parser Templates collections"
 license = "MIT"
 include = [
-	"platform/*.txt",
-	"yang/*.txt",
-	"misc/*/*.txt",
+    "platform/*.txt",
+    "yang/*.txt",
+    "misc/*/*.txt",
 ]
 authors = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
 maintainers = ["Denis Mulyalin <d.mulyalin@gmail.com>"]
@@ -32,10 +32,12 @@ python = "^3.6"
 ttp = { version = ">=0.6.0" }
 
 # docs dependencies for extras definition
-mkdocs = { version = ">=1.1", optional = true, markers = "python_version >= '3.7'" }
+mkdocs = { version = "1.2.4", optional = true, markers = "python_version >= '3.7'" }
 mkdocs-material = { version = "7.2.2", optional = true, markers = "python_version >= '3.7'" }
 mkdocs-material-extensions = { version = "1.0.1", optional = true, markers = "python_version >= '3.7'" }
 mkdocstrings = { version = "0.18.*", optional = true, markers = "python_version >= '3.7'", extras = ["python"] } 
+pygments = { version = "2.11", optional = true, markers = "python_version >= '3.7'" }
+pymdown-extensions = { version = "9.3", optional = true, markers = "python_version >= '3.7'" }
 
 [tool.poetry.dev-dependencies]
 bandit = { version = "1.7.*", markers = "python_version >= '3.7'" }
@@ -57,3 +59,13 @@ netmiko = { version = "3.4.0", markers = "python_version >= '3.7'" }
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.extras]
+docs = [
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocs-material-extensions",
+    "mkdocstrings",
+    "pygments",
+    "pymdown-extensions",
+]
