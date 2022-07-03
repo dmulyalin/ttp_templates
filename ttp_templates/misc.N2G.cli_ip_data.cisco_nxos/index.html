@@ -877,45 +877,6 @@
   
 
           
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
-      
-      <label class="md-nav__link" for="__nav_5_1_4">
-        vars
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="vars" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_4">
-          <span class="md-nav__icon md-icon"></span>
-          vars
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../misc.vars.short_interface_names/" class="md-nav__link">
-        short_interface_names
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
         </ul>
       </nav>
     </li>
@@ -1281,6 +1242,16 @@
 &lt;doc&gt;
 Template to parse Cisco NXOS interfaces configuration and ARP cache.
 &lt;/doc&gt;
+
+&lt;input load=&quot;python&quot;&gt;
+commands = [
+    &quot;show running-config&quot;,
+    &quot;show ip arp&quot;,
+]
+kwargs = {&quot;strip_prompt&quot;: False}
+method = &quot;send_command&quot;
+platform = [&quot;nxos_ssh&quot;, &quot;cisco_nxos&quot;]
+&lt;/input&gt;
 
 &lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
 

@@ -877,45 +877,6 @@
   
 
           
-            
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
-      
-      <label class="md-nav__link" for="__nav_5_1_4">
-        vars
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-      <nav class="md-nav" aria-label="vars" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_4">
-          <span class="md-nav__icon md-icon"></span>
-          vars
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../misc.vars.short_interface_names/" class="md-nav__link">
-        short_interface_names
-      </a>
-    </li>
-  
-
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-          
         </ul>
       </nav>
     </li>
@@ -1363,10 +1324,10 @@ Template to parse Juniper JunOS &quot;show isis database extensive | no-more&quo
 &lt;/doc&gt;
 
 &lt;input load=&quot;python&quot;&gt;
-# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
 commands = [
     &quot;show isis database extensive | no-more&quot;,
 ]
+platform = [&quot;juniper&quot;, &quot;juniper_junos&quot;]
 &lt;/input&gt;
 
 &lt;extend template=&quot;ttp://platform/juniper_show_isis_database_verbose_pipe_no_more.txt&quot;/&gt;
