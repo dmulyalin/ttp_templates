@@ -4,6 +4,16 @@
 Template to parse A10 devices interfaces configuration and IP ARP cache.
 </doc>
 
+<input load="python">
+commands = [
+    "show running-config",
+    "show arp all",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["a10"]
+</input>
+
 <vars>local_hostname="gethostname"</vars>
 
 <!-- Interfaces configuration group -->

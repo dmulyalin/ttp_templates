@@ -21,6 +21,16 @@ Template to parse Cisco IOS interfaces configuration and ARP cache.
 Template to parse Cisco IOS interfaces configuration and ARP cache.
 </doc>
 
+<input load="python">
+commands = [
+    "show running-config",
+    "show ip arp",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["cisco_ios"]
+</input>
+
 <vars>local_hostname="gethostname"</vars>
 
 <!-- Interfaces configuration group -->

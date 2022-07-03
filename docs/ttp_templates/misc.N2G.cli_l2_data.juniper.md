@@ -37,11 +37,12 @@ Commands parsed:
 
 <input>
 commands = [
-    "show lldp local-information",
-    "show lldp neighbors",
+    "show lldp local-information | no-more",
+    "show lldp neighbors | no-more",
     "show configuration interfaces | display set | no-more",
     "show interfaces detail | no-more",
 ]    
+platform = ["juniper", "juniper_junos"]
 </input>
 
 <!-- gethostname used if no show lldp output provided -->

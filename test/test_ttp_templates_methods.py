@@ -5,7 +5,7 @@ sys.path.insert(0, "..")
 
 from ttp_templates import get_template
 from ttp_templates import parse_output
-
+from ttp_templates import list_templates
 
 def test_get_template_by_path():
     template = get_template(path="yang/ietf-interfaces_cisco_ios.txt")
@@ -208,3 +208,30 @@ interface GigabitEthernet1/3.251
 
 
 # test_parse_output_path() 
+
+def test_list_templates_all():
+    res = list_templates()
+    pprint.pprint(res)
+    assert all(k in res for k in ["platform", "yang", "misc"])
+    assert isinstance(res["misc"], dict)
+    
+# test_list_templates_all()
+
+def test_list_templates_with_filter_match():
+    res = list_templates(pattern="*cisco*")
+    pprint.pprint(res)
+    assert all(k in res for k in ["platform", "yang", "misc"])
+    assert isinstance(res["misc"], dict)
+    assert all("cisco" in t for t in res["platform"])
+    assert all("cisco" in t for t in res["yang"])
+
+# test_list_templates_with_filter_match()
+
+def test_list_templates_with_filter_no_match():
+    res = list_templates(pattern="*cisco12345*")
+    pprint.pprint(res)
+    assert all(k in res for k in ["platform", "yang", "misc"])
+    assert isinstance(res["misc"], dict) and res["misc"] != {}
+    assert all(res[k] == [] for k in ["platform", "yang"])
+    
+# test_list_templates_with_filter_no_match()

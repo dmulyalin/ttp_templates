@@ -152,7 +152,6 @@ Template to parse Cisco IOSXR OSPF database content.
 </doc>
 
 <input load="python">
-# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
 commands = [
     "show ospf database router",
     "show ospf database summary",
@@ -160,6 +159,7 @@ commands = [
 ]
 kwargs = {"strip_prompt": False}
 method = "send_command"
+platform = ["cisco_xr"]
 </input>
 
 <extend template="ttp://platform/cisco_xr_show_ospf_database_router.txt"/>

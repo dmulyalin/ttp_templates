@@ -21,6 +21,16 @@ Template to parse Fortinet fortigate firewalls interfaces configuration and ARP 
 Template to parse Fortinet fortigate firewalls interfaces configuration and ARP cache.
 </doc>
 
+<input load="python">
+commands = [
+    "get system config",
+    "get system arp",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["fortinet"]
+</input>
+
 <vars>local_hostname="gethostname"</vars>
 
 <!-- Interfaces configuration group -->

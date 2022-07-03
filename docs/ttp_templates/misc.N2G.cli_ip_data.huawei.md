@@ -21,6 +21,16 @@ Template to parse Huawei interfaces configuration and ARP cache.
 Template to parse Huawei interfaces configuration and ARP cache.
 </doc>
 
+<input load="python">
+commands = [
+    "display current-configuration interface",
+    "display arp all",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["huawei", "huawei_vrpv8"]
+</input>
+
 <vars>local_hostname="gethostname"</vars>
 
 <!-- Interfaces configuration group -->

@@ -205,7 +205,7 @@ pprint.pprint(res)
 
 <input>
 commands = [
-    "show running-configuration | section bgp"
+    "show running-config | section bgp"
 ]
 </input>
 

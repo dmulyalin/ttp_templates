@@ -4,6 +4,16 @@
 Template to parse Cisco NXOS interfaces configuration and ARP cache.
 </doc>
 
+<input load="python">
+commands = [
+    "show running-config",
+    "show ip arp",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["nxos_ssh", "cisco_nxos"]
+</input>
+
 <vars>local_hostname="gethostname"</vars>
 
 <!-- Interfaces configuration group -->

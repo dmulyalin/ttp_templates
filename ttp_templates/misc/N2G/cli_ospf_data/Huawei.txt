@@ -3,12 +3,12 @@ Template to parse Huawei devices OSPF database content.
 </doc>
 
 <input load="python">
-# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
 commands = [
     "display ospf lsdb router",
 ]
 kwargs = {"strip_prompt": False}
 method = "send_command"
+platform = ["huawei", "huawei_vrpv8"]
 </input>
 
 <extend template="ttp://platform/huawei_display_ospf_lsdb_router.txt"/>

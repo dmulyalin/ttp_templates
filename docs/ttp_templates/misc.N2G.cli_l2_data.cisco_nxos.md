@@ -21,6 +21,18 @@ This template designed to parse Cisco NXOS configuration and CDP and LLDP neighb
 This template designed to parse Cisco NXOS configuration and CDP and LLDP neighbors.
 </doc>
 
+<input load="python">
+commands = [
+    "show cdp neighbor details",
+    "show lldp neighbor details",
+    "show running-config",
+    "show interface",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["nxos_ssh", "cisco_nxos"]
+</input>
+
 <vars>local_hostname="gethostname"</vars>
 
 <macro>

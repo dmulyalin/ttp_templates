@@ -3,7 +3,6 @@ Template to parse Cisco IOS OSPF database content.
 </doc>
 
 <input load="python">
-# Starting with Netmiko 3.4.0 can use run_ttp method to populate this template with below commands output
 commands = [
     "show ip ospf database router",
     "show ip ospf database summary",
@@ -11,6 +10,7 @@ commands = [
 ]
 kwargs = {"strip_prompt": False}
 method = "send_command"
+platform = ["cisco_ios"]
 </input>
 
 <extend template="ttp://platform/cisco_ios_show_ip_ospf_database_router.txt"/>

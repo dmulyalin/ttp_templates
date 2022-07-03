@@ -21,6 +21,17 @@ This template designed to parse Huawei configuration and LLDP neighbors.
 This template designed to parse Huawei configuration and LLDP neighbors.
 </doc>
 
+<input load="python">
+commands = [
+    "display lldp neighbor details",
+    "display current-configuration interface",
+    "display interface",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["huawei", "huawei_vrpv8"]
+</input>
+
 <vars>local_hostname="gethostname"</vars>
 
 <macro>

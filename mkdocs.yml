@@ -52,8 +52,6 @@ nav:
     - ttp_templates_tests:
       - cisco_ios_interfaces_cfg_per_ip: ttp_templates/misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip.md
       - netmiko_cisco_ios_interfaces: ttp_templates/misc.ttp_templates_tests.netmiko_cisco_ios_interfaces.md
-    - vars:
-      - short_interface_names: ttp_templates/misc.vars.short_interface_names.md
   - Platform:
     - arista_eos_show_hostname: ttp_templates/platform.arista_eos_show_hostname.md
     - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md

@@ -7,6 +7,7 @@ Template to parse Cisco IOSXR "show isis database verbose" output.
 commands = [
     "show isis database verbose",
 ]
+platform = ["cisco_xr"]
 </input>
 
 <extend template="ttp://platform/cisco_xr_show_isis_database_verbose.txt"/>

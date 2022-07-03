@@ -433,7 +433,7 @@ def add_iftype(data):
 
 <input>
 commands = [
-    "show running-configuration | section interface",
+    "show running-config | section interface",
     "show interface"
 ]
 </input>

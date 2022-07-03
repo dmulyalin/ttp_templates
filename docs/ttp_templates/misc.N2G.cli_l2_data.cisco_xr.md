@@ -37,6 +37,19 @@ Commands parsed:
 - show interfaces - to extract interface state to add all connected nodes
 </doc>
 
+<input load="python">
+commands = [
+    "show cdp neighbor details",
+    "show lldp neighbor details",
+    "show lldp",
+    "show running-config interface",
+    "show interfaces",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["cisco_xr"]
+</input>
+
 <!-- gethostname used if no show lldp output provided -->
 <vars>local_hostname="gethostname"</vars>
 

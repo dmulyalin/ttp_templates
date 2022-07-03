@@ -21,6 +21,18 @@ This template designed to parse Cisco IOS configuration and CDP and LLDP neighbo
 This template designed to parse Cisco IOS configuration and CDP and LLDP neighbors.
 </doc>
 
+<input load="python">
+commands = [
+    "show cdp neighbor details",
+    "show lldp neighbor details",
+    "show running-config",
+    "show interface",
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["cisco_ios"]
+</input>
+
 <vars>local_hostname="gethostname"</vars>
 
 <macro>

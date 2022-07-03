@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ttp_templates"
-version = "0.2.0"
+version = "0.3.0"
 description = "Template Text Parser Templates collections"
 license = "MIT"
 include = [
