@@ -7,6 +7,16 @@ from ttp_templates import get_template
 from ttp import ttp
 from ttp_templates.ttp_vars import all_vars
 
+# Custom TTP functions to use in templates:
+def add_network(data):
+    if "netmask" in data:
+        ip_obj, _ = _ttp_["match"]["to_ip"]("{}/{}".format(data["ip"], data["netmask"]))
+    else:
+        ip_obj, _ = _ttp_["match"]["to_ip"](data["ip"])
+    data["network"] = str(ip_obj.network)
+    data["netmask"] = str(ip_obj.network.prefixlen)
+    return data, None
+    
 def test_N2G_ospf_lsdb_Cisco_IOSXR():
     with open("./mock_data/cisco_xr_show_ip_ospf_database_router_external_summary_router-1.txt", "r") as f:
         data1 = f.read()
@@ -511,3 +521,41 @@ def test_N2G_cli_l2_data_juniper():
                                                                       'Inc.'}}}}]
                                                                       
 # test_N2G_cli_l2_data_juniper()
+
+
+def test_N2G_cli_ip_data_arista_eos():
+    with open("./mock_data/test_N2G_cli_ip_data_arista_eos.txt", "r") as f:
+        data = f.read()
+    template = get_template(path="misc/N2G/cli_ip_data/arista_eos.txt")
+    # print(template)
+    parser = ttp(vars={"IfsNormalize": all_vars["short_interface_names"], "physical_ports": all_vars["physical_ports"]})
+    parser.add_function(add_network, scope="group", name="add_network", add_ttp=True)
+    parser.add_template(template=template)
+    parser.add_input(data, template_name="arista_eos")
+    parser.parse()
+    res = parser.result()
+    pprint.pprint(res)   
+    assert res == [{'ceos1': {'interfaces': {'Eth1': {'arp': [{'age': '0:00:16',
+                                                               'ip': '10.0.1.3',
+                                                               'mac': '02:42:0a:00:01:03'}],
+                                                      'ip_addresses': [{'ip': '10.0.1.4',
+                                                                        'netmask': '24',
+                                                                        'network': '10.0.1.0/24'}],
+                                                      'port_description': 'Configured by '
+                                                                          'NETCONF'},
+                                             'Lo1': {'ip_addresses': [{'ip': '1.1.1.1',
+                                                                       'netmask': '24',
+                                                                       'network': '1.1.1.0/24'}]},
+                                             'Lo1000': {},
+                                             'Lo2': {'ip_addresses': [{'ip': '2.2.2.2',
+                                                                       'netmask': '24',
+                                                                       'network': '2.2.2.0/24'}],
+                                                     'port_description': 'Lopback2 for Customer '
+                                                                         '27123'},
+                                             'Lo3': {'ip_addresses': [{'ip': '1.2.3.4',
+                                                                       'netmask': '24',
+                                                                       'network': '1.2.3.0/24'}],
+                                                     'port_description': 'Customer #56924 '
+                                                                         'service'}}}}]
+                                                       
+# test_N2G_cli_ip_data_arista_eos()
