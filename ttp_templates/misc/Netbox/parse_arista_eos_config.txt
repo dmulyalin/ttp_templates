@@ -1,0 +1,280 @@
+<template name="netbox_data" results="per_template">
+<input>
+commands = [
+    "show running-config"
+]
+</input>
+    
+<macro>
+def add_interface_type(data):
+    data["interface_type"] = "other"    
+    if any(
+        i in data["name"].lower() for i in [
+            ".", "loopback", "tunnel", "vlan", "vxlan"
+        ]
+    ):
+        data["interface_type"] = "virtual"
+    elif "bundle" in data["name"].lower():
+        data["interface_type"] = "lag"    
+    return data
+    
+def add_parent_interface(data):
+    if "lag_id" in data:
+        data["parent"] = "Port-Channe{}".format(data["lag_id"])
+    elif "." in data["name"]:
+        data["parent"] = data["name"].split(".")[0]
+    return data
+</macro>
+    
+## ------------------------------------------------------------------------------------------
+## Global Configuration facts
+## ------------------------------------------------------------------------------------------
+<group name="facts**" method="table">
+! device: {{ hostname }} ({{ hw_model }}, {{ os_version }})
+! boot system {{ boot_system }}
+hostname {{ hostname }}
+mac address-table aging-time {{ mac_address_table_aging_timeout }}
+errdisable recovery interval {{ errdisable_recovery_interval }}
+spanning-tree mode {{ stp_mode }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## SNMP Configuration
+## ------------------------------------------------------------------------------------------
+<group name="snmp**" method="table">
+snmp-server chassis-id {{ chassis_id }}
+snmp-server contact {{ contact }}
+snmp-server location {{ location | ORPHRASE }}
+snmp-server local-interface {{ source_interface }}
+snmp-server vrf {{ source_vrf }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## DNS Servers configuration
+## ------------------------------------------------------------------------------------------
+<group name="nameservers*">
+ip name-server vrf {{ vrf }} {{ name_server }}
+dns domain {{ domain_name }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## Logging configuration
+## ------------------------------------------------------------------------------------------
+<group name="logging**" method="table">
+logging buffered {{ logging_buffered_size }} {{ logging_buffered_level }}
+logging console {{ logging_console_level }}
+logging vrf {{ vrf }} source-interface {{ source }}
+no logging console {{ logging_concole_enabled | set(False) | default(True) }}
+no logging monitor {{ logging_monitor_enabled | set(False) | default(True) }}
+
+<group name="logging_hosts" method="table">
+logging vrf {{ vrf }} host {{ host }} {{ port }} protocol {{ protocol }}
+</group>
+</group>
+
+## ------------------------------------------------------------------------------------------
+## Users configuration
+## ------------------------------------------------------------------------------------------
+<group name="users*">
+username {{ username }} privilege {{ privilege }} role {{ role }} secret {{ ignore }} {{ ignore }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## AAA configuration
+## ------------------------------------------------------------------------------------------
+<group name="tacacs.servers*">
+tacacs-server host {{ server }} single-connection vrf {{ vrf }} key 7 {{ ignore }}
+</group>
+
+<group name="tacacs.groups*">
+aaa group server tacacs+ {{ name }}
+   <group name="servers*">
+   server {{ server }} vrf {{ vrf }}
+   </group>
+!{{ _end_ }}
+</group>
+
+<group name="aaa**" method="table">
+aaa authentication login default group {{ authentication_login | ORPHRASE }}
+aaa authentication enable default {{ authentication_enable | ORPHRASE }}
+aaa authorization exec default group {{ authorization_exec | ORPHRASE }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## VLANs configuration
+## ------------------------------------------------------------------------------------------
+<group name="vlans*">
+vlan {{ vlan }}
+   name {{ name | ORPHRASE }}
+   trunk group {{ trunk_group }}
+!{{ _end_ }}
+</group>   
+   
+## ------------------------------------------------------------------------------------------
+## VRFs configuration
+## ------------------------------------------------------------------------------------------
+<group name="vrf*">
+vrf instance {{ name }}
+   description {{ description | re(".+") | default("") }}
+   rd {{ rd }}
+!{{ _end_ }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## NTP configuration
+## ------------------------------------------------------------------------------------------
+<group name="ntp" method="table">
+ntp server vrf {{ vrf }} {{ server }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## Interfaces configuration
+## ------------------------------------------------------------------------------------------
+<group name="interfaces*" functions="contains('name') | macro('add_interface_type') | macro('add_parent_interface')">
+interface {{ name | _start_ }}
+   description {{ description | re(".*") | default("") }}
+   mtu {{ mtu | to_int }}
+   no switchport {{ is_l3_interface | set(True) }}
+   vrf {{ vrf }}
+   arp aging timeout {{ arp_aging_timeout }}
+   ipv6 enable {{ ipv6_enabled | set(True) }}
+   pim ipv4 bidirectional {{ pim_mode | set ("ipv4_bidirectional") }}
+   shutdown {{ enabled | set(False) | default(True) }}
+   speed forced {{ speed_forced }}
+   switchport access vlan {{ access_vlan | let("mode", "access") }}
+   spanning-tree portfast {{ stp_portfast_enabled | set(True) }}
+   spanning-tree bpduguard enable {{ stp_bpduguard_enabled | set(True) }}
+   mlag {{ mlag_id }}
+   channel-group {{ lag_id }} mode {{ lacp_mode }}
+   switchport trunk allowed vlan {{ trunk_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
+   switchport mode trunk {{ mode | set("tagged") }}
+   lacp system-id {{ lacp_system_id }}
+   vxlan source-interface {{ vxlan_source }}
+   vxlan udp-port {{ vxlan_udp_port }}
+   
+   <group name="vxlan_vlan*">
+   vxlan vlan {{ vlan }} vni {{ vni }}
+   </group>
+   
+   <group name="ipv4*" method="table">
+   ip address {{ ip | IP }}/{{ mask }}
+   ipv4 address {{ ip | IP | let("secondary", True) }}/{{ mask}} secondary
+   </group>
+   
+   <group name="evpn_ethernet_segment">
+   evpn ethernet-segment {{ _start_ }}
+      identifier {{ identifier }}
+      route-target import {{ rt_import }}
+   </group>
+!{{ _end_ }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## SSH configuration
+## ------------------------------------------------------------------------------------------
+<group name="ssh_server**" method="table">
+management ssh {{ _start_ }}
+   <group name="vrfs*">
+   vrf {{ vrf }}
+      no shutdown {{ enabled | set(True) | default(False) }}
+   </group>
+!{{ _end_ }}      
+</group>
+
+## ------------------------------------------------------------------------------------------
+## BGP configuration
+## ------------------------------------------------------------------------------------------
+<group name="bgp">
+router bgp {{ asn }}
+   router-id {{ rid }}
+   bgp convergence slow-peer time {{ slow_peer_timer }}
+   bgp always-compare-med {{ always_compare_med | set(True) }}
+   maximum-paths {{ max_path }}  
+   redistribute {{ redistribute | ORPHRASE | to_list | joinmatches }} 
+   
+   <group name="neighbors**.{{ neighbor_ip }}**" method="table">
+   neighbor {{ neighbor_ip | let("is_peer_group", True) }} peer group
+   neighbor {{ neighbor_ip | let("is_peer_group", False) }} peer group {{ peer_group }}
+   neighbor {{ neighbor_ip }} remote-as {{ neighbor_asn }}
+   neighbor {{ neighbor_ip }} out-delay { out_delay }}
+   neighbor {{ neighbor_ip | let("bfd_enabled", True) }} bfd 
+   neighbor {{ neighbor_ip | let("send_community", True) }} send-community
+   neighbor {{ neighbor_ip }} maximum-routes {{ maxr_routes }}  
+   neighbor {{ neighbor_ip }} description {{ description | re(".+") }}
+   </group>
+ 
+   <group name="vlan_aware_bundle*">
+   vlan-aware-bundle {{ name }}
+      rd {{ rd }}
+      <group name="route_target.{{ type }}">
+      route-target {{ type }} {{ rt }}
+      </group>
+      redistribute {{ redistribute | to_list | joinmatches }}
+      vlan {{ vlan | unrange(rangechar='-', joinchar=',') | split(",") }}
+   !{{ _end_ }}
+   </group>
+   
+   <group name="afi.{{ afi }}">
+   address-family {{ afi }}
+      <group name="neighbors**.{{ neighbor_ip }}**" method="table">
+      neighbor {{ neighbor_ip | let("active", True) }}  activate
+      </group>
+      network {{ networks | to_list | joinmatches }}
+   !{{ _end_ }}
+   </group>
+   
+   <group name="vrf**.{{ vrf }}">
+   vrf {{ vrf }}
+      local-as {{ local_asn }}
+      router-id {{ rid }}
+      redistribute {{ redistribute | ORPHRASE | to_list | joinmatches }}    
+      
+      <group name="neighbors**.{{ neighbor_ip }}**" method="table">          
+      neighbor {{ neighbor_ip | let("is_peer_group", True) }} peer group
+      neighbor {{ neighbor_ip | let("is_peer_group", False) }} peer group {{ peer_group }}
+      neighbor {{ neighbor_ip }} remote-as {{ neighbor_asn }}
+      neighbor {{ neighbor_ip }} out-delay { out_delay }}
+      neighbor {{ neighbor_ip | let("bfd_enabled", True) }} bfd 
+      neighbor {{ neighbor_ip | let("send_community", True) }} send-community
+      neighbor {{ neighbor_ip }} maximum-routes {{ maxr_routes }}  
+      neighbor {{ neighbor_ip }} description {{ description | re(".+") }}
+      </group>
+   </group>
+!{{ _end_ }}
+</group>      
+      
+## ------------------------------------------------------------------------------------------
+## Multicast configuration
+## ------------------------------------------------------------------------------------------
+<group name="multicast">
+router multicast {{ _start_ }}
+   <group name="afi.{{ afi }}">
+   ipv{{ afi | sformat("ipv{}") }}
+      counters rate period decay {{ counters_rate_period_decay }} seconds
+      routing {{ routing_enabled | set(True) }}
+   </group>
+!{{ _end_ }}
+</group>
+
+<group name="pim_bidir">
+router pim bidirectional {{ _start_ }}
+   <group name="afi.{{ afi }}">
+   ipv{{ afi | sformat("ipv{}") }}
+      group-expiry-timer {{ group_expiry_timer }}
+      rp address {{ rp_address | ORPHRASE | split(" ") }}
+   </group>
+!{{ _end_ }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## MC-LAG configuration
+## ------------------------------------------------------------------------------------------
+<group name="mlag">
+mlag configuration {{ _start_ }}
+   domain-id {{ domain_id }}
+   local-interface {{ local_interface }}
+   peer-address {{ peer_address }}
+   peer-link {{ peer_link }}
+!{{ _end_ }}
+</group>
+</template>
