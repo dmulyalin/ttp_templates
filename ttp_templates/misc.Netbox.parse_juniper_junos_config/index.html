@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_ip_data.fortinet/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.Netbox.parse_juniper_junos_config/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cli_ip_data.fortinet - TTP Templates Collection</title>
+        <title>parse_juniper_junos_config - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cli_ip_data.fortinet
+              parse_juniper_junos_config
             
           </span>
         </div>
@@ -405,14 +405,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
       
       <label class="md-nav__link" for="__nav_5_1_1">
         N2G
@@ -488,19 +486,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cli_ip_data.fortinet/" class="md-nav__link">
         cli_ip_data.fortinet
       </a>
-      
     </li>
   
 
@@ -694,12 +684,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" checked>
       
       <label class="md-nav__link" for="__nav_5_1_2">
         Netbox
@@ -739,11 +731,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../misc.Netbox.parse_juniper_junos_config/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         parse_juniper_junos_config
       </a>
+      
     </li>
   
 
@@ -1298,62 +1298,372 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_ip_data.fortinet.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.Netbox.parse_juniper_junos_config.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cli_ip_data.fortinet</h1>
+                  <h1>parse_juniper_junos_config</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_ip_data/fortinet.txt
+<div class="highlight"><pre><span></span><code>ttp://misc/Netbox/parse_juniper_junos_config.txt
 </code></pre></div></p>
 <hr />
-<p>Template to parse Fortinet fortigate firewalls interfaces configuration and ARP cache.</p>
+<p>No <code>&lt;doc&gt;</code> tags found</p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;fortinet&quot; results=&quot;per_template&quot;&gt;
-
-&lt;doc&gt;
-Template to parse Fortinet fortigate firewalls interfaces configuration and ARP cache.
-&lt;/doc&gt;
-
-&lt;input load=&quot;python&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;netbox_data&quot; results=&quot;per_template&quot;&gt;
+&lt;input&gt;
 commands = [
-    &quot;get system config&quot;,
-    &quot;get system arp&quot;,
+    &quot;show configuration | display set&quot;
 ]
-kwargs = {&quot;strip_prompt&quot;: False}
-method = &quot;send_command&quot;
-platform = [&quot;fortinet&quot;]
 &lt;/input&gt;
 
-&lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
+&lt;macro&gt;    
+def postprocess(data):
+    # transform vrf dict to list
+    data[&quot;vrf&quot;] = [{&quot;name&quot;: k, **v} for k, v in data.get(&quot;vrf&quot;, {}).items()]
 
-&lt;!-- Interfaces configuration group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces**&quot;&gt;
-config system interface {{ _start_ }}
-    &lt;group name=&quot;{{ interface }}&quot;&gt;
-    edit &quot;{{ interface }}&quot;
-        set description &quot;{{ port_description | re(&quot;.+&quot;) }}&quot;
-        set vdom &quot;{{ vrf }}&quot;
-        set allowaccess {{ ACL_IN | ORPHRASE }}
-        set interface &quot;{{ parent_interface }}&quot;
-        set vlanid {{ vid }}
-        &lt;group name=&quot;ip_addresses*&quot; chain=&quot;add_network()&quot; method=&quot;table&quot;&gt;
-        set ip {{ ip | IP }} {{ netmask }}
-                set ip {{ ip | IP }} {{ netmask }}
-        &lt;/group&gt;
-    next{{ _end_ }}
-    &lt;/group&gt;    
-end{{ _end_ }}
-&lt;/group&gt;    
+    # update interfaces with VRF reference
+    for vrf in data[&quot;vrf&quot;]:
+        for interface in vrf.get(&quot;interfaces&quot;, []):
+            data[&quot;interfaces&quot;][interface][&quot;vrf&quot;] = vrf[&quot;name&quot;]
 
-&lt;!-- ARP cache group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces.{{ interface }}.arp*&quot; method=&quot;table&quot;&gt;
-{{ ip | IP }}      {{ age }}   {{ mac | MAC | mac_eui }}    {{ interface }}
+    # transform interfaces dict to list
+    data[&quot;interfaces&quot;] = [
+        {&quot;name&quot;: k, **v} 
+        for k, v in data[&quot;interfaces&quot;].items()
+    ]
+
+    # process interfaces further
+    for i in data[&quot;interfaces&quot;]:
+        # add interface type - other, virtual or lag
+        i[&quot;interface_type&quot;] = &quot;other&quot;    
+        if any(
+            k in i[&quot;name&quot;] for k in [&quot;.&quot;, &quot;gr-&quot;, &quot;lo0&quot;]
+        ):
+            i[&quot;interface_type&quot;] = &quot;virtual&quot;
+        elif &quot;ae&quot; in i[&quot;name&quot;]:
+            i[&quot;interface_type&quot;] = &quot;lag&quot;  
+
+        # add interface parent details
+        if &quot;lag_id&quot; in i:
+            i[&quot;parent&quot;] = i[&quot;lag_id&quot;]
+        elif &quot;.&quot; in i[&quot;name&quot;]:
+            i[&quot;parent&quot;] = i[&quot;name&quot;].split(&quot;.&quot;)[0]    
+
+        # set interface default parameters
+        i.setdefault(&quot;enabled&quot;, True)
+        i.setdefault(&quot;description&quot;, &quot;&quot;)
+
+    return data
+&lt;/macro&gt;
+
+## ------------------------------------------------------------------------------------------
+## Global Configuration facts
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;facts**&quot; method=&quot;table&quot;&gt;
+set version {{ os_version }}
+set groups {{ ignore }} system host-name {{ hostname }}
+set system host-name {{ hostname }}
+set groups {{ ignore }} system domain-name {{ domain_name }}
+set system domain-name {{ domain_name }}
 &lt;/group&gt;
 
+## ------------------------------------------------------------------------------------------
+## ROuting-Options Configuration 
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;routing_options**&quot; method=&quot;table&quot;&gt;
+set routing-options route-distinguisher-id {{ route_distinguisher }}
+set routing-options router-id {{ rid }}
+set routing-options autonomous-system {{ asn }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## DNS Servers configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;nameservers*&quot;&gt;
+set system name-server {{ name_server | let(&quot;vrf&quot;, &quot;default&quot;) }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Logging and Archive configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;logging**&quot; method=&quot;table&quot;&gt;
+set system syslog source-address {{ source }}
+
+&lt;group name=&quot;archive&quot; method=&quot;table&quot;&gt;
+set system syslog archive size {{ archive_size }}
+set system syslog archive files {{ archive_files_count }}
+&lt;/group&gt;
+
+&lt;group name=&quot;logging_hosts&quot; method=&quot;table&quot;&gt;
+set system syslog host {{ host }} any {{ severity }}
+set system syslog host {{ host }} {{ ignore }}
+&lt;/group&gt;
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Users configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;users*&quot;&gt;
+set system login user {{ username }} uid {{ uid }}
+set system login user {{ ignore }} class {{ group }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## AAA configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;aaa&quot;&gt;
+set system authentication-order {{ authentication_login | joinmatches(&quot;, &quot;) }}
+&lt;/group&gt;
+
+&lt;group name=&quot;tacacs.servers*&quot;&gt;
+set system tacplus-server {{ server }} source-address {{ source }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## NTP configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;ntp&quot;&gt;
+set system ntp source-address {{ source }}
+&lt;/group&gt;
+
+&lt;group name=&quot;ntp.servers*&quot; method=&quot;table&quot;&gt;
+set system ntp server {{ server }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## SSH configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;ssh_server**&quot; method=&quot;table&quot;&gt;
+set system services ssh root-login {{ root_login }}
+set system services ssh protocol-version {{ version }}
+set system services ssh max-sessions-per-connection {{ max_sessions_per_connection }}
+set system services ssh sftp-{{ sftp | let(&quot;ssh_sftp_server_enable&quot;, True) }}
+set system services ssh connection-limit {{ session_limit }}
+set system services ssh rate-limit {{ rate_limit }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## VRFs configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;vrf**.{{ vrf }}**&quot; method=&quot;table&quot; expand=&quot;&quot;&gt;
+set routing-instances {{ vrf }} description {{ description | re(&quot;.+&quot;) | default(&quot;&quot;) }}
+set routing-instances {{ vrf }} instance-type {{ instance_type }}
+set routing-instances {{ vrf }} routing-options router-id {{ routing_options.rid }}
+set routing-instances {{ vrf }} vrf-import {{ rpl_import }}
+set routing-instances {{ vrf }} vrf-export {{ rpl_export }}
+set routing-instances {{ vrf | let(&quot;vrf_table_label&quot;, True) }} vrf-table-label
+set routing-instances {{ vrf }} vrf-target {{ route_target }}
+set routing-instances {{ vrf }} protocols evpn extended-vlan-list {{ evpn.extended_vlan_list }}
+set routing-instances {{ vrf }} protocols evpn default-gateway {{ evpn.default_gateway }}
+set routing-instances {{ vrf }} vtep-source-interface {{ vtep_source_interface }}
+&lt;/group&gt;
+
+&lt;group name=&quot;vrf**.{{ vrf }}**.interfaces*&quot; method=&quot;table&quot; itemize=&quot;interface&quot;&gt;
+set routing-instances {{ vrf }} interface {{ interface }}
+&lt;/group&gt;
+
+&lt;group name=&quot;vrf**.{{ vrf }}**.bridge_domains**.{{ bd_name }}**&quot; method=&quot;table&quot;&gt;
+set routing-instances {{ vrf }} bridge-domains {{ bd_name }} vlan-id {{ vlan_id }}
+set routing-instances {{ vrf }} bridge-domains {{ bd_name }} routing-interface {{ routed_interface }}
+set routing-instances {{ vrf }} bridge-domains {{ bd_name }} vxlan vni {{ vxlan_vni }}
+set routing-instances {{ vrf }} bridge-domains {{ bd_name }} vxlan multicast-group {{ vxlan_multicast_group }}
+set routing-instances {{ vrf }} bridge-domains {{ bd_name }} vxlan destination-udp-port {{ vxlan_dst_port }}
+set routing-instances {{ vrf }} bridge-domains {{ bd_name }} proxy-mac {{ proxy_mac }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Interfaces configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;interfaces**.{{ name }}**&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} description &quot;{{ description | re(&quot;.+&quot;) | default(&quot;&quot;) }}&quot;
+set interfaces {{ name }} mtu {{ mtu | to_int }}
+set interfaces {{ name | let(&quot;enabled&quot;, False) }} disable
+set interfaces {{ name }} gigether-options {{ gigether_options }}
+set interfaces {{ name }} gigether-options 802.3ad {{ lag_id }}
+set interfaces {{ name }} hold-time up {{ hold_time_up }}
+set interfaces {{ name }} hold-time down {{ hold_time_down }}
+set interfaces {{ name | let(&quot;per_unit_scheduler&quot;, True) }} per-unit-scheduler
+set interfaces {{ name | let(&quot;flexible_vlan_tagging&quot;, True) }} flexible-vlan-tagging
+set interfaces {{ name }} encapsulation {{ encapsulation }}
+set interfaces {{ name }} aggregated-ether-options minimum-links {{ lag_min_links }}
+set interfaces {{ name }} aggregated-ether-options lacp {{ lacp_mode }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.damping**&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} damping half-life {{ half_life }}
+set interfaces {{ name }} damping max-suppress {{ max_suppress }}
+set interfaces {{ name }} damping reuse {{ reuse }}
+set interfaces {{ name }} damping suppress {{ suppress }}
+set interfaces {{ name | let(&quot;is_enabled&quot;, True) }} damping enable
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} description {{ description | re(&quot;.+&quot;) | default(&quot;&quot;) }}
+set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.family*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family {{ afi }}
+set interfaces {{ name }} unit {{ unit }} family {{ afi }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.ipv4_acl_in*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family inet filter input-list {{ acl }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.ipv4*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ virtual_gateway_address }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.virtual_gateway**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} virtual-gateway-v4-mac {{ mac }}
+set interfaces {{ name }} unit {{ unit | let(&quot;accept_data&quot;, True) }} virtual-gateway-accept-data
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.ipv6*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.esi**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} esi {{ esi }}
+set interfaces {{ name }} unit {{ unit | let(&quot;single_active&quot;, True) }} esi single-active
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.tunnel**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} tunnel routing-instance destination {{ destination_vrf }}
+set interfaces {{ name }} unit {{ unit }} tunnel source {{ source }}
+set interfaces {{ name }} unit {{ unit }} tunnel destination {{ destination }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## BGP configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;bgp**&quot; method=&quot;table&quot;&gt;
+set routing-options router-id {{ rid }}
+set routing-options autonomous-system {{ asn }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.neighbor_groups**.{{ name }}**&quot; method=&quot;table&quot;&gt;
+set protocols bgp group {{ name }} type {{ peering_type }}
+set protocols bgp group {{ name }} metric-out {{ metric_out }}
+set protocols bgp group {{ name }} peer-as {{ neighbor_asn }}
+set protocols bgp group {{ name }} local-as {{ local_asn }}
+set protocols bgp group {{ name | let(&quot;multipath_enabled&quot;, True) }} multipath
+set protocols bgp group {{ name }} local-address {{ update_source }}
+set protocols bgp group {{ name | let(&quot;hello_auth_enabled&quot;, True) }} authentication-key {{ ignore }}
+set protocols bgp group {{ name }} bfd-liveness-detection minimum-interval {{ bfd_minimum_interval }}
+set protocols bgp group {{ name }} bfd-liveness-detection multiplier {{ bfd_multiplier }}\
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.neighbor_groups**.{{ name }}**.rpl_out*&quot; method=&quot;table&quot;&gt;
+set protocols bgp group {{ name }} export {{ rpl }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.neighbor_groups**.{{ name }}**.rpl_in*&quot; method=&quot;table&quot;&gt;
+set protocols bgp group {{ name }} import {{ rpl }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.neighbors**.{{ neighbor_ip }}**&quot; method=&quot;table&quot;&gt;
+set protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }}
+set protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }} description {{ description | re(&quot;.+&quot;) }}
+set protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }} peer-as {{ neighbor_asn }}
+set protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }} family {{ ignore(PHRASE) }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.neighbors**.{{ neighbor_ip }}**.afi.{{ afi }}_{{ sub_afi }}**&quot; method=&quot;table&quot; del=&quot;neighbor_group&quot;&gt;
+set protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }} family {{ afi }} {{ sub_afi | let(&quot;enabled&quot;, True) }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.neighbor_groups**.{{ name }}**.afi.{{ afi }}_{{ sub_afi }}**&quot; method=&quot;table&quot;&gt;
+set protocols bgp group {{ name }} family {{ afi }} {{ sub_afi | let(&quot;add_path_receive&quot;, True) }} add-path receive
+set protocols bgp group {{ name }} family {{ afi }} {{ sub_afi }} add-path send path-count {{ add_path_advertise }}
+set protocols bgp group {{ name }} family {{ afi }} {{ sub_afi | let(&quot;enabled&quot;, True) }}
+set protocols bgp group {{ name }} family {{ afi }} {{ sub_afi | let(&quot;signaling&quot;, True) }} signaling
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.vrf**.{{ vrf }}**&quot; method=&quot;table&quot;&gt;
+set routing-instances {{ vrf }} routing-options autonomous-system 4200020059
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.vrf**.{{ vrf }}**.neighbor_groups**.{{ name }}**&quot; method=&quot;table&quot;&gt;
+set routing-instances {{ vrf }} protocols bgp group {{ name }} type {{ peering_type }}
+set routing-instances {{ vrf }} protocols bgp group {{ name }} metric-out {{ metric_out }}
+set routing-instances {{ vrf }} protocols bgp group {{ name | let(&quot;hello_auth_enabled&quot;, True) }} authentication-key {{ ignore }}
+set routing-instances {{ vrf }} protocols bgp group {{ name }} peer-as {{ neighbor_asn }}
+set routing-instances {{ vrf }} protocols bgp group {{ name }} local-as {{ local_asn }}
+set routing-instances {{ vrf }} protocols bgp group {{ name }} bfd-liveness-detection minimum-interval {{ bfd_minimum_interval }}
+set routing-instances {{ vrf }} protocols bgp group {{ name }} bfd-liveness-detection multiplier {{ bfd_multiplier }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.vrf**.{{ vrf }}**.neighbor_groups**.{{ name }}**.rpl_out*&quot; method=&quot;table&quot;&gt;
+set routing-instances {{ vrf }} protocols bgp group {{ name }} export {{ rpl }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.vrf**.{{ vrf }}**.neighbor_groups**.{{ name }}**.rpl_in*&quot; method=&quot;table&quot;&gt;
+set routing-instances {{ vrf }} protocols bgp group {{ name }} import {{ rpl }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.vrf**.{{ vrf }}**.neighbors**.{{ neighbor_ip }}**&quot; method=&quot;table&quot;&gt;
+set routing-instances {{ vrf }} protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }}
+set routing-instances {{ vrf }} protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }} description {{ description | re(&quot;.+&quot;) }}
+set routing-instances {{ vrf }} protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }} peer-as {{ neighbor_asn }}
+set routing-instances {{ vrf }} protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }} family {{ ignore(PHRASE) }}
+&lt;/group&gt;
+
+&lt;group name=&quot;bgp**.vrf**.{{ vrf }}**.neighbors**.{{ neighbor_ip }}**.afi.{{ afi }}_{{ sub_afi }}**&quot; method=&quot;table&quot; del=&quot;neighbor_group&quot;&gt;
+set routing-instances {{ vrf }} protocols bgp group {{ neighbor_group }} neighbor {{ neighbor_ip }} family {{ afi }} {{ sub_afi | let(&quot;enabled&quot;, True) }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## PIM configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;pim**&quot; method=&quot;table&quot;&gt;
+set protocols pim rp bidirectional address {{ rp_didir }} group-ranges {{ rp_group_range }}
+&lt;/group&gt;
+
+&lt;group name=&quot;pim**.interfaces**.{{ interface }}**&quot; method=&quot;table&quot;&gt;
+set protocols pim interface{{ interface }} mode {{ mode }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## IGMP configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;igmp**.interfaces**.{{ interface }}**&quot; method=&quot;table&quot;&gt;
+set protocols igmp interface {{ interface }} version {{ version }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## ISIS configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;isis**.level_{{ level }}**&quot; method=&quot;table&quot;&gt;
+set protocols isis level {{ level | let(&quot;enabled&quot;, False) }} disable
+set protocols isis level {{ level | let(&quot;lsp_hmac_md5_auth_enabled&quot;, True) }} authentication-key {{ ignore }}
+set protocols isis level {{ level | let(&quot;metric_style&quot;, &quot;wide_metrics_only&quot;) }} wide-metrics-only
+set protocols isis level {{ level }} prefix-export-limit {{ prefix_export_limit }}
+&lt;/group&gt;
+
+&lt;group name=&quot;isis**.interfaces**.{{ interface }}**.level_{{ level }}**&quot; method=&quot;table&quot;&gt;
+set protocols isis interface {{ interface }} level {{ level }} post-convergence-lfa node-protection cost {{ lfa_node_prot_cost }}
+set protocols isis interface {{ interface }} level {{ level }} metric {{ metric }}
+set protocols isis interface {{ interface }} level {{ level | let(&quot;hello_hmac_md5_auth_enabled&quot;, True) }} hello-authentication-key {{ ignore }}
+&lt;/group&gt;
+
+&lt;group name=&quot;isis**.interfaces**.{{ interface }}**&quot; method=&quot;table&quot;&gt;
+set protocols isis interface {{ interface }} hello-padding {{ hello_padding }}
+set protocols isis interface {{ interface | let(&quot;link_type&quot;, &quot;point-to-point&quot;) }} point-to-point
+set protocols isis interface {{ interface | let(&quot;is_passive&quot;, True) }} passive
+&lt;/group&gt;
+
+&lt;group name=&quot;isis**.interfaces**.{{ interface }}**.afi.{{ afi }}&quot; method=&quot;table&quot;&gt;
+set protocols isis interface {{ interface }} family {{ afi }} bfd-liveness-detection minimum-interval {{ bfd_minimum_interval }}
+set protocols isis interface {{ interface }} family {{ afi }} bfd-liveness-detection multiplier {{ bfd_multiplier }}
+&lt;/group&gt;
+
+&lt;output name=&quot;postprocess&quot; macro=&quot;postprocess&quot;/&gt;
 &lt;/template&gt;
 </code></pre></div>
 </details>
@@ -1381,7 +1691,7 @@ end{{ _end_ }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.N2G.cli_ip_data.cisco_xr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_ip_data.cisco_xr" rel="prev">
+        <a href="../misc.Netbox.parse_cisco_xr_config/" class="md-footer__link md-footer__link--prev" aria-label="Previous: parse_cisco_xr_config" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1390,20 +1700,20 @@ end{{ _end_ }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              cli_ip_data.cisco_xr
+              parse_cisco_xr_config
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.N2G.cli_ip_data.huawei/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_ip_data.huawei" rel="next">
+        <a href="../misc.Netmiko.cisco.ios.arp/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco.ios.arp" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_ip_data.huawei
+              cisco.ios.arp
             </div>
           </div>
           <div class="md-footer__button md-icon">

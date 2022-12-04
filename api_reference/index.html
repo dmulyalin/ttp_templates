@@ -491,6 +491,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../ttp_templates/misc.N2G.cli_ip_data.arista_eos/" class="md-nav__link">
+        cli_ip_data.arista_eos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ttp_templates/misc.N2G.cli_ip_data.cisco_ios/" class="md-nav__link">
         cli_ip_data.cisco_ios
       </a>
@@ -731,11 +743,74 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
       
       <label class="md-nav__link" for="__nav_5_1_2">
+        Netbox
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Netbox" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Netbox
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/misc.Netbox.parse_arista_eos_config/" class="md-nav__link">
+        parse_arista_eos_config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/misc.Netbox.parse_cisco_xr_config/" class="md-nav__link">
+        parse_cisco_xr_config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/misc.Netbox.parse_juniper_junos_config/" class="md-nav__link">
+        parse_juniper_junos_config
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+      
+      <label class="md-nav__link" for="__nav_5_1_3">
         Netmiko
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_2">
+        <label class="md-nav__title" for="__nav_5_1_3">
           <span class="md-nav__icon md-icon"></span>
           Netmiko
         </label>
@@ -875,14 +950,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
       
-      <label class="md-nav__link" for="__nav_5_1_3">
+      <label class="md-nav__link" for="__nav_5_1_4">
         ttp_templates_tests
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_3">
+        <label class="md-nav__title" for="__nav_5_1_4">
           <span class="md-nav__icon md-icon"></span>
           ttp_templates_tests
         </label>
@@ -1319,7 +1394,7 @@
 
 
 
-<h3 class="doc doc-heading" id="ttp_templates.parse_output">
+<h3 id="ttp_templates.parse_output" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">ttp_templates</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">yang</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">misc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">structure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="n">template_vars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">]</span></code>
 
 
@@ -1482,7 +1557,7 @@
 
 
 
-<h3 class="doc doc-heading" id="ttp_templates.get_template">
+<h3 id="ttp_templates.get_template" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">ttp_templates</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">yang</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">misc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
 
 
@@ -1654,7 +1729,7 @@
 
 
 
-<h3 class="doc doc-heading" id="ttp_templates.list_templates">
+<h3 id="ttp_templates.list_templates" class="doc doc-heading">
 <code class="highlight language-python"><span class="n">ttp_templates</span><span class="o">.</span><span class="n">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
 
 
@@ -1728,7 +1803,8 @@ TTP templates.</p>
 <span class="normal">151</span>
 <span class="normal">152</span>
 <span class="normal">153</span>
-<span class="normal">154</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="normal">154</span>
+<span class="normal">155</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Function to list available templates matching given pattern.</span>
 
@@ -1774,6 +1850,7 @@ TTP templates.</p>
                 <span class="c1"># create item key in res and obtain reference to its value</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">ref</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
 </td></tr></table>
         </details>

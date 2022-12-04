@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_ip_data.fortinet/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_ip_data.arista_eos/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cli_ip_data.fortinet - TTP Templates Collection</title>
+        <title>cli_ip_data.arista_eos - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cli_ip_data.fortinet
+              cli_ip_data.arista_eos
             
           </span>
         </div>
@@ -440,11 +440,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../misc.N2G.cli_ip_data.arista_eos/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         cli_ip_data.arista_eos
       </a>
+      
     </li>
   
 
@@ -488,19 +496,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cli_ip_data.fortinet/" class="md-nav__link">
         cli_ip_data.fortinet
       </a>
-      
     </li>
   
 
@@ -1298,60 +1298,55 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_ip_data.fortinet.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_ip_data.arista_eos.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cli_ip_data.fortinet</h1>
+                  <h1>cli_ip_data.arista_eos</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_ip_data/fortinet.txt
+<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_ip_data/arista_eos.txt
 </code></pre></div></p>
 <hr />
-<p>Template to parse Fortinet fortigate firewalls interfaces configuration and ARP cache.</p>
+<p>Template to parse Arista EOS interfaces configuration and ARP cache.</p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;fortinet&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;arista_eos&quot; results=&quot;per_template&quot;&gt;
 
 &lt;doc&gt;
-Template to parse Fortinet fortigate firewalls interfaces configuration and ARP cache.
+Template to parse Arista EOS interfaces configuration and ARP cache.
 &lt;/doc&gt;
 
 &lt;input load=&quot;python&quot;&gt;
 commands = [
-    &quot;get system config&quot;,
-    &quot;get system arp&quot;,
+    &quot;show running-config&quot;,
+    &quot;show ip arp vrf all&quot;,
 ]
-kwargs = {&quot;strip_prompt&quot;: False}
 method = &quot;send_command&quot;
-platform = [&quot;fortinet&quot;]
+platform = [&quot;arista_eos&quot;]
 &lt;/input&gt;
 
-&lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
+&lt;!-- Extract Device Hostname --&gt;
+&lt;group name=&quot;nill&quot; void=&quot;&quot;&gt;
+hostname {{ local_hostname | record(&quot;local_hostname&quot;) }}
+&lt;/group&gt;
 
 &lt;!-- Interfaces configuration group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces**&quot;&gt;
-config system interface {{ _start_ }}
-    &lt;group name=&quot;{{ interface }}&quot;&gt;
-    edit &quot;{{ interface }}&quot;
-        set description &quot;{{ port_description | re(&quot;.+&quot;) }}&quot;
-        set vdom &quot;{{ vrf }}&quot;
-        set allowaccess {{ ACL_IN | ORPHRASE }}
-        set interface &quot;{{ parent_interface }}&quot;
-        set vlanid {{ vid }}
-        &lt;group name=&quot;ip_addresses*&quot; chain=&quot;add_network()&quot; method=&quot;table&quot;&gt;
-        set ip {{ ip | IP }} {{ netmask }}
-                set ip {{ ip | IP }} {{ netmask }}
-        &lt;/group&gt;
-    next{{ _end_ }}
-    &lt;/group&gt;    
-end{{ _end_ }}
-&lt;/group&gt;    
+&lt;group name=&quot;{{ local_hostname }}.interfaces.{{ interface }}&quot;&gt;
+interface {{ interface | resuball(&quot;IfsNormalize&quot;) }}
+   description {{ port_description | re(&quot;.+&quot;) }}
+   vrf {{ vrf }}
+   &lt;group name=&quot;ip_addresses*&quot; chain=&quot;add_network()&quot; method=&quot;table&quot;&gt;
+   ip address {{ ip | IP }}/{{ netmask }}
+   ip address {{ ip | IP }}/{{ netmask }} secondary
+   &lt;/group&gt;
+! {{ _end_ }}
+&lt;/group&gt;
 
 &lt;!-- ARP cache group --&gt;
 &lt;group name=&quot;{{ local_hostname }}.interfaces.{{ interface }}.arp*&quot; method=&quot;table&quot;&gt;
-{{ ip | IP }}      {{ age }}   {{ mac | MAC | mac_eui }}    {{ interface }}
+{{ ip | IP }}   {{ age }}   {{ mac | MAC | mac_eui }}   {{ interface | resuball(&quot;IfsNormalize&quot;) }}
 &lt;/group&gt;
 
 &lt;/template&gt;
@@ -1381,7 +1376,7 @@ end{{ _end_ }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.N2G.cli_ip_data.cisco_xr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_ip_data.cisco_xr" rel="prev">
+        <a href="../misc.N2G.cli_ip_data.a10/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_ip_data.a10" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1390,20 +1385,20 @@ end{{ _end_ }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              cli_ip_data.cisco_xr
+              cli_ip_data.a10
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.N2G.cli_ip_data.huawei/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_ip_data.huawei" rel="next">
+        <a href="../misc.N2G.cli_ip_data.cisco_ios/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_ip_data.cisco_ios" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_ip_data.huawei
+              cli_ip_data.cisco_ios
             </div>
           </div>
           <div class="md-footer__button md-icon">

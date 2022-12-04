@@ -442,6 +442,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../misc.N2G.cli_ip_data.arista_eos/" class="md-nav__link">
+        cli_ip_data.arista_eos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../misc.N2G.cli_ip_data.cisco_ios/" class="md-nav__link">
         cli_ip_data.cisco_ios
       </a>
@@ -690,11 +702,74 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
       
       <label class="md-nav__link" for="__nav_5_1_2">
+        Netbox
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Netbox" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Netbox
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netbox.parse_arista_eos_config/" class="md-nav__link">
+        parse_arista_eos_config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netbox.parse_cisco_xr_config/" class="md-nav__link">
+        parse_cisco_xr_config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netbox.parse_juniper_junos_config/" class="md-nav__link">
+        parse_juniper_junos_config
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+      
+      <label class="md-nav__link" for="__nav_5_1_3">
         Netmiko
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_2">
+        <label class="md-nav__title" for="__nav_5_1_3">
           <span class="md-nav__icon md-icon"></span>
           Netmiko
         </label>
@@ -834,14 +909,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
       
-      <label class="md-nav__link" for="__nav_5_1_3">
+      <label class="md-nav__link" for="__nav_5_1_4">
         ttp_templates_tests
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_3">
+        <label class="md-nav__title" for="__nav_5_1_4">
           <span class="md-nav__icon md-icon"></span>
           ttp_templates_tests
         </label>
@@ -1237,33 +1312,40 @@
 <p>This template designed to parse Cisco IOSXR configuration and CDP and LLDP neighbors.</p>
 <p>Commands parsed:</p>
 <ul>
-<li>show lldp - to extract local hostname</li>
+<li>show lldp - to extract LLDP System Name</li>
 <li>show lldp neighbors detail - to extract LLDP neighbors</li>
 <li>show running-config interface - to extract interfaces description and LAGs</li>
+<li>show run | inc domain - to extract domain name in case "show lldp" fails</li>
+<li>show run | inc hostname - to extract hostname in case "show lldp" fails</li>
 <li>show cdp neighbors detail - show extract CDP neighbors</li>
 <li>show interfaces - to extract interface state to add all connected nodes</li>
 </ul>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;cisco_xr&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span><code>bash-4.4# cat /usr/local/lib/python3.9/site-packages/ttp_templates/misc/N2G/cli_l2_data/cisco_xr.txt 
+&lt;template name=&quot;cisco_xr&quot; results=&quot;per_template&quot;&gt;
 
 &lt;doc&gt;
 This template designed to parse Cisco IOSXR configuration and CDP and LLDP neighbors.
 
 Commands parsed:
 
-- show lldp - to extract local hostname
+- show lldp - to extract LLDP System Name
 - show lldp neighbors detail - to extract LLDP neighbors
 - show running-config interface - to extract interfaces description and LAGs
+- show run | inc domain - to extract domain name in case &quot;show lldp&quot; fails
+- show run | inc hostname - to extract hostname in case &quot;show lldp&quot; fails
 - show cdp neighbors detail - show extract CDP neighbors
 - show interfaces - to extract interface state to add all connected nodes
 &lt;/doc&gt;
 
 &lt;input load=&quot;python&quot;&gt;
 commands = [
-    &quot;show cdp neighbor details&quot;,
-    &quot;show lldp neighbor details&quot;,
+    &quot;show cdp neighbor detail&quot;,
+    &quot;show lldp neighbor detail&quot;,
     &quot;show lldp&quot;,
+    &quot;show run | inc domain&quot;,
+    &quot;show run | inc hostname&quot;,
     &quot;show running-config interface&quot;,
     &quot;show interfaces&quot;,
 ]
@@ -1271,9 +1353,6 @@ kwargs = {&quot;strip_prompt&quot;: False}
 method = &quot;send_command&quot;
 platform = [&quot;cisco_xr&quot;]
 &lt;/input&gt;
-
-&lt;!-- gethostname used if no show lldp output provided --&gt;
-&lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
 
 &lt;macro&gt;
 def check_is_physical_port(data):
@@ -1294,6 +1373,13 @@ def add_lldp_target_id(data):
         data.setdefault(&quot;target&quot;, {})
         data[&quot;target&quot;][&quot;id&quot;] = data[&quot;data&quot;][&quot;chassis_id&quot;]
     return data
+
+def form_local_hostname(data):
+    if &quot;hostname&quot; in data and &quot;domain_name&quot; in data:
+        data[&quot;local_hostname&quot;] = &quot;{}.{}&quot;.format(
+            data[&quot;hostname&quot;], data[&quot;domain_name&quot;]
+        )
+    return data
 &lt;/macro&gt;
 
 &lt;!-- show lldp - parse global params --&gt;
@@ -1301,6 +1387,12 @@ def add_lldp_target_id(data):
 Global LLDP information: {{ _start_ }}
         LLDP System Name: {{ local_hostname | record(&quot;local_hostname&quot;) }}
 &lt;/group&gt;
+
+&lt;group functions=&quot;macro(&#39;form_local_hostname&#39;) | record(&#39;local_hostname&#39;) | void()&quot;&gt;
+domain name {{ domain_name }}
+hostname {{ hostname }}
+&lt;/group&gt;
+
 
 &lt;!-- Interfaces configuration group --&gt;
 &lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**&quot;&gt;
@@ -1332,7 +1424,7 @@ interface {{ interface | resuball(IfsNormalize) }}
 &lt;/group&gt;
 
 &lt;!-- LLDP peers group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.lldp_peers*&quot; functions=&quot;expand() | macro(add_lldp_target_id)&quot;&gt;
+&lt;group name=&quot;{{ local_hostname }}.lldp_peers*&quot; functions=&quot;expand() | macro(add_lldp_target_id) | set(&#39;local_hostname&#39;, &#39;source&#39;)&quot;&gt;
 Local Interface: {{ src_label | resuball(IfsNormalize) }}
 Chassis id: {{ data.chassis_id }}
 Port id: {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
@@ -1341,7 +1433,6 @@ System Name: {{ target.id | split(&quot;(&quot;) | item(0) }}
 System Name: {{ data.peer_system_name | PHRASE }}
 System Capabilities: {{ data.peer_capabilities | ORPHRASE }}
   IPv4 address: {{ target.top_label }}
-{{ source | set(&quot;local_hostname&quot;) }}
 
 &lt;group name=&quot;data**&quot;&gt;
 System Description: {{ _start_ }}
@@ -1354,13 +1445,12 @@ System Description: {{ _start_ }}
 
 
 &lt;!-- CDP peers group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.cdp_peers*&quot; expand=&quot;&quot;&gt;
+&lt;group name=&quot;{{ local_hostname }}.cdp_peers*&quot; expand=&quot;&quot; set=&quot;local_hostname, source&quot;&gt;
 Device ID: {{ target.id | split(&quot;.&quot;) | item(0) | split(&quot;(&quot;) | item(0) }}
   IPv4 address: {{ target.top_label }}
 Platform: {{ target.bottom_label | ORPHRASE }},  Capabilities: {{ data.peer_capabilities | ORPHRASE }}
 Interface: {{ src_label | resuball(IfsNormalize) }}
 Port ID (outgoing port): {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
-{{ source | set(&quot;local_hostname&quot;) }}
 &lt;/group&gt;
 &lt;/template&gt;
 </code></pre></div>
