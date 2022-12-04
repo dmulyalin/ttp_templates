@@ -49,6 +49,7 @@ config system interface {{ _start_ }}
         </group>
     next{{ _end_ }}
     </group>    
+end{{ _end_ }}
 </group>    
 
 <!-- ARP cache group -->

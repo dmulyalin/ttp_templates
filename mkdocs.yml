@@ -19,6 +19,7 @@ nav:
   - Misc:
     - N2G:
       - cli_ip_data.a10: ttp_templates/misc.N2G.cli_ip_data.a10.md
+      - cli_ip_data.arista_eos: ttp_templates/misc.N2G.cli_ip_data.arista_eos.md
       - cli_ip_data.cisco_ios: ttp_templates/misc.N2G.cli_ip_data.cisco_ios.md
       - cli_ip_data.cisco_nxos: ttp_templates/misc.N2G.cli_ip_data.cisco_nxos.md
       - cli_ip_data.cisco_xr: ttp_templates/misc.N2G.cli_ip_data.cisco_xr.md
@@ -38,6 +39,10 @@ nav:
       - cli_ospf_data.cisco_xr: ttp_templates/misc.N2G.cli_ospf_data.cisco_xr.md
       - cli_ospf_data.huawei: ttp_templates/misc.N2G.cli_ospf_data.huawei.md
       - cli_ospf_data.readme: ttp_templates/misc.N2G.cli_ospf_data.readme.md
+    - Netbox:
+      - parse_arista_eos_config: ttp_templates/misc.Netbox.parse_arista_eos_config.md
+      - parse_cisco_xr_config: ttp_templates/misc.Netbox.parse_cisco_xr_config.md
+      - parse_juniper_junos_config: ttp_templates/misc.Netbox.parse_juniper_junos_config.md
     - Netmiko:
       - cisco.ios.arp: ttp_templates/misc.Netmiko.cisco.ios.arp.md
       - cisco.ios.cfg.bgp: ttp_templates/misc.Netmiko.cisco.ios.cfg.bgp.md

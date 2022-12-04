@@ -11,9 +11,11 @@ This template designed to parse Cisco IOSXR configuration and CDP and LLDP neigh
 
 Commands parsed:
 
-- show lldp - to extract local hostname
+- show lldp - to extract LLDP System Name
 - show lldp neighbors detail - to extract LLDP neighbors
 - show running-config interface - to extract interfaces description and LAGs
+- show run | inc domain - to extract domain name in case "show lldp" fails
+- show run | inc hostname - to extract hostname in case "show lldp" fails
 - show cdp neighbors detail - show extract CDP neighbors
 - show interfaces - to extract interface state to add all connected nodes
 
@@ -23,6 +25,7 @@ Commands parsed:
 
 <details><summary>Template Content</summary>
 ```
+bash-4.4# cat /usr/local/lib/python3.9/site-packages/ttp_templates/misc/N2G/cli_l2_data/cisco_xr.txt 
 <template name="cisco_xr" results="per_template">
 
 <doc>
@@ -30,18 +33,22 @@ This template designed to parse Cisco IOSXR configuration and CDP and LLDP neigh
 
 Commands parsed:
 
-- show lldp - to extract local hostname
+- show lldp - to extract LLDP System Name
 - show lldp neighbors detail - to extract LLDP neighbors
 - show running-config interface - to extract interfaces description and LAGs
+- show run | inc domain - to extract domain name in case "show lldp" fails
+- show run | inc hostname - to extract hostname in case "show lldp" fails
 - show cdp neighbors detail - show extract CDP neighbors
 - show interfaces - to extract interface state to add all connected nodes
 </doc>
 
 <input load="python">
 commands = [
-    "show cdp neighbor details",
-    "show lldp neighbor details",
+    "show cdp neighbor detail",
+    "show lldp neighbor detail",
     "show lldp",
+    "show run | inc domain",
+    "show run | inc hostname",
     "show running-config interface",
     "show interfaces",
 ]
@@ -49,9 +56,6 @@ kwargs = {"strip_prompt": False}
 method = "send_command"
 platform = ["cisco_xr"]
 </input>
-
-<!-- gethostname used if no show lldp output provided -->
-<vars>local_hostname="gethostname"</vars>
 
 <macro>
 def check_is_physical_port(data):
@@ -72,6 +76,13 @@ def add_lldp_target_id(data):
         data.setdefault("target", {})
         data["target"]["id"] = data["data"]["chassis_id"]
     return data
+
+def form_local_hostname(data):
+    if "hostname" in data and "domain_name" in data:
+        data["local_hostname"] = "{}.{}".format(
+            data["hostname"], data["domain_name"]
+        )
+    return data
 </macro>
 
 <!-- show lldp - parse global params -->
@@ -79,6 +90,12 @@ def add_lldp_target_id(data):
 Global LLDP information: {{ _start_ }}
         LLDP System Name: {{ local_hostname | record("local_hostname") }}
 </group>
+
+<group functions="macro('form_local_hostname') | record('local_hostname') | void()">
+domain name {{ domain_name }}
+hostname {{ hostname }}
+</group>
+
 
 <!-- Interfaces configuration group -->
 <group name="{{ local_hostname }}.interfaces**.{{ interface }}**">
@@ -110,7 +127,7 @@ interface {{ interface | resuball(IfsNormalize) }}
 </group>
 
 <!-- LLDP peers group -->
-<group name="{{ local_hostname }}.lldp_peers*" functions="expand() | macro(add_lldp_target_id)">
+<group name="{{ local_hostname }}.lldp_peers*" functions="expand() | macro(add_lldp_target_id) | set('local_hostname', 'source')">
 Local Interface: {{ src_label | resuball(IfsNormalize) }}
 Chassis id: {{ data.chassis_id }}
 Port id: {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
@@ -119,7 +136,6 @@ System Name: {{ target.id | split("(") | item(0) }}
 System Name: {{ data.peer_system_name | PHRASE }}
 System Capabilities: {{ data.peer_capabilities | ORPHRASE }}
   IPv4 address: {{ target.top_label }}
-{{ source | set("local_hostname") }}
 
 <group name="data**">
 System Description: {{ _start_ }}
@@ -132,13 +148,12 @@ System Description: {{ _start_ }}
 
 
 <!-- CDP peers group -->
-<group name="{{ local_hostname }}.cdp_peers*" expand="">
+<group name="{{ local_hostname }}.cdp_peers*" expand="" set="local_hostname, source">
 Device ID: {{ target.id | split(".") | item(0) | split("(") | item(0) }}
   IPv4 address: {{ target.top_label }}
 Platform: {{ target.bottom_label | ORPHRASE }},  Capabilities: {{ data.peer_capabilities | ORPHRASE }}
 Interface: {{ src_label | resuball(IfsNormalize) }}
 Port ID (outgoing port): {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
-{{ source | set("local_hostname") }}
 </group>
 </template>
 ```

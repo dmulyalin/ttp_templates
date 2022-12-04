@@ -84,8 +84,9 @@ Produces this structure for each input datum/device output:
 </doc>
 
 <group name="ospf_processes.{{ pid }}**">
-            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})
-
+            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid | _start_ }})
+            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid | _start_ }}, VRF {{ vrf }})
+            
 <group name="external_lsa*" functions="void">
                 Type-5 AS External Link States {{ _start_ }}
 

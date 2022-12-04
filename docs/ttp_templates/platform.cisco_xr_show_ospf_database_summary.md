@@ -98,8 +98,9 @@ Produces this structure for each input datum/device output:
 </doc>
 
 <group name="ospf_processes.{{ pid }}**">
-            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})
-
+            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid | _start_ }})
+            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid | _start_ }}, VRF {{ vrf }})
+            
 <group name="summary_lsa*" functions="record('area') | del('area') | void">
                 Summary Net Link States (Area {{ area }})
 
