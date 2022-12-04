@@ -34,14 +34,15 @@ hostname {{ hostname }}
 !! IOS XR Configuration {{ os_version }}
 !! Last configuration change at {{ config_changed_last }} by {{ config_changed_by }}
 fpd auto-upgrade enable {{ fpd_auto_upgrade_enabled | set(True) }}
+domain name {{ domain_name }}
 </group>
 
 ## ------------------------------------------------------------------------------------------
 ## DNS Servers configuration
 ## ------------------------------------------------------------------------------------------
-<group name="nameservers*">
+<group name="nameservers**.{{ vrf }}" method="table">
 domain vrf {{ vrf }} name-server {{ name_server }}
-domain name {{ domain_name }}
+domain vrf {{ vrf }} lookup source-interface {{ source_interface }}
 </group>
 
 ## ------------------------------------------------------------------------------------------
