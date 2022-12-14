@@ -5,9 +5,9 @@
 
 This repository contains a collection of [TTP](https://github.com/dmulyalin/ttp) templates.
 
-If you solved a problem using TTP and feel that your work can be useful to other people, feel 
+If you solved a problem using TTP and feel that your work can be useful to other people, feel
 free to raise an issue or submit pull request to include your template(s) in this repository.
-Refer to [Contribute Guide](contribute.md) for details.
+Refer to [Contribute Guide](https://dmulyalin.github.io/docs/contribute.md) for details.
 
 Documentation: [https://dmulyalin.github.io/ttp_templates/](https://dmulyalin.github.io/ttp_templates/)
 
@@ -24,7 +24,7 @@ From PyPi:
 or latest from GitHub master branch (need Git installed on the system):
 
 `pip install git+https://github.com/dmulyalin/ttp_templates.git`
- 
+
 ## Sample usage
 
 This example demonstrates how to parse `Test Platform` output for `show run | sec interface` command using `platform/test_platform_show_run_pipe_sec_interface.txt` template.
@@ -100,7 +100,7 @@ interface GigabitEthernet1/5
 interface GigabitEthernet1/7
  description Works data v6
  ipv6 address 2001::1/64
- ipv6 address 2001:1::1/64    
+ ipv6 address 2001:1::1/64
 """
 
 template = get_template(yang="ietf-interfaces", platform="cisco_ios")
@@ -185,16 +185,16 @@ This repository contains three collections of templates corresponding to folder 
 
 ### Platform collection templates files naming rule
 
-`{{ vendor_os }}_{{ command_with_underscores }}.txt` - lower case only. 
+`{{ vendor_os }}_{{ command_with_underscores }}.txt` - lower case only.
 
 Naming rules details:
 
 * All space symbols `' '` replaced with underscores.
-* Pipe symbol `|` replaced with `pipe` in template name. For example, 
-  template to parse Cisco IOS `show run | section interface` command output 
+* Pipe symbol `|` replaced with `pipe` in template name. For example,
+  template to parse Cisco IOS `show run | section interface` command output
   must be named `cisco_ios_show_running_config_pipe_section_interface.txt`
-* Dash symbols `-` replaced with underscores. For example, template to parse 
-  Huawei `display current-configuration interface` command output  must be 
+* Dash symbols `-` replaced with underscores. For example, template to parse
+  Huawei `display current-configuration interface` command output  must be
   named `huawei_display_current_configuration_interface.txt`
 
 ### YANG collection templates files naming rule
