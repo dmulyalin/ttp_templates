@@ -7,7 +7,7 @@ This repository contains a collection of [TTP](https://github.com/dmulyalin/ttp)
 
 If you solved a problem using TTP and feel that your work can be useful to other people, feel
 free to raise an issue or submit pull request to include your template(s) in this repository.
-Refer to [Contribute Guide](https://dmulyalin.github.io/dmulyalin/ttp/docs/contribute.md) for details.
+Refer to [Contribute Guide](https://dmulyalin.github.io/dmulyalin/ttp_templates/docs/contribute.md) for details.
 
 Documentation: [https://dmulyalin.github.io/ttp_templates/](https://dmulyalin.github.io/ttp_templates/)
 
