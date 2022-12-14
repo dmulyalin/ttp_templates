@@ -9,6 +9,79 @@ from ttp import ttp
 
 logging.basicConfig(level=logging.INFO)
 
+def test_cisco_ios_show_isdn_status():
+    with open(
+        "./mock_data/cisco_ios_show_isdn_status.txt", "r"
+    ) as f:
+        data = f.read()
+    template = get_template(
+        platform="cisco_ios", command="show isdn status"
+    )
+    # print(template)
+    parser = ttp(data=data, template=template)
+    parser.parse()
+    res = parser.result()
+    # pprint.pprint(res)
+    assert res == [[
+            {
+                "interface": [
+                    {
+                        "CES": "1",
+                        "FREE_CHANNEL_MASK": "0x80000003",
+                        "INTERFACE": "Serial0/3/0:23",
+                        "ISDN_SWITCHTYPE": "primary-ni",
+                        "L1_STATUS": "ACTIVE",
+                        "L2_DISCARDS": "0",
+                        "L2_SESSION_ID": "1",
+                        "SAPI": "0",
+                        "TEI_CODE": "0",
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                    },
+                    {
+                        "CES": "1",
+                        "FREE_CHANNEL_MASK": "0x80000003",
+                        "INTERFACE": "BRI0/1/0",
+                        "ISDN_SWITCHTYPE": "basic-net3",
+                        "L1_STATUS": "ACTIVE",
+                        "SAPI": "0",
+                        "TEI_CODE": "0",
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                    },
+                    {
+                        "CES": "1",
+                        "FREE_CHANNEL_MASK": "0x80000003",
+                        "INTERFACE": "BRI0/1/1",
+                        "ISDN_SWITCHTYPE": "basic-net3",
+                        "L1_STATUS": "ACTIVE",
+                        "SAPI": "0",
+                        "TEI_CODE": "0",
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                    },
+                    {
+                        "CES": "1",
+                        "FREE_CHANNEL_MASK": "0x80000003",
+                        "INTERFACE": "BRI0/2/0",
+                        "ISDN_SWITCHTYPE": "basic-net3",
+                        "L1_STATUS": "DEACTIVATED",
+                        "SAPI": "0",
+                        "TEI_CODE": "0",
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                    },
+                    {
+                        "CES": "1",
+                        "FREE_CHANNEL_MASK": "0x80000003",
+                        "INTERFACE": "BRI0/2/1",
+                        "ISDN_SWITCHTYPE": "basic-net3",
+                        "L1_STATUS": "ACTIVE",
+                        "SAPI": "0",
+                        "TEI_CODE": "0",
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                    }
+                ]
+            }
+        ]]
+
+
 def test_cisco_ios_show_ip_ospf_database_router():
     with open(
         "./mock_data/cisco_ios_show_ip_ospf_database_router_IOL4_ABR.txt", "r"
@@ -351,7 +424,7 @@ ip nat inside source static tcp 192.168.1.10 443 3.3.4.4 443 vrf VRF1000 extenda
 ip nat inside source static 192.168.2.10 3.3.4.5 vrf VRF1002 extendable
 ip nat inside source static tcp 192.168.3.10 3389 3.3.5.6 13389 extendable
 ip nat inside source static 20.20.20.20 6.6.6.6 extendable
-ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/0 1443    
+ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/0 1443
     """
     template = get_template(
         platform="cisco_ios", command="show running-config | include source static"
@@ -389,6 +462,6 @@ ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/
                                          'inside_port': 443,
                                          'interface': 'TenGigabitEthernet0/0/0',
                                          'location': 'inside',
-                                         'protocol': 'tcp'}]}}]]   
-                                         
+                                         'protocol': 'tcp'}]}}]]
+
 # test_cisco_ios_cisco_ios_show_running_config_pipe_include_source_static()
