@@ -1125,6 +1125,18 @@
   
   
     <li class="md-nav__item">
+      <a href="ttp_templates/platform.cisco_ios_show_isdn_status/" class="md-nav__link">
+        cisco_ios_show_isdn_status
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp/" class="md-nav__link">
         cisco_ios_show_running_configuration_pipe_section_bgp
       </a>
@@ -1463,15 +1475,15 @@
                 
                 
                 <hr />
-<p><strong>Templates count: 58</strong></p>
+<p><strong>Templates count: 59</strong></p>
 <hr />
 <p><a href="https://pepy.tech/project/ttp_templates"><img alt="Downloads" src="https://pepy.tech/badge/ttp_templates" /></a>
 <a href="https://pypi.python.org/pypi/ttp_templates/"><img alt="PyPI versions" src="https://img.shields.io/pypi/pyversions/ttp.svg" /></a></p>
 <h1 id="template-text-parser-templates">Template Text Parser Templates</h1>
 <p>This repository contains a collection of <a href="https://github.com/dmulyalin/ttp">TTP</a> templates.</p>
-<p>If you solved a problem using TTP and feel that your work can be useful to other people, feel 
+<p>If you solved a problem using TTP and feel that your work can be useful to other people, feel
 free to raise an issue or submit pull request to include your template(s) in this repository.
-Refer to <a href="contribute/">Contribute Guide</a> for details.</p>
+Refer to <a href="https://dmulyalin.github.io/ttp_templates/contribute/">Contribute Guide</a> for details.</p>
 <p>Documentation: <a href="https://dmulyalin.github.io/ttp_templates/">https://dmulyalin.github.io/ttp_templates/</a></p>
 <p>Repository: <a href="https://github.com/dmulyalin/ttp_templates">https://github.com/dmulyalin/ttp_templates</a></p>
 <p>TTP: <a href="https://ttp.readthedocs.io/">https://ttp.readthedocs.io/</a></p>
@@ -1552,7 +1564,7 @@ Refer to <a href="contribute/">Contribute Guide</a> for details.</p>
 <span class="s2">interface GigabitEthernet1/7</span>
 <span class="s2"> description Works data v6</span>
 <span class="s2"> ipv6 address 2001::1/64</span>
-<span class="s2"> ipv6 address 2001:1::1/64    </span>
+<span class="s2"> ipv6 address 2001:1::1/64</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
 <span class="n">template</span> <span class="o">=</span> <span class="n">get_template</span><span class="p">(</span><span class="n">yang</span><span class="o">=</span><span class="s2">&quot;ietf-interfaces&quot;</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s2">&quot;cisco_ios&quot;</span><span class="p">)</span>
@@ -1635,15 +1647,15 @@ Refer to <a href="contribute/">Contribute Guide</a> for details.</p>
 <li><code>misc</code> collection - miscellaneous templates for various use cases organized in folders</li>
 </ul>
 <h3 id="platform-collection-templates-files-naming-rule">Platform collection templates files naming rule</h3>
-<p><code>{{ vendor_os }}_{{ command_with_underscores }}.txt</code> - lower case only. </p>
+<p><code>{{ vendor_os }}_{{ command_with_underscores }}.txt</code> - lower case only.</p>
 <p>Naming rules details:</p>
 <ul>
 <li>All space symbols <code>' '</code> replaced with underscores.</li>
-<li>Pipe symbol <code>|</code> replaced with <code>pipe</code> in template name. For example, 
-  template to parse Cisco IOS <code>show run | section interface</code> command output 
+<li>Pipe symbol <code>|</code> replaced with <code>pipe</code> in template name. For example,
+  template to parse Cisco IOS <code>show run | section interface</code> command output
   must be named <code>cisco_ios_show_running_config_pipe_section_interface.txt</code></li>
-<li>Dash symbols <code>-</code> replaced with underscores. For example, template to parse 
-  Huawei <code>display current-configuration interface</code> command output  must be 
+<li>Dash symbols <code>-</code> replaced with underscores. For example, template to parse
+  Huawei <code>display current-configuration interface</code> command output  must be
   named <code>huawei_display_current_configuration_interface.txt</code></li>
 </ul>
 <h3 id="yang-collection-templates-files-naming-rule">YANG collection templates files naming rule</h3>

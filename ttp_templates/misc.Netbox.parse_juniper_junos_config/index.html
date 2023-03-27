@@ -1046,6 +1046,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_isdn_status/" class="md-nav__link">
+        cisco_ios_show_isdn_status
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_running_configuration_pipe_section_bgp/" class="md-nav__link">
         cisco_ios_show_running_configuration_pipe_section_bgp
       </a>
@@ -1309,10 +1321,19 @@
 <div class="highlight"><pre><span></span><code>ttp://misc/Netbox/parse_juniper_junos_config.txt
 </code></pre></div></p>
 <hr />
-<p>No <code>&lt;doc&gt;</code> tags found</p>
+<p>Template to parse Juniper Junos configuration and produce data structure
+that is easy to work with to import data into the Netbox.</p>
+<p>This template requires output of <code>show configuration | display set</code> command.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name=&quot;netbox_data&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Template to parse Juniper Junos configuration and produce data structure
+that is easy to work with to import data into the Netbox.
+
+This template requires output of &#39;show configuration | display set&#39; command.
+&lt;/doc&gt;
+
 &lt;input&gt;
 commands = [
     &quot;show configuration | display set&quot;

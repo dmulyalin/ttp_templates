@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_ip_data.readme/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/platform.cisco_ios_show_isdn_status/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cli_ip_data.readme - TTP Templates Collection</title>
+        <title>cisco_ios_show_isdn_status - TTP Templates Collection</title>
       
     
     
@@ -72,11 +72,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#cli_ip_data-templates" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -103,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cli_ip_data.readme
+              cisco_ios_show_isdn_status
             
           </span>
         </div>
@@ -385,16 +380,14 @@
             
   
   
-    
-  
   
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
       
       <label class="md-nav__link" for="__nav_5_1">
         Misc
@@ -410,14 +403,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
       
       <label class="md-nav__link" for="__nav_5_1_1">
         N2G
@@ -517,21 +508,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cli_ip_data.readme/" class="md-nav__link">
         cli_ip_data.readme
       </a>
-      
     </li>
   
 
@@ -968,14 +949,16 @@
             
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" checked>
       
       <label class="md-nav__link" for="__nav_5_2">
         Platform
@@ -1051,11 +1034,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.cisco_ios_show_isdn_status/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         cisco_ios_show_isdn_status
       </a>
+      
     </li>
   
 
@@ -1312,80 +1303,45 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_ip_data.readme.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.cisco_ios_show_isdn_status.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="cli_ip_data-templates">cli_ip_data Templates</h1>
-<p>cli_ip_data templates designed to parse show commands output from networking devices into a
-structured data for the use of N2G application to produce diagrams.</p>
-<p>Parsing results example:</p>
-<div class="highlight"><pre><span></span><code>{&#39;cisco_ios&#39;: {&#39;switch_1&#39;: {&#39;interfaces&#39;: {&#39;SVI123&#39;: {&#39;arp&#39;: [{&#39;age&#39;: &#39;-&#39;,
-                                                               &#39;ip&#39;: &#39;10.123.111.1&#39;,
-                                                               &#39;mac&#39;: &#39;d094.6643.1111&#39;,
-                                                               &#39;type&#39;: &#39;ARPA&#39;}],
-                                                      &#39;ip_addresses&#39;: [{&#39;ip&#39;: &#39;10.123.111.1&#39;,
-                                                                        &#39;netmask&#39;: &#39;24&#39;,
-                                                                        &#39;network&#39;: &#39;10.123.111.0/24&#39;},
-                                                                       {&#39;ip&#39;: &#39;10.123.222.1&#39;,
-                                                                        &#39;netmask&#39;: &#39;24&#39;,
-                                                                        &#39;network&#39;: &#39;10.123.222.0/24&#39;}],
-                                                      &#39;port_description&#39;: &#39;Workstations Vlan&#39;,
-                                                      &#39;vrf&#39;: &#39;CORP&#39;}}},
-               &#39;switch_2&#39;: {&#39;interfaces&#39;: {&#39;SVI11&#39;: {&#39;ip_addresses&#39;: [{&#39;ip&#39;: &#39;10.11.11.1&#39;,
-                                                                       &#39;netmask&#39;: &#39;24&#39;,
-                                                                       &#39;network&#39;: &#39;10.11.11.0/24&#39;}],
-                                                     &#39;port_description&#39;: &#39;Workstations Vlan&#39;},
-                                           &#39;SVI22&#39;: {&#39;arp&#39;: [{&#39;age&#39;: &#39;-&#39;,
-                                                              &#39;ip&#39;: &#39;10.22.22.1&#39;,
-                                                              &#39;mac&#39;: &#39;d094.7890.1111&#39;,
-                                                              &#39;type&#39;: &#39;ARPA&#39;},
-                                                             {&#39;age&#39;: &#39;106&#39;,
-                                                              &#39;ip&#39;: &#39;10.22.22.4&#39;,
-                                                              &#39;mac&#39;: &#39;d867.7890.1444&#39;,
-                                                              &#39;type&#39;: &#39;ARPA&#39;}],
-                                                     &#39;ip_addresses&#39;: [{&#39;ip&#39;: &#39;10.22.22.1&#39;,
-                                                                       &#39;netmask&#39;: &#39;24&#39;,
-                                                                       &#39;network&#39;: &#39;10.22.22.0/24&#39;}],
-                                                     &#39;port_description&#39;: &#39;Workstations Vlan&#39;},
-                                           &#39;Te1/1/71&#39;: {&#39;arp&#39;: [{&#39;age&#39;: &#39;5&#39;,
-                                                                 &#39;ip&#39;: &#39;10.1.234.1&#39;,
-                                                                 &#39;mac&#39;: &#39;d867.d9b7.1111&#39;,
-                                                                 &#39;type&#39;: &#39;ARPA&#39;}],
-                                                        &#39;fhrp&#39;: [{&#39;hsrp_group&#39;: &#39;1&#39;,
-                                                                 &#39;vip&#39;: &#39;10.1.234.1.99&#39;,
-                                                                 &#39;type&#39;: &#39;hsrp&#39;}],
-                                                        &#39;ip_addresses&#39;: [{&#39;ip&#39;: &#39;10.1.234.2&#39;,
-                                                                          &#39;netmask&#39;: &#39;24&#39;,
-                                                                          &#39;network&#39;: &#39;10.1.234.0/24&#39;}],
-                                                        &#39;port_description&#39;: &#39;to SWITCH_2 shared &#39;
-                                                                            &#39;subnet&#39;}}}}}
+                  <h1>cisco_ios_show_isdn_status</h1>
+                
+                <p>Reference path:
+<div class="highlight"><pre><span></span><code>ttp://platform/cisco_ios_show_isdn_status.txt
+</code></pre></div></p>
+<hr />
+<p>This Template allows to parse show isdn status on a cisco ios xe</p>
+<hr />
+<details><summary>Template Content</summary>
+<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+This Template allows to parse show isdn status on a cisco ios xe
+&lt;/doc&gt;
+Global ISDN Switchtype = basic-net3
+&lt;group name = &quot;interface&quot;&gt;
+ISDN {{INTERFACE}} interface
+        dsl 2, interface ISDN Switchtype = {{ISDN_SWITCHTYPE}}
+    Layer 1 Status:
+        {{L1_STATUS}}
+    Layer 2 Status:
+        TEI = {{TEI_CODE}}, Ces = {{CES}}, SAPI = {{SAPI}}, State = {{TEI_STATE}}
+    Layer 3 Status:
+        0 Active Layer 3 Call(s)
+    Active dsl 2 CCBs = 0
+    The Free Channel Mask:  {{FREE_CHANNEL_MASK}}
+    Number of L2 Discards = {{L2_DISCARDS}}, L2 Session ID = {{L2_SESSION_ID}}
+    Total Allocated ISDN CCBs = 1
+&lt;/group&gt;
 </code></pre></div>
-<p>Parsing results schema:</p>
-<p>TBD</p>
+</details>
                 
               
               
@@ -1410,7 +1366,7 @@ structured data for the use of N2G application to produce diagrams.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.N2G.cli_ip_data.huawei/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_ip_data.huawei" rel="prev">
+        <a href="../platform.cisco_ios_show_ip_ospf_database_summary/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_ios_show_ip_ospf_database_summary" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1419,20 +1375,20 @@ structured data for the use of N2G application to produce diagrams.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              cli_ip_data.huawei
+              cisco_ios_show_ip_ospf_database_summary
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.N2G.cli_isis_data.cisco_xr/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_isis_data.cisco_xr" rel="next">
+        <a href="../platform.cisco_ios_show_running_configuration_pipe_section_bgp/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_ios_show_running_configuration_pipe_section_bgp" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_isis_data.cisco_xr
+              cisco_ios_show_running_configuration_pipe_section_bgp
             </div>
           </div>
           <div class="md-footer__button md-icon">

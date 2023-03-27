@@ -1046,6 +1046,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_isdn_status/" class="md-nav__link">
+        cisco_ios_show_isdn_status
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_running_configuration_pipe_section_bgp/" class="md-nav__link">
         cisco_ios_show_running_configuration_pipe_section_bgp
       </a>
@@ -1309,10 +1321,19 @@
 <div class="highlight"><pre><span></span><code>ttp://misc/Netbox/parse_arista_eos_config.txt
 </code></pre></div></p>
 <hr />
-<p>No <code>&lt;doc&gt;</code> tags found</p>
+<p>Template to parse Arista EOS configuration and produce data structure
+that is easy to work with to import data into the Netbox.</p>
+<p>This template requires output of <code>show running-config</code> command.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name=&quot;netbox_data&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Template to parse Arista EOS configuration and produce data structure
+that is easy to work with to import data into the Netbox.
+
+This template requires output of &#39;show running-config&#39; command.
+&lt;/doc&gt;
+
 &lt;input&gt;
 commands = [
     &quot;show running-config&quot;
@@ -1328,6 +1349,12 @@ def add_interface_type(data):
         ]
     ):
         data[&quot;interface_type&quot;] = &quot;virtual&quot;
+    elif any(
+        i in data[&quot;name&quot;].lower() for i in [
+            &quot;vlan&quot;, &quot;vxlan&quot;
+        ]
+    ):
+        data[&quot;interface_type&quot;] = &quot;bridge&quot;
     elif &quot;bundle&quot; in data[&quot;name&quot;].lower():
         data[&quot;interface_type&quot;] = &quot;lag&quot;    
     return data
