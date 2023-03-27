@@ -5,13 +5,27 @@ ttp://misc/Netbox/parse_cisco_xr_config.txt
 
 ---
 
-No `<doc>` tags found
+
+
+Template to parse Arista EOS configuration and produce data structure
+that is easy to work with to import data into the Netbox.
+
+This template requires output of `show running-config` command.
+
+
 
 ---
 
 <details><summary>Template Content</summary>
 ```
 <template name="netbox_data" results="per_template">
+<doc>
+Template to parse Arista EOS configuration and produce data structure
+that is easy to work with to import data into the Netbox.
+
+This template requires output of 'show running-config' command.
+</doc>
+
 <input>
 commands = [
     "show running-config"
@@ -23,10 +37,16 @@ def add_interface_type(data):
     data["interface_type"] = "other"    
     if any(
         i in data["name"].lower() for i in [
-            "bvi", ".", "loopback", "tunnel"
+            ".", "loopback", "tunnel"
         ]
     ):
         data["interface_type"] = "virtual"
+    elif any(
+        i in data["name"].lower() for i in [
+            "bvi"
+        ]
+    ):
+        data["interface_type"] = "bridge"
     elif "bundle" in data["name"].lower():
         data["interface_type"] = "lag"    
     return data

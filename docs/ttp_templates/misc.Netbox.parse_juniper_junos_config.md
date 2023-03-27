@@ -5,13 +5,27 @@ ttp://misc/Netbox/parse_juniper_junos_config.txt
 
 ---
 
-No `<doc>` tags found
+
+
+Template to parse Juniper Junos configuration and produce data structure
+that is easy to work with to import data into the Netbox.
+
+This template requires output of `show configuration | display set` command.
+
+
 
 ---
 
 <details><summary>Template Content</summary>
 ```
 <template name="netbox_data" results="per_template">
+<doc>
+Template to parse Juniper Junos configuration and produce data structure
+that is easy to work with to import data into the Netbox.
+
+This template requires output of 'show configuration | display set' command.
+</doc>
+
 <input>
 commands = [
     "show configuration | display set"

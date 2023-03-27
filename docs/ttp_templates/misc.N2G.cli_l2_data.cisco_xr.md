@@ -25,7 +25,6 @@ Commands parsed:
 
 <details><summary>Template Content</summary>
 ```
-bash-4.4# cat /usr/local/lib/python3.9/site-packages/ttp_templates/misc/N2G/cli_l2_data/cisco_xr.txt 
 <template name="cisco_xr" results="per_template">
 
 <doc>
