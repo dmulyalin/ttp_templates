@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ttp_templates"
-version = "0.3.4"
+version = "0.3.5"
 description = "Template Text Parser Templates collections"
 license = "MIT"
 include = [
@@ -46,7 +46,7 @@ flake8 = { version = "4.0.*", markers = "python_version >= '3.7'" }
 pre-commit = { version = "2.15.*", markers = "python_version >= '3.7'" }
 pyenchant = { version = "3.2.*", markers = "python_version >= '3.7'" }
 pylint = { version = "2.12.*", markers = "python_version >= '3.7'" }
-pytest = { version = "^7.1.*", markers = "python_version >= '3.7'" }
+pytest = { version = "7.1.*", markers = "python_version >= '3.7'" }
 cerberus = { version = "1.3.*", markers = "python_version >= '3.7'" }
 jinja2 = { version = "3.0.*", markers = "python_version >= '3.7'" }
 pyyaml = { version = "6.0", markers = "python_version >= '3.7'" }

@@ -7,7 +7,7 @@ ttp://misc/Netbox/parse_cisco_xr_config.txt
 
 
 
-Template to parse Arista EOS configuration and produce data structure
+Template to parse Cisco IOS-XR configuration and produce data structure
 that is easy to work with to import data into the Netbox.
 
 This template requires output of `show running-config` command.
@@ -20,7 +20,7 @@ This template requires output of `show running-config` command.
 ```
 <template name="netbox_data" results="per_template">
 <doc>
-Template to parse Arista EOS configuration and produce data structure
+Template to parse Cisco IOS-XR configuration and produce data structure
 that is easy to work with to import data into the Netbox.
 
 This template requires output of 'show running-config' command.
@@ -56,7 +56,7 @@ def add_parent_interface(data):
         data["parent"] = "Bundle-Ether{}".format(data["lag_id"])
     elif "." in data["name"]:
         data["parent"] = data["name"].split(".")[0]
-    return data
+    return data    
 </macro>
 
 ## ------------------------------------------------------------------------------------------
@@ -187,6 +187,7 @@ ntp {{ _start_ }}
 interface {{ name | _start_ }}
 interface {{ name | _start_ }} l2transport
 interface preconfigure {{ name | _start_ | let("preconfigure", True) }}
+interface preconfigure {{ name | _start_ | let("preconfigure", True) }} l2transport
  description {{ description | re(".*") | default("") }}
  mtu {{ mtu | to_int }}
  service-policy input {{ qos_policy_in }}

@@ -20,7 +20,8 @@ def postprocess(data):
     # update interfaces with VRF reference
     for vrf in data["vrf"]:
         for interface in vrf.get("interfaces", []):
-            data["interfaces"][interface]["vrf"] = vrf["name"]
+            if data["interfaces"].get(interface):
+                data["interfaces"][interface]["vrf"] = vrf["name"]
             
     # transform interfaces dict to list
     data["interfaces"] = [
