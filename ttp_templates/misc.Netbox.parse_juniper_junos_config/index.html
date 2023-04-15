@@ -1348,7 +1348,8 @@ def postprocess(data):
     # update interfaces with VRF reference
     for vrf in data[&quot;vrf&quot;]:
         for interface in vrf.get(&quot;interfaces&quot;, []):
-            data[&quot;interfaces&quot;][interface][&quot;vrf&quot;] = vrf[&quot;name&quot;]
+            if data[&quot;interfaces&quot;].get(interface):
+                data[&quot;interfaces&quot;][interface][&quot;vrf&quot;] = vrf[&quot;name&quot;]
 
     # transform interfaces dict to list
     data[&quot;interfaces&quot;] = [

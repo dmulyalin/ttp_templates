@@ -1321,14 +1321,14 @@
 <div class="highlight"><pre><span></span><code>ttp://misc/Netbox/parse_cisco_xr_config.txt
 </code></pre></div></p>
 <hr />
-<p>Template to parse Arista EOS configuration and produce data structure
+<p>Template to parse Cisco IOS-XR configuration and produce data structure
 that is easy to work with to import data into the Netbox.</p>
 <p>This template requires output of <code>show running-config</code> command.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name=&quot;netbox_data&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
-Template to parse Arista EOS configuration and produce data structure
+Template to parse Cisco IOS-XR configuration and produce data structure
 that is easy to work with to import data into the Netbox.
 
 This template requires output of &#39;show running-config&#39; command.
@@ -1364,7 +1364,7 @@ def add_parent_interface(data):
         data[&quot;parent&quot;] = &quot;Bundle-Ether{}&quot;.format(data[&quot;lag_id&quot;])
     elif &quot;.&quot; in data[&quot;name&quot;]:
         data[&quot;parent&quot;] = data[&quot;name&quot;].split(&quot;.&quot;)[0]
-    return data
+    return data    
 &lt;/macro&gt;
 
 ## ------------------------------------------------------------------------------------------
@@ -1495,6 +1495,7 @@ ntp {{ _start_ }}
 interface {{ name | _start_ }}
 interface {{ name | _start_ }} l2transport
 interface preconfigure {{ name | _start_ | let(&quot;preconfigure&quot;, True) }}
+interface preconfigure {{ name | _start_ | let(&quot;preconfigure&quot;, True) }} l2transport
  description {{ description | re(&quot;.*&quot;) | default(&quot;&quot;) }}
  mtu {{ mtu | to_int }}
  service-policy input {{ qos_policy_in }}
