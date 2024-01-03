@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.Netmiko.cisco.ios.arp/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.Netbox.parse_cisco_nxos_config/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco.ios.arp - TTP Templates Collection</title>
+        <title>parse_cisco_nxos_config - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco.ios.arp
+              parse_cisco_nxos_config
             
           </span>
         </div>
@@ -684,12 +684,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" checked>
       
       <label class="md-nav__link" for="__nav_5_1_2">
         Netbox
@@ -717,11 +719,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../misc.Netbox.parse_cisco_nxos_config/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         parse_cisco_nxos_config
       </a>
+      
     </li>
   
 
@@ -771,14 +781,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
       
       <label class="md-nav__link" for="__nav_5_1_3">
         Netmiko
@@ -794,19 +802,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.ios.arp/" class="md-nav__link">
         cisco.ios.arp
       </a>
-      
     </li>
   
 
@@ -1334,157 +1334,249 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.Netmiko.cisco.ios.arp.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.Netbox.parse_cisco_nxos_config.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco.ios.arp</h1>
+                  <h1>parse_cisco_nxos_config</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.ios.arp.txt
+<div class="highlight"><pre><span></span><code>ttp://misc/Netbox/parse_cisco_nxos_config.txt
 </code></pre></div></p>
 <hr />
-<p>TTP template to parse Cisco IOS "show ip arp" output.</p>
-<p>Template can be invoked using Netmiko run_ttp method like this:
-<div class="highlight"><pre><span></span><code>import pprint 
-from netmiko import ConnectHandler
-
-net_connect = ConnectHandler(
-    device_type=&quot;cisco_ios&quot;,
-    host=&quot;1.2.3.4&quot;,
-    username=&quot;admin&quot;,
-    password=&quot;admin&quot;,
-)
-
-res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
-
-pprint.pprint(res)
-
-# prints something along the lines of:
-# [{&#39;age&#39;: 8,
-#   &#39;ip&#39;: &#39;172.29.50.1&#39;,
-#   &#39;mac&#39;: &#39;84:b8:02:76:ac:0e&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: 221,
-#   &#39;interface&#39;: &#39;Vlan20&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.2&#39;,
-#   &#39;mac&#39;: &#39;00:19:07:25:34:4a&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: -1,
-#   &#39;interface&#39;: &#39;Vlan21&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.3&#39;,
-#   &#39;mac&#39;: &#39;00:24:f7:dd:77:41&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;}]
-</code></pre></div></p>
-<p>TTP Template to parse Cisco IOS "show ip arp output".</p>
-<p>This template produces list of dictionaries results where each
-dictionary item compatible to this model:
-<div class="highlight"><pre><span></span><code>module arp-table {
-
-yang-version 1.1;
-
-namespace
-  &quot;ttp://platform/cisco_ios_show_ip_arp&quot;;
-
-list entry {
-        config false;
-        key &quot;ip&quot;;
-
-        leaf protocol {
-            type string;
-        }
-
-        leaf ip {
-            type string;
-            mandatory true;
-            description
-                &quot;IP address&quot;;
-        }
-
-        leaf age {
-            type uint32;
-            description
-                &quot;IP address&quot;;
-        }
-
-        leaf mac {
-            type string;
-            mandatory &quot;true&quot;;
-            description
-                &quot;MAC address&quot;;
-        }    
-
-        leaf type {
-            type string;
-        }
-
-        leaf interface {
-            type string;
-            default &quot;Uncknown&quot;;
-            mandatory false;
-            description
-                &quot;Interface name&quot;;
-        }        
-    }
-}
-</code></pre></div></p>
-<p>Sample instance data:
-<div class="highlight"><pre><span></span><code>TBD
-</code></pre></div></p>
+<p>Template to parse Cisco NXOS configuration and produce data structure
+that is easy to work with to import data into the Netbox.</p>
+<p>This template requires output of 'show running-config' command.</p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
-TTP template to parse Cisco IOS &quot;show ip arp&quot; output.
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;netbox_data&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Template to parse Cisco NXOS configuration and produce data structure
+that is easy to work with to import data into the Netbox.
 
-Template can be invoked using Netmiko run_ttp method like this:
-&#39;&#39;&#39;
-import pprint 
-from netmiko import ConnectHandler
-
-net_connect = ConnectHandler(
-    device_type=&quot;cisco_ios&quot;,
-    host=&quot;1.2.3.4&quot;,
-    username=&quot;admin&quot;,
-    password=&quot;admin&quot;,
-)
-
-res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
-
-pprint.pprint(res)
-
-# prints something along the lines of:
-# [{&#39;age&#39;: 8,
-#   &#39;ip&#39;: &#39;172.29.50.1&#39;,
-#   &#39;mac&#39;: &#39;84:b8:02:76:ac:0e&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: 221,
-#   &#39;interface&#39;: &#39;Vlan20&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.2&#39;,
-#   &#39;mac&#39;: &#39;00:19:07:25:34:4a&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: -1,
-#   &#39;interface&#39;: &#39;Vlan21&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.3&#39;,
-#   &#39;mac&#39;: &#39;00:24:f7:dd:77:41&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;}]
-&#39;&#39;&#39;
+This template requires output of &#39;show running-config&#39; command.
 &lt;/doc&gt;
-
 
 &lt;input&gt;
 commands = [
-    &quot;show ip arp&quot;
+    &quot;show running-config&quot;
 ]
 &lt;/input&gt;
 
-&lt;extend template=&quot;ttp://platform/cisco_ios_show_ip_arp.txt&quot;/&gt;
+&lt;macro&gt;
+def add_interface_type(data):
+    data[&quot;interface_type&quot;] = &quot;other&quot;    
+    if any(
+        i in data[&quot;name&quot;].lower() for i in [
+            &quot;.&quot;, &quot;loopback&quot;, &quot;tunnel&quot;, &quot;vlan&quot;, &quot;nve&quot;
+        ]
+    ):
+        data[&quot;interface_type&quot;] = &quot;virtual&quot;
+    elif any(
+        i in data[&quot;name&quot;].lower() for i in [
+            &quot;vlan&quot;, &quot;nve&quot;
+        ]
+    ):
+        data[&quot;interface_type&quot;] = &quot;bridge&quot;
+    elif &quot;port-channel&quot; in data[&quot;name&quot;].lower():
+        data[&quot;interface_type&quot;] = &quot;lag&quot;
+    return data
+
+def add_parent_interface(data):
+    if &quot;lag_id&quot; in data:
+        data[&quot;parent&quot;] = &quot;Port-Channel{}&quot;.format(data[&quot;lag_id&quot;])
+    elif &quot;.&quot; in data[&quot;name&quot;]:
+        data[&quot;parent&quot;] = data[&quot;name&quot;].split(&quot;.&quot;)[0]
+    return data
+&lt;/macro&gt;
+
+## ------------------------------------------------------------------------------------------
+## Global Configuration facts
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;facts**&quot; method=&quot;table&quot;&gt;
+hostname {{ hostname }}
+feature {{ feature | ORPHRASE | split | joinmatches }}
+ip domain-name {{ domain_name }}
+boot nxos {{ boot_system }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## SNMP Configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;snmp**&quot; method=&quot;table&quot;&gt;
+
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## DNS Servers configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;nameservers**.{{ vrf }}&quot; method=&quot;table&quot;&gt;
+ip name-server {{ name_server | ORPHRASE | split(&quot; &quot;) }} use-vrf {{ vrf }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Logging configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;logging**&quot; method=&quot;table&quot;&gt;
+logging server {{ host }} 5 use-vrf {{ vrf }} facility syslog
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Users configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;users*&quot;&gt;
+username {{ username }} password 5 {{ ignore }}  role {{ role }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## AAA configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;tacacs.servers*&quot;&gt;
+tacacs-server host {{ server }} key 7 {{ ignore }} timeout 30 
+&lt;/group&gt;
+
+&lt;group name=&quot;tacacs.groups*&quot;&gt;
+aaa group server tacacs+ {{ name }} 
+    &lt;group name=&quot;servers*&quot;&gt;
+    server {{ server | split | joinmatches }}
+    use-vrf {{ vrf }}
+    source-interface {{ source_interface }}
+   &lt;/group&gt;
+{{ _end_ }}
+&lt;/group&gt;
+
+&lt;group name=&quot;aaa**&quot; method=&quot;table&quot;&gt;
+aaa authentication login default group {{ authentication_login | ORPHRASE }} 
+aaa authorization commands default group {{ authorization_exec | ORPHRASE }} 
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## VLANs configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;vlans*&quot;&gt;
+vlan {{ vlan }}
+  name {{ name | ORPHRASE }}
+  vn-segment {{ vni }}
+{{ _end_ }}
+&lt;/group&gt;   
+
+## ------------------------------------------------------------------------------------------
+## VRFs configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;vrf*&quot;&gt;
+vrf context {{ name }}
+  description {{ description | re(&quot;.+&quot;) | default(&quot;&quot;) }}
+  rd {{ rd }}
+{{ _end_ }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## NTP configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;ntp&quot; method=&quot;table&quot;&gt;
+ntp server {{ server }} use-vrf {{ vrf }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Interfaces configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;interfaces*&quot; functions=&quot;contains(&#39;name&#39;) | macro(&#39;add_interface_type&#39;) | macro(&#39;add_parent_interface&#39;)&quot;&gt;
+interface {{ name | _start_ }}
+  description {{ description | re(&quot;.*&quot;) | default(&quot;&quot;) }}
+  no shutdown {{ enabled | set(True) | default(False) }}
+  shutdown {{ enabled | set(False) }}
+  mtu {{ mtu | to_int }}
+  vrf member {{ vrf }}
+  no switchport {{ is_l3_interface | set(True) }}
+  switchport mode trunk {{ mode | set(&quot;tagged&quot;) }}
+  switchport access vlan {{ access_vlan | let(&quot;mode&quot;, &quot;access&quot;) }}
+  spanning-tree port type edge trunk {{ stp_portfast_enabled | set(True) }}
+  switchport trunk allowed vlan {{ trunk_vlans | unrange(rangechar=&#39;-&#39;, joinchar=&#39;,&#39;) | split(&quot;,&quot;) | joinmatches }}
+  switchport trunk allowed vlan add {{ trunk_vlans | unrange(rangechar=&#39;-&#39;, joinchar=&#39;,&#39;) | split(&quot;,&quot;) | joinmatches }}
+  channel-group {{ lag_id }} mode {{ lacp_mode }}
+
+  &lt;group name=&quot;ipv4*&quot; method=&quot;table&quot;&gt;
+  ip address {{ ip | IP }}/{{ mask }}
+  ip address {{ ip | IP | let(&quot;secondary&quot;, True) }}/{{ mask}} secondary
+  &lt;/group&gt;
+
+  &lt;group name=&quot;ipv6*&quot; method=&quot;table&quot;&gt;
+  ipv6 address {{ ip | IP }}/{{ mask }}
+  &lt;/group&gt;
+
+{{ _end_ }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## SSH configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;ssh_server**&quot; method=&quot;table&quot;&gt;
+
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## BGP configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;bgp&quot;&gt;
+router bgp {{ asn }}
+
+  &lt;group name=&quot;afi.{{ afi }}&quot;&gt;
+  address-family {{ afi }} {{ safi }}
+  &lt;/group&gt;
+
+  &lt;group name=&quot;neighbors**.{{ neighbor_ip }}**&quot; method=&quot;table&quot;&gt;
+  template peer {{ neighbor_ip | let(&quot;is_peer_group&quot;, True) }}
+  neighbor {{ neighbor_ip | let(&quot;is_peer_group&quot;, False) }}
+    remote-as {{ neighbor_asn }}
+    inherit peer {{ peer_group }}  
+    description {{ description | re(&quot;.+&quot;) }}
+  &lt;/group&gt;
+
+
+
+  &lt;group name=&quot;vrf**.{{ vrf }}&quot;&gt;
+  vrf {{ vrf }}
+
+    &lt;group name=&quot;afi.{{ afi }}&quot;&gt;  
+    address-family {{ afi }} {{ safi }}
+    &lt;/group&gt;
+
+    &lt;group name=&quot;neighbors**.{{ neighbor_ip }}**&quot; method=&quot;table&quot;&gt;   
+    neighbor {{ neighbor_ip | let(&quot;is_peer_group&quot;, False) }}
+
+      inherit peer {{ peer_group }}  
+      remote-as {{ neighbor_asn }}
+      description {{ description | re(&quot;.+&quot;) }}
+
+      &lt;group name=&quot;afi.{{ afi }}&quot;&gt;  
+      address-family {{ afi }} {{ safi }}
+        route-map {{ rpl_in }} in
+        route-map {{ rpl_out }} out
+      &lt;/group&gt;
+
+    &lt;/group&gt;
+  &lt;/group&gt;
+&lt;/group&gt;      
+
+## ------------------------------------------------------------------------------------------
+## Multicast configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;multicast&quot;&gt;
+
+&lt;/group&gt;
+
+&lt;group name=&quot;pim_bidir&quot;&gt;
+
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## MC-LAG configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;mlag&quot;&gt;
+
+&lt;/group&gt;
+&lt;/template&gt;
 </code></pre></div>
 </details>
                 
@@ -1511,7 +1603,7 @@ commands = [
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.Netbox.parse_opengear_config/" class="md-footer__link md-footer__link--prev" aria-label="Previous: parse_opengear_config" rel="prev">
+        <a href="../misc.Netbox.parse_arista_eos_config/" class="md-footer__link md-footer__link--prev" aria-label="Previous: parse_arista_eos_config" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1520,20 +1612,20 @@ commands = [
               <span class="md-footer__direction">
                 Previous
               </span>
-              parse_opengear_config
+              parse_arista_eos_config
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.Netmiko.cisco.ios.cfg.bgp/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco.ios.cfg.bgp" rel="next">
+        <a href="../misc.Netbox.parse_cisco_xr_config/" class="md-footer__link md-footer__link--next" aria-label="Next: parse_cisco_xr_config" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cisco.ios.cfg.bgp
+              parse_cisco_xr_config
             </div>
           </div>
           <div class="md-footer__button md-icon">

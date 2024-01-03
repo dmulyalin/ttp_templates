@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.Netmiko.cisco.ios.arp/">
+        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.Netbox.parse_opengear_config/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco.ios.arp - TTP Templates Collection</title>
+        <title>parse_opengear_config - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco.ios.arp
+              parse_opengear_config
             
           </span>
         </div>
@@ -684,12 +684,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" checked>
       
       <label class="md-nav__link" for="__nav_5_1_2">
         Netbox
@@ -753,11 +755,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../misc.Netbox.parse_opengear_config/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         parse_opengear_config
       </a>
+      
     </li>
   
 
@@ -771,14 +781,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
       
       <label class="md-nav__link" for="__nav_5_1_3">
         Netmiko
@@ -794,19 +802,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.ios.arp/" class="md-nav__link">
         cisco.ios.arp
       </a>
-      
     </li>
   
 
@@ -1334,157 +1334,167 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.Netmiko.cisco.ios.arp.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.Netbox.parse_opengear_config.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco.ios.arp</h1>
+                  <h1>parse_opengear_config</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.ios.arp.txt
+<div class="highlight"><pre><span></span><code>ttp://misc/Netbox/parse_opengear_config.txt
 </code></pre></div></p>
 <hr />
-<p>TTP template to parse Cisco IOS "show ip arp" output.</p>
-<p>Template can be invoked using Netmiko run_ttp method like this:
-<div class="highlight"><pre><span></span><code>import pprint 
-from netmiko import ConnectHandler
-
-net_connect = ConnectHandler(
-    device_type=&quot;cisco_ios&quot;,
-    host=&quot;1.2.3.4&quot;,
-    username=&quot;admin&quot;,
-    password=&quot;admin&quot;,
-)
-
-res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
-
-pprint.pprint(res)
-
-# prints something along the lines of:
-# [{&#39;age&#39;: 8,
-#   &#39;ip&#39;: &#39;172.29.50.1&#39;,
-#   &#39;mac&#39;: &#39;84:b8:02:76:ac:0e&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: 221,
-#   &#39;interface&#39;: &#39;Vlan20&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.2&#39;,
-#   &#39;mac&#39;: &#39;00:19:07:25:34:4a&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: -1,
-#   &#39;interface&#39;: &#39;Vlan21&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.3&#39;,
-#   &#39;mac&#39;: &#39;00:24:f7:dd:77:41&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;}]
-</code></pre></div></p>
-<p>TTP Template to parse Cisco IOS "show ip arp output".</p>
-<p>This template produces list of dictionaries results where each
-dictionary item compatible to this model:
-<div class="highlight"><pre><span></span><code>module arp-table {
-
-yang-version 1.1;
-
-namespace
-  &quot;ttp://platform/cisco_ios_show_ip_arp&quot;;
-
-list entry {
-        config false;
-        key &quot;ip&quot;;
-
-        leaf protocol {
-            type string;
-        }
-
-        leaf ip {
-            type string;
-            mandatory true;
-            description
-                &quot;IP address&quot;;
-        }
-
-        leaf age {
-            type uint32;
-            description
-                &quot;IP address&quot;;
-        }
-
-        leaf mac {
-            type string;
-            mandatory &quot;true&quot;;
-            description
-                &quot;MAC address&quot;;
-        }    
-
-        leaf type {
-            type string;
-        }
-
-        leaf interface {
-            type string;
-            default &quot;Uncknown&quot;;
-            mandatory false;
-            description
-                &quot;Interface name&quot;;
-        }        
-    }
-}
-</code></pre></div></p>
-<p>Sample instance data:
-<div class="highlight"><pre><span></span><code>TBD
-</code></pre></div></p>
+<p>Template to parse Opengear configuration and produce data structure
+that is easy to work with to import data into the Netbox.</p>
+<p>This template requires output of <code>config -g config</code> command.</p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
-TTP template to parse Cisco IOS &quot;show ip arp&quot; output.
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;netbox_data&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Template to parse Opengear configuration and produce data structure
+that is easy to work with to import data into the Netbox.
 
-Template can be invoked using Netmiko run_ttp method like this:
-&#39;&#39;&#39;
-import pprint 
-from netmiko import ConnectHandler
-
-net_connect = ConnectHandler(
-    device_type=&quot;cisco_ios&quot;,
-    host=&quot;1.2.3.4&quot;,
-    username=&quot;admin&quot;,
-    password=&quot;admin&quot;,
-)
-
-res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.ios.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
-
-pprint.pprint(res)
-
-# prints something along the lines of:
-# [{&#39;age&#39;: 8,
-#   &#39;ip&#39;: &#39;172.29.50.1&#39;,
-#   &#39;mac&#39;: &#39;84:b8:02:76:ac:0e&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: 221,
-#   &#39;interface&#39;: &#39;Vlan20&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.2&#39;,
-#   &#39;mac&#39;: &#39;00:19:07:25:34:4a&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: -1,
-#   &#39;interface&#39;: &#39;Vlan21&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.3&#39;,
-#   &#39;mac&#39;: &#39;00:24:f7:dd:77:41&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;}]
-&#39;&#39;&#39;
+This template requires output of &#39;config -g config&#39; command.
 &lt;/doc&gt;
-
 
 &lt;input&gt;
 commands = [
-    &quot;show ip arp&quot;
+    &quot;config -g config&quot;
 ]
 &lt;/input&gt;
 
-&lt;extend template=&quot;ttp://platform/cisco_ios_show_ip_arp.txt&quot;/&gt;
+&lt;macro&gt;
+def process_interface(data):
+
+    if not data.get(&quot;name&quot;):
+        return False
+
+    data[&quot;description&quot;] = &quot;&quot;
+
+    if data[&quot;disabled&quot;] == &quot;on&quot;:
+        data.pop(&quot;disabled&quot;)
+        data[&quot;enabled&quot;] = False
+    else:
+        data.pop(&quot;disabled&quot;)
+        data[&quot;enabled&quot;] = True
+
+    if data[&quot;name&quot;] == &quot;wan&quot;:
+        data[&quot;name&quot;] = &quot;eth0&quot;
+        data[&quot;label&quot;] = &quot;wan&quot;
+        data[&quot;interface_type&quot;] = &quot;bridge&quot; 
+    elif data[&quot;name&quot;] == &quot;lan&quot;:
+        data[&quot;name&quot;] = &quot;eth1&quot;
+        data[&quot;label&quot;] = &quot;lan&quot;
+        data[&quot;interface_type&quot;] = &quot;bridge&quot; 
+    else:
+        return False
+
+    return data
+
+def process_output(data):
+
+    # transform interfaces dictionary into a list
+    interfaces = []
+    for intf_name, intf_data in data.get(&quot;interfaces&quot;, {}).items():
+
+        # transform ipv4 addresses to list
+        if intf_data.get(&quot;ipv4&quot;) and intf_data.get(&quot;maskv4&quot;):
+            intf_data[&quot;ipv4&quot;] = [{&quot;ip&quot;: intf_data.pop(&quot;ipv4&quot;), &quot;mask&quot;: intf_data.pop(&quot;maskv4&quot;)}]
+
+        interfaces.append(intf_data)
+        interfaces[-1][&quot;name&quot;] = intf_name
+    data[&quot;interfaces&quot;] = interfaces
+
+    return data
+&lt;/macro&gt;
+
+## ------------------------------------------------------------------------------------------
+## Global Configuration facts
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;facts**&quot; method=&quot;table&quot;&gt;
+config.name {{ hostname }}
+config.system.name {{ hostname }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## DNS Servers configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;nameservers*&quot; method=&quot;table&quot;&gt;
+config.interfaces.lan.dns1 {{ name_server }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Logging configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;logging**.{{ server }}&quot; method=&quot;table&quot;&gt;
+config.syslog.servers.{{ server }}.address {{ host }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Users configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;users*&quot;&gt;
+config.users.user1.username {{ username | joinmatches }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## AAA configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;aaa**&quot; method=&quot;table&quot;&gt;
+config.auth.tacacs.auth_server {{ tacacs_servers | split(&quot;,&quot;) }}
+config.auth.type {{ authentication_login }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## NTP configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;ntp&quot;&gt;
+config.ntp.servers.server1.address {{ server | joinmatches }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Interfaces configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;interfaces**.{{ name }}**&quot; functions=&quot;macro(&#39;process_interface&#39;)&quot; method=&quot;table&quot;&gt;
+config.interfaces.{{ name }}.address {{ ipv4 }}
+config.interfaces.{{ name }}.netmask {{ maskv4 }}
+config.interfaces.{{ name }}.failover.address1 {{ failover_ip }}
+config.interfaces.{{ name }}.failover.interface {{ failover_interface }}
+config.interfaces.{{ name }}.gateway {{ gateway }}
+config.interfaces.{{ name }}.mtu {{ mtu | to_int }}
+config.interfaces.{{ name }}.disabled {{ disabled | default(&quot;off&quot;) }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Console Server Ports Configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;console_server_ports**.{{ name }}**&quot; method=&quot;table&quot;&gt;
+config.ports.{{ name }}.charsize {{ charsize }}
+config.ports.{{ name }}.flowcontrol {{ flowcontrol }}
+config.ports.{{ name }}.label {{ description | re(&quot;.+&quot;) }}
+config.ports.{{ name }}.parity {{ parity }}
+config.ports.{{ name }}.pinout {{ pinout }}
+config.ports.{{ name }}.speed {{ speed }}
+config.ports.{{ name }}.stop {{ stop_bits }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## DHCP configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;dhcprelay**&quot; method=&quot;table&quot;&gt;
+config.services.dhcprelay.enabled {{ dhcprelay_enabled }}
+config.services.dhcprelay.lowers.lower1.circuit_id {{ circuit_id }}
+config.services.dhcprelay.lowers.lower1.role {{ client_ports }}
+config.services.dhcprelay.servers.server1 {{ dhcp_server }}
+&lt;group name=&quot;uplink_ports*&quot;&gt;
+config.services.dhcprelay.uppers.upper1.interface {{ port | joinmatches }}
+&lt;/group&gt;
+&lt;/group&gt;
+
+&lt;output macro=&quot;process_output&quot;/&gt;
+
+&lt;/template&gt;
 </code></pre></div>
 </details>
                 
@@ -1511,7 +1521,7 @@ commands = [
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.Netbox.parse_opengear_config/" class="md-footer__link md-footer__link--prev" aria-label="Previous: parse_opengear_config" rel="prev">
+        <a href="../misc.Netbox.parse_juniper_junos_config/" class="md-footer__link md-footer__link--prev" aria-label="Previous: parse_juniper_junos_config" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1520,20 +1530,20 @@ commands = [
               <span class="md-footer__direction">
                 Previous
               </span>
-              parse_opengear_config
+              parse_juniper_junos_config
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.Netmiko.cisco.ios.cfg.bgp/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco.ios.cfg.bgp" rel="next">
+        <a href="../misc.Netmiko.cisco.ios.arp/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco.ios.arp" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cisco.ios.cfg.bgp
+              cisco.ios.arp
             </div>
           </div>
           <div class="md-footer__button md-icon">

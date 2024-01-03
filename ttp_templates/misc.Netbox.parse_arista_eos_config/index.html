@@ -729,6 +729,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../misc.Netbox.parse_cisco_nxos_config/" class="md-nav__link">
+        parse_cisco_nxos_config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../misc.Netbox.parse_cisco_xr_config/" class="md-nav__link">
         parse_cisco_xr_config
       </a>
@@ -743,6 +755,18 @@
     <li class="md-nav__item">
       <a href="../misc.Netbox.parse_juniper_junos_config/" class="md-nav__link">
         parse_juniper_junos_config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netbox.parse_opengear_config/" class="md-nav__link">
+        parse_opengear_config
       </a>
     </li>
   
@@ -1323,7 +1347,7 @@
 <hr />
 <p>Template to parse Arista EOS configuration and produce data structure
 that is easy to work with to import data into the Netbox.</p>
-<p>This template requires output of <code>show running-config</code> command.</p>
+<p>This template requires output of 'show running-config' command.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name=&quot;netbox_data&quot; results=&quot;per_template&quot;&gt;
@@ -1355,13 +1379,13 @@ def add_interface_type(data):
         ]
     ):
         data[&quot;interface_type&quot;] = &quot;bridge&quot;
-    elif &quot;bundle&quot; in data[&quot;name&quot;].lower():
-        data[&quot;interface_type&quot;] = &quot;lag&quot;    
+    elif &quot;port-channel&quot; in data[&quot;name&quot;].lower():
+        data[&quot;interface_type&quot;] = &quot;lag&quot;
     return data
 
 def add_parent_interface(data):
     if &quot;lag_id&quot; in data:
-        data[&quot;parent&quot;] = &quot;Port-Channe{}&quot;.format(data[&quot;lag_id&quot;])
+        data[&quot;parent&quot;] = &quot;Port-Channel{}&quot;.format(data[&quot;lag_id&quot;])
     elif &quot;.&quot; in data[&quot;name&quot;]:
         data[&quot;parent&quot;] = data[&quot;name&quot;].split(&quot;.&quot;)[0]
     return data
@@ -1377,6 +1401,7 @@ hostname {{ hostname }}
 mac address-table aging-time {{ mac_address_table_aging_timeout }}
 errdisable recovery interval {{ errdisable_recovery_interval }}
 spanning-tree mode {{ stp_mode }}
+dns domain {{ domain_name }}
 &lt;/group&gt;
 
 ## ------------------------------------------------------------------------------------------
@@ -1393,9 +1418,8 @@ snmp-server vrf {{ source_vrf }}
 ## ------------------------------------------------------------------------------------------
 ## DNS Servers configuration
 ## ------------------------------------------------------------------------------------------
-&lt;group name=&quot;nameservers*&quot;&gt;
+&lt;group name=&quot;nameservers**.{{ vrf }}&quot; method=&quot;table&quot;&gt;
 ip name-server vrf {{ vrf }} {{ name_server }}
-dns domain {{ domain_name }}
 &lt;/group&gt;
 
 ## ------------------------------------------------------------------------------------------
@@ -1661,13 +1685,13 @@ mlag configuration {{ _start_ }}
       
       
         
-        <a href="../misc.Netbox.parse_cisco_xr_config/" class="md-footer__link md-footer__link--next" aria-label="Next: parse_cisco_xr_config" rel="next">
+        <a href="../misc.Netbox.parse_cisco_nxos_config/" class="md-footer__link md-footer__link--next" aria-label="Next: parse_cisco_nxos_config" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              parse_cisco_xr_config
+              parse_cisco_nxos_config
             </div>
           </div>
           <div class="md-footer__button md-icon">

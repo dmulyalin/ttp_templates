@@ -721,6 +721,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../misc.Netbox.parse_cisco_nxos_config/" class="md-nav__link">
+        parse_cisco_nxos_config
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../misc.Netbox.parse_cisco_xr_config/" class="md-nav__link">
         parse_cisco_xr_config
       </a>
@@ -744,6 +756,18 @@
         parse_juniper_junos_config
       </a>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../misc.Netbox.parse_opengear_config/" class="md-nav__link">
+        parse_opengear_config
+      </a>
     </li>
   
 
@@ -1323,7 +1347,7 @@
 <hr />
 <p>Template to parse Juniper Junos configuration and produce data structure
 that is easy to work with to import data into the Netbox.</p>
-<p>This template requires output of <code>show configuration | display set</code> command.</p>
+<p>This template requires output of 'show configuration | display set' command.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name=&quot;netbox_data&quot; results=&quot;per_template&quot;&gt;
@@ -1362,7 +1386,7 @@ def postprocess(data):
         # add interface type - other, virtual or lag
         i[&quot;interface_type&quot;] = &quot;other&quot;    
         if any(
-            k in i[&quot;name&quot;] for k in [&quot;.&quot;, &quot;gr-&quot;, &quot;lo0&quot;]
+            k in i[&quot;name&quot;] for k in [&quot;.&quot;, &quot;gr-&quot;, &quot;lo0&quot;, &quot;vlan&quot;]
         ):
             i[&quot;interface_type&quot;] = &quot;virtual&quot;
         elif &quot;ae&quot; in i[&quot;name&quot;]:
@@ -1505,6 +1529,7 @@ set interfaces {{ name }} mtu {{ mtu | to_int }}
 set interfaces {{ name | let(&quot;enabled&quot;, False) }} disable
 set interfaces {{ name }} gigether-options {{ gigether_options }}
 set interfaces {{ name }} gigether-options 802.3ad {{ lag_id }}
+set interfaces {{ name }} ether-options 802.3ad {{ lag_id }}
 set interfaces {{ name }} hold-time up {{ hold_time_up }}
 set interfaces {{ name }} hold-time down {{ hold_time_down }}
 set interfaces {{ name | let(&quot;per_unit_scheduler&quot;, True) }} per-unit-scheduler
@@ -1539,6 +1564,8 @@ set interfaces {{ name }} unit {{ unit }} family inet filter input-list {{ acl }
 &lt;group name=&quot;interfaces**.{{ name }}**.ipv4*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ virtual_gateway_address }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group 1 virtual-address {{ virtual_gateway_address }}
+
 &lt;/group&gt;
 
 &lt;group name=&quot;interfaces**.{{ name }}**.virtual_gateway**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
@@ -1729,13 +1756,13 @@ set protocols isis interface {{ interface }} family {{ afi }} bfd-liveness-detec
       
       
         
-        <a href="../misc.Netmiko.cisco.ios.arp/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco.ios.arp" rel="next">
+        <a href="../misc.Netbox.parse_opengear_config/" class="md-footer__link md-footer__link--next" aria-label="Next: parse_opengear_config" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cisco.ios.arp
+              parse_opengear_config
             </div>
           </div>
           <div class="md-footer__button md-icon">
