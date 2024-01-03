@@ -10,7 +10,7 @@ ttp://misc/Netbox/parse_arista_eos_config.txt
 Template to parse Arista EOS configuration and produce data structure
 that is easy to work with to import data into the Netbox.
 
-This template requires output of `show running-config` command.
+This template requires output of 'show running-config' command.
 
 
 
@@ -31,7 +31,7 @@ commands = [
     "show running-config"
 ]
 </input>
-    
+
 <macro>
 def add_interface_type(data):
     data["interface_type"] = "other"    
@@ -47,18 +47,18 @@ def add_interface_type(data):
         ]
     ):
         data["interface_type"] = "bridge"
-    elif "bundle" in data["name"].lower():
-        data["interface_type"] = "lag"    
+    elif "port-channel" in data["name"].lower():
+        data["interface_type"] = "lag"
     return data
-    
+
 def add_parent_interface(data):
     if "lag_id" in data:
-        data["parent"] = "Port-Channe{}".format(data["lag_id"])
+        data["parent"] = "Port-Channel{}".format(data["lag_id"])
     elif "." in data["name"]:
         data["parent"] = data["name"].split(".")[0]
     return data
 </macro>
-    
+
 ## ------------------------------------------------------------------------------------------
 ## Global Configuration facts
 ## ------------------------------------------------------------------------------------------
@@ -69,6 +69,7 @@ hostname {{ hostname }}
 mac address-table aging-time {{ mac_address_table_aging_timeout }}
 errdisable recovery interval {{ errdisable_recovery_interval }}
 spanning-tree mode {{ stp_mode }}
+dns domain {{ domain_name }}
 </group>
 
 ## ------------------------------------------------------------------------------------------
@@ -85,9 +86,8 @@ snmp-server vrf {{ source_vrf }}
 ## ------------------------------------------------------------------------------------------
 ## DNS Servers configuration
 ## ------------------------------------------------------------------------------------------
-<group name="nameservers*">
+<group name="nameservers**.{{ vrf }}" method="table">
 ip name-server vrf {{ vrf }} {{ name_server }}
-dns domain {{ domain_name }}
 </group>
 
 ## ------------------------------------------------------------------------------------------
@@ -142,7 +142,7 @@ vlan {{ vlan }}
    trunk group {{ trunk_group }}
 !{{ _end_ }}
 </group>   
-   
+
 ## ------------------------------------------------------------------------------------------
 ## VRFs configuration
 ## ------------------------------------------------------------------------------------------
@@ -184,16 +184,16 @@ interface {{ name | _start_ }}
    lacp system-id {{ lacp_system_id }}
    vxlan source-interface {{ vxlan_source }}
    vxlan udp-port {{ vxlan_udp_port }}
-   
+
    <group name="vxlan_vlan*">
    vxlan vlan {{ vlan }} vni {{ vni }}
    </group>
-   
+
    <group name="ipv4*" method="table">
    ip address {{ ip | IP }}/{{ mask }}
    ipv4 address {{ ip | IP | let("secondary", True) }}/{{ mask}} secondary
    </group>
-   
+
    <group name="evpn_ethernet_segment">
    evpn ethernet-segment {{ _start_ }}
       identifier {{ identifier }}
@@ -224,7 +224,7 @@ router bgp {{ asn }}
    bgp always-compare-med {{ always_compare_med | set(True) }}
    maximum-paths {{ max_path }}  
    redistribute {{ redistribute | ORPHRASE | to_list | joinmatches }} 
-   
+
    <group name="neighbors**.{{ neighbor_ip }}**" method="table">
    neighbor {{ neighbor_ip | let("is_peer_group", True) }} peer group
    neighbor {{ neighbor_ip | let("is_peer_group", False) }} peer group {{ peer_group }}
@@ -235,7 +235,7 @@ router bgp {{ asn }}
    neighbor {{ neighbor_ip }} maximum-routes {{ maxr_routes }}  
    neighbor {{ neighbor_ip }} description {{ description | re(".+") }}
    </group>
- 
+
    <group name="vlan_aware_bundle*">
    vlan-aware-bundle {{ name }}
       rd {{ rd }}
@@ -246,7 +246,7 @@ router bgp {{ asn }}
       vlan {{ vlan | unrange(rangechar='-', joinchar=',') | split(",") }}
    !{{ _end_ }}
    </group>
-   
+
    <group name="afi.{{ afi }}">
    address-family {{ afi }}
       <group name="neighbors**.{{ neighbor_ip }}**" method="table">
@@ -255,13 +255,13 @@ router bgp {{ asn }}
       network {{ networks | to_list | joinmatches }}
    !{{ _end_ }}
    </group>
-   
+
    <group name="vrf**.{{ vrf }}">
    vrf {{ vrf }}
       local-as {{ local_asn }}
       router-id {{ rid }}
       redistribute {{ redistribute | ORPHRASE | to_list | joinmatches }}    
-      
+
       <group name="neighbors**.{{ neighbor_ip }}**" method="table">          
       neighbor {{ neighbor_ip | let("is_peer_group", True) }} peer group
       neighbor {{ neighbor_ip | let("is_peer_group", False) }} peer group {{ peer_group }}
@@ -275,7 +275,7 @@ router bgp {{ asn }}
    </group>
 !{{ _end_ }}
 </group>      
-      
+
 ## ------------------------------------------------------------------------------------------
 ## Multicast configuration
 ## ------------------------------------------------------------------------------------------

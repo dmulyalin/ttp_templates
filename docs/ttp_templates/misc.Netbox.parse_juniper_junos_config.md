@@ -10,7 +10,7 @@ ttp://misc/Netbox/parse_juniper_junos_config.txt
 Template to parse Juniper Junos configuration and produce data structure
 that is easy to work with to import data into the Netbox.
 
-This template requires output of `show configuration | display set` command.
+This template requires output of 'show configuration | display set' command.
 
 
 
@@ -31,45 +31,45 @@ commands = [
     "show configuration | display set"
 ]
 </input>
-    
+
 <macro>    
 def postprocess(data):
     # transform vrf dict to list
     data["vrf"] = [{"name": k, **v} for k, v in data.get("vrf", {}).items()]
-    
+
     # update interfaces with VRF reference
     for vrf in data["vrf"]:
         for interface in vrf.get("interfaces", []):
             if data["interfaces"].get(interface):
                 data["interfaces"][interface]["vrf"] = vrf["name"]
-            
+
     # transform interfaces dict to list
     data["interfaces"] = [
         {"name": k, **v} 
         for k, v in data["interfaces"].items()
     ]
-    
+
     # process interfaces further
     for i in data["interfaces"]:
         # add interface type - other, virtual or lag
         i["interface_type"] = "other"    
         if any(
-            k in i["name"] for k in [".", "gr-", "lo0"]
+            k in i["name"] for k in [".", "gr-", "lo0", "vlan"]
         ):
             i["interface_type"] = "virtual"
         elif "ae" in i["name"]:
             i["interface_type"] = "lag"  
-            
+
         # add interface parent details
         if "lag_id" in i:
             i["parent"] = i["lag_id"]
         elif "." in i["name"]:
             i["parent"] = i["name"].split(".")[0]    
-            
+
         # set interface default parameters
         i.setdefault("enabled", True)
         i.setdefault("description", "")
-        
+
     return data
 </macro>
 
@@ -197,6 +197,7 @@ set interfaces {{ name }} mtu {{ mtu | to_int }}
 set interfaces {{ name | let("enabled", False) }} disable
 set interfaces {{ name }} gigether-options {{ gigether_options }}
 set interfaces {{ name }} gigether-options 802.3ad {{ lag_id }}
+set interfaces {{ name }} ether-options 802.3ad {{ lag_id }}
 set interfaces {{ name }} hold-time up {{ hold_time_up }}
 set interfaces {{ name }} hold-time down {{ hold_time_down }}
 set interfaces {{ name | let("per_unit_scheduler", True) }} per-unit-scheduler
@@ -231,6 +232,8 @@ set interfaces {{ name }} unit {{ unit }} family inet filter input-list {{ acl }
 <group name="interfaces**.{{ name }}**.ipv4*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ virtual_gateway_address }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group 1 virtual-address {{ virtual_gateway_address }}
+
 </group>
 
 <group name="interfaces**.{{ name }}**.virtual_gateway**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
