@@ -360,7 +360,7 @@ router bgp {{ asn }}
   neighbor {{ neighbor | let("rr_client", True) }} route-reflector-client
   neighbor {{ neighbor }} prefix-list {{ pfl_out }} out
   neighbor {{ neighbor }} prefix-list {{ pfl_in }} in
-  neighbor {{ neighbor }} route-map {[ rpl_in }} in
+  neighbor {{ neighbor }} route-map {{ rpl_in }} in
   neighbor {{ neighbor }} route-map {{ rpl_out }} out
   neighbor {{ neighbor }} maximum-prefix {{ max_prefix_limit | let("max_prefix_action", "restart") }} {{ max_prefix_threshold }} restart {{ max_prefix_restart_interval }}
   </group>
@@ -391,7 +391,7 @@ router bgp {{ asn }}
   neighbor {{ neighbor | let("rr_client", True) }} route-reflector-client
   neighbor {{ neighbor }} prefix-list {{ pfl_out }} out
   neighbor {{ neighbor }} prefix-list {{ pfl_in }} in
-  neighbor {{ neighbor }} route-map {[ rpl_in }} in
+  neighbor {{ neighbor }} route-map {{ rpl_in }} in
   neighbor {{ neighbor }} route-map {{ rpl_out }} out
   neighbor {{ neighbor }} maximum-prefix {{ max_prefix_limit | let("max_prefix_action", "restart") }} {{ max_prefix_threshold }} restart {{ max_prefix_restart_interval }}
   </group>
