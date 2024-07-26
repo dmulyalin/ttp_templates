@@ -222,4 +222,5 @@ List of resources with TTP templates:
 
 - TTP SrosParser - https://pypi.org/project/ttp-sros-parser/ by [h4ndzdatm0ld](https://github.com/h4ndzdatm0ld)
 - Template for parsing "show run" for Cisco IOS - https://github.com/tbotnz/ios-show-run-ttp by [tbotnz](https://github.com/tbotnz)
-- Template for Cisco ASA configuration - https://gist.github.com/consentfactory/85872fc83453d1735b15aed3e47a9763 by [consentfactory](https://gist.github.com/consentfactory)
+- Template for Cisco ASA configuration - https://github.com/consentfactory/ttp-cisco-asa-template by [consentfactory](https://gist.github.com/consentfactory)
+  - (gist for historical purposes) https://gist.github.com/consentfactory/85872fc83453d1735b15aed3e47a9763
