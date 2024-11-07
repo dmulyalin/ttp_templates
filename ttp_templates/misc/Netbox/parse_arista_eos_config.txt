@@ -50,6 +50,7 @@ mac address-table aging-time {{ mac_address_table_aging_timeout }}
 errdisable recovery interval {{ errdisable_recovery_interval }}
 spanning-tree mode {{ stp_mode }}
 dns domain {{ domain_name }}
+ip domain-name {{ domain_name }}
 </group>
 
 ## ------------------------------------------------------------------------------------------

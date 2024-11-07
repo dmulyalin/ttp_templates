@@ -1,0 +1,70 @@
+<template name="juniper_junos" results="per_template">
+
+<doc>
+Template to parse Juniper JUNOS interfaces configuration and ARP cache.
+</doc>
+
+<input load="python">
+commands = [
+    "show configuration | display set | no-more",
+    "show arp no-resolve | no-more"
+]
+kwargs = {"strip_prompt": False}
+method = "send_command"
+platform = ["juniper_junos"]
+</input>
+
+<macro>    
+def postprocess(data):
+    for hostname in data.keys():
+        # transform vrf dict to list
+        data[hostname]["vrf"] = [{"name": k, **v} for k, v in data[hostname].get("vrf", {}).items()]
+        
+        # update interfaces with VRF reference
+        for vrf in data[hostname]["vrf"]:
+            for interface in vrf.get("interfaces", []):
+                if data[hostname]["interfaces"].get(interface):
+                    data[hostname]["interfaces"][interface]["vrf"] = vrf["name"]
+        
+        _ = data[hostname].pop("vrf")
+    
+    return data
+</macro>
+
+<vars>local_hostname="gethostname"</vars>
+
+<group record="local_hostname" void="">
+set system host-name {{ local_hostname }}
+</group>
+
+<!-- VRF configuration group -->
+<group name="{{ local_hostname }}.vrf**.{{ vrf }}**.interfaces*" method="table" itemize="interface">
+set routing-instances {{ vrf }} interface {{ interface }}
+</group>
+
+<!-- Interfaces IP addresses configuration group -->
+<group 
+name="{{ local_hostname }}.interfaces**.{{ interface }}**.ip_addresses*" 
+functions="sformat('{interface}.{unit}', 'interface') | del('unit') | add_network()" 
+method="table"
+>
+set interfaces {{ interface }} unit {{ unit }} family inet address {{ ip | IP }}/{{ netmask }}
+</group>
+
+<!-- Interfaces configuration group -->
+<group 
+name="{{ local_hostname }}.interfaces**.{{ interface }}**" 
+functions="sformat('{interface}.{unit}', 'interface') | del('unit')" 
+method="table"
+>
+set interfaces {{ interface }} unit {{ unit }} description "{{ port_description | re(".+") }}"
+</group>
+
+<!-- ARP cache group -->
+<group name="{{ local_hostname }}.interfaces**.{{ interface }}.arp*" method="table">
+{{ mac | MAC| mac_eui }}   {{ ip | IP }}   {{ interface }}   {{ ignore }}
+</group>
+
+<output name="postprocess" macro="postprocess"/>
+
+</template>

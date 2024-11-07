@@ -393,7 +393,7 @@ def test_N2G_ospf_lsdb_huawei():
 def test_N2G_isis_lsdb_juniper():
     with open("./mock_data/juniper_show_isis_database_verbose_pipe_no_more.txt", "r") as f:
         data = f.read()
-    template = get_template(path="misc/N2G/cli_isis_data/juniper.txt")
+    template = get_template(path="misc/N2G/cli_isis_data/juniper_junos.txt")
     print(template)
     parser = ttp(data=data, template=template)
     parser.parse()
@@ -422,7 +422,7 @@ def test_N2G_isis_lsdb_juniper():
 def test_N2G_cli_l2_data_juniper():
     with open("./mock_data/test_N2G_cli_l2_data_juniper.txt", "r") as f:
         data = f.read()
-    template = get_template(path="misc/N2G/cli_l2_data/juniper.txt")
+    template = get_template(path="misc/N2G/cli_l2_data/juniper_junos.txt")
     print(template)
     parser = ttp(data=data, template=template, vars={"IfsNormalize": all_vars["short_interface_names"], "physical_ports": all_vars["physical_ports"]})
     parser.parse()

@@ -1,4 +1,4 @@
-<template name="juniper" results="per_template">
+<template name="juniper_junos" results="per_template">
 
 <doc>
 This template designed to parse Juniper JunOS configuration and LLDP neighbors.
