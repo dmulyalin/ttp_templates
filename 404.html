@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TTP, parser, parsing, templates">
+        <meta name="description" content="Curated TTP templates and a small Python API for parsing network device output.">
       
       
       
         <meta name="author" content="Denis Mulyalin">
       
       
-      <link rel="icon" href="/assets/images/favicon.png">
+      <link rel="icon" href="/ttp_templates/assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
@@ -22,14 +22,10 @@
       
     
     
-      <link rel="stylesheet" href="/assets/stylesheets/main.1118c9be.min.css">
+      <link rel="stylesheet" href="/ttp_templates/assets/stylesheets/main.1118c9be.min.css">
       
         
-        <link rel="stylesheet" href="/assets/stylesheets/palette.ba0d045b.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#2094f3">
+        <link rel="stylesheet" href="/ttp_templates/assets/stylesheets/palette.ba0d045b.min.css">
         
       
     
@@ -44,7 +40,7 @@
     
     
     
-      <link rel="stylesheet" href="/assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="/ttp_templates/assets/_mkdocstrings.css">
     
     
       
@@ -57,13 +53,17 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="teal">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal">
   
     
-    <script>function __prefix(e){return new URL("/",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("/ttp_templates/",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -77,7 +77,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="TTP Templates Collection" class="md-header__button md-logo" aria-label="TTP Templates Collection" data-md-component="logo">
+    <a href="/ttp_templates/." title="TTP Templates Collection" class="md-header__button md-logo" aria-label="TTP Templates Collection" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -102,6 +102,28 @@
         </div>
       </div>
     </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+      </form>
     
     
     
@@ -171,7 +193,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/." class="md-tabs__link">
+    <a href="/ttp_templates/." class="md-tabs__link">
       Overview
     </a>
   </li>
@@ -183,7 +205,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/contribute/" class="md-tabs__link">
+    <a href="/ttp_templates/contribute/" class="md-tabs__link">
       Contribute
     </a>
   </li>
@@ -195,7 +217,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/writing_docs/" class="md-tabs__link">
+    <a href="/ttp_templates/writing_docs/" class="md-tabs__link">
       Writing docs
     </a>
   </li>
@@ -207,8 +229,20 @@
 
 
   <li class="md-tabs__item">
-    <a href="/api_reference/" class="md-tabs__link">
+    <a href="/ttp_templates/api_reference/" class="md-tabs__link">
       API Reference
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="/ttp_templates/release_notes/" class="md-tabs__link">
+      Release Notes
     </a>
   </li>
 
@@ -232,7 +266,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.a10/" class="md-tabs__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.a10/" class="md-tabs__link">
         Templates
       </a>
     </li>
@@ -263,7 +297,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="TTP Templates Collection" class="md-nav__button md-logo" aria-label="TTP Templates Collection" data-md-component="logo">
+    <a href="/ttp_templates/." title="TTP Templates Collection" class="md-nav__button md-logo" aria-label="TTP Templates Collection" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -295,7 +329,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
+      <a href="/ttp_templates/." class="md-nav__link">
         Overview
       </a>
     </li>
@@ -310,7 +344,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/contribute/" class="md-nav__link">
+      <a href="/ttp_templates/contribute/" class="md-nav__link">
         Contribute
       </a>
     </li>
@@ -325,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/writing_docs/" class="md-nav__link">
+      <a href="/ttp_templates/writing_docs/" class="md-nav__link">
         Writing docs
       </a>
     </li>
@@ -340,8 +374,23 @@
   
   
     <li class="md-nav__item">
-      <a href="/api_reference/" class="md-nav__link">
+      <a href="/ttp_templates/api_reference/" class="md-nav__link">
         API Reference
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/ttp_templates/release_notes/" class="md-nav__link">
+        Release Notes
       </a>
     </li>
   
@@ -358,14 +407,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
-      <label class="md-nav__link" for="__nav_5">
+      <label class="md-nav__link" for="__nav_6">
         Templates
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Templates" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Templates
         </label>
@@ -381,14 +430,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
       
-      <label class="md-nav__link" for="__nav_5_1">
+      <label class="md-nav__link" for="__nav_6_1">
         Misc
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Misc" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_1">
+        <label class="md-nav__title" for="__nav_6_1">
           <span class="md-nav__icon md-icon"></span>
           Misc
         </label>
@@ -402,14 +451,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" >
       
-      <label class="md-nav__link" for="__nav_5_1_1">
+      <label class="md-nav__link" for="__nav_6_1_1">
         N2G
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="N2G" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_1">
+        <label class="md-nav__title" for="__nav_6_1_1">
           <span class="md-nav__icon md-icon"></span>
           N2G
         </label>
@@ -420,7 +469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.a10/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.a10/" class="md-nav__link">
         cli_ip_data.a10
       </a>
     </li>
@@ -432,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.arista_eos/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.arista_eos/" class="md-nav__link">
         cli_ip_data.arista_eos
       </a>
     </li>
@@ -444,7 +493,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.cisco_ios/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.cisco_ios/" class="md-nav__link">
         cli_ip_data.cisco_ios
       </a>
     </li>
@@ -456,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.cisco_nxos/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.cisco_nxos/" class="md-nav__link">
         cli_ip_data.cisco_nxos
       </a>
     </li>
@@ -468,7 +517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.cisco_xr/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.cisco_xr/" class="md-nav__link">
         cli_ip_data.cisco_xr
       </a>
     </li>
@@ -480,7 +529,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.fortinet/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.fortinet/" class="md-nav__link">
         cli_ip_data.fortinet
       </a>
     </li>
@@ -492,7 +541,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.huawei/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.huawei/" class="md-nav__link">
         cli_ip_data.huawei
       </a>
     </li>
@@ -504,7 +553,19 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ip_data.readme/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.juniper_junos/" class="md-nav__link">
+        cli_ip_data.juniper_junos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ip_data.readme/" class="md-nav__link">
         cli_ip_data.readme
       </a>
     </li>
@@ -516,7 +577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_isis_data.cisco_xr/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_isis_data.cisco_xr/" class="md-nav__link">
         cli_isis_data.cisco_xr
       </a>
     </li>
@@ -528,8 +589,8 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_isis_data.juniper/" class="md-nav__link">
-        cli_isis_data.juniper
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_isis_data.juniper_junos/" class="md-nav__link">
+        cli_isis_data.juniper_junos
       </a>
     </li>
   
@@ -540,7 +601,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_isis_data.readme/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_isis_data.readme/" class="md-nav__link">
         cli_isis_data.readme
       </a>
     </li>
@@ -552,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_l2_data.cisco_ios/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_l2_data.cisco_ios/" class="md-nav__link">
         cli_l2_data.cisco_ios
       </a>
     </li>
@@ -564,7 +625,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_l2_data.cisco_nxos/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_l2_data.cisco_nxos/" class="md-nav__link">
         cli_l2_data.cisco_nxos
       </a>
     </li>
@@ -576,7 +637,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_l2_data.cisco_xr/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_l2_data.cisco_xr/" class="md-nav__link">
         cli_l2_data.cisco_xr
       </a>
     </li>
@@ -588,7 +649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_l2_data.huawei/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_l2_data.huawei/" class="md-nav__link">
         cli_l2_data.huawei
       </a>
     </li>
@@ -600,8 +661,8 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_l2_data.juniper/" class="md-nav__link">
-        cli_l2_data.juniper
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_l2_data.juniper_junos/" class="md-nav__link">
+        cli_l2_data.juniper_junos
       </a>
     </li>
   
@@ -612,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_l2_data.readme/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_l2_data.readme/" class="md-nav__link">
         cli_l2_data.readme
       </a>
     </li>
@@ -624,7 +685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ospf_data.cisco_ios/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ospf_data.cisco_ios/" class="md-nav__link">
         cli_ospf_data.cisco_ios
       </a>
     </li>
@@ -636,7 +697,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ospf_data.cisco_xr/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ospf_data.cisco_xr/" class="md-nav__link">
         cli_ospf_data.cisco_xr
       </a>
     </li>
@@ -648,7 +709,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ospf_data.huawei/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ospf_data.huawei/" class="md-nav__link">
         cli_ospf_data.huawei
       </a>
     </li>
@@ -660,7 +721,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.N2G.cli_ospf_data.readme/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.N2G.cli_ospf_data.readme/" class="md-nav__link">
         cli_ospf_data.readme
       </a>
     </li>
@@ -681,14 +742,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_2" type="checkbox" id="__nav_6_1_2" >
       
-      <label class="md-nav__link" for="__nav_5_1_2">
+      <label class="md-nav__link" for="__nav_6_1_2">
         Netbox
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netbox" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_2">
+        <label class="md-nav__title" for="__nav_6_1_2">
           <span class="md-nav__icon md-icon"></span>
           Netbox
         </label>
@@ -699,7 +760,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netbox.parse_arista_eos_config/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netbox.parse_arista_eos_config/" class="md-nav__link">
         parse_arista_eos_config
       </a>
     </li>
@@ -711,7 +772,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netbox.parse_cisco_nxos_config/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netbox.parse_cisco_nxos_config/" class="md-nav__link">
         parse_cisco_nxos_config
       </a>
     </li>
@@ -723,7 +784,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netbox.parse_cisco_xr_config/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netbox.parse_cisco_xr_config/" class="md-nav__link">
         parse_cisco_xr_config
       </a>
     </li>
@@ -735,7 +796,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netbox.parse_juniper_junos_config/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netbox.parse_juniper_junos_config/" class="md-nav__link">
         parse_juniper_junos_config
       </a>
     </li>
@@ -747,7 +808,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netbox.parse_opengear_config/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netbox.parse_opengear_config/" class="md-nav__link">
         parse_opengear_config
       </a>
     </li>
@@ -768,14 +829,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_3" type="checkbox" id="__nav_6_1_3" >
       
-      <label class="md-nav__link" for="__nav_5_1_3">
+      <label class="md-nav__link" for="__nav_6_1_3">
         Netmiko
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_3">
+        <label class="md-nav__title" for="__nav_6_1_3">
           <span class="md-nav__icon md-icon"></span>
           Netmiko
         </label>
@@ -786,7 +847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.cisco.ios.arp/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.cisco.ios.arp/" class="md-nav__link">
         cisco.ios.arp
       </a>
     </li>
@@ -798,7 +859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.cisco.ios.cfg.bgp/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.cisco.ios.cfg.bgp/" class="md-nav__link">
         cisco.ios.cfg.bgp
       </a>
     </li>
@@ -810,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.cisco.ios.cfg.interface/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.cisco.ios.cfg.interface/" class="md-nav__link">
         cisco.ios.cfg.interface
       </a>
     </li>
@@ -822,7 +883,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.cisco.ios.cfg.ip/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.cisco.ios.cfg.ip/" class="md-nav__link">
         cisco.ios.cfg.ip
       </a>
     </li>
@@ -834,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.cisco.ios.cfg.nat.static/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.cisco.ios.cfg.nat.static/" class="md-nav__link">
         cisco.ios.cfg.nat.static
       </a>
     </li>
@@ -846,7 +907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.cisco.iosxr.arp/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.cisco.iosxr.arp/" class="md-nav__link">
         cisco.iosxr.arp
       </a>
     </li>
@@ -858,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.cisco.iosxr.cfg.interface/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.cisco.iosxr.cfg.interface/" class="md-nav__link">
         cisco.iosxr.cfg.interface
       </a>
     </li>
@@ -870,7 +931,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.cisco.iosxr.cfg.ip/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.cisco.iosxr.cfg.ip/" class="md-nav__link">
         cisco.iosxr.cfg.ip
       </a>
     </li>
@@ -882,7 +943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.huawei.vrp.cfg.interface/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.huawei.vrp.cfg.interface/" class="md-nav__link">
         huawei.vrp.cfg.interface
       </a>
     </li>
@@ -894,7 +955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.Netmiko.huawei.vrp.cfg.ip/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.Netmiko.huawei.vrp.cfg.ip/" class="md-nav__link">
         huawei.vrp.cfg.ip
       </a>
     </li>
@@ -915,14 +976,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" >
       
-      <label class="md-nav__link" for="__nav_5_1_4">
+      <label class="md-nav__link" for="__nav_6_1_4">
         ttp_templates_tests
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_4">
+        <label class="md-nav__title" for="__nav_6_1_4">
           <span class="md-nav__icon md-icon"></span>
           ttp_templates_tests
         </label>
@@ -933,7 +994,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip/" class="md-nav__link">
         cisco_ios_interfaces_cfg_per_ip
       </a>
     </li>
@@ -945,7 +1006,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/misc.ttp_templates_tests.netmiko_cisco_ios_interfaces/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/misc.ttp_templates_tests.netmiko_cisco_ios_interfaces/" class="md-nav__link">
         netmiko_cisco_ios_interfaces
       </a>
     </li>
@@ -974,14 +1035,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
       
-      <label class="md-nav__link" for="__nav_5_2">
+      <label class="md-nav__link" for="__nav_6_2">
         Platform
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Platform" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
+        <label class="md-nav__title" for="__nav_6_2">
           <span class="md-nav__icon md-icon"></span>
           Platform
         </label>
@@ -992,7 +1053,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.arista_eos_show_hostname/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
     </li>
@@ -1004,7 +1065,19 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_ios_show_ip_arp/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
+        arista_eos_show_inventory_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_ios_show_ip_arp/" class="md-nav__link">
         cisco_ios_show_ip_arp
       </a>
     </li>
@@ -1016,7 +1089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_ios_show_ip_ospf_database_external/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_ios_show_ip_ospf_database_external/" class="md-nav__link">
         cisco_ios_show_ip_ospf_database_external
       </a>
     </li>
@@ -1028,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_ios_show_ip_ospf_database_router/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_ios_show_ip_ospf_database_router/" class="md-nav__link">
         cisco_ios_show_ip_ospf_database_router
       </a>
     </li>
@@ -1040,7 +1113,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary/" class="md-nav__link">
         cisco_ios_show_ip_ospf_database_summary
       </a>
     </li>
@@ -1052,7 +1125,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_ios_show_isdn_status/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_ios_show_isdn_status/" class="md-nav__link">
         cisco_ios_show_isdn_status
       </a>
     </li>
@@ -1064,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp/" class="md-nav__link">
         cisco_ios_show_running_configuration_pipe_section_bgp
       </a>
     </li>
@@ -1076,7 +1149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static/" class="md-nav__link">
         cisco_ios_show_running_config_pipe_include_source_static
       </a>
     </li>
@@ -1088,7 +1161,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_ios_show_running_config_pipe_section_interface/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_ios_show_running_config_pipe_section_interface/" class="md-nav__link">
         cisco_ios_show_running_config_pipe_section_interface
       </a>
     </li>
@@ -1100,7 +1173,19 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
+        cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         cisco_xr_show_arp_vrf_all
       </a>
     </li>
@@ -1112,7 +1197,19 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_xr_show_isis_database_verbose/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_xr_show_inventory/" class="md-nav__link">
+        cisco_xr_show_inventory
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_xr_show_isis_database_verbose/" class="md-nav__link">
         cisco_xr_show_isis_database_verbose
       </a>
     </li>
@@ -1124,7 +1221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_xr_show_ospf_database_external/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_xr_show_ospf_database_external/" class="md-nav__link">
         cisco_xr_show_ospf_database_external
       </a>
     </li>
@@ -1136,7 +1233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_xr_show_ospf_database_router/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_xr_show_ospf_database_router/" class="md-nav__link">
         cisco_xr_show_ospf_database_router
       </a>
     </li>
@@ -1148,7 +1245,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_xr_show_ospf_database_summary/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_xr_show_ospf_database_summary/" class="md-nav__link">
         cisco_xr_show_ospf_database_summary
       </a>
     </li>
@@ -1160,7 +1257,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.cisco_xr_show_running_config_interface/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.cisco_xr_show_running_config_interface/" class="md-nav__link">
         cisco_xr_show_running_config_interface
       </a>
     </li>
@@ -1172,7 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.huawei_display_current_configuration_interface/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.huawei_display_current_configuration_interface/" class="md-nav__link">
         huawei_display_current_configuration_interface
       </a>
     </li>
@@ -1184,7 +1281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.huawei_display_ospf_lsdb_router/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.huawei_display_ospf_lsdb_router/" class="md-nav__link">
         huawei_display_ospf_lsdb_router
       </a>
     </li>
@@ -1196,8 +1293,8 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.juniper_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
-        juniper_show_isis_database_verbose_pipe_no_more
+      <a href="/ttp_templates/ttp_templates/platform.juniper_junos_show_chassis_hardware_pipe_json/" class="md-nav__link">
+        juniper_junos_show_chassis_hardware_pipe_json
       </a>
     </li>
   
@@ -1208,7 +1305,19 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/platform.test_platform_show_run_pipe_sec_interface/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
+        juniper_junos_show_isis_database_verbose_pipe_no_more
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/ttp_templates/ttp_templates/platform.test_platform_show_run_pipe_sec_interface/" class="md-nav__link">
         test_platform_show_run_pipe_sec_interface
       </a>
     </li>
@@ -1231,14 +1340,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
       
-      <label class="md-nav__link" for="__nav_5_3">
+      <label class="md-nav__link" for="__nav_6_3">
         YANG
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="YANG" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_3">
+        <label class="md-nav__title" for="__nav_6_3">
           <span class="md-nav__icon md-icon"></span>
           YANG
         </label>
@@ -1249,7 +1358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/yang.ietf-interfaces_cisco_ios/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/yang.ietf-interfaces_cisco_ios/" class="md-nav__link">
         ietf-interfaces_cisco_ios
       </a>
     </li>
@@ -1261,7 +1370,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/yang.openconfig-lldp_cisco_ios/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/yang.openconfig-lldp_cisco_ios/" class="md-nav__link">
         openconfig-lldp_cisco_ios
       </a>
     </li>
@@ -1273,7 +1382,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/yang.openconfig-lldp_cisco_nxos/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/yang.openconfig-lldp_cisco_nxos/" class="md-nav__link">
         openconfig-lldp_cisco_nxos
       </a>
     </li>
@@ -1285,7 +1394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/ttp_templates/yang.openconfig-lldp_cisco_xr/" class="md-nav__link">
+      <a href="/ttp_templates/ttp_templates/yang.openconfig-lldp_cisco_xr/" class="md-nav__link">
         openconfig-lldp_cisco_xr
       </a>
     </li>
@@ -1373,10 +1482,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "/", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "toc.follow"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "/assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "/ttp_templates/", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "toc.follow"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "/ttp_templates/assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="/assets/javascripts/bundle.2b46852b.min.js"></script>
+      <script src="/ttp_templates/assets/javascripts/bundle.2b46852b.min.js"></script>
       
     
   </body>

@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TTP, parser, parsing, templates">
+        <meta name="description" content="Curated TTP templates and a small Python API for parsing network device output.">
       
       
       
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/">
       
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
@@ -28,10 +28,6 @@
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.ba0d045b.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#2094f3">
         
       
     
@@ -59,13 +55,17 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="teal">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal">
   
     
     <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -109,6 +109,28 @@
         </div>
       </div>
     </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+      </form>
     
     
     
@@ -218,6 +240,18 @@
   <li class="md-tabs__item">
     <a href="api_reference/" class="md-tabs__link">
       API Reference
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="release_notes/" class="md-tabs__link">
+      Release Notes
     </a>
   </li>
 
@@ -451,18 +485,33 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="release_notes/" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
-      <label class="md-nav__link" for="__nav_5">
+      <label class="md-nav__link" for="__nav_6">
         Templates
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Templates" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Templates
         </label>
@@ -478,14 +527,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
       
-      <label class="md-nav__link" for="__nav_5_1">
+      <label class="md-nav__link" for="__nav_6_1">
         Misc
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Misc" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_1">
+        <label class="md-nav__title" for="__nav_6_1">
           <span class="md-nav__icon md-icon"></span>
           Misc
         </label>
@@ -499,14 +548,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" >
       
-      <label class="md-nav__link" for="__nav_5_1_1">
+      <label class="md-nav__link" for="__nav_6_1_1">
         N2G
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="N2G" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_1">
+        <label class="md-nav__title" for="__nav_6_1_1">
           <span class="md-nav__icon md-icon"></span>
           N2G
         </label>
@@ -601,6 +650,18 @@
   
   
     <li class="md-nav__item">
+      <a href="ttp_templates/misc.N2G.cli_ip_data.juniper_junos/" class="md-nav__link">
+        cli_ip_data.juniper_junos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="ttp_templates/misc.N2G.cli_ip_data.readme/" class="md-nav__link">
         cli_ip_data.readme
       </a>
@@ -625,8 +686,8 @@
   
   
     <li class="md-nav__item">
-      <a href="ttp_templates/misc.N2G.cli_isis_data.juniper/" class="md-nav__link">
-        cli_isis_data.juniper
+      <a href="ttp_templates/misc.N2G.cli_isis_data.juniper_junos/" class="md-nav__link">
+        cli_isis_data.juniper_junos
       </a>
     </li>
   
@@ -697,8 +758,8 @@
   
   
     <li class="md-nav__item">
-      <a href="ttp_templates/misc.N2G.cli_l2_data.juniper/" class="md-nav__link">
-        cli_l2_data.juniper
+      <a href="ttp_templates/misc.N2G.cli_l2_data.juniper_junos/" class="md-nav__link">
+        cli_l2_data.juniper_junos
       </a>
     </li>
   
@@ -778,14 +839,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_2" type="checkbox" id="__nav_6_1_2" >
       
-      <label class="md-nav__link" for="__nav_5_1_2">
+      <label class="md-nav__link" for="__nav_6_1_2">
         Netbox
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netbox" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_2">
+        <label class="md-nav__title" for="__nav_6_1_2">
           <span class="md-nav__icon md-icon"></span>
           Netbox
         </label>
@@ -865,14 +926,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_3" type="checkbox" id="__nav_6_1_3" >
       
-      <label class="md-nav__link" for="__nav_5_1_3">
+      <label class="md-nav__link" for="__nav_6_1_3">
         Netmiko
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_3">
+        <label class="md-nav__title" for="__nav_6_1_3">
           <span class="md-nav__icon md-icon"></span>
           Netmiko
         </label>
@@ -1012,14 +1073,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" >
       
-      <label class="md-nav__link" for="__nav_5_1_4">
+      <label class="md-nav__link" for="__nav_6_1_4">
         ttp_templates_tests
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_4">
+        <label class="md-nav__title" for="__nav_6_1_4">
           <span class="md-nav__icon md-icon"></span>
           ttp_templates_tests
         </label>
@@ -1071,14 +1132,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
       
-      <label class="md-nav__link" for="__nav_5_2">
+      <label class="md-nav__link" for="__nav_6_2">
         Platform
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Platform" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
+        <label class="md-nav__title" for="__nav_6_2">
           <span class="md-nav__icon md-icon"></span>
           Platform
         </label>
@@ -1091,6 +1152,18 @@
     <li class="md-nav__item">
       <a href="ttp_templates/platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ttp_templates/platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
+        arista_eos_show_inventory_pipe_json
       </a>
     </li>
   
@@ -1197,8 +1270,32 @@
   
   
     <li class="md-nav__item">
+      <a href="ttp_templates/platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
+        cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="ttp_templates/platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         cisco_xr_show_arp_vrf_all
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ttp_templates/platform.cisco_xr_show_inventory/" class="md-nav__link">
+        cisco_xr_show_inventory
       </a>
     </li>
   
@@ -1293,8 +1390,20 @@
   
   
     <li class="md-nav__item">
-      <a href="ttp_templates/platform.juniper_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
-        juniper_show_isis_database_verbose_pipe_no_more
+      <a href="ttp_templates/platform.juniper_junos_show_chassis_hardware_pipe_json/" class="md-nav__link">
+        juniper_junos_show_chassis_hardware_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ttp_templates/platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
+        juniper_junos_show_isis_database_verbose_pipe_no_more
       </a>
     </li>
   
@@ -1328,14 +1437,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
       
-      <label class="md-nav__link" for="__nav_5_3">
+      <label class="md-nav__link" for="__nav_6_3">
         YANG
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="YANG" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_3">
+        <label class="md-nav__title" for="__nav_6_3">
           <span class="md-nav__icon md-icon"></span>
           YANG
         </label>
@@ -1499,11 +1608,11 @@
                 
                 
                 <hr />
-<p><strong>Templates count: 61</strong></p>
+<p><strong>Templates count: 66</strong></p>
 <hr />
 <p><a href="https://pepy.tech/project/ttp_templates"><img alt="Downloads" src="https://pepy.tech/badge/ttp_templates" /></a>
 <a href="https://pypi.python.org/pypi/ttp_templates/"><img alt="PyPI versions" src="https://img.shields.io/pypi/pyversions/ttp.svg" /></a></p>
-<h1 id="template-text-parser-templates">Template Text Parser Templates</h1>
+<h1 id="template-text-parser-templates">Template Text Parser Templates<a class="headerlink" href="#template-text-parser-templates" title="Permanent link">&para;</a></h1>
 <p>This repository contains a collection of <a href="https://github.com/dmulyalin/ttp">TTP</a> templates.</p>
 <p>If you solved a problem using TTP and feel that your work can be useful to other people, feel
 free to raise an issue or submit pull request to include your template(s) in this repository.
@@ -1511,12 +1620,12 @@ Refer to <a href="https://dmulyalin.github.io/ttp_templates/contribute/">Contrib
 <p>Documentation: <a href="https://dmulyalin.github.io/ttp_templates/">https://dmulyalin.github.io/ttp_templates/</a></p>
 <p>Repository: <a href="https://github.com/dmulyalin/ttp_templates">https://github.com/dmulyalin/ttp_templates</a></p>
 <p>TTP: <a href="https://ttp.readthedocs.io/">https://ttp.readthedocs.io/</a></p>
-<h2 id="installation">Installation</h2>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
 <p>From PyPi:</p>
 <p><code>pip install ttp-templates</code></p>
 <p>or latest from GitHub master branch (need Git installed on the system):</p>
 <p><code>pip install git+https://github.com/dmulyalin/ttp_templates.git</code></p>
-<h2 id="sample-usage">Sample usage</h2>
+<h2 id="sample-usage">Sample usage<a class="headerlink" href="#sample-usage" title="Permanent link">&para;</a></h2>
 <p>This example demonstrates how to parse <code>Test Platform</code> output for <code>show run | sec interface</code> command using <code>platform/test_platform_show_run_pipe_sec_interface.txt</code> template.</p>
 <details><summary>Code</summary>
 
@@ -1663,14 +1772,14 @@ Refer to <a href="https://dmulyalin.github.io/ttp_templates/contribute/">Contrib
 </code></pre></div>
 </details>
 
-<h2 id="how-templates-collections-structured">How templates collections structured</h2>
+<h2 id="how-templates-collections-structured">How templates collections structured<a class="headerlink" href="#how-templates-collections-structured" title="Permanent link">&para;</a></h2>
 <p>This repository contains three collections of templates corresponding to folder names:</p>
 <ul>
 <li><code>platform</code> collection - mimics <a href="https://github.com/networktocode/ntc-templates">ntc-templates</a> API and follows same naming rule</li>
 <li><code>yang</code> collection - contains templates capable of producing YANG compatible structures out of text data</li>
 <li><code>misc</code> collection - miscellaneous templates for various use cases organized in folders</li>
 </ul>
-<h3 id="platform-collection-templates-files-naming-rule">Platform collection templates files naming rule</h3>
+<h3 id="platform-collection-templates-files-naming-rule">Platform collection templates files naming rule<a class="headerlink" href="#platform-collection-templates-files-naming-rule" title="Permanent link">&para;</a></h3>
 <p><code>{{ vendor_os }}_{{ command_with_underscores }}.txt</code> - lower case only.</p>
 <p>Naming rules details:</p>
 <ul>
@@ -1682,7 +1791,7 @@ Refer to <a href="https://dmulyalin.github.io/ttp_templates/contribute/">Contrib
   Huawei <code>display current-configuration interface</code> command output  must be
   named <code>huawei_display_current_configuration_interface.txt</code></li>
 </ul>
-<h3 id="yang-collection-templates-files-naming-rule">YANG collection templates files naming rule</h3>
+<h3 id="yang-collection-templates-files-naming-rule">YANG collection templates files naming rule<a class="headerlink" href="#yang-collection-templates-files-naming-rule" title="Permanent link">&para;</a></h3>
 <p><code>{{ YANG module name }}_{{ platform_name }}.txt</code> - lower case only</p>
 <p>Naming rules details:</p>
 <ul>
@@ -1691,13 +1800,13 @@ Refer to <a href="https://dmulyalin.github.io/ttp_templates/contribute/">Contrib
   to produce output compatible with openconfig-lldp YANG model for Cisco IOS
   must be named <code>openconfig-lldp_cisco_xr.txt</code></li>
 </ul>
-<h3 id="misc-collection-templates-files-naming-rule">Misc collection templates files naming rule</h3>
+<h3 id="misc-collection-templates-files-naming-rule">Misc collection templates files naming rule<a class="headerlink" href="#misc-collection-templates-files-naming-rule" title="Permanent link">&para;</a></h3>
 <p><code>{{ usecase folder }}/{{ template name }}.txt</code> - upper or lower case</p>
 <p>Naming rules details:</p>
 <ul>
 <li>Nothing replaced with anything, provided template name used as is.</li>
 </ul>
-<h2 id="additional-templates-resources">Additional Templates Resources</h2>
+<h2 id="additional-templates-resources">Additional Templates Resources<a class="headerlink" href="#additional-templates-resources" title="Permanent link">&para;</a></h2>
 <p>List of resources with TTP templates:</p>
 <ul>
 <li>TTP SrosParser - https://pypi.org/project/ttp-sros-parser/ by <a href="https://github.com/h4ndzdatm0ld">h4ndzdatm0ld</a></li>

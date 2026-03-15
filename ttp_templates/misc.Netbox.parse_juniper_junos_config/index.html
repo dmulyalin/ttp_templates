@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TTP, parser, parsing, templates">
+        <meta name="description" content="Curated TTP templates and a small Python API for parsing network device output.">
       
       
       
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.Netbox.parse_juniper_junos_config/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/misc.Netbox.parse_juniper_junos_config/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
@@ -28,10 +28,6 @@
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#2094f3">
         
       
     
@@ -59,13 +55,17 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="teal">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal">
   
     
     <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -104,6 +104,28 @@
         </div>
       </div>
     </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+      </form>
     
     
     
@@ -211,6 +233,18 @@
   <li class="md-tabs__item">
     <a href="../../api_reference/" class="md-tabs__link">
       API Reference
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../release_notes/" class="md-tabs__link">
+      Release Notes
     </a>
   </li>
 
@@ -357,6 +391,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../release_notes/" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -364,14 +413,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
-      <label class="md-nav__link" for="__nav_5">
+      <label class="md-nav__link" for="__nav_6">
         Templates
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Templates" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Templates
         </label>
@@ -389,14 +438,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" checked>
       
-      <label class="md-nav__link" for="__nav_5_1">
+      <label class="md-nav__link" for="__nav_6_1">
         Misc
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Misc" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_1">
+        <label class="md-nav__title" for="__nav_6_1">
           <span class="md-nav__icon md-icon"></span>
           Misc
         </label>
@@ -410,14 +459,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" >
       
-      <label class="md-nav__link" for="__nav_5_1_1">
+      <label class="md-nav__link" for="__nav_6_1_1">
         N2G
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="N2G" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_1">
+        <label class="md-nav__title" for="__nav_6_1_1">
           <span class="md-nav__icon md-icon"></span>
           N2G
         </label>
@@ -512,6 +561,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../misc.N2G.cli_ip_data.juniper_junos/" class="md-nav__link">
+        cli_ip_data.juniper_junos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../misc.N2G.cli_ip_data.readme/" class="md-nav__link">
         cli_ip_data.readme
       </a>
@@ -536,8 +597,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc.N2G.cli_isis_data.juniper/" class="md-nav__link">
-        cli_isis_data.juniper
+      <a href="../misc.N2G.cli_isis_data.juniper_junos/" class="md-nav__link">
+        cli_isis_data.juniper_junos
       </a>
     </li>
   
@@ -608,8 +669,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../misc.N2G.cli_l2_data.juniper/" class="md-nav__link">
-        cli_l2_data.juniper
+      <a href="../misc.N2G.cli_l2_data.juniper_junos/" class="md-nav__link">
+        cli_l2_data.juniper_junos
       </a>
     </li>
   
@@ -691,14 +752,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_2" type="checkbox" id="__nav_6_1_2" checked>
       
-      <label class="md-nav__link" for="__nav_5_1_2">
+      <label class="md-nav__link" for="__nav_6_1_2">
         Netbox
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netbox" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_2">
+        <label class="md-nav__title" for="__nav_6_1_2">
           <span class="md-nav__icon md-icon"></span>
           Netbox
         </label>
@@ -786,14 +847,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_3" type="checkbox" id="__nav_6_1_3" >
       
-      <label class="md-nav__link" for="__nav_5_1_3">
+      <label class="md-nav__link" for="__nav_6_1_3">
         Netmiko
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_3">
+        <label class="md-nav__title" for="__nav_6_1_3">
           <span class="md-nav__icon md-icon"></span>
           Netmiko
         </label>
@@ -933,14 +994,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" >
       
-      <label class="md-nav__link" for="__nav_5_1_4">
+      <label class="md-nav__link" for="__nav_6_1_4">
         ttp_templates_tests
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_4">
+        <label class="md-nav__title" for="__nav_6_1_4">
           <span class="md-nav__icon md-icon"></span>
           ttp_templates_tests
         </label>
@@ -992,14 +1053,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
       
-      <label class="md-nav__link" for="__nav_5_2">
+      <label class="md-nav__link" for="__nav_6_2">
         Platform
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Platform" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
+        <label class="md-nav__title" for="__nav_6_2">
           <span class="md-nav__icon md-icon"></span>
           Platform
         </label>
@@ -1012,6 +1073,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
+        arista_eos_show_inventory_pipe_json
       </a>
     </li>
   
@@ -1118,8 +1191,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
+        cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         cisco_xr_show_arp_vrf_all
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_inventory/" class="md-nav__link">
+        cisco_xr_show_inventory
       </a>
     </li>
   
@@ -1214,8 +1311,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
-        juniper_show_isis_database_verbose_pipe_no_more
+      <a href="../platform.juniper_junos_show_chassis_hardware_pipe_json/" class="md-nav__link">
+        juniper_junos_show_chassis_hardware_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
+        juniper_junos_show_isis_database_verbose_pipe_no_more
       </a>
     </li>
   
@@ -1249,14 +1358,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
       
-      <label class="md-nav__link" for="__nav_5_3">
+      <label class="md-nav__link" for="__nav_6_3">
         YANG
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="YANG" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_3">
+        <label class="md-nav__title" for="__nav_6_3">
           <span class="md-nav__icon md-icon"></span>
           YANG
         </label>
@@ -1378,14 +1487,20 @@ def postprocess(data):
     # transform interfaces dict to list
     data[&quot;interfaces&quot;] = [
         {&quot;name&quot;: k, **v} 
-        for k, v in data[&quot;interfaces&quot;].items()
+        for k, v in data.get(&quot;interfaces&quot;, {}).items()
     ]
 
     # process interfaces further
     for i in data[&quot;interfaces&quot;]:
         # add interface type - other, virtual or lag
         i[&quot;interface_type&quot;] = &quot;other&quot;    
-        if any(
+        if &quot;irb&quot; in i[&quot;name&quot;]:
+            i[&quot;interface_type&quot;] = &quot;bridge&quot;
+            i[&quot;switching&quot;] = {
+                &quot;dot1q_mode&quot;: &quot;access&quot;,
+                &quot;vlans&quot;: [int(i[&quot;name&quot;].split(&quot;.&quot;)[1])]
+            }
+        elif any(
             k in i[&quot;name&quot;] for k in [&quot;.&quot;, &quot;gr-&quot;, &quot;lo0&quot;, &quot;vlan&quot;]
         ):
             i[&quot;interface_type&quot;] = &quot;virtual&quot;
@@ -1393,10 +1508,28 @@ def postprocess(data):
             i[&quot;interface_type&quot;] = &quot;lag&quot;  
 
         # add interface parent details
-        if &quot;lag_id&quot; in i:
-            i[&quot;parent&quot;] = i[&quot;lag_id&quot;]
-        elif &quot;.&quot; in i[&quot;name&quot;]:
-            i[&quot;parent&quot;] = i[&quot;name&quot;].split(&quot;.&quot;)[0]    
+        if &quot;.&quot; in i[&quot;name&quot;] and not any(k in i[&quot;name&quot;] for k in [&quot;lo0&quot;, &quot;vlan&quot;, &quot;irb&quot;, &quot;gr-&quot;]):
+            i[&quot;parent&quot;] = i[&quot;name&quot;].split(&quot;.&quot;)[0]
+
+        # form list of vlans
+        if i.get(&quot;switching&quot;, {}).get(&quot;vlans&quot;, []):
+            vlans = []
+            for vlan in i.get(&quot;switching&quot;, {}).get(&quot;vlans&quot;, []):
+                if isinstance(vlan, dict):
+                    vlans.append(vlan[&quot;vlan&quot;])
+                else:
+                    vlans.append(vlan)
+            i[&quot;switching&quot;][&quot;vlans&quot;] = vlans     
+
+        # calculate dot1q mode
+        switching = i.get(&quot;switching&quot;, {})
+        if switching.get(&quot;dot1q_mode&quot;) == &quot;trunk&quot;:
+            if &quot;all&quot; in switching.get(&quot;vlans&quot;, []):
+                i[&quot;switching&quot;][&quot;dot1q_mode&quot;] = &quot;tagged-all&quot;
+            else:
+                i[&quot;switching&quot;][&quot;dot1q_mode&quot;] = &quot;tagged&quot;
+        elif switching.get(&quot;dot1q_mode&quot;) == &quot;access&quot;:
+            i[&quot;switching&quot;][&quot;dot1q_mode&quot;] = &quot;access&quot;
 
         # set interface default parameters
         i.setdefault(&quot;enabled&quot;, True)
@@ -1417,7 +1550,7 @@ set system domain-name {{ domain_name }}
 &lt;/group&gt;
 
 ## ------------------------------------------------------------------------------------------
-## ROuting-Options Configuration 
+## Routing-Options Configuration 
 ## ------------------------------------------------------------------------------------------
 &lt;group name=&quot;routing_options**&quot; method=&quot;table&quot;&gt;
 set routing-options route-distinguisher-id {{ route_distinguisher }}
@@ -1537,6 +1670,8 @@ set interfaces {{ name | let(&quot;flexible_vlan_tagging&quot;, True) }} flexibl
 set interfaces {{ name }} encapsulation {{ encapsulation }}
 set interfaces {{ name }} aggregated-ether-options minimum-links {{ lag_min_links }}
 set interfaces {{ name }} aggregated-ether-options lacp {{ lacp_mode }}
+set interfaces {{ name }} speed {{ speed }}
+set interfaces {{ name }} native-vlan-id {{ dot1q_native_vlan }}                    
 &lt;/group&gt;
 
 &lt;group name=&quot;interfaces**.{{ name }}**.damping**&quot; method=&quot;table&quot;&gt;
@@ -1547,7 +1682,7 @@ set interfaces {{ name }} damping suppress {{ suppress }}
 set interfaces {{ name | let(&quot;is_enabled&quot;, True) }} damping enable
 &lt;/group&gt;
 
-&lt;group name=&quot;interfaces**.{{ name }}**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;)&quot; method=&quot;table&quot;&gt;
+&lt;group name=&quot;interfaces**.{{ name }}**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
 set interfaces {{ name }} unit {{ unit }} description {{ description | re(&quot;.+&quot;) | default(&quot;&quot;) }}
 set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q }}
 &lt;/group&gt;
@@ -1565,7 +1700,6 @@ set interfaces {{ name }} unit {{ unit }} family inet filter input-list {{ acl }
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ virtual_gateway_address }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group 1 virtual-address {{ virtual_gateway_address }}
-
 &lt;/group&gt;
 
 &lt;group name=&quot;interfaces**.{{ name }}**.virtual_gateway**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
@@ -1586,6 +1720,14 @@ set interfaces {{ name }} unit {{ unit | let(&quot;single_active&quot;, True) }}
 set interfaces {{ name }} unit {{ unit }} tunnel routing-instance destination {{ destination_vrf }}
 set interfaces {{ name }} unit {{ unit }} tunnel source {{ source }}
 set interfaces {{ name }} unit {{ unit }} tunnel destination {{ destination }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.switching**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching interface-mode {{ dot1q_mode }}     
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.switching**.vlans*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching vlan members {{ vlan }}
 &lt;/group&gt;
 
 ## ------------------------------------------------------------------------------------------
@@ -1675,7 +1817,7 @@ set protocols pim rp bidirectional address {{ rp_didir }} group-ranges {{ rp_gro
 &lt;/group&gt;
 
 &lt;group name=&quot;pim**.interfaces**.{{ interface }}**&quot; method=&quot;table&quot;&gt;
-set protocols pim interface{{ interface }} mode {{ mode }}
+set protocols pim interface {{ interface }} mode {{ mode }}
 &lt;/group&gt;
 
 ## ------------------------------------------------------------------------------------------
@@ -1710,6 +1852,23 @@ set protocols isis interface {{ interface | let(&quot;is_passive&quot;, True) }}
 &lt;group name=&quot;isis**.interfaces**.{{ interface }}**.afi.{{ afi }}&quot; method=&quot;table&quot;&gt;
 set protocols isis interface {{ interface }} family {{ afi }} bfd-liveness-detection minimum-interval {{ bfd_minimum_interval }}
 set protocols isis interface {{ interface }} family {{ afi }} bfd-liveness-detection multiplier {{ bfd_multiplier }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## Vlans configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;vlans**.{{ name }}**&quot; method=&quot;table&quot;&gt;
+set vlans {{ name }} description {{ description | re(&quot;.+&quot;) }}
+set vlans {{ name }} vlan-id {{ vid }}
+set vlans {{ name }} l3-interface {{ l3_interface }}
+&lt;/group&gt;
+
+## ------------------------------------------------------------------------------------------
+## VSTP configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;vstp**.vlans**.{{ name }}**.{{ interface }}**&quot; method=&quot;table&quot;&gt;
+set protocols vstp vlan {{ name }} interface {{ interface | let(&quot;mode&quot;, &quot;edge&quot;) }} edge
+set protocols vstp vlan {{ name }} interface {{ interface | let(&quot;no_root_port&quot;, True) }} no-root-port
 &lt;/group&gt;
 
 &lt;output name=&quot;postprocess&quot; macro=&quot;postprocess&quot;/&gt;

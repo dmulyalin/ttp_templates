@@ -6,14 +6,14 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TTP, parser, parsing, templates">
+        <meta name="description" content="Curated TTP templates and a small Python API for parsing network device output.">
       
       
       
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/api_reference/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/api_reference/">
       
       <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
@@ -28,10 +28,6 @@
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ba0d045b.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#2094f3">
         
       
     
@@ -59,13 +55,17 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="teal">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal">
   
     
     <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -109,6 +109,28 @@
         </div>
       </div>
     </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+      </form>
     
     
     
@@ -218,6 +240,18 @@
   <li class="md-tabs__item">
     <a href="./" class="md-tabs__link md-tabs__link--active">
       API Reference
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../release_notes/" class="md-tabs__link">
+      Release Notes
     </a>
   </li>
 
@@ -413,18 +447,33 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../release_notes/" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
       
-      <label class="md-nav__link" for="__nav_5">
+      <label class="md-nav__link" for="__nav_6">
         Templates
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Templates" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Templates
         </label>
@@ -440,14 +489,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
       
-      <label class="md-nav__link" for="__nav_5_1">
+      <label class="md-nav__link" for="__nav_6_1">
         Misc
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Misc" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_1">
+        <label class="md-nav__title" for="__nav_6_1">
           <span class="md-nav__icon md-icon"></span>
           Misc
         </label>
@@ -461,14 +510,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" >
       
-      <label class="md-nav__link" for="__nav_5_1_1">
+      <label class="md-nav__link" for="__nav_6_1_1">
         N2G
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="N2G" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_1">
+        <label class="md-nav__title" for="__nav_6_1_1">
           <span class="md-nav__icon md-icon"></span>
           N2G
         </label>
@@ -563,6 +612,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../ttp_templates/misc.N2G.cli_ip_data.juniper_junos/" class="md-nav__link">
+        cli_ip_data.juniper_junos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ttp_templates/misc.N2G.cli_ip_data.readme/" class="md-nav__link">
         cli_ip_data.readme
       </a>
@@ -587,8 +648,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../ttp_templates/misc.N2G.cli_isis_data.juniper/" class="md-nav__link">
-        cli_isis_data.juniper
+      <a href="../ttp_templates/misc.N2G.cli_isis_data.juniper_junos/" class="md-nav__link">
+        cli_isis_data.juniper_junos
       </a>
     </li>
   
@@ -659,8 +720,8 @@
   
   
     <li class="md-nav__item">
-      <a href="../ttp_templates/misc.N2G.cli_l2_data.juniper/" class="md-nav__link">
-        cli_l2_data.juniper
+      <a href="../ttp_templates/misc.N2G.cli_l2_data.juniper_junos/" class="md-nav__link">
+        cli_l2_data.juniper_junos
       </a>
     </li>
   
@@ -740,14 +801,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_2" type="checkbox" id="__nav_6_1_2" >
       
-      <label class="md-nav__link" for="__nav_5_1_2">
+      <label class="md-nav__link" for="__nav_6_1_2">
         Netbox
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netbox" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_2">
+        <label class="md-nav__title" for="__nav_6_1_2">
           <span class="md-nav__icon md-icon"></span>
           Netbox
         </label>
@@ -827,14 +888,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_3" type="checkbox" id="__nav_6_1_3" >
       
-      <label class="md-nav__link" for="__nav_5_1_3">
+      <label class="md-nav__link" for="__nav_6_1_3">
         Netmiko
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_3">
+        <label class="md-nav__title" for="__nav_6_1_3">
           <span class="md-nav__icon md-icon"></span>
           Netmiko
         </label>
@@ -974,14 +1035,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" >
       
-      <label class="md-nav__link" for="__nav_5_1_4">
+      <label class="md-nav__link" for="__nav_6_1_4">
         ttp_templates_tests
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_4">
+        <label class="md-nav__title" for="__nav_6_1_4">
           <span class="md-nav__icon md-icon"></span>
           ttp_templates_tests
         </label>
@@ -1033,14 +1094,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
       
-      <label class="md-nav__link" for="__nav_5_2">
+      <label class="md-nav__link" for="__nav_6_2">
         Platform
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Platform" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
+        <label class="md-nav__title" for="__nav_6_2">
           <span class="md-nav__icon md-icon"></span>
           Platform
         </label>
@@ -1053,6 +1114,18 @@
     <li class="md-nav__item">
       <a href="../ttp_templates/platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
+        arista_eos_show_inventory_pipe_json
       </a>
     </li>
   
@@ -1159,8 +1232,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../ttp_templates/platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
+        cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ttp_templates/platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         cisco_xr_show_arp_vrf_all
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/platform.cisco_xr_show_inventory/" class="md-nav__link">
+        cisco_xr_show_inventory
       </a>
     </li>
   
@@ -1255,8 +1352,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../ttp_templates/platform.juniper_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
-        juniper_show_isis_database_verbose_pipe_no_more
+      <a href="../ttp_templates/platform.juniper_junos_show_chassis_hardware_pipe_json/" class="md-nav__link">
+        juniper_junos_show_chassis_hardware_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
+        juniper_junos_show_isis_database_verbose_pipe_no_more
       </a>
     </li>
   
@@ -1290,14 +1399,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
       
-      <label class="md-nav__link" for="__nav_5_3">
+      <label class="md-nav__link" for="__nav_6_3">
         YANG
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="YANG" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_3">
+        <label class="md-nav__title" for="__nav_6_3">
           <span class="md-nav__icon md-icon"></span>
           YANG
         </label>
@@ -1434,14 +1543,14 @@
 <code class="highlight language-python"><span class="n">ttp_templates</span><span class="o">.</span><span class="n">parse_output</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">yang</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">misc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">structure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="n">template_vars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">]</span></code>
 
 
-</h3>
+<a href="#ttp_templates.parse_output" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents first">
 
-      <p>Function to load template text and parse data provided</p>
-<p><strong>Valid combinations of template location</strong></p>
-<p><code>path</code> attribute is always more preferred</p>
+      <p>Load a template and parse the provided data string with TTP.</p>
+<p><code>path</code> argument is always preferred over other arguments.</p>
+<p>Valid combinations of template location arguments:</p>
 <ul>
 <li><code>path="./misc/foo/bar.txt"</code></li>
 <li><code>platform="cisco_ios", command="show version"</code></li>
@@ -1454,82 +1563,57 @@
       <li class="field-body">
         <b>data</b>
             (<code>str</code>)
-        – <p>data to parse</p>
+        – <p>Raw text data to parse.</p>
       </li>
       <li class="field-body">
         <b>path</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>OS path to template to load</p>
+        – <p>OS path or <code>ttp://</code> URI to the template file to load.</p>
       </li>
       <li class="field-body">
         <b>platform</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>name of the platform to load template for</p>
+        – <p>Platform name to load the template for, e.g. <code>cisco_ios</code>.</p>
       </li>
       <li class="field-body">
         <b>command</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>command to load template for</p>
+        – <p>CLI command to load the template for, e.g. <code>show ip arp</code>.</p>
       </li>
       <li class="field-body">
         <b>yang</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>name of YANG module to load template for</p>
+        – <p>YANG module name to load the template for, e.g. <code>ietf-interfaces</code>.</p>
       </li>
       <li class="field-body">
         <b>misc</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>OS path to template within repository misc folder</p>
+        – <p>Path to the template relative to the repository <code>misc</code> folder.</p>
       </li>
       <li class="field-body">
         <b>structure</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>results structure list, dictionary or flat_list</p>
+        – <p>Output structure format - <code>list</code>, <code>dictionary</code>, or
+<code>flat_list</code>.</p>
       </li>
       <li class="field-body">
         <b>template_vars</b>
             (<code><span title="typing.Optional">Optional</span>[<span title="typing.Dict">Dict</span>]</code>)
-        – <p>variables to load in template object</p>
+        – <p>Additional variables to pass into the TTP template object.</p>
+      </li>
+  </ul>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><span title="typing.Union">Union</span>[<span title="typing.Dict">Dict</span>, <span title="typing.List">List</span>]</code>
+        – <p>Parsed results as a dict or list, depending on the <code>structure</code> argument.</p>
       </li>
   </ul>
 
         <details class="quote">
           <summary>Source code in <code>ttp_templates\ttp_templates.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 64</span>
-<span class="normal"> 65</span>
-<span class="normal"> 66</span>
-<span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
-<span class="normal"> 77</span>
-<span class="normal"> 78</span>
-<span class="normal"> 79</span>
-<span class="normal"> 80</span>
-<span class="normal"> 81</span>
-<span class="normal"> 82</span>
-<span class="normal"> 83</span>
-<span class="normal"> 84</span>
-<span class="normal"> 85</span>
-<span class="normal"> 86</span>
-<span class="normal"> 87</span>
-<span class="normal"> 88</span>
-<span class="normal"> 89</span>
-<span class="normal"> 90</span>
-<span class="normal"> 91</span>
-<span class="normal"> 92</span>
-<span class="normal"> 93</span>
-<span class="normal"> 94</span>
-<span class="normal"> 95</span>
-<span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
@@ -1537,7 +1621,67 @@
 <span class="normal">103</span>
 <span class="normal">104</span>
 <span class="normal">105</span>
-<span class="normal">106</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_output</span><span class="p">(</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_output</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1547,39 +1691,65 @@
     <span class="n">structure</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;list&quot;</span><span class="p">,</span>
     <span class="n">template_vars</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">]:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function to load template text and parse data provided</span>
+    <span class="sd">&quot;&quot;&quot;Load a template and parse the provided data string with TTP.</span>
 
-<span class="sd">    **Valid combinations of template location**</span>
+<span class="sd">    ``path`` argument is always preferred over other arguments.</span>
 
-<span class="sd">    ``path`` attribute is always more preferred</span>
+<span class="sd">    Valid combinations of template location arguments:</span>
 
 <span class="sd">    * ``path=&quot;./misc/foo/bar.txt&quot;``</span>
 <span class="sd">    * ``platform=&quot;cisco_ios&quot;, command=&quot;show version&quot;``</span>
 <span class="sd">    * ``yang=&quot;ietf-interfaces&quot;, platform=&quot;cisco_ios&quot;``</span>
 <span class="sd">    * ``misc=&quot;foo_folder/bar_template.txt&quot;``</span>
 
-<span class="sd">    :param data: data to parse</span>
-<span class="sd">    :param path: OS path to template to load</span>
-<span class="sd">    :param platform: name of the platform to load template for</span>
-<span class="sd">    :param command: command to load template for</span>
-<span class="sd">    :param yang: name of YANG module to load template for</span>
-<span class="sd">    :param misc: OS path to template within repository misc folder</span>
-<span class="sd">    :param structure: results structure list, dictionary or flat_list</span>
-<span class="sd">    :param template_vars: variables to load in template object</span>
+<span class="sd">    Args:</span>
+<span class="sd">        data: Raw text data to parse.</span>
+<span class="sd">        path: OS path or ``ttp://`` URI to the template file to load.</span>
+<span class="sd">        platform: Platform name to load the template for, e.g. ``cisco_ios``.</span>
+<span class="sd">        command: CLI command to load the template for, e.g. ``show ip arp``.</span>
+<span class="sd">        yang: YANG module name to load the template for, e.g. ``ietf-interfaces``.</span>
+<span class="sd">        misc: Path to the template relative to the repository ``misc`` folder.</span>
+<span class="sd">        structure: Output structure format - ``list``, ``dictionary``, or</span>
+<span class="sd">            ``flat_list``.</span>
+<span class="sd">        template_vars: Additional variables to pass into the TTP template object.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Parsed results as a dict or list, depending on the ``structure`` argument.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">template_vars</span> <span class="o">=</span> <span class="n">template_vars</span> <span class="ow">or</span> <span class="p">{}</span>
-    <span class="c1"># get template text</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+        <span class="s2">&quot;parse_output: loading template (platform=</span><span class="si">%r</span><span class="s2">, command=</span><span class="si">%r</span><span class="s2">, &quot;</span>
+        <span class="s2">&quot;path=</span><span class="si">%r</span><span class="s2">, yang=</span><span class="si">%r</span><span class="s2">, misc=</span><span class="si">%r</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="n">platform</span><span class="p">,</span>
+        <span class="n">command</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">,</span>
+        <span class="n">yang</span><span class="p">,</span>
+        <span class="n">misc</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># retrieve the template text using the provided locator arguments</span>
     <span class="n">template</span> <span class="o">=</span> <span class="n">get_template</span><span class="p">(</span>
         <span class="n">platform</span><span class="o">=</span><span class="n">platform</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">command</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span> <span class="n">yang</span><span class="o">=</span><span class="n">yang</span><span class="p">,</span> <span class="n">misc</span><span class="o">=</span><span class="n">misc</span>
     <span class="p">)</span>
 
-    <span class="c1"># create parser object</span>
+    <span class="k">if</span> <span class="n">template</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;parse_output: no valid template-locating argument combination was &quot;</span>
+            <span class="s2">&quot;provided; supply one of: path, platform+command, yang+platform, or misc.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parse_output: creating TTP parser, structure=</span><span class="si">%r</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">structure</span><span class="p">)</span>
+
+    <span class="c1"># instantiate the TTP parser with the data and template</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">ttp</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="n">template_vars</span><span class="p">)</span>
 
-    <span class="c1"># parse and return results</span>
+    <span class="c1"># run the parse pass and collect results</span>
     <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">one</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">structure</span><span class="o">=</span><span class="n">structure</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">structure</span><span class="o">=</span><span class="n">structure</span><span class="p">)</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;parse_output: parsing complete&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">results</span>
 </code></pre></div>
 </td></tr></table>
         </details>
@@ -1594,17 +1764,17 @@
 
 
 <h3 id="ttp_templates.get_template" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">ttp_templates</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">yang</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">misc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span></code>
+<code class="highlight language-python"><span class="n">ttp_templates</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">yang</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">misc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
 
 
-</h3>
+<a href="#ttp_templates.get_template" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents first">
 
-      <p>Function to locate template file and return it's content</p>
-<p><strong>Valid combinations of template location</strong></p>
-<p><code>path</code> attribute is always more preferred</p>
+      <p>Locate a template file and return its content.</p>
+<p><code>path</code> argument is always preferred over other arguments.</p>
+<p>Valid combinations of template location arguments:</p>
 <ul>
 <li><code>path="./misc/foo/bar.txt"</code></li>
 <li><code>platform="cisco_ios", command="show version"</code></li>
@@ -1617,37 +1787,45 @@
       <li class="field-body">
         <b>path</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>OS path to template to load</p>
+        – <p>OS path or <code>ttp://</code> URI to the template file to load.</p>
       </li>
       <li class="field-body">
         <b>platform</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>name of the platform to load template for</p>
+        – <p>Platform name to load the template for, e.g. <code>cisco_ios</code>.</p>
       </li>
       <li class="field-body">
         <b>command</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>command to load template for</p>
+        – <p>CLI command to load the template for, e.g. <code>show ip arp</code>.</p>
       </li>
       <li class="field-body">
         <b>yang</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>name of YANG module to load template for</p>
+        – <p>YANG module name to load the template for, e.g. <code>ietf-interfaces</code>.</p>
       </li>
       <li class="field-body">
         <b>misc</b>
             (<code><span title="typing.Optional">Optional</span>[str]</code>)
-        – <p>OS path to template within repository misc folder</p>
+        – <p>Path to the template relative to the repository <code>misc</code> folder.</p>
+      </li>
+  </ul>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><span title="typing.Optional">Optional</span>[str]</code>
+        – <p>Template file content as a string, or <code>None</code> if no valid argument</p>
+      </li>
+      <li class="field-body">
+            <code><span title="typing.Optional">Optional</span>[str]</code>
+        – <p>combination was provided.</p>
       </li>
   </ul>
 
         <details class="quote">
           <summary>Source code in <code>ttp_templates\ttp_templates.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
@@ -1697,43 +1875,85 @@
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
-<span class="normal">61</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_template</span><span class="p">(</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_template</span><span class="p">(</span>
     <span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">yang</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">misc</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function to locate template file and return it&#39;s content</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Locate a template file and return its content.</span>
 
-<span class="sd">    **Valid combinations of template location**</span>
+<span class="sd">    ``path`` argument is always preferred over other arguments.</span>
 
-<span class="sd">    ``path`` attribute is always more preferred</span>
+<span class="sd">    Valid combinations of template location arguments:</span>
 
 <span class="sd">    * ``path=&quot;./misc/foo/bar.txt&quot;``</span>
 <span class="sd">    * ``platform=&quot;cisco_ios&quot;, command=&quot;show version&quot;``</span>
 <span class="sd">    * ``yang=&quot;ietf-interfaces&quot;, platform=&quot;cisco_ios&quot;``</span>
 <span class="sd">    * ``misc=&quot;foo_folder/bar_template.txt&quot;``</span>
 
-<span class="sd">    :param path: OS path to template to load</span>
-<span class="sd">    :param platform: name of the platform to load template for</span>
-<span class="sd">    :param command: command to load template for</span>
-<span class="sd">    :param yang: name of YANG module to load template for</span>
-<span class="sd">    :param misc: OS path to template within repository misc folder</span>
+<span class="sd">    Args:</span>
+<span class="sd">        path: OS path or ``ttp://`` URI to the template file to load.</span>
+<span class="sd">        platform: Platform name to load the template for, e.g. ``cisco_ios``.</span>
+<span class="sd">        command: CLI command to load the template for, e.g. ``show ip arp``.</span>
+<span class="sd">        yang: YANG module name to load the template for, e.g. ``ietf-interfaces``.</span>
+<span class="sd">        misc: Path to the template relative to the repository ``misc`` folder.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Template file content as a string, or ``None`` if no valid argument</span>
+<span class="sd">        combination was provided.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1"># form path to template file</span>
+    <span class="c1"># resolve the relative path to the template file based on provided arguments</span>
     <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+        <span class="c1"># strip the optional &quot;ttp://&quot; scheme prefix used by TTP library</span>
         <span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;ttp://&quot;</span><span class="p">):</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">6</span><span class="p">:]</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;get_template: using explicit path &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">platform</span> <span class="ow">and</span> <span class="n">command</span><span class="p">:</span>
         <span class="n">platform</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="n">command</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="c1"># replace pipe symbol with the word &quot;pipe&quot; to form a valid filename</span>
         <span class="n">command</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="s2">&quot;pipe&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">]:</span>
             <span class="n">platform</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
             <span class="n">command</span> <span class="o">=</span> <span class="n">command</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
         <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;platform/</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.txt&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">platform</span><span class="p">,</span> <span class="n">command</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;get_template: resolved platform+command path &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">platform</span> <span class="ow">and</span> <span class="n">yang</span><span class="p">:</span>
         <span class="n">platform</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="n">yang</span> <span class="o">=</span> <span class="n">yang</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
@@ -1741,17 +1961,39 @@
             <span class="n">platform</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
             <span class="n">yang</span> <span class="o">=</span> <span class="n">yang</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
         <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;yang/</span><span class="si">{}</span><span class="s2">_</span><span class="si">{}</span><span class="s2">.txt&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">yang</span><span class="p">,</span> <span class="n">platform</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;get_template: resolved yang+platform path &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">misc</span><span class="p">:</span>
         <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;misc/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">misc</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;get_template: resolved misc path &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;get_template: no valid argument combination provided, &quot;</span> <span class="s2">&quot;returning None&quot;</span>
+        <span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span>
 
     <span class="n">template_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
-    <span class="n">template_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">template_dir</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="c1"># Resolve symlinks and &quot;..&quot; segments so the containment check is reliable</span>
+    <span class="n">template_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">template_dir</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
 
-    <span class="c1"># open template file and return content</span>
+    <span class="c1"># Ensure the resolved path stays inside the package directory to prevent</span>
+    <span class="c1"># path-traversal attacks (e.g. path=&quot;../../etc/passwd&quot;).</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">template_filename</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">template_dir</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Template path &#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&#39; resolves outside the package directory.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;get_template: loading template file &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">template_filename</span><span class="p">)</span>
+
+    <span class="c1"># read and return the template file content</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">template_filename</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+        <span class="s2">&quot;get_template: loaded template &#39;</span><span class="si">%s</span><span class="s2">&#39;, </span><span class="si">%d</span><span class="s2"> characters&quot;</span><span class="p">,</span>
+        <span class="n">template_filename</span><span class="p">,</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">content</span><span class="p">),</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">content</span>
 </code></pre></div>
 </td></tr></table>
         </details>
@@ -1766,126 +2008,220 @@
 
 
 <h3 id="ttp_templates.list_templates" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">ttp_templates</span><span class="o">.</span><span class="n">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span></code>
+<code class="highlight language-python"><span class="n">ttp_templates</span><span class="o">.</span><span class="n">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span></code>
 
 
-</h3>
+<a href="#ttp_templates.list_templates" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents first">
 
-      <p>Function to list available templates matching given pattern.</p>
-<p>Primary usecase for this function is to simplify integration with
-other applications by providing API interface to list available
-TTP templates.</p>
+      <p>List available templates whose filenames match the given glob pattern.</p>
+<p>The primary use case for this function is to simplify integration with
+other applications by providing a programmatic API to enumerate all
+available TTP templates.</p>
 
   <p>Parameters:</p>
   <ul>
       <li class="field-body">
         <b>pattern</b>
             (<code>str</code>)
-        – <p>glob pattern to filter templates by name</p>
+        – <p>Glob pattern used to filter template filenames. Defaults to
+<code>"*"</code> which matches all templates.</p>
+      </li>
+  </ul>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><span title="typing.Dict">Dict</span></code>
+        – <p>Dictionary with three top-level keys:</p>
       </li>
       <li class="field-body">
-        <b>return</b>
-        – <p>dictionary with platform, yang and misc keys</p>
+            <code><span title="typing.Dict">Dict</span></code>
+        – <ul>
+<li><code>platform</code> - list of matching platform template filenames.</li>
+</ul>
+      </li>
+      <li class="field-body">
+            <code><span title="typing.Dict">Dict</span></code>
+        – <ul>
+<li><code>yang</code> - list of matching YANG template filenames.</li>
+</ul>
+      </li>
+      <li class="field-body">
+            <code><span title="typing.Dict">Dict</span></code>
+        – <ul>
+<li><code>misc</code> - nested dict mirroring the <code>misc/</code> directory hierarchy,
+with leaf values being lists of matching filenames.</li>
+</ul>
       </li>
   </ul>
 
         <details class="quote">
           <summary>Source code in <code>ttp_templates\ttp_templates.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Function to list available templates matching given pattern.</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;List available templates whose filenames match the given glob pattern.</span>
 
-<span class="sd">    Primary usecase for this function is to simplify integration with</span>
-<span class="sd">    other applications by providing API interface to list available</span>
-<span class="sd">    TTP templates.</span>
+<span class="sd">    The primary use case for this function is to simplify integration with</span>
+<span class="sd">    other applications by providing a programmatic API to enumerate all</span>
+<span class="sd">    available TTP templates.</span>
 
-<span class="sd">    :param pattern: glob pattern to filter templates by name</span>
-<span class="sd">    :param return: dictionary with platform, yang and misc keys</span>
+<span class="sd">    Args:</span>
+<span class="sd">        pattern: Glob pattern used to filter template filenames. Defaults to</span>
+<span class="sd">            ``&quot;*&quot;`` which matches all templates.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Dictionary with three top-level keys:</span>
+
+<span class="sd">        * ``platform`` - list of matching platform template filenames.</span>
+<span class="sd">        * ``yang`` - list of matching YANG template filenames.</span>
+<span class="sd">        * ``misc`` - nested dict mirroring the ``misc/`` directory hierarchy,</span>
+<span class="sd">            with leaf values being lists of matching filenames.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">res</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">&quot;yang&quot;</span><span class="p">:</span> <span class="p">[],</span>
         <span class="s2">&quot;misc&quot;</span><span class="p">:</span> <span class="p">{},</span>
     <span class="p">}</span>
+    <span class="c1"># filenames to exclude regardless of the caller&#39;s pattern</span>
     <span class="n">skip_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;readme.md&quot;</span><span class="p">]</span>
     <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;platform&quot;</span><span class="p">,</span> <span class="s2">&quot;yang&quot;</span><span class="p">,</span> <span class="s2">&quot;misc&quot;</span><span class="p">]</span>
     <span class="n">ttp_templates_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
 
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+        <span class="s2">&quot;list_templates: scanning &#39;</span><span class="si">%s</span><span class="s2">&#39; with pattern &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">ttp_templates_dir</span><span class="p">,</span> <span class="n">pattern</span>
+    <span class="p">)</span>
+
     <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
         <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ttp_templates_dir</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">dirname</span><span class="p">):</span>
-            <span class="c1"># get a list of parent folders names for current folder</span>
+            <span class="c1"># build a list of folder names relative to the package root</span>
+            <span class="c1"># e.g. &quot;/platform&quot; → [&quot;platform&quot;], &quot;/misc/N2G/cli_ip_data&quot; → [&quot;misc&quot;, &quot;N2G&quot;, &quot;cli_ip_data&quot;]</span>
             <span class="n">dirpath_items</span> <span class="o">=</span> <span class="n">dirpath</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">ttp_templates_dir</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
-            <span class="c1"># skip if no files in folder</span>
+
+            <span class="c1"># skip directories that contain no files</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">filenames</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="c1"># filter files</span>
-            <span class="n">files</span> <span class="o">=</span> <span class="p">[</span>
+
+            <span class="c1"># keep only files that match the caller&#39;s glob pattern and are not in the skip list;</span>
+            <span class="c1"># sort the result so the output is deterministic regardless of filesystem ordering</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
                 <span class="n">filename</span>
                 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span>
                 <span class="k">if</span> <span class="p">(</span>
                     <span class="n">fnmatchcase</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
                     <span class="ow">and</span> <span class="n">filename</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">skip_files</span>
                 <span class="p">)</span>
-            <span class="p">]</span>
-            <span class="c1"># descend down dirpath_items in res and save files list</span>
+            <span class="p">)</span>
+
+            <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+                <span class="s2">&quot;list_templates: dir &#39;</span><span class="si">%s</span><span class="s2">&#39; → </span><span class="si">%d</span><span class="s2">/</span><span class="si">%d</span><span class="s2"> files match pattern&quot;</span><span class="p">,</span>
+                <span class="n">dirpath</span><span class="p">,</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">),</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">filenames</span><span class="p">),</span>
+            <span class="p">)</span>
+
+            <span class="c1"># traverse the result dict to the correct nesting level and store the file list</span>
             <span class="n">ref</span> <span class="o">=</span> <span class="n">res</span>
             <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dirpath_items</span><span class="p">):</span>
-                <span class="c1"># check if last item and save files list</span>
                 <span class="k">if</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">dirpath_items</span><span class="p">):</span>
-                    <span class="n">ref</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">files</span>
-                <span class="c1"># create item key in res and obtain reference to its value</span>
+                    <span class="c1"># Reached the leaf directory: store the matching files list.</span>
+                    <span class="c1"># Guard against overwriting an existing sub-dict, which would</span>
+                    <span class="c1"># happen if a template file sits directly inside misc/ alongside</span>
+                    <span class="c1"># subdirectories (e.g. misc/my_template.txt).  In that case we</span>
+                    <span class="c1"># store the files under the empty-string key so the dict</span>
+                    <span class="c1"># structure is preserved and subsequent iterations don&#39;t crash.</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ref</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">),</span> <span class="nb">dict</span><span class="p">):</span>
+                        <span class="n">ref</span><span class="p">[</span><span class="n">item</span><span class="p">][</span><span class="s2">&quot;&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">files</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">ref</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="o">=</span> <span class="n">files</span>
                 <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># descend one level deeper, creating intermediate dicts as needed</span>
                     <span class="n">ref</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">{})</span>
+
+    <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;list_templates: scan complete&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
 </code></pre></div>
 </td></tr></table>
@@ -1933,13 +2269,13 @@ TTP templates.</p>
       
       
         
-        <a href="../ttp_templates/misc.N2G.cli_ip_data.a10/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_ip_data.a10" rel="next">
+        <a href="../release_notes/" class="md-footer__link md-footer__link--next" aria-label="Next: Release Notes" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_ip_data.a10
+              Release Notes
             </div>
           </div>
           <div class="md-footer__button md-icon">

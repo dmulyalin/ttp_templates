@@ -6,21 +6,21 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="TTP, parser, parsing, templates">
+        <meta name="description" content="Curated TTP templates and a small Python API for parsing network device output.">
       
       
       
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://ttp_templates.github.io/ttp_templates/misc.N2G.cli_l2_data.juniper/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/misc.N2G.cli_isis_data.juniper_junos/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cli_l2_data.juniper - TTP Templates Collection</title>
+        <title>cli_isis_data.juniper_junos - TTP Templates Collection</title>
       
     
     
@@ -28,10 +28,6 @@
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#2094f3">
         
       
     
@@ -59,13 +55,17 @@
   
     
     
+      
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="blue" data-md-color-accent="teal">
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal">
   
     
     <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -98,12 +98,34 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cli_l2_data.juniper
+              cli_isis_data.juniper_junos
             
           </span>
         </div>
       </div>
     </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z"/></svg>
+            </label>
+          
+        
+      </form>
     
     
     
@@ -211,6 +233,18 @@
   <li class="md-tabs__item">
     <a href="../../api_reference/" class="md-tabs__link">
       API Reference
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../release_notes/" class="md-tabs__link">
+      Release Notes
     </a>
   </li>
 
@@ -357,6 +391,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../release_notes/" class="md-nav__link">
+        Release Notes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -364,14 +413,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
-      <label class="md-nav__link" for="__nav_5">
+      <label class="md-nav__link" for="__nav_6">
         Templates
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Templates" data-md-level="1">
-        <label class="md-nav__title" for="__nav_5">
+        <label class="md-nav__title" for="__nav_6">
           <span class="md-nav__icon md-icon"></span>
           Templates
         </label>
@@ -389,14 +438,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" checked>
       
-      <label class="md-nav__link" for="__nav_5_1">
+      <label class="md-nav__link" for="__nav_6_1">
         Misc
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Misc" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_1">
+        <label class="md-nav__title" for="__nav_6_1">
           <span class="md-nav__icon md-icon"></span>
           Misc
         </label>
@@ -412,14 +461,14 @@
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_1" type="checkbox" id="__nav_5_1_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" checked>
       
-      <label class="md-nav__link" for="__nav_5_1_1">
+      <label class="md-nav__link" for="__nav_6_1_1">
         N2G
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="N2G" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_1">
+        <label class="md-nav__title" for="__nav_6_1_1">
           <span class="md-nav__icon md-icon"></span>
           N2G
         </label>
@@ -514,6 +563,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../misc.N2G.cli_ip_data.juniper_junos/" class="md-nav__link">
+        cli_ip_data.juniper_junos
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../misc.N2G.cli_ip_data.readme/" class="md-nav__link">
         cli_ip_data.readme
       </a>
@@ -536,11 +597,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../misc.N2G.cli_isis_data.juniper/" class="md-nav__link">
-        cli_isis_data.juniper
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        cli_isis_data.juniper_junos
       </a>
+      
     </li>
   
 
@@ -608,19 +677,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        cli_l2_data.juniper
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cli_l2_data.juniper_junos/" class="md-nav__link">
+        cli_l2_data.juniper_junos
       </a>
-      
     </li>
   
 
@@ -699,14 +760,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_2" type="checkbox" id="__nav_5_1_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_2" type="checkbox" id="__nav_6_1_2" >
       
-      <label class="md-nav__link" for="__nav_5_1_2">
+      <label class="md-nav__link" for="__nav_6_1_2">
         Netbox
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netbox" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_2">
+        <label class="md-nav__title" for="__nav_6_1_2">
           <span class="md-nav__icon md-icon"></span>
           Netbox
         </label>
@@ -786,14 +847,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_3" type="checkbox" id="__nav_5_1_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_3" type="checkbox" id="__nav_6_1_3" >
       
-      <label class="md-nav__link" for="__nav_5_1_3">
+      <label class="md-nav__link" for="__nav_6_1_3">
         Netmiko
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Netmiko" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_3">
+        <label class="md-nav__title" for="__nav_6_1_3">
           <span class="md-nav__icon md-icon"></span>
           Netmiko
         </label>
@@ -933,14 +994,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1_4" type="checkbox" id="__nav_5_1_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" >
       
-      <label class="md-nav__link" for="__nav_5_1_4">
+      <label class="md-nav__link" for="__nav_6_1_4">
         ttp_templates_tests
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="ttp_templates_tests" data-md-level="3">
-        <label class="md-nav__title" for="__nav_5_1_4">
+        <label class="md-nav__title" for="__nav_6_1_4">
           <span class="md-nav__icon md-icon"></span>
           ttp_templates_tests
         </label>
@@ -992,14 +1053,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
       
-      <label class="md-nav__link" for="__nav_5_2">
+      <label class="md-nav__link" for="__nav_6_2">
         Platform
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="Platform" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_2">
+        <label class="md-nav__title" for="__nav_6_2">
           <span class="md-nav__icon md-icon"></span>
           Platform
         </label>
@@ -1012,6 +1073,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
+        arista_eos_show_inventory_pipe_json
       </a>
     </li>
   
@@ -1118,8 +1191,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
+        cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         cisco_xr_show_arp_vrf_all
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_inventory/" class="md-nav__link">
+        cisco_xr_show_inventory
       </a>
     </li>
   
@@ -1214,8 +1311,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
-        juniper_show_isis_database_verbose_pipe_no_more
+      <a href="../platform.juniper_junos_show_chassis_hardware_pipe_json/" class="md-nav__link">
+        juniper_junos_show_chassis_hardware_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
+        juniper_junos_show_isis_database_verbose_pipe_no_more
       </a>
     </li>
   
@@ -1249,14 +1358,14 @@
     <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
       
-      <label class="md-nav__link" for="__nav_5_3">
+      <label class="md-nav__link" for="__nav_6_3">
         YANG
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="YANG" data-md-level="2">
-        <label class="md-nav__title" for="__nav_5_3">
+        <label class="md-nav__title" for="__nav_6_3">
           <span class="md-nav__icon md-icon"></span>
           YANG
         </label>
@@ -1334,109 +1443,114 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_l2_data.juniper.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_isis_data.juniper_junos.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cli_l2_data.juniper</h1>
+                  <h1>cli_isis_data.juniper_junos</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_l2_data/juniper.txt
+<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_isis_data/juniper_junos.txt
 </code></pre></div></p>
 <hr />
-<p>This template designed to parse Juniper JunOS configuration and LLDP neighbors.</p>
-<p>Commands parsed:</p>
+<p>Template to parse Juniper JunOS "show isis database extensive | no-more" output.</p>
+<p>Template to parse ISIS LSDB of Juniper JunOS devices out of 
+"show isis database extensive | no-more" command output.</p>
+<p>For this sample data:
+<div class="highlight"><pre><span></span><code>IS-IS level 2 link-state database:
+
+R1-X1.00-00 Sequence: 0x22425, Checksum: 0x8904, Lifetime: 463 secs
+   IS neighbor: R1-X2.00                       Metric:       20
+     Two-way fragment: R1-X2.00-00, Two-way first fragment: R1-X2.00-00
+   IP prefix: 10.123.123.31/32                 Metric:        0 Internal Up
+   IP prefix: 10.123.123.41/32                 Metric:        0 Internal Up
+   V6 prefix: ::ffff:10.123.111.236/126        Metric:       20 Internal Up
+
+  Header: LSP ID: R1-X1.00-00, Length: 233 bytes
+    Allocated length: 284 bytes, Router ID: 10.123.123.31
+    Remaining lifetime: 463 secs, Level: 2, Interface: 80
+    Estimated free bytes: 51, Actual free bytes: 51
+    Aging timer expires in: 463 secs
+    Protocols: IP, IPv6
+
+  Packet: LSP ID: R1-X1.00-00, Length: 233 bytes, Lifetime : 1194 secs
+    Checksum: 0x8904, Sequence: 0x22425, Attributes: 0x3 L1 L2
+    NLPID: 0x83, Fixed length: 27 bytes, Version: 1, Sysid length: 0 bytes
+    Packet type: 20, Packet version: 1, Max area: 0
+
+  TLVs:
+    Area address: 49.0001 (3)
+    LSP Buffer Size: 1492
+    Speaks: IP
+    Speaks: IPV6
+    IP router id: 10.123.123.31
+    IP address: 10.123.123.31
+    IPv6 TE Router ID: 2001::10:123:123:31
+    Hostname: R1-X1
+    Extended IS Reachability TLV, Type: 22, Length: 85
+    IS extended neighbor: R1-X2.00, Metric: default 20 SubTLV len: 74
+      IP address: 10.123.111.238
+      Neighbor&#39;s IP address: 10.123.111.237
+      Local interface index: 332, Remote interface index: 461
+      Current reservable bandwidth:
+        Priority 0 : 7Gbps
+        Priority 1 : 7Gbps
+        Priority 2 : 7Gbps
+        Priority 3 : 7Gbps
+        Priority 4 : 7Gbps
+        Priority 5 : 7Gbps
+        Priority 6 : 6.7Gbps
+        Priority 7 : 6.7Gbps
+      Maximum reservable bandwidth: 7Gbps
+      Maximum bandwidth: 10Gbps
+      Administrative groups:  0 none
+    IPv6 prefix: ::ffff:10.123.111.236/126 Metric 20 Up
+    IP extended prefix: 10.123.123.31/32 metric 0 up
+    IP extended prefix: 10.123.123.41/32 metric 0 up
+    IP extended prefix: 10.123.111.236/30 metric 20 up
+    IP address: 10.123.123.41
+    Authentication data: 17 bytes
+  No queued transmissions
+</code></pre></div></p>
+<p>This template produces this result:
+<div class="highlight"><pre><span></span><code>[[{&#39;isis_processes&#39;: {&#39;ISIS&#39;: {&#39;R1-X1&#39;: [{&#39;isis_area&#39;: &#39;49.0001&#39;,
+                                          &#39;level&#39;: &#39;2&#39;,
+                                          &#39;links&#39;: [{&#39;bw_gbit&#39;: &#39;10&#39;,
+                                                     &#39;local_intf_id&#39;: &#39;332&#39;,
+                                                     &#39;local_ip&#39;: &#39;10.123.111.238&#39;,
+                                                     &#39;metric&#39;: &#39;20&#39;,
+                                                     &#39;peer_intf_id&#39;: &#39;461&#39;,
+                                                     &#39;peer_ip&#39;: &#39;10.123.111.237&#39;,
+                                                     &#39;peer_name&#39;: &#39;R1-X2&#39;}],
+                                          &#39;networks&#39;: [{&#39;metric&#39;: &#39;0&#39;,
+                                                        &#39;network&#39;: &#39;10.123.123.31/32&#39;},
+                                                       {&#39;metric&#39;: &#39;0&#39;,
+                                                        &#39;network&#39;: &#39;10.123.123.41/32&#39;},
+                                                       {&#39;metric&#39;: &#39;20&#39;,
+                                                        &#39;network&#39;: &#39;::ffff:10.123.111.236/126&#39;}],
+                                          &#39;rid&#39;: &#39;10.123.123.31&#39;,
+                                          &#39;rid_v6&#39;: &#39;2001::10:123:123:31&#39;}]}}}]]
+</code></pre></div></p>
+<p>Notes:</p>
 <ul>
-<li>show lldp local-information - to extract local hostname</li>
-<li>show lldp neighbors - to extract LLDP neighbors</li>
-<li>show configuration interfaces | display set | no-more - to extract interfaces confgiuration and LAG details</li>
-<li>show interfaces detail | no-more - to extract interfaces state to add all connected devices</li>
+<li>Process ID (PID) always set to <code>ISIS</code> value as PID does not present in 
+  "show isis database extensive | no-more" command output on Juniper devices.</li>
 </ul>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;juniper&quot; results=&quot;per_template&quot;&gt;
-
-&lt;doc&gt;
-This template designed to parse Juniper JunOS configuration and LLDP neighbors.
-
-Commands parsed:
-
-- show lldp local-information - to extract local hostname
-- show lldp neighbors - to extract LLDP neighbors
-- show configuration interfaces | display set | no-more - to extract interfaces confgiuration and LAG details
-- show interfaces detail | no-more - to extract interfaces state to add all connected devices
+<div class="highlight"><pre><span></span><code>&lt;doc&gt;
+Template to parse Juniper JunOS &quot;show isis database extensive | no-more&quot; output.
 &lt;/doc&gt;
 
-&lt;input&gt;
+&lt;input load=&quot;python&quot;&gt;
 commands = [
-    &quot;show lldp local-information | no-more&quot;,
-    &quot;show lldp neighbors | no-more&quot;,
-    &quot;show configuration interfaces | display set | no-more&quot;,
-    &quot;show interfaces detail | no-more&quot;,
-]    
+    &quot;show isis database extensive | no-more&quot;,
+]
 platform = [&quot;juniper&quot;, &quot;juniper_junos&quot;]
 &lt;/input&gt;
 
-&lt;!-- gethostname used if no show lldp output provided --&gt;
-&lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
-
-&lt;macro&gt;
-def check_is_physical_port(data):
-    for item in _ttp_[&quot;vars&quot;][&quot;physical_ports&quot;]:
-        if data.startswith(item) and not &quot;.&quot; in item:
-            return data, {&quot;is_physical_port&quot;: True}
-    return data
-
-def extract_lldp_peer(data):
-    if &quot; &quot; in data[&quot;info&quot;]:
-        *port_info, peer_name = data.pop(&quot;info&quot;).split(&quot; &quot;)
-        data[&quot;data.peer_port_description&quot;] = &quot; &quot;.join(port_info).strip()
-    else:
-        port_info, peer_name = data.pop(&quot;info&quot;), data[&quot;data.chassis_id&quot;]
-        data[&quot;data.peer_port_description&quot;] = port_info
-
-    data[&quot;target.id&quot;] = peer_name
-    data[&quot;trgt_label&quot;] = &quot;&quot;
-
-    # check if port_info is name of the interface, use it as link trgt_label
-    if len(port_info) == 1 and not port_info[0].isdigit():
-        data[&quot;trgt_label&quot;], _ = _ttp_[&quot;match&quot;][&quot;resuball&quot;](port_info[0], &quot;IfsNormalize&quot;)
-&lt;/macro&gt;
-
-&lt;!-- show lldp local-information - parse global params --&gt;
-&lt;group name=&quot;{{ local_hostname }}.node_facts.system**&quot;&gt;
-LLDP Local Information details {{ _start_ }}
-Chassis ID   : {{ chassis_id }}
-System name  : {{ local_hostname | record(local_hostname) }}
-System descr : {{ description | PHRASE }}
-&lt;group name=&quot;/{{ local_hostname }}.interfaces_id*&quot;&gt;
-{{ interface | resuball(IfsNormalize) }} {{ parent }} {{ id | DIGIT }} {{ description | ORPHRASE }} {{ status }}
-&lt;/group&gt;
-&lt;/group&gt;
-
-&lt;!-- Interfaces configuration group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**&quot;&gt;
-set interfaces {{ interface | resuball(IfsNormalize) }} description &quot;{{ description | re(&quot;.+&quot;) }}&quot;
-set interfaces {{ interface | resuball(IfsNormalize) }} ether-options 802.3ad {{ lag_id | DIGIT }}
-set interfaces {{ interface | resuball(IfsNormalize) }} mtu {{ mtu }}
-set interfaces {{ interface | resuball(IfsNormalize) }} aggregated-ether-options lacp {{ lag_mode }}
-&lt;/group&gt;
-
-&lt;!-- Interfaces state group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**.state&quot;&gt;    
-Physical interface: {{ interface | _start_ | resuball(IfsNormalize) | macro(&quot;check_is_physical_port&quot;) }}, {{ admin | ORPHRASE }}, Physical link is {{ line | ORPHRASE }}
-  Description: {{ description | re(&quot;.+&quot;) }}
-  Link-level type: Ethernet, MTU: {{ mtu }}, Speed: {{ bw_gbits }}Gbps, {{ ignore(PHRASE) }}
-  Current address: {{ mac }}, Hardware address: {{ ignore }}
-&lt;/group&gt;
-
-&lt;!-- LLDP peers group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.lldp_peers*&quot; functions=&quot;macro(&#39;extract_lldp_peer&#39;) | expand()&quot;&gt;
-{{ src_label | resuball(IfsNormalize) }}  {{ data.parent_interface }} {{ data.chassis_id | MAC }} {{ info | re(&quot;.+&quot;) }}
-{{ source | set(&quot;local_hostname&quot;) }}
-&lt;/group&gt;
-&lt;/template&gt;
+&lt;extend template=&quot;ttp://platform/juniper_junos_show_isis_database_verbose_pipe_no_more.txt&quot;/&gt;
 </code></pre></div>
 </details>
                 
@@ -1463,7 +1577,7 @@ Physical interface: {{ interface | _start_ | resuball(IfsNormalize) | macro(&quo
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.N2G.cli_l2_data.huawei/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_l2_data.huawei" rel="prev">
+        <a href="../misc.N2G.cli_isis_data.cisco_xr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_isis_data.cisco_xr" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1472,20 +1586,20 @@ Physical interface: {{ interface | _start_ | resuball(IfsNormalize) | macro(&quo
               <span class="md-footer__direction">
                 Previous
               </span>
-              cli_l2_data.huawei
+              cli_isis_data.cisco_xr
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.N2G.cli_l2_data.readme/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_l2_data.readme" rel="next">
+        <a href="../misc.N2G.cli_isis_data.readme/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_isis_data.readme" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_l2_data.readme
+              cli_isis_data.readme
             </div>
           </div>
           <div class="md-footer__button md-icon">
