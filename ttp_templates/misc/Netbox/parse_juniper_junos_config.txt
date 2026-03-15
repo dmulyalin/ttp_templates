@@ -26,26 +26,50 @@ def postprocess(data):
     # transform interfaces dict to list
     data["interfaces"] = [
         {"name": k, **v} 
-        for k, v in data["interfaces"].items()
+        for k, v in data.get("interfaces", {}).items()
     ]
 
     # process interfaces further
     for i in data["interfaces"]:
         # add interface type - other, virtual or lag
         i["interface_type"] = "other"    
-        if any(
+        if "irb" in i["name"]:
+            i["interface_type"] = "bridge"
+            i["switching"] = {
+                "dot1q_mode": "access",
+                "vlans": [int(i["name"].split(".")[1])]
+            }
+        elif any(
             k in i["name"] for k in [".", "gr-", "lo0", "vlan"]
         ):
             i["interface_type"] = "virtual"
         elif "ae" in i["name"]:
             i["interface_type"] = "lag"  
-
+            
         # add interface parent details
-        if "lag_id" in i:
-            i["parent"] = i["lag_id"]
-        elif "." in i["name"]:
-            i["parent"] = i["name"].split(".")[0]    
+        if "." in i["name"] and not any(k in i["name"] for k in ["lo0", "vlan", "irb", "gr-"]):
+            i["parent"] = i["name"].split(".")[0]
 
+        # form list of vlans
+        if i.get("switching", {}).get("vlans", []):
+            vlans = []
+            for vlan in i.get("switching", {}).get("vlans", []):
+                if isinstance(vlan, dict):
+                    vlans.append(vlan["vlan"])
+                else:
+                    vlans.append(vlan)
+            i["switching"]["vlans"] = vlans 	
+			
+        # calculate dot1q mode
+        switching = i.get("switching", {})
+        if switching.get("dot1q_mode") == "trunk":
+            if "all" in switching.get("vlans", []):
+                i["switching"]["dot1q_mode"] = "tagged-all"
+            else:
+                i["switching"]["dot1q_mode"] = "tagged"
+        elif switching.get("dot1q_mode") == "access":
+            i["switching"]["dot1q_mode"] = "access"
+            
         # set interface default parameters
         i.setdefault("enabled", True)
         i.setdefault("description", "")
@@ -65,7 +89,7 @@ set system domain-name {{ domain_name }}
 </group>
 
 ## ------------------------------------------------------------------------------------------
-## ROuting-Options Configuration 
+## Routing-Options Configuration 
 ## ------------------------------------------------------------------------------------------
 <group name="routing_options**" method="table">
 set routing-options route-distinguisher-id {{ route_distinguisher }}
@@ -185,6 +209,8 @@ set interfaces {{ name | let("flexible_vlan_tagging", True) }} flexible-vlan-tag
 set interfaces {{ name }} encapsulation {{ encapsulation }}
 set interfaces {{ name }} aggregated-ether-options minimum-links {{ lag_min_links }}
 set interfaces {{ name }} aggregated-ether-options lacp {{ lacp_mode }}
+set interfaces {{ name }} speed {{ speed }}
+set interfaces {{ name }} native-vlan-id {{ dot1q_native_vlan }}					
 </group>
 
 <group name="interfaces**.{{ name }}**.damping**" method="table">
@@ -195,7 +221,7 @@ set interfaces {{ name }} damping suppress {{ suppress }}
 set interfaces {{ name | let("is_enabled", True) }} damping enable
 </group>
 
-<group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name')" method="table">
+<group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
 set interfaces {{ name }} unit {{ unit }} description {{ description | re(".+") | default("") }}
 set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q }}
 </group>
@@ -213,7 +239,6 @@ set interfaces {{ name }} unit {{ unit }} family inet filter input-list {{ acl }
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ virtual_gateway_address }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group 1 virtual-address {{ virtual_gateway_address }}
-
 </group>
 
 <group name="interfaces**.{{ name }}**.virtual_gateway**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
@@ -234,6 +259,14 @@ set interfaces {{ name }} unit {{ unit | let("single_active", True) }} esi singl
 set interfaces {{ name }} unit {{ unit }} tunnel routing-instance destination {{ destination_vrf }}
 set interfaces {{ name }} unit {{ unit }} tunnel source {{ source }}
 set interfaces {{ name }} unit {{ unit }} tunnel destination {{ destination }}
+</group>
+
+<group name="interfaces**.{{ name }}**.switching**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching interface-mode {{ dot1q_mode }}		
+</group>
+
+<group name="interfaces**.{{ name }}**.switching**.vlans*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching vlan members {{ vlan }}
 </group>
 
 ## ------------------------------------------------------------------------------------------
@@ -323,7 +356,7 @@ set protocols pim rp bidirectional address {{ rp_didir }} group-ranges {{ rp_gro
 </group>
 
 <group name="pim**.interfaces**.{{ interface }}**" method="table">
-set protocols pim interface{{ interface }} mode {{ mode }}
+set protocols pim interface {{ interface }} mode {{ mode }}
 </group>
 
 ## ------------------------------------------------------------------------------------------
@@ -358,6 +391,23 @@ set protocols isis interface {{ interface | let("is_passive", True) }} passive
 <group name="isis**.interfaces**.{{ interface }}**.afi.{{ afi }}" method="table">
 set protocols isis interface {{ interface }} family {{ afi }} bfd-liveness-detection minimum-interval {{ bfd_minimum_interval }}
 set protocols isis interface {{ interface }} family {{ afi }} bfd-liveness-detection multiplier {{ bfd_multiplier }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## Vlans configuration
+## ------------------------------------------------------------------------------------------
+<group name="vlans**.{{ name }}**" method="table">
+set vlans {{ name }} description {{ description | re(".+") }}
+set vlans {{ name }} vlan-id {{ vid }}
+set vlans {{ name }} l3-interface {{ l3_interface }}
+</group>
+
+## ------------------------------------------------------------------------------------------
+## VSTP configuration
+## ------------------------------------------------------------------------------------------
+<group name="vstp**.vlans**.{{ name }}**.{{ interface }}**" method="table">
+set protocols vstp vlan {{ name }} interface {{ interface | let("mode", "edge") }} edge
+set protocols vstp vlan {{ name }} interface {{ interface | let("no_root_port", True) }} no-root-port
 </group>
 
 <output name="postprocess" macro="postprocess"/>

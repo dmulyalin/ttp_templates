@@ -76,7 +76,7 @@ Physical interface: {{ interface | _start_ | resuball(IfsNormalize) | macro("che
 
 <!-- LLDP peers group -->
 <group name="{{ local_hostname }}.lldp_peers*" functions="macro('extract_lldp_peer') | expand()">
-{{ src_label | resuball(IfsNormalize) }}  {{ data.parent_interface }} {{ data.chassis_id | MAC }} {{ info | re(".+") }}
+{{ src_label | resuball(IfsNormalize) }}  {{ data.parent_interface }} {{ data.chassis_id | MAC }} {{ info | re(".+") | strip }}
 {{ source | set("local_hostname") }}
 </group>
 </template>
