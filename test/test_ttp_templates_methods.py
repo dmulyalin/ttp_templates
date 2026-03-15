@@ -209,6 +209,70 @@ interface GigabitEthernet1/3.251
 
 # test_parse_output_path() 
 
+def test_get_template_path_traversal_raises():
+    """get_template must reject paths that escape the package directory."""
+    import pytest
+    with pytest.raises(ValueError, match="resolves outside the package directory"):
+        get_template(path="../../etc/passwd")
+
+
+def test_get_template_misc_path_traversal_raises():
+    """get_template must reject misc paths that escape the package directory."""
+    import pytest
+    with pytest.raises(ValueError, match="resolves outside the package directory"):
+        get_template(misc="../../etc/shadow")
+
+
+def test_short_interface_names_2ge_does_not_match_twohundred():
+    """2GE patterns must not match TwoHundred* interface names (200GE)."""
+    import re
+    from ttp_templates.ttp_vars import short_interface_names
+
+    two_ge_patterns = short_interface_names["2GE"]
+    two_hundred_names = [
+        "TwoHundredGigabitEthernet0/0/0",
+        "TwoHundredGigEthernet0/0",
+        "TwoHundredGigE0",
+        "TwoHundredGig0",
+    ]
+    for name in two_hundred_names:
+        for pattern in two_ge_patterns:
+            assert re.search(pattern, name) is None, (
+                f"2GE pattern {pattern!r} incorrectly matched {name!r}"
+            )
+
+
+def test_short_interface_names_2ge_does_not_match_twentyfive():
+    """2GE patterns must not match TwentyFive* interface names (25GE)."""
+    import re
+    from ttp_templates.ttp_vars import short_interface_names
+
+    two_ge_patterns = short_interface_names["2GE"]
+    twenty_five_names = [
+        "TwentyFiveGigabitEthernet0/0/0",
+        "TwentyFiveGigEthernet0/0",
+        "TwentyFiveGigE0",
+        "TwentyFiveGig0",
+    ]
+    for name in twenty_five_names:
+        for pattern in two_ge_patterns:
+            assert re.search(pattern, name) is None, (
+                f"2GE pattern {pattern!r} incorrectly matched {name!r}"
+            )
+
+
+def test_short_interface_names_2ge_matches_twogig():
+    """2GE patterns must still match genuine TwoGigabitEthernet names."""
+    import re
+    from ttp_templates.ttp_vars import short_interface_names
+
+    two_ge_patterns = short_interface_names["2GE"]
+    two_gig_names = ["TwoGigabitEthernet0/0", "TwoGigE0", "Tw0/0"]
+    for name in two_gig_names:
+        matched = any(re.search(p, name) for p in two_ge_patterns)
+        assert matched, f"No 2GE pattern matched genuine 2GE interface {name!r}"
+
+
 def test_get_template_no_args_returns_none():
     """get_template with no arguments must return None, not raise."""
     result = get_template()
@@ -220,6 +284,50 @@ def test_parse_output_no_args_raises_value_error():
     import pytest
     with pytest.raises(ValueError, match="no valid template-locating argument"):
         parse_output(data="some text")
+
+
+def test_list_templates_misc_root_file_no_crash():
+    """list_templates must not crash when a file sits directly inside misc/."""
+    import os as _os
+    import ttp_templates.ttp_templates as mod
+    from unittest.mock import patch
+
+    pkg_dir = _os.path.abspath(_os.path.dirname(mod.__file__))
+    misc_dir = _os.path.join(pkg_dir, "misc")
+    platform_dir = _os.path.join(pkg_dir, "platform")
+    yang_dir = _os.path.join(pkg_dir, "yang")
+
+    def fake_walk(dirname):
+        if dirname == misc_dir:
+            # misc/ contains both a direct file and a subdirectory with a file
+            yield misc_dir, ["SubDir"], ["root_template.txt"]
+            yield _os.path.join(misc_dir, "SubDir"), [], ["cisco.txt"]
+        elif dirname == platform_dir:
+            yield platform_dir, [], []
+        elif dirname == yang_dir:
+            yield yang_dir, [], []
+
+    with patch.object(mod.os, "walk", side_effect=fake_walk):
+        res = list_templates()
+
+    assert isinstance(res["misc"], dict), "misc must remain a dict, not a list"
+    assert "SubDir" in res["misc"], "subdirectory entries must still be present"
+    # files placed directly in misc/ are stored under the empty-string key
+    assert res["misc"][""] == ["root_template.txt"]
+
+
+def test_list_templates_files_are_sorted():
+    """list_templates must return files in sorted (deterministic) order."""
+    res = list_templates()
+    assert res["platform"] == sorted(res["platform"])
+    assert res["yang"] == sorted(res["yang"])
+    for subtree in res["misc"].values():
+        if isinstance(subtree, list):
+            assert subtree == sorted(subtree)
+        elif isinstance(subtree, dict):
+            for files in subtree.values():
+                if isinstance(files, list):
+                    assert files == sorted(files)
 
 
 def test_list_templates_all():

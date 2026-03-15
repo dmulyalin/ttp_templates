@@ -80,23 +80,7 @@ Modified templates:
 
 - Added `misc/Netbox` folder with templates for Junos, IOS-XR, and Arista devices configuration
 
-## v0.4.0
-
-### BUGS
-
-- **Bug 1** – `parse_output` now raises `ValueError` with a descriptive message
-  when called without any valid template-locating argument (previously the
-  `None` returned by `get_template` was silently forwarded to the TTP
-  constructor, causing confusing downstream errors).
-
-## vNext
-
-### Backlog
-
-- Convert all NTC-Templates to TTP templates
-- Convert NAPALM getters to use TTP templates and build TTP templates for that
 # v0.1.2
-
 
 # Minor FEATURES
 
@@ -199,12 +183,33 @@ Modified templates:
 
 # v0.4.0
 
+## BUGS
 
-# TEMPLATES
+- **Bug 1** – `parse_output` now raises `ValueError` with a descriptive message
+  when called without any valid template-locating argument (previously the
+  `None` returned by `get_template` was silently forwarded to the TTP
+  constructor, causing confusing downstream errors).
+- **Bug 2** – Fixed path-traversal vulnerability (OWASP A01) in `get_template`.
+  The resolved template filename is now checked with `os.path.realpath` to
+  confirm it falls inside the package directory before the file is opened;
+  crafted paths such as `path="../../etc/passwd"` now raise `ValueError`.
+- **Bug 3** – Fixed `list_templates` crashing with `AttributeError` when a
+  template file is placed directly inside the `misc/` root directory (rather
+  than in a subdirectory).  The leaf-assignment logic now checks whether the
+  target key already holds a dict; if it does, files are stored under the
+  empty-string sub-key instead of overwriting the dict with a list.
+- **Bug 4** – `list_templates` now returns file lists in sorted alphabetical
+  order.  Previously `os.walk` / `os.listdir` produced non-deterministic
+  ordering across operating systems and filesystems, making the output
+  unreliable for callers and difficult to test.
+- **Bug 5** – Fixed prefix-ambiguity in `short_interface_names` (`ttp_vars.py`).
+  The `2GE` patterns ``'^Tw'`` and ``'^Two'`` were broad enough to also match
+  `TwoHundredGigabitEthernet*` (200GE) names because `2GE` appeared before
+  `200GE` in the dict. Negative look-ahead anchors
+  (``r'^Tw(?!entyFive|oHundred)'`` and ``r'^Two(?!Hundred)'``) were added so
+  only genuine 2GE interface names are matched.
 
-1. Added misc/Netbox folder with templates for Junos, IOS-XR and Arista devices configuration
-
-
-# CHANGES
+## CHANGES
 
 1. Python minimum version bumped to 3.10
+2. Improving logging, type hints, commetns and converted docstrings to Google format

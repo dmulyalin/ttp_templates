@@ -28,7 +28,9 @@ short_interface_names = {
     'Te': ['^TenGigabitEthernet', '^TenGigEthernet', '^TenGigEth', '^TenGigE', '^TenGig', '^TeGig', '^Ten', '^te', '^XGigabitEthernet', '^TenGe', '^10GE', '^xe-'],
     'Tunnel': ['^Tunnel', '^Tun', '^Tu', '^gr-'],
     '25GE': ['^TwentyFiveGigabitEthernet', '^TwentyFiveGigEthernet', '^TwentyFiveGigEth', '^TwentyFiveGigE', '^TwentyFiveGig', '^Twe', '^TF', '^Tf', '^tf'],
-    '2GE': ['^Tw', '^Two'],
+    # Negative look-aheads prevent '^Tw' / '^Two' from greedily matching
+    # TwentyFive* (covered by 25GE above) and TwoHundred* (covered by 200GE below).
+    '2GE': [r'^Tw(?!entyFive|oHundred)', r'^Two(?!Hundred)'],
     '200GE': ['^TwoHundredGigabitEthernet', '^TwoHundredGigEthernet', '^TwoHundredGigEth', '^TwoHundredGigE', '^TwoHundredGig', '^TH', '^Th', '^th'],
     'VLAN': ['^Vlan', '^vlanif', r'^V(?=\d+)', r'^Vl(?=\d+)'],
     'Virtual-Access': ['^Virtual-Access', '^Vi'],

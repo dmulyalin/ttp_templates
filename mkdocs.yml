@@ -98,7 +98,7 @@ plugins:
           show_root_toc_entry: true
           show_signature_annotations: true
         selection:
-          docstring_style: sphinx
+          docstring_style: google
 repo_name: dmulyalin/ttp_templates
 repo_url: https://github.com/dmulyalin/ttp_templates
 site_author: Denis Mulyalin

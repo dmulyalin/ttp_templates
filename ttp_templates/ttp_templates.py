@@ -72,7 +72,15 @@ def get_template(
         return None
 
     template_dir = os.path.abspath(os.path.dirname(__file__))
-    template_filename = os.path.join(template_dir, path)
+    # Resolve symlinks and ".." segments so the containment check is reliable
+    template_filename = os.path.realpath(os.path.join(template_dir, path))
+
+    # Ensure the resolved path stays inside the package directory to prevent
+    # path-traversal attacks (e.g. path="../../etc/passwd").
+    if not template_filename.startswith(template_dir + os.sep):
+        raise ValueError(
+            f"Template path '{path}' resolves outside the package directory."
+        )
 
     log.debug("get_template: loading template file '%s'", template_filename)
 
@@ -201,15 +209,16 @@ def list_templates(pattern: str = "*") -> Dict:
             if not filenames:
                 continue
 
-            # keep only files that match the caller's glob pattern and are not in the skip list
-            files = [
+            # keep only files that match the caller's glob pattern and are not in the skip list;
+            # sort the result so the output is deterministic regardless of filesystem ordering
+            files = sorted(
                 filename
                 for filename in filenames
                 if (
                     fnmatchcase(filename, pattern)
                     and filename.lower() not in skip_files
                 )
-            ]
+            )
 
             log.debug(
                 "list_templates: dir '%s' → %d/%d files match pattern",
@@ -222,8 +231,16 @@ def list_templates(pattern: str = "*") -> Dict:
             ref = res
             for index, item in enumerate(dirpath_items):
                 if index + 1 == len(dirpath_items):
-                    # we have reached the leaf directory: store the files list here
-                    ref[item] = files
+                    # Reached the leaf directory: store the matching files list.
+                    # Guard against overwriting an existing sub-dict, which would
+                    # happen if a template file sits directly inside misc/ alongside
+                    # subdirectories (e.g. misc/my_template.txt).  In that case we
+                    # store the files under the empty-string key so the dict
+                    # structure is preserved and subsequent iterations don't crash.
+                    if isinstance(ref.get(item), dict):
+                        ref[item][""] = files
+                    else:
+                        ref[item] = files
                 else:
                     # descend one level deeper, creating intermediate dicts as needed
                     ref = ref.setdefault(item, {})
