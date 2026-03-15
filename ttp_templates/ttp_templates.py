@@ -140,6 +140,12 @@ def parse_output(
         platform=platform, command=command, path=path, yang=yang, misc=misc
     )
 
+    if template is None:
+        raise ValueError(
+            "parse_output: no valid template-locating argument combination was "
+            "provided; supply one of: path, platform+command, yang+platform, or misc."
+        )
+
     log.debug("parse_output: creating TTP parser, structure=%r", structure)
 
     # instantiate the TTP parser with the data and template

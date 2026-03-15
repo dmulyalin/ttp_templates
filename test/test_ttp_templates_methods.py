@@ -209,6 +209,19 @@ interface GigabitEthernet1/3.251
 
 # test_parse_output_path() 
 
+def test_get_template_no_args_returns_none():
+    """get_template with no arguments must return None, not raise."""
+    result = get_template()
+    assert result is None
+
+
+def test_parse_output_no_args_raises_value_error():
+    """parse_output with no template-locating argument must raise ValueError."""
+    import pytest
+    with pytest.raises(ValueError, match="no valid template-locating argument"):
+        parse_output(data="some text")
+
+
 def test_list_templates_all():
     res = list_templates()
     pprint.pprint(res)

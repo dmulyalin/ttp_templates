@@ -80,6 +80,15 @@ Modified templates:
 
 - Added `misc/Netbox` folder with templates for Junos, IOS-XR, and Arista devices configuration
 
+## v0.4.0
+
+### BUGS
+
+- **Bug 1** – `parse_output` now raises `ValueError` with a descriptive message
+  when called without any valid template-locating argument (previously the
+  `None` returned by `get_template` was silently forwarded to the TTP
+  constructor, causing confusing downstream errors).
+
 ## vNext
 
 ### Backlog
