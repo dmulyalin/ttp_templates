@@ -92,7 +92,7 @@ list entry {
 
         leaf interface {
             type string;
-            default "Uncknown";
+            default "Unknown";
 			mandatory false;
             description
                 "Interface name";

@@ -19,12 +19,12 @@ First, need to write docs within the templates.
 
 Next, generate `.md` doc files out of TTP templates:
 
-```
-python3 generate_docs.py
+```bash
+poetry run python generate_docs.py
 ```
 
-Finally, use `mkdocs` to serve, build or deploy docs using commands:
+Finally, use `mkdocs` to serve, build, or deploy docs using these commands:
 
-* `mkdocs serve` - serve docs locally to view docs content via browser
-* `mkdocs build` - build docs
-* `mkdocs gh-deploy` - deploy docs to GitHub
+* `poetry run mkdocs serve` – serve docs locally to view content via browser
+* `poetry run mkdocs build` – build docs into the `site/` directory
+* `poetry run mkdocs gh-deploy` – deploy docs to GitHub Pages

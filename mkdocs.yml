@@ -9,12 +9,18 @@ markdown_extensions:
 - pymdownx.details
 - attr_list
 - md_in_html
+- tables
+- toc:
+    permalink: true
 - pymdownx.superfences
+- pymdownx.highlight
+- pymdownx.inlinehilite
 nav:
 - Overview: index.md
 - Contribute: contribute.md
 - Writing docs: writing_docs.md
 - API Reference: api_reference.md
+- Release Notes: release_notes.md
 - Templates:
   - Misc:
     - N2G:
@@ -25,15 +31,16 @@ nav:
       - cli_ip_data.cisco_xr: ttp_templates/misc.N2G.cli_ip_data.cisco_xr.md
       - cli_ip_data.fortinet: ttp_templates/misc.N2G.cli_ip_data.fortinet.md
       - cli_ip_data.huawei: ttp_templates/misc.N2G.cli_ip_data.huawei.md
+      - cli_ip_data.juniper_junos: ttp_templates/misc.N2G.cli_ip_data.juniper_junos.md
       - cli_ip_data.readme: ttp_templates/misc.N2G.cli_ip_data.readme.md
       - cli_isis_data.cisco_xr: ttp_templates/misc.N2G.cli_isis_data.cisco_xr.md
-      - cli_isis_data.juniper: ttp_templates/misc.N2G.cli_isis_data.juniper.md
+      - cli_isis_data.juniper_junos: ttp_templates/misc.N2G.cli_isis_data.juniper_junos.md
       - cli_isis_data.readme: ttp_templates/misc.N2G.cli_isis_data.readme.md
       - cli_l2_data.cisco_ios: ttp_templates/misc.N2G.cli_l2_data.cisco_ios.md
       - cli_l2_data.cisco_nxos: ttp_templates/misc.N2G.cli_l2_data.cisco_nxos.md
       - cli_l2_data.cisco_xr: ttp_templates/misc.N2G.cli_l2_data.cisco_xr.md
       - cli_l2_data.huawei: ttp_templates/misc.N2G.cli_l2_data.huawei.md
-      - cli_l2_data.juniper: ttp_templates/misc.N2G.cli_l2_data.juniper.md
+      - cli_l2_data.juniper_junos: ttp_templates/misc.N2G.cli_l2_data.juniper_junos.md
       - cli_l2_data.readme: ttp_templates/misc.N2G.cli_l2_data.readme.md
       - cli_ospf_data.cisco_ios: ttp_templates/misc.N2G.cli_ospf_data.cisco_ios.md
       - cli_ospf_data.cisco_xr: ttp_templates/misc.N2G.cli_ospf_data.cisco_xr.md
@@ -61,6 +68,7 @@ nav:
       - netmiko_cisco_ios_interfaces: ttp_templates/misc.ttp_templates_tests.netmiko_cisco_ios_interfaces.md
   - Platform:
     - arista_eos_show_hostname: ttp_templates/platform.arista_eos_show_hostname.md
+    - arista_eos_show_inventory_pipe_json: ttp_templates/platform.arista_eos_show_inventory_pipe_json.md
     - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md
     - cisco_ios_show_ip_ospf_database_external: ttp_templates/platform.cisco_ios_show_ip_ospf_database_external.md
     - cisco_ios_show_ip_ospf_database_router: ttp_templates/platform.cisco_ios_show_ip_ospf_database_router.md
@@ -69,7 +77,9 @@ nav:
     - cisco_ios_show_running_configuration_pipe_section_bgp: ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp.md
     - cisco_ios_show_running_config_pipe_include_source_static: ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static.md
     - cisco_ios_show_running_config_pipe_section_interface: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_interface.md
+    - cisco_nxos_show_inventory_pipe_json_pretty: ttp_templates/platform.cisco_nxos_show_inventory_pipe_json_pretty.md
     - cisco_xr_show_arp_vrf_all: ttp_templates/platform.cisco_xr_show_arp_vrf_all.md
+    - cisco_xr_show_inventory: ttp_templates/platform.cisco_xr_show_inventory.md
     - cisco_xr_show_isis_database_verbose: ttp_templates/platform.cisco_xr_show_isis_database_verbose.md
     - cisco_xr_show_ospf_database_external: ttp_templates/platform.cisco_xr_show_ospf_database_external.md
     - cisco_xr_show_ospf_database_router: ttp_templates/platform.cisco_xr_show_ospf_database_router.md
@@ -77,7 +87,8 @@ nav:
     - cisco_xr_show_running_config_interface: ttp_templates/platform.cisco_xr_show_running_config_interface.md
     - huawei_display_current_configuration_interface: ttp_templates/platform.huawei_display_current_configuration_interface.md
     - huawei_display_ospf_lsdb_router: ttp_templates/platform.huawei_display_ospf_lsdb_router.md
-    - juniper_show_isis_database_verbose_pipe_no_more: ttp_templates/platform.juniper_show_isis_database_verbose_pipe_no_more.md
+    - juniper_junos_show_chassis_hardware_pipe_json: ttp_templates/platform.juniper_junos_show_chassis_hardware_pipe_json.md
+    - juniper_junos_show_isis_database_verbose_pipe_no_more: ttp_templates/platform.juniper_junos_show_isis_database_verbose_pipe_no_more.md
     - test_platform_show_run_pipe_sec_interface: ttp_templates/platform.test_platform_show_run_pipe_sec_interface.md
   - YANG:
     - ietf-interfaces_cisco_ios: ttp_templates/yang.ietf-interfaces_cisco_ios.md
@@ -102,9 +113,10 @@ plugins:
 repo_name: dmulyalin/ttp_templates
 repo_url: https://github.com/dmulyalin/ttp_templates
 site_author: Denis Mulyalin
-site_description: TTP, parser, parsing, templates
+site_description: Curated TTP templates and a small Python API for parsing network
+  device output.
 site_name: TTP Templates Collection
-site_url: https://ttp_templates.github.io/
+site_url: https://dmulyalin.github.io/ttp_templates/
 theme:
   custom_dir: docs/overrides
   features:
@@ -117,5 +129,15 @@ theme:
     repo: fontawesome/brands/github-alt
   name: material
   palette:
-    accent: teal
-    primary: blue
+  - accent: teal
+    primary: black
+    scheme: slate
+    toggle:
+      icon: material/brightness-7
+      name: Switch to light mode
+  - accent: teal
+    primary: blue grey
+    scheme: default
+    toggle:
+      icon: material/brightness-4
+      name: Switch to dark mode

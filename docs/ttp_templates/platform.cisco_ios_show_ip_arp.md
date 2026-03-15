@@ -53,7 +53,7 @@ list entry {
 
         leaf interface {
             type string;
-            default "Uncknown";
+            default "Unknown";
 			mandatory false;
             description
                 "Interface name";
@@ -120,7 +120,7 @@ list entry {
 
         leaf interface {
             type string;
-            default "Uncknown";
+            default "Unknown";
 			mandatory false;
             description
                 "Interface name";
@@ -136,7 +136,7 @@ TBD
 </doc>
 
 <group method="table" to_int="age">
-{{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type | let("interface", "Uncknown") }}    
+{{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type | let("interface", "Unknown") }}    
 {{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type }} {{ interface | resuball("short_interface_names") }}
 </group>
 ```

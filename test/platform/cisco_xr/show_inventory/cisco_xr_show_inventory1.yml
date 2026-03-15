@@ -1,0 +1,8 @@
+- description: "ASR9K Fabric, Controller, 4G memory"
+  slot: "module 0/RSP0/CPU0"
+  module: "A9K-RSP-4G"
+  serial: "FOC000001CN"
+- description: "Multirate 10GBASE-ZR and OC-192/STM-64 IR-2 XFP, SMF"
+  slot: "module mau TenGigE0/0/CPU0/0"
+  module: "XFP-10GZR-OC192LR"
+  serial: "FLJ0000001E"

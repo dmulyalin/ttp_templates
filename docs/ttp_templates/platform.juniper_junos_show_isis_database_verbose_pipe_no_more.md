@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform/juniper_show_isis_database_verbose_pipe_no_more.txt
+ttp://platform/juniper_junos_show_isis_database_verbose_pipe_no_more.txt
 ```
 
 ---

@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc/N2G/cli_l2_data/juniper.txt
+ttp://misc/N2G/cli_l2_data/juniper_junos.txt
 ```
 
 ---
@@ -22,7 +22,7 @@ Commands parsed:
 
 <details><summary>Template Content</summary>
 ```
-<template name="juniper" results="per_template">
+<template name="juniper_junos" results="per_template">
 
 <doc>
 This template designed to parse Juniper JunOS configuration and LLDP neighbors.
@@ -100,7 +100,7 @@ Physical interface: {{ interface | _start_ | resuball(IfsNormalize) | macro("che
 
 <!-- LLDP peers group -->
 <group name="{{ local_hostname }}.lldp_peers*" functions="macro('extract_lldp_peer') | expand()">
-{{ src_label | resuball(IfsNormalize) }}  {{ data.parent_interface }} {{ data.chassis_id | MAC }} {{ info | re(".+") }}
+{{ src_label | resuball(IfsNormalize) }}  {{ data.parent_interface }} {{ data.chassis_id | MAC }} {{ info | re(".+") | strip }}
 {{ source | set("local_hostname") }}
 </group>
 </template>

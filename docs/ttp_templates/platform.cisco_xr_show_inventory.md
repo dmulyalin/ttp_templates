@@ -1,0 +1,51 @@
+Reference path:
+```
+ttp://platform/cisco_xr_show_inventory.txt
+```
+
+---
+
+
+
+Template to parse Cisco IOS XR inventory.
+
+This template requires output of 'show inventory' command.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="inventory" results="per_template">
+<doc>
+Template to parse Cisco IOS XR inventory.
+
+This template requires output of 'show inventory' command.
+</doc>
+
+<input>
+commands = [
+    "show inventory"
+]
+</input>
+
+<group>
+ Name: {{ slot | ORPHRASE }}  Descr: {{ description | ORPHRASE }}
+ PID: {{ module | strip(",") }}{{ ignore(".+") }}SN: {{ serial }}
+</group>
+
+<group>
+Name: {{ slot | ORPHRASE }}  Descr: {{ description | ORPHRASE }}
+PID: {{ module | strip(",") }}{{ ignore(".+") }}SN: {{ serial }}
+</group>
+
+<group>
+NAME: "{{ slot | ORPHRASE }}", DESCR: "{{ description | ORPHRASE }}"
+PID: {{ module | strip(",") }}{{ ignore(".+") }}SN: {{ serial }}
+PID: {{ module | strip(",") | let("serial", "") }}{{ ignore(".+") }}SN:
+</group>
+
+</template>
+```
+</details>

@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc/N2G/cli_isis_data/juniper.txt
+ttp://misc/N2G/cli_isis_data/juniper_junos.txt
 ```
 
 ---
@@ -114,6 +114,6 @@ commands = [
 platform = ["juniper", "juniper_junos"]
 </input>
 
-<extend template="ttp://platform/juniper_show_isis_database_verbose_pipe_no_more.txt"/>
+<extend template="ttp://platform/juniper_junos_show_isis_database_verbose_pipe_no_more.txt"/>
 ```
 </details>

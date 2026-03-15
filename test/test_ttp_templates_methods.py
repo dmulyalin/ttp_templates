@@ -7,10 +7,12 @@ from ttp_templates import get_template
 from ttp_templates import parse_output
 from ttp_templates import list_templates
 
+
 def test_get_template_by_path():
     template = get_template(path="yang/ietf-interfaces_cisco_ios.txt")
     # print(template)
     assert isinstance(template, str)
+
 
 # test_get_template()
 
@@ -20,6 +22,7 @@ def test_get_template_by_ttp_path_explicit():
     # print(template)
     assert isinstance(template, str)
 
+
 # test_get_template()
 
 
@@ -27,6 +30,7 @@ def test_get_template_by_ttp_path_implicit():
     template = get_template("ttp://yang/ietf-interfaces_cisco_ios.txt")
     # print(template)
     assert isinstance(template, str)
+
 
 # test_get_template_by_ttp_path_implicit()
 
@@ -207,11 +211,13 @@ interface GigabitEthernet1/3.251
     ]
 
 
-# test_parse_output_path() 
+# test_parse_output_path()
+
 
 def test_get_template_path_traversal_raises():
     """get_template must reject paths that escape the package directory."""
     import pytest
+
     with pytest.raises(ValueError, match="resolves outside the package directory"):
         get_template(path="../../etc/passwd")
 
@@ -219,6 +225,7 @@ def test_get_template_path_traversal_raises():
 def test_get_template_misc_path_traversal_raises():
     """get_template must reject misc paths that escape the package directory."""
     import pytest
+
     with pytest.raises(ValueError, match="resolves outside the package directory"):
         get_template(misc="../../etc/shadow")
 
@@ -237,9 +244,9 @@ def test_short_interface_names_2ge_does_not_match_twohundred():
     ]
     for name in two_hundred_names:
         for pattern in two_ge_patterns:
-            assert re.search(pattern, name) is None, (
-                f"2GE pattern {pattern!r} incorrectly matched {name!r}"
-            )
+            assert (
+                re.search(pattern, name) is None
+            ), f"2GE pattern {pattern!r} incorrectly matched {name!r}"
 
 
 def test_short_interface_names_2ge_does_not_match_twentyfive():
@@ -256,9 +263,9 @@ def test_short_interface_names_2ge_does_not_match_twentyfive():
     ]
     for name in twenty_five_names:
         for pattern in two_ge_patterns:
-            assert re.search(pattern, name) is None, (
-                f"2GE pattern {pattern!r} incorrectly matched {name!r}"
-            )
+            assert (
+                re.search(pattern, name) is None
+            ), f"2GE pattern {pattern!r} incorrectly matched {name!r}"
 
 
 def test_short_interface_names_2ge_matches_twogig():
@@ -273,6 +280,81 @@ def test_short_interface_names_2ge_matches_twogig():
         assert matched, f"No 2GE pattern matched genuine 2GE interface {name!r}"
 
 
+def test_get_template_by_yang_and_platform():
+    """get_template with yang+platform resolves the yang/ directory path."""
+    template = get_template(yang="ietf-interfaces", platform="cisco_ios")
+    assert isinstance(template, str)
+    assert len(template) > 0
+
+
+def test_get_template_yang_and_platform_names_normalised():
+    """Spaces in platform and yang names must be normalised to underscores."""
+    # "cisco ios" and "ietf interfaces" must resolve to the same file as the
+    # canonical lowercase underscore-separated names.
+    template_canonical = get_template(yang="ietf-interfaces", platform="cisco_ios")
+    template_spaced = get_template(yang="ietf-interfaces", platform="cisco ios")
+    assert template_canonical == template_spaced
+
+
+def test_parse_output_yang_and_platform():
+    """parse_output with yang+platform resolves the correct template."""
+    data = """
+interface GigabitEthernet1/3.251
+ description Customer #32148
+ ip address 172.16.33.10 255.255.255.128
+ shutdown
+    """
+    result = parse_output(data=data, yang="ietf-interfaces", platform="cisco_ios")
+    assert isinstance(result, list)
+    assert len(result) > 0
+
+
+def test_parse_output_structure_flat_list():
+    """parse_output honours the structure='flat_list' argument."""
+    data = """
+r1# show run | sec interfaces
+interface GigabitEthernet1
+ vrf forwarding MGMT
+ ip address 10.1.1.1 255.255.255.0
+interface GigabitEthernet2
+ vrf forwarding MGMT
+ ip address 10.1.2.1 255.255.255.0
+    """
+    result = parse_output(
+        data=data,
+        misc="ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt",
+        structure="flat_list",
+    )
+    assert isinstance(result, list)
+    # flat_list collapses nesting – every element must be a dict
+    assert all(isinstance(item, dict) for item in result)
+
+
+def test_parse_output_template_vars_accepted():
+    """parse_output must accept and pass template_vars without error."""
+    data = """
+interface GigabitEthernet1/3.251
+ description Customer #32148
+ encapsulation dot1q 251
+ ip address 172.16.33.10 255.255.255.128
+ shutdown
+    """
+    # Empty dict and a populated dict must both be accepted without raising
+    result_empty = parse_output(
+        data=data,
+        path="platform/test_platform_show_run_pipe_sec_interface.txt",
+        template_vars={},
+    )
+    assert isinstance(result_empty, list)
+
+    result_none = parse_output(
+        data=data,
+        path="platform/test_platform_show_run_pipe_sec_interface.txt",
+        template_vars=None,
+    )
+    assert isinstance(result_none, list)
+
+
 def test_get_template_no_args_returns_none():
     """get_template with no arguments must return None, not raise."""
     result = get_template()
@@ -282,6 +364,7 @@ def test_get_template_no_args_returns_none():
 def test_parse_output_no_args_raises_value_error():
     """parse_output with no template-locating argument must raise ValueError."""
     import pytest
+
     with pytest.raises(ValueError, match="no valid template-locating argument"):
         parse_output(data="some text")
 
@@ -335,8 +418,10 @@ def test_list_templates_all():
     pprint.pprint(res)
     assert all(k in res for k in ["platform", "yang", "misc"])
     assert isinstance(res["misc"], dict)
-    
+
+
 # test_list_templates_all()
+
 
 def test_list_templates_with_filter_match():
     res = list_templates(pattern="*cisco*")
@@ -346,7 +431,9 @@ def test_list_templates_with_filter_match():
     assert all("cisco" in t for t in res["platform"])
     assert all("cisco" in t for t in res["yang"])
 
+
 # test_list_templates_with_filter_match()
+
 
 def test_list_templates_with_filter_no_match():
     res = list_templates(pattern="*cisco12345*")
@@ -354,5 +441,6 @@ def test_list_templates_with_filter_no_match():
     assert all(k in res for k in ["platform", "yang", "misc"])
     assert isinstance(res["misc"], dict) and res["misc"] != {}
     assert all(res[k] == [] for k in ["platform", "yang"])
-    
+
+
 # test_list_templates_with_filter_no_match()

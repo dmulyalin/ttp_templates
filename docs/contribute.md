@@ -35,12 +35,11 @@ Before you start, make sure to think of for each template:
 * `misc` category - miscellaneous templates for various use cases organized in folders, naming
   rule is - `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
 
-To prepare your working environment might need to install required packages using requirements 
-files located in TTP Templates repository e.g.:
+To prepare your working environment you will need to install the required packages. The project
+uses [Poetry](https://python-poetry.org/) for dependency management:
 
 ```bash
-python3 -m pip install -r requirements-dev.txt
-python3 -m pip install -r requirements-docs.txt
+poetry install
 ```
 
 To add new template or multiple templates follow these steps:
@@ -122,8 +121,9 @@ interface Loopback0
     assert res == expected_output
 ```
 
-That test can be placed inside `test_platform_cisco_ios.py` file and run using command:
+That test can be placed inside `test_platform_cisco_ios.py` file and run using the command:
 
 ```bash
-pytest -vv test_platform_cisco_ios::test_cisco_ios_show_run_pipe_section_interface
+cd test
+poetry run pytest -vv test_platform_cisco_ios.py::test_cisco_ios_show_run_pipe_section_interface
 ```

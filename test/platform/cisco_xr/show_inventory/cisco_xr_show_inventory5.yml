@@ -1,0 +1,4 @@
+- description: "IOS XRv Chassis"
+  slot: "Chassis"
+  module: "IOSXRV"
+  serial: "9S3NLRASCAL"

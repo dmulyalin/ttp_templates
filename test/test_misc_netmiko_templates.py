@@ -102,14 +102,14 @@ router bgp 65001
  exit-address-family
 !
     """,
-    "show running-config | include source static": """
+        "show running-config | include source static": """
 ip nat inside source static 10.10.10.10 3.3.3.3 extendable
 ip nat inside source static tcp 192.168.1.10 443 3.3.4.4 443 vrf VRF1000 extendable
 ip nat inside source static 192.168.2.10 3.3.4.5 vrf VRF1002 extendable
 ip nat inside source static tcp 192.168.3.10 3389 3.3.5.6 13389 extendable
 ip nat inside source static 20.20.20.20 6.6.6.6 extendable
 ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/0 1443  
-    """
+    """,
     }
     return outputs[command_string]
 
@@ -171,14 +171,13 @@ router hsrp
    hsrp 1
     address global fd::3
 !
-        """
+        """,
     }
     return outputs[command_string]
 
 
 def mock_output_huawei_vrp(command_string, *args, **kwargs):
-    outputs = {
-        "display current-configuration interface": """
+    outputs = {"display current-configuration interface": """
 <router_23>display current-configuration interface
 interface Eth-Trunk1.100
  description Link description  here
@@ -194,11 +193,10 @@ interface vlanif10
  ipv6 address fc00:1::2/64
  vrrp6 vrid 1 virtual-ip 2001:DB8::100 
 #
-        """
-    }
+        """}
     return outputs[command_string]
-    
-    
+
+
 lab_cisco_ios = {
     "device_type": "cisco_ios",
     "host": "1.2.3.4",
@@ -240,7 +238,7 @@ def test_cisco_ios_arp_original_intf_names():
     assert res == [
         {
             "age": 8,
-            "interface": "Uncknown",
+            "interface": "Unknown",
             "ip": "172.29.50.1",
             "mac": "84:b8:02:76:ac:0e",
             "protocol": "Internet",
@@ -280,7 +278,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "interface": "Vlan1234",
             "ipv4": "10.1.251.170",
             "mask": "255.255.255.0",
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "description": "Some  description",
@@ -289,7 +287,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "ipv4": "10.1.251.171",
             "mask": "255.255.255.0",
             "secondary": True,
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "description": "Some  description",
@@ -298,7 +296,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "ipv4": "172.20.128.3",
             "vip": True,
             "vip_type": "HSRP",
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "mask": "64",
@@ -306,7 +304,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "hostname": "router-1",
             "interface": "Vlan1234",
             "ipv6": "AAAA::1",
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "mask": "64",
@@ -314,7 +312,7 @@ def test_cisco_ios_cfg_ip_original_intf_names():
             "hostname": "router-1",
             "interface": "Vlan1234",
             "ipv6": "BBBB::1",
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "description": "Workstations subnet 1",
@@ -353,7 +351,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "interface": "VLAN1234",
             "ipv4": "10.1.251.170",
             "mask": "255.255.255.0",
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "description": "Some  description",
@@ -362,7 +360,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "ipv4": "10.1.251.171",
             "mask": "255.255.255.0",
             "secondary": True,
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "description": "Some  description",
@@ -371,7 +369,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "ipv4": "172.20.128.3",
             "vip": True,
             "vip_type": "HSRP",
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "mask": "64",
@@ -379,7 +377,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "hostname": "router-1",
             "interface": "VLAN1234",
             "ipv6": "AAAA::1",
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "mask": "64",
@@ -387,7 +385,7 @@ def test_cisco_ios_cfg_ip_short_intf_names():
             "hostname": "router-1",
             "interface": "VLAN1234",
             "ipv6": "BBBB::1",
-            'vrf': 'default',
+            "vrf": "default",
         },
         {
             "description": "Workstations subnet 1",
@@ -504,238 +502,373 @@ def test_cisco_ios_xr_arp_original_intf_names():
 
 def test_huawei_vrp_cfg_ip_original_intf_names():
     res = connection_huawei_vrp.run_ttp(
-        "ttp://misc/netmiko/huawei.vrp.cfg.ip.txt", res_kwargs={"structure": "flat_list"}
+        "ttp://misc/netmiko/huawei.vrp.cfg.ip.txt",
+        res_kwargs={"structure": "flat_list"},
     )
     # pprint.pprint(res)
-    assert res == [{'description': 'Link description  here',
-                    'hostname': 'router_23',
-                    'interface': 'Eth-Trunk1.100',
-                    'ipv4': '10.1.130.2',
-                    'mask': '255.255.255.252',
-                    'vrf': 'default'},
-                   {'description': 'Link description  here',
-                    'hostname': 'router_23',
-                    'interface': 'Eth-Trunk1.100',
-                    'ipv4': '10.1.130.3',
-                    'mask': '255.255.255.252',
-                    'secondary': True,
-                    'vrf': 'default'},
-                   {'description': 'Link description  here 2',
-                    'hostname': 'router_23',
-                    'interface': 'vlanif10',
-                    'ipv4': '10.2.130.2',
-                    'mask': '255.255.255.252',
-                    'vrf': 'VRF2'},
-                   {'description': 'Link description  here 2',
-                    'hostname': 'router_23',
-                    'interface': 'vlanif10',
-                    'ipv4': '10.1.1.2',
-                    'vip': True,
-                    'vip_type': 'VRRP',
-                    'vrf': 'VRF2'},
-                   {'description': 'Link description  here 2',
-                    'hostname': 'router_23',
-                    'interface': 'vlanif10',
-                    'ipv6': 'fc00:1::2',
-                    'mask': '64',
-                    'vrf': 'VRF2'},
-                   {'description': 'Link description  here 2',
-                    'hostname': 'router_23',
-                    'interface': 'vlanif10',
-                    'ipv6': '2001:DB8::100',
-                    'vip': True,
-                    'vip_type': 'VRRP',
-                    'vrf': 'VRF2'}]
-  
+    assert res == [
+        {
+            "description": "Link description  here",
+            "hostname": "router_23",
+            "interface": "Eth-Trunk1.100",
+            "ipv4": "10.1.130.2",
+            "mask": "255.255.255.252",
+            "vrf": "default",
+        },
+        {
+            "description": "Link description  here",
+            "hostname": "router_23",
+            "interface": "Eth-Trunk1.100",
+            "ipv4": "10.1.130.3",
+            "mask": "255.255.255.252",
+            "secondary": True,
+            "vrf": "default",
+        },
+        {
+            "description": "Link description  here 2",
+            "hostname": "router_23",
+            "interface": "vlanif10",
+            "ipv4": "10.2.130.2",
+            "mask": "255.255.255.252",
+            "vrf": "VRF2",
+        },
+        {
+            "description": "Link description  here 2",
+            "hostname": "router_23",
+            "interface": "vlanif10",
+            "ipv4": "10.1.1.2",
+            "vip": True,
+            "vip_type": "VRRP",
+            "vrf": "VRF2",
+        },
+        {
+            "description": "Link description  here 2",
+            "hostname": "router_23",
+            "interface": "vlanif10",
+            "ipv6": "fc00:1::2",
+            "mask": "64",
+            "vrf": "VRF2",
+        },
+        {
+            "description": "Link description  here 2",
+            "hostname": "router_23",
+            "interface": "vlanif10",
+            "ipv6": "2001:DB8::100",
+            "vip": True,
+            "vip_type": "VRRP",
+            "vrf": "VRF2",
+        },
+    ]
+
+
 # test_huawei_vrp_cfg_ip_original_intf_names()
 
 
 def test_huawei_vrp_cfg_ip_short_intf_names():
     res = connection_huawei_vrp.run_ttp(
-        "ttp://misc/netmiko/huawei.vrp.cfg.ip.txt", 
+        "ttp://misc/netmiko/huawei.vrp.cfg.ip.txt",
         res_kwargs={"structure": "flat_list"},
-        vars=ttp_vars.all_vars
+        vars=ttp_vars.all_vars,
     )
     # pprint.pprint(res)
-    assert res == [{'description': 'Link description  here',
-                    'hostname': 'router_23',
-                    'interface': 'LAG1.100',
-                    'ipv4': '10.1.130.2',
-                    'mask': '255.255.255.252',
-                    'vrf': 'default'},
-                   {'description': 'Link description  here',
-                    'hostname': 'router_23',
-                    'interface': 'LAG1.100',
-                    'ipv4': '10.1.130.3',
-                    'mask': '255.255.255.252',
-                    'secondary': True,
-                    'vrf': 'default'},
-                   {'description': 'Link description  here 2',
-                    'hostname': 'router_23',
-                    'interface': 'VLAN10',
-                    'ipv4': '10.2.130.2',
-                    'mask': '255.255.255.252',
-                    'vrf': 'VRF2'},
-                   {'description': 'Link description  here 2',
-                    'hostname': 'router_23',
-                    'interface': 'VLAN10',
-                    'ipv4': '10.1.1.2',
-                    'vip': True,
-                    'vip_type': 'VRRP',
-                    'vrf': 'VRF2'},
-                   {'description': 'Link description  here 2',
-                    'hostname': 'router_23',
-                    'interface': 'VLAN10',
-                    'ipv6': 'fc00:1::2',
-                    'mask': '64',
-                    'vrf': 'VRF2'},
-                   {'description': 'Link description  here 2',
-                    'hostname': 'router_23',
-                    'interface': 'VLAN10',
-                    'ipv6': '2001:DB8::100',
-                    'vip': True,
-                    'vip_type': 'VRRP',
-                    'vrf': 'VRF2'}]
-  
+    assert res == [
+        {
+            "description": "Link description  here",
+            "hostname": "router_23",
+            "interface": "LAG1.100",
+            "ipv4": "10.1.130.2",
+            "mask": "255.255.255.252",
+            "vrf": "default",
+        },
+        {
+            "description": "Link description  here",
+            "hostname": "router_23",
+            "interface": "LAG1.100",
+            "ipv4": "10.1.130.3",
+            "mask": "255.255.255.252",
+            "secondary": True,
+            "vrf": "default",
+        },
+        {
+            "description": "Link description  here 2",
+            "hostname": "router_23",
+            "interface": "VLAN10",
+            "ipv4": "10.2.130.2",
+            "mask": "255.255.255.252",
+            "vrf": "VRF2",
+        },
+        {
+            "description": "Link description  here 2",
+            "hostname": "router_23",
+            "interface": "VLAN10",
+            "ipv4": "10.1.1.2",
+            "vip": True,
+            "vip_type": "VRRP",
+            "vrf": "VRF2",
+        },
+        {
+            "description": "Link description  here 2",
+            "hostname": "router_23",
+            "interface": "VLAN10",
+            "ipv6": "fc00:1::2",
+            "mask": "64",
+            "vrf": "VRF2",
+        },
+        {
+            "description": "Link description  here 2",
+            "hostname": "router_23",
+            "interface": "VLAN10",
+            "ipv6": "2001:DB8::100",
+            "vip": True,
+            "vip_type": "VRRP",
+            "vrf": "VRF2",
+        },
+    ]
+
+
 # test_huawei_vrp_cfg_ip_short_intf_names()
 
 
 def test_cisco_iosxr_cfg_ip_original_intf_names():
     res = connection_cisco_ios_xr.run_ttp(
-        "ttp://misc/netmiko/cisco.iosxr.cfg.ip.txt", 
-        res_kwargs={"structure": "flat_list"}
+        "ttp://misc/netmiko/cisco.iosxr.cfg.ip.txt",
+        res_kwargs={"structure": "flat_list"},
     )
     # pprint.pprint(res)
-    assert res == [{'description': 'Description of interface',
-                    'hostname': 'r1',
-                    'interface': 'Bundle-Ether1',
-                    'ipv4': '10.1.2.54',
-                    'mask4': '255.255.255.252',
-                    'vrf': 'default'},
-                    {'description': 'Description of interface',
-                    'hostname': 'r1',
-                    'interface': 'Bundle-Ether1',
-                    'ipv6': 'fd00:1:2::31',
-                    'mask6': '126',
-                    'vrf': 'default'},
-                    {'description': 'VRF 123',
-                    'hostname': 'r1',
-                    'interface': 'Loopback123',
-                    'ipv4': '10.1.0.10',
-                    'mask4': '255.255.255.255',
-                    'vrf': 'VRF-1123'},
-                    {'description': 'Description of interface',
-                    'hostname': 'r1',
-                    'interface': 'Bundle-Ether1',
-                    'ipv4': '1.1.1.1',
-                    'vip': True,
-                    'vip_type': 'VRRP',
-                    'vrf': 'default'},
-                    {'description': 'Description of interface',
-                    'hostname': 'r1',
-                    'interface': 'Bundle-Ether1',
-                    'ipv6': 'fd::1',
-                    'vip': True,
-                    'vip_type': 'VRRP',
-                    'vrf': 'default'},
-                    {'description': 'Description of interface',
-                    'hostname': 'r1',
-                    'interface': 'Bundle-Ether1',
-                    'ipv4': '3.3.3.3',
-                    'vip': True,
-                    'vip_type': 'HSRP',
-                    'vrf': 'default'},
-                    {'description': 'Description of interface',
-                    'hostname': 'r1',
-                    'interface': 'Bundle-Ether1',
-                    'ipv6': 'fd::3',
-                    'vip': True,
-                    'vip_type': 'HSRP',
-                    'vrf': 'default'}]
-  
+    assert res == [
+        {
+            "description": "Description of interface",
+            "hostname": "r1",
+            "interface": "Bundle-Ether1",
+            "ipv4": "10.1.2.54",
+            "mask4": "255.255.255.252",
+            "vrf": "default",
+        },
+        {
+            "description": "Description of interface",
+            "hostname": "r1",
+            "interface": "Bundle-Ether1",
+            "ipv6": "fd00:1:2::31",
+            "mask6": "126",
+            "vrf": "default",
+        },
+        {
+            "description": "VRF 123",
+            "hostname": "r1",
+            "interface": "Loopback123",
+            "ipv4": "10.1.0.10",
+            "mask4": "255.255.255.255",
+            "vrf": "VRF-1123",
+        },
+        {
+            "description": "Description of interface",
+            "hostname": "r1",
+            "interface": "Bundle-Ether1",
+            "ipv4": "1.1.1.1",
+            "vip": True,
+            "vip_type": "VRRP",
+            "vrf": "default",
+        },
+        {
+            "description": "Description of interface",
+            "hostname": "r1",
+            "interface": "Bundle-Ether1",
+            "ipv6": "fd::1",
+            "vip": True,
+            "vip_type": "VRRP",
+            "vrf": "default",
+        },
+        {
+            "description": "Description of interface",
+            "hostname": "r1",
+            "interface": "Bundle-Ether1",
+            "ipv4": "3.3.3.3",
+            "vip": True,
+            "vip_type": "HSRP",
+            "vrf": "default",
+        },
+        {
+            "description": "Description of interface",
+            "hostname": "r1",
+            "interface": "Bundle-Ether1",
+            "ipv6": "fd::3",
+            "vip": True,
+            "vip_type": "HSRP",
+            "vrf": "default",
+        },
+    ]
+
+
 # test_cisco_iosxr_cfg_ip_original_intf_names()
 
 
 def test_cisco_ios_cfg_bgp():
     res = connection_cisco_ios.run_ttp(
-        "ttp://misc/netmiko/cisco.ios.cfg.bgp.txt", 
+        "ttp://misc/netmiko/cisco.ios.cfg.bgp.txt",
         # res_kwargs={"structure": "flat_list"}
     )
-    # pprint.pprint(res, width=150) 
-    assert res == [[{'bgp': {'afis': {'ipv4_multicast': {},
-                    'ipv4_unicast': {'config': {'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'},
-                                                             {'mask': '255.255.255.0', 'network': '10.255.10.0'}],
-                                                'redistribute_connected': True,
-                                                'redistribute_connected_rpl': 'PORTABLE-v4'},
-                                     'neighbors': {'10.0.0.3': {'activate': True},
-                                                   '10.0.0.5': {'activate': True},
-                                                   '10.11.0.81': {'activate': True},
-                                                   'RR-CLIENTS': {'max_prefix_action': 'restart',
-                                                                  'max_prefix_limit': '1000',
-                                                                  'max_prefix_restart_interval': '15',
-                                                                  'max_prefix_threshold': '80',
-                                                                  'rpl_out': 'PASS-OUT',
-                                                                  'rr_client': True}}},
-                    'ipv6_unicast': {'config': {'networks': [{'mask': '48', 'network': '2001:db8::'}], 'redistribute_connected': True},
-                                     'neighbors': {'2001:db8::1': {'activate': True}}},
-                    'vpnv4_unicast': {'neighbors': {'3.3.3.3': {'activate': True}}}},
-           'asn': '65001',
-           'config': {'bgp_rid': '10.5.1.1', 'log_neighbor_changes': True},
-           'neighbors': {'10.0.0.3': {'peer_group': 'RR-CLIENTS'},
-                         '10.0.0.5': {'peer_group': 'RR-CLIENTS'},
-                         '10.11.0.81': {'asn': '65002', 'description': 'Peer2-Global', 'disabled': True},
-                         '2001:db8::1': {'asn': '65003', 'description': 'Peer1-Global'},
-                         'RR-CLIENTS': {'asn': '65001',
-                                        'description': '[ibgp - rr clients]',
-                                        'is_peer_group': True,
-                                        'update_source': 'GigabitEthernet1'}},
-           'vrfs': {'CUST-2': {'afi': 'ipv4',
-                               'config': {'bgp_rid': '1.1.1.1', 'redistribute_connected': True},
-                               'neighbors': {'2.2.2.2': {'activate': True, 'asn': '65002', 'description': 'peer 12'}}},
-                    'VoIP': {'afi': 'ipv4',
-                             'config': {'bgp_rid': '10.2.1.193',
-                                        'networks': [{'mask': '255.255.248.0', 'network': '10.255.10.0'}],
-                                        'redistribute_connected': True,
-                                        'redistribute_connected_rpl': 'tospokes'},
-                             'neighbors': {'10.2.1.65': {'activate': True, 'asn': '65001', 'description': 'voip peer 1'},
-                                           '10.2.1.78': {'activate': True,
-                                                         'asn': '65001',
-                                                         'description': 'voip peer 2',
-                                                         'disabled': True,
-                                                         'next_hop_self': True,
-                                                         'pfl_out': 'VoIP-prefixes'}}}}}}]]
-    
+    # pprint.pprint(res, width=150)
+    assert res == [
+        [
+            {
+                "bgp": {
+                    "afis": {
+                        "ipv4_multicast": {},
+                        "ipv4_unicast": {
+                            "config": {
+                                "networks": [
+                                    {"mask": "255.255.248.0", "network": "10.255.10.0"},
+                                    {"mask": "255.255.255.0", "network": "10.255.10.0"},
+                                ],
+                                "redistribute_connected": True,
+                                "redistribute_connected_rpl": "PORTABLE-v4",
+                            },
+                            "neighbors": {
+                                "10.0.0.3": {"activate": True},
+                                "10.0.0.5": {"activate": True},
+                                "10.11.0.81": {"activate": True},
+                                "RR-CLIENTS": {
+                                    "max_prefix_action": "restart",
+                                    "max_prefix_limit": "1000",
+                                    "max_prefix_restart_interval": "15",
+                                    "max_prefix_threshold": "80",
+                                    "rpl_in": "PASS-IN",
+                                    "rpl_out": "PASS-OUT",
+                                    "rr_client": True,
+                                },
+                            },
+                        },
+                        "ipv6_unicast": {
+                            "config": {
+                                "networks": [{"mask": "48", "network": "2001:db8::"}],
+                                "redistribute_connected": True,
+                            },
+                            "neighbors": {"2001:db8::1": {"activate": True}},
+                        },
+                        "vpnv4_unicast": {"neighbors": {"3.3.3.3": {"activate": True}}},
+                    },
+                    "asn": "65001",
+                    "config": {"bgp_rid": "10.5.1.1", "log_neighbor_changes": True},
+                    "neighbors": {
+                        "10.0.0.3": {"peer_group": "RR-CLIENTS"},
+                        "10.0.0.5": {"peer_group": "RR-CLIENTS"},
+                        "10.11.0.81": {
+                            "asn": "65002",
+                            "description": "Peer2-Global",
+                            "disabled": True,
+                        },
+                        "2001:db8::1": {"asn": "65003", "description": "Peer1-Global"},
+                        "RR-CLIENTS": {
+                            "asn": "65001",
+                            "description": "[ibgp - rr clients]",
+                            "is_peer_group": True,
+                            "update_source": "GigabitEthernet1",
+                        },
+                    },
+                    "vrfs": {
+                        "CUST-2": {
+                            "afi": "ipv4",
+                            "config": {
+                                "bgp_rid": "1.1.1.1",
+                                "redistribute_connected": True,
+                            },
+                            "neighbors": {
+                                "2.2.2.2": {
+                                    "activate": True,
+                                    "asn": "65002",
+                                    "description": "peer 12",
+                                }
+                            },
+                        },
+                        "VoIP": {
+                            "afi": "ipv4",
+                            "config": {
+                                "bgp_rid": "10.2.1.193",
+                                "networks": [
+                                    {"mask": "255.255.248.0", "network": "10.255.10.0"}
+                                ],
+                                "redistribute_connected": True,
+                                "redistribute_connected_rpl": "tospokes",
+                            },
+                            "neighbors": {
+                                "10.2.1.65": {
+                                    "activate": True,
+                                    "asn": "65001",
+                                    "description": "voip peer 1",
+                                },
+                                "10.2.1.78": {
+                                    "activate": True,
+                                    "asn": "65001",
+                                    "description": "voip peer 2",
+                                    "disabled": True,
+                                    "next_hop_self": True,
+                                    "pfl_out": "VoIP-prefixes",
+                                },
+                            },
+                        },
+                    },
+                }
+            }
+        ]
+    ]
+
+
 # test_cisco_ios_cfg_bgp()
 
+
 def test_cisco_ios_cfg_nat_static():
-    res = connection_cisco_ios.run_ttp("ttp://misc/netmiko/cisco.ios.cfg.nat.static.txt")
-    pprint.pprint(res, width=150) 
-    assert res == [[{'nat': {'static': [{'global_ip': '3.3.3.3',
-                                         'inside_ip': '10.10.10.10',
-                                         'location': 'inside'},
-                                        {'global_ip': '3.3.4.4',
-                                         'global_port': 443,
-                                         'inside_ip': '192.168.1.10',
-                                         'inside_port': 443,
-                                         'location': 'inside',
-                                         'protocol': 'tcp',
-                                         'vrf': 'VRF1000'},
-                                        {'global_ip': '3.3.4.5',
-                                         'inside_ip': '192.168.2.10',
-                                         'location': 'inside',
-                                         'vrf': 'VRF1002'},
-                                        {'global_ip': '3.3.5.6',
-                                         'global_port': 13389,
-                                         'inside_ip': '192.168.3.10',
-                                         'inside_port': 3389,
-                                         'location': 'inside',
-                                         'protocol': 'tcp'},
-                                        {'global_ip': '6.6.6.6',
-                                         'inside_ip': '20.20.20.20',
-                                         'location': 'inside'},
-                                        {'global_port': 1443,
-                                         'inside_ip': '30.30.30.30',
-                                         'inside_port': 443,
-                                         'interface': 'TenGigabitEthernet0/0/0',
-                                         'location': 'inside',
-                                         'protocol': 'tcp'}]}}]]   
+    res = connection_cisco_ios.run_ttp(
+        "ttp://misc/netmiko/cisco.ios.cfg.nat.static.txt"
+    )
+    pprint.pprint(res, width=150)
+    assert res == [
+        [
+            {
+                "nat": {
+                    "static": [
+                        {
+                            "global_ip": "3.3.3.3",
+                            "inside_ip": "10.10.10.10",
+                            "location": "inside",
+                        },
+                        {
+                            "global_ip": "3.3.4.4",
+                            "global_port": 443,
+                            "inside_ip": "192.168.1.10",
+                            "inside_port": 443,
+                            "location": "inside",
+                            "protocol": "tcp",
+                            "vrf": "VRF1000",
+                        },
+                        {
+                            "global_ip": "3.3.4.5",
+                            "inside_ip": "192.168.2.10",
+                            "location": "inside",
+                            "vrf": "VRF1002",
+                        },
+                        {
+                            "global_ip": "3.3.5.6",
+                            "global_port": 13389,
+                            "inside_ip": "192.168.3.10",
+                            "inside_port": 3389,
+                            "location": "inside",
+                            "protocol": "tcp",
+                        },
+                        {
+                            "global_ip": "6.6.6.6",
+                            "inside_ip": "20.20.20.20",
+                            "location": "inside",
+                        },
+                        {
+                            "global_port": 1443,
+                            "inside_ip": "30.30.30.30",
+                            "inside_port": 443,
+                            "interface": "TenGigabitEthernet0/0/0",
+                            "location": "inside",
+                            "protocol": "tcp",
+                        },
+                    ]
+                }
+            }
+        ]
+    ]

@@ -9,20 +9,18 @@ from ttp import ttp
 
 logging.basicConfig(level=logging.INFO)
 
+
 def test_cisco_ios_show_isdn_status():
-    with open(
-        "./mock_data/cisco_ios_show_isdn_status.txt", "r"
-    ) as f:
+    with open("./mock_data/cisco_ios_show_isdn_status.txt", "r") as f:
         data = f.read()
-    template = get_template(
-        platform="cisco_ios", command="show isdn status"
-    )
+    template = get_template(platform="cisco_ios", command="show isdn status")
     # print(template)
     parser = ttp(data=data, template=template)
     parser.parse()
     res = parser.result()
     # pprint.pprint(res)
-    assert res == [[
+    assert res == [
+        [
             {
                 "interface": [
                     {
@@ -35,7 +33,7 @@ def test_cisco_ios_show_isdn_status():
                         "L2_SESSION_ID": "1",
                         "SAPI": "0",
                         "TEI_CODE": "0",
-                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED",
                     },
                     {
                         "CES": "1",
@@ -45,7 +43,7 @@ def test_cisco_ios_show_isdn_status():
                         "L1_STATUS": "ACTIVE",
                         "SAPI": "0",
                         "TEI_CODE": "0",
-                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED",
                     },
                     {
                         "CES": "1",
@@ -55,7 +53,7 @@ def test_cisco_ios_show_isdn_status():
                         "L1_STATUS": "ACTIVE",
                         "SAPI": "0",
                         "TEI_CODE": "0",
-                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED",
                     },
                     {
                         "CES": "1",
@@ -65,7 +63,7 @@ def test_cisco_ios_show_isdn_status():
                         "L1_STATUS": "DEACTIVATED",
                         "SAPI": "0",
                         "TEI_CODE": "0",
-                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED",
                     },
                     {
                         "CES": "1",
@@ -75,11 +73,12 @@ def test_cisco_ios_show_isdn_status():
                         "L1_STATUS": "ACTIVE",
                         "SAPI": "0",
                         "TEI_CODE": "0",
-                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED"
-                    }
+                        "TEI_STATE": "MULTIPLE_FRAME_ESTABLISHED",
+                    },
                 ]
             }
-        ]]
+        ]
+    ]
 
 
 def test_cisco_ios_show_ip_ospf_database_router():
@@ -417,6 +416,7 @@ def test_cisco_ios_show_ip_ospf_database_summary():
 
 # test_cisco_ios_show_ip_ospf_database_summary()
 
+
 def test_cisco_ios_cisco_ios_show_running_config_pipe_include_source_static():
     data = """
 ip nat inside source static 10.10.10.10 3.3.3.3 extendable
@@ -434,34 +434,57 @@ ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/
     parser.parse()
     res = parser.result()
     pprint.pprint(res)
-    assert res == [[{'nat': {'static': [{'global_ip': '3.3.3.3',
-                                         'inside_ip': '10.10.10.10',
-                                         'location': 'inside'},
-                                        {'global_ip': '3.3.4.4',
-                                         'global_port': 443,
-                                         'inside_ip': '192.168.1.10',
-                                         'inside_port': 443,
-                                         'location': 'inside',
-                                         'protocol': 'tcp',
-                                         'vrf': 'VRF1000'},
-                                        {'global_ip': '3.3.4.5',
-                                         'inside_ip': '192.168.2.10',
-                                         'location': 'inside',
-                                         'vrf': 'VRF1002'},
-                                        {'global_ip': '3.3.5.6',
-                                         'global_port': 13389,
-                                         'inside_ip': '192.168.3.10',
-                                         'inside_port': 3389,
-                                         'location': 'inside',
-                                         'protocol': 'tcp'},
-                                        {'global_ip': '6.6.6.6',
-                                         'inside_ip': '20.20.20.20',
-                                         'location': 'inside'},
-                                        {'global_port': 1443,
-                                         'inside_ip': '30.30.30.30',
-                                         'inside_port': 443,
-                                         'interface': 'TenGigabitEthernet0/0/0',
-                                         'location': 'inside',
-                                         'protocol': 'tcp'}]}}]]
+    assert res == [
+        [
+            {
+                "nat": {
+                    "static": [
+                        {
+                            "global_ip": "3.3.3.3",
+                            "inside_ip": "10.10.10.10",
+                            "location": "inside",
+                        },
+                        {
+                            "global_ip": "3.3.4.4",
+                            "global_port": 443,
+                            "inside_ip": "192.168.1.10",
+                            "inside_port": 443,
+                            "location": "inside",
+                            "protocol": "tcp",
+                            "vrf": "VRF1000",
+                        },
+                        {
+                            "global_ip": "3.3.4.5",
+                            "inside_ip": "192.168.2.10",
+                            "location": "inside",
+                            "vrf": "VRF1002",
+                        },
+                        {
+                            "global_ip": "3.3.5.6",
+                            "global_port": 13389,
+                            "inside_ip": "192.168.3.10",
+                            "inside_port": 3389,
+                            "location": "inside",
+                            "protocol": "tcp",
+                        },
+                        {
+                            "global_ip": "6.6.6.6",
+                            "inside_ip": "20.20.20.20",
+                            "location": "inside",
+                        },
+                        {
+                            "global_port": 1443,
+                            "inside_ip": "30.30.30.30",
+                            "inside_port": 443,
+                            "interface": "TenGigabitEthernet0/0/0",
+                            "location": "inside",
+                            "protocol": "tcp",
+                        },
+                    ]
+                }
+            }
+        ]
+    ]
+
 
 # test_cisco_ios_cisco_ios_show_running_config_pipe_include_source_static()

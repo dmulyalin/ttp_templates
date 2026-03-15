@@ -66,8 +66,7 @@ def get_template(
         log.debug("get_template: resolved misc path '%s'", path)
     else:
         log.warning(
-            "get_template: no valid argument combination provided, "
-            "returning None"
+            "get_template: no valid argument combination provided, " "returning None"
         )
         return None
 
@@ -184,7 +183,7 @@ def list_templates(pattern: str = "*") -> Dict:
         * ``platform`` - list of matching platform template filenames.
         * ``yang`` - list of matching YANG template filenames.
         * ``misc`` - nested dict mirroring the ``misc/`` directory hierarchy,
-          with leaf values being lists of matching filenames.
+            with leaf values being lists of matching filenames.
     """
     res: Dict = {
         "platform": [],
@@ -196,7 +195,9 @@ def list_templates(pattern: str = "*") -> Dict:
     paths = ["platform", "yang", "misc"]
     ttp_templates_dir = os.path.abspath(os.path.dirname(__file__))
 
-    log.debug("list_templates: scanning '%s' with pattern '%s'", ttp_templates_dir, pattern)
+    log.debug(
+        "list_templates: scanning '%s' with pattern '%s'", ttp_templates_dir, pattern
+    )
 
     for path in paths:
         dirname = os.path.join(ttp_templates_dir, path)
