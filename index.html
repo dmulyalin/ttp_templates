@@ -413,6 +413,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#get-collection-templates-files-naming-rule" class="md-nav__link">
+    Get collection templates files naming rule
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1619,6 +1626,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#get-collection-templates-files-naming-rule" class="md-nav__link">
+    Get collection templates files naming rule
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1814,12 +1828,48 @@ Refer to <a href="https://dmulyalin.github.io/ttp_templates/contribute/">Contrib
 </details>
 
 <h2 id="how-templates-collections-structured">How templates collections structured<a class="headerlink" href="#how-templates-collections-structured" title="Permanent link">&para;</a></h2>
-<p>This repository contains three collections of templates corresponding to folder names:</p>
+<p>This repository contains four collections of templates corresponding to folder names:</p>
 <ul>
 <li><code>platform</code> collection - mimics <a href="https://github.com/networktocode/ntc-templates">ntc-templates</a> API and follows same naming rule</li>
 <li><code>yang</code> collection - contains templates capable of producing YANG compatible structures out of text data</li>
 <li><code>misc</code> collection - miscellaneous templates for various use cases organized in folders</li>
+<li><code>get</code> collection - getter templates that return normalised, platform-agnostic output, similar in purpose to <a href="https://napalm.readthedocs.io/en/latest/base.html">NAPALM getters</a></li>
 </ul>
+<p>Sample code to retrieve normalised inventory using the <code>inventory</code> getter. Getters work like
+NAPALM getters: one template bundles platform-specific parsing logic and returns a unified
+structure regardless of vendor. The <code>platform</code> argument is <strong>required</strong> when using a getter —
+it selects the correct platform-specific input inside the getter template.</p>
+<details><summary>Code</summary>
+
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">ttp_templates</span> <span class="kn">import</span> <span class="n">parse_output</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+
+<span class="c1"># Cisco IOS-XR &quot;show inventory&quot; raw CLI output</span>
+<span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">NAME: &quot;Chassis&quot;, DESCR: &quot;Cisco ASR 9006 4-slot Line Card Chassis&quot;</span>
+<span class="s2">PID: ASR-9006-SYS    , VID: V07, SN: FOX1234ABCD</span>
+
+<span class="s2">NAME: &quot;0/RSP0/CPU0&quot;, DESCR: &quot;Route Switch Processor&quot;</span>
+<span class="s2">PID: A9K-RSP440-TR   , VID: V04, SN: FOX5678EFGH</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># platform routes data to the &quot;cisco_xr&quot; input inside inventory.txt;</span>
+<span class="c1"># the getter normalises results from all supported platforms into the same structure.</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">parse_output</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">get</span><span class="o">=</span><span class="s2">&quot;inventory&quot;</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s2">&quot;cisco_xr&quot;</span><span class="p">)</span>
+
+<span class="n">pprint</span><span class="o">.</span><span class="n">pprint</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="c1"># prints:</span>
+<span class="c1"># [[{&#39;description&#39;: &#39;Cisco ASR 9006 4-slot Line Card Chassis&#39;,</span>
+<span class="c1">#    &#39;module&#39;: &#39;ASR-9006-SYS&#39;,</span>
+<span class="c1">#    &#39;serial&#39;: &#39;FOX1234ABCD&#39;,</span>
+<span class="c1">#    &#39;slot&#39;: &#39;Chassis&#39;},</span>
+<span class="c1">#   {&#39;description&#39;: &#39;Route Switch Processor&#39;,</span>
+<span class="c1">#    &#39;module&#39;: &#39;A9K-RSP440-TR&#39;,</span>
+<span class="c1">#    &#39;serial&#39;: &#39;FOX5678EFGH&#39;,</span>
+<span class="c1">#    &#39;slot&#39;: &#39;0/RSP0/CPU0&#39;}]]</span>
+</code></pre></div>
+</details>
+
 <h3 id="platform-collection-templates-files-naming-rule">Platform collection templates files naming rule<a class="headerlink" href="#platform-collection-templates-files-naming-rule" title="Permanent link">&para;</a></h3>
 <p><code>{{ vendor_os }}_{{ command_with_underscores }}.txt</code> - lower case only.</p>
 <p>Naming rules details:</p>
@@ -1846,6 +1896,19 @@ Refer to <a href="https://dmulyalin.github.io/ttp_templates/contribute/">Contrib
 <p>Naming rules details:</p>
 <ul>
 <li>Nothing replaced with anything, provided template name used as is.</li>
+</ul>
+<h3 id="get-collection-templates-files-naming-rule">Get collection templates files naming rule<a class="headerlink" href="#get-collection-templates-files-naming-rule" title="Permanent link">&para;</a></h3>
+<p><code>{{ getter_name }}.txt</code> - lower case only, one file per logical getter.</p>
+<p>Naming rules details:</p>
+<ul>
+<li>Each file name describes a single getter function, e.g. <code>inventory.txt</code>, <code>interfaces.txt</code>, <code>facts.txt</code>.</li>
+<li>A getter template uses TTP <code>&lt;extend&gt;</code> directives to compose platform-specific <code>platform/</code> templates
+  and expose their results under a unified, platform-agnostic structure.</li>
+<li>Each platform-specific input inside the getter must declare a <code>platform</code> list in its <code>&lt;input&gt;</code> block
+  so <code>parse_output</code> can route data to the correct input.</li>
+<li>Getter templates are loaded with <code>get_template(get="inventory")</code> or
+  <code>parse_output(data=..., get="inventory", platform="cisco_xr")</code> — the <code>.txt</code> extension is optional.
+  <code>platform</code> is mandatory for <code>parse_output</code> so the getter can route data to the correct input.</li>
 </ul>
 <h2 id="additional-templates-resources">Additional Templates Resources<a class="headerlink" href="#additional-templates-resources" title="Permanent link">&para;</a></h2>
 <p>List of resources with TTP templates:</p>
