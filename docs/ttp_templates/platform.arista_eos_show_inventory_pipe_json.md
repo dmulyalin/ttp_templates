@@ -17,7 +17,7 @@ This template requires output of 'show inventory' command.
 
 <details><summary>Template Content</summary>
 ```
-<template name="inventory" results="per_template">
+<template name="arista_eos_inventory" results="per_template">
 <doc>
 Template to parse Arista inventory.
 
@@ -76,6 +76,10 @@ def transform_inventory_to_records(payload):
 <input>
 commands = [
     "show inventory | json"
+]
+platform = [
+    "arista_eos", # scrapli and netmiko
+    "eos", # NAPALM
 ]
 </input>
 

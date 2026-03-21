@@ -14,6 +14,7 @@ def get_template(
     command: Optional[str] = None,
     yang: Optional[str] = None,
     misc: Optional[str] = None,
+    get: Optional[str] = None,
 ) -> Optional[str]:
     """Locate a template file and return its content.
 
@@ -25,6 +26,7 @@ def get_template(
     * ``platform="cisco_ios", command="show version"``
     * ``yang="ietf-interfaces", platform="cisco_ios"``
     * ``misc="foo_folder/bar_template.txt"``
+    * ``get="foo_folder/bar_template.txt"``
 
     Args:
         path: OS path or ``ttp://`` URI to the template file to load.
@@ -32,6 +34,7 @@ def get_template(
         command: CLI command to load the template for, e.g. ``show ip arp``.
         yang: YANG module name to load the template for, e.g. ``ietf-interfaces``.
         misc: Path to the template relative to the repository ``misc`` folder.
+        get: Name of the getter template e.g. "inventory"
 
     Returns:
         Template file content as a string, or ``None`` if no valid argument
@@ -43,6 +46,9 @@ def get_template(
         if path.strip().startswith("ttp://"):
             path = path.strip()[6:]
         log.debug("get_template: using explicit path '%s'", path)
+    elif get:
+        path = "get/{}".format(get) if get.endswith(".txt") else "get/{}.txt".format(get)
+        log.debug("get_template: resolved get path '%s'", path)
     elif platform and command:
         platform = platform.lower()
         command = command.lower()
@@ -102,6 +108,7 @@ def parse_output(
     path: Optional[str] = None,
     yang: Optional[str] = None,
     misc: Optional[str] = None,
+    get: Optional[str] = None,
     structure: Optional[str] = "list",
     template_vars: Optional[Dict] = None,
 ) -> Union[Dict, List]:
@@ -115,20 +122,33 @@ def parse_output(
     * ``platform="cisco_ios", command="show version"``
     * ``yang="ietf-interfaces", platform="cisco_ios"``
     * ``misc="foo_folder/bar_template.txt"``
+    * ``get="inventory", platform="cisco_xr"``
 
     Args:
         data: Raw text data to parse.
         path: OS path or ``ttp://`` URI to the template file to load.
         platform: Platform name to load the template for, e.g. ``cisco_ios``.
+            **Required** when ``get`` is used — it selects the platform-specific
+            input inside the getter template (e.g. ``"cisco_xr"``, ``"arista_eos"``).
         command: CLI command to load the template for, e.g. ``show ip arp``.
         yang: YANG module name to load the template for, e.g. ``ietf-interfaces``.
         misc: Path to the template relative to the repository ``misc`` folder.
+        get: Name of the getter template, e.g. ``"inventory"``. Works similarly to
+            NAPALM getters — a single getter bundles platform-specific parsing logic
+            and returns a normalized, platform-agnostic structure. ``platform`` must
+            also be supplied so the correct input section is selected.
         structure: Output structure format - ``list``, ``dictionary``, or
             ``flat_list``.
         template_vars: Additional variables to pass into the TTP template object.
 
     Returns:
         Parsed results as a dict or list, depending on the ``structure`` argument.
+
+    Raises:
+        ValueError: If no valid template-locating argument combination is provided,
+            or if ``get`` is used without ``platform``.
+        RuntimeError: If ``get`` is used and none of the getter's inputs support
+            the specified ``platform``.
     """
     template_vars = template_vars or {}
 
@@ -144,7 +164,7 @@ def parse_output(
 
     # retrieve the template text using the provided locator arguments
     template = get_template(
-        platform=platform, command=command, path=path, yang=yang, misc=misc
+        platform=platform, command=command, path=path, yang=yang, misc=misc, get=get
     )
 
     if template is None:
@@ -155,8 +175,25 @@ def parse_output(
 
     log.debug("parse_output: creating TTP parser, structure=%r", structure)
 
-    # instantiate the TTP parser with the data and template
-    parser = ttp(data=data, template=template, vars=template_vars)
+    # handle getter if platform is given
+    if get:
+        if not platform:
+            raise ValueError(f"'{get}' getter need platform name to parse provided data")
+        parser = ttp(template=template, vars=template_vars)
+        # sort input data across inputs
+        input_found = False
+        for template_name, inputs in parser.get_input_load().items():
+            for input_name, params in inputs.items():
+                if platform in params.get("platform", []):
+                    parser.add_input(template_name=template_name, input_name=input_name, data=data)
+                    input_found = True
+                    break
+            if input_found:
+                break
+        else:
+            raise RuntimeError(f"None of the '{get}' getter inputs support platform '{platform}'")
+    else:
+        parser = ttp(data=data, template=template, vars=template_vars)
 
     # run the parse pass and collect results
     parser.parse(one=True)
@@ -189,10 +226,11 @@ def list_templates(pattern: str = "*") -> Dict:
         "platform": [],
         "yang": [],
         "misc": {},
+        "get": [],
     }
     # filenames to exclude regardless of the caller's pattern
     skip_files = ["readme.md"]
-    paths = ["platform", "yang", "misc"]
+    paths = ["platform", "yang", "misc", "get"]
     ttp_templates_dir = os.path.abspath(os.path.dirname(__file__))
 
     log.debug(
@@ -221,13 +259,6 @@ def list_templates(pattern: str = "*") -> Dict:
                 )
             )
 
-            log.debug(
-                "list_templates: dir '%s' → %d/%d files match pattern",
-                dirpath,
-                len(files),
-                len(filenames),
-            )
-
             # traverse the result dict to the correct nesting level and store the file list
             ref = res
             for index, item in enumerate(dirpath_items):
@@ -248,3 +279,36 @@ def list_templates(pattern: str = "*") -> Dict:
 
     log.debug("list_templates: scan complete")
     return res
+
+
+def list_templates_refs(pattern: str = "*") -> list:
+    """Return a flat list of ``ttp://`` references for all matching templates.
+
+    Each entry uses the ``ttp://`` URI scheme understood by :func:`get_template`  e.g.:
+
+    * ``ttp://platform/cisco_ios_show_ip_arp.txt``
+    * ``ttp://misc/N2G/cli_ip_data/cisco_ios.txt``
+
+    Args:
+        pattern: Glob pattern used to filter template filenames. 
+
+    Returns:
+        Sorted list of ``ttp://`` URI strings for all matching templates.
+    """
+    skip_files = ["readme.md"]
+    paths = ["platform", "yang", "misc", "get"]
+    ttp_templates_dir = os.path.abspath(os.path.dirname(__file__))
+    refs: list = []
+
+    for path in paths:
+        dirname = os.path.join(ttp_templates_dir, path)
+        for dirpath, _dirnames, filenames in os.walk(dirname):
+            # path relative to the package root, using forward slashes for the URI
+            rel_dir = os.path.relpath(dirpath, ttp_templates_dir).replace(os.sep, "/")
+            for filename in filenames:
+                if fnmatchcase(filename, pattern) and filename.lower() not in skip_files:
+                    refs.append("ttp://{}/{}".format(rel_dir, filename))
+
+    log.debug("list_templates_refs: found %d refs", len(refs))
+    return sorted(refs)
+

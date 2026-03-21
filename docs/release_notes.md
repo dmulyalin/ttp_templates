@@ -1,5 +1,52 @@
 # Release Notes
 
+## v0.5.0
+
+### Features
+
+- **`get` template collection** – new `ttp_templates/get/` directory holds getter templates
+  modelled after [NAPALM getters](https://napalm.readthedocs.io/en/latest/base.html). Each
+  getter bundles platform-specific `<extend>` references and returns a normalised,
+  platform-agnostic structure regardless of which vendor's output is supplied.
+
+- **`inventory` getter template** – first getter: `get/inventory.txt` supports
+  Cisco IOS-XR (`cisco_xr`), Cisco NXOS (`cisco_nxos`, `nxos`), Arista EOS
+  (`arista_eos`, `eos`), and Juniper Junos (`juniper_junos`, `junos`).
+  Returns a list of dicts with keys `slot`, `description`, `module`, `serial`.
+
+- **`get_template(get=...)` argument** – `get_template` now accepts a `get` keyword
+  argument to load a getter template by name (e.g. `get_template(get="inventory")`).
+  The `.txt` extension is optional.
+
+- **`parse_output(get=..., platform=...)` routing** – `parse_output` updated to
+  handle getter templates: when `get` is supplied the `platform` argument is
+  **required** and is used to select the correct platform-specific input section
+  inside the getter template. Raises `ValueError` when `platform` is omitted and
+  `RuntimeError` when no input in the getter supports the given platform.
+
+- **`list_templates()` includes `"get"` key** – the dict returned by `list_templates`
+  now has a `"get"` top-level key listing all getter template filenames.
+
+- **`list_templates_refs()` new function** – returns a flat, sorted list of
+  `ttp://` URI strings for every template across all collections (`platform`,
+  `yang`, `misc`, `get`). Every URI is directly loadable via
+  `get_template(path=ref)`. Supports the same `pattern` glob filter as
+  `list_templates`.
+
+### Templates
+
+- Added `ttp://get/inventory.txt` – multi-platform inventory getter template.
+- Updated `ttp://platform/cisco_xr_show_inventory.txt` – added `platform` list
+  to the input block for getter routing compatibility.
+- Updated `ttp://platform/arista_eos_show_inventory_pipe_json.txt` – added
+  `platform` list with `arista_eos` and `eos` entries.
+- Updated `ttp://platform/cisco_nxos_show_inventory_pipe_json_pretty.txt` – added
+  `platform` list with `cisco_nxos` and `nxos` entries.
+- Updated `ttp://platform/juniper_junos_show_chassis_hardware_pipe_json.txt` – added
+  `platform` list with `juniper_junos` and `junos` entries.
+
+---
+
 ## v0.4.0
 
 ### Bugs
@@ -34,6 +81,9 @@
 - Improved logging throughout all public API functions.
 - Improved type hint annotations and converted docstrings to Google format.
 - Improved inline comments for clarity.
+- Enhancing tests suite
+
+---
 
 ## v0.3.2
 
@@ -41,11 +91,15 @@
 
 - Added `misc/Netbox` folder with templates for Junos, IOS-XR, and Arista devices configuration.
 
+---
+
 ## v0.3.1
 
 ### Templates
 
 - Added `ttp://misc/N2G/cli_ip_data/arista_eos.txt` template to parse Arista EOS IP details for N2G L3 diagrams.
+
+---
 
 ## v0.3.0
 
@@ -61,6 +115,8 @@
 ### Templates
 
 - Updated all N2G templates to have default input with required commands and platform attributes.
+
+---
 
 ## v0.2.0
 
@@ -81,6 +137,8 @@ Modified templates:
 
 - `ttp://platform/cisco_xr_show_isis_database_verbose.txt` – updated produced data structure to key LSPs by hostname.
 
+---
+
 ## v0.1.3
 
 ### Bugs
@@ -90,6 +148,8 @@ Modified templates:
 ### New Templates
 
 - Added N2G templates.
+
+---
 
 ## v0.1.2
 

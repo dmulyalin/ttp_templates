@@ -15,6 +15,7 @@ misc = []
 misc_dict = {}
 platform = []
 yang = []
+get = []
 templates_count = 0
 
 page_template = """Reference path:
@@ -43,6 +44,7 @@ for item in mkdocs_yaml["nav"]:
             {"Misc": misc},
             {"Platform": platform},
             {"YANG": yang},
+            {"Getters": get},
         ]
 
 # load templates docs and form mkdocs.yml nav section
@@ -107,6 +109,8 @@ for dirpath, dirnames, filenames in os.walk(top="ttp_templates"):
                 platform.append({".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename})
             elif splitted_path[1] == "yang":
                 yang.append({".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename})
+            elif splitted_path[1] == "get":
+                get.append({".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename})
         else:
             continue
         

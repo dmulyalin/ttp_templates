@@ -17,7 +17,7 @@ This template requires output of 'show inventory' command.
 
 <details><summary>Template Content</summary>
 ```
-<template name="inventory" results="per_template">
+<template name="juniper_junos_inventory" results="per_template">
 <doc>
 Template to parse Juniper inventory.
 
@@ -78,6 +78,10 @@ def transform_inventory_to_records(payload):
 <input>
 commands = [
     "show chassis hardware | display json"
+]
+platform = [
+    "juniper_junos", # netmiko sand scrapli
+    "junos", # napalm
 ]
 </input>
 

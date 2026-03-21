@@ -34,6 +34,9 @@ Before you start, make sure to think of for each template:
   and uses naming rule - `{{ YANG module name }}_{{ platform_name }}.txt` - lower case only
 * `misc` category - miscellaneous templates for various use cases organized in folders, naming
   rule is - `{{ usecase folder }}/{{ template name }}.txt` - upper or lower case
+* `get` category - getter templates that return normalised, platform-agnostic output (similar to
+  [NAPALM getters](https://napalm.readthedocs.io/en/latest/base.html)), naming rule is -
+  `{{ getter_name }}.txt` - lower case only, e.g. `inventory.txt`, `interfaces.txt`, `facts.txt`
 
 To prepare your working environment you will need to install the required packages. The project
 uses [Poetry](https://python-poetry.org/) for dependency management:
@@ -46,8 +49,8 @@ To add new template or multiple templates follow these steps:
 
 1. Fork [TTP Templates](https://github.com/dmulyalin/ttp_templates) repository to your GitHub account
 2. Git clone forked TTP Templates repository to your local machine
-3. Add new TTP template file to `ttp_templates/platform/`, `ttp_templates/misc/<usecase>/` or 
-   `ttp_templates/yang/` folder
+3. Add new TTP template file to `ttp_templates/platform/`, `ttp_templates/misc/<usecase>/`,
+   `ttp_templates/yang/` or `ttp_templates/get/` folder
 4. Add [PyTest](https://pypi.org/project/pytest/) tests under `test` folder inside one of the existing 
    files or create new file, might be good to look at existing tests for ideas on how to test the template
 5. Generate documentation using [Writing Docs guide](writing_docs.md), omitting `gh-deploy` portion

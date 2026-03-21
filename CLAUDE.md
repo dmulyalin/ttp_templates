@@ -24,6 +24,7 @@ ttp_templates/          # installable package
     ttp_vars.py         # reusable TTP variables (short_interface_names, …)
     platform/           # one .txt template per (platform, command) pair
     yang/               # one .txt template per (YANG module, platform) pair
+    get/                # one .txt getter template per logical function (inventory, interfaces, …)
     misc/               # free-form hierarchy of specialised templates
         N2G/            # templates consumed by the N2G topology library
         Netbox/         # templates for extracting Netbox-style data
@@ -58,9 +59,11 @@ raw text content, or `None` when no valid combination of arguments is supplied.
 | `platform="cisco_ios", command="show ip arp"` | Resolved to `platform/<platform>_<command>.txt` |
 | `yang="ietf-interfaces", platform="cisco_ios"` | Resolved to `yang/<yang>_<platform>.txt` |
 | `misc="N2G/cli_ip_data/cisco_ios.txt"` | Resolved relative to the `misc/` directory |
+| `get="inventory"` | Resolved to `get/inventory.txt`; `.txt` suffix is optional |
 
 Spaces and hyphens in `platform`/`command` are normalised to underscores;
 `|` in `command` is replaced with `pipe`.
+For `get`, the `.txt` extension is appended automatically when absent.
 
 ### `parse_output(data, **kwargs) -> Union[Dict, List]`
 

@@ -95,6 +95,8 @@ nav:
     - openconfig-lldp_cisco_ios: ttp_templates/yang.openconfig-lldp_cisco_ios.md
     - openconfig-lldp_cisco_nxos: ttp_templates/yang.openconfig-lldp_cisco_nxos.md
     - openconfig-lldp_cisco_xr: ttp_templates/yang.openconfig-lldp_cisco_xr.md
+  - Getters:
+    - inventory: ttp_templates/get.inventory.md
 plugins:
 - search
 - mkdocstrings:

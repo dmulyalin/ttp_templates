@@ -1,0 +1,68 @@
+Reference path:
+```
+ttp://get/inventory.txt
+```
+
+---
+
+
+
+Template to parse Cisco IOS XR inventory.
+
+This template requires output of 'show inventory' command.
+
+
+
+Template to parse Arista inventory.
+
+This template requires output of 'show inventory' command.
+
+
+
+Template to parse Cisco NX-OS inventory.
+
+This template requires output of 'show inventory' command.
+
+
+
+Template to parse Juniper inventory.
+
+This template requires output of 'show inventory' command.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="inventory" results="per_template">
+<doc>
+Getter template to parse inventory for network devices.
+
+Supported platforms:
+
+- Cisco IOS-XR
+- Cisco NXOS
+- Arista EOS
+- Juniper Junos
+
+Returns normalized list of dictionary, each dictionary has these keys:
+
+- 'description' - description of module/inventory item
+- 'module' - PID of the module/inventory item
+- 'serial' - serial number of the module/inventory item
+- 'slot' - name of the parent slot housing module/inventory item
+
+</doc>
+
+<extend template="ttp://platform/cisco_xr_show_inventory.txt"/>
+
+<extend template="ttp://platform/arista_eos_show_inventory_pipe_json.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_inventory_pipe_json_pretty.txt"/>
+
+<extend template="ttp://platform/juniper_junos_show_chassis_hardware_pipe_json.txt"/>
+
+</template>
+```
+</details>

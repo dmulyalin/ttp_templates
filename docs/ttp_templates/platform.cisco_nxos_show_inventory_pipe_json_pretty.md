@@ -17,7 +17,7 @@ This template requires output of 'show inventory' command.
 
 <details><summary>Template Content</summary>
 ```
-<template name="inventory" results="per_template">
+<template name="cisco_nxos_inventory" results="per_template">
 <doc>
 Template to parse Cisco NX-OS inventory.
 
@@ -59,6 +59,10 @@ def transform_inventory_to_records(payload):
 <input>
 commands = [
     "show inventory | json-pretty"
+]
+platform = [
+    "nxos", # NAPALM
+    "cisco_nxos", # Netmiko and Scrapli
 ]
 </input>
 

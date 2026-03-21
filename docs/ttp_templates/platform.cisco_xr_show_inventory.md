@@ -17,7 +17,7 @@ This template requires output of 'show inventory' command.
 
 <details><summary>Template Content</summary>
 ```
-<template name="inventory" results="per_template">
+<template name="cisco_xr_inventory" results="per_template">
 <doc>
 Template to parse Cisco IOS XR inventory.
 
@@ -27,6 +27,11 @@ This template requires output of 'show inventory' command.
 <input>
 commands = [
     "show inventory"
+]
+platform = [
+    "cisco_xr", # netmiko
+    "iosxr", # napalm
+    "cisco_iosxr", # scrapli
 ]
 </input>
 
