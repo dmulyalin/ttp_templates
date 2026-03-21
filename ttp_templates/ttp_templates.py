@@ -192,12 +192,15 @@ def parse_output(
                 break
         else:
             raise RuntimeError(f"None of the '{get}' getter inputs support platform '{platform}'")
+        # parse the data and return result only for template with matched input
+        parser.parse(one=True)
+        results = parser.result(structure="dictionary")
+        results = results[template_name]
     else:
+        # parse the data
         parser = ttp(data=data, template=template, vars=template_vars)
-
-    # run the parse pass and collect results
-    parser.parse(one=True)
-    results = parser.result(structure=structure)
+        parser.parse(one=True)
+        results = parser.result(structure=structure)
 
     log.debug("parse_output: parsing complete")
     return results

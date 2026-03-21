@@ -601,4 +601,5 @@ def test_parse_output_with_get_and_platform():
 
     print("\nParsing results:")
     pprint.pprint(result)
-    assert result["cisco_xr_inventory"] and len(result["cisco_xr_inventory"]) > 0, "cisco_xr_inventory parsing results are wrong"
+    assert isinstance(result, list)
+    assert len(result) > 0, "cisco_xr_inventory parsing results are wrong"

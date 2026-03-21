@@ -1,6 +1,14 @@
 # Release Notes
 
-## v0.5.0
+## 0.5.1
+
+### CHANGES
+
+1. Enhancing `get` results return to return only parsing result for matched template
+
+---
+
+## 0.5.0
 
 ### Features
 
