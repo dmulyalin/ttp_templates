@@ -1470,6 +1470,47 @@
   
 
           
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" >
+      
+      <label class="md-nav__link" for="__nav_6_4">
+        Getters
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Getters" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Getters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/get.inventory/" class="md-nav__link">
+        inventory
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1570,6 +1611,9 @@
   and uses naming rule - <code>{{ YANG module name }}_{{ platform_name }}.txt</code> - lower case only</li>
 <li><code>misc</code> category - miscellaneous templates for various use cases organized in folders, naming
   rule is - <code>{{ usecase folder }}/{{ template name }}.txt</code> - upper or lower case</li>
+<li><code>get</code> category - getter templates that return normalised, platform-agnostic output (similar to
+  <a href="https://napalm.readthedocs.io/en/latest/base.html">NAPALM getters</a>), naming rule is -
+  <code>{{ getter_name }}.txt</code> - lower case only, e.g. <code>inventory.txt</code>, <code>interfaces.txt</code>, <code>facts.txt</code></li>
 </ul>
 <p>To prepare your working environment you will need to install the required packages. The project
 uses <a href="https://python-poetry.org/">Poetry</a> for dependency management:</p>
@@ -1579,8 +1623,8 @@ uses <a href="https://python-poetry.org/">Poetry</a> for dependency management:<
 <ol>
 <li>Fork <a href="https://github.com/dmulyalin/ttp_templates">TTP Templates</a> repository to your GitHub account</li>
 <li>Git clone forked TTP Templates repository to your local machine</li>
-<li>Add new TTP template file to <code>ttp_templates/platform/</code>, <code>ttp_templates/misc/&lt;usecase&gt;/</code> or 
-   <code>ttp_templates/yang/</code> folder</li>
+<li>Add new TTP template file to <code>ttp_templates/platform/</code>, <code>ttp_templates/misc/&lt;usecase&gt;/</code>,
+   <code>ttp_templates/yang/</code> or <code>ttp_templates/get/</code> folder</li>
 <li>Add <a href="https://pypi.org/project/pytest/">PyTest</a> tests under <code>test</code> folder inside one of the existing 
    files or create new file, might be good to look at existing tests for ideas on how to test the template</li>
 <li>Generate documentation using <a href="../writing_docs/">Writing Docs guide</a>, omitting <code>gh-deploy</code> portion</li>

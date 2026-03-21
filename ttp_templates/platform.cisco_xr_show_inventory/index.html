@@ -1423,6 +1423,47 @@
   
 
           
+            
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" >
+      
+      <label class="md-nav__link" for="__nav_6_4">
+        Getters
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Getters" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          Getters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get.inventory/" class="md-nav__link">
+        inventory
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1456,7 +1497,7 @@
 <p>This template requires output of 'show inventory' command.</p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;inventory&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;cisco_xr_inventory&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
 Template to parse Cisco IOS XR inventory.
 
@@ -1466,6 +1507,11 @@ This template requires output of &#39;show inventory&#39; command.
 &lt;input&gt;
 commands = [
     &quot;show inventory&quot;
+]
+platform = [
+    &quot;cisco_xr&quot;, # netmiko
+    &quot;iosxr&quot;, # napalm
+    &quot;cisco_iosxr&quot;, # scrapli
 ]
 &lt;/input&gt;
 

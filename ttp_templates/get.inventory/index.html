@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/misc.Netmiko.cisco.iosxr.arp/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/get.inventory/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco.iosxr.arp - TTP Templates Collection</title>
+        <title>inventory - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco.iosxr.arp
+              inventory
             
           </span>
         </div>
@@ -429,16 +429,14 @@
             
   
   
-    
-  
   
     
       
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
       
       <label class="md-nav__link" for="__nav_6_1">
         Misc
@@ -832,14 +830,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_3" type="checkbox" id="__nav_6_1_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_3" type="checkbox" id="__nav_6_1_3" >
       
       <label class="md-nav__link" for="__nav_6_1_3">
         Netmiko
@@ -915,19 +911,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.Netmiko.cisco.iosxr.arp/" class="md-nav__link">
         cisco.iosxr.arp
       </a>
-      
     </li>
   
 
@@ -1428,14 +1416,16 @@
             
   
   
+    
+  
   
     
       
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
       
       <label class="md-nav__link" for="__nav_6_4">
         Getters
@@ -1451,11 +1441,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../get.inventory/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         inventory
       </a>
+      
     </li>
   
 
@@ -1484,103 +1482,56 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.Netmiko.cisco.iosxr.arp.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/get.inventory.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco.iosxr.arp</h1>
+                  <h1>inventory</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.iosxr.arp.txt
+<div class="highlight"><pre><span></span><code>ttp://get/inventory.txt
 </code></pre></div></p>
 <hr />
-<p>TTP template to parse Cisco IOS XR "show arp vrf all" output with Netmiko. </p>
-<p>Template can be invoked using Netmiko run_ttp method like this:
-<div class="highlight"><pre><span></span><code>import pprint
-from netmiko import ConnectHandler
-
-net_connect = ConnectHandler(
-    device_type=&quot;cisco_xr&quot;,
-    host=&quot;1.2.3.4&quot;,
-    username=&quot;admin&quot;,
-    password=&quot;admin&quot;,
-)
-
-res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.iosxr.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
-
-pprint.pprint(res)
-
-# prints something along the lines of:
-# [{&#39;age&#39;: 8,
-#   &#39;ip&#39;: &#39;172.29.50.1&#39;,
-#   &#39;mac&#39;: &#39;84:b8:02:76:ac:0e&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: 221,
-#   &#39;interface&#39;: &#39;Vlan20&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.2&#39;,
-#   &#39;mac&#39;: &#39;00:19:07:25:34:4a&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: &#39;-&#39;,
-#   &#39;interface&#39;: &#39;Vlan21&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.3&#39;,
-#   &#39;mac&#39;: &#39;00:24:f7:dd:77:41&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;}]
-</code></pre></div></p>
-<p>TTP template to parse Cisco IOS XR "show arp vrf all" output. </p>
+<p>Template to parse Cisco IOS XR inventory.</p>
+<p>This template requires output of 'show inventory' command.</p>
+<p>Template to parse Arista inventory.</p>
+<p>This template requires output of 'show inventory' command.</p>
+<p>Template to parse Cisco NX-OS inventory.</p>
+<p>This template requires output of 'show inventory' command.</p>
+<p>Template to parse Juniper inventory.</p>
+<p>This template requires output of 'show inventory' command.</p>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
-TTP template to parse Cisco IOS XR &quot;show arp vrf all&quot; output with Netmiko. 
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;inventory&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Getter template to parse inventory for network devices.
 
-Template can be invoked using Netmiko run_ttp method like this:
-&#39;&#39;&#39;
-import pprint
-from netmiko import ConnectHandler
+Supported platforms:
 
-net_connect = ConnectHandler(
-    device_type=&quot;cisco_xr&quot;,
-    host=&quot;1.2.3.4&quot;,
-    username=&quot;admin&quot;,
-    password=&quot;admin&quot;,
-)
+- Cisco IOS-XR
+- Cisco NXOS
+- Arista EOS
+- Juniper Junos
 
-res = net_connect.run_ttp(&quot;ttp://misc/netmiko/cisco.iosxr.arp.txt&quot;, res_kwargs={&quot;structure&quot;: &quot;flat_list&quot;})
+Returns normalized list of dictionary, each dictionary has these keys:
 
-pprint.pprint(res)
+- &#39;description&#39; - description of module/inventory item
+- &#39;module&#39; - PID of the module/inventory item
+- &#39;serial&#39; - serial number of the module/inventory item
+- &#39;slot&#39; - name of the parent slot housing module/inventory item
 
-# prints something along the lines of:
-# [{&#39;age&#39;: 8,
-#   &#39;ip&#39;: &#39;172.29.50.1&#39;,
-#   &#39;mac&#39;: &#39;84:b8:02:76:ac:0e&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: 221,
-#   &#39;interface&#39;: &#39;Vlan20&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.2&#39;,
-#   &#39;mac&#39;: &#39;00:19:07:25:34:4a&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;},
-#  {&#39;age&#39;: &#39;-&#39;,
-#   &#39;interface&#39;: &#39;Vlan21&#39;,
-#   &#39;ip&#39;: &#39;172.29.50.3&#39;,
-#   &#39;mac&#39;: &#39;00:24:f7:dd:77:41&#39;,
-#   &#39;protocol&#39;: &#39;Internet&#39;,
-#   &#39;type&#39;: &#39;ARPA&#39;}]
-&#39;&#39;&#39;
 &lt;/doc&gt;
 
+&lt;extend template=&quot;ttp://platform/cisco_xr_show_inventory.txt&quot;/&gt;
 
-&lt;input&gt;
-commands = [
-    &quot;show arp vrf all&quot;
-]
-&lt;/input&gt;
+&lt;extend template=&quot;ttp://platform/arista_eos_show_inventory_pipe_json.txt&quot;/&gt;
 
-&lt;extend template=&quot;ttp://platform/cisco_xr_show_arp_vrf_all.txt&quot;/&gt;
+&lt;extend template=&quot;ttp://platform/cisco_nxos_show_inventory_pipe_json_pretty.txt&quot;/&gt;
+
+&lt;extend template=&quot;ttp://platform/juniper_junos_show_chassis_hardware_pipe_json.txt&quot;/&gt;
+
+&lt;/template&gt;
 </code></pre></div>
 </details>
                 
@@ -1607,7 +1558,7 @@ commands = [
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.Netmiko.cisco.ios.cfg.nat.static/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco.ios.cfg.nat.static" rel="prev">
+        <a href="../yang.openconfig-lldp_cisco_xr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: openconfig-lldp_cisco_xr" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1616,26 +1567,11 @@ commands = [
               <span class="md-footer__direction">
                 Previous
               </span>
-              cisco.ios.cfg.nat.static
+              openconfig-lldp_cisco_xr
             </div>
           </div>
         </a>
       
-      
-        
-        <a href="../misc.Netmiko.cisco.iosxr.cfg.interface/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco.iosxr.cfg.interface" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              cisco.iosxr.cfg.interface
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
