@@ -10,6 +10,10 @@ This template requires output of 'show running-config' command.
 commands = [
     "show running-config"
 ]
+platform = [
+    "arista_eos", # scrapli and netmiko
+    "eos", # NAPALM
+]
 </input>
 
 <macro>

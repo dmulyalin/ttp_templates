@@ -1,6 +1,9 @@
 <template name="inventory" results="per_template">
 <doc>
-Getter template to parse inventory for network devices.
+Getter template to parse inventory for network devices. Designed to work with 
+[Network Automation Fabric](https://docs.norfablabs.com/) 
+[Nornir Service](https://docs.norfablabs.com/workers/nornir/services_nornir_service/) 
+[parse TTP task](https://docs.norfablabs.com/workers/nornir/services_nornir_service_tasks_parse/)
 
 Supported platforms:
 
@@ -15,6 +18,7 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `module` - PID of the module/inventory item
 - `serial` - serial number of the module/inventory item
 - `slot` - name of the parent slot housing module/inventory item
+
 
 </doc>
 

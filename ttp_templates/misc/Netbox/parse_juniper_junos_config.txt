@@ -10,6 +10,10 @@ This template requires output of 'show configuration | display set' command.
 commands = [
     "show configuration | display set"
 ]
+platform = [
+    "juniper_junos", # netmiko sand scrapli
+    "junos", # napalm
+]
 </input>
 
 <macro>    

@@ -10,6 +10,11 @@ This template requires output of `show running-config` command.
 commands = [
     "show running-config"
 ]
+platform = [
+    "cisco_xr", # netmiko
+    "iosxr", # napalm
+    "cisco_iosxr", # scrapli
+]
 </input>
 
 <macro>
