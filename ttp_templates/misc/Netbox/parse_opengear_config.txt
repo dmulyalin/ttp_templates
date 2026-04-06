@@ -1,4 +1,4 @@
-<template name="netbox_data" results="per_template">
+<template name="netbox_data_opengear" results="per_template">
 <doc>
 Template to parse Opengear configuration and produce data structure
 that is easy to work with to import data into the Netbox.
