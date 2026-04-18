@@ -28,7 +28,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-ttp = { version = ">=0.6.0" }
+ttp = { version = ">=0.10.0" }
 
 # docs dependencies for extras definition
 mkdocs = { version = "*", optional = true }

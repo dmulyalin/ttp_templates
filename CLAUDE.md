@@ -168,25 +168,3 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 ```
 
----
-
-## Known bugs / issues
-
-See [private/bug_report.md](private/bug_report.md) for a full list. Summary:
-
-1. **Path-traversal vulnerability** – `get_template` does not sanitise the
-   `path` / `misc` arguments; crafted `..` sequences can read files outside the
-   package.
-2. **`get_template` returns `None` silently** – `parse_output` passes that
-   `None` straight to the TTP constructor with no guard, which may cause
-   confusing errors.
-3. **`list_templates` dict/list collision** – placing a template file directly
-   in `misc/` (not a subdirectory) would corrupt the result dict and raise
-   `AttributeError`.
-4. **Non-deterministic file ordering** – `os.walk` / `os.listdir` do not sort
-   filenames.
-5. **No template caching** – every call re-reads from disk and creates a new
-   `ttp` parser instance.
-6. **`short_interface_names` prefix ambiguity** – `2GE` patterns (`^Tw`, `^Two`)
-   are strict prefixes of `TwentyFive*` / `TwoHundred*` names; insertion order
-   may cause mis-classification depending on TTP's `resuball` implementation.

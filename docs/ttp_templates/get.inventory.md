@@ -37,7 +37,10 @@ This template requires output of 'show inventory' command.
 ```
 <template name="inventory" results="per_template">
 <doc>
-Getter template to parse inventory for network devices.
+Getter template to parse inventory for network devices. Designed to work with 
+[Network Automation Fabric](https://docs.norfablabs.com/) 
+[Nornir Service](https://docs.norfablabs.com/workers/nornir/services_nornir_service/) 
+[parse TTP task](https://docs.norfablabs.com/workers/nornir/services_nornir_service_tasks_parse/)
 
 Supported platforms:
 
@@ -46,12 +49,29 @@ Supported platforms:
 - Arista EOS
 - Juniper Junos
 
-Returns normalized list of dictionary, each dictionary has these keys:
+Returns normalized list of dictionaries, each dictionary has these keys:
 
 - 'description' - description of module/inventory item
 - 'module' - PID of the module/inventory item
 - 'serial' - serial number of the module/inventory item
 - 'slot' - name of the parent slot housing module/inventory item
+
+Example data returned by template (YAML):
+
+'''yaml
+- description: "ASR9K Route Switch Processor with 440G/slot Fabric and 6GB"
+  slot: "module 0/RSP0/CPU0"
+  module: "A9K-RSP440-TR"
+  serial: "M9YXCZV9QF"
+- description: "ASR-9006 Fan Tray V2"
+  slot: "fantray 0/FT0/SP"
+  module: "ASR-9006-FAN-V2"
+  serial: "PDANV9GYV8H"
+- description: "ASR9K Generic Fan"
+  slot: "fan0 0/FT0/SP"
+  module: "N/A"
+  serial: ""
+'''
 
 </doc>
 

@@ -1674,19 +1674,19 @@ files = [
 
 [[package]]
 name = "ttp"
-version = "0.9.3"
+version = "0.10.1"
 description = "Template Text Parser"
 optional = false
-python-versions = ">=2.7,<4.0"
+python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "ttp-0.9.3-py2.py3-none-any.whl", hash = "sha256:d68b08533682873a2b81f9a362eeb3c06b000a77ac8a7edb46ea7c82c510fe03"},
-    {file = "ttp-0.9.3.tar.gz", hash = "sha256:6d92e17ecb19651ca3d3d9c72035ad3b639419bd08a074507e41547aab75cce7"},
+    {file = "ttp-0.10.1-py3-none-any.whl", hash = "sha256:2c8bc871f7740b690c6df6fb8c9633be58fcda123eea3e53be40a79e4af54b83"},
+    {file = "ttp-0.10.1.tar.gz", hash = "sha256:9c928aeb1f2dade05419c7ecc756d62cb45857deb5cc6b1b9f2058e70f25ae59"},
 ]
 
 [package.extras]
-docs = ["Sphinx (==4.3.0) ; python_version >= \"3.7\"", "readthedocs-sphinx-search (==0.1.1) ; python_version >= \"3.7\"", "sphinx_rtd_theme (==1.0.0) ; python_version >= \"3.7\"", "sphinxcontrib-applehelp (==1.0.1) ; python_version >= \"3.7\"", "sphinxcontrib-devhelp (==1.0.1) ; python_version >= \"3.7\"", "sphinxcontrib-htmlhelp (==2.0.0) ; python_version >= \"3.7\"", "sphinxcontrib-jsmath (==1.0.1) ; python_version >= \"3.7\"", "sphinxcontrib-napoleon (==0.7) ; python_version >= \"3.7\"", "sphinxcontrib-qthelp (==1.0.2) ; python_version >= \"3.7\"", "sphinxcontrib-serializinghtml (==1.1.5) ; python_version >= \"3.7\"", "sphinxcontrib-spelling (==7.2.1) ; python_version >= \"3.7\""]
-full = ["cerberus (>=1.3.0,<1.4.0) ; python_version >= \"3.7\"", "deepdiff (>=5.8.0,<5.9.0) ; python_version >= \"3.7\"", "jinja2 (>=3.0.0,<3.1.0) ; python_version >= \"3.7\"", "n2g (>=0.2.0,<0.3.0) ; python_version >= \"3.7\"", "openpyxl (>=3.0.0,<3.1.0) ; python_version >= \"3.7\"", "pyyaml (==6.0) ; python_version >= \"3.7\"", "tabulate (>=0.8.0,<0.9.0) ; python_version >= \"3.7\"", "ttp_templates (<1.0.0) ; python_version >= \"3.7\"", "yangson (>=1.4.0,<1.5.0) ; python_version >= \"3.7\""]
+docs = ["Sphinx (==8.2.*) ; python_version >= \"3.11\"", "readthedocs-sphinx-search (==0.3.*) ; python_version >= \"3.11\"", "sphinx_rtd_theme (==3.0.*) ; python_version >= \"3.11\"", "sphinxcontrib-applehelp (==2.0.*) ; python_version >= \"3.11\"", "sphinxcontrib-devhelp (==2.0.*) ; python_version >= \"3.11\"", "sphinxcontrib-htmlhelp (==2.1.*) ; python_version >= \"3.11\"", "sphinxcontrib-jsmath (==1.0.*) ; python_version >= \"3.11\"", "sphinxcontrib-napoleon (==0.7) ; python_version >= \"3.11\"", "sphinxcontrib-qthelp (==2.0.*) ; python_version >= \"3.11\"", "sphinxcontrib-serializinghtml (==2.0.*) ; python_version >= \"3.11\"", "sphinxcontrib-spelling (==8.0.*) ; python_version >= \"3.11\""]
+full = ["cerberus (==1.3.*) ; python_version >= \"3.9\"", "deepdiff (==8.6.*) ; python_version >= \"3.9\"", "jinja2 (==3.1.*) ; python_version >= \"3.9\"", "n2g (==0.3.*) ; python_version >= \"3.9\"", "openpyxl (==3.0.*) ; python_version >= \"3.9\"", "pyyaml (==6.0.3) ; python_version >= \"3.9\"", "tabulate (==0.9.*) ; python_version >= \"3.9\"", "ttp_templates (==0.*) ; python_version >= \"3.9\"", "yangson (==1.6.*) ; python_version >= \"3.9\""]
 
 [[package]]
 name = "typing-extensions"
@@ -1803,4 +1803,4 @@ docs = ["mkdocs", "mkdocs-material", "mkdocs-material-extensions", "mkdocstrings
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "f3085e8aa7c767f01a904f458c040b9202ee3651ba893cc7acd8127f68db1cd4"
+content-hash = "15adb5decab536ff2d037d7f0f4d9bddca9a35881fbd9d363da6c8df13a12149"

@@ -18,7 +18,7 @@ This template requires output of 'show configuration | display set' command.
 
 <details><summary>Template Content</summary>
 ```
-<template name="netbox_data" results="per_template">
+<template name="netbox_data_juniper_junos" results="per_template">
 <doc>
 Template to parse Juniper Junos configuration and produce data structure
 that is easy to work with to import data into the Netbox.
@@ -29,6 +29,10 @@ This template requires output of 'show configuration | display set' command.
 <input>
 commands = [
     "show configuration | display set"
+]
+platform = [
+    "juniper_junos", # netmiko sand scrapli
+    "junos", # napalm
 ]
 </input>
 

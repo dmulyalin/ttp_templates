@@ -1,0 +1,130 @@
+Reference path:
+```
+ttp://platform/arista_eos_show_bgp_neighbors_vrf_all_pipe_json.txt
+```
+
+---
+
+
+
+Normalizes Arista EOS BGP neighbors JSON to flat list format.
+
+Transforms nested vrfs-peerList structure into standardized dictionaries with:
+
+- All fields present (missing set to None)
+- RFC-normalized state values (established, idle, etc.)
+- Per-AFI prefix counts (ipv4Unicast_prefixes_sent, etc.)
+- Consistent field naming
+
+Example normalized output (YAML):
+
+```yaml
+- afi:
+  - ipv4_unicast
+  description: ceos-leaf-1 Ethernet1
+  export_policies: ALLOW-ALL
+  hold_time: 180
+  import_policies: ALLOW-ALL
+  ipv4_unicast_prefixes_received: 2
+  ipv4_unicast_prefixes_sent: 3
+  keepalive: 60
+  local_address: 10.0.0.0
+  local_as: '65001'
+  local_interface: Ethernet2
+  max_ttl: 255
+  name: default_10.0.0.1
+  peer_group: null
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.0.0.1
+  remote_as: '65101'
+  router_id: 10.10.10.11
+  state: established
+  uptime_seconds: 8791
+  vrf: default
+```
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="arista_eos_bgp_neighbors" results="per_template">
+<doc>
+Normalizes Arista EOS BGP neighbors JSON to flat list format.
+
+Transforms nested vrfs-peerList structure into standardized dictionaries with:
+
+- All fields present (missing set to None)
+- RFC-normalized state values (established, idle, etc.)
+- Per-AFI prefix counts (ipv4Unicast_prefixes_sent, etc.)
+- Consistent field naming
+
+Example normalized output (YAML):
+
+'''yaml
+- afi:
+  - ipv4_unicast
+  description: ceos-leaf-1 Ethernet1
+  export_policies: ALLOW-ALL
+  hold_time: 180
+  import_policies: ALLOW-ALL
+  ipv4_unicast_prefixes_received: 2
+  ipv4_unicast_prefixes_sent: 3
+  keepalive: 60
+  local_address: 10.0.0.0
+  local_as: '65001'
+  local_interface: Ethernet2
+  max_ttl: 255
+  name: default_10.0.0.1
+  peer_group: null
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.0.0.1
+  remote_as: '65101'
+  router_id: 10.10.10.11
+  state: established
+  uptime_seconds: 8791
+  vrf: default
+'''
+</doc>
+
+<macro>
+def load_json(result):
+    import json
+
+    return json.loads("{" + result[0]["data"] + "}")
+</macro>
+
+<macro>
+def transform_bgp_neighbors_to_records(json_data):
+    from ttp_templates.utils.arista_eos_process_show_bgp_neighbors_vrf_all_pipe_json import transform_bgp_neighbors
+        
+    return transform_bgp_neighbors(json_data)
+</macro>
+
+<input>
+commands = [
+    "show bgp neighbors vrf all | json"
+]
+platform = [
+    "arista_eos", # scrapli and netmiko
+    "eos", # NAPALM
+]
+</input>
+
+<group>
+{ {{ _start_ }}
+{{ data | _line_ | joinmatches }}
+} {{ _end_ }}
+</group>
+
+<output macro="load_json"/>
+<output macro="transform_bgp_neighbors_to_records"/>
+
+</template>
+```
+</details>

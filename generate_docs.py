@@ -15,7 +15,9 @@ misc = []
 misc_dict = {}
 platform = []
 yang = []
-get = []
+get = [
+    {"Getters Support Matrix": "getters_support_matrix.md"}
+]
 templates_count = 0
 
 page_template = """Reference path:

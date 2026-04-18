@@ -18,7 +18,7 @@ This template requires output of `config -g config` command.
 
 <details><summary>Template Content</summary>
 ```
-<template name="netbox_data" results="per_template">
+<template name="netbox_data_opengear" results="per_template">
 <doc>
 Template to parse Opengear configuration and produce data structure
 that is easy to work with to import data into the Netbox.
@@ -29,6 +29,9 @@ This template requires output of 'config -g config' command.
 <input>
 commands = [
     "config -g config"
+]
+platform = [
+    "linux", # Netmiko
 ]
 </input>
 

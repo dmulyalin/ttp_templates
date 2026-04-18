@@ -18,7 +18,7 @@ This template requires output of 'show running-config' command.
 
 <details><summary>Template Content</summary>
 ```
-<template name="netbox_data" results="per_template">
+<template name="netbox_data_cisco_nxos" results="per_template">
 <doc>
 Template to parse Cisco NXOS configuration and produce data structure
 that is easy to work with to import data into the Netbox.
@@ -29,6 +29,10 @@ This template requires output of 'show running-config' command.
 <input>
 commands = [
     "show running-config"
+]
+platform = [
+    "nxos", # NAPALM
+    "cisco_nxos", # Netmiko and Scrapli
 ]
 </input>
 

@@ -18,7 +18,7 @@ This template requires output of `show running-config` command.
 
 <details><summary>Template Content</summary>
 ```
-<template name="netbox_data" results="per_template">
+<template name="netbox_data_cisco_xr" results="per_template">
 <doc>
 Template to parse Cisco IOS-XR configuration and produce data structure
 that is easy to work with to import data into the Netbox.
@@ -29,6 +29,11 @@ This template requires output of 'show running-config' command.
 <input>
 commands = [
     "show running-config"
+]
+platform = [
+    "cisco_xr", # netmiko
+    "iosxr", # napalm
+    "cisco_iosxr", # scrapli
 ]
 </input>
 

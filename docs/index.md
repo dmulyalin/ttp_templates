@@ -1,7 +1,7 @@
 
 ---
 
-**Templates count: 67**
+**Templates count: 70**
 
 ---
 
@@ -184,48 +184,11 @@ pprint.pprint(res)
 
 ## How templates collections structured
 
-This repository contains four collections of templates corresponding to folder names:
+This repository contains three collections of templates corresponding to folder names:
 
 * `platform` collection - mimics [ntc-templates](https://github.com/networktocode/ntc-templates) API and follows same naming rule
 * `yang` collection - contains templates capable of producing YANG compatible structures out of text data
 * `misc` collection - miscellaneous templates for various use cases organized in folders
-* `get` collection - getter templates that return normalised, platform-agnostic output, similar in purpose to [NAPALM getters](https://napalm.readthedocs.io/en/latest/base.html)
-
-Sample code to retrieve normalised inventory using the `inventory` getter. Getters work like
-NAPALM getters: one template bundles platform-specific parsing logic and returns a unified
-structure regardless of vendor. The `platform` argument is **required** when using a getter —
-it selects the correct platform-specific input inside the getter template.
-<details><summary>Code</summary>
-
-```python
-from ttp_templates import parse_output
-import pprint
-
-# Cisco IOS-XR "show inventory" raw CLI output
-data = """
-NAME: "Chassis", DESCR: "Cisco ASR 9006 4-slot Line Card Chassis"
-PID: ASR-9006-SYS    , VID: V07, SN: FOX1234ABCD
-
-NAME: "0/RSP0/CPU0", DESCR: "Route Switch Processor"
-PID: A9K-RSP440-TR   , VID: V04, SN: FOX5678EFGH
-"""
-
-# platform routes data to the "cisco_xr" input inside inventory.txt;
-# the getter normalises results from all supported platforms into the same structure.
-result = parse_output(data=data, get="inventory", platform="cisco_xr")
-
-pprint.pprint(result)
-# prints:
-# [[{'description': 'Cisco ASR 9006 4-slot Line Card Chassis',
-#    'module': 'ASR-9006-SYS',
-#    'serial': 'FOX1234ABCD',
-#    'slot': 'Chassis'},
-#   {'description': 'Route Switch Processor',
-#    'module': 'A9K-RSP440-TR',
-#    'serial': 'FOX5678EFGH',
-#    'slot': '0/RSP0/CPU0'}]]
-```
-</details>
 
 ### Platform collection templates files naming rule
 
@@ -259,21 +222,6 @@ Naming rules details:
 Naming rules details:
 
 * Nothing replaced with anything, provided template name used as is.
-
-### Get collection templates files naming rule
-
-`{{ getter_name }}.txt` - lower case only, one file per logical getter.
-
-Naming rules details:
-
-* Each file name describes a single getter function, e.g. `inventory.txt`, `interfaces.txt`, `facts.txt`.
-* A getter template uses TTP `<extend>` directives to compose platform-specific `platform/` templates
-  and expose their results under a unified, platform-agnostic structure.
-* Each platform-specific input inside the getter must declare a `platform` list in its `<input>` block
-  so `parse_output` can route data to the correct input.
-* Getter templates are loaded with `get_template(get="inventory")` or
-  `parse_output(data=..., get="inventory", platform="cisco_xr")` — the `.txt` extension is optional.
-  `platform` is mandatory for `parse_output` so the getter can route data to the correct input.
 
 ## Additional Templates Resources
 
