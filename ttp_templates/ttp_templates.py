@@ -47,7 +47,9 @@ def get_template(
             path = path.strip()[6:]
         log.debug("get_template: using explicit path '%s'", path)
     elif get:
-        path = "get/{}".format(get) if get.endswith(".txt") else "get/{}.txt".format(get)
+        path = (
+            "get/{}".format(get) if get.endswith(".txt") else "get/{}.txt".format(get)
+        )
         log.debug("get_template: resolved get path '%s'", path)
     elif platform and command:
         platform = platform.lower()
@@ -178,20 +180,26 @@ def parse_output(
     # handle getter if platform is given
     if get:
         if not platform:
-            raise ValueError(f"'{get}' getter need platform name to parse provided data")
+            raise ValueError(
+                f"'{get}' getter need platform name to parse provided data"
+            )
         parser = ttp(template=template, vars=template_vars)
         # sort input data across inputs
         input_found = False
         for template_name, inputs in parser.get_input_load().items():
             for input_name, params in inputs.items():
                 if platform in params.get("platform", []):
-                    parser.add_input(template_name=template_name, input_name=input_name, data=data)
+                    parser.add_input(
+                        template_name=template_name, input_name=input_name, data=data
+                    )
                     input_found = True
                     break
             if input_found:
                 break
         else:
-            raise RuntimeError(f"None of the '{get}' getter inputs support platform '{platform}'")
+            raise RuntimeError(
+                f"None of the '{get}' getter inputs support platform '{platform}'"
+            )
         # parse the data and return result only for template with matched input
         parser.parse(one=True)
         results = parser.result(structure="dictionary")
@@ -293,7 +301,7 @@ def list_templates_refs(pattern: str = "*") -> list:
     * ``ttp://misc/N2G/cli_ip_data/cisco_ios.txt``
 
     Args:
-        pattern: Glob pattern used to filter template filenames. 
+        pattern: Glob pattern used to filter template filenames.
 
     Returns:
         Sorted list of ``ttp://`` URI strings for all matching templates.
@@ -309,9 +317,11 @@ def list_templates_refs(pattern: str = "*") -> list:
             # path relative to the package root, using forward slashes for the URI
             rel_dir = os.path.relpath(dirpath, ttp_templates_dir).replace(os.sep, "/")
             for filename in filenames:
-                if fnmatchcase(filename, pattern) and filename.lower() not in skip_files:
+                if (
+                    fnmatchcase(filename, pattern)
+                    and filename.lower() not in skip_files
+                ):
                     refs.append("ttp://{}/{}".format(rel_dir, filename))
 
     log.debug("list_templates_refs: found %d refs", len(refs))
     return sorted(refs)
-
