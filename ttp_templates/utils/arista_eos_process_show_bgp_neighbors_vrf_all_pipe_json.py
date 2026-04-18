@@ -80,16 +80,8 @@ def _normalize_peer(peer: Dict[str, Any], vrf: str) -> Dict[str, Any]:
         "local_as": peer.get("localAsn"),
         "remote_as": peer.get("asn"),
         "peer_group": peer.get("peerGroupName"),
-        "import_policies": [
-            route_map_in 
-            if route_map_in and route_map_in.upper() != "DEFAULT" 
-            else None
-        ],
-        "export_policies": [
-            route_map_out
-            if route_map_out and route_map_out.upper() != "DEFAULT"
-            else None
-        ],
+        "import_policies": [route_map_in] if route_map_in else [],
+        "export_policies": [route_map_out] if route_map_out else [],
         "prefix_list_in": prefix_list_info.get("inboundIpv4Uni"),
         "prefix_list_out": prefix_list_info.get("outboundIpv4Uni"),
         "name": f"{vrf}_{remote_address}" if remote_address else None,
