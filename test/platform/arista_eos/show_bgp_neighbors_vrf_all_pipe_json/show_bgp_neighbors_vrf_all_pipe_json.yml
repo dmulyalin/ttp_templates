@@ -1,9 +1,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-leaf-1 Ethernet1
-  export_policies: ALLOW-ALL
+  export_policies: ["ALLOW-ALL"]
   hold_time: 180
-  import_policies: ALLOW-ALL
+  import_policies: ["ALLOW-ALL"]
   ipv4_unicast_prefixes_received: 2
   ipv4_unicast_prefixes_sent: 3
   keepalive: 60
@@ -25,9 +25,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-leaf-2 Ethernet1
-  export_policies: ALLOW-ALL
+  export_policies: ["ALLOW-ALL"]
   hold_time: 180
-  import_policies: ALLOW-ALL
+  import_policies: ["ALLOW-ALL"]
   ipv4_unicast_prefixes_received: 2
   ipv4_unicast_prefixes_sent: 4
   keepalive: 60
@@ -49,9 +49,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-leaf-3 Ethernet1
-  export_policies: ALLOW-ALL
+  export_policies: ["ALLOW-ALL"]
   hold_time: 180
-  import_policies: ALLOW-ALL
+  import_policies: ["ALLOW-ALL"]
   ipv4_unicast_prefixes_received: 2
   ipv4_unicast_prefixes_sent: 4
   keepalive: 60
@@ -74,9 +74,9 @@
   - ipv4_unicast
   - l2vpn_evpn
   description: ceos-leaf-1 Loopback0 EVPN
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 2
   ipv4_unicast_prefixes_sent: 5
   keepalive: 60
@@ -101,9 +101,9 @@
   - ipv4_unicast
   - l2vpn_evpn
   description: ceos-leaf-2 Loopback0 EVPN
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 2
   ipv4_unicast_prefixes_sent: 5
   keepalive: 60
@@ -128,9 +128,9 @@
   - ipv4_unicast
   - l2vpn_evpn
   description: ceos-leaf-3 Loopback0 EVPN
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 2
   ipv4_unicast_prefixes_sent: 5
   keepalive: 60
@@ -154,9 +154,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-leaf-1 Ethernet1.101
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 3
   ipv4_unicast_prefixes_sent: 6
   keepalive: 60
@@ -178,9 +178,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-leaf-2 Ethernet1.101
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 3
   ipv4_unicast_prefixes_sent: 6
   keepalive: 60
@@ -202,9 +202,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-leaf-3 Ethernet1.101
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 3
   ipv4_unicast_prefixes_sent: 6
   keepalive: 60

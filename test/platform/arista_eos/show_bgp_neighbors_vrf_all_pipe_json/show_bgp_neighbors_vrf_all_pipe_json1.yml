@@ -1,9 +1,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-spine-1 Ethernet2
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 3
   ipv4_unicast_prefixes_sent: 2
   keepalive: 60
@@ -25,9 +25,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-spine-2 Ethernet2
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 3
   ipv4_unicast_prefixes_sent: 4
   keepalive: 60
@@ -50,9 +50,9 @@
   - ipv4_unicast
   - l2vpn_evpn
   description: ceos-spine-1 Loopback0 EVPN
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 3
   ipv4_unicast_prefixes_sent: 5
   keepalive: 60
@@ -77,9 +77,9 @@
   - ipv4_unicast
   - l2vpn_evpn
   description: ceos-spine-2 Loopback0 EVPN
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 3
   ipv4_unicast_prefixes_sent: 5
   keepalive: 60
@@ -103,9 +103,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-spine-1 Ethernet2.101
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 6
   ipv4_unicast_prefixes_sent: 3
   keepalive: 60
@@ -127,9 +127,9 @@
 - afi:
   - ipv4_unicast
   description: ceos-spine-2 Ethernet2.101
-  export_policies: null
+  export_policies: [null]
   hold_time: 180
-  import_policies: null
+  import_policies: [null]
   ipv4_unicast_prefixes_received: 6
   ipv4_unicast_prefixes_sent: 9
   keepalive: 60

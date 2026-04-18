@@ -1,5 +1,14 @@
 # Release Notes
 
+## 0.5.2
+
+### TEMPLATES
+
+1. platform/arista_eos_show_bgp_neighbors_vrf_all_pipe_json.txt
+2. get/bgp_neighbors.txt
+
+---
+
 ## 0.5.1
 
 ### CHANGES
