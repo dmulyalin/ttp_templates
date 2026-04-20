@@ -108,7 +108,11 @@ def transform_bgp_neighbors(payload: list) -> List[Dict[str, Any]]:
     Returns:
         List of normalized BGP neighbor dictionaries.
     """
-    payload = json.loads("{" + payload[0]["data"] + "}")
+    if payload:
+        payload = json.loads("{" + payload[0]["data"] + "}")
+    else:
+        return []
+        
     if isinstance(payload, list) and payload:
         payload = payload[0]
 
