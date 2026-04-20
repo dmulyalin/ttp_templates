@@ -1,0 +1,53 @@
+- afi:
+  - ipv4_unicast
+  description: ceos-spine-2 Ethernet5
+  export_policies:
+  - ALLOW-10_8
+  - ALLOW-ALL
+  hold_time: 90
+  import_policies:
+  - ALLOW-10_8
+  - ALLOW-ALL
+  ipv4_unicast_prefixes_received: 5
+  ipv4_unicast_prefixes_sent: 2
+  keepalive: 30
+  local_address: 10.10.0.15
+  local_as: '65104'
+  local_interface: ge-0/0/0.0
+  max_ttl: null
+  name: default_10.10.0.14
+  peer_group: CLOS
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.10.0.14
+  remote_as: '65002'
+  router_id: 10.10.10.2
+  state: established
+  uptime_seconds: null
+  vrf: default
+- afi:
+  - ipv4_unicast
+  description: ceos-spine-2 Ethernet5.101
+  export_policies: []
+  hold_time: 90
+  import_policies:
+  - ALLOW-ALL
+  ipv4_unicast_prefixes_received: 9
+  ipv4_unicast_prefixes_sent: 0
+  keepalive: 30
+  local_address: 10.101.0.15
+  local_as: '65105'
+  local_interface: ge-0/0/0.101
+  max_ttl: null
+  name: CONTROL_PLANE_10.101.0.14
+  peer_group: CLOS-FABRIC
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.101.0.14
+  remote_as: '65002'
+  router_id: 10.101.0.10
+  state: established
+  uptime_seconds: null
+  vrf: CONTROL_PLANE

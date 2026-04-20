@@ -1,0 +1,83 @@
+<template name="junper_junos_bgp_neighbors" results="per_template">
+<doc>
+Normalizes Juniper JunOS BGP neighbors JSON to flat list format.
+
+Transforms the nested bgp-information/bgp-peer structure returned by
+'show bgp neighbor | display json' into standardized dictionaries with:
+
+- All fields present (missing set to None)
+- RFC-normalized state values (established, idle, etc.)
+- Per-AFI prefix counts (ipv4_unicast_prefixes_sent, etc.)
+- VRF name normalized ('master' -> 'default')
+- Peer/local addresses stripped of port suffix (e.g. '10.0.0.1+179' -> '10.0.0.1')
+- Consistent field naming matching the Arista EOS BGP neighbor output format
+
+Example normalized output (YAML):
+
+```yaml
+- afi:
+  - ipv4_unicast
+  description: null
+  export_policies:
+  - ALLOW-10_8
+  - ALLOW-ALL
+  hold_time: 90
+  import_policies:
+  - ALLOW-10_8
+  - ALLOW-ALL
+  ipv4_unicast_prefixes_received: 5
+  ipv4_unicast_prefixes_sent: 2
+  keepalive: 30
+  local_address: 10.10.0.15
+  local_as: '65104'
+  local_interface: ge-0/0/0.0
+  max_ttl: null
+  name: default_10.10.0.14
+  peer_group: CLOS
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.10.0.14
+  remote_as: '65002'
+  router_id: 10.10.10.2
+  state: established
+  uptime_seconds: null
+  vrf: default
+```
+</doc>
+
+<macro>
+def load_json(result):
+    import json
+
+    return json.loads("{" + result[0]["data"] + "}")
+</macro>
+
+<macro>
+def transform_bgp_neighbors_to_records(json_data):
+    from ttp_templates.utils.junper_junos_process_show_bgp_neighbor_pipe_display_json import transform_bgp_neighbors
+
+    return transform_bgp_neighbors(json_data)
+</macro>
+
+<input>
+commands = [
+    "show bgp neighbor | display json",
+    "show bgp summary | display json"
+]
+platform = [
+    "juniper_junos",  # scrapli and netmiko
+    "junos",          # NAPALM
+]
+</input>
+
+<group>
+{ {{ _start_ }}
+{{ data | _line_ | joinmatches }}
+} {{ _end_ }}
+</group>
+
+<output macro="load_json"/>
+<output macro="transform_bgp_neighbors_to_records"/>
+
+</template>
