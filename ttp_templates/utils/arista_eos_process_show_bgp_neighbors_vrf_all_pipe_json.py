@@ -4,7 +4,7 @@ Normalize Arista EOS BGP neighbors JSON output to a standardized format.
 Transforms raw JSON output from 'show bgp neighbors vrf all | json' into a
 normalized list of dictionaries suitable for further processing and integrations.
 """
-
+import json
 from typing import Any, Dict, List
 
 # Arista camelCase AFI/SAFI names -> IANA snake_case names
@@ -98,17 +98,17 @@ def _normalize_peer(peer: Dict[str, Any], vrf: str) -> Dict[str, Any]:
     }
 
 
-def transform_bgp_neighbors(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
+def transform_bgp_neighbors(payload: list) -> List[Dict[str, Any]]:
     """
     Main transformation function to be used as TTP macro.
 
     Args:
-        payload: Complete JSON output from 'show bgp neighbors vrf all | json',
-                 or a list wrapping it (as returned by TTP result structure).
+        payload: Parsing results, JSON string of show command output.
 
     Returns:
         List of normalized BGP neighbor dictionaries.
     """
+    payload = json.loads("{" + payload[0]["data"] + "}")
     if isinstance(payload, list) and payload:
         payload = payload[0]
 

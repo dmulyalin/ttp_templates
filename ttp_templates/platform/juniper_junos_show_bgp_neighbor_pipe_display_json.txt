@@ -47,13 +47,6 @@ Example normalized output (YAML):
 </doc>
 
 <macro>
-def load_json(result):
-    import json
-
-    return json.loads("{" + result[0]["data"] + "}")
-</macro>
-
-<macro>
 def transform_bgp_neighbors_to_records(json_data):
     from ttp_templates.utils.junper_junos_process_show_bgp_neighbor_pipe_display_json import transform_bgp_neighbors
 
@@ -62,8 +55,7 @@ def transform_bgp_neighbors_to_records(json_data):
 
 <input>
 commands = [
-    "show bgp neighbor | display json",
-    "show bgp summary | display json"
+    "show bgp neighbor | display json"
 ]
 platform = [
     "juniper_junos",  # scrapli and netmiko
@@ -77,7 +69,6 @@ platform = [
 } {{ _end_ }}
 </group>
 
-<output macro="load_json"/>
 <output macro="transform_bgp_neighbors_to_records"/>
 
 </template>
