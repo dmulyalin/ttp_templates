@@ -39,6 +39,6 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 <extend template="ttp://platform/arista_eos_show_bgp_neighbors_vrf_all_pipe_json.txt"/>
 
-<extend template="ttp://platform/junper_junos_show_bgp_neighbor_pipe_display_json.txt"/>
+<extend template="ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt"/>
 
 </template>
