@@ -41,4 +41,6 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 <extend template="ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt"/>
 
+<extend template="ttp://platform/cisco_xr_show_bgp_neighbors.txt"/>
+
 </template>

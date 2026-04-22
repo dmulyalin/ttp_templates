@@ -3,6 +3,8 @@ Normalize Arista EOS BGP neighbors JSON output to a standardized format.
 
 Transforms raw JSON output from 'show bgp neighbors vrf all | json' into a
 normalized list of dictionaries suitable for further processing and integrations.
+
+Produced with Copilot Assistance.
 """
 import json
 from typing import Any, Dict, List
@@ -112,7 +114,7 @@ def transform_bgp_neighbors(payload: list) -> List[Dict[str, Any]]:
         payload = json.loads("{" + payload[0]["data"] + "}")
     else:
         return []
-        
+
     if isinstance(payload, list) and payload:
         payload = payload[0]
 
