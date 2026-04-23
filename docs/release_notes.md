@@ -7,6 +7,7 @@
 1. platform/arista_eos_show_bgp_neighbors_vrf_all_pipe_json.txt
 2. get/bgp_neighbors.txt
 3. platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt
+4. platform/cisco_xr_show_bgp_neighbors.txt
 
 ---
 
