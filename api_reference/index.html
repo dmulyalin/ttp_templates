@@ -484,9 +484,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
@@ -1089,9 +1087,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
@@ -1106,6 +1102,18 @@
           Platform
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/platform.arista_eos_show_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
+        arista_eos_show_bgp_neighbors_vrf_all_pipe_json
+      </a>
+    </li>
+  
+
           
             
   
@@ -1394,9 +1402,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
@@ -1471,9 +1477,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" >
@@ -1494,8 +1498,44 @@
   
   
     <li class="md-nav__item">
+      <a href="../getters_support_matrix/" class="md-nav__link">
+        Getters Support Matrix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/get.bgp_neighbors/" class="md-nav__link">
+        bgp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ttp_templates/get.inventory/" class="md-nav__link">
         inventory
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/get.netbox/" class="md-nav__link">
+        netbox
       </a>
     </li>
   
@@ -1681,9 +1721,7 @@ the specified <code>platform</code>.</p>
 
         <details class="quote">
           <summary>Source code in <code>ttp_templates\ttp_templates.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
@@ -1783,7 +1821,15 @@ the specified <code>platform</code>.</p>
 <span class="normal">203</span>
 <span class="normal">204</span>
 <span class="normal">205</span>
-<span class="normal">206</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_output</span><span class="p">(</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_output</span><span class="p">(</span>
     <span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1860,20 +1906,26 @@ the specified <code>platform</code>.</p>
     <span class="c1"># handle getter if platform is given</span>
     <span class="k">if</span> <span class="n">get</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">platform</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">get</span><span class="si">}</span><span class="s2">&#39; getter need platform name to parse provided data&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">get</span><span class="si">}</span><span class="s2">&#39; getter need platform name to parse provided data&quot;</span>
+            <span class="p">)</span>
         <span class="n">parser</span> <span class="o">=</span> <span class="n">ttp</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="n">template_vars</span><span class="p">)</span>
         <span class="c1"># sort input data across inputs</span>
         <span class="n">input_found</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">for</span> <span class="n">template_name</span><span class="p">,</span> <span class="n">inputs</span> <span class="ow">in</span> <span class="n">parser</span><span class="o">.</span><span class="n">get_input_load</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">for</span> <span class="n">input_name</span><span class="p">,</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">inputs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">platform</span> <span class="ow">in</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;platform&quot;</span><span class="p">,</span> <span class="p">[]):</span>
-                    <span class="n">parser</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span><span class="n">template_name</span><span class="o">=</span><span class="n">template_name</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="n">input_name</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+                    <span class="n">parser</span><span class="o">.</span><span class="n">add_input</span><span class="p">(</span>
+                        <span class="n">template_name</span><span class="o">=</span><span class="n">template_name</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="n">input_name</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span>
+                    <span class="p">)</span>
                     <span class="n">input_found</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="k">break</span>
             <span class="k">if</span> <span class="n">input_found</span><span class="p">:</span>
                 <span class="k">break</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;None of the &#39;</span><span class="si">{</span><span class="n">get</span><span class="si">}</span><span class="s2">&#39; getter inputs support platform &#39;</span><span class="si">{</span><span class="n">platform</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;None of the &#39;</span><span class="si">{</span><span class="n">get</span><span class="si">}</span><span class="s2">&#39; getter inputs support platform &#39;</span><span class="si">{</span><span class="n">platform</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+            <span class="p">)</span>
         <span class="c1"># parse the data and return result only for template with matched input</span>
         <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">one</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">results</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">structure</span><span class="o">=</span><span class="s2">&quot;dictionary&quot;</span><span class="p">)</span>
@@ -2057,7 +2109,9 @@ the specified <code>platform</code>.</p>
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span>
-<span class="normal">101</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_template</span><span class="p">(</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_template</span><span class="p">(</span>
     <span class="n">path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">platform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">command</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2096,7 +2150,9 @@ the specified <code>platform</code>.</p>
             <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">6</span><span class="p">:]</span>
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;get_template: using explicit path &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">get</span><span class="p">:</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;get/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">get</span><span class="p">)</span> <span class="k">if</span> <span class="n">get</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;get/</span><span class="si">{}</span><span class="s2">.txt&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">get</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;get/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">get</span><span class="p">)</span> <span class="k">if</span> <span class="n">get</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;get/</span><span class="si">{}</span><span class="s2">.txt&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">get</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;get_template: resolved get path &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">platform</span> <span class="ow">and</span> <span class="n">command</span><span class="p">:</span>
         <span class="n">platform</span> <span class="o">=</span> <span class="n">platform</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
@@ -2214,15 +2270,7 @@ with leaf values being lists of matching filenames.</li>
 
         <details class="quote">
           <summary>Source code in <code>ttp_templates\ttp_templates.py</code></summary>
-          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">217</span>
 <span class="normal">218</span>
 <span class="normal">219</span>
 <span class="normal">220</span>
@@ -2289,7 +2337,15 @@ with leaf values being lists of matching filenames.</li>
 <span class="normal">281</span>
 <span class="normal">282</span>
 <span class="normal">283</span>
-<span class="normal">284</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">list_templates</span><span class="p">(</span><span class="n">pattern</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;List available templates whose filenames match the given glob pattern.</span>
 
 <span class="sd">    The primary use case for this function is to simplify integration with</span>
@@ -2468,7 +2524,7 @@ with leaf values being lists of matching filenames.</li>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "toc.follow"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.follow"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.2b46852b.min.js"></script>

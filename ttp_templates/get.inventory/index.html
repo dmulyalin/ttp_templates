@@ -431,9 +431,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
@@ -1036,9 +1034,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
@@ -1053,6 +1049,18 @@
           Platform
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
+        arista_eos_show_bgp_neighbors_vrf_all_pipe_json
+      </a>
+    </li>
+  
+
           
             
   
@@ -1341,9 +1349,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
@@ -1420,9 +1426,7 @@
   
   
     
-      
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" checked>
@@ -1441,6 +1445,30 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../../getters_support_matrix/" class="md-nav__link">
+        Getters Support Matrix
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get.bgp_neighbors/" class="md-nav__link">
+        bgp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -1454,6 +1482,18 @@
         inventory
       </a>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get.netbox/" class="md-nav__link">
+        netbox
+      </a>
     </li>
   
 
@@ -1505,7 +1545,10 @@
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name=&quot;inventory&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
-Getter template to parse inventory for network devices.
+Getter template to parse inventory for network devices. Designed to work with 
+[Network Automation Fabric](https://docs.norfablabs.com/) 
+[Nornir Service](https://docs.norfablabs.com/workers/nornir/services_nornir_service/) 
+[parse TTP task](https://docs.norfablabs.com/workers/nornir/services_nornir_service_tasks_parse/)
 
 Supported platforms:
 
@@ -1514,12 +1557,29 @@ Supported platforms:
 - Arista EOS
 - Juniper Junos
 
-Returns normalized list of dictionary, each dictionary has these keys:
+Returns normalized list of dictionaries, each dictionary has these keys:
 
 - &#39;description&#39; - description of module/inventory item
 - &#39;module&#39; - PID of the module/inventory item
 - &#39;serial&#39; - serial number of the module/inventory item
 - &#39;slot&#39; - name of the parent slot housing module/inventory item
+
+Example data returned by template (YAML):
+
+&#39;&#39;&#39;yaml
+- description: &quot;ASR9K Route Switch Processor with 440G/slot Fabric and 6GB&quot;
+  slot: &quot;module 0/RSP0/CPU0&quot;
+  module: &quot;A9K-RSP440-TR&quot;
+  serial: &quot;M9YXCZV9QF&quot;
+- description: &quot;ASR-9006 Fan Tray V2&quot;
+  slot: &quot;fantray 0/FT0/SP&quot;
+  module: &quot;ASR-9006-FAN-V2&quot;
+  serial: &quot;PDANV9GYV8H&quot;
+- description: &quot;ASR9K Generic Fan&quot;
+  slot: &quot;fan0 0/FT0/SP&quot;
+  module: &quot;N/A&quot;
+  serial: &quot;&quot;
+&#39;&#39;&#39;
 
 &lt;/doc&gt;
 
@@ -1558,7 +1618,7 @@ Returns normalized list of dictionary, each dictionary has these keys:
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../yang.openconfig-lldp_cisco_xr/" class="md-footer__link md-footer__link--prev" aria-label="Previous: openconfig-lldp_cisco_xr" rel="prev">
+        <a href="../get.bgp_neighbors/" class="md-footer__link md-footer__link--prev" aria-label="Previous: bgp_neighbors" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1567,11 +1627,26 @@ Returns normalized list of dictionary, each dictionary has these keys:
               <span class="md-footer__direction">
                 Previous
               </span>
-              openconfig-lldp_cisco_xr
+              bgp_neighbors
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../get.netbox/" class="md-footer__link md-footer__link--next" aria-label="Next: netbox" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              netbox
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
@@ -1616,7 +1691,7 @@ Returns normalized list of dictionary, each dictionary has these keys:
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top", "toc.follow"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "toc.follow"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
