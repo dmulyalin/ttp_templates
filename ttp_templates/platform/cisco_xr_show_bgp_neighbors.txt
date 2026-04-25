@@ -60,7 +60,7 @@ platform = [
 
 <group name="neighbors*">
 BGP neighbor is {{ remote_address }}
- Remote AS {{ remote_as }}, local AS {{ local_as }}, {{ peering_type }} link
+ Remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ peering_type }} link
  Description: {{ description | ORPHRASE }}
  Remote router ID {{ router_id }}
   BGP state = {{ bgp_state | ORPHRASE }}
