@@ -8,7 +8,7 @@
   ipv4_unicast_prefixes_sent: 2
   keepalive: 60
   local_address: 10.0.0.1
-  local_as: '65101'
+  local_as: 65101
   local_interface: Ethernet1
   max_ttl: 255
   name: default_10.0.0.0
@@ -17,7 +17,7 @@
   prefix_list_in: ALLOW-ALL
   prefix_list_out: ALLOW-ALL
   remote_address: 10.0.0.0
-  remote_as: '65001'
+  remote_as: 65001
   router_id: 10.10.10.1
   state: established
   uptime_seconds: 9286
@@ -32,7 +32,7 @@
   ipv4_unicast_prefixes_sent: 4
   keepalive: 60
   local_address: 10.0.0.3
-  local_as: '65101'
+  local_as: 65101
   local_interface: Ethernet2
   max_ttl: 255
   name: default_10.0.0.2
@@ -41,7 +41,7 @@
   prefix_list_in: ALLOW-ALL
   prefix_list_out: ALLOW-ALL
   remote_address: 10.0.0.2
-  remote_as: '65002'
+  remote_as: 65002
   router_id: 10.10.10.2
   state: established
   uptime_seconds: 9286
@@ -59,7 +59,7 @@
   l2vpn_evpn_prefixes_received: 0
   l2vpn_evpn_prefixes_sent: 0
   local_address: 10.10.10.11
-  local_as: '65101'
+  local_as: 65101
   local_interface: Loopback0
   max_ttl: 3
   name: default_10.10.10.1
@@ -68,7 +68,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.10.10.1
-  remote_as: '65001'
+  remote_as: 65001
   router_id: 10.10.10.1
   state: established
   uptime_seconds: 9284
@@ -86,7 +86,7 @@
   l2vpn_evpn_prefixes_received: 0
   l2vpn_evpn_prefixes_sent: 0
   local_address: 10.10.10.11
-  local_as: '65101'
+  local_as: 65101
   local_interface: Loopback0
   max_ttl: 3
   name: default_10.10.10.2
@@ -95,7 +95,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.10.10.2
-  remote_as: '65002'
+  remote_as: 65002
   router_id: 10.10.10.2
   state: established
   uptime_seconds: 9284
@@ -110,7 +110,7 @@
   ipv4_unicast_prefixes_sent: 3
   keepalive: 60
   local_address: 10.101.0.1
-  local_as: '65101'
+  local_as: 65101
   local_interface: Ethernet1.101
   max_ttl: 255
   name: CONTROL_PLANE_10.101.0.0
@@ -119,7 +119,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.101.0.0
-  remote_as: '65001'
+  remote_as: 65001
   router_id: 10.101.0.8
   state: established
   uptime_seconds: 2835
@@ -134,7 +134,7 @@
   ipv4_unicast_prefixes_sent: 9
   keepalive: 60
   local_address: 10.101.0.3
-  local_as: '65101'
+  local_as: 65101
   local_interface: Ethernet2.101
   max_ttl: 255
   name: CONTROL_PLANE_10.101.0.2
@@ -143,7 +143,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.101.0.2
-  remote_as: '65002'
+  remote_as: 65002
   router_id: 10.101.0.10
   state: established
   uptime_seconds: 2835

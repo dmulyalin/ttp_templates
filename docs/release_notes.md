@@ -1,5 +1,18 @@
 # Release Notes
 
+## 0.5.3
+
+### TEMPLATES
+
+1. 
+
+### CHANGES
+
+1. bgp neighbors templates now return local_as and remote_as as integers not strings.
+2. Removed filtering of built-in modules for Junos inventory in get_inventory getter.
+
+---
+
 ## 0.5.2
 
 ### TEMPLATES

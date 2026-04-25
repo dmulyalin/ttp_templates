@@ -10,7 +10,7 @@
   ipv4_unicast_prefixes_sent: 473031161
   keepalive: 30
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_10.0.0.1
@@ -19,7 +19,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.1
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.0.0.1
   state: established
   uptime_seconds: 26006400
@@ -36,7 +36,7 @@
   ipv4_unicast_prefixes_sent: 0
   keepalive: 60
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_10.0.3.3
@@ -45,7 +45,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.3.3
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.0.3.3
   state: established
   uptime_seconds: 30153600
@@ -62,7 +62,7 @@
   ipv4_unicast_prefixes_sent: 520214833
   keepalive: 60
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_192.168.100.1
@@ -71,7 +71,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 192.168.100.1
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 192.168.100.1
   state: established
   uptime_seconds: 0
@@ -88,7 +88,7 @@
   ipv4_unicast_prefixes_sent: 1324583231
   keepalive: 60
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_10.100.2.44
@@ -97,7 +97,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.100.2.44
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.100.2.44
   state: established
   uptime_seconds: 0
@@ -114,7 +114,7 @@
   ipv4_unicast_prefixes_sent: 0
   keepalive: 60
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_10.0.12.41
@@ -123,7 +123,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.12.41
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.0.12.41
   state: established
   uptime_seconds: 0
@@ -140,7 +140,7 @@
   ipv4_unicast_prefixes_sent: 1
   keepalive: 60
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_192.168.1.142
@@ -149,7 +149,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 192.168.1.142
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 192.168.1.142
   state: established
   uptime_seconds: 0
@@ -164,7 +164,7 @@
   ipv4_unicast_prefixes_sent: 0
   keepalive: 60
   local_address: 0.0.0.0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_10.100.100.124
@@ -173,7 +173,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.100.100.124
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 0.0.0.0
   state: null
   uptime_seconds: null
@@ -188,7 +188,7 @@
   ipv4_unicast_prefixes_sent: 2875
   keepalive: 30
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_172.16.105.21
@@ -197,7 +197,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 172.16.105.21
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 172.16.105.21
   state: established
   uptime_seconds: 8899200
@@ -212,7 +212,7 @@
   ipv4_unicast_prefixes_sent: 10502
   keepalive: 30
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_172.16.21.222
@@ -221,7 +221,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 172.16.21.222
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 172.16.21.222
   state: established
   uptime_seconds: 29376000
@@ -237,7 +237,7 @@
   ipv4_unicast_prefixes_sent: 789753
   keepalive: 60
   local_address: 10.0.2.2
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_10.0.0.152
@@ -246,7 +246,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.152
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.0.0.152
   state: established
   uptime_seconds: 0
@@ -263,7 +263,7 @@
   ipv6_unicast_prefixes_sent: 666059645
   keepalive: 60
   local_address: 2001:fec0::1c0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:e01a:204::1
@@ -272,7 +272,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:e01a:204::1
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 192.168.100.1
   state: established
   uptime_seconds: 0
@@ -289,7 +289,7 @@
   ipv6_unicast_prefixes_sent: 167291632
   keepalive: 60
   local_address: 2001:fec0::1c0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::6a
@@ -298,7 +298,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::6a
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.100.2.44
   state: established
   uptime_seconds: 0
@@ -315,7 +315,7 @@
   ipv6_unicast_prefixes_sent: 666059645
   keepalive: 60
   local_address: 2001:fec0::1c0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::6b
@@ -324,7 +324,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::6b
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.0.142.12
   state: established
   uptime_seconds: 0
@@ -341,7 +341,7 @@
   ipv6_unicast_prefixes_sent: 0
   keepalive: 60
   local_address: 2001:fec0::1c0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::6c
@@ -350,7 +350,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::6c
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.0.12.41
   state: established
   uptime_seconds: 0
@@ -367,7 +367,7 @@
   ipv6_unicast_prefixes_sent: 0
   keepalive: 60
   local_address: 2001:fec0::1c0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::6d
@@ -376,7 +376,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::6d
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 192.168.1.142
   state: established
   uptime_seconds: 0
@@ -392,7 +392,7 @@
   ipv6_unicast_prefixes_sent: 0
   keepalive: 60
   local_address: '::'
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::7fa
@@ -401,7 +401,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::7fa
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 0.0.0.0
   state: null
   uptime_seconds: null
@@ -417,7 +417,7 @@
   ipv6_unicast_prefixes_sent: 0
   keepalive: 60
   local_address: '::'
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::7fb
@@ -426,7 +426,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::7fb
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 0.0.0.0
   state: null
   uptime_seconds: null
@@ -442,7 +442,7 @@
   ipv6_unicast_prefixes_sent: 15
   keepalive: 30
   local_address: 2001:fec0::1c0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::987
@@ -451,7 +451,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::987
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 172.16.105.21
   state: established
   uptime_seconds: 9158400
@@ -467,7 +467,7 @@
   ipv6_unicast_prefixes_sent: 40
   keepalive: 30
   local_address: 2001:fec0::1c0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::988
@@ -476,7 +476,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::988
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 172.16.21.222
   state: established
   uptime_seconds: 29376000
@@ -493,7 +493,7 @@
   ipv6_unicast_prefixes_sent: 166060453
   keepalive: 30
   local_address: 2001:fec0::1c0
-  local_as: '65011'
+  local_as: 65011
   local_interface: null
   max_ttl: null
   name: default_2001:fec0::a0d
@@ -502,7 +502,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::a0d
-  remote_as: '65011'
+  remote_as: 65011
   router_id: 10.0.0.1
   state: established
   uptime_seconds: 26006400

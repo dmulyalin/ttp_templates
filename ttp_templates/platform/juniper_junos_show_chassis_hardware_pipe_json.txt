@@ -35,7 +35,7 @@ def transform_inventory_to_records(payload):
             continue
 
         serial = pick(node, "serial-number")
-        if serial and serial.upper() != "BUILTIN":
+        if serial:
             description = pick(node, "description") or ""
             records.append(
                 {

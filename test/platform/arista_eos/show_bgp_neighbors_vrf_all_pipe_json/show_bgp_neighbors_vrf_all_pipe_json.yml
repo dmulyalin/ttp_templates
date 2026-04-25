@@ -8,7 +8,7 @@
   ipv4_unicast_prefixes_sent: 3
   keepalive: 60
   local_address: 10.0.0.0
-  local_as: '65001'
+  local_as: 65001
   local_interface: Ethernet2
   max_ttl: 255
   name: default_10.0.0.1
@@ -17,7 +17,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.1
-  remote_as: '65101'
+  remote_as: 65101
   router_id: 10.10.10.11
   state: established
   uptime_seconds: 8791
@@ -32,7 +32,7 @@
   ipv4_unicast_prefixes_sent: 4
   keepalive: 60
   local_address: 10.0.0.4
-  local_as: '65001'
+  local_as: 65001
   local_interface: Ethernet3
   max_ttl: 255
   name: default_10.0.0.5
@@ -41,7 +41,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.5
-  remote_as: '65102'
+  remote_as: 65102
   router_id: 10.10.10.12
   state: established
   uptime_seconds: 8792
@@ -56,7 +56,7 @@
   ipv4_unicast_prefixes_sent: 4
   keepalive: 60
   local_address: 10.0.0.8
-  local_as: '65001'
+  local_as: 65001
   local_interface: Ethernet4
   max_ttl: 255
   name: default_10.0.0.9
@@ -65,7 +65,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.9
-  remote_as: '65103'
+  remote_as: 65103
   router_id: 10.10.10.13
   state: established
   uptime_seconds: 8792
@@ -83,7 +83,7 @@
   l2vpn_evpn_prefixes_received: 0
   l2vpn_evpn_prefixes_sent: 0
   local_address: 10.10.10.1
-  local_as: '65001'
+  local_as: 65001
   local_interface: Loopback0
   max_ttl: 3
   name: default_10.10.10.11
@@ -92,7 +92,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.10.10.11
-  remote_as: '65101'
+  remote_as: 65101
   router_id: 10.10.10.11
   state: established
   uptime_seconds: 8789
@@ -110,7 +110,7 @@
   l2vpn_evpn_prefixes_received: 0
   l2vpn_evpn_prefixes_sent: 0
   local_address: 10.10.10.1
-  local_as: '65001'
+  local_as: 65001
   local_interface: Loopback0
   max_ttl: 3
   name: default_10.10.10.12
@@ -119,7 +119,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.10.10.12
-  remote_as: '65102'
+  remote_as: 65102
   router_id: 10.10.10.12
   state: established
   uptime_seconds: 8791
@@ -137,7 +137,7 @@
   l2vpn_evpn_prefixes_received: 0
   l2vpn_evpn_prefixes_sent: 0
   local_address: 10.10.10.1
-  local_as: '65001'
+  local_as: 65001
   local_interface: Loopback0
   max_ttl: 3
   name: default_10.10.10.13
@@ -146,7 +146,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.10.10.13
-  remote_as: '65103'
+  remote_as: 65103
   router_id: 10.10.10.13
   state: established
   uptime_seconds: 8791
@@ -161,7 +161,7 @@
   ipv4_unicast_prefixes_sent: 6
   keepalive: 60
   local_address: 10.101.0.0
-  local_as: '65001'
+  local_as: 65001
   local_interface: Ethernet2.101
   max_ttl: 255
   name: CONTROL_PLANE_10.101.0.1
@@ -170,7 +170,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.101.0.1
-  remote_as: '65101'
+  remote_as: 65101
   router_id: 10.101.1.11
   state: established
   uptime_seconds: 2341
@@ -185,7 +185,7 @@
   ipv4_unicast_prefixes_sent: 6
   keepalive: 60
   local_address: 10.101.0.4
-  local_as: '65001'
+  local_as: 65001
   local_interface: Ethernet3.101
   max_ttl: 255
   name: CONTROL_PLANE_10.101.0.5
@@ -194,7 +194,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.101.0.5
-  remote_as: '65102'
+  remote_as: 65102
   router_id: 10.101.1.12
   state: established
   uptime_seconds: 2341
@@ -209,7 +209,7 @@
   ipv4_unicast_prefixes_sent: 6
   keepalive: 60
   local_address: 10.101.0.8
-  local_as: '65001'
+  local_as: 65001
   local_interface: Ethernet4.101
   max_ttl: 255
   name: CONTROL_PLANE_10.101.0.9
@@ -218,7 +218,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.101.0.9
-  remote_as: '65103'
+  remote_as: 65103
   router_id: 10.101.1.13
   state: established
   uptime_seconds: 2341
