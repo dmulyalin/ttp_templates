@@ -6,6 +6,7 @@ normalized list of dictionaries suitable for further processing and integrations
 
 Produced with Copilot Assistance.
 """
+
 import json
 from typing import Any, Dict, List
 

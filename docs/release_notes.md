@@ -4,7 +4,8 @@
 
 ### TEMPLATES
 
-1. 
+1. platform/arista_eos_show_running_config_section_interface
+2. get/interfaces.txt
 
 ### CHANGES
 

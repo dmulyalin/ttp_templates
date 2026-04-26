@@ -5,4 +5,4 @@
 | bgp_neighbors | Yes | No | No | Yes | No |
 | inventory | Yes | Yes | Yes | Yes | No |
 | netbox | Yes | Yes | Yes | Yes | Yes |
-
+| interfaces | Yes | No | No | No | No |

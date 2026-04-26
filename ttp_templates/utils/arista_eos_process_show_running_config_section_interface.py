@@ -10,6 +10,7 @@ keys. Missing or unknown values are returned as ``None`` (except
 
 Produced with Copilot Assistance.
 """
+
 from typing import Any, Dict, List, Optional
 
 
@@ -19,7 +20,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
     normalized list of interface dictionaries.
 
     Args:
-        payload: TTP macro payload. 
+        payload: TTP macro payload.
 
     Returns:
         Normilized list of dictionaries with the fixed set of keys described in the
@@ -100,8 +101,12 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
 
         speed = iface.get("speed")
 
-        ipv4_addresses = [f"{i['ip']}/{i['mask']}" for i in iface.get("ipv4_addresses", [])]
-        ipv6_addresses = [f"{i['ip']}/{i['mask']}" for i in iface.get("ipv6_addresses", [])]
+        ipv4_addresses = [
+            f"{i['ip']}/{i['mask']}" for i in iface.get("ipv4_addresses", [])
+        ]
+        ipv6_addresses = [
+            f"{i['ip']}/{i['mask']}" for i in iface.get("ipv6_addresses", [])
+        ]
 
         record: Dict[str, Any] = {
             "name": name,
