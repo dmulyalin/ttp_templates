@@ -1,0 +1,71 @@
+interface Ethernet1
+   description P2P to ceos-spine-1 Ethernet2
+   mac-address 12:34:12:34:12:34
+   no switchport
+   ip address 10.10.0.1/31
+interface Ethernet1.101
+   description Control Plane P2P to ceos-spine-1 Ethernet2.101
+   encapsulation dot1q vlan 101
+   vrf CONTROL_PLANE
+   ip address 10.101.0.1/31
+interface Ethernet2
+   description P2P to ceos-spine-2 Ethernet2
+   no switchport
+   ip address 10.10.0.3/31
+   mac-address beef.1234.beef
+interface Ethernet2.101
+   description Control Plane P2P to ceos-spine-2 Ethernet2.101
+   encapsulation dot1q vlan 101
+   vrf CONTROL_PLANE
+   ip address 10.101.0.3/31
+interface Ethernet3
+   description Server1 LACP member
+   channel-group 10 mode active
+   lacp system-id 1234
+interface Ethernet4
+   description Server1 LACP member
+   channel-group 10 mode active
+   lacp system-id 1234
+interface Ethernet5
+   description Trunk to access switch
+   mtu 9214
+   switchport trunk allowed vlan 100-102,200,300-302
+   switchport mode trunk
+interface Ethernet6
+   description Access port for VLAN 50
+   switchport access vlan 50
+interface Ethernet7
+   description Disabled uplink
+   shutdown
+interface Ethernet8
+   description MLAG peer-link member
+   mlag 1
+interface Ethernet9
+   description Fixed speed port
+   speed forced 1000
+   no switchport
+   ip address 10.99.0.1/30
+interface Port-Channel10
+   description Server1 LAG
+   mtu 9214
+   switchport trunk allowed vlan 100-102,200
+   switchport mode trunk
+interface Loopback0
+   description Router ID
+   ip address 10.10.10.11/32
+   ip address 1.1.1.1/32 secondary
+   ipv6 address 2001::/128
+   ipv6 address 2001::1/128
+interface Loopback101
+   description Control Plane Router ID
+   vrf CONTROL_PLANE
+   ip address 10.101.1.11/32
+interface Vlan100
+   description SVI for VLAN 100
+   ip address 192.168.100.1/24
+interface Vlan200
+   description SVI for VLAN 200
+   vrf TENANT_A
+   ip address 192.168.200.1/24
+interface Management0
+   ip address 172.100.100.12/24

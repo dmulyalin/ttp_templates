@@ -60,26 +60,26 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         name_lower = str(name).lower() if name is not None else ""
 
         # Determine type according to rules in the template doc
-        if "loopback" in name_lower or name_lower.startswith("lo"):
-            interface_type = "Loopback"
-        elif "vlan" in name_lower or name_lower.startswith("vlan"):
+        if "vlan" in name_lower:
             interface_type = "bridge"
-        elif iface.get("lag_id") or iface.get("lag_type") or iface.get("channel_group") or iface.get("lag"):
+        elif "port-channel" in name_lower:
             interface_type = "lag"
-        elif name and "." in str(name):
+        elif any(k in name_lower for k in [".", "loopback"]):
             interface_type = "virtual"
         else:
-            interface_type = "Other"
+            interface_type = "other"
 
         # `enabled` is produced by the template as a boolean; default to
         # True when the key is absent.
-        enabled = iface.get("enabled") if "enabled" in iface else True
+        enabled = iface.get("enabled", True)
 
         parent: Optional[str] = None
         if name and "." in str(name):
             parent = str(name).split(".", 1)[0]
 
         lag = iface.get("lag_id")
+        lag_type = iface.get("lag_type") or None
+        lacp_mode = iface.get("lacp_mode") or None
         mtu = iface.get("mtu")
         description = iface.get("description") or ""
         mode = iface.get("mode") or None
@@ -109,6 +109,8 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "enabled": enabled,
             "parent": parent,
             "lag": lag,
+            "lag_type": lag_type,
+            "lacp_mode": lacp_mode,
             "mtu": mtu,
             "mac_address": iface.get("mac_address"),
             "speed": speed,

@@ -8,6 +8,8 @@ Getter template to parse inventory for network devices. Designed to work with
 Supported platforms:
 
 - Arista EOS
+- Juniper Junos
+- Cisco IOS XR
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
