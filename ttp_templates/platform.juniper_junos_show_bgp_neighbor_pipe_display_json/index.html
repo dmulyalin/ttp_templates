@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.juniper_junos_show_bgp_neighbor_pipe_display_json/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco_ios_show_ip_ospf_database_summary - TTP Templates Collection</title>
+        <title>juniper_junos_show_bgp_neighbor_pipe_display_json - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco_ios_show_ip_ospf_database_summary
+              juniper_junos_show_bgp_neighbor_pipe_display_json
             
           </span>
         </div>
@@ -1139,19 +1139,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_ip_ospf_database_summary/" class="md-nav__link">
         cisco_ios_show_ip_ospf_database_summary
       </a>
-      
     </li>
   
 
@@ -1339,11 +1331,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_bgp_neighbor_pipe_display_json/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         juniper_junos_show_bgp_neighbor_pipe_display_json
       </a>
+      
     </li>
   
 
@@ -1570,102 +1570,134 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.juniper_junos_show_bgp_neighbor_pipe_display_json.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco_ios_show_ip_ospf_database_summary</h1>
+                  <h1>juniper_junos_show_bgp_neighbor_pipe_display_json</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://platform/cisco_ios_show_ip_ospf_database_summary.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt
 </code></pre></div></p>
 <hr />
-<p>This template initially designed for use with N2G library to produce network 
-diagrams based on OSPF link state database of Cisco IOS devices.</p>
-<p>This template parses summary-lsa only out of output produced by 
-"show ip ospf database summary" command.</p>
-<p>Caveats:</p>
+<p>Normalizes Juniper JunOS BGP neighbors JSON to flat list format.</p>
+<p>Transforms the nested bgp-information/bgp-peer structure returned by
+'show bgp neighbor | display json' into standardized dictionaries with:</p>
 <ul>
-<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
+<li>All fields present (missing set to None)</li>
+<li>RFC-normalized state values (established, idle, etc.)</li>
+<li>Per-AFI prefix counts (ipv4_unicast_prefixes_sent, etc.)</li>
+<li>VRF name normalized ('master' -&gt; 'default')</li>
+<li>Peer/local addresses stripped of port suffix (e.g. '10.0.0.1+179' -&gt; '10.0.0.1')</li>
+<li>Consistent field naming matching the Arista EOS BGP neighbor output format</li>
 </ul>
-<p>Produces this structure for each input datum/device output:
-<div class="highlight"><pre><span></span><code>[
-    [
-        {
-            &quot;ospf_processes&quot;: {
-                &quot;1&quot;: {
-                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
-                    &quot;summary_lsa&quot;: [
-                        {
-                            &quot;area&quot;: &quot;0&quot;,
-                            &quot;mask&quot;: &quot;31&quot;,
-                            &quot;metric&quot;: &quot;10&quot;,
-                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
-                            &quot;subnet&quot;: &quot;10.1.45.2&quot;,
-                        }
-                    ],
-                }
-            }
-        }
-    ]
-]
-</code></pre></div></p>
+<p>Example normalized output (YAML):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">afi</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv4_unicast</span><span class="w"></span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">export_policies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-10_8</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span><span class="w"></span>
+<span class="w">  </span><span class="nt">hold_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span><span class="w"></span>
+<span class="w">  </span><span class="nt">import_policies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-10_8</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_received</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w"></span>
+<span class="w">  </span><span class="nt">keepalive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.0.15</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_as</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;65104&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ge-0/0/0.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">max_ttl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default_10.10.0.14</span><span class="w"></span>
+<span class="w">  </span><span class="nt">peer_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLOS</span><span class="w"></span>
+<span class="w">  </span><span class="nt">peering_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external</span><span class="w"></span>
+<span class="w">  </span><span class="nt">prefix_list_in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">prefix_list_out</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">remote_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.0.14</span><span class="w"></span>
+<span class="w">  </span><span class="nt">remote_as</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;65002&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">router_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.2</span><span class="w"></span>
+<span class="w">  </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">established</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uptime_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
-This template initially designed for use with N2G library to produce network 
-diagrams based on OSPF link state database of Cisco IOS devices.
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;junper_junos_bgp_neighbors&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Normalizes Juniper JunOS BGP neighbors JSON to flat list format.
 
-This template parses summary-lsa only out of output produced by 
-&quot;show ip ospf database summary&quot; command.
+Transforms the nested bgp-information/bgp-peer structure returned by
+&#39;show bgp neighbor | display json&#39; into standardized dictionaries with:
 
-Caveats:
+- All fields present (missing set to None)
+- RFC-normalized state values (established, idle, etc.)
+- Per-AFI prefix counts (ipv4_unicast_prefixes_sent, etc.)
+- VRF name normalized (&#39;master&#39; -&gt; &#39;default&#39;)
+- Peer/local addresses stripped of port suffix (e.g. &#39;10.0.0.1+179&#39; -&gt; &#39;10.0.0.1&#39;)
+- Consistent field naming matching the Arista EOS BGP neighbor output format
 
- - need &#39;ttp&gt;=0.7.0&#39;, &#39;ttp==0.6.0&#39; will not work due to bugs in it
+Example normalized output (YAML):
 
-Produces this structure for each input datum/device output:
-&#39;&#39;&#39;
-[
-    [
-        {
-            &quot;ospf_processes&quot;: {
-                &quot;1&quot;: {
-                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
-                    &quot;summary_lsa&quot;: [
-                        {
-                            &quot;area&quot;: &quot;0&quot;,
-                            &quot;mask&quot;: &quot;31&quot;,
-                            &quot;metric&quot;: &quot;10&quot;,
-                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
-                            &quot;subnet&quot;: &quot;10.1.45.2&quot;,
-                        }
-                    ],
-                }
-            }
-        }
-    ]
-]
+&#39;&#39;&#39;yaml
+- afi:
+  - ipv4_unicast
+  description: null
+  export_policies:
+  - ALLOW-10_8
+  - ALLOW-ALL
+  hold_time: 90
+  import_policies:
+  - ALLOW-10_8
+  - ALLOW-ALL
+  ipv4_unicast_prefixes_received: 5
+  ipv4_unicast_prefixes_sent: 2
+  keepalive: 30
+  local_address: 10.10.0.15
+  local_as: &#39;65104&#39;
+  local_interface: ge-0/0/0.0
+  max_ttl: null
+  name: default_10.10.0.14
+  peer_group: CLOS
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.10.0.14
+  remote_as: &#39;65002&#39;
+  router_id: 10.10.10.2
+  state: established
+  uptime_seconds: null
+  vrf: default
 &#39;&#39;&#39;
 &lt;/doc&gt;
 
-&lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
-            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})
+&lt;macro&gt;
+def transform_bgp_neighbors_to_records(json_data):
+    from ttp_templates.utils.junper_junos_process_show_bgp_neighbor_pipe_display_json import transform_bgp_neighbors
 
-&lt;group name=&quot;summary_lsa*&quot; functions=&quot;record(&#39;area&#39;) | del(&#39;area&#39;) | void&quot;&gt;
-                Summary Net Link States (Area {{ area }})
+    return transform_bgp_neighbors(json_data)
+&lt;/macro&gt;
 
-  &lt;group set=&quot;area&quot;&gt;
-  LS Type: Summary Links(Network) {{ _start_ }}
-  Link State ID: {{ subnet }} (summary Network Number)
-  Advertising Router: {{ originator_rid }}
-  Network Mask: /{{ mask }}
-        MTID: 0         Metric: {{ metric }} 
-{{ _end_ }}        
-  &lt;/group&gt;
+&lt;input&gt;
+commands = [
+    &quot;show bgp neighbor | display json&quot;
+]
+platform = [
+    &quot;juniper_junos&quot;,  # scrapli and netmiko
+    &quot;junos&quot;,          # NAPALM
+]
+&lt;/input&gt;
+
+&lt;group&gt;
+{ {{ _start_ }}
+{{ data | _line_ | joinmatches }}
+} {{ _end_ }}
 &lt;/group&gt;
 
-&lt;/group&gt;
+&lt;output macro=&quot;transform_bgp_neighbors_to_records&quot;/&gt;
+
+&lt;/template&gt;
 </code></pre></div>
 </details>
                 
@@ -1692,7 +1724,7 @@ Produces this structure for each input datum/device output:
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../platform.cisco_ios_show_ip_ospf_database_router/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_ios_show_ip_ospf_database_router" rel="prev">
+        <a href="../platform.huawei_display_ospf_lsdb_router/" class="md-footer__link md-footer__link--prev" aria-label="Previous: huawei_display_ospf_lsdb_router" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1701,20 +1733,20 @@ Produces this structure for each input datum/device output:
               <span class="md-footer__direction">
                 Previous
               </span>
-              cisco_ios_show_ip_ospf_database_router
+              huawei_display_ospf_lsdb_router
             </div>
           </div>
         </a>
       
       
         
-        <a href="../platform.cisco_ios_show_isdn_status/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_ios_show_isdn_status" rel="next">
+        <a href="../platform.juniper_junos_show_chassis_hardware_pipe_json/" class="md-footer__link md-footer__link--next" aria-label="Next: juniper_junos_show_chassis_hardware_pipe_json" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cisco_ios_show_isdn_status
+              juniper_junos_show_chassis_hardware_pipe_json
             </div>
           </div>
           <div class="md-footer__button md-icon">

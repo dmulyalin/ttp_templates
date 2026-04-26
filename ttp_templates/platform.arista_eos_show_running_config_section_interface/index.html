@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.arista_eos_show_running_config_section_interface/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco_ios_show_ip_ospf_database_summary - TTP Templates Collection</title>
+        <title>arista_eos_show_running_config_section_interface - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco_ios_show_ip_ospf_database_summary
+              arista_eos_show_running_config_section_interface
             
           </span>
         </div>
@@ -1091,11 +1091,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         arista_eos_show_running_config_section_interface
       </a>
+      
     </li>
   
 
@@ -1139,19 +1147,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_ip_ospf_database_summary/" class="md-nav__link">
         cisco_ios_show_ip_ospf_database_summary
       </a>
-      
     </li>
   
 
@@ -1570,102 +1570,179 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.arista_eos_show_running_config_section_interface.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco_ios_show_ip_ospf_database_summary</h1>
+                  <h1>arista_eos_show_running_config_section_interface</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://platform/cisco_ios_show_ip_ospf_database_summary.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/arista_eos_show_running_config_section_interface.txt
 </code></pre></div></p>
 <hr />
-<p>This template initially designed for use with N2G library to produce network 
-diagrams based on OSPF link state database of Cisco IOS devices.</p>
-<p>This template parses summary-lsa only out of output produced by 
-"show ip ospf database summary" command.</p>
-<p>Caveats:</p>
+<p>Template to parse Arista interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.</p>
+<p>This template requires output of 'show running-config section interface'.</p>
+<p>The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to <code>null</code> / <code>None</code>):</p>
 <ul>
-<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
+<li><code>name</code>: interface name string (e.g. Ethernet1, Ethernet1.10)</li>
+<li><code>type</code>: <code>other</code> by default; <code>bridge</code> if "vlan" in name;
+    <code>lag</code> if "port-channel" in name; <code>virtual</code> if "loopback" in name
+    or if the interface name contains a dot (<code>.</code>)</li>
+<li><code>enabled</code>: boolean; interfaces are <code>True</code> by default unless explicitly
+    shutdown in the config</li>
+<li><code>parent</code>: parent interface name or <code>null</code> (if the interface name contains
+    a dot the parent is the part before the dot)</li>
+<li><code>lag</code>: lag identifier integer (channel-group / mlag number) or <code>null</code></li>
+<li><code>lag_type</code>: <code>lag</code> for standart port channels, <code>mlag</code> for mlag port channels, or <code>null</code></li>
+<li><code>lacp_mode</code>: LACP mode string (e.g. <code>active</code>, <code>passive</code>) or <code>null</code></li>
+<li><code>mtu</code>: integer MTU or <code>null</code></li>
+<li><code>mac_address</code>: string in MAC EUI format or <code>null</code></li>
+<li><code>speed</code>: integer or <code>null</code></li>
+<li><code>duplex</code>: string or <code>null</code></li>
+<li><code>description</code>: string (empty string when not set)</li>
+<li><code>mode</code>: 'tagged' / 'access' or <code>null</code></li>
+<li><code>untagged_vlan</code>: integer or <code>null</code></li>
+<li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
+<li><code>qinq_svlan</code>: integer or <code>null</code></li>
+<li><code>vrf</code>: string or <code>null</code></li>
+<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 10.0.0.1/24)</li>
+<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
 </ul>
-<p>Produces this structure for each input datum/device output:
-<div class="highlight"><pre><span></span><code>[
-    [
-        {
-            &quot;ospf_processes&quot;: {
-                &quot;1&quot;: {
-                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
-                    &quot;summary_lsa&quot;: [
-                        {
-                            &quot;area&quot;: &quot;0&quot;,
-                            &quot;mask&quot;: &quot;31&quot;,
-                            &quot;metric&quot;: &quot;10&quot;,
-                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
-                            &quot;subnet&quot;: &quot;10.1.45.2&quot;,
-                        }
-                    ],
-                }
-            }
-        }
-    ]
-]
-</code></pre></div></p>
+<p>Example normalized output (YAML):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Router ID</span><span class="w"></span>
+<span class="w">  </span><span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv6_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lacp_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mac_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Loopback0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">qinq_svlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">tagged_vlans</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtual</span><span class="w"></span>
+<span class="w">  </span><span class="nt">untagged_vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
-This template initially designed for use with N2G library to produce network 
-diagrams based on OSPF link state database of Cisco IOS devices.
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;arista_eos_interface_config&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Template to parse Arista interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
 
-This template parses summary-lsa only out of output produced by 
-&quot;show ip ospf database summary&quot; command.
+This template requires output of &#39;show running-config section interface&#39;.
 
-Caveats:
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to &#39;null&#39; / &#39;None&#39;):
 
- - need &#39;ttp&gt;=0.7.0&#39;, &#39;ttp==0.6.0&#39; will not work due to bugs in it
+- &#39;name&#39;: interface name string (e.g. Ethernet1, Ethernet1.10)
+- &#39;type&#39;: &#39;&#39;other&#39;&#39; by default; &#39;&#39;bridge&#39;&#39; if &quot;vlan&quot; in name;
+    &#39;&#39;lag&#39;&#39; if &quot;port-channel&quot; in name; &#39;&#39;virtual&#39;&#39; if &quot;loopback&quot; in name
+    or if the interface name contains a dot (&#39;.&#39;)
+- &#39;enabled&#39;: boolean; interfaces are &#39;True&#39; by default unless explicitly
+    shutdown in the config
+- &#39;parent&#39;: parent interface name or &#39;null&#39; (if the interface name contains
+    a dot the parent is the part before the dot)
+- &#39;lag&#39;: lag identifier integer (channel-group / mlag number) or &#39;null&#39;
+- &#39;lag_type&#39;: &#39;&#39;lag&#39;&#39; for standart port channels, &#39;&#39;mlag&#39;&#39; for mlag port channels, or &#39;null&#39;
+- &#39;lacp_mode&#39;: LACP mode string (e.g. &#39;&#39;active&#39;&#39;, &#39;&#39;passive&#39;&#39;) or &#39;null&#39;
+- &#39;mtu&#39;: integer MTU or &#39;null&#39;
+- &#39;mac_address&#39;: string in MAC EUI format or &#39;null&#39;
+- &#39;speed&#39;: integer or &#39;null&#39;
+- &#39;duplex&#39;: string or &#39;null&#39;
+- &#39;description&#39;: string (empty string when not set)
+- &#39;mode&#39;: &#39;tagged&#39; / &#39;access&#39; or &#39;null&#39;
+- &#39;untagged_vlan&#39;: integer or &#39;null&#39;
+- &#39;tagged_vlans&#39;: list of integers (empty list when none)
+- &#39;qinq_svlan&#39;: integer or &#39;null&#39;
+- &#39;vrf&#39;: string or &#39;null&#39;
+- &#39;ipv4_addresses&#39;: list of strings with IP/prefix (e.g. 10.0.0.1/24)
+- &#39;ipv6_addresses&#39;: list of strings with IP/prefix (e.g. 2001:db8::1/64)
 
-Produces this structure for each input datum/device output:
+Example normalized output (YAML):
+
+&#39;&#39;&#39;yaml
+- description: Router ID
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: Loopback0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null
 &#39;&#39;&#39;
-[
-    [
-        {
-            &quot;ospf_processes&quot;: {
-                &quot;1&quot;: {
-                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
-                    &quot;summary_lsa&quot;: [
-                        {
-                            &quot;area&quot;: &quot;0&quot;,
-                            &quot;mask&quot;: &quot;31&quot;,
-                            &quot;metric&quot;: &quot;10&quot;,
-                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
-                            &quot;subnet&quot;: &quot;10.1.45.2&quot;,
-                        }
-                    ],
-                }
-            }
-        }
-    ]
-]
-&#39;&#39;&#39;
+
 &lt;/doc&gt;
 
-&lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
-            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})
+&lt;input&gt;
+commands = [
+    &quot;show running-config section interface&quot;
+]
+platform = [
+    &quot;arista_eos&quot;, # scrapli and netmiko
+    &quot;eos&quot;, # NAPALM
+]
+&lt;/input&gt;
 
-&lt;group name=&quot;summary_lsa*&quot; functions=&quot;record(&#39;area&#39;) | del(&#39;area&#39;) | void&quot;&gt;
-                Summary Net Link States (Area {{ area }})
+&lt;macro&gt;
+def transform_interfaces_to_records(data):
+    from ttp_templates.utils.arista_eos_process_show_running_config_section_interface import transform_interfaces_config
 
-  &lt;group set=&quot;area&quot;&gt;
-  LS Type: Summary Links(Network) {{ _start_ }}
-  Link State ID: {{ subnet }} (summary Network Number)
-  Advertising Router: {{ originator_rid }}
-  Network Mask: /{{ mask }}
-        MTID: 0         Metric: {{ metric }} 
-{{ _end_ }}        
-  &lt;/group&gt;
+    return transform_interfaces_config(data)
+&lt;/macro&gt;
+
+&lt;group&gt;
+interface {{ name | _start_ }}
+   description {{ description | re(&quot;.+&quot;) }}
+   mtu {{ mtu | to_int }}
+   no switchport {{ is_l3_interface | set(True) }}
+   vrf {{ vrf }}
+   shutdown {{ enabled | set(False) | default(True) }}
+   speed forced {{ speed | to_int }}
+   mlag {{ lag_id | to_int | let(&quot;lag_type&quot;, &quot;mlag&quot;) }}
+   channel-group {{ lag_id | to_int | let(&quot;lag_type&quot;, &quot;lag&quot;) }} mode {{ lacp_mode }}
+   switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar=&#39;-&#39;, joinchar=&#39;,&#39;) | split(&quot;,&quot;) | joinmatches }}
+   switchport mode trunk {{ mode | set(&quot;tagged&quot;) }}
+   switchport access vlan {{ untagged_vlan | to_int | let(&quot;mode&quot;, &quot;access&quot;) }}
+   mac-address {{ mac_address | mac_eui }}
+
+   &lt;group name=&quot;ipv4_addresses*&quot; method=&quot;table&quot;&gt;
+   ip address {{ ip | IP }}/{{ mask }}
+   ip address {{ ip | IP }}/{{ mask }} secondary
+   ipv4 address {{ ip | IP }}/{{ mask}}
+   ipv4 address {{ ip | IP }}/{{ mask}} secondary
+   &lt;/group&gt;
+
+   &lt;group name=&quot;ipv6_addresses*&quot; method=&quot;table&quot;&gt;
+   ipv6 address {{ ip | IPV6 }}/{{ mask}}
+   &lt;/group&gt;
+
+!{{ _end_ }}
 &lt;/group&gt;
 
-&lt;/group&gt;
+&lt;output macro=&quot;transform_interfaces_to_records&quot;/&gt;
+
+&lt;/template&gt;
 </code></pre></div>
 </details>
                 
@@ -1692,7 +1769,7 @@ Produces this structure for each input datum/device output:
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../platform.cisco_ios_show_ip_ospf_database_router/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_ios_show_ip_ospf_database_router" rel="prev">
+        <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-footer__link md-footer__link--prev" aria-label="Previous: arista_eos_show_inventory_pipe_json" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1701,20 +1778,20 @@ Produces this structure for each input datum/device output:
               <span class="md-footer__direction">
                 Previous
               </span>
-              cisco_ios_show_ip_ospf_database_router
+              arista_eos_show_inventory_pipe_json
             </div>
           </div>
         </a>
       
       
         
-        <a href="../platform.cisco_ios_show_isdn_status/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_ios_show_isdn_status" rel="next">
+        <a href="../platform.cisco_ios_show_ip_arp/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_ios_show_ip_arp" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cisco_ios_show_isdn_status
+              cisco_ios_show_ip_arp
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -1103,6 +1103,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
+        arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_ip_arp/" class="md-nav__link">
         cisco_ios_show_ip_arp
       </a>
@@ -1223,6 +1235,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_bgp_neighbors/" class="md-nav__link">
+        cisco_xr_show_bgp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_inventory/" class="md-nav__link">
         cisco_xr_show_inventory
       </a>
@@ -1309,6 +1333,18 @@
     <li class="md-nav__item">
       <a href="../platform.huawei_display_ospf_lsdb_router/" class="md-nav__link">
         huawei_display_ospf_lsdb_router
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_bgp_neighbor_pipe_display_json/" class="md-nav__link">
+        juniper_junos_show_bgp_neighbor_pipe_display_json
       </a>
     </li>
   
@@ -1471,6 +1507,18 @@
     <li class="md-nav__item">
       <a href="../get.bgp_neighbors/" class="md-nav__link">
         bgp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get.interfaces/" class="md-nav__link">
+        interfaces
       </a>
     </li>
   
@@ -1756,7 +1804,7 @@ router bgp {{ asn }}
    neighbor {{ neighbor_ip | let(&quot;is_peer_group&quot;, True) }} peer group
    neighbor {{ neighbor_ip | let(&quot;is_peer_group&quot;, False) }} peer group {{ peer_group }}
    neighbor {{ neighbor_ip }} remote-as {{ neighbor_asn }}
-   neighbor {{ neighbor_ip }} out-delay { out_delay }}
+   neighbor {{ neighbor_ip }} out-delay {{ out_delay }}
    neighbor {{ neighbor_ip | let(&quot;bfd_enabled&quot;, True) }} bfd 
    neighbor {{ neighbor_ip | let(&quot;send_community&quot;, True) }} send-community
    neighbor {{ neighbor_ip }} maximum-routes {{ maxr_routes }}  
@@ -1793,7 +1841,7 @@ router bgp {{ asn }}
       neighbor {{ neighbor_ip | let(&quot;is_peer_group&quot;, True) }} peer group
       neighbor {{ neighbor_ip | let(&quot;is_peer_group&quot;, False) }} peer group {{ peer_group }}
       neighbor {{ neighbor_ip }} remote-as {{ neighbor_asn }}
-      neighbor {{ neighbor_ip }} out-delay { out_delay }}
+      neighbor {{ neighbor_ip }} out-delay {{ out_delay }}
       neighbor {{ neighbor_ip | let(&quot;bfd_enabled&quot;, True) }} bfd 
       neighbor {{ neighbor_ip | let(&quot;send_community&quot;, True) }} send-community
       neighbor {{ neighbor_ip }} maximum-routes {{ maxr_routes }}  

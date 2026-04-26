@@ -1101,6 +1101,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
+        arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_ip_arp/" class="md-nav__link">
         cisco_ios_show_ip_arp
       </a>
@@ -1221,6 +1233,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_bgp_neighbors/" class="md-nav__link">
+        cisco_xr_show_bgp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_inventory/" class="md-nav__link">
         cisco_xr_show_inventory
       </a>
@@ -1307,6 +1331,18 @@
     <li class="md-nav__item">
       <a href="../platform.huawei_display_ospf_lsdb_router/" class="md-nav__link">
         huawei_display_ospf_lsdb_router
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_bgp_neighbor_pipe_display_json/" class="md-nav__link">
+        juniper_junos_show_bgp_neighbor_pipe_display_json
       </a>
     </li>
   
@@ -1479,6 +1515,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../get.interfaces/" class="md-nav__link">
+        interfaces
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../get.inventory/" class="md-nav__link">
         inventory
       </a>
@@ -1545,23 +1593,11 @@ This template requires output of &#39;show inventory&#39; command.
 &lt;/doc&gt;
 
 &lt;macro&gt;
-def load_json(result):
-    import json
-    try:
-        return json.loads(&quot;{&quot; + result[0][&quot;data&quot;] + &quot;}&quot;)
-    except (KeyError, IndexError, TypeError, json.JSONDecodeError, ValueError):
-        return {}
-&lt;/macro&gt;
-
-&lt;macro&gt;
 def transform_inventory_to_records(payload):
     import json
-    if isinstance(payload, str):
-        try:
-            payload = json.loads(payload)
-        except (json.JSONDecodeError, TypeError, ValueError):
-            return []
-    if not isinstance(payload, dict):
+    if payload:
+        payload = json.loads(&quot;{&quot; + payload[0][&quot;data&quot;] + &quot;}&quot;)
+    else:
         return []
 
     records = []
@@ -1609,7 +1645,6 @@ platform = [
 } {{ _end_ }}
 &lt;/group&gt;
 
-&lt;output macro=&quot;load_json&quot;/&gt;
 &lt;output macro=&quot;transform_inventory_to_records&quot;/&gt;
 
 &lt;/template&gt;
@@ -1655,13 +1690,13 @@ platform = [
       
       
         
-        <a href="../platform.cisco_ios_show_ip_arp/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_ios_show_ip_arp" rel="next">
+        <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-footer__link md-footer__link--next" aria-label="Next: arista_eos_show_running_config_section_interface" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cisco_ios_show_ip_arp
+              arista_eos_show_running_config_section_interface
             </div>
           </div>
           <div class="md-footer__button md-icon">

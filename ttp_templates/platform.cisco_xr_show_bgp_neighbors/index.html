@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.cisco_xr_show_bgp_neighbors/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco_ios_show_ip_ospf_database_summary - TTP Templates Collection</title>
+        <title>cisco_xr_show_bgp_neighbors - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco_ios_show_ip_ospf_database_summary
+              cisco_xr_show_bgp_neighbors
             
           </span>
         </div>
@@ -1139,19 +1139,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_ip_ospf_database_summary/" class="md-nav__link">
         cisco_ios_show_ip_ospf_database_summary
       </a>
-      
     </li>
   
 
@@ -1231,11 +1223,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.cisco_xr_show_bgp_neighbors/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         cisco_xr_show_bgp_neighbors
       </a>
+      
     </li>
   
 
@@ -1570,102 +1570,135 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.cisco_xr_show_bgp_neighbors.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco_ios_show_ip_ospf_database_summary</h1>
+                  <h1>cisco_xr_show_bgp_neighbors</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://platform/cisco_ios_show_ip_ospf_database_summary.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/cisco_xr_show_bgp_neighbors.txt
 </code></pre></div></p>
 <hr />
-<p>This template initially designed for use with N2G library to produce network 
-diagrams based on OSPF link state database of Cisco IOS devices.</p>
-<p>This template parses summary-lsa only out of output produced by 
-"show ip ospf database summary" command.</p>
-<p>Caveats:</p>
-<ul>
-<li>need <code>ttp&gt;=0.7.0</code>, <code>ttp==0.6.0</code> will not work due to bugs in it</li>
-</ul>
-<p>Produces this structure for each input datum/device output:
-<div class="highlight"><pre><span></span><code>[
-    [
-        {
-            &quot;ospf_processes&quot;: {
-                &quot;1&quot;: {
-                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
-                    &quot;summary_lsa&quot;: [
-                        {
-                            &quot;area&quot;: &quot;0&quot;,
-                            &quot;mask&quot;: &quot;31&quot;,
-                            &quot;metric&quot;: &quot;10&quot;,
-                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
-                            &quot;subnet&quot;: &quot;10.1.45.2&quot;,
-                        }
-                    ],
-                }
-            }
-        }
-    ]
-]
-</code></pre></div></p>
+<p>Template to parse Cisco IOS XR BGP neighbors.</p>
+<p>This template requires output of 'show bgp neighbors' command.</p>
+<p>Returns a normalized list of dictionaries, one per BGP neighbor, with the
+following keys (fields unavailable from this command are set to None/[]):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">afi</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv4_unicast</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv6_unicast</span><span class="w"></span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iBGP_Neighbor</span><span class="w"></span>
+<span class="w">  </span><span class="nt">export_policies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PASS-ALL</span><span class="w"></span>
+<span class="w">  </span><span class="nt">hold_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180</span><span class="w"></span>
+<span class="w">  </span><span class="nt">import_policies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DENY-ALL</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_received</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv6_unicast_prefixes_received</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv6_unicast_prefixes_sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">keepalive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_as</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;65001&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">max_ttl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default_10.0.0.42</span><span class="w"></span>
+<span class="w">  </span><span class="nt">peer_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">peering_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">internal</span><span class="w"></span>
+<span class="w">  </span><span class="nt">prefix_list_in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">prefix_list_out</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">remote_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.42</span><span class="w"></span>
+<span class="w">  </span><span class="nt">remote_as</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;65001&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">router_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opensent</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uptime_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
-This template initially designed for use with N2G library to produce network 
-diagrams based on OSPF link state database of Cisco IOS devices.
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;cisco_xr_bgp_neighbors&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Template to parse Cisco IOS XR BGP neighbors.
 
-This template parses summary-lsa only out of output produced by 
-&quot;show ip ospf database summary&quot; command.
+This template requires output of &#39;show bgp neighbors&#39; command.
 
-Caveats:
+Returns a normalized list of dictionaries, one per BGP neighbor, with the
+following keys (fields unavailable from this command are set to None/[]):
 
- - need &#39;ttp&gt;=0.7.0&#39;, &#39;ttp==0.6.0&#39; will not work due to bugs in it
-
-Produces this structure for each input datum/device output:
-&#39;&#39;&#39;
-[
-    [
-        {
-            &quot;ospf_processes&quot;: {
-                &quot;1&quot;: {
-                    &quot;local_rid&quot;: &quot;10.0.0.4&quot;,
-                    &quot;summary_lsa&quot;: [
-                        {
-                            &quot;area&quot;: &quot;0&quot;,
-                            &quot;mask&quot;: &quot;31&quot;,
-                            &quot;metric&quot;: &quot;10&quot;,
-                            &quot;originator_rid&quot;: &quot;10.0.0.4&quot;,
-                            &quot;subnet&quot;: &quot;10.1.45.2&quot;,
-                        }
-                    ],
-                }
-            }
-        }
-    ]
-]
+&#39;&#39;&#39;yaml
+- afi:
+  - ipv4_unicast
+  - ipv6_unicast
+  description: iBGP_Neighbor
+  export_policies:
+  - PASS-ALL
+  hold_time: 180
+  import_policies:
+  - DENY-ALL
+  ipv4_unicast_prefixes_received: 0
+  ipv4_unicast_prefixes_sent: 0
+  ipv6_unicast_prefixes_received: 0
+  ipv6_unicast_prefixes_sent: 0
+  keepalive: 60
+  local_address: 10.0.0.1
+  local_as: &#39;65001&#39;
+  local_interface: null
+  max_ttl: null
+  name: default_10.0.0.42
+  peer_group: null
+  peering_type: internal
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.0.0.42
+  remote_as: &#39;65001&#39;
+  router_id: 0.0.0.0
+  state: opensent
+  uptime_seconds: null
+  vrf: default
 &#39;&#39;&#39;
 &lt;/doc&gt;
 
-&lt;group name=&quot;ospf_processes.{{ pid }}**&quot;&gt;
-            OSPF Router with ID ({{ local_rid }}) (Process ID {{ pid }})
+&lt;macro&gt;
+def transform(data):
+    from ttp_templates.utils.cisco_xr_process_show_bgp_neighbors import transform_bgp_neighbors
+    return transform_bgp_neighbors(data)
+&lt;/macro&gt;
 
-&lt;group name=&quot;summary_lsa*&quot; functions=&quot;record(&#39;area&#39;) | del(&#39;area&#39;) | void&quot;&gt;
-                Summary Net Link States (Area {{ area }})
+&lt;input&gt;
+commands = [
+    &quot;show bgp neighbors&quot;,
+    &quot;show bgp vrf all neighbors&quot;,
+]
+platform = [
+    &quot;cisco_xr&quot;,    # netmiko
+    &quot;iosxr&quot;,       # napalm
+    &quot;cisco_iosxr&quot;, # scrapli
+]
+&lt;/input&gt;
 
-  &lt;group set=&quot;area&quot;&gt;
-  LS Type: Summary Links(Network) {{ _start_ }}
-  Link State ID: {{ subnet }} (summary Network Number)
-  Advertising Router: {{ originator_rid }}
-  Network Mask: /{{ mask }}
-        MTID: 0         Metric: {{ metric }} 
-{{ _end_ }}        
+&lt;group name=&quot;neighbors*&quot;&gt;
+BGP neighbor is {{ remote_address }}
+ Remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ peering_type }} link
+ Description: {{ description | ORPHRASE }}
+ Remote router ID {{ router_id }}
+  BGP state = {{ bgp_state | ORPHRASE }}
+  Hold time is {{ hold_time }}, keepalive interval is {{ keepalive }} seconds
+
+  &lt;group name=&quot;address_families*&quot;&gt;
+ For Address Family: {{ afi_name | ORPHRASE }}
+  {{ accepted_prefixes }} accepted prefixes, {{ _bestpaths_ }} are bestpaths
+  Prefix advertised {{ prefixes_sent }}, suppressed {{ _suppressed_ }}, withdrawn {{ _withdrawn_ }}
+  Policy for incoming advertisements is {{ import_policy | ORPHRASE }}
+  Policy for outgoing advertisements is {{ export_policy | ORPHRASE }}
   &lt;/group&gt;
+
+  Local host: {{ local_address }}, Local port: {{ _ }}
 &lt;/group&gt;
 
-&lt;/group&gt;
+&lt;output macro=&quot;transform&quot;/&gt;
+
+&lt;/template&gt;
 </code></pre></div>
 </details>
                 
@@ -1692,7 +1725,7 @@ Produces this structure for each input datum/device output:
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../platform.cisco_ios_show_ip_ospf_database_router/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_ios_show_ip_ospf_database_router" rel="prev">
+        <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_xr_show_arp_vrf_all" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1701,20 +1734,20 @@ Produces this structure for each input datum/device output:
               <span class="md-footer__direction">
                 Previous
               </span>
-              cisco_ios_show_ip_ospf_database_router
+              cisco_xr_show_arp_vrf_all
             </div>
           </div>
         </a>
       
       
         
-        <a href="../platform.cisco_ios_show_isdn_status/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_ios_show_isdn_status" rel="next">
+        <a href="../platform.cisco_xr_show_inventory/" class="md-footer__link md-footer__link--next" aria-label="Next: cisco_xr_show_inventory" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cisco_ios_show_isdn_status
+              cisco_xr_show_inventory
             </div>
           </div>
           <div class="md-footer__button md-icon">
