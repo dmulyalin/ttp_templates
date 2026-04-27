@@ -25,16 +25,9 @@ This template requires output of 'show inventory' command.
 </doc>
 
 <macro>
-def load_json(result):
-    import json
-    try:
-        return json.loads("{" + result[0]["data"] + "}")
-    except (KeyError, IndexError, TypeError, json.JSONDecodeError, ValueError):
-        return {}
-</macro>
-
-<macro>
 def transform_inventory_to_records(payload):
+    import json
+
     def pick(node, key):
         value = node.get(key)
         if not isinstance(value, list):
@@ -45,7 +38,10 @@ def transform_inventory_to_records(payload):
                 if isinstance(data, str) and data.strip():
                     return data.strip()
         return None
-
+    if payload:
+        payload = json.loads("{" + payload[0]["data"] + "}")
+    else:
+        return []
     records = []
     stack = [payload]
 
@@ -58,7 +54,7 @@ def transform_inventory_to_records(payload):
             continue
 
         serial = pick(node, "serial-number")
-        if serial and serial.upper() != "BUILTIN":
+        if serial:
             description = pick(node, "description") or ""
             records.append(
                 {
@@ -91,7 +87,6 @@ platform = [
 } {{ _end_ }}
 </group>
 
-<output macro="load_json"/>
 <output macro="transform_inventory_to_records"/>
 
 </template>

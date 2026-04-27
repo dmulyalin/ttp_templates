@@ -47,6 +47,94 @@ Example normalized output (YAML):
 
 
 
+Normalizes Juniper JunOS BGP neighbors JSON to flat list format.
+
+Transforms the nested bgp-information/bgp-peer structure returned by
+'show bgp neighbor | display json' into standardized dictionaries with:
+
+- All fields present (missing set to None)
+- RFC-normalized state values (established, idle, etc.)
+- Per-AFI prefix counts (ipv4_unicast_prefixes_sent, etc.)
+- VRF name normalized ('master' -> 'default')
+- Peer/local addresses stripped of port suffix (e.g. '10.0.0.1+179' -> '10.0.0.1')
+- Consistent field naming matching the Arista EOS BGP neighbor output format
+
+Example normalized output (YAML):
+
+```yaml
+- afi:
+  - ipv4_unicast
+  description: null
+  export_policies:
+  - ALLOW-10_8
+  - ALLOW-ALL
+  hold_time: 90
+  import_policies:
+  - ALLOW-10_8
+  - ALLOW-ALL
+  ipv4_unicast_prefixes_received: 5
+  ipv4_unicast_prefixes_sent: 2
+  keepalive: 30
+  local_address: 10.10.0.15
+  local_as: '65104'
+  local_interface: ge-0/0/0.0
+  max_ttl: null
+  name: default_10.10.0.14
+  peer_group: CLOS
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.10.0.14
+  remote_as: '65002'
+  router_id: 10.10.10.2
+  state: established
+  uptime_seconds: null
+  vrf: default
+```
+
+
+
+Template to parse Cisco IOS XR BGP neighbors.
+
+This template requires output of 'show bgp neighbors' command.
+
+Returns a normalized list of dictionaries, one per BGP neighbor, with the
+following keys (fields unavailable from this command are set to None/[]):
+
+```yaml
+- afi:
+  - ipv4_unicast
+  - ipv6_unicast
+  description: iBGP_Neighbor
+  export_policies:
+  - PASS-ALL
+  hold_time: 180
+  import_policies:
+  - DENY-ALL
+  ipv4_unicast_prefixes_received: 0
+  ipv4_unicast_prefixes_sent: 0
+  ipv6_unicast_prefixes_received: 0
+  ipv6_unicast_prefixes_sent: 0
+  keepalive: 60
+  local_address: 10.0.0.1
+  local_as: '65001'
+  local_interface: null
+  max_ttl: null
+  name: default_10.0.0.42
+  peer_group: null
+  peering_type: internal
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.0.0.42
+  remote_as: '65001'
+  router_id: 0.0.0.0
+  state: opensent
+  uptime_seconds: null
+  vrf: default
+```
+
+
+
 ---
 
 <details><summary>Template Content</summary>
@@ -61,6 +149,8 @@ Getter template to parse inventory for network devices. Designed to work with
 Supported platforms:
 
 - Arista EOS
+- Juniper Junos
+- Cisco IOS XR
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -91,6 +181,10 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 </doc>
 
 <extend template="ttp://platform/arista_eos_show_bgp_neighbors_vrf_all_pipe_json.txt"/>
+
+<extend template="ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt"/>
+
+<extend template="ttp://platform/cisco_xr_show_bgp_neighbors.txt"/>
 
 </template>
 ```

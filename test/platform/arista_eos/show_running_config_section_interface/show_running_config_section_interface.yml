@@ -1,3 +1,4 @@
+# poetry run ttp -t ttp_templates\platform\arista_eos_show_running_config_section_interface.txt -d test\platform\arista_eos\show_running_config_section_interface\show_running_config_section_interface.txt -o yaml -s flat_list -tn arista_eos_interface_config
 - description: P2P to ceos-spine-1 Ethernet2
   duplex: null
   enabled: true
@@ -84,7 +85,7 @@
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: active
-  lag: '10'
+  lag: 10
   lag_type: lag
   mac_address: null
   mode: null
@@ -103,7 +104,7 @@
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: active
-  lag: '10'
+  lag: 10
   lag_type: lag
   mac_address: null
   mode: null
@@ -186,7 +187,7 @@
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: null
-  lag: '1'
+  lag: 1
   lag_type: mlag
   mac_address: null
   mode: null

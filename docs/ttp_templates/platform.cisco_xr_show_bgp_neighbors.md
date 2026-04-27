@@ -1,5 +1,12 @@
-<template name="cisco_xr_bgp_neighbors" results="per_template">
-<doc>
+Reference path:
+```
+ttp://platform/cisco_xr_show_bgp_neighbors.txt
+```
+
+---
+
+
+
 Template to parse Cisco IOS XR BGP neighbors.
 
 This template requires output of 'show bgp neighbors' command.
@@ -38,6 +45,53 @@ following keys (fields unavailable from this command are set to None/[]):
   uptime_seconds: null
   vrf: default
 ```
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="cisco_xr_bgp_neighbors" results="per_template">
+<doc>
+Template to parse Cisco IOS XR BGP neighbors.
+
+This template requires output of 'show bgp neighbors' command.
+
+Returns a normalized list of dictionaries, one per BGP neighbor, with the
+following keys (fields unavailable from this command are set to None/[]):
+
+'''yaml
+- afi:
+  - ipv4_unicast
+  - ipv6_unicast
+  description: iBGP_Neighbor
+  export_policies:
+  - PASS-ALL
+  hold_time: 180
+  import_policies:
+  - DENY-ALL
+  ipv4_unicast_prefixes_received: 0
+  ipv4_unicast_prefixes_sent: 0
+  ipv6_unicast_prefixes_received: 0
+  ipv6_unicast_prefixes_sent: 0
+  keepalive: 60
+  local_address: 10.0.0.1
+  local_as: '65001'
+  local_interface: null
+  max_ttl: null
+  name: default_10.0.0.42
+  peer_group: null
+  peering_type: internal
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.0.0.42
+  remote_as: '65001'
+  router_id: 0.0.0.0
+  state: opensent
+  uptime_seconds: null
+  vrf: default
+'''
 </doc>
 
 <macro>
@@ -59,8 +113,7 @@ platform = [
 </input>
 
 <group name="neighbors*">
-BGP neighbor is {{ remote_address | _start_ }}
-BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}
+BGP neighbor is {{ remote_address }}
  Remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ peering_type }} link
  Description: {{ description | ORPHRASE }}
  Remote router ID {{ router_id }}
@@ -75,10 +128,11 @@ BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}
   Policy for outgoing advertisements is {{ export_policy | ORPHRASE }}
   </group>
 
-  Local host: {{ local_address }}, Local port: {{ ignore }}
-  Local host: {{ local_address }}, Local port: {{ ignore }}, IF Handle: {{ ignore }}
+  Local host: {{ local_address }}, Local port: {{ _ }}
 </group>
 
 <output macro="transform"/>
 
 </template>
+```
+</details>

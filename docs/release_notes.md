@@ -1,5 +1,15 @@
 # Release Notes
 
+## 0.5.4
+
+### BUGS
+
+1. Fixing VRF handling for `platform/cisco_xr_show_bgp_neighbors.txt` template.
+2. Fixing BGP peer local ip handling for `platform/cisco_xr_show_bgp_neighbors.txt` template for newer IOS XR syntax
+3. Fixing bgp peer group extraction for `platform/arista_eos_show_bgp_neighbors_vrf_all_pipe_json.txt` template for newer JSON format
+
+---
+
 ## 0.5.3
 
 ### TEMPLATES

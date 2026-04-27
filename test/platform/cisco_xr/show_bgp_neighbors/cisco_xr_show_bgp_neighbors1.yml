@@ -1,3 +1,4 @@
+# poetry run ttp -t ttp_templates\platform\cisco_xr_show_bgp_neighbors.txt -d test\platform\cisco_xr\show_bgp_neighbors\cisco_xr_show_bgp_neighbors1.txt -o yaml -s flat_list -tn cisco_xr_bgp_neighbors
 - afi:
   - ipv4_unicast
   description: pe04
@@ -226,17 +227,13 @@
   state: established
   uptime_seconds: 29376000
   vrf: default
-- afi:
-  - ipv4_unicast
+- afi: []
   description: agr01
-  export_policies:
-  - A_ROUTE_FILTER
+  export_policies: []
   hold_time: 180
   import_policies: []
-  ipv4_unicast_prefixes_received: 2503
-  ipv4_unicast_prefixes_sent: 789753
   keepalive: 60
-  local_address: 10.0.2.2
+  local_address: null
   local_as: 65011
   local_interface: null
   max_ttl: null
@@ -251,6 +248,31 @@
   state: established
   uptime_seconds: 0
   vrf: default
+- afi:
+  - ipv4_unicast
+  description: agr01
+  export_policies:
+  - A_ROUTE_FILTER
+  hold_time: 180
+  import_policies: []
+  ipv4_unicast_prefixes_received: 2503
+  ipv4_unicast_prefixes_sent: 789753
+  keepalive: 60
+  local_address: "10.0.2.2"
+  local_as: 65011
+  local_interface: null
+  max_ttl: null
+  name: MGMT_10.0.0.123
+  peer_group: null
+  peering_type: internal
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.0.0.123
+  remote_as: 65011
+  router_id: 10.0.0.123
+  state: established
+  uptime_seconds: 0
+  vrf: MGMT
 - afi:
   - ipv6_unicast
   description: pe01

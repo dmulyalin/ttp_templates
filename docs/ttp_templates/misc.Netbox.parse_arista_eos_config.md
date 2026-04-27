@@ -234,7 +234,7 @@ router bgp {{ asn }}
    neighbor {{ neighbor_ip | let("is_peer_group", True) }} peer group
    neighbor {{ neighbor_ip | let("is_peer_group", False) }} peer group {{ peer_group }}
    neighbor {{ neighbor_ip }} remote-as {{ neighbor_asn }}
-   neighbor {{ neighbor_ip }} out-delay { out_delay }}
+   neighbor {{ neighbor_ip }} out-delay {{ out_delay }}
    neighbor {{ neighbor_ip | let("bfd_enabled", True) }} bfd 
    neighbor {{ neighbor_ip | let("send_community", True) }} send-community
    neighbor {{ neighbor_ip }} maximum-routes {{ maxr_routes }}  
@@ -271,7 +271,7 @@ router bgp {{ asn }}
       neighbor {{ neighbor_ip | let("is_peer_group", True) }} peer group
       neighbor {{ neighbor_ip | let("is_peer_group", False) }} peer group {{ peer_group }}
       neighbor {{ neighbor_ip }} remote-as {{ neighbor_asn }}
-      neighbor {{ neighbor_ip }} out-delay { out_delay }}
+      neighbor {{ neighbor_ip }} out-delay {{ out_delay }}
       neighbor {{ neighbor_ip | let("bfd_enabled", True) }} bfd 
       neighbor {{ neighbor_ip | let("send_community", True) }} send-community
       neighbor {{ neighbor_ip }} maximum-routes {{ maxr_routes }}  

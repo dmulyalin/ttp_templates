@@ -641,6 +641,42 @@ BGP neighbor is 10.0.0.152
   Sent 312250 messages, 0 notifications, 0 in queue
   Minimum time between advertisement runs is 0 secs
 
+BGP neighbor is 10.0.0.123, vrf MGMT
+ Remote AS 65011, local AS 65011, internal link
+ Description: agr01 
+ Remote router ID 10.0.0.123
+  BGP state = Established, up for 4y10w
+  NSR State: NSR Ready
+  BFD enabled (session down, BFD not configured on remote neighbor)
+  Last read 00:00:42, Last read before reset 00:00:00
+  Hold time is 180, keepalive interval is 60 seconds
+  Configured hold time: 180, keepalive: 60, min acceptable hold time: 3
+  Last write 00:00:44, attempted 19, written 19
+  Second last write 00:01:44, attempted 19, written 19
+  Last write before reset 00:00:00, attempted 0, written 0
+  Second last write before reset 00:00:00, attempted 0, written 0
+  Last write pulse rcvd  Jan 21 16:49:55.997 last full not set pulse count 622776
+  Last write pulse rcvd before reset 00:00:00
+  Socket not armed for io, armed for read, armed for write
+  Last write thread event before reset 00:00:00, second last 00:00:00
+  Last KA expiry before reset 00:00:00, second last 00:00:00
+  Last KA error before reset 00:00:00, KA not sent 00:00:00
+  Last KA start before reset 00:00:00, second last 00:00:00
+  Precedence: internet
+  Non-stop routing is enabled
+  Graceful restart is enabled
+  Restart time is 120 seconds
+  Stale path timeout time is 360 seconds
+  Multi-protocol capability not received
+  Neighbor capabilities:
+    Route refresh: advertised (old + new) and received (old + new)
+    Graceful Restart (GR Awareness): received
+    4-byte AS: advertised and received
+    Address family IPv4 Unicast: advertised and received
+  Received 2880209 messages, 0 notifications, 0 in queue
+  Sent 312250 messages, 0 notifications, 0 in queue
+  Minimum time between advertisement runs is 0 secs
+
  For Address Family: IPv4 Unicast
   BGP neighbor version 3354689212
   Update group: 0.7 Filter-group: 0.6  No Refresh request being processed
@@ -663,7 +699,7 @@ BGP neighbor is 10.0.0.152
   Additional-paths operation: None
 
   Connections established 1; dropped 0
-  Local host: 10.0.2.2, Local port: 179
+  Local host: 10.0.2.2, Local port: 179, IF Handle: 0x1234567
   Foreign host: 10.0.0.152, Foreign port: 25659
   Last reset 4y10w, due to Admin. shutdown
   Time since last notification sent to neighbor: 4y10w

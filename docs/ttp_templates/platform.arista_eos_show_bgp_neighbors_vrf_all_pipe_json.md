@@ -93,13 +93,6 @@ Example normalized output (YAML):
 </doc>
 
 <macro>
-def load_json(result):
-    import json
-
-    return json.loads("{" + result[0]["data"] + "}")
-</macro>
-
-<macro>
 def transform_bgp_neighbors_to_records(json_data):
     from ttp_templates.utils.arista_eos_process_show_bgp_neighbors_vrf_all_pipe_json import transform_bgp_neighbors
         
@@ -122,7 +115,6 @@ platform = [
 } {{ _end_ }}
 </group>
 
-<output macro="load_json"/>
 <output macro="transform_bgp_neighbors_to_records"/>
 
 </template>
