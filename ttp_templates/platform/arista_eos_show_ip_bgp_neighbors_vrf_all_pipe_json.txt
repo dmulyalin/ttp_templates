@@ -48,7 +48,7 @@ def transform_bgp_neighbors_to_records(json_data):
 
 <input>
 commands = [
-    "show bgp neighbors vrf all | json"
+    "show ip bgp neighbors vrf all | json"
 ]
 platform = [
     "arista_eos", # scrapli and netmiko
