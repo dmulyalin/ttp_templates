@@ -1,5 +1,13 @@
 # Release Notes
 
+## 0.5.5
+
+### CHANGES
+
+1. Changing Arista EOS bgp neighbor template to use "show ip bgp .." command instead of "show bgp .." command
+
+---
+
 ## 0.5.4
 
 ### BUGS
