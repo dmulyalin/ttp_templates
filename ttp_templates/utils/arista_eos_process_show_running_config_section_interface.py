@@ -74,17 +74,18 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         # True when the key is absent.
         enabled = iface.get("enabled", True)
 
-        parent: Optional[str] = None
-        if name and "." in str(name):
-            parent = str(name).split(".", 1)[0]
-
-        lag = iface.get("lag_id")
+        lag_id = iface.get("lag_id")
         lag_type = iface.get("lag_type") or None
         lacp_mode = iface.get("lacp_mode") or None
+        lag = f"Port-Channel{lag_id}" if lag_id else None
         mtu = iface.get("mtu")
         description = iface.get("description") or ""
         mode = iface.get("mode") or None
         untagged = iface.get("untagged_vlan")
+
+        parent: Optional[str] = None
+        if name and "." in str(name):
+            parent = str(name).split(".", 1)[0]
 
         # Convert template-provided tagged VLAN list elements to ints
         raw_tagged = iface.get("tagged_vlans")
@@ -114,6 +115,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "enabled": enabled,
             "parent": parent,
             "lag": lag,
+            "lag_id": lag_id,
             "lag_type": lag_type,
             "lacp_mode": lacp_mode,
             "mtu": mtu,

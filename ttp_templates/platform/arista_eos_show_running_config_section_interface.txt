@@ -16,9 +16,10 @@ contains the following keys (missing values are set to `null` / `None`):
     shutdown in the config
 - `parent`: parent interface name or `null` (if the interface name contains
     a dot the parent is the part before the dot)
-- `lag`: lag identifier integer (channel-group / mlag number) or `null`
+- `lag_id`: lag identifier integer (channel-group / mlag number) or `null`
 - `lag_type`: ``lag`` for standart port channels, ``mlag`` for mlag port channels, or `null`
 - `lacp_mode`: LACP mode string (e.g. ``active``, ``passive``) or `null`
+- `lag`: Name of parent LAG interface e.g. `Port-Channel1` or `null`
 - `mtu`: integer MTU or `null`
 - `mac_address`: string in MAC EUI format or `null`
 - `speed`: integer or `null`

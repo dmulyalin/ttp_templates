@@ -7,6 +7,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: '12:34:12:34:12:34'
   mode: null
@@ -27,6 +28,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
@@ -47,6 +49,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: be:ef:12:34:be:ef
   mode: null
@@ -67,6 +70,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
@@ -85,7 +89,8 @@
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: active
-  lag: 10
+  lag: Port-Channel10
+  lag_id: 10
   lag_type: lag
   mac_address: null
   mode: null
@@ -104,7 +109,8 @@
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: active
-  lag: 10
+  lag: Port-Channel10
+  lag_id: 10
   lag_type: lag
   mac_address: null
   mode: null
@@ -124,6 +130,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: tagged
@@ -150,6 +157,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: access
@@ -169,6 +177,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
@@ -187,7 +196,8 @@
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: null
-  lag: 1
+  lag: Port-Channel1
+  lag_id: 1
   lag_type: mlag
   mac_address: null
   mode: null
@@ -208,6 +218,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
@@ -227,6 +238,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: tagged
@@ -254,6 +266,7 @@
   - 2001::1/128
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
@@ -274,6 +287,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
@@ -294,6 +308,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
@@ -314,6 +329,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
@@ -334,6 +350,7 @@
   ipv6_addresses: []
   lacp_mode: null
   lag: null
+  lag_id: null
   lag_type: null
   mac_address: null
   mode: null
