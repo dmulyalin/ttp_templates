@@ -105,7 +105,13 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         mtu = iface.get("mtu")
         description = iface.get("description") or ""
         mode = iface.get("mode") or None
-        untagged = iface.get("untagged_vlan")
+
+        # calculate untagged vlan for SVIs
+        untagged = None
+        if iface.get("untagged_vlan"):
+            untagged = iface["untagged_vlan"]
+        elif "vlan" in name_lower:
+            untagged = int(name_lower.replace("vlan", ""))
 
         parent: Optional[str] = None
         if name and "." in str(name):

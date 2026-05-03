@@ -1,4 +1,3 @@
-# poetry run ttp -t ttp_templates\platform\arista_eos_show_running_config_section_interface.txt -d test\platform\arista_eos\show_running_config_section_interface\show_running_config_section_interface.txt -o yaml -s flat_list -tn arista_eos_interface_config
 - description: P2P to ceos-spine-1 Ethernet2
   duplex: null
   enabled: true
@@ -319,7 +318,7 @@
   speed: null
   tagged_vlans: []
   type: bridge
-  untagged_vlan: null
+  untagged_vlan: 100
   vrf: null
 - description: SVI for VLAN 200
   duplex: null
@@ -340,7 +339,7 @@
   speed: null
   tagged_vlans: []
   type: bridge
-  untagged_vlan: null
+  untagged_vlan: 200
   vrf: TENANT_A
 - description: ''
   duplex: null
