@@ -1,5 +1,14 @@
 # Release Notes
 
+## 0.5.6
+
+### CHANGES
+
+1. Changing `get/interfaces` `lag` to be a parent lag name and adding `lag_id` attribute
+2. `get/interfaces` for Arista adding interfaces speeds map
+
+---
+
 ## 0.5.5
 
 ### CHANGES

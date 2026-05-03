@@ -13,6 +13,30 @@ Produced with Copilot Assistance.
 
 from typing import Any, Dict, List, Optional
 
+# converts interface speed config to kbit/s
+speed_map = {
+  "100full" : 10000,
+  "100g"    : 100000000,
+  "100g-1"  : 100000000,
+  "100g-2"  : 100000000,
+  "100g-4"  : 100000000,
+  "100half" : 10000,
+  "10full"  : 1000,
+  "10g"     : 10000000,
+  "10half"  : 1000,
+  "1g"      : 1000000,
+  "200g"    : 200000000,
+  "200g-2"  : 200000000,
+  "200g-4"  : 200000000,
+  "25g"     : 25000000,
+  "400g"    : 400000000,
+  "400g-4"  : 400000000,
+  "400g-8"  : 400000000,
+  "40g"     : 40000000,
+  "50g"     : 50000000,
+  "50g-1"   : 50000000,
+  "50g-2"   : 50000000,
+}
 
 def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
     """
@@ -120,7 +144,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "lacp_mode": lacp_mode,
             "mtu": mtu,
             "mac_address": iface.get("mac_address"),
-            "speed": speed,
+            "speed": speed_map.get(speed, None),
             "duplex": iface.get("duplex"),
             "description": description,
             "mode": mode,

@@ -42,7 +42,7 @@ interface Ethernet8
    mlag 1
 interface Ethernet9
    description Fixed speed port
-   speed forced 1000
+   speed forced 1g
    no switchport
    ip address 10.99.0.1/30
 interface Port-Channel10

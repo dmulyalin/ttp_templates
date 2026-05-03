@@ -83,7 +83,8 @@ interface {{ name | _start_ }}
    no switchport {{ is_l3_interface | set(True) }}
    vrf {{ vrf }}
    shutdown {{ enabled | set(False) | default(True) }}
-   speed forced {{ speed | to_int }}
+   speed forced {{ speed }}
+   speed {{ speed }}
    mlag {{ lag_id | to_int | let("lag_type", "mlag") }}
    channel-group {{ lag_id | to_int | let("lag_type", "lag") }} mode {{ lacp_mode }}
    switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
