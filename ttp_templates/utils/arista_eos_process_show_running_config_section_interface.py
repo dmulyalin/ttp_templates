@@ -11,7 +11,36 @@ keys. Missing or unknown values are returned as ``None`` (except
 Produced with Copilot Assistance.
 """
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
+
+try:
+    from pydantic import BaseModel, StrictInt, StrictStr, StrictBool
+
+    class InterfaceConfigRecord(BaseModel):
+        name: StrictStr
+        type: StrictStr
+        enabled: StrictBool
+        parent: Union[None, StrictStr]
+        lag: Union[None, StrictStr]
+        lag_id: Union[None, StrictInt]
+        lag_type: Union[None, StrictStr]
+        lacp_mode: Union[None, StrictStr]
+        mtu: Union[None, StrictInt]
+        mac_address: Union[None, StrictStr]
+        speed: Union[None, StrictInt]
+        duplex: Union[None, StrictStr]
+        description: Union[None, StrictStr]
+        mode: Union[None, StrictStr]
+        untagged_vlan: Union[None, StrictInt]
+        tagged_vlans: List[StrictInt]
+        ipv4_addresses: List[StrictStr]
+        ipv6_addresses: List[StrictStr]
+        qinq_svlan: Union[None, StrictInt]
+        vrf: Union[None, StrictStr]
+
+    _PYDANTIC_AVAILABLE = True
+except ImportError:  # pragma: no cover
+    _PYDANTIC_AVAILABLE = False
 
 # converts interface speed config to kbit/s
 speed_map = {
@@ -161,6 +190,9 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "qinq_svlan": iface.get("qinq_svlan"),
             "vrf": vrf,
         }
+
+        if _PYDANTIC_AVAILABLE:
+            record = InterfaceConfigRecord(**record).model_dump()
 
         normalized_interfaces.append(record)
 
