@@ -141,7 +141,8 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             untagged = iface["untagged_vlan"]
         elif "vlan" in name_lower:
             untagged = int(name_lower.replace("vlan", ""))
-
+            mode = "access"
+            
         parent: Optional[str] = None
         if name and "." in str(name):
             parent = str(name).split(".", 1)[0]
