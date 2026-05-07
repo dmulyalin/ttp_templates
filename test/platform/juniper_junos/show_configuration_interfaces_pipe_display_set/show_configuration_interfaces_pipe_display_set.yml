@@ -152,7 +152,7 @@
   lag_id: null
   lag_type: null
   mac_address: null
-  mode: null
+  mode: "tagged"
   mtu: null
   name: ae0.100
   parent: ae0

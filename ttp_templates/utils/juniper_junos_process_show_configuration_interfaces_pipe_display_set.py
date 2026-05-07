@@ -12,19 +12,20 @@ Each logical unit appears as a separate record with name ``<iface>.<unit>``
 (e.g. ``xe-0/0/1.0``, ``ae0.100``).  Physical-level properties (MTU, speed,
 LAG membership) are stored on the physical interface record.
 """
+
 from .models import InterfaceConfigRecord
 from typing import Any, Dict, List
 
 # JunOS interface speed config strings → kbit/s
 _SPEED_MAP: Dict[str, int] = {
-    "10m":   10_000,
-    "100m":  100_000,
-    "1g":    1_000_000,
-    "10g":   10_000_000,
-    "25g":   25_000_000,
-    "40g":   40_000_000,
-    "100g":  100_000_000,
-    "400g":  400_000_000,
+    "10m": 10_000,
+    "100m": 100_000,
+    "1g": 1_000_000,
+    "10g": 10_000_000,
+    "25g": 25_000_000,
+    "40g": 40_000_000,
+    "100g": 100_000_000,
+    "400g": 400_000_000,
 }
 
 # Interface name prefixes that indicate a virtual (loopback/tunnel) interface
@@ -57,7 +58,11 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
     # the TTP table groups into a simple {name: data} dict.
     raw = {}
     for item in items:
-        if isinstance(item, dict) and "interfaces" in item and isinstance(item["interfaces"], dict):
+        if (
+            isinstance(item, dict)
+            and "interfaces" in item
+            and isinstance(item["interfaces"], dict)
+        ):
             raw.update(item["interfaces"])
 
     if not raw:
@@ -71,7 +76,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         if not isinstance(vrf_data, dict):
             continue
         for vrf_name, vrf_info in vrf_data.items():
-            for iface_name in (vrf_info.get("interfaces") or []):
+            for iface_name in vrf_info.get("interfaces") or []:
                 iface_to_vrf[iface_name] = vrf_name
 
     normalized = []

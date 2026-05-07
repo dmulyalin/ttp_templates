@@ -1,6 +1,7 @@
 from pydantic import BaseModel, StrictInt, StrictStr, StrictBool
 from typing import Union, List
 
+
 class InterfaceConfigRecord(BaseModel):
     name: StrictStr
     type: StrictStr

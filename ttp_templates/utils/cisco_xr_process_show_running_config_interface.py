@@ -11,6 +11,7 @@ keys. Missing or unknown values are returned as ``None`` (except
 IPv4 masks are stored in dotted notation by IOS-XR (e.g. 255.255.255.252)
 and are converted to prefix-length notation in the output (e.g. /30).
 """
+
 import ipaddress
 from .models import InterfaceConfigRecord
 from typing import Any, Dict, List
