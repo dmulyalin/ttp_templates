@@ -7,6 +7,12 @@
 1. Changing `get/interfaces` `lag` to be a parent lag name and adding `lag_id` attribute
 2. `get/interfaces` for Arista adding interfaces speeds map
 3. Enhancing `get/interfaces` for Arista to calculate access VLAN id for SVI interfaces
+
+### TEMPLATES
+
+1. Added `platform/cisco_xr_show_running_config_interface.txt` refactoring to alight with interfaces getter data
+2. Added `platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt` template
+
 ---
 
 ## 0.5.5

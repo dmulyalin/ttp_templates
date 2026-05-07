@@ -61,4 +61,8 @@ Example normalized output (YAML):
 
 <extend template="ttp://platform/arista_eos_show_running_config_section_interface.txt"/>
 
+<extend template="ttp://platform/cisco_xr_show_running_config_interface.txt"/>
+
+<extend template="ttp://platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt"/>
+
 </template>

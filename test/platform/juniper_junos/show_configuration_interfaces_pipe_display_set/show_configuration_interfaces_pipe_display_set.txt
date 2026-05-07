@@ -1,0 +1,32 @@
+set interfaces xe-0/0/0 description "P2P to PE1"
+set interfaces xe-0/0/0 mtu 9192
+set interfaces xe-0/0/0 gigether-options 802.3ad ae0
+set interfaces xe-0/0/1 description "Uplink to CE1"
+set interfaces xe-0/0/1 speed 1g
+set interfaces xe-0/0/1 unit 0 description "L3 to CE1"
+set interfaces xe-0/0/1 unit 0 family inet address 10.0.1.1/30
+set interfaces xe-0/0/1 unit 0 family inet6 address 2001:db8:1::1/64
+set interfaces xe-0/0/2 description "Trunk to access switch"
+set interfaces xe-0/0/2 unit 0 family ethernet-switching interface-mode trunk
+set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members 100
+set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members 200
+set interfaces xe-0/0/3 unit 0 family ethernet-switching interface-mode access
+set interfaces xe-0/0/3 unit 0 family ethernet-switching vlan members 50
+set interfaces xe-0/0/4 disable
+set interfaces ae0 description "LAG to CE1"
+set interfaces ae0 mtu 9192
+set interfaces ae0 aggregated-ether-options minimum-links 1
+set interfaces ae0 aggregated-ether-options lacp active
+set interfaces ae0 unit 0 description "ae0 main"
+set interfaces ae0 unit 0 family inet address 192.168.0.1/30
+set interfaces ae0 unit 100 description "Customer A VLAN"
+set interfaces ae0 unit 100 vlan-id 100
+set interfaces ae0 unit 100 family inet address 10.100.0.1/30
+set interfaces lo0 unit 0 description "Router ID"
+set interfaces lo0 unit 0 family inet address 10.0.0.1/32
+set interfaces lo0 unit 0 family inet6 address 2001:db8::1/128
+set interfaces irb unit 10 description "SVI for VLAN 10"
+set interfaces irb unit 10 family inet address 192.168.10.1/24
+set routing-instances CUSTOMER_A instance-type vrf
+set routing-instances CUSTOMER_A interface ae0.100
+set routing-instances CUSTOMER_A interface irb.10

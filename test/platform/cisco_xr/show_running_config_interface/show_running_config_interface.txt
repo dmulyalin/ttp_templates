@@ -1,0 +1,65 @@
+interface Loopback0
+ description Router ID
+ ipv4 address 10.0.0.1 255.255.255.255
+!
+interface Loopback1
+ description Management Loopback
+ vrf MGMT
+ ipv4 address 192.168.1.1 255.255.255.255
+!
+interface MgmtEth0/RP0/CPU0/0
+ description OOB Management
+ vrf MGMT
+ ipv4 address 10.255.0.1 255.255.255.0
+!
+interface Bundle-Ether1
+ description LAG to PE1
+ mtu 9000
+ ipv4 address 10.1.1.1 255.255.255.252
+ ipv6 address 2001:db8::1/31
+!
+interface Bundle-Ether1.100
+ description PE1 Customer A Service
+ vrf CUSTOMER_A
+ encapsulation dot1q 100
+ ipv4 address 10.100.1.1 255.255.255.252
+!
+interface GigabitEthernet0/0/0/0
+ description P2P to PE1
+ mtu 9000
+ service-policy input INGRESS_POLICY
+ service-policy output EGRESS_POLICY
+ ipv4 access-group IPV4_ACL_IN ingress
+ ipv4 access-group IPV4_ACL_OUT egress
+ ipv4 address 10.1.0.1 255.255.255.252
+ ipv6 address 2001:db8:1::1/64
+!
+interface GigabitEthernet0/0/0/1
+ description Bundle-Ether1 member link-1
+ bundle id 1 mode active
+ lacp period short
+!
+interface GigabitEthernet0/0/0/2
+ description Bundle-Ether1 member link-2
+ bundle id 1 mode active
+!
+interface GigabitEthernet0/0/0/3
+ description Fixed speed full duplex
+ speed 1000
+ duplex full
+ ipv4 address 10.2.0.1 255.255.255.252
+!
+interface GigabitEthernet0/0/0/4
+ description Disabled interface
+ shutdown
+!
+interface GigabitEthernet0/0/0/4.10 l2transport
+ description L2 Transport sub-interface
+ encapsulation dot1q 10
+ rewrite ingress tag pop 1 symmetric
+!
+interface BVI1
+ description Bridge virtual interface
+ ipv4 address 192.168.10.1 255.255.255.0
+ mac-address 0001.0002.0003
+!

@@ -91,16 +91,17 @@ interface {{ name | _start_ }}
    switchport mode trunk {{ mode | set("tagged") }}
    switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}
    mac-address {{ mac_address | mac_eui }}
+   duplex {{ duplex }}
 
    <group name="ipv4_addresses*" method="table">
    ip address {{ ip | IP }}/{{ mask }}
    ip address {{ ip | IP }}/{{ mask }} secondary
-   ipv4 address {{ ip | IP }}/{{ mask}}
-   ipv4 address {{ ip | IP }}/{{ mask}} secondary
+   ipv4 address {{ ip | IP }}/{{ mask }}
+   ipv4 address {{ ip | IP }}/{{ mask }} secondary
    </group>
 
    <group name="ipv6_addresses*" method="table">
-   ipv6 address {{ ip | IPV6 }}/{{ mask}}
+   ipv6 address {{ ip | IPV6 }}/{{ mask }}
    </group>
 
 !{{ _end_ }}
