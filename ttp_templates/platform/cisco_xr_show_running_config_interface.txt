@@ -4,18 +4,66 @@ configuration details using Cisco IOS-XR "show run interface"
 command output.
 </doc>
 
-<group>
-interface {{ interface | _start_ }}
-interface {{ interface | _start_ }} l2transport
- description {{ description | re(".*") }}
- mtu {{ mtu }}
+<macro>
+def add_interface_type(data):
+    data["interface_type"] = "other"    
+    if any(
+        i in data["name"].lower() for i in [
+            ".", "loopback", "tunnel"
+        ]
+    ):
+        data["interface_type"] = "virtual"
+    elif any(
+        i in data["name"].lower() for i in [
+            "bvi"
+        ]
+    ):
+        data["interface_type"] = "bridge"
+    elif "bundle" in data["name"].lower():
+        data["interface_type"] = "lag"    
+    return data
+    
+def add_parent_interface(data):
+    if "lag_id" in data:
+        data["parent"] = "Bundle-Ether{}".format(data["lag_id"])
+    elif "." in data["name"]:
+        data["parent"] = data["name"].split(".")[0]
+    return data    
+</macro>
+
+## ------------------------------------------------------------------------------------------
+## Interfaces configuration
+## ------------------------------------------------------------------------------------------
+<group name="interfaces*" functions="contains('name') | macro('add_interface_type') | macro('add_parent_interface')">
+interface {{ name | _start_ }}
+interface {{ name | _start_ }} l2transport
+ description {{ description | re(".*") | default("") }}
+ mtu {{ mtu | to_int }}
  service-policy input {{ qos_policy_in }}
  service-policy output {{ qos_policy_out }}
- ipv4 address {{ ipv4 }} {{ mask_v4 }}
- ipv6 address {{ ipv6 }}/{{ mask_v6 }}
  encapsulation dot1q {{ dot1q }}
  vrf {{ vrf }}
- bundle id {{ lag_id }} mode {{ ignore }}
- shutdown {{ disabled | set(True) }}
-! {{ _end_ }}
+ bundle id {{ lag_id }} mode {{ lacp_mode }}
+ lacp period {{ lacp_period }}
+ shutdown {{ enabled | set(False) | default(True) }}
+ rewrite ingress tag {{ rewrite_ingress_tag | PHRASE }}
+ ipv4 access-group {{ ipv4_acl_in | _exact_ }} ingress
+ ipv4 access-group {{ ipv4_acl_out | _exact_ }} egress
+ ipv6 access-group {{ ipv6_acl_in | _exact_ }} ingress
+ ipv6 access-group {{ ipv6_acl_out | _exact_ }} egress
+ mac-address {{ mac_address }}
+ host-routing {{ host_routing | set(True) }}
+ arp timeout {{ arp_timeout }}
+ load-interval {{ load_interval }}
+ 
+ <group name="ipv4*" method="table">
+ ipv4 address {{ ip | _exact_ }} {{ mask }}
+ ipv4 address {{ ip | _exact_ | let("secondary", True) }} {{ mask}} secondary
+ </group>
+ 
+ <group name="ipv6*" method="table"> 
+ ipv6 address {{ ip | _exact_ }}/{{ mask }}
+ </group>
+
+!{{ _end_ }}
 </group>

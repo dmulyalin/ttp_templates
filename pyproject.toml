@@ -29,9 +29,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.10"
 ttp = { version = ">=0.10.0" }
-
-# optional validation dependency
-pydantic = { version = ">=2.0", optional = true }
+pydantic = { version = ">=2.0" }
 
 # docs dependencies for extras definition
 mkdocs = { version = "*", optional = true }
@@ -63,7 +61,6 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.extras]
-validation = ["pydantic"]
 docs = [
     "mkdocs",
     "mkdocs-material",

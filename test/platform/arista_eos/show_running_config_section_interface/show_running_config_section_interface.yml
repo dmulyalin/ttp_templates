@@ -1,3 +1,4 @@
+# poetry run ttp -t ttp_templates\platform\arista_eos_show_running_config_section_interface.txt -d test\platform\arista_eos\show_running_config_section_interface\show_running_config_section_interface.txt -o yaml -s flat_list -tn arista_eos_interface_config
 - description: P2P to ceos-spine-1 Ethernet2
   duplex: null
   enabled: true
@@ -310,7 +311,7 @@
   lag_id: null
   lag_type: null
   mac_address: null
-  mode: null
+  mode: access
   mtu: null
   name: Vlan100
   parent: null
@@ -331,7 +332,7 @@
   lag_id: null
   lag_type: null
   mac_address: null
-  mode: null
+  mode: access
   mtu: null
   name: Vlan200
   parent: null

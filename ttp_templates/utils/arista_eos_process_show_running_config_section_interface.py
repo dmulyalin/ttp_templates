@@ -10,37 +10,8 @@ keys. Missing or unknown values are returned as ``None`` (except
 
 Produced with Copilot Assistance.
 """
-
-from typing import Any, Dict, List, Optional, Union
-
-try:
-    from pydantic import BaseModel, StrictInt, StrictStr, StrictBool
-
-    class InterfaceConfigRecord(BaseModel):
-        name: StrictStr
-        type: StrictStr
-        enabled: StrictBool
-        parent: Union[None, StrictStr]
-        lag: Union[None, StrictStr]
-        lag_id: Union[None, StrictInt]
-        lag_type: Union[None, StrictStr]
-        lacp_mode: Union[None, StrictStr]
-        mtu: Union[None, StrictInt]
-        mac_address: Union[None, StrictStr]
-        speed: Union[None, StrictInt]
-        duplex: Union[None, StrictStr]
-        description: Union[None, StrictStr]
-        mode: Union[None, StrictStr]
-        untagged_vlan: Union[None, StrictInt]
-        tagged_vlans: List[StrictInt]
-        ipv4_addresses: List[StrictStr]
-        ipv6_addresses: List[StrictStr]
-        qinq_svlan: Union[None, StrictInt]
-        vrf: Union[None, StrictStr]
-
-    _PYDANTIC_AVAILABLE = True
-except ImportError:  # pragma: no cover
-    _PYDANTIC_AVAILABLE = False
+from .models import InterfaceConfigRecord
+from typing import Any
 
 # converts interface speed config to kbit/s
 speed_map = {
@@ -67,7 +38,7 @@ speed_map = {
   "50g-2"   : 50000000,
 }
 
-def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
+def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
     """
     Transform TTP parse payload for Arista interface blocks into a
     normalized list of interface dictionaries.
@@ -82,7 +53,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
     if not payload:
         return []
 
-    interfaces: List[Dict[str, Any]] = []
+    interfaces: list[dict[str, Any]] = []
 
     for item in payload:
         if not isinstance(item, dict):
@@ -192,8 +163,8 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "vrf": vrf,
         }
 
-        if _PYDANTIC_AVAILABLE:
-            record = InterfaceConfigRecord(**record).model_dump()
+        # run pydantic validation
+        record = InterfaceConfigRecord(**record).model_dump()
 
         normalized_interfaces.append(record)
 
