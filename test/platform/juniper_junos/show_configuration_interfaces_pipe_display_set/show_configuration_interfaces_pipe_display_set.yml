@@ -130,7 +130,7 @@
   lag: null
   lag_id: null
   lag_type: null
-  mac_address: null
+  mac_address: aa:bb:cc:dd:ee:ff
   mode: null
   mtu: null
   name: ae0.0

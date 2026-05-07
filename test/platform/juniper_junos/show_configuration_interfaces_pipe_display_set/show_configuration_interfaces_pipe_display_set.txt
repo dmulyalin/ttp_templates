@@ -18,6 +18,7 @@ set interfaces ae0 mtu 9192
 set interfaces ae0 aggregated-ether-options minimum-links 1
 set interfaces ae0 aggregated-ether-options lacp active
 set interfaces ae0 unit 0 description "ae0 main"
+set interfaces ae0 unit 0 mac aa:bb:cc:dd:ee:ff
 set interfaces ae0 unit 0 family inet address 192.168.0.1/30
 set interfaces ae0 unit 100 description "Customer A VLAN"
 set interfaces ae0 unit 100 vlan-id 100

@@ -23,7 +23,7 @@ contains the following keys (missing values are set to `null` / `None`):
     or `null`
 - `lag`: Name of parent LAG interface e.g. `ae0` or `null`
 - `mtu`: integer MTU or `null`
-- `mac_address`: always `null` (not exposed in display set format)
+- `mac_address`: MAC address string of the unit or `null`
 - `speed`: integer in kbit/s or `null`
 - `duplex`: always `null` (not exposed in display set format)
 - `description`: string (empty string when not set)
@@ -93,8 +93,8 @@ set interfaces {{ name }} native-vlan-id {{ untagged_vlan | to_int }}
 
 <group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
 set interfaces {{ name }} unit {{ unit }} description "{{ description | re(".+") | default("") }}"
-set interfaces {{ name }} unit {{ unit }} description {{ description | re('[^ "	].*') | default("") }}
 set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q | to_int }}
+set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 </group>
 
 <group name="interfaces**.{{ name }}**.ipv4*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
