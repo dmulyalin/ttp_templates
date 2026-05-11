@@ -69,6 +69,9 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             interface_type = "other"
 
         lag_id = iface.get("lag_id")
+        lag = None
+        if lag_id and interface_type != "lag":
+            lag = f"Bundle-Ether{lag_id}"
         speed = iface.get("speed")
         if speed is not None:
             speed = speed * 1000
@@ -95,7 +98,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "type": interface_type,
             "enabled": iface.get("enabled", True),
             "parent": name.split(".")[0] if "." in name else None,
-            "lag": f"Bundle-Ether{lag_id}" if lag_id is not None else None,
+            "lag": lag,
             "lag_id": lag_id,
             "lag_type": iface.get("lag_type"),
             "lacp_mode": iface.get("lacp_mode"),

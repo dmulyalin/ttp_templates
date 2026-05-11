@@ -103,7 +103,9 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
         lag_id = iface.get("lag_id")
         lag_type = iface.get("lag_type") or None
         lacp_mode = iface.get("lacp_mode") or None
-        lag = f"Port-Channel{lag_id}" if lag_id else None
+        lag = None
+        if lag_id and interface_type != "lag":
+            lag = f"Port-Channel{lag_id}"
         mtu = iface.get("mtu")
         description = iface.get("description") or ""
         mode = iface.get("mode") or None

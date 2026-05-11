@@ -104,8 +104,11 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         description = (data.get("description") or "").strip('"')
         enabled = data.get("enabled", True)
         lag_id = data.get("lag_id")
+        lag = None
         if lag_id:
             lag_id = int(lag_id.replace("ae", ""))
+            if interface_type != "lag":
+                lag = f"ae{lag_id}"
 
         # VLAN mode and untagged/tagged VLAN assignments
         mode = None
@@ -159,7 +162,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "type": interface_type,
             "enabled": enabled,
             "parent": parent,
-            "lag": f"ae{lag_id}" if lag_id is not None else None,
+            "lag": lag,
             "lag_id": lag_id,
             "lag_type": data.get("lag_type"),
             "lacp_mode": data.get("lacp_mode"),

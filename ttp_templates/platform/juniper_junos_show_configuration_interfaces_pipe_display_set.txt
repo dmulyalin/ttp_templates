@@ -64,7 +64,8 @@ Example normalized output (YAML):
 
 <input>
 commands = [
-    "show configuration interfaces | display set"
+    "show configuration interfaces | display set",
+    "show configuration routing-instances | display set | match interface"
 ]
 platform = [
     "juniper_junos",  # scrapli and netmiko
