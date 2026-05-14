@@ -23,3 +23,13 @@ class InterfaceConfigRecord(BaseModel):
     ipv6_addresses: List[StrictStr]
     qinq_svlan: Union[None, StrictInt]
     vrf: Union[None, StrictStr]
+
+
+class LldpNeighborRecord(BaseModel):
+    interface: StrictStr
+    remote_device: Union[None, StrictStr]
+    remote_interface: Union[None, StrictStr]
+    remote_system_description: Union[None, StrictStr]
+    remote_chassi_id: Union[None, StrictStr]
+    remote_interface_description: Union[None, StrictStr]
+    remote_device_management_ip: Union[None, StrictStr]

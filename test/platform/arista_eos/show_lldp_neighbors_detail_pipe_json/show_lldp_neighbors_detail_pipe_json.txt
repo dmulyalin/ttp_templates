@@ -1,0 +1,258 @@
+{
+    "lldpNeighbors": {
+        "Ethernet1": {
+            "lldpNeighborInfo": [
+                {
+                    "chassisIdType": "macAddress",
+                    "chassisId": "001c.73a9.7d04",
+                    "systemName": "ceos-spine-1",
+                    "systemDescription": "Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab",
+                    "systemCapabilities": {
+                        "bridge": true,
+                        "router": true
+                    },
+                    "lastContactTime": 1778748810.8049467,
+                    "neighborDiscoveryTime": 1778748208.7882857,
+                    "lastChangeTime": 1778748208.7882857,
+                    "ttl": 120,
+                    "managementAddresses": [
+                        {
+                            "addressType": "ipv4",
+                            "address": "10.10.10.1",
+                            "interfaceNumType": "ifIndex",
+                            "interfaceNum": 5000000,
+                            "oidString": ""
+                        }
+                    ],
+                    "neighborInterfaceInfo": {
+                        "interfaceIdType": "interfaceName",
+                        "interfaceId": "\"Ethernet2\"",
+                        "interfaceId_v2": "Ethernet2",
+                        "interfaceDescription": "P2P to ceos-leaf-1 Ethernet1",
+                        "linkAggregation8023Status": "capableAndDisabled",
+                        "linkAggregation8023InterfaceId": 0,
+                        "maxFrameSize": 9236,
+                        "portVlanId": 0,
+                        "vlanNames": {},
+                        "unknownOrgDefinedTlvs": [],
+                        "ztpBootVlan": 0,
+                        "portAndProtocolVlanSupported": {},
+                        "portAndProtocolVlanEnabled": {},
+                        "protocolIdentityInfo": [],
+                        "autoNegAdvertisedCapabilities": [],
+                        "unknownTlvs": []
+                    }
+                }
+            ]
+        },
+        "Ethernet2": {
+            "lldpNeighborInfo": [
+                {
+                    "chassisIdType": "macAddress",
+                    "chassisId": "001c.735c.3067",
+                    "systemName": "ceos-spine-2",
+                    "systemDescription": "Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab",
+                    "systemCapabilities": {
+                        "bridge": true,
+                        "router": true
+                    },
+                    "lastContactTime": 1778748810.425928,
+                    "neighborDiscoveryTime": 1778748208.3952925,
+                    "lastChangeTime": 1778748208.3952925,
+                    "ttl": 120,
+                    "managementAddresses": [
+                        {
+                            "addressType": "ipv4",
+                            "address": "10.10.10.2",
+                            "interfaceNumType": "ifIndex",
+                            "interfaceNum": 5000000,
+                            "oidString": ""
+                        }
+                    ],
+                    "neighborInterfaceInfo": {
+                        "interfaceIdType": "interfaceName",
+                        "interfaceId": "\"Ethernet2\"",
+                        "interfaceId_v2": "Ethernet2",
+                        "interfaceDescription": "P2P to ceos-leaf-1 Ethernet2",
+                        "linkAggregation8023Status": "capableAndDisabled",
+                        "linkAggregation8023InterfaceId": 0,
+                        "maxFrameSize": 9236,
+                        "portVlanId": 0,
+                        "vlanNames": {},
+                        "unknownOrgDefinedTlvs": [],
+                        "ztpBootVlan": 0,
+                        "portAndProtocolVlanSupported": {},
+                        "portAndProtocolVlanEnabled": {},
+                        "protocolIdentityInfo": [],
+                        "autoNegAdvertisedCapabilities": [],
+                        "unknownTlvs": []
+                    }
+                }
+            ]
+        },
+        "Management0": {
+            "lldpNeighborInfo": [
+                {
+                    "chassisIdType": "macAddress",
+                    "chassisId": "001c.7393.6e5d",
+                    "systemName": "ceos-leaf-2",
+                    "systemDescription": "Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab",
+                    "systemCapabilities": {
+                        "bridge": true,
+                        "router": true
+                    },
+                    "lastContactTime": 1778748807.0926335,
+                    "neighborDiscoveryTime": 1778748196.7045932,
+                    "lastChangeTime": 1778748207.052742,
+                    "ttl": 120,
+                    "managementAddresses": [
+                        {
+                            "addressType": "ipv4",
+                            "address": "10.10.10.12",
+                            "interfaceNumType": "ifIndex",
+                            "interfaceNum": 5000000,
+                            "oidString": ""
+                        }
+                    ],
+                    "neighborInterfaceInfo": {
+                        "interfaceIdType": "interfaceName",
+                        "interfaceId": "\"Management0\"",
+                        "interfaceId_v2": "Management0",
+                        "linkAggregation8023Status": "notCapable",
+                        "linkAggregation8023InterfaceId": 0,
+                        "maxFrameSize": 9232,
+                        "portVlanId": 0,
+                        "vlanNames": {},
+                        "unknownOrgDefinedTlvs": [],
+                        "ztpBootVlan": 0,
+                        "portAndProtocolVlanSupported": {},
+                        "portAndProtocolVlanEnabled": {},
+                        "protocolIdentityInfo": [],
+                        "autoNegAdvertisedCapabilities": [],
+                        "unknownTlvs": []
+                    }
+                },
+                {
+                    "chassisIdType": "macAddress",
+                    "chassisId": "001c.73f3.053c",
+                    "systemName": "ceos-leaf-3",
+                    "systemDescription": "Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab",
+                    "systemCapabilities": {
+                        "bridge": true,
+                        "router": true
+                    },
+                    "lastContactTime": 1778748809.0818422,
+                    "neighborDiscoveryTime": 1778748199.222974,
+                    "lastChangeTime": 1778748209.0611355,
+                    "ttl": 120,
+                    "managementAddresses": [
+                        {
+                            "addressType": "ipv4",
+                            "address": "10.10.10.13",
+                            "interfaceNumType": "ifIndex",
+                            "interfaceNum": 5000000,
+                            "oidString": ""
+                        }
+                    ],
+                    "neighborInterfaceInfo": {
+                        "interfaceIdType": "interfaceName",
+                        "interfaceId": "\"Management0\"",
+                        "interfaceId_v2": "Management0",
+                        "linkAggregation8023Status": "notCapable",
+                        "linkAggregation8023InterfaceId": 0,
+                        "maxFrameSize": 9232,
+                        "portVlanId": 0,
+                        "vlanNames": {},
+                        "unknownOrgDefinedTlvs": [],
+                        "ztpBootVlan": 0,
+                        "portAndProtocolVlanSupported": {},
+                        "portAndProtocolVlanEnabled": {},
+                        "protocolIdentityInfo": [],
+                        "autoNegAdvertisedCapabilities": [],
+                        "unknownTlvs": []
+                    }
+                },
+                {
+                    "chassisIdType": "macAddress",
+                    "chassisId": "001c.73a9.7d04",
+                    "systemName": "ceos-spine-1",
+                    "systemDescription": "Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab",
+                    "systemCapabilities": {
+                        "bridge": true,
+                        "router": true
+                    },
+                    "lastContactTime": 1778748808.8050745,
+                    "neighborDiscoveryTime": 1778748199.252551,
+                    "lastChangeTime": 1778748208.7885847,
+                    "ttl": 120,
+                    "managementAddresses": [
+                        {
+                            "addressType": "ipv4",
+                            "address": "10.10.10.1",
+                            "interfaceNumType": "ifIndex",
+                            "interfaceNum": 5000000,
+                            "oidString": ""
+                        }
+                    ],
+                    "neighborInterfaceInfo": {
+                        "interfaceIdType": "interfaceName",
+                        "interfaceId": "\"Management0\"",
+                        "interfaceId_v2": "Management0",
+                        "linkAggregation8023Status": "notCapable",
+                        "linkAggregation8023InterfaceId": 0,
+                        "maxFrameSize": 9232,
+                        "portVlanId": 0,
+                        "vlanNames": {},
+                        "unknownOrgDefinedTlvs": [],
+                        "ztpBootVlan": 0,
+                        "portAndProtocolVlanSupported": {},
+                        "portAndProtocolVlanEnabled": {},
+                        "protocolIdentityInfo": [],
+                        "autoNegAdvertisedCapabilities": [],
+                        "unknownTlvs": []
+                    }
+                },
+                {
+                    "chassisIdType": "macAddress",
+                    "chassisId": "001c.735c.3067",
+                    "systemName": "ceos-spine-2",
+                    "systemDescription": "Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab",
+                    "systemCapabilities": {
+                        "bridge": true,
+                        "router": true
+                    },
+                    "lastContactTime": 1778748808.4254332,
+                    "neighborDiscoveryTime": 1778748200.2670748,
+                    "lastChangeTime": 1778748208.395822,
+                    "ttl": 120,
+                    "managementAddresses": [
+                        {
+                            "addressType": "ipv4",
+                            "address": "10.10.10.2",
+                            "interfaceNumType": "ifIndex",
+                            "interfaceNum": 5000000,
+                            "oidString": ""
+                        }
+                    ],
+                    "neighborInterfaceInfo": {
+                        "interfaceIdType": "interfaceName",
+                        "interfaceId": "\"Management0\"",
+                        "interfaceId_v2": "Management0",
+                        "linkAggregation8023Status": "notCapable",
+                        "linkAggregation8023InterfaceId": 0,
+                        "maxFrameSize": 9232,
+                        "portVlanId": 0,
+                        "vlanNames": {},
+                        "unknownOrgDefinedTlvs": [],
+                        "ztpBootVlan": 0,
+                        "portAndProtocolVlanSupported": {},
+                        "portAndProtocolVlanEnabled": {},
+                        "protocolIdentityInfo": [],
+                        "autoNegAdvertisedCapabilities": [],
+                        "unknownTlvs": []
+                    }
+                }
+            ]
+        }
+    }
+}

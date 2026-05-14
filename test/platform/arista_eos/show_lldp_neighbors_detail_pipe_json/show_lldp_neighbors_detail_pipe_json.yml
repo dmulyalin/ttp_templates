@@ -1,0 +1,42 @@
+- interface: Ethernet1
+  remote_chassi_id: 001c.73a9.7d04
+  remote_device: ceos-spine-1
+  remote_device_management_ip: 10.10.10.1
+  remote_interface: Ethernet2
+  remote_interface_description: P2P to ceos-leaf-1 Ethernet1
+  remote_system_description: Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab
+- interface: Ethernet2
+  remote_chassi_id: 001c.735c.3067
+  remote_device: ceos-spine-2
+  remote_device_management_ip: 10.10.10.2
+  remote_interface: Ethernet2
+  remote_interface_description: P2P to ceos-leaf-1 Ethernet2
+  remote_system_description: Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab
+- interface: Management0
+  remote_chassi_id: 001c.7393.6e5d
+  remote_device: ceos-leaf-2
+  remote_device_management_ip: 10.10.10.12
+  remote_interface: Management0
+  remote_interface_description: null
+  remote_system_description: Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab
+- interface: Management0
+  remote_chassi_id: 001c.73f3.053c
+  remote_device: ceos-leaf-3
+  remote_device_management_ip: 10.10.10.13
+  remote_interface: Management0
+  remote_interface_description: null
+  remote_system_description: Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab
+- interface: Management0
+  remote_chassi_id: 001c.73a9.7d04
+  remote_device: ceos-spine-1
+  remote_device_management_ip: 10.10.10.1
+  remote_interface: Management0
+  remote_interface_description: null
+  remote_system_description: Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab
+- interface: Management0
+  remote_chassi_id: 001c.735c.3067
+  remote_device: ceos-spine-2
+  remote_device_management_ip: 10.10.10.2
+  remote_interface: Management0
+  remote_interface_description: null
+  remote_system_description: Arista Networks EOS version 4.30.0F-31408673.4300F (engineering build) running on an Arista cEOSLab

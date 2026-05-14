@@ -12,6 +12,8 @@
 
 1. Added `platform/cisco_xr_show_running_config_interface.txt` refactoring to alight with interfaces getter data
 2. Added `platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt` template
+3. Added `platform/arista_eos_show_lldp_neighbors_detail_pipe_json.txt` template
+4. Added `get/lldp_neighbors.txt` getter template supporting Arista EOS
 
 ---
 
