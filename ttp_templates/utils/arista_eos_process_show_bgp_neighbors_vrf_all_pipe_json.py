@@ -49,6 +49,8 @@ _LINK_TYPES = {"external", "internal"}
 
 
 def _normalize_peer(peer: Dict[str, Any], vrf: str) -> Dict[str, Any]:
+    # Normalize default VRF name to None
+    vrf = None if vrf in ("default", "master") else vrf
     # AFI/SAFI: collect enabled entries from multiprotocolCaps, normalize to IANA names
     afi_list = [
         _AFI_TO_IANA.get(name, name)
@@ -87,7 +89,7 @@ def _normalize_peer(peer: Dict[str, Any], vrf: str) -> Dict[str, Any]:
         "export_policies": [route_map_out] if route_map_out else [],
         "prefix_list_in": prefix_list_info.get("inboundIpv4Uni"),
         "prefix_list_out": prefix_list_info.get("outboundIpv4Uni"),
-        "name": f"{vrf}_{remote_address}" if remote_address else None,
+        "name": f"{vrf or 'default'}_{remote_address}",
         "description": peer.get("description"),
         "router_id": peer.get("routerId"),
         "peering_type": link_type if link_type in _LINK_TYPES else None,

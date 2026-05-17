@@ -14,7 +14,7 @@ Supported platforms:
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - `name` - unique neighbor identifier composed as `vrf_remote_address`
-- `vrf` - VRF the BGP session belongs to
+- `vrf` - VRF the BGP session belongs to or None if belongs to default/master/global VRF
 - `state` - BGP session state (idle, connect, active, opensent, openconfirm, established)
 - `peering_type` - peering relationship type: `external` or `internal`
 - `remote_address` - IP address of the remote BGP peer

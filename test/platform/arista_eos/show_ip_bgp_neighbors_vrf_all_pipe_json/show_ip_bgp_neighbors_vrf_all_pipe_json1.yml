@@ -21,7 +21,7 @@
   router_id: 10.10.10.1
   state: established
   uptime_seconds: 9286
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: ceos-spine-2 Ethernet2
@@ -45,7 +45,7 @@
   router_id: 10.10.10.2
   state: established
   uptime_seconds: 9286
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   - l2vpn_evpn
@@ -72,7 +72,7 @@
   router_id: 10.10.10.1
   state: established
   uptime_seconds: 9284
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   - l2vpn_evpn
@@ -99,7 +99,7 @@
   router_id: 10.10.10.2
   state: established
   uptime_seconds: 9284
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: ceos-spine-1 Ethernet2.101

@@ -72,7 +72,8 @@ def transform_bgp_neighbors(data):
         import_policy = None
         export_policy = None
         local_address = n.get("local_address")
-        vrf = n.get("vrf", "default")
+        vrf_raw = n.get("vrf", "default")
+        vrf = None if vrf_raw in ("default", "master") else vrf_raw
 
         for af in n.get("address_families") or []:
             afi_raw = af.get("afi_name") or ""
@@ -103,7 +104,7 @@ def transform_bgp_neighbors(data):
 
         result.append(
             {
-                "name": f"{vrf}_{remote_address}" if remote_address else None,
+                "name": f"{vrf or 'default'}_{remote_address}",
                 "vrf": vrf,
                 "state": state,
                 "peering_type": peering_raw if peering_raw in _LINK_TYPES else None,

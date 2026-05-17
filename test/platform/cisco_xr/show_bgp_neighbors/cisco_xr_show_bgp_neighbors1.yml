@@ -24,7 +24,7 @@
   router_id: 10.0.0.1
   state: established
   uptime_seconds: 26006400
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: alb1-core1
@@ -50,7 +50,7 @@
   router_id: 10.0.3.3
   state: established
   uptime_seconds: 30153600
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: pe01
@@ -76,7 +76,7 @@
   router_id: 192.168.100.1
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: pe02
@@ -102,7 +102,7 @@
   router_id: 10.100.2.44
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: ve01
@@ -128,7 +128,7 @@
   router_id: 10.0.12.41
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: ve02
@@ -154,7 +154,7 @@
   router_id: 192.168.1.142
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: Another Router
@@ -178,7 +178,7 @@
   router_id: 0.0.0.0
   state: null
   uptime_seconds: null
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: upstream_router1
@@ -202,7 +202,7 @@
   router_id: 172.16.105.21
   state: established
   uptime_seconds: 8899200
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: R13
@@ -226,7 +226,7 @@
   router_id: 172.16.21.222
   state: established
   uptime_seconds: 29376000
-  vrf: default
+  vrf: null
 - afi: []
   description: agr01
   export_policies: []
@@ -247,7 +247,7 @@
   router_id: 10.0.0.152
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: agr01
@@ -298,7 +298,7 @@
   router_id: 192.168.100.1
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: pe02
@@ -324,7 +324,7 @@
   router_id: 10.100.2.44
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: pe03
@@ -350,7 +350,7 @@
   router_id: 10.0.142.12
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: ve01
@@ -376,7 +376,7 @@
   router_id: 10.0.12.41
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: ve02
@@ -402,7 +402,7 @@
   router_id: 192.168.1.142
   state: established
   uptime_seconds: 0
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: shutdown_router
@@ -427,7 +427,7 @@
   router_id: 0.0.0.0
   state: null
   uptime_seconds: null
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: shut_router-2
@@ -452,7 +452,7 @@
   router_id: 0.0.0.0
   state: null
   uptime_seconds: null
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: upstream_router1
@@ -477,7 +477,7 @@
   router_id: 172.16.105.21
   state: established
   uptime_seconds: 9158400
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: R12
@@ -502,7 +502,7 @@
   router_id: 172.16.21.222
   state: established
   uptime_seconds: 29376000
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: pe04
@@ -528,4 +528,4 @@
   router_id: 10.0.0.1
   state: established
   uptime_seconds: 26006400
-  vrf: default
+  vrf: null

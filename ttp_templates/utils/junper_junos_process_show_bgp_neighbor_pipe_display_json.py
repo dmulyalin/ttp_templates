@@ -63,9 +63,9 @@ def _strip_port(address: Optional[str]) -> Optional[str]:
 
 
 def _normalize_peer(peer: Dict[str, Any]) -> Dict[str, Any]:
-    # VRF: peer-cfg-rti "master" -> "default"
+    # VRF: peer-cfg-rti "master" or "default" -> None (default VRF)
     vrf_raw = _get_data(peer, "peer-cfg-rti") or "master"
-    vrf = "default" if vrf_raw == "master" else vrf_raw
+    vrf = None if vrf_raw in ("master", "default") else vrf_raw
 
     remote_address = _strip_port(_get_data(peer, "peer-address"))
     local_address = _strip_port(_get_data(peer, "local-address"))
@@ -123,7 +123,7 @@ def _normalize_peer(peer: Dict[str, Any]) -> Dict[str, Any]:
         "export_policies": export_policies,
         "prefix_list_in": None,
         "prefix_list_out": None,
-        "name": f"{vrf}_{remote_address}" if remote_address else None,
+        "name": f"{vrf or 'default'}_{remote_address}",
         "description": _get_data(peer, "description"),
         "router_id": _get_data(peer, "peer-id"),
         "peering_type": peer_type if peer_type in _LINK_TYPES else None,

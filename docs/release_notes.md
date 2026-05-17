@@ -7,6 +7,7 @@
 1. Changing `get/interfaces` `lag` to be a parent lag name and adding `lag_id` attribute
 2. `get/interfaces` for Arista adding interfaces speeds map
 3. Enhancing `get/interfaces` for Arista to calculate access VLAN id for SVI interfaces
+4. Changing `vrf` to be `None` for get bgp peerings, if BGP peering belongs to global/default/master VRF
 
 ### TEMPLATES
 
@@ -14,6 +15,7 @@
 2. Added `platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt` template
 3. Added `platform/arista_eos_show_lldp_neighbors_detail_pipe_json.txt` template
 4. Added `get/lldp_neighbors.txt` getter template supporting Arista EOS
+5. Added `platform/juniper_junos_show_lldp_neighbors_detail_pipe_display_json.txt` template
 
 ---
 

@@ -21,7 +21,7 @@
   router_id: 192.168.100.1
   state: established
   uptime_seconds: 1468800
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: RouteReflector_2
@@ -45,7 +45,7 @@
   router_id: 192.168.100.2
   state: established
   uptime_seconds: 1468800
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_mpls_vpn
   - ipv6_mpls_vpn
@@ -75,7 +75,7 @@
   router_id: 192.168.0.1
   state: established
   uptime_seconds: 1555200
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_mpls_vpn
   - ipv6_mpls_vpn
@@ -105,7 +105,7 @@
   router_id: 192.168.0.2
   state: established
   uptime_seconds: 1987200
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   - ipv6_unicast
@@ -134,7 +134,7 @@
   router_id: 0.0.0.0
   state: opensent
   uptime_seconds: null
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: null
@@ -160,7 +160,7 @@
   router_id: 10.1.2.3
   state: established
   uptime_seconds: 1900800
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: rs01.lsan01-ca
@@ -184,7 +184,7 @@
   router_id: 192.168.100.1
   state: established
   uptime_seconds: 1468800
-  vrf: default
+  vrf: null
 - afi:
   - ipv6_unicast
   description: RouteReflector_2
@@ -208,4 +208,4 @@
   router_id: 192.168.100.2
   state: established
   uptime_seconds: 1468800
-  vrf: default
+  vrf: null

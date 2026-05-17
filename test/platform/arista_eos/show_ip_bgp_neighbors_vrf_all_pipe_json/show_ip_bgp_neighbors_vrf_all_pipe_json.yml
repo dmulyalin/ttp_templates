@@ -21,7 +21,7 @@
   router_id: 10.10.10.11
   state: established
   uptime_seconds: 8791
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: ceos-leaf-2 Ethernet1
@@ -45,7 +45,7 @@
   router_id: 10.10.10.12
   state: established
   uptime_seconds: 8792
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: ceos-leaf-3 Ethernet1
@@ -69,7 +69,7 @@
   router_id: 10.10.10.13
   state: established
   uptime_seconds: 8792
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   - l2vpn_evpn
@@ -96,7 +96,7 @@
   router_id: 10.10.10.11
   state: established
   uptime_seconds: 8789
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   - l2vpn_evpn
@@ -123,7 +123,7 @@
   router_id: 10.10.10.12
   state: established
   uptime_seconds: 8791
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   - l2vpn_evpn
@@ -150,7 +150,7 @@
   router_id: 10.10.10.13
   state: established
   uptime_seconds: 8791
-  vrf: default
+  vrf: null
 - afi:
   - ipv4_unicast
   description: ceos-leaf-1 Ethernet1.101
