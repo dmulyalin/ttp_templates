@@ -1057,18 +1057,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.arista_eos_show_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
-        arista_eos_show_bgp_neighbors_vrf_all_pipe_json
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1083,6 +1071,30 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
         arista_eos_show_inventory_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
+        arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_lldp_neighbors_detail_pipe_json/" class="md-nav__link">
+        arista_eos_show_lldp_neighbors_detail_pipe_json
       </a>
     </li>
   
@@ -1365,8 +1377,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_configuration_interfaces_pipe_display_set/" class="md-nav__link">
+        juniper_junos_show_configuration_interfaces_pipe_display_set
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
         juniper_junos_show_isis_database_verbose_pipe_no_more
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
+        juniper_junos_show_lldp_neighbors_detail_pipe_display_json
       </a>
     </li>
   
@@ -1539,6 +1575,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../get.lldp_neighbors/" class="md-nav__link">
+        lldp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../get.netbox/" class="md-nav__link">
         netbox
       </a>
@@ -1581,32 +1629,176 @@
 <div class="highlight"><pre><span></span><code>ttp://platform/cisco_xr_show_running_config_interface.txt
 </code></pre></div></p>
 <hr />
-<p>Template to produce list of dictionaries with interface 
-configuration details using Cisco IOS-XR "show run interface"
-command output.</p>
+<p>Template to parse Cisco IOS-XR interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.</p>
+<p>This template requires output of 'show running-config interface'.</p>
+<p>The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to <code>null</code> / <code>None</code>):</p>
+<ul>
+<li><code>name</code>: interface name string (e.g. GigabitEthernet0/0/0/0, Bundle-Ether1)</li>
+<li><code>type</code>: <code>other</code> by default; <code>bridge</code> if "bvi" in name;
+    <code>lag</code> if "bundle" in name; <code>virtual</code> if "loopback" or "tunnel" in name
+    or if the interface name contains a dot (<code>.</code>)</li>
+<li><code>enabled</code>: boolean; interfaces are <code>True</code> by default unless explicitly
+    shutdown in the config</li>
+<li><code>parent</code>: parent interface name or <code>null</code> (if the interface name contains
+    a dot the parent is the part before the dot)</li>
+<li><code>lag_id</code>: lag identifier integer (bundle id number) or <code>null</code></li>
+<li><code>lag_type</code>: <code>lag</code> for bundle-ether port channels or <code>null</code></li>
+<li><code>lacp_mode</code>: LACP mode string (e.g. <code>active</code>, <code>passive</code>) or <code>null</code></li>
+<li><code>lag</code>: Name of parent LAG interface e.g. <code>Bundle-Ether1</code> or <code>null</code></li>
+<li><code>mtu</code>: integer MTU or <code>null</code></li>
+<li><code>mac_address</code>: string MAC address in EUI format or <code>null</code></li>
+<li><code>speed</code>: integer speed in kbit/s or <code>null</code></li>
+<li><code>duplex</code>: string duplex setting or <code>null</code></li>
+<li><code>description</code>: string (empty string when not set)</li>
+<li><code>mode</code>: <code>tagged</code> when <code>encapsulation dot1q</code> is present; <code>access</code> for BVI interfaces; <code>null</code> otherwise</li>
+<li><code>untagged_vlan</code>: integer VLAN derived from BVI interface name (e.g. BVI100 → 100) or <code>null</code></li>
+<li><code>tagged_vlans</code>: list with the dot1q VLAN integer when <code>encapsulation dot1q</code> is present; empty list otherwise</li>
+<li><code>qinq_svlan</code>: always <code>null</code></li>
+<li><code>vrf</code>: string or <code>null</code></li>
+<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 10.0.0.1/30)</li>
+<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
+</ul>
+<p>Example normalized output (YAML):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Router ID</span><span class="w"></span>
+<span class="w">  </span><span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1/32</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv6_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lacp_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mac_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Loopback0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">qinq_svlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">tagged_vlans</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtual</span><span class="w"></span>
+<span class="w">  </span><span class="nt">untagged_vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
-Template to produce list of dictionaries with interface 
-configuration details using Cisco IOS-XR &quot;show run interface&quot;
-command output.
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;cisco_xr_interface_config&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+Template to parse Cisco IOS-XR interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
+
+This template requires output of &#39;show running-config interface&#39;.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to &#39;null&#39; / &#39;None&#39;):
+
+- &#39;name&#39;: interface name string (e.g. GigabitEthernet0/0/0/0, Bundle-Ether1)
+- &#39;type&#39;: &#39;&#39;other&#39;&#39; by default; &#39;&#39;bridge&#39;&#39; if &quot;bvi&quot; in name;
+    &#39;&#39;lag&#39;&#39; if &quot;bundle&quot; in name; &#39;&#39;virtual&#39;&#39; if &quot;loopback&quot; or &quot;tunnel&quot; in name
+    or if the interface name contains a dot (&#39;.&#39;)
+- &#39;enabled&#39;: boolean; interfaces are &#39;True&#39; by default unless explicitly
+    shutdown in the config
+- &#39;parent&#39;: parent interface name or &#39;null&#39; (if the interface name contains
+    a dot the parent is the part before the dot)
+- &#39;lag_id&#39;: lag identifier integer (bundle id number) or &#39;null&#39;
+- &#39;lag_type&#39;: &#39;&#39;lag&#39;&#39; for bundle-ether port channels or &#39;null&#39;
+- &#39;lacp_mode&#39;: LACP mode string (e.g. &#39;&#39;active&#39;&#39;, &#39;&#39;passive&#39;&#39;) or &#39;null&#39;
+- &#39;lag&#39;: Name of parent LAG interface e.g. &#39;Bundle-Ether1&#39; or &#39;null&#39;
+- &#39;mtu&#39;: integer MTU or &#39;null&#39;
+- &#39;mac_address&#39;: string MAC address in EUI format or &#39;null&#39;
+- &#39;speed&#39;: integer speed in kbit/s or &#39;null&#39;
+- &#39;duplex&#39;: string duplex setting or &#39;null&#39;
+- &#39;description&#39;: string (empty string when not set)
+- &#39;mode&#39;: &#39;&#39;tagged&#39;&#39; when &#39;encapsulation dot1q&#39; is present; &#39;&#39;access&#39;&#39; for BVI interfaces; &#39;null&#39; otherwise
+- &#39;untagged_vlan&#39;: integer VLAN derived from BVI interface name (e.g. BVI100 â†’ 100) or &#39;null&#39;
+- &#39;tagged_vlans&#39;: list with the dot1q VLAN integer when &#39;encapsulation dot1q&#39; is present; empty list otherwise
+- &#39;qinq_svlan&#39;: always &#39;null&#39;
+- &#39;vrf&#39;: string or &#39;null&#39;
+- &#39;ipv4_addresses&#39;: list of strings with IP/prefix (e.g. 10.0.0.1/30)
+- &#39;ipv6_addresses&#39;: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+&#39;&#39;&#39;yaml
+- description: Router ID
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 10.0.0.1/32
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: Loopback0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null
+&#39;&#39;&#39;
+
 &lt;/doc&gt;
 
-&lt;group&gt;
-interface {{ interface | _start_ }}
-interface {{ interface | _start_ }} l2transport
- description {{ description | re(&quot;.*&quot;) }}
- mtu {{ mtu }}
+&lt;input&gt;
+commands = [
+    &quot;show running-config interface&quot;
+]
+platform = [
+    &quot;cisco_xr&quot;,
+    &quot;iosxr&quot;,
+]
+&lt;/input&gt;
+
+&lt;macro&gt;
+def transform_interfaces_to_records(data):
+    from ttp_templates.utils.cisco_xr_process_show_running_config_interface import transform_interfaces_config
+    return transform_interfaces_config(data)
+&lt;/macro&gt;
+
+## ------------------------------------------------------------------------------------------
+## Interfaces configuration
+## ------------------------------------------------------------------------------------------
+&lt;group functions=&quot;contains(&#39;name&#39;)&quot;&gt;
+interface {{ name | _start_ }}
+interface {{ name | _start_ | let(&quot;l2transport&quot;, True) }} l2transport
+ description {{ description | re(&quot;.*&quot;) | default(&quot;&quot;) }}
+ mtu {{ mtu | to_int }}
  service-policy input {{ qos_policy_in }}
  service-policy output {{ qos_policy_out }}
- ipv4 address {{ ipv4 }} {{ mask_v4 }}
- ipv6 address {{ ipv6 }}/{{ mask_v6 }}
- encapsulation dot1q {{ dot1q }}
+ encapsulation dot1q {{ dot1q | to_int | let(&quot;mode&quot;, &quot;tagged&quot;) }}
  vrf {{ vrf }}
- bundle id {{ lag_id }} mode {{ ignore }}
- shutdown {{ disabled | set(True) }}
-! {{ _end_ }}
+ bundle id {{ lag_id | to_int | let(&quot;lag_type&quot;, &quot;lag&quot;) }} mode {{ lacp_mode }}
+ lacp period {{ lacp_period }}
+ shutdown {{ enabled | set(False) | default(True) }}
+ rewrite ingress tag {{ rewrite_ingress_tag | PHRASE }}
+ mac-address {{ mac_address | mac_eui }}
+ duplex {{ duplex }}
+ speed {{ speed | to_int }}
+
+ &lt;group name=&quot;ipv4_addresses*&quot; method=&quot;table&quot;&gt;
+ ipv4 address {{ ip | _exact_ }} {{ mask }}
+ ipv4 address {{ ip | _exact_ }} {{ mask }} secondary
+ &lt;/group&gt;
+
+ &lt;group name=&quot;ipv6_addresses*&quot; method=&quot;table&quot;&gt;
+ ipv6 address {{ ip | _exact_ }}/{{ mask }}
+ &lt;/group&gt;
+
+!{{ _end_ }}
 &lt;/group&gt;
+
+&lt;output macro=&quot;transform_interfaces_to_records&quot;/&gt;
+
+&lt;/template&gt;
 </code></pre></div>
 </details>
                 

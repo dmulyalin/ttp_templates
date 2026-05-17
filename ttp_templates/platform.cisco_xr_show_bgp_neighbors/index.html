@@ -1057,18 +1057,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.arista_eos_show_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
-        arista_eos_show_bgp_neighbors_vrf_all_pipe_json
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1083,6 +1071,30 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
         arista_eos_show_inventory_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
+        arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_lldp_neighbors_detail_pipe_json/" class="md-nav__link">
+        arista_eos_show_lldp_neighbors_detail_pipe_json
       </a>
     </li>
   
@@ -1365,8 +1377,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_configuration_interfaces_pipe_display_set/" class="md-nav__link">
+        juniper_junos_show_configuration_interfaces_pipe_display_set
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
         juniper_junos_show_isis_database_verbose_pipe_no_more
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
+        juniper_junos_show_lldp_neighbors_detail_pipe_display_json
       </a>
     </li>
   
@@ -1539,6 +1575,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../get.lldp_neighbors/" class="md-nav__link">
+        lldp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../get.netbox/" class="md-nav__link">
         netbox
       </a>
@@ -1678,7 +1726,8 @@ platform = [
 &lt;/input&gt;
 
 &lt;group name=&quot;neighbors*&quot;&gt;
-BGP neighbor is {{ remote_address }}
+BGP neighbor is {{ remote_address | _start_ }}
+BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}
  Remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ peering_type }} link
  Description: {{ description | ORPHRASE }}
  Remote router ID {{ router_id }}
@@ -1693,7 +1742,8 @@ BGP neighbor is {{ remote_address }}
   Policy for outgoing advertisements is {{ export_policy | ORPHRASE }}
   &lt;/group&gt;
 
-  Local host: {{ local_address }}, Local port: {{ _ }}
+  Local host: {{ local_address }}, Local port: {{ ignore }}
+  Local host: {{ local_address }}, Local port: {{ ignore }}, IF Handle: {{ ignore }}
 &lt;/group&gt;
 
 &lt;output macro=&quot;transform&quot;/&gt;

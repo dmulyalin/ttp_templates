@@ -1057,18 +1057,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.arista_eos_show_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
-        arista_eos_show_bgp_neighbors_vrf_all_pipe_json
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1083,6 +1071,30 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
         arista_eos_show_inventory_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
+        arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_lldp_neighbors_detail_pipe_json/" class="md-nav__link">
+        arista_eos_show_lldp_neighbors_detail_pipe_json
       </a>
     </li>
   
@@ -1365,8 +1377,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_configuration_interfaces_pipe_display_set/" class="md-nav__link">
+        juniper_junos_show_configuration_interfaces_pipe_display_set
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
         juniper_junos_show_isis_database_verbose_pipe_no_more
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
+        juniper_junos_show_lldp_neighbors_detail_pipe_display_json
       </a>
     </li>
   
@@ -1539,6 +1575,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../get.lldp_neighbors/" class="md-nav__link">
+        lldp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../get.netbox/" class="md-nav__link">
         netbox
       </a>
@@ -1595,9 +1643,10 @@ contains the following keys (missing values are set to <code>null</code> / <code
     shutdown in the config</li>
 <li><code>parent</code>: parent interface name or <code>null</code> (if the interface name contains
     a dot the parent is the part before the dot)</li>
-<li><code>lag</code>: lag identifier integer (channel-group / mlag number) or <code>null</code></li>
+<li><code>lag_id</code>: lag identifier integer (channel-group / mlag number) or <code>null</code></li>
 <li><code>lag_type</code>: <code>lag</code> for standart port channels, <code>mlag</code> for mlag port channels, or <code>null</code></li>
 <li><code>lacp_mode</code>: LACP mode string (e.g. <code>active</code>, <code>passive</code>) or <code>null</code></li>
+<li><code>lag</code>: Name of parent LAG interface e.g. <code>Port-Channel1</code> or <code>null</code></li>
 <li><code>mtu</code>: integer MTU or <code>null</code></li>
 <li><code>mac_address</code>: string in MAC EUI format or <code>null</code></li>
 <li><code>speed</code>: integer or <code>null</code></li>
@@ -1652,9 +1701,10 @@ contains the following keys (missing values are set to &#39;null&#39; / &#39;Non
     shutdown in the config
 - &#39;parent&#39;: parent interface name or &#39;null&#39; (if the interface name contains
     a dot the parent is the part before the dot)
-- &#39;lag&#39;: lag identifier integer (channel-group / mlag number) or &#39;null&#39;
+- &#39;lag_id&#39;: lag identifier integer (channel-group / mlag number) or &#39;null&#39;
 - &#39;lag_type&#39;: &#39;&#39;lag&#39;&#39; for standart port channels, &#39;&#39;mlag&#39;&#39; for mlag port channels, or &#39;null&#39;
 - &#39;lacp_mode&#39;: LACP mode string (e.g. &#39;&#39;active&#39;&#39;, &#39;&#39;passive&#39;&#39;) or &#39;null&#39;
+- &#39;lag&#39;: Name of parent LAG interface e.g. &#39;Port-Channel1&#39; or &#39;null&#39;
 - &#39;mtu&#39;: integer MTU or &#39;null&#39;
 - &#39;mac_address&#39;: string in MAC EUI format or &#39;null&#39;
 - &#39;speed&#39;: integer or &#39;null&#39;
@@ -1718,23 +1768,25 @@ interface {{ name | _start_ }}
    no switchport {{ is_l3_interface | set(True) }}
    vrf {{ vrf }}
    shutdown {{ enabled | set(False) | default(True) }}
-   speed forced {{ speed | to_int }}
+   speed forced {{ speed }}
+   speed {{ speed }}
    mlag {{ lag_id | to_int | let(&quot;lag_type&quot;, &quot;mlag&quot;) }}
    channel-group {{ lag_id | to_int | let(&quot;lag_type&quot;, &quot;lag&quot;) }} mode {{ lacp_mode }}
    switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar=&#39;-&#39;, joinchar=&#39;,&#39;) | split(&quot;,&quot;) | joinmatches }}
    switchport mode trunk {{ mode | set(&quot;tagged&quot;) }}
    switchport access vlan {{ untagged_vlan | to_int | let(&quot;mode&quot;, &quot;access&quot;) }}
    mac-address {{ mac_address | mac_eui }}
+   duplex {{ duplex }}
 
    &lt;group name=&quot;ipv4_addresses*&quot; method=&quot;table&quot;&gt;
    ip address {{ ip | IP }}/{{ mask }}
    ip address {{ ip | IP }}/{{ mask }} secondary
-   ipv4 address {{ ip | IP }}/{{ mask}}
-   ipv4 address {{ ip | IP }}/{{ mask}} secondary
+   ipv4 address {{ ip | IP }}/{{ mask }}
+   ipv4 address {{ ip | IP }}/{{ mask }} secondary
    &lt;/group&gt;
 
    &lt;group name=&quot;ipv6_addresses*&quot; method=&quot;table&quot;&gt;
-   ipv6 address {{ ip | IPV6 }}/{{ mask}}
+   ipv6 address {{ ip | IPV6 }}/{{ mask }}
    &lt;/group&gt;
 
 !{{ _end_ }}
@@ -1769,7 +1821,7 @@ interface {{ name | _start_ }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-footer__link md-footer__link--prev" aria-label="Previous: arista_eos_show_inventory_pipe_json" rel="prev">
+        <a href="../platform.arista_eos_show_lldp_neighbors_detail_pipe_json/" class="md-footer__link md-footer__link--prev" aria-label="Previous: arista_eos_show_lldp_neighbors_detail_pipe_json" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1778,7 +1830,7 @@ interface {{ name | _start_ }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              arista_eos_show_inventory_pipe_json
+              arista_eos_show_lldp_neighbors_detail_pipe_json
             </div>
           </div>
         </a>

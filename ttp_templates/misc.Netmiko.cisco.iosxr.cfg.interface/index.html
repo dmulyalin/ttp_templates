@@ -1067,18 +1067,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.arista_eos_show_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
-        arista_eos_show_bgp_neighbors_vrf_all_pipe_json
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1093,6 +1081,30 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
         arista_eos_show_inventory_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
+        arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_lldp_neighbors_detail_pipe_json/" class="md-nav__link">
+        arista_eos_show_lldp_neighbors_detail_pipe_json
       </a>
     </li>
   
@@ -1367,8 +1379,32 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_configuration_interfaces_pipe_display_set/" class="md-nav__link">
+        juniper_junos_show_configuration_interfaces_pipe_display_set
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
         juniper_junos_show_isis_database_verbose_pipe_no_more
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
+        juniper_junos_show_lldp_neighbors_detail_pipe_display_json
       </a>
     </li>
   
@@ -1541,6 +1577,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../get.lldp_neighbors/" class="md-nav__link">
+        lldp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../get.netbox/" class="md-nav__link">
         netbox
       </a>
@@ -1583,10 +1631,60 @@
 <div class="highlight"><pre><span></span><code>ttp://misc/Netmiko/cisco.iosxr.cfg.interface.txt
 </code></pre></div></p>
 <hr />
-<p>Template to parse "show running-config interface" output for Cisco IOSXR.</p>
-<p>Template to produce list of dictionaries with interface 
-configuration details using Cisco IOS-XR "show run interface"
-command output.</p>
+<p>Template to parse Cisco IOS-XR interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.</p>
+<p>This template requires output of 'show running-config interface'.</p>
+<p>The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to <code>null</code> / <code>None</code>):</p>
+<ul>
+<li><code>name</code>: interface name string (e.g. GigabitEthernet0/0/0/0, Bundle-Ether1)</li>
+<li><code>type</code>: <code>other</code> by default; <code>bridge</code> if "bvi" in name;
+    <code>lag</code> if "bundle" in name; <code>virtual</code> if "loopback" or "tunnel" in name
+    or if the interface name contains a dot (<code>.</code>)</li>
+<li><code>enabled</code>: boolean; interfaces are <code>True</code> by default unless explicitly
+    shutdown in the config</li>
+<li><code>parent</code>: parent interface name or <code>null</code> (if the interface name contains
+    a dot the parent is the part before the dot)</li>
+<li><code>lag_id</code>: lag identifier integer (bundle id number) or <code>null</code></li>
+<li><code>lag_type</code>: <code>lag</code> for bundle-ether port channels or <code>null</code></li>
+<li><code>lacp_mode</code>: LACP mode string (e.g. <code>active</code>, <code>passive</code>) or <code>null</code></li>
+<li><code>lag</code>: Name of parent LAG interface e.g. <code>Bundle-Ether1</code> or <code>null</code></li>
+<li><code>mtu</code>: integer MTU or <code>null</code></li>
+<li><code>mac_address</code>: string MAC address in EUI format or <code>null</code></li>
+<li><code>speed</code>: integer speed in kbit/s or <code>null</code></li>
+<li><code>duplex</code>: string duplex setting or <code>null</code></li>
+<li><code>description</code>: string (empty string when not set)</li>
+<li><code>mode</code>: <code>tagged</code> when <code>encapsulation dot1q</code> is present; <code>access</code> for BVI interfaces; <code>null</code> otherwise</li>
+<li><code>untagged_vlan</code>: integer VLAN derived from BVI interface name (e.g. BVI100 → 100) or <code>null</code></li>
+<li><code>tagged_vlans</code>: list with the dot1q VLAN integer when <code>encapsulation dot1q</code> is present; empty list otherwise</li>
+<li><code>qinq_svlan</code>: always <code>null</code></li>
+<li><code>vrf</code>: string or <code>null</code></li>
+<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 10.0.0.1/30)</li>
+<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
+</ul>
+<p>Example normalized output (YAML):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Router ID</span><span class="w"></span>
+<span class="w">  </span><span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1/32</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv6_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lacp_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mac_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Loopback0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">qinq_svlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">tagged_vlans</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">virtual</span><span class="w"></span>
+<span class="w">  </span><span class="nt">untagged_vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;doc&gt;

@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.arista_eos_show_bgp_neighbors_vrf_all_pipe_json/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.juniper_junos_show_configuration_interfaces_pipe_display_set/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>arista_eos_show_bgp_neighbors_vrf_all_pipe_json - TTP Templates Collection</title>
+        <title>juniper_junos_show_configuration_interfaces_pipe_display_set - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              arista_eos_show_bgp_neighbors_vrf_all_pipe_json
+              juniper_junos_show_configuration_interfaces_pipe_display_set
             
           </span>
         </div>
@@ -1055,26 +1055,6 @@
             
   
   
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        arista_eos_show_bgp_neighbors_vrf_all_pipe_json
-      </a>
-      
-    </li>
-  
-
-          
-            
-  
-  
   
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
@@ -1091,6 +1071,30 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-nav__link">
         arista_eos_show_inventory_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
+        arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_lldp_neighbors_detail_pipe_json/" class="md-nav__link">
+        arista_eos_show_lldp_neighbors_detail_pipe_json
       </a>
     </li>
   
@@ -1363,10 +1367,42 @@
             
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        juniper_junos_show_configuration_interfaces_pipe_display_set
+      </a>
+      
+    </li>
+  
+
+          
+            
+  
+  
   
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-nav__link">
         juniper_junos_show_isis_database_verbose_pipe_no_more
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
+        juniper_junos_show_lldp_neighbors_detail_pipe_display_json
       </a>
     </li>
   
@@ -1539,6 +1575,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../get.lldp_neighbors/" class="md-nav__link">
+        lldp_neighbors
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../get.netbox/" class="md-nav__link">
         netbox
       </a>
@@ -1570,118 +1618,195 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.arista_eos_show_bgp_neighbors_vrf_all_pipe_json.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.juniper_junos_show_configuration_interfaces_pipe_display_set.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>arista_eos_show_bgp_neighbors_vrf_all_pipe_json</h1>
+                  <h1>juniper_junos_show_configuration_interfaces_pipe_display_set</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://platform/arista_eos_show_bgp_neighbors_vrf_all_pipe_json.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt
 </code></pre></div></p>
 <hr />
-<p>Normalizes Arista EOS BGP neighbors JSON to flat list format.</p>
-<p>Transforms nested vrfs-peerList structure into standardized dictionaries with:</p>
+<p>Template to parse Juniper JunOS interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.</p>
+<p>This template requires output of 'show configuration interfaces | display set'.</p>
+<p>The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to <code>null</code> / <code>None</code>):</p>
 <ul>
-<li>All fields present (missing set to None)</li>
-<li>RFC-normalized state values (established, idle, etc.)</li>
-<li>Per-AFI prefix counts (ipv4Unicast_prefixes_sent, etc.)</li>
-<li>Consistent field naming</li>
+<li><code>name</code>: interface name string (e.g. xe-0/0/0, xe-0/0/0.100, ae0, lo0.0)</li>
+<li><code>type</code>: <code>other</code> by default; <code>bridge</code> if name starts with "irb";
+    <code>lag</code> if name starts with "ae" and has no dot; <code>virtual</code> if name has
+    a dot (sub-interface/unit) or starts with a loopback/tunnel prefix</li>
+<li><code>enabled</code>: boolean; interfaces are <code>True</code> by default unless explicitly
+    disabled in the config</li>
+<li><code>parent</code>: parent interface name or <code>null</code> (if the interface name contains
+    a dot the parent is the part before the dot)</li>
+<li><code>lag_id</code>: lag identifier integer (ae group number) or <code>null</code></li>
+<li><code>lag_type</code>: <code>lag</code> when interface is a member of an aggregated ethernet
+    group, or <code>null</code></li>
+<li><code>lacp_mode</code>: LACP mode string on AE interface (e.g. <code>active</code>, <code>passive</code>)
+    or <code>null</code></li>
+<li><code>lag</code>: Name of parent LAG interface e.g. <code>ae0</code> or <code>null</code></li>
+<li><code>mtu</code>: integer MTU or <code>null</code></li>
+<li><code>mac_address</code>: MAC address string of the unit or <code>null</code></li>
+<li><code>speed</code>: integer in kbit/s or <code>null</code></li>
+<li><code>duplex</code>: always <code>null</code> (not exposed in display set format)</li>
+<li><code>description</code>: string (empty string when not set)</li>
+<li><code>mode</code>: 'tagged' / 'access' or <code>null</code></li>
+<li><code>untagged_vlan</code>: integer or <code>null</code></li>
+<li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
+<li><code>qinq_svlan</code>: always <code>null</code></li>
+<li><code>vrf</code>: always <code>null</code> (routing-instance assignment not captured here)</li>
+<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 10.0.0.1/24)</li>
+<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
 </ul>
 <p>Example normalized output (YAML):</p>
-<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">afi</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv4_unicast</span><span class="w"></span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ceos-leaf-1 Ethernet1</span><span class="w"></span>
-<span class="w">  </span><span class="nt">export_policies</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span><span class="w"></span>
-<span class="w">  </span><span class="nt">hold_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180</span><span class="w"></span>
-<span class="w">  </span><span class="nt">import_policies</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span><span class="w"></span>
-<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_received</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w"></span>
-<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"></span>
-<span class="w">  </span><span class="nt">keepalive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span><span class="w"></span>
-<span class="w">  </span><span class="nt">local_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0</span><span class="w"></span>
-<span class="w">  </span><span class="nt">local_as</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;65001&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">local_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ethernet2</span><span class="w"></span>
-<span class="w">  </span><span class="nt">max_ttl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">255</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default_10.0.0.1</span><span class="w"></span>
-<span class="w">  </span><span class="nt">peer_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
-<span class="w">  </span><span class="nt">peering_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external</span><span class="w"></span>
-<span class="w">  </span><span class="nt">prefix_list_in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
-<span class="w">  </span><span class="nt">prefix_list_out</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
-<span class="w">  </span><span class="nt">remote_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1</span><span class="w"></span>
-<span class="w">  </span><span class="nt">remote_as</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;65101&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">router_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.11</span><span class="w"></span>
-<span class="w">  </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">established</span><span class="w"></span>
-<span class="w">  </span><span class="nt">uptime_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8791</span><span class="w"></span>
-<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P2P to PE1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv6_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lacp_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ae0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lag</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mac_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9192</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xe-0/0/0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">qinq_svlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">tagged_vlans</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span><span class="w"></span>
+<span class="w">  </span><span class="nt">untagged_vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
 </code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;arista_eos_bgp_neighbors&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;juniper_junos_interface_config&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
-Normalizes Arista EOS BGP neighbors JSON to flat list format.
+Template to parse Juniper JunOS interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
 
-Transforms nested vrfs-peerList structure into standardized dictionaries with:
+This template requires output of &#39;show configuration interfaces | display set&#39;.
 
-- All fields present (missing set to None)
-- RFC-normalized state values (established, idle, etc.)
-- Per-AFI prefix counts (ipv4Unicast_prefixes_sent, etc.)
-- Consistent field naming
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to &#39;null&#39; / &#39;None&#39;):
+
+- &#39;name&#39;: interface name string (e.g. xe-0/0/0, xe-0/0/0.100, ae0, lo0.0)
+- &#39;type&#39;: &#39;&#39;other&#39;&#39; by default; &#39;&#39;bridge&#39;&#39; if name starts with &quot;irb&quot;;
+    &#39;&#39;lag&#39;&#39; if name starts with &quot;ae&quot; and has no dot; &#39;&#39;virtual&#39;&#39; if name has
+    a dot (sub-interface/unit) or starts with a loopback/tunnel prefix
+- &#39;enabled&#39;: boolean; interfaces are &#39;True&#39; by default unless explicitly
+    disabled in the config
+- &#39;parent&#39;: parent interface name or &#39;null&#39; (if the interface name contains
+    a dot the parent is the part before the dot)
+- &#39;lag_id&#39;: lag identifier integer (ae group number) or &#39;null&#39;
+- &#39;lag_type&#39;: &#39;&#39;lag&#39;&#39; when interface is a member of an aggregated ethernet
+    group, or &#39;null&#39;
+- &#39;lacp_mode&#39;: LACP mode string on AE interface (e.g. &#39;&#39;active&#39;&#39;, &#39;&#39;passive&#39;&#39;)
+    or &#39;null&#39;
+- &#39;lag&#39;: Name of parent LAG interface e.g. &#39;ae0&#39; or &#39;null&#39;
+- &#39;mtu&#39;: integer MTU or &#39;null&#39;
+- &#39;mac_address&#39;: MAC address string of the unit or &#39;null&#39;
+- &#39;speed&#39;: integer in kbit/s or &#39;null&#39;
+- &#39;duplex&#39;: always &#39;null&#39; (not exposed in display set format)
+- &#39;description&#39;: string (empty string when not set)
+- &#39;mode&#39;: &#39;tagged&#39; / &#39;access&#39; or &#39;null&#39;
+- &#39;untagged_vlan&#39;: integer or &#39;null&#39;
+- &#39;tagged_vlans&#39;: list of integers (empty list when none)
+- &#39;qinq_svlan&#39;: always &#39;null&#39;
+- &#39;vrf&#39;: always &#39;null&#39; (routing-instance assignment not captured here)
+- &#39;ipv4_addresses&#39;: list of strings with IP/prefix (e.g. 10.0.0.1/24)
+- &#39;ipv6_addresses&#39;: list of strings with IP/prefix (e.g. 2001:db8::1/64)
 
 Example normalized output (YAML):
 
 &#39;&#39;&#39;yaml
-- afi:
-  - ipv4_unicast
-  description: ceos-leaf-1 Ethernet1
-  export_policies: ALLOW-ALL
-  hold_time: 180
-  import_policies: ALLOW-ALL
-  ipv4_unicast_prefixes_received: 2
-  ipv4_unicast_prefixes_sent: 3
-  keepalive: 60
-  local_address: 10.0.0.0
-  local_as: &#39;65001&#39;
-  local_interface: Ethernet2
-  max_ttl: 255
-  name: default_10.0.0.1
-  peer_group: null
-  peering_type: external
-  prefix_list_in: null
-  prefix_list_out: null
-  remote_address: 10.0.0.1
-  remote_as: &#39;65101&#39;
-  router_id: 10.10.10.11
-  state: established
-  uptime_seconds: 8791
-  vrf: default
+- description: P2P to PE1
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: ae0
+  lag_id: 0
+  lag_type: lag
+  mac_address: null
+  mode: null
+  mtu: 9192
+  name: xe-0/0/0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
 &#39;&#39;&#39;
+
 &lt;/doc&gt;
-
-&lt;macro&gt;
-def transform_bgp_neighbors_to_records(json_data):
-    from ttp_templates.utils.arista_eos_process_show_bgp_neighbors_vrf_all_pipe_json import transform_bgp_neighbors
-
-    return transform_bgp_neighbors(json_data)
-&lt;/macro&gt;
 
 &lt;input&gt;
 commands = [
-    &quot;show bgp neighbors vrf all | json&quot;
+    &quot;show configuration interfaces | display set&quot;,
+    &quot;show configuration routing-instances | display set | match interface&quot;
 ]
 platform = [
-    &quot;arista_eos&quot;, # scrapli and netmiko
-    &quot;eos&quot;, # NAPALM
+    &quot;juniper_junos&quot;,  # scrapli and netmiko
+    &quot;junos&quot;,          # NAPALM
 ]
 &lt;/input&gt;
 
-&lt;group&gt;
-{ {{ _start_ }}
-{{ data | _line_ | joinmatches }}
-} {{ _end_ }}
+&lt;macro&gt;
+def transform_interfaces_to_records(data):
+    from ttp_templates.utils.juniper_junos_process_show_configuration_interfaces_pipe_display_set import transform_interfaces_config
+
+    return transform_interfaces_config(data)
+&lt;/macro&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} description &quot;{{ description | re(&quot;.+&quot;) }}&quot;
+set interfaces {{ name }} mtu {{ mtu | to_int }}
+set interfaces {{ name | let(&quot;enabled&quot;, False) }} disable
+set interfaces {{ name }} gigether-options 802.3ad {{ lag_id | let(&quot;lag_type&quot;, &quot;lag&quot;) }}
+set interfaces {{ name }} ether-options 802.3ad {{ lag_id | let(&quot;lag_type&quot;, &quot;lag&quot;) }}
+set interfaces {{ name }} aggregated-ether-options lacp {{ lacp_mode }}
+set interfaces {{ name }} aggregated-ether-options minimum-links {{ lag_min_links | to_int }}
+set interfaces {{ name }} speed {{ speed }}
+set interfaces {{ name }} native-vlan-id {{ untagged_vlan | to_int }}
 &lt;/group&gt;
 
-&lt;output macro=&quot;transform_bgp_neighbors_to_records&quot;/&gt;
+&lt;group name=&quot;interfaces**.{{ name }}**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} description &quot;{{ description | re(&quot;.+&quot;) | default(&quot;&quot;) }}&quot;
+set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q | to_int }}
+set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.ipv4*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.ipv6*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.switching**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching interface-mode {{ dot1q_mode }}
+&lt;/group&gt;
+
+&lt;group name=&quot;interfaces**.{{ name }}**.switching**.vlans*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching vlan members {{ vlan }}
+&lt;/group&gt;
+
+&lt;group name=&quot;vrf**.{{ vrf }}**.interfaces*&quot; method=&quot;table&quot; itemize=&quot;interface&quot;&gt;
+set routing-instances {{ vrf }} interface {{ interface }}
+&lt;/group&gt;
+
+&lt;output macro=&quot;transform_interfaces_to_records&quot;/&gt;
 
 &lt;/template&gt;
 </code></pre></div>
@@ -1710,7 +1835,7 @@ platform = [
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.ttp_templates_tests.netmiko_cisco_ios_interfaces/" class="md-footer__link md-footer__link--prev" aria-label="Previous: netmiko_cisco_ios_interfaces" rel="prev">
+        <a href="../platform.juniper_junos_show_chassis_hardware_pipe_json/" class="md-footer__link md-footer__link--prev" aria-label="Previous: juniper_junos_show_chassis_hardware_pipe_json" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1719,20 +1844,20 @@ platform = [
               <span class="md-footer__direction">
                 Previous
               </span>
-              netmiko_cisco_ios_interfaces
+              juniper_junos_show_chassis_hardware_pipe_json
             </div>
           </div>
         </a>
       
       
         
-        <a href="../platform.arista_eos_show_hostname/" class="md-footer__link md-footer__link--next" aria-label="Next: arista_eos_show_hostname" rel="next">
+        <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-footer__link md-footer__link--next" aria-label="Next: juniper_junos_show_isis_database_verbose_pipe_no_more" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              arista_eos_show_hostname
+              juniper_junos_show_isis_database_verbose_pipe_no_more
             </div>
           </div>
           <div class="md-footer__button md-icon">

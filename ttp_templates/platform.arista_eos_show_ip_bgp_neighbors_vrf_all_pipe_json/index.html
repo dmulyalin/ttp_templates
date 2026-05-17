@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco_ios_interfaces_cfg_per_ip - TTP Templates Collection</title>
+        <title>arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco_ios_interfaces_cfg_per_ip
+              arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json
             
           </span>
         </div>
@@ -429,14 +429,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
       
       <label class="md-nav__link" for="__nav_6_1">
         Misc
@@ -977,14 +975,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" >
       
       <label class="md-nav__link" for="__nav_6_1_4">
         ttp_templates_tests
@@ -1000,19 +996,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip/" class="md-nav__link">
         cisco_ios_interfaces_cfg_per_ip
       </a>
-      
     </li>
   
 
@@ -1044,12 +1032,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
       
       <label class="md-nav__link" for="__nav_6_2">
         Platform
@@ -1089,11 +1079,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json
       </a>
+      
     </li>
   
 
@@ -1620,162 +1618,119 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco_ios_interfaces_cfg_per_ip</h1>
+                  <h1>arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.txt
 </code></pre></div></p>
 <hr />
-<p>This template produces one dictionary item per ip address configured on device's interfaces including secondary and VRRP IPs. Output is a list of dictionaries.</p>
-<p>Sample data:
-<div class="highlight"><pre><span></span><code>r1#show run | sec interface
-interface GigabitEthernet1
- vrf forwarding MGMT
- ip address 10.223.89.55 255.255.255.0
- negotiation auto
- no mop enabled
-interface GigabitEthernet1
- vrf forwarding MGMT
- ip address 10.223.89.56 255.255.255.0
- negotiation auto
- no mop enabled
- no mop sysid
-</code></pre></div></p>
-<p>Sample results, structure="flat_list":
-<div class="highlight"><pre><span></span><code>[
-    {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;r1&quot;,
-        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
-        &quot;ip&quot;: &quot;10.223.89.55&quot;,
-        &quot;mask&quot;: &quot;255.255.255.0&quot;,
-        &quot;vrf&quot;: &quot;MGMT&quot;
-    },
-    {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;r1&quot;,
-        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
-        &quot;ip&quot;: &quot;10.223.89.56&quot;,
-        &quot;mask&quot;: &quot;255.255.255.0&quot;,
-        &quot;vrf&quot;: &quot;MGMT&quot;
-    }
-]
-</code></pre></div></p>
-<p>How to use::
-<div class="highlight"><pre><span></span><code>    from ttp import ttp
-    from ttp_templates import get_template
-    from pprint import pprint
-
-    data = &quot;text output from device&quot;
-
-    parser = ttp(
-        template=get_template(misc=&quot;ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt&quot;)
-    )
-    parser.add_input(data, template_name=&quot;interfaces&quot;)
-    parser.parse()
-    pprint(parser.result())
-</code></pre></div></p>
+<p>Normalizes Arista EOS BGP neighbors JSON to flat list format.</p>
+<p>Transforms nested vrfs-peerList structure into standardized dictionaries with:</p>
+<ul>
+<li>All fields present (missing set to None)</li>
+<li>RFC-normalized state values (established, idle, etc.)</li>
+<li>Per-AFI prefix counts (ipv4Unicast_prefixes_sent, etc.)</li>
+<li>Consistent field naming</li>
+</ul>
+<p>Example normalized output (YAML):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">afi</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv4_unicast</span><span class="w"></span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ceos-leaf-1 Ethernet1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">export_policies</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span><span class="w"></span>
+<span class="w">  </span><span class="nt">hold_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180</span><span class="w"></span>
+<span class="w">  </span><span class="nt">import_policies</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_received</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"></span>
+<span class="w">  </span><span class="nt">keepalive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_as</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;65001&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">local_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Ethernet2</span><span class="w"></span>
+<span class="w">  </span><span class="nt">max_ttl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">255</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default_10.0.0.1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">peer_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">peering_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external</span><span class="w"></span>
+<span class="w">  </span><span class="nt">prefix_list_in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">prefix_list_out</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">remote_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.0.0.1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">remote_as</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;65101&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">router_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.11</span><span class="w"></span>
+<span class="w">  </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">established</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uptime_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8791</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;interfaces&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;arista_eos_bgp_neighbors&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
-This template produces one dictionary item per ip address configured on device&#39;s interfaces including secondary and VRRP IPs. Output is a list of dictionaries.
+Normalizes Arista EOS BGP neighbors JSON to flat list format.
 
-Sample data:
-&#39;&#39;&#39;
-r1#show run | sec interface
-interface GigabitEthernet1
- vrf forwarding MGMT
- ip address 10.223.89.55 255.255.255.0
- negotiation auto
- no mop enabled
-interface GigabitEthernet1
- vrf forwarding MGMT
- ip address 10.223.89.56 255.255.255.0
- negotiation auto
- no mop enabled
- no mop sysid
-&#39;&#39;&#39;
+Transforms nested vrfs-peerList structure into standardized dictionaries with:
 
-Sample results, structure=&quot;flat_list&quot;:
-&#39;&#39;&#39;
-[
-    {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;r1&quot;,
-        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
-        &quot;ip&quot;: &quot;10.223.89.55&quot;,
-        &quot;mask&quot;: &quot;255.255.255.0&quot;,
-        &quot;vrf&quot;: &quot;MGMT&quot;
-    },
-    {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;r1&quot;,
-        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
-        &quot;ip&quot;: &quot;10.223.89.56&quot;,
-        &quot;mask&quot;: &quot;255.255.255.0&quot;,
-        &quot;vrf&quot;: &quot;MGMT&quot;
-    }
-]
-&#39;&#39;&#39;
+- All fields present (missing set to None)
+- RFC-normalized state values (established, idle, etc.)
+- Per-AFI prefix counts (ipv4Unicast_prefixes_sent, etc.)
+- Consistent field naming
 
-How to use::
+Example normalized output (YAML):
+
+&#39;&#39;&#39;yaml
+- afi:
+  - ipv4_unicast
+  description: ceos-leaf-1 Ethernet1
+  export_policies: ALLOW-ALL
+  hold_time: 180
+  import_policies: ALLOW-ALL
+  ipv4_unicast_prefixes_received: 2
+  ipv4_unicast_prefixes_sent: 3
+  keepalive: 60
+  local_address: 10.0.0.0
+  local_as: &#39;65001&#39;
+  local_interface: Ethernet2
+  max_ttl: 255
+  name: default_10.0.0.1
+  peer_group: null
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: 10.0.0.1
+  remote_as: &#39;65101&#39;
+  router_id: 10.10.10.11
+  state: established
+  uptime_seconds: 8791
+  vrf: default
 &#39;&#39;&#39;
-    from ttp import ttp
-    from ttp_templates import get_template
-    from pprint import pprint
-
-    data = &quot;text output from device&quot;
-
-    parser = ttp(
-        template=get_template(misc=&quot;ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt&quot;)
-    )
-    parser.add_input(data, template_name=&quot;interfaces&quot;)
-    parser.parse()
-    pprint(parser.result())
-&#39;&#39;&#39; 
 &lt;/doc&gt;
+
+&lt;macro&gt;
+def transform_bgp_neighbors_to_records(json_data):
+    from ttp_templates.utils.arista_eos_process_show_bgp_neighbors_vrf_all_pipe_json import transform_bgp_neighbors
+
+    return transform_bgp_neighbors(json_data)
+&lt;/macro&gt;
 
 &lt;input&gt;
 commands = [
-    &quot;show run | sec interface&quot;
+    &quot;show ip bgp neighbors vrf all | json&quot;
+]
+platform = [
+    &quot;arista_eos&quot;, # scrapli and netmiko
+    &quot;eos&quot;, # NAPALM
 ]
 &lt;/input&gt;
 
-&lt;vars&gt;
-hostname=&quot;gethostname&quot;
-
-record_all = [
-    &quot;record(interface)&quot;,
-    &quot;record(description)&quot;,
-    &quot;record(vrf)&quot;,
-    &quot;void()&quot;
-]
-
-set_all = [
-    &quot;set(interface)&quot;,
-    &quot;set(description)&quot;,
-    &quot;set(vrf)&quot;,
-    &quot;set(hostname)&quot;
-]
-&lt;/vars&gt;
-
-&lt;group name=&quot;intf_cfg&quot; chain=&quot;record_all&quot;&gt;
-interface {{ interface }}
- description {{ description | ORPHRASE }}
- vrf forwarding {{ vrf }}
- &lt;group name=&quot;/&quot; chain=&quot;set_all&quot; method=&quot;table&quot;&gt;
- ip address {{ ip }} {{ mask }}
- ip address {{ ip | let(&quot;secondary&quot;, True) }} {{ mask }} secondary
- vrrp 1 ip {{ ip | let(&quot;vrrp vip&quot;, True) }}
- vrrp 1 ip {{ ip | let(&quot;vrrp vip&quot;, True) | let(&quot;secondary&quot;, True) }} secondary
- &lt;/group&gt;
+&lt;group&gt;
+{ {{ _start_ }}
+{{ data | _line_ | joinmatches }}
+} {{ _end_ }}
 &lt;/group&gt;
+
+&lt;output macro=&quot;transform_bgp_neighbors_to_records&quot;/&gt;
+
 &lt;/template&gt;
 </code></pre></div>
 </details>
@@ -1803,7 +1758,7 @@ interface {{ interface }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.Netmiko.huawei.vrp.cfg.ip/" class="md-footer__link md-footer__link--prev" aria-label="Previous: huawei.vrp.cfg.ip" rel="prev">
+        <a href="../platform.arista_eos_show_inventory_pipe_json/" class="md-footer__link md-footer__link--prev" aria-label="Previous: arista_eos_show_inventory_pipe_json" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1812,20 +1767,20 @@ interface {{ interface }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              huawei.vrp.cfg.ip
+              arista_eos_show_inventory_pipe_json
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.ttp_templates_tests.netmiko_cisco_ios_interfaces/" class="md-footer__link md-footer__link--next" aria-label="Next: netmiko_cisco_ios_interfaces" rel="next">
+        <a href="../platform.arista_eos_show_lldp_neighbors_detail_pipe_json/" class="md-footer__link md-footer__link--next" aria-label="Next: arista_eos_show_lldp_neighbors_detail_pipe_json" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              netmiko_cisco_ios_interfaces
+              arista_eos_show_lldp_neighbors_detail_pipe_json
             </div>
           </div>
           <div class="md-footer__button md-icon">

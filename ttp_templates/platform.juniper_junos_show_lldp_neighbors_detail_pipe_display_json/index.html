@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cisco_ios_interfaces_cfg_per_ip - TTP Templates Collection</title>
+        <title>juniper_junos_show_lldp_neighbors_detail_pipe_display_json - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cisco_ios_interfaces_cfg_per_ip
+              juniper_junos_show_lldp_neighbors_detail_pipe_display_json
             
           </span>
         </div>
@@ -429,14 +429,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
       
       <label class="md-nav__link" for="__nav_6_1">
         Misc
@@ -977,14 +975,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_4" type="checkbox" id="__nav_6_1_4" >
       
       <label class="md-nav__link" for="__nav_6_1_4">
         ttp_templates_tests
@@ -1000,19 +996,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip/" class="md-nav__link">
         cisco_ios_interfaces_cfg_per_ip
       </a>
-      
     </li>
   
 
@@ -1044,12 +1032,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
       
       <label class="md-nav__link" for="__nav_6_2">
         Platform
@@ -1401,11 +1391,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
       </a>
+      
     </li>
   
 
@@ -1620,162 +1618,83 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.ttp_templates_tests.cisco_ios_interfaces_cfg_per_ip.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cisco_ios_interfaces_cfg_per_ip</h1>
+                  <h1>juniper_junos_show_lldp_neighbors_detail_pipe_display_json</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/juniper_junos_show_lldp_neighbors_detail_pipe_display_json.txt
 </code></pre></div></p>
 <hr />
-<p>This template produces one dictionary item per ip address configured on device's interfaces including secondary and VRRP IPs. Output is a list of dictionaries.</p>
-<p>Sample data:
-<div class="highlight"><pre><span></span><code>r1#show run | sec interface
-interface GigabitEthernet1
- vrf forwarding MGMT
- ip address 10.223.89.55 255.255.255.0
- negotiation auto
- no mop enabled
-interface GigabitEthernet1
- vrf forwarding MGMT
- ip address 10.223.89.56 255.255.255.0
- negotiation auto
- no mop enabled
- no mop sysid
-</code></pre></div></p>
-<p>Sample results, structure="flat_list":
-<div class="highlight"><pre><span></span><code>[
-    {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;r1&quot;,
-        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
-        &quot;ip&quot;: &quot;10.223.89.55&quot;,
-        &quot;mask&quot;: &quot;255.255.255.0&quot;,
-        &quot;vrf&quot;: &quot;MGMT&quot;
-    },
-    {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;r1&quot;,
-        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
-        &quot;ip&quot;: &quot;10.223.89.56&quot;,
-        &quot;mask&quot;: &quot;255.255.255.0&quot;,
-        &quot;vrf&quot;: &quot;MGMT&quot;
-    }
-]
-</code></pre></div></p>
-<p>How to use::
-<div class="highlight"><pre><span></span><code>    from ttp import ttp
-    from ttp_templates import get_template
-    from pprint import pprint
-
-    data = &quot;text output from device&quot;
-
-    parser = ttp(
-        template=get_template(misc=&quot;ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt&quot;)
-    )
-    parser.add_input(data, template_name=&quot;interfaces&quot;)
-    parser.parse()
-    pprint(parser.result())
-</code></pre></div></p>
+<p>Normalizes Juniper JunOS LLDP neighbors JSON to flat list format.</p>
+<p>Transforms the nested lldp-neighbors-information/lldp-neighbor-information structure
+returned by 'show lldp neighbors detail | display json' into standardized dictionaries with:</p>
+<ul>
+<li>One record per (local_interface, remote_neighbor) pair</li>
+<li>Consistent field naming matching the Arista EOS LLDP neighbor output format</li>
+</ul>
+<p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
+<ul>
+<li><code>interface</code> - local interface on which the LLDP neighbor was discovered</li>
+<li><code>remote_device</code> - system name of the remote LLDP neighbor</li>
+<li><code>remote_interface</code> - port ID of the remote neighbor interface</li>
+<li><code>remote_system_description</code> - system description string advertised by the remote neighbor</li>
+<li><code>remote_chassi_id</code> - chassis ID of the remote neighbor</li>
+<li><code>remote_interface_description</code> - port description advertised by the remote neighbor interface, or <code>null</code> if none</li>
+<li><code>remote_device_management_ip</code> - first management IP address advertised by the remote neighbor, or <code>null</code> if none</li>
+</ul>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;interfaces&quot; results=&quot;per_template&quot;&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;juniper_junos_lldp_neighbors&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
-This template produces one dictionary item per ip address configured on device&#39;s interfaces including secondary and VRRP IPs. Output is a list of dictionaries.
+Normalizes Juniper JunOS LLDP neighbors JSON to flat list format.
 
-Sample data:
-&#39;&#39;&#39;
-r1#show run | sec interface
-interface GigabitEthernet1
- vrf forwarding MGMT
- ip address 10.223.89.55 255.255.255.0
- negotiation auto
- no mop enabled
-interface GigabitEthernet1
- vrf forwarding MGMT
- ip address 10.223.89.56 255.255.255.0
- negotiation auto
- no mop enabled
- no mop sysid
-&#39;&#39;&#39;
+Transforms the nested lldp-neighbors-information/lldp-neighbor-information structure
+returned by &#39;show lldp neighbors detail | display json&#39; into standardized dictionaries with:
 
-Sample results, structure=&quot;flat_list&quot;:
-&#39;&#39;&#39;
-[
-    {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;r1&quot;,
-        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
-        &quot;ip&quot;: &quot;10.223.89.55&quot;,
-        &quot;mask&quot;: &quot;255.255.255.0&quot;,
-        &quot;vrf&quot;: &quot;MGMT&quot;
-    },
-    {
-        &quot;description&quot;: &quot;description&quot;,
-        &quot;hostname&quot;: &quot;r1&quot;,
-        &quot;interface&quot;: &quot;GigabitEthernet1&quot;,
-        &quot;ip&quot;: &quot;10.223.89.56&quot;,
-        &quot;mask&quot;: &quot;255.255.255.0&quot;,
-        &quot;vrf&quot;: &quot;MGMT&quot;
-    }
-]
-&#39;&#39;&#39;
+- One record per (local_interface, remote_neighbor) pair
+- Consistent field naming matching the Arista EOS LLDP neighbor output format
 
-How to use::
-&#39;&#39;&#39;
-    from ttp import ttp
-    from ttp_templates import get_template
-    from pprint import pprint
+Returns normalized list of dictionaries, each dictionary has these keys:
 
-    data = &quot;text output from device&quot;
+- &#39;interface&#39; - local interface on which the LLDP neighbor was discovered
+- &#39;remote_device&#39; - system name of the remote LLDP neighbor
+- &#39;remote_interface&#39; - port ID of the remote neighbor interface
+- &#39;remote_system_description&#39; - system description string advertised by the remote neighbor
+- &#39;remote_chassi_id&#39; - chassis ID of the remote neighbor
+- &#39;remote_interface_description&#39; - port description advertised by the remote neighbor interface, or &#39;null&#39; if none
+- &#39;remote_device_management_ip&#39; - first management IP address advertised by the remote neighbor, or &#39;null&#39; if none
 
-    parser = ttp(
-        template=get_template(misc=&quot;ttp_templates_tests/cisco_ios_interfaces_cfg_per_ip.txt&quot;)
-    )
-    parser.add_input(data, template_name=&quot;interfaces&quot;)
-    parser.parse()
-    pprint(parser.result())
-&#39;&#39;&#39; 
 &lt;/doc&gt;
+
+&lt;macro&gt;
+def transform_lldp_neighbors_to_records(json_data):
+    from ttp_templates.utils.juniper_junos_process_show_lldp_neighbors_detail_pipe_display_json import transform_lldp_neighbors
+
+    return transform_lldp_neighbors(json_data)
+&lt;/macro&gt;
 
 &lt;input&gt;
 commands = [
-    &quot;show run | sec interface&quot;
+    &quot;show lldp neighbors detail | display json&quot;
+]
+platform = [
+    &quot;juniper_junos&quot;, # scrapli and netmiko
+    &quot;junos&quot;, # NAPALM
 ]
 &lt;/input&gt;
 
-&lt;vars&gt;
-hostname=&quot;gethostname&quot;
-
-record_all = [
-    &quot;record(interface)&quot;,
-    &quot;record(description)&quot;,
-    &quot;record(vrf)&quot;,
-    &quot;void()&quot;
-]
-
-set_all = [
-    &quot;set(interface)&quot;,
-    &quot;set(description)&quot;,
-    &quot;set(vrf)&quot;,
-    &quot;set(hostname)&quot;
-]
-&lt;/vars&gt;
-
-&lt;group name=&quot;intf_cfg&quot; chain=&quot;record_all&quot;&gt;
-interface {{ interface }}
- description {{ description | ORPHRASE }}
- vrf forwarding {{ vrf }}
- &lt;group name=&quot;/&quot; chain=&quot;set_all&quot; method=&quot;table&quot;&gt;
- ip address {{ ip }} {{ mask }}
- ip address {{ ip | let(&quot;secondary&quot;, True) }} {{ mask }} secondary
- vrrp 1 ip {{ ip | let(&quot;vrrp vip&quot;, True) }}
- vrrp 1 ip {{ ip | let(&quot;vrrp vip&quot;, True) | let(&quot;secondary&quot;, True) }} secondary
- &lt;/group&gt;
+&lt;group&gt;
+{ {{ _start_ }}
+{{ data | _line_ | joinmatches }}
+} {{ _end_ }}
 &lt;/group&gt;
+
+&lt;output macro=&quot;transform_lldp_neighbors_to_records&quot;/&gt;
+
 &lt;/template&gt;
 </code></pre></div>
 </details>
@@ -1803,7 +1722,7 @@ interface {{ interface }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.Netmiko.huawei.vrp.cfg.ip/" class="md-footer__link md-footer__link--prev" aria-label="Previous: huawei.vrp.cfg.ip" rel="prev">
+        <a href="../platform.juniper_junos_show_isis_database_verbose_pipe_no_more/" class="md-footer__link md-footer__link--prev" aria-label="Previous: juniper_junos_show_isis_database_verbose_pipe_no_more" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1812,20 +1731,20 @@ interface {{ interface }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              huawei.vrp.cfg.ip
+              juniper_junos_show_isis_database_verbose_pipe_no_more
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.ttp_templates_tests.netmiko_cisco_ios_interfaces/" class="md-footer__link md-footer__link--next" aria-label="Next: netmiko_cisco_ios_interfaces" rel="next">
+        <a href="../platform.test_platform_show_run_pipe_sec_interface/" class="md-footer__link md-footer__link--next" aria-label="Next: test_platform_show_run_pipe_sec_interface" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              netmiko_cisco_ios_interfaces
+              test_platform_show_run_pipe_sec_interface
             </div>
           </div>
           <div class="md-footer__button md-icon">
