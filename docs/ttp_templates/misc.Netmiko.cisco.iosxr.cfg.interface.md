@@ -7,12 +7,65 @@ ttp://misc/Netmiko/cisco.iosxr.cfg.interface.txt
 
 
 
-Template to parse "show running-config interface" output for Cisco IOSXR.
+Template to parse Cisco IOS-XR interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
 
+This template requires output of 'show running-config interface'.
 
-Template to produce list of dictionaries with interface 
-configuration details using Cisco IOS-XR "show run interface"
-command output.
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to `null` / `None`):
+
+- `name`: interface name string (e.g. GigabitEthernet0/0/0/0, Bundle-Ether1)
+- `type`: ``other`` by default; ``bridge`` if "bvi" in name;
+    ``lag`` if "bundle" in name; ``virtual`` if "loopback" or "tunnel" in name
+    or if the interface name contains a dot (`.`)
+- `enabled`: boolean; interfaces are `True` by default unless explicitly
+    shutdown in the config
+- `parent`: parent interface name or `null` (if the interface name contains
+    a dot the parent is the part before the dot)
+- `lag_id`: lag identifier integer (bundle id number) or `null`
+- `lag_type`: ``lag`` for bundle-ether port channels or `null`
+- `lacp_mode`: LACP mode string (e.g. ``active``, ``passive``) or `null`
+- `lag`: Name of parent LAG interface e.g. `Bundle-Ether1` or `null`
+- `mtu`: integer MTU or `null`
+- `mac_address`: string MAC address in EUI format or `null`
+- `speed`: integer speed in kbit/s or `null`
+- `duplex`: string duplex setting or `null`
+- `description`: string (empty string when not set)
+- `mode`: ``tagged`` when `encapsulation dot1q` is present; ``access`` for BVI interfaces; `null` otherwise
+- `untagged_vlan`: integer VLAN derived from BVI interface name (e.g. BVI100 → 100) or `null`
+- `tagged_vlans`: list with the dot1q VLAN integer when `encapsulation dot1q` is present; empty list otherwise
+- `qinq_svlan`: always `null`
+- `vrf`: string or `null`
+- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/30)
+- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+```yaml
+- description: Router ID
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 10.0.0.1/32
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: Loopback0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null
+```
+
 
 
 

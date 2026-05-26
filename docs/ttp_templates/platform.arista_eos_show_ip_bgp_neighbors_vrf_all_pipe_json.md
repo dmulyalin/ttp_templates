@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://platform/arista_eos_show_bgp_neighbors_vrf_all_pipe_json.txt
+ttp://platform/arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.txt
 ```
 
 ---
@@ -101,7 +101,7 @@ def transform_bgp_neighbors_to_records(json_data):
 
 <input>
 commands = [
-    "show bgp neighbors vrf all | json"
+    "show ip bgp neighbors vrf all | json"
 ]
 platform = [
     "arista_eos", # scrapli and netmiko

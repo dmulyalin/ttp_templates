@@ -23,9 +23,10 @@ contains the following keys (missing values are set to `null` / `None`):
     shutdown in the config
 - `parent`: parent interface name or `null` (if the interface name contains
     a dot the parent is the part before the dot)
-- `lag`: lag identifier integer (channel-group / mlag number) or `null`
+- `lag_id`: lag identifier integer (channel-group / mlag number) or `null`
 - `lag_type`: ``lag`` for standart port channels, ``mlag`` for mlag port channels, or `null`
 - `lacp_mode`: LACP mode string (e.g. ``active``, ``passive``) or `null`
+- `lag`: Name of parent LAG interface e.g. `Port-Channel1` or `null`
 - `mtu`: integer MTU or `null`
 - `mac_address`: string in MAC EUI format or `null`
 - `speed`: integer or `null`
@@ -88,9 +89,10 @@ contains the following keys (missing values are set to 'null' / 'None'):
     shutdown in the config
 - 'parent': parent interface name or 'null' (if the interface name contains
     a dot the parent is the part before the dot)
-- 'lag': lag identifier integer (channel-group / mlag number) or 'null'
+- 'lag_id': lag identifier integer (channel-group / mlag number) or 'null'
 - 'lag_type': ''lag'' for standart port channels, ''mlag'' for mlag port channels, or 'null'
 - 'lacp_mode': LACP mode string (e.g. ''active'', ''passive'') or 'null'
+- 'lag': Name of parent LAG interface e.g. 'Port-Channel1' or 'null'
 - 'mtu': integer MTU or 'null'
 - 'mac_address': string in MAC EUI format or 'null'
 - 'speed': integer or 'null'
@@ -154,23 +156,25 @@ interface {{ name | _start_ }}
    no switchport {{ is_l3_interface | set(True) }}
    vrf {{ vrf }}
    shutdown {{ enabled | set(False) | default(True) }}
-   speed forced {{ speed | to_int }}
+   speed forced {{ speed }}
+   speed {{ speed }}
    mlag {{ lag_id | to_int | let("lag_type", "mlag") }}
    channel-group {{ lag_id | to_int | let("lag_type", "lag") }} mode {{ lacp_mode }}
    switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
    switchport mode trunk {{ mode | set("tagged") }}
    switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}
    mac-address {{ mac_address | mac_eui }}
+   duplex {{ duplex }}
 
    <group name="ipv4_addresses*" method="table">
    ip address {{ ip | IP }}/{{ mask }}
    ip address {{ ip | IP }}/{{ mask }} secondary
-   ipv4 address {{ ip | IP }}/{{ mask}}
-   ipv4 address {{ ip | IP }}/{{ mask}} secondary
+   ipv4 address {{ ip | IP }}/{{ mask }}
+   ipv4 address {{ ip | IP }}/{{ mask }} secondary
    </group>
 
    <group name="ipv6_addresses*" method="table">
-   ipv6 address {{ ip | IPV6 }}/{{ mask}}
+   ipv6 address {{ ip | IPV6 }}/{{ mask }}
    </group>
 
 !{{ _end_ }}

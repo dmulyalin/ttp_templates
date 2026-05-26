@@ -1,0 +1,82 @@
+Reference path:
+```
+ttp://platform/arista_eos_show_lldp_neighbors_detail_pipe_json.txt
+```
+
+---
+
+
+
+Normalizes Arista EOS LLDP neighbors JSON to flat list format.
+
+Transforms nested lldpNeighbors structure into standardized dictionaries with:
+
+- One record per (local_interface, remote_neighbor) pair
+- Consistent field naming
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `interface` - local interface on which the LLDP neighbor was discovered
+- `remote_device` - system name of the remote LLDP neighbor
+- `remote_interface` - port ID of the remote neighbor interface
+- `remote_system_description` - system description string advertised by the remote neighbor
+- `remote_chassi_id` - chassis ID of the remote neighbor
+- `remote_interface_description` - port description advertised by the remote neighbor interface, or `null` if none
+- `remote_device_management_ip` - first management IP address advertised by the remote neighbor, or `null` if none
+
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="arista_eos_lldp_neighbors" results="per_template">
+<doc>
+Normalizes Arista EOS LLDP neighbors JSON to flat list format.
+
+Transforms nested lldpNeighbors structure into standardized dictionaries with:
+
+- One record per (local_interface, remote_neighbor) pair
+- Consistent field naming
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- 'interface' - local interface on which the LLDP neighbor was discovered
+- 'remote_device' - system name of the remote LLDP neighbor
+- 'remote_interface' - port ID of the remote neighbor interface
+- 'remote_system_description' - system description string advertised by the remote neighbor
+- 'remote_chassi_id' - chassis ID of the remote neighbor
+- 'remote_interface_description' - port description advertised by the remote neighbor interface, or 'null' if none
+- 'remote_device_management_ip' - first management IP address advertised by the remote neighbor, or 'null' if none
+
+</doc>
+
+<macro>
+def transform_lldp_neighbors_to_records(json_data):
+    from ttp_templates.utils.arista_eos_process_show_lldp_neighbors_detail_pipe_json import transform_lldp_neighbors
+
+    return transform_lldp_neighbors(json_data)
+</macro>
+
+<input>
+commands = [
+    "show lldp neighbors detail | json"
+]
+platform = [
+    "arista_eos", # scrapli and netmiko
+    "eos", # NAPALM
+]
+</input>
+
+<group>
+{ {{ _start_ }}
+{{ data | _line_ | joinmatches }}
+} {{ _end_ }}
+</group>
+
+<output macro="transform_lldp_neighbors_to_records"/>
+
+</template>
+```
+</details>

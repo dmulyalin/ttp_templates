@@ -100,7 +100,7 @@ for dirpath, dirnames, filenames in os.walk(top="ttp_templates"):
             docs_filename = ".".join(splitted_path[1:]) + "." + filename.replace(".txt", ".md")
             
             # save md file
-            with open(os.path.join("docs", "ttp_templates", docs_filename), "w") as f:
+            with open(os.path.join("docs", "ttp_templates", docs_filename), "w", encoding="utf-8") as f:
                 f.write(doc_string)
                     
             # form nav section of mkdocs.yaml

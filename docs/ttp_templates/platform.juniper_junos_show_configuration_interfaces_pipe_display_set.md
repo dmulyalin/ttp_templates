@@ -1,0 +1,202 @@
+Reference path:
+```
+ttp://platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt
+```
+
+---
+
+
+
+Template to parse Juniper JunOS interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
+
+This template requires output of 'show configuration interfaces | display set'.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to `null` / `None`):
+
+- `name`: interface name string (e.g. xe-0/0/0, xe-0/0/0.100, ae0, lo0.0)
+- `type`: ``other`` by default; ``bridge`` if name starts with "irb";
+    ``lag`` if name starts with "ae" and has no dot; ``virtual`` if name has
+    a dot (sub-interface/unit) or starts with a loopback/tunnel prefix
+- `enabled`: boolean; interfaces are `True` by default unless explicitly
+    disabled in the config
+- `parent`: parent interface name or `null` (if the interface name contains
+    a dot the parent is the part before the dot)
+- `lag_id`: lag identifier integer (ae group number) or `null`
+- `lag_type`: ``lag`` when interface is a member of an aggregated ethernet
+    group, or `null`
+- `lacp_mode`: LACP mode string on AE interface (e.g. ``active``, ``passive``)
+    or `null`
+- `lag`: Name of parent LAG interface e.g. `ae0` or `null`
+- `mtu`: integer MTU or `null`
+- `mac_address`: MAC address string of the unit or `null`
+- `speed`: integer in kbit/s or `null`
+- `duplex`: always `null` (not exposed in display set format)
+- `description`: string (empty string when not set)
+- `mode`: 'tagged' / 'access' or `null`
+- `untagged_vlan`: integer or `null`
+- `tagged_vlans`: list of integers (empty list when none)
+- `qinq_svlan`: always `null`
+- `vrf`: always `null` (routing-instance assignment not captured here)
+- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
+- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+```yaml
+- description: P2P to PE1
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: ae0
+  lag_id: 0
+  lag_type: lag
+  mac_address: null
+  mode: null
+  mtu: 9192
+  name: xe-0/0/0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
+```
+
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="juniper_junos_interface_config" results="per_template">
+<doc>
+Template to parse Juniper JunOS interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
+
+This template requires output of 'show configuration interfaces | display set'.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to 'null' / 'None'):
+
+- 'name': interface name string (e.g. xe-0/0/0, xe-0/0/0.100, ae0, lo0.0)
+- 'type': ''other'' by default; ''bridge'' if name starts with "irb";
+    ''lag'' if name starts with "ae" and has no dot; ''virtual'' if name has
+    a dot (sub-interface/unit) or starts with a loopback/tunnel prefix
+- 'enabled': boolean; interfaces are 'True' by default unless explicitly
+    disabled in the config
+- 'parent': parent interface name or 'null' (if the interface name contains
+    a dot the parent is the part before the dot)
+- 'lag_id': lag identifier integer (ae group number) or 'null'
+- 'lag_type': ''lag'' when interface is a member of an aggregated ethernet
+    group, or 'null'
+- 'lacp_mode': LACP mode string on AE interface (e.g. ''active'', ''passive'')
+    or 'null'
+- 'lag': Name of parent LAG interface e.g. 'ae0' or 'null'
+- 'mtu': integer MTU or 'null'
+- 'mac_address': MAC address string of the unit or 'null'
+- 'speed': integer in kbit/s or 'null'
+- 'duplex': always 'null' (not exposed in display set format)
+- 'description': string (empty string when not set)
+- 'mode': 'tagged' / 'access' or 'null'
+- 'untagged_vlan': integer or 'null'
+- 'tagged_vlans': list of integers (empty list when none)
+- 'qinq_svlan': always 'null'
+- 'vrf': always 'null' (routing-instance assignment not captured here)
+- 'ipv4_addresses': list of strings with IP/prefix (e.g. 10.0.0.1/24)
+- 'ipv6_addresses': list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+'''yaml
+- description: P2P to PE1
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: ae0
+  lag_id: 0
+  lag_type: lag
+  mac_address: null
+  mode: null
+  mtu: 9192
+  name: xe-0/0/0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
+'''
+
+</doc>
+
+<input>
+commands = [
+    "show configuration interfaces | display set",
+    "show configuration routing-instances | display set | match interface"
+]
+platform = [
+    "juniper_junos",  # scrapli and netmiko
+    "junos",          # NAPALM
+]
+</input>
+
+<macro>
+def transform_interfaces_to_records(data):
+    from ttp_templates.utils.juniper_junos_process_show_configuration_interfaces_pipe_display_set import transform_interfaces_config
+
+    return transform_interfaces_config(data)
+</macro>
+
+<group name="interfaces**.{{ name }}**" method="table">
+set interfaces {{ name }} description "{{ description | re(".+") }}"
+set interfaces {{ name }} mtu {{ mtu | to_int }}
+set interfaces {{ name | let("enabled", False) }} disable
+set interfaces {{ name }} gigether-options 802.3ad {{ lag_id | let("lag_type", "lag") }}
+set interfaces {{ name }} ether-options 802.3ad {{ lag_id | let("lag_type", "lag") }}
+set interfaces {{ name }} aggregated-ether-options lacp {{ lacp_mode }}
+set interfaces {{ name }} aggregated-ether-options minimum-links {{ lag_min_links | to_int }}
+set interfaces {{ name }} speed {{ speed }}
+set interfaces {{ name }} native-vlan-id {{ untagged_vlan | to_int }}
+</group>
+
+<group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
+set interfaces {{ name }} unit {{ unit }} description "{{ description | re(".+") | default("") }}"
+set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q | to_int }}
+set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
+</group>
+
+<group name="interfaces**.{{ name }}**.ipv4*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
+</group>
+
+<group name="interfaces**.{{ name }}**.ipv6*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
+set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }}
+</group>
+
+<group name="interfaces**.{{ name }}**.switching**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching interface-mode {{ dot1q_mode }}
+</group>
+
+<group name="interfaces**.{{ name }}**.switching**.vlans*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching vlan members {{ vlan }}
+</group>
+
+<group name="vrf**.{{ vrf }}**.interfaces*" method="table" itemize="interface">
+set routing-instances {{ vrf }} interface {{ interface }}
+</group>
+
+<output macro="transform_interfaces_to_records"/>
+
+</template>
+
+```
+</details>

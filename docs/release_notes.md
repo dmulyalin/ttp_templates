@@ -1,5 +1,13 @@
 # Release Notes
 
+## 0.5.7
+
+### BUGS
+
+1. Fixing `cisco_xr_show_bgp_neighbors.txt` template dynamic BGP peers ASN parsing
+
+---
+
 ## 0.5.6
 
 ### CHANGES

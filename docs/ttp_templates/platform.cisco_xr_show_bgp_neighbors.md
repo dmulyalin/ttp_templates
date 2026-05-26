@@ -113,8 +113,10 @@ platform = [
 </input>
 
 <group name="neighbors*">
-BGP neighbor is {{ remote_address }}
+BGP neighbor is {{ remote_address | _start_ }}
+BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}
  Remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ peering_type }} link
+ Remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ peering_type }} link, Dynamic
  Description: {{ description | ORPHRASE }}
  Remote router ID {{ router_id }}
   BGP state = {{ bgp_state | ORPHRASE }}
@@ -128,7 +130,8 @@ BGP neighbor is {{ remote_address }}
   Policy for outgoing advertisements is {{ export_policy | ORPHRASE }}
   </group>
 
-  Local host: {{ local_address }}, Local port: {{ _ }}
+  Local host: {{ local_address }}, Local port: {{ ignore }}
+  Local host: {{ local_address }}, Local port: {{ ignore }}, IF Handle: {{ ignore }}
 </group>
 
 <output macro="transform"/>
