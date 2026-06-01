@@ -178,7 +178,7 @@
   mode: null
   mtu: null
   name: lo0.0
-  parent: lo0
+  parent: null
   qinq_svlan: null
   speed: null
   tagged_vlans: []
@@ -199,7 +199,7 @@
   mode: access
   mtu: null
   name: irb.10
-  parent: irb
+  parent: null
   qinq_svlan: null
   speed: null
   tagged_vlans: []

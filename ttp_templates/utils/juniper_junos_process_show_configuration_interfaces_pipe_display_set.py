@@ -97,7 +97,10 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         else:
             interface_type = "other"
 
-        parent = name.split(".")[0] if "." in name else None
+        # extract interface parent except for irb and lo0 interfaces
+        parent = None
+        if "." in name and not any(name.startswith(k) for k in ["irb.", "lo0."]):
+            parent = name.split(".")[0]
 
         speed_raw = data.get("speed")
         speed = _SPEED_MAP.get(speed_raw.lower() if speed_raw else "", None)
@@ -117,7 +120,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
 
         # IRB units: untagged VLAN derived from the unit number (e.g. irb.10 → 10)
         if interface_type == "bridge":
-            untagged_vlan = int(name.split(".")[1])
+            untagged_vlan = int(name.split(".")[1]) if "." in name else None
             mode = "access"
 
         # L3 sub-interface with explicit vlan-id tag

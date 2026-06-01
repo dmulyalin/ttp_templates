@@ -5,6 +5,9 @@
 ### BUGS
 
 1. Fixing `cisco_xr_show_bgp_neighbors.txt` template dynamic BGP peers ASN parsing
+2. Fixing `juniper_junos_process_show_configuration_interfaces_pipe_display_set` extraction of ips for interfaces with virtual gateways
+3. Fixing `juniper_junos_process_show_configuration_interfaces_pipe_display_set` parent assignment logic - skip it for irb and lo0 interfaces
+4. Fixing `juniper_junos_process_show_configuration_interfaces_pipe_display_set` to check if bridge port has sub-interface when trying to derive untagged vlan
 
 ---
 
