@@ -431,6 +431,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#057" class="md-nav__link">
+    0.5.7
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.7">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    BUGS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#056" class="md-nav__link">
     0.5.6
   </a>
@@ -486,7 +506,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bugs" class="md-nav__link">
+  <a href="#bugs_1" class="md-nav__link">
     BUGS
   </a>
   
@@ -600,7 +620,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bugs_1" class="md-nav__link">
+  <a href="#bugs_2" class="md-nav__link">
     Bugs
   </a>
   
@@ -674,7 +694,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bugs_2" class="md-nav__link">
+  <a href="#bugs_3" class="md-nav__link">
     Bugs
   </a>
   
@@ -728,7 +748,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bugs_3" class="md-nav__link">
+  <a href="#bugs_4" class="md-nav__link">
     Bugs
   </a>
   
@@ -2001,6 +2021,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#057" class="md-nav__link">
+    0.5.7
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.7">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bugs" class="md-nav__link">
+    BUGS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#056" class="md-nav__link">
     0.5.6
   </a>
@@ -2056,7 +2096,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bugs" class="md-nav__link">
+  <a href="#bugs_1" class="md-nav__link">
     BUGS
   </a>
   
@@ -2170,7 +2210,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bugs_1" class="md-nav__link">
+  <a href="#bugs_2" class="md-nav__link">
     Bugs
   </a>
   
@@ -2244,7 +2284,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bugs_2" class="md-nav__link">
+  <a href="#bugs_3" class="md-nav__link">
     Bugs
   </a>
   
@@ -2298,7 +2338,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bugs_3" class="md-nav__link">
+  <a href="#bugs_4" class="md-nav__link">
     Bugs
   </a>
   
@@ -2361,6 +2401,15 @@
                 
                 
                 <h1 id="release-notes">Release Notes<a class="headerlink" href="#release-notes" title="Permanent link">&para;</a></h1>
+<h2 id="057">0.5.7<a class="headerlink" href="#057" title="Permanent link">&para;</a></h2>
+<h3 id="bugs">BUGS<a class="headerlink" href="#bugs" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Fixing <code>cisco_xr_show_bgp_neighbors.txt</code> template dynamic BGP peers ASN parsing</li>
+<li>Fixing <code>juniper_junos_process_show_configuration_interfaces_pipe_display_set</code> extraction of ips for interfaces with virtual gateways</li>
+<li>Fixing <code>juniper_junos_process_show_configuration_interfaces_pipe_display_set</code> parent assignment logic - skip it for irb and lo0 interfaces</li>
+<li>Fixing <code>juniper_junos_process_show_configuration_interfaces_pipe_display_set</code> to check if bridge port has sub-interface when trying to derive untagged vlan</li>
+</ol>
+<hr />
 <h2 id="056">0.5.6<a class="headerlink" href="#056" title="Permanent link">&para;</a></h2>
 <h3 id="changes">CHANGES<a class="headerlink" href="#changes" title="Permanent link">&para;</a></h3>
 <ol>
@@ -2385,7 +2434,7 @@
 </ol>
 <hr />
 <h2 id="054">0.5.4<a class="headerlink" href="#054" title="Permanent link">&para;</a></h2>
-<h3 id="bugs">BUGS<a class="headerlink" href="#bugs" title="Permanent link">&para;</a></h3>
+<h3 id="bugs_1">BUGS<a class="headerlink" href="#bugs_1" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Fixing VRF handling for <code>platform/cisco_xr_show_bgp_neighbors.txt</code> template.</li>
 <li>Fixing BGP peer local ip handling for <code>platform/cisco_xr_show_bgp_neighbors.txt</code> template for newer IOS XR syntax</li>
@@ -2472,7 +2521,7 @@
 </ul>
 <hr />
 <h2 id="v040">v0.4.0<a class="headerlink" href="#v040" title="Permanent link">&para;</a></h2>
-<h3 id="bugs_1">Bugs<a class="headerlink" href="#bugs_1" title="Permanent link">&para;</a></h3>
+<h3 id="bugs_2">Bugs<a class="headerlink" href="#bugs_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Bug 1</strong> – <code>parse_output</code> now raises <code>ValueError</code> with a descriptive message
   when called without any valid template-locating argument (previously the
@@ -2524,7 +2573,7 @@
 <ul>
 <li>Added <code>list_templates</code> method to list available templates.</li>
 </ul>
-<h3 id="bugs_2">Bugs<a class="headerlink" href="#bugs_2" title="Permanent link">&para;</a></h3>
+<h3 id="bugs_3">Bugs<a class="headerlink" href="#bugs_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Fixed Cisco IOS <code>show running-configuration</code> to correct command: <code>show running-config</code>.</li>
 <li>Updated N2G IOS-XR <code>cli_ip_data</code> template to match <code>ipv4 address 1.1.1.1/32</code> style config.</li>
@@ -2553,7 +2602,7 @@
 </ul>
 <hr />
 <h2 id="v013">v0.1.3<a class="headerlink" href="#v013" title="Permanent link">&para;</a></h2>
-<h3 id="bugs_3">Bugs<a class="headerlink" href="#bugs_3" title="Permanent link">&para;</a></h3>
+<h3 id="bugs_4">Bugs<a class="headerlink" href="#bugs_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Fixed TTP Templates docs example path formation: the correct path is <code>ttp://misc/Netmiko/cisco.ios.arp.txt</code>, not <code>ttp://misc.Netmiko.cisco.ios.arp.txt</code>.</li>
 </ul>

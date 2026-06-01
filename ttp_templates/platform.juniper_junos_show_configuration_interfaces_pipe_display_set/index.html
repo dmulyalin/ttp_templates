@@ -1788,10 +1788,12 @@ set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 
 &lt;group name=&quot;interfaces**.{{ name }}**.ipv4*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ vip }}
 &lt;/group&gt;
 
 &lt;group name=&quot;interfaces**.{{ name }}**.ipv6*&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
 set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }}
+set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }} virtual-gateway-address {{ vip }}
 &lt;/group&gt;
 
 &lt;group name=&quot;interfaces**.{{ name }}**.switching**&quot; functions=&quot;sformat(&#39;{name}.{unit}&#39;, &#39;name&#39;) | del(&#39;unit&#39;)&quot; method=&quot;table&quot;&gt;
