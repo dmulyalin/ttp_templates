@@ -6,6 +6,7 @@ set interfaces xe-0/0/1 speed 1g
 set interfaces xe-0/0/1 unit 0 description "L3 to CE1"
 set interfaces xe-0/0/1 unit 0 family inet address 10.0.1.1/30
 set interfaces xe-0/0/1 unit 0 family inet6 address 2001:db8:1::1/64
+set interfaces xe-0/0/1 unit 1 family inet address 10.100.100.2/29 virtual-gateway-address 10.100.100.1
 set interfaces xe-0/0/2 description "Trunk to access switch"
 set interfaces xe-0/0/2 unit 0 family ethernet-switching interface-mode trunk
 set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members 100

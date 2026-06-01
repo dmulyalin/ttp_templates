@@ -100,10 +100,12 @@ set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 
 <group name="interfaces**.{{ name }}**.ipv4*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ vip }}
 </group>
 
 <group name="interfaces**.{{ name }}**.ipv6*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
 set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }}
+set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }} virtual-gateway-address {{ vip }}
 </group>
 
 <group name="interfaces**.{{ name }}**.switching**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">

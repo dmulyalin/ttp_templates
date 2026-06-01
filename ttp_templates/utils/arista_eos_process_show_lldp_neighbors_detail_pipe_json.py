@@ -17,9 +17,7 @@ def _first_mgmt_ip(management_addresses: list) -> Optional[str]:
     return None
 
 
-def _normalize_neighbor(
-    interface: str, neighbor: Dict[str, Any]
-) -> Dict[str, Any]:
+def _normalize_neighbor(interface: str, neighbor: Dict[str, Any]) -> Dict[str, Any]:
     neighbor_iface = neighbor.get("neighborInterfaceInfo") or {}
     mgmt_addresses = neighbor.get("managementAddresses") or []
 

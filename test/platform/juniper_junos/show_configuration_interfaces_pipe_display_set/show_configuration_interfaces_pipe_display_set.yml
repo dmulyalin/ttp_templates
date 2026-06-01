@@ -152,7 +152,7 @@
   lag_id: null
   lag_type: null
   mac_address: null
-  mode: "tagged"
+  mode: tagged
   mtu: null
   name: ae0.100
   parent: ae0
@@ -209,6 +209,28 @@
 - description: ''
   duplex: null
   enabled: true
+  ipv4_addresses:
+  - 10.100.100.2/29
+  - 10.100.100.1/29
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: xe-0/0/1.1
+  parent: xe-0/0/1
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: null
@@ -248,4 +270,3 @@
   type: virtual
   untagged_vlan: 50
   vrf: null
-

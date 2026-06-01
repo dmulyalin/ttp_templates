@@ -156,6 +156,20 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             for a in data.get("ipv6", [])
             if isinstance(a, dict) and a.get("ip") and a.get("mask")
         ]
+        ipv4_addresses.extend(
+            [
+                f"{a['vip']}/{a['mask']}"
+                for a in data.get("ipv4", [])
+                if isinstance(a, dict) and a.get("vip") and a.get("mask")
+            ]
+        )
+        ipv6_addresses.extend(
+            [
+                f"{a['vip']}/{a['mask']}"
+                for a in data.get("ipv6", [])
+                if isinstance(a, dict) and a.get("vip") and a.get("mask")
+            ]
+        )
 
         record = {
             "name": name,

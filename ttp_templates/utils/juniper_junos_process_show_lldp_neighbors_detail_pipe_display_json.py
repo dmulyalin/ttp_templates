@@ -32,8 +32,12 @@ def _normalize_neighbor(neighbor: Dict[str, Any]) -> Dict[str, Any]:
         "remote_interface": _get_data(neighbor, "lldp-remote-port-id"),
         "remote_system_description": _get_system_description(neighbor),
         "remote_chassi_id": _get_data(neighbor, "lldp-remote-chassis-id"),
-        "remote_interface_description": _get_data(neighbor, "lldp-remote-port-description"),
-        "remote_device_management_ip": _get_data(neighbor, "lldp-remote-management-address"),
+        "remote_interface_description": _get_data(
+            neighbor, "lldp-remote-port-description"
+        ),
+        "remote_device_management_ip": _get_data(
+            neighbor, "lldp-remote-management-address"
+        ),
     }
 
 
