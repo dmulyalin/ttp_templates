@@ -1,5 +1,14 @@
 # Release Notes
 
+## 0.5.8
+
+### BUGS
+
+1. Fixing `juniper_junos_process_show_configuration_interfaces_pipe_display_set` untagged_vlan vlan handling for juniper subinterfaces - set mode to access and populate untagged_vlan correctly
+2. Fixing `juniper_junos_process_show_configuration_interfaces_pipe_display_set` to not assing parent for any logical interface like `gr` or `lt` or `lo0`
+
+---
+
 ## 0.5.7
 
 ### BUGS

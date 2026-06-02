@@ -24,6 +24,10 @@ set interfaces ae0 unit 0 family inet address 192.168.0.1/30
 set interfaces ae0 unit 100 description "Customer A VLAN"
 set interfaces ae0 unit 100 vlan-id 100
 set interfaces ae0 unit 100 family inet address 10.100.0.1/30
+set interfaces ae1 unit 101 description "Customer A VLAN101"
+set interfaces ae1 unit 101 vlan-id 101
+set interfaces ae1 unit 101 family inet address 10.101.0.1/30
+set interfaces ae1 native-vlan-id 101
 set interfaces lo0 unit 0 description "Router ID"
 set interfaces lo0 unit 0 family inet address 10.0.0.1/32
 set interfaces lo0 unit 0 family inet6 address 2001:db8::1/128

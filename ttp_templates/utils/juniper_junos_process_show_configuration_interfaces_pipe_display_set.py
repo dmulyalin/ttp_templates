@@ -99,8 +99,15 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
 
         # extract interface parent except for irb and lo0 interfaces
         parent = None
-        if "." in name and not any(name.startswith(k) for k in ["irb.", "lo0."]):
+        parent_interface_data = {}
+        if (
+            "." in name
+            and not any(name.startswith(k) for k in ["irb.", "lo0."])
+            and not any(name.startswith(p) for p in _VIRTUAL_PREFIXES)
+        ):
             parent = name.split(".")[0]
+            # extract parent data, not always device config has configuration for parent though
+            parent_interface_data = raw.get(parent, {})
 
         speed_raw = data.get("speed")
         speed = _SPEED_MAP.get(speed_raw.lower() if speed_raw else "", None)
@@ -126,8 +133,13 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         # L3 sub-interface with explicit vlan-id tag
         dot1q = data.get("dot1q")
         if dot1q is not None:
-            tagged_vlans = [int(dot1q)]
-            mode = "tagged"
+            # handle case with natvie vlan id
+            if parent_interface_data.get("untagged_vlan") == dot1q:
+                untagged_vlan = parent_interface_data["untagged_vlan"]
+                mode = "access"
+            else:
+                tagged_vlans = [int(dot1q)]
+                mode = "tagged"
 
         # Ethernet-switching (L2) mode on units
         switching = data.get("switching")

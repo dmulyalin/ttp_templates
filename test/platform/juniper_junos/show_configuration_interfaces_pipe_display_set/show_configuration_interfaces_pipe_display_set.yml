@@ -98,6 +98,26 @@
   type: lag
   untagged_vlan: null
   vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: ae1
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: lag
+  untagged_vlan: null
+  vrf: null
 - description: L3 to CE1
   duplex: null
   enabled: true
@@ -163,6 +183,27 @@
   type: virtual
   untagged_vlan: null
   vrf: CUSTOMER_A
+- description: Customer A VLAN101
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 10.101.0.1/30
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: ae1.101
+  parent: ae1
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: 101
+  vrf: null
 - description: Router ID
   duplex: null
   enabled: true
