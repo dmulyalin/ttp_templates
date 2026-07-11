@@ -1,0 +1,34 @@
+<template name="a10_show_hardware" results="per_template">
+<doc>
+Template to parse A10 "show hardware" command output.
+
+Returns a list of dictionaries with:
+
+- `description` - hardware platform description
+- `module` - hardware model
+- `serial` - device serial number
+- `slot` - hardware slot name
+</doc>
+
+<input>
+commands = [
+    "show hardware"
+]
+platform = ["a10", "a10_ssh"]
+</input>
+
+<macro>
+def validate_inventory_records(data):
+    from ttp_templates.utils.a10_process_show_hardware import transform_inventory
+
+    return transform_inventory(data)
+</macro>
+
+<group>
+Thunder Series Unified Application Service Gateway {{ module | let("description", "Thunder Series Unified Application Service Gateway")}}
+{{ ignore("\s+") }}Serial No  : {{ serial | let("slot", "chassis") }}
+</group>
+
+<output macro="validate_inventory_records"/>
+
+</template>

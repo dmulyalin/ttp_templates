@@ -20,6 +20,9 @@ def test_get_inventory():
         TEST_DIR
         / "platform/cisco_nxos/show_inventory_pipe_json_pretty/show_inventory_pipe_json_pretty.txt"
     ).read_text(encoding="utf-8")
+    a10_data = (TEST_DIR / "platform/a10/show_hardware/show_hardware.txt").read_text(
+        encoding="utf-8"
+    )
 
     parser = ttp(template=template)
     template_inputs = parser.get_input_load()
@@ -29,6 +32,7 @@ def test_get_inventory():
     assert all(
         k in template_inputs for k in [
             "arista_eos_inventory",
+            "a10_show_hardware",
             "cisco_nxos_inventory",
             "cisco_xr_inventory",
             "juniper_junos_inventory",
@@ -37,6 +41,7 @@ def test_get_inventory():
 
     parser.add_input(template_name="cisco_xr_inventory", data=cisco_xr_data)
     parser.add_input(template_name="cisco_nxos_inventory", data=cisco_nxos_data)
+    parser.add_input(template_name="a10_show_hardware", data=a10_data)
     parser.parse()
     result = parser.result(structure="dictionary")
 
@@ -71,3 +76,11 @@ def test_get_inventory():
             "slot": "Power Supply 2",
         },
     ], "cisco_nxos_inventory parsing results are wrong"
+    assert result["a10_show_hardware"] == [
+        {
+            "description": "Thunder Series Unified Application Service Gateway",
+            "module": "TH1234",
+            "serial": "gfnggfndngdfgf",
+            "slot": "chassis",
+        }
+    ], "a10_show_hardware parsing results are wrong"

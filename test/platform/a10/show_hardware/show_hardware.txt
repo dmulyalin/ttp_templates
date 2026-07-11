@@ -1,0 +1,5 @@
+bla[2/1]#show hardware 
+Thunder Series Unified Application Service Gateway TH1234
+      Serial No  : gfnggfndngdfgf
+
+bla[2/1]#

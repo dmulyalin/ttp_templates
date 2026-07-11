@@ -9,6 +9,10 @@
    `show inventory | json-pretty` command output.
 2. Updated `ttp://get/inventory.txt` to use the Cisco NX-OS
    `show inventory | json-pretty` platform template.
+3. Added A10 hardware parsing support using
+   `ttp://platform/a10_show_hardware.txt` for `show hardware` command output.
+4. Updated `ttp://get/inventory.txt` to include A10 inventory parsing through
+   the `show hardware` platform template.
 
 ### CHANGES
 
@@ -31,6 +35,9 @@
 6. Added `ArpRecord` Pydantic model and updated Cisco IOS and Cisco IOS-XR ARP
    platform templates to validate parsed ARP entries while preserving TTP result
    structure.
+7. Updated A10 `show hardware` parsing to validate normalized inventory records
+   with the existing `InventoryRecord` model using
+   `ttp_templates/utils/a10_process_show_hardware.py`.
 
 ### TESTS
 
@@ -38,6 +45,10 @@
    `test/platform/cisco_nxos/show_inventory_pipe_json_pretty/`.
 2. Extended `test/test_get_inventory.py` to validate Cisco NX-OS inventory
    parsing through the `get/inventory` getter.
+3. Added A10 `show hardware` mock data and expected output under
+   `test/platform/a10/show_hardware/`.
+4. Extended `test/test_get_inventory.py` to validate A10 inventory parsing
+   through the `get/inventory` getter.
 
 ### DOCS
 
@@ -47,6 +58,10 @@
    template reference pages to document the new template workflow.
 3. Updated `docs/getters_support_matrix.md` to note Cisco NX-OS inventory
    getter support with `show inventory | json-pretty`.
+4. Added generated template reference docs and mkdocs navigation entry for
+   `ttp://platform/a10_show_hardware.txt`.
+5. Updated getter support matrix and generated inventory getter reference docs
+   to include A10 inventory support.
 
 
 

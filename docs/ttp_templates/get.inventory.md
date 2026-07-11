@@ -25,6 +25,17 @@ This template requires output of 'show inventory | json-pretty' command.
 
 
 
+Template to parse A10 "show hardware" command output.
+
+Returns a list of dictionaries with:
+
+- `description` - hardware platform description
+- `module` - hardware model
+- `serial` - device serial number
+- `slot` - hardware slot name
+
+
+
 Template to parse Juniper inventory.
 
 This template requires output of 'show inventory' command.
@@ -44,6 +55,7 @@ Getter template to parse inventory for network devices. Designed to work with
 
 Supported platforms:
 
+- A10
 - Cisco IOS-XR
 - Cisco NXOS
 - Arista EOS
@@ -82,6 +94,8 @@ Example data returned by template (YAML):
 <extend template="ttp://platform/cisco_nxos_show_inventory_pipe_json_pretty.txt"/>
 
 <extend template="ttp://platform/juniper_junos_show_chassis_hardware_pipe_json.txt"/>
+
+<extend template="ttp://platform/a10_show_hardware.txt"/>
 
 </template>
 ```
