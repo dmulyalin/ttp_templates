@@ -4,6 +4,9 @@ Normalize Juniper Junos chassis hardware JSON output.
 The command returns a nested tree where inventory items can appear at many
 levels. This module walks that tree and extracts nodes that have a serial
 number.
+
+Used by:
+- ttp_templates/platform/juniper_junos_show_chassis_hardware_pipe_json.txt
 """
 
 import json

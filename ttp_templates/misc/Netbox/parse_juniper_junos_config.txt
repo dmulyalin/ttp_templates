@@ -18,67 +18,9 @@ platform = [
 
 <macro>    
 def postprocess(data):
-    # transform vrf dict to list
-    data["vrf"] = [{"name": k, **v} for k, v in data.get("vrf", {}).items()]
+    from ttp_templates.utils.netbox_parse_juniper_junos_config import postprocess
 
-    # update interfaces with VRF reference
-    for vrf in data["vrf"]:
-        for interface in vrf.get("interfaces", []):
-            if data["interfaces"].get(interface):
-                data["interfaces"][interface]["vrf"] = vrf["name"]
-
-    # transform interfaces dict to list
-    data["interfaces"] = [
-        {"name": k, **v} 
-        for k, v in data.get("interfaces", {}).items()
-    ]
-
-    # process interfaces further
-    for i in data["interfaces"]:
-        # add interface type - other, virtual or lag
-        i["interface_type"] = "other"    
-        if "irb" in i["name"]:
-            i["interface_type"] = "bridge"
-            i["switching"] = {
-                "dot1q_mode": "access",
-                "vlans": [int(i["name"].split(".")[1])]
-            }
-        elif any(
-            k in i["name"] for k in [".", "gr-", "lo0", "vlan"]
-        ):
-            i["interface_type"] = "virtual"
-        elif "ae" in i["name"]:
-            i["interface_type"] = "lag"  
-            
-        # add interface parent details
-        if "." in i["name"] and not any(k in i["name"] for k in ["lo0", "vlan", "irb", "gr-"]):
-            i["parent"] = i["name"].split(".")[0]
-
-        # form list of vlans
-        if i.get("switching", {}).get("vlans", []):
-            vlans = []
-            for vlan in i.get("switching", {}).get("vlans", []):
-                if isinstance(vlan, dict):
-                    vlans.append(vlan["vlan"])
-                else:
-                    vlans.append(vlan)
-            i["switching"]["vlans"] = vlans 	
-			
-        # calculate dot1q mode
-        switching = i.get("switching", {})
-        if switching.get("dot1q_mode") == "trunk":
-            if "all" in switching.get("vlans", []):
-                i["switching"]["dot1q_mode"] = "tagged-all"
-            else:
-                i["switching"]["dot1q_mode"] = "tagged"
-        elif switching.get("dot1q_mode") == "access":
-            i["switching"]["dot1q_mode"] = "access"
-            
-        # set interface default parameters
-        i.setdefault("enabled", True)
-        i.setdefault("description", "")
-
-    return data
+    return postprocess(data)
 </macro>
 
 ## ------------------------------------------------------------------------------------------

@@ -4,11 +4,16 @@ Normalize Arista EOS BGP neighbors JSON output to a standardized format.
 Transforms raw JSON output from 'show bgp neighbors vrf all | json' into a
 normalized list of dictionaries suitable for further processing and integrations.
 
+Used by:
+- ttp_templates/platform/arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.txt
+
 Produced with Copilot Assistance.
 """
 
 import json
 from typing import Any, Dict, List
+
+from ttp_templates.utils.models import BgpNeighborRecord
 
 # Arista camelCase AFI/SAFI names -> IANA snake_case names
 _AFI_TO_IANA = {
@@ -122,7 +127,7 @@ def transform_bgp_neighbors(payload: list) -> List[Dict[str, Any]]:
         payload = payload[0]
 
     return [
-        _normalize_peer(peer, vrf)
+        BgpNeighborRecord(**_normalize_peer(peer, vrf)).model_dump(exclude_unset=True)
         for vrf, vrf_data in payload.get("vrfs", {}).items()
         for peer in vrf_data.get("peerList", [])
     ]

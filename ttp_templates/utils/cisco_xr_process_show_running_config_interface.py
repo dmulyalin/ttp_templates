@@ -10,6 +10,9 @@ keys. Missing or unknown values are returned as ``None`` (except
 
 IPv4 masks are stored in dotted notation by IOS-XR (e.g. 255.255.255.252)
 and are converted to prefix-length notation in the output (e.g. /30).
+
+Used by:
+- ttp_templates/platform/cisco_xr_show_running_config_interface.txt
 """
 
 import ipaddress

@@ -8,6 +8,9 @@ keys. Missing or unknown values are returned as ``None`` (except
 ``description`` which is returned as an empty string when unset, and
 ``tagged_vlans`` which is an empty list when none).
 
+Used by:
+- ttp_templates/platform/arista_eos_show_running_config_section_interface.txt
+
 Produced with Copilot Assistance.
 """
 

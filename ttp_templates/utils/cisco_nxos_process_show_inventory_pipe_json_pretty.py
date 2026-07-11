@@ -4,6 +4,9 @@ Normalize Cisco NX-OS pretty inventory JSON output.
 NX-OS returns inventory rows under ``TABLE_inv.ROW_inv`` for
 ``show inventory | json-pretty``. This module converts those rows into the
 getter's common inventory record shape.
+
+Used by:
+- ttp_templates/platform/cisco_nxos_show_inventory_pipe_json_pretty.txt
 """
 
 import json

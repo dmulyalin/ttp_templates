@@ -3,10 +3,15 @@ Normalize Arista EOS LLDP neighbors JSON output to a standardized format.
 
 Transforms raw JSON output from 'show lldp neighbors detail | json' into a
 normalized list of dictionaries suitable for further processing and integrations.
+
+Used by:
+- ttp_templates/platform/arista_eos_show_lldp_neighbors_detail_pipe_json.txt
 """
 
 import json
 from typing import Any, Dict, List, Optional
+
+from ttp_templates.utils.models import LldpNeighborRecord
 
 
 def _first_mgmt_ip(management_addresses: list) -> Optional[str]:
@@ -52,7 +57,9 @@ def transform_lldp_neighbors(payload: list) -> List[Dict[str, Any]]:
         payload = payload[0]
 
     return [
-        _normalize_neighbor(interface, neighbor)
+        LldpNeighborRecord(
+            **_normalize_neighbor(interface, neighbor)
+        ).model_dump()
         for interface, iface_data in payload.get("lldpNeighbors", {}).items()
         for neighbor in iface_data.get("lldpNeighborInfo", [])
     ]

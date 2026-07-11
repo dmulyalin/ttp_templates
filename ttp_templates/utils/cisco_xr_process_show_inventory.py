@@ -4,6 +4,9 @@ Validate Cisco IOS-XR inventory records parsed by TTP.
 The IOS-XR template parses text output directly into normalized field names.
 This module only validates that every parsed row matches the getter record
 model.
+
+Used by:
+- ttp_templates/platform/cisco_xr_show_inventory.txt
 """
 
 from typing import Dict, List

@@ -23,6 +23,14 @@
 3. Updated Arista EOS, Cisco NX-OS, Cisco IOS-XR and Juniper Junos inventory
    templates to import their processing functions from `ttp_templates/utils/`
    and return validated normalized records.
+4. Added `BgpNeighborRecord` Pydantic model and updated Arista EOS, Cisco IOS-XR
+   and Juniper Junos BGP neighbor utility functions to validate normalized
+   neighbor records before returning them.
+5. Updated Arista EOS and Juniper Junos LLDP neighbor utility functions to use
+   the existing `LldpNeighborRecord` model for normalized LLDP records.
+6. Added `ArpRecord` Pydantic model and updated Cisco IOS and Cisco IOS-XR ARP
+   platform templates to validate parsed ARP entries while preserving TTP result
+   structure.
 
 ### TESTS
 

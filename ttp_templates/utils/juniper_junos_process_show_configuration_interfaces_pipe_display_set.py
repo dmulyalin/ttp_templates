@@ -11,6 +11,9 @@ keys. Missing or unknown values are returned as ``None`` (except
 Each logical unit appears as a separate record with name ``<iface>.<unit>``
 (e.g. ``xe-0/0/1.0``, ``ae0.100``).  Physical-level properties (MTU, speed,
 LAG membership) are stored on the physical interface record.
+
+Used by:
+- ttp_templates/platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt
 """
 
 from .models import InterfaceConfigRecord

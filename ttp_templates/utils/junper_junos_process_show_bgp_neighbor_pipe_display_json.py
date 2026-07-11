@@ -4,11 +4,16 @@ Normalize Juniper JunOS BGP neighbors JSON output to a standardized format.
 Transforms raw JSON output from 'show bgp neighbor | display json' into a
 normalized list of dictionaries suitable for further processing and integrations.
 
+Used by:
+- ttp_templates/platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt
+
 Produced with Copilot Assistance.
 """
 
 import json
 from typing import Any, Dict, List, Optional
+
+from ttp_templates.utils.models import BgpNeighborRecord
 
 # Juniper RIB name suffix -> IANA AFI/SAFI name
 _RIB_SUFFIX_TO_AFI = [
@@ -158,5 +163,8 @@ def transform_bgp_neighbors(payload: list) -> List[Dict[str, Any]]:
     peers = []
     for bgp_info in payload.get("bgp-information") or []:
         for peer in bgp_info.get("bgp-peer") or []:
-            peers.append(_normalize_peer(peer))
+            record = BgpNeighborRecord(**_normalize_peer(peer)).model_dump(
+                exclude_unset=True
+            )
+            peers.append(record)
     return peers

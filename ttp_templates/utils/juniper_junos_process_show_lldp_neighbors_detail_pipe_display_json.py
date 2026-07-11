@@ -3,10 +3,15 @@ Normalize Juniper JunOS LLDP neighbors JSON output to a standardized format.
 
 Transforms raw JSON output from 'show lldp neighbors detail | display json' into a
 normalized list of dictionaries suitable for further processing and integrations.
+
+Used by:
+- ttp_templates/platform/juniper_junos_show_lldp_neighbors_detail_pipe_display_json.txt
 """
 
 import json
 from typing import Any, Dict, List, Optional
+
+from ttp_templates.utils.models import LldpNeighborRecord
 
 
 def _get_data(obj: Dict[str, Any], field: str, default: Any = None) -> Any:
@@ -61,7 +66,7 @@ def transform_lldp_neighbors(payload: list) -> List[Dict[str, Any]]:
         payload = payload[0]
 
     return [
-        _normalize_neighbor(neighbor)
+        LldpNeighborRecord(**_normalize_neighbor(neighbor)).model_dump()
         for info_block in payload.get("lldp-neighbors-information", [])
         for neighbor in info_block.get("lldp-neighbor-information", [])
     ]

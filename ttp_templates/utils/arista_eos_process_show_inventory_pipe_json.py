@@ -4,6 +4,9 @@ Normalize Arista EOS inventory JSON output.
 The TTP template captures the body of ``show inventory | json`` as one string.
 This module loads that JSON, walks known inventory sections, and returns the
 common inventory record shape used by the getter.
+
+Used by:
+- ttp_templates/platform/arista_eos_show_inventory_pipe_json.txt
 """
 
 import json

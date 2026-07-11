@@ -3,9 +3,14 @@ Normalize Cisco IOS-XR BGP neighbors text output to a standardized format.
 
 Transforms TTP-parsed output from 'show bgp neighbors' into a normalized
 list of dictionaries suitable for further processing and integrations.
+
+Used by:
+- ttp_templates/platform/cisco_xr_show_bgp_neighbors.txt
 """
 
 import re
+
+from ttp_templates.utils.models import BgpNeighborRecord
 
 # XR display name -> IANA AFI/SAFI name
 _AFI_TO_IANA = {
@@ -102,31 +107,30 @@ def transform_bgp_neighbors(data):
             if local_address is None:
                 local_address = af.get("local_address")
 
-        result.append(
-            {
-                "name": f"{vrf or 'default'}_{remote_address}",
-                "vrf": vrf,
-                "state": state,
-                "peering_type": peering_raw if peering_raw in _LINK_TYPES else None,
-                "remote_address": remote_address,
-                "remote_as": int(n.get("remote_as")),
-                "local_address": local_address,
-                "local_as": int(n.get("local_as")),
-                "local_interface": None,
-                "router_id": n.get("router_id"),
-                "peer_group": None,
-                "description": n.get("description"),
-                "hold_time": int(n["hold_time"]) if n.get("hold_time") else None,
-                "keepalive": int(n["keepalive"]) if n.get("keepalive") else None,
-                "uptime_seconds": uptime,
-                "max_ttl": None,
-                "afi": afi_list,
-                "import_policies": [import_policy] if import_policy else [],
-                "export_policies": [export_policy] if export_policy else [],
-                "prefix_list_in": None,
-                "prefix_list_out": None,
-                **per_afi,
-            }
-        )
+        record = {
+            "name": f"{vrf or 'default'}_{remote_address}",
+            "vrf": vrf,
+            "state": state,
+            "peering_type": peering_raw if peering_raw in _LINK_TYPES else None,
+            "remote_address": remote_address,
+            "remote_as": int(n.get("remote_as")),
+            "local_address": local_address,
+            "local_as": int(n.get("local_as")),
+            "local_interface": None,
+            "router_id": n.get("router_id"),
+            "peer_group": None,
+            "description": n.get("description"),
+            "hold_time": int(n["hold_time"]) if n.get("hold_time") else None,
+            "keepalive": int(n["keepalive"]) if n.get("keepalive") else None,
+            "uptime_seconds": uptime,
+            "max_ttl": None,
+            "afi": afi_list,
+            "import_policies": [import_policy] if import_policy else [],
+            "export_policies": [export_policy] if export_policy else [],
+            "prefix_list_in": None,
+            "prefix_list_out": None,
+            **per_afi,
+        }
+        result.append(BgpNeighborRecord(**record).model_dump(exclude_unset=True))
 
     return result
