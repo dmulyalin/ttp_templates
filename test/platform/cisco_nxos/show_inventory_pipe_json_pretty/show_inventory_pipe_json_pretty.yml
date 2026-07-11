@@ -1,0 +1,16 @@
+- description: Nexus 31108TCV Chassis
+  module: N3K-C31108TC-V
+  serial: "12424121414124"
+  slot: Chassis
+- description: 48x1/10G-T 6x40/100G QSFP28 Ethernet Module
+  module: N3K-C31108TC-V
+  serial: "12424121414124"
+  slot: Slot 1
+- description: Nexus 31108TCV Chassis Power Supply
+  module: NXA-PAC-650W-PE
+  serial: rggrgrwgrgwrgr
+  slot: Power Supply 1
+- description: Nexus 31108TCV Chassis Power Supply
+  module: NXA-PAC-650W-PE
+  serial: 45gereryt3
+  slot: Power Supply 2

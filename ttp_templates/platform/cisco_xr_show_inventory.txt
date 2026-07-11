@@ -16,6 +16,15 @@ platform = [
 ]
 </input>
 
+<macro>
+def transform_inventory_to_records(payload):
+    from ttp_templates.utils.cisco_xr_process_show_inventory import (
+        transform_inventory,
+    )
+
+    return transform_inventory(payload)
+</macro>
+
 <group>
  Name: {{ slot | ORPHRASE }}  Descr: {{ description | ORPHRASE }}
  PID: {{ module | strip(",") }}{{ ignore(".+") }}SN: {{ serial }}
@@ -31,5 +40,7 @@ NAME: "{{ slot | ORPHRASE }}", DESCR: "{{ description | ORPHRASE }}"
 PID: {{ module | strip(",") }}{{ ignore(".+") }}SN: {{ serial }}
 PID: {{ module | strip(",") | let("serial", "") }}{{ ignore(".+") }}SN:
 </group>
+
+<output macro="transform_inventory_to_records"/>
 
 </template>

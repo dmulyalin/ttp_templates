@@ -1,5 +1,49 @@
 # Release Notes
 
+## 0.5.9
+
+### TEMPLATES
+
+1. Added Cisco NX-OS inventory parsing support using
+   `ttp://platform/cisco_nxos_show_inventory_pipe_json_pretty.txt` for
+   `show inventory | json-pretty` command output.
+2. Updated `ttp://get/inventory.txt` to use the Cisco NX-OS
+   `show inventory | json-pretty` platform template.
+
+### CHANGES
+
+1. Added `InventoryRecord` Pydantic model in `ttp_templates/utils/models.py` to
+   validate normalized inventory records.
+2. Moved inventory transformation logic out of TTP template macros and into
+   dedicated utility modules:
+   - `ttp_templates/utils/arista_eos_process_show_inventory_pipe_json.py`
+   - `ttp_templates/utils/cisco_nxos_process_show_inventory_pipe_json_pretty.py`
+   - `ttp_templates/utils/cisco_xr_process_show_inventory.py`
+   - `ttp_templates/utils/juniper_junos_process_show_chassis_hardware_pipe_json.py`
+3. Updated Arista EOS, Cisco NX-OS, Cisco IOS-XR and Juniper Junos inventory
+   templates to import their processing functions from `ttp_templates/utils/`
+   and return validated normalized records.
+
+### TESTS
+
+1. Added Cisco NX-OS inventory mock data and expected output under
+   `test/platform/cisco_nxos/show_inventory_pipe_json_pretty/`.
+2. Extended `test/test_get_inventory.py` to validate Cisco NX-OS inventory
+   parsing through the `get/inventory` getter.
+
+### DOCS
+
+1. Added `docs/template_guidelines.md` with guidance for template structure,
+   utility functions, Pydantic models, tests and mock data.
+2. Updated `docs/contribute.md`, `CLAUDE.md`, `mkdocs.yml` and generated
+   template reference pages to document the new template workflow.
+3. Updated `docs/getters_support_matrix.md` to note Cisco NX-OS inventory
+   getter support with `show inventory | json-pretty`.
+
+
+
+---
+
 ## 0.5.8
 
 ### BUGS

@@ -18,6 +18,7 @@ markdown_extensions:
 nav:
 - Overview: index.md
 - Contribute: contribute.md
+- Template Guidelines: template_guidelines.md
 - Writing docs: writing_docs.md
 - API Reference: api_reference.md
 - Release Notes: release_notes.md

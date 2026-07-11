@@ -21,7 +21,7 @@ This template requires output of 'show inventory' command.
 
 Template to parse Cisco NX-OS inventory.
 
-This template requires output of 'show inventory' command.
+This template requires output of 'show inventory | json-pretty' command.
 
 
 

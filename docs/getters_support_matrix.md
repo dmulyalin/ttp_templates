@@ -8,3 +8,6 @@
 | interfaces | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
 | lldp_neighbors | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
 
+Notes:
+
+- Cisco NX-OS inventory getter support uses `show inventory | json-pretty`.

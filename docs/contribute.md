@@ -26,6 +26,10 @@ Before you start, make sure to think of for each template:
 
 *Sample Data* and *Expected Output* used to compose template test.
 
+Read the [Template Guidelines](template_guidelines.md) before adding a new
+template. They describe how to structure templates, utility functions, Pydantic
+models, mock data and tests.
+
 *Template Content* placed in one of *Template Category* folder below using *Template Name* as a filename:
 
 * `platform` category - mimics [ntc-templates](https://github.com/networktocode/ntc-templates) 
@@ -51,11 +55,16 @@ To add new template or multiple templates follow these steps:
 2. Git clone forked TTP Templates repository to your local machine
 3. Add new TTP template file to `ttp_templates/platform/`, `ttp_templates/misc/<usecase>/`,
    `ttp_templates/yang/` or `ttp_templates/get/` folder
-4. Add [PyTest](https://pypi.org/project/pytest/) tests under `test` folder inside one of the existing 
-   files or create new file, might be good to look at existing tests for ideas on how to test the template
-5. Generate documentation using [Writing Docs guide](writing_docs.md), omitting `gh-deploy` portion
-6. Commit changes and push them to GitHub
-7. Raise GitHub pull request to merge your changes into TTP Templates repository
+4. If the template needs Python processing, add a dedicated utility module under
+   `ttp_templates/utils/`
+5. If the template returns normalized records, add or update the matching
+   Pydantic model in `ttp_templates/utils/models.py`
+6. Add [PyTest](https://pypi.org/project/pytest/) tests under `test` folder.
+   Prefer data-driven mock files under `test/platform/<platform>/<command_slug>/`
+   for platform templates
+7. Generate documentation using [Writing Docs guide](writing_docs.md), omitting `gh-deploy` portion
+8. Commit changes and push them to GitHub
+9. Raise GitHub pull request to merge your changes into TTP Templates repository
 
 ## Writing TTP Templates Tests
 

@@ -33,3 +33,10 @@ class LldpNeighborRecord(BaseModel):
     remote_chassi_id: Union[None, StrictStr]
     remote_interface_description: Union[None, StrictStr]
     remote_device_management_ip: Union[None, StrictStr]
+
+
+class InventoryRecord(BaseModel):
+    description: StrictStr
+    module: StrictStr
+    serial: StrictStr
+    slot: StrictStr

@@ -7,49 +7,11 @@ This template requires output of 'show inventory' command.
 
 <macro>
 def transform_inventory_to_records(payload):
-    import json
+    from ttp_templates.utils.juniper_junos_process_show_chassis_hardware_pipe_json import (
+        transform_inventory,
+    )
 
-    def pick(node, key):
-        value = node.get(key)
-        if not isinstance(value, list):
-            return None
-        for item in value:
-            if isinstance(item, dict):
-                data = item.get("data")
-                if isinstance(data, str) and data.strip():
-                    return data.strip()
-        return None
-    if payload:
-        payload = json.loads("{" + payload[0]["data"] + "}")
-    else:
-        return []
-    records = []
-    stack = [payload]
-
-    while stack:
-        node = stack.pop()
-        if isinstance(node, list):
-            stack.extend(node)
-            continue
-        if not isinstance(node, dict):
-            continue
-
-        serial = pick(node, "serial-number")
-        if serial:
-            description = pick(node, "description") or ""
-            records.append(
-                {
-                    "module": description or (pick(node, "part-number") or ""),
-                    "serial": serial,
-                    "slot": pick(node, "name") or "",
-                    "description": description,
-                }
-            )
-
-        for value in node.values():
-            stack.append(value)
-
-    return records
+    return transform_inventory(payload)
 </macro>
 
 <input>

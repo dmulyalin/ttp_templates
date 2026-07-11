@@ -1,0 +1,64 @@
+device# show inventory | json-pretty
+{
+    "TABLE_inv": {
+        "ROW_inv": [
+            {
+                "name": "\"Chassis\"",
+                "desc": "\"Nexus 31108TCV Chassis\"",
+                "productid": "N3K-C31108TC-V",
+                "vendorid": "V02",
+                "serialnum": "12424121414124"
+            },
+            {
+                "name": "\"Slot 1\"",
+                "desc": "\"48x1/10G-T 6x40/100G QSFP28 Ethernet Module\"",
+                "productid": "N3K-C31108TC-V",
+                "vendorid": "V02",
+                "serialnum": "12424121414124"
+            },
+            {
+                "name": "\"Power Supply 1\"",
+                "desc": "\"Nexus 31108TCV Chassis Power Supply\"",
+                "productid": "NXA-PAC-650W-PE",
+                "vendorid": "V04",
+                "serialnum": "rggrgrwgrgwrgr"
+            },
+            {
+                "name": "\"Power Supply 2\"",
+                "desc": "\"Nexus 31108TCV Chassis Power Supply\"",
+                "productid": "NXA-PAC-650W-PE",
+                "vendorid": "V04",
+                "serialnum": "45gereryt3"
+            },
+            {
+                "name": "\"Fan 1\"",
+                "desc": "\"Nexus 31108TCV Chassis Fan Module\"",
+                "productid": "NXA-FAN-30CFM-F",
+                "vendorid": "V01",
+                "serialnum": "N/A"
+            },
+            {
+                "name": "\"Fan 2\"",
+                "desc": "\"Nexus 31108TCV Chassis Fan Module\"",
+                "productid": "NXA-FAN-30CFM-F",
+                "vendorid": "V01",
+                "serialnum": "N/A"
+            },
+            {
+                "name": "\"Fan 3\"",
+                "desc": "\"Nexus 31108TCV Chassis Fan Module\"",
+                "productid": "NXA-FAN-30CFM-F",
+                "vendorid": "V01",
+                "serialnum": "N/A"
+            },
+            {
+                "name": "\"Fan 4\"",
+                "desc": "\"Nexus 31108TCV Chassis Fan Module\"",
+                "productid": "NXA-FAN-30CFM-F",
+                "vendorid": "V01",
+                "serialnum": "N/A"
+            }
+        ]
+    }
+}
+device#
