@@ -117,5 +117,6 @@ Physical Location: {{ data.peer_location | ORPHRASE }}
 {{ source | set("local_hostname") }}
 </group>
 </template>
+
 ```
 </details>

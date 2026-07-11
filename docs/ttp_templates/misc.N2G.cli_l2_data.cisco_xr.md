@@ -64,10 +64,6 @@ def check_is_physical_port(data):
     return data
     
 def add_lldp_target_id(data):
-    """
-    Some LLDP peers output does not contain System Name, this macro 
-    is to make sure we assign chassis_id as target.id in that case.
-    """
     if (
         not data.get("target", {}).get("id") and 
         data.get("data", {}).get("chassis_id")
@@ -155,5 +151,6 @@ Interface: {{ src_label | resuball(IfsNormalize) }}
 Port ID (outgoing port): {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
 </group>
 </template>
+
 ```
 </details>

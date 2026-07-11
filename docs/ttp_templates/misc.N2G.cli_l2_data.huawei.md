@@ -105,5 +105,6 @@ Management address                 :{{ target.top_label }}
 {{ source | set("local_hostname") }}
 </group>
 </template>
+
 ```
 </details>

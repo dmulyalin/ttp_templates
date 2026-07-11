@@ -87,72 +87,16 @@ module: openconfig-lldp
 
 <macro>
 def process(data):
-    """
-    Function to process parsing results in a structure
-    compatible with openconfig-lldp YANG module.
-    
-    Parsing results are a dictionary keyed by interface name, that 
-    is done to combine multiple neighbors in a list under the 
-    interface, while in opencofnig-lldp model structure under 
-    "lldp.interfaces.inderface" must be a list.
-    
-    Moreover, neighbors must contain "id" key and use "state" key to
-    store information about neighbor details.
-    """
-    ret = []
+    from ttp_templates.utils.yang_openconfig_lldp_cisco_xr import process
 
-    for res_item in data:
-        # transform dictionary of interfaces into a list
-        ret_template = {
-                "opencondig-lldp": {
-                    "lldp": {
-                        "interfaces": {"interface": []},
-                        "config": {
-                            "system-name": res_item.get("system_name", {}).get("hostname")
-                        }
-                    }
-                }
-        }
-        interfaces = res_item.get("lldp", {}).get("interfaces", {}).get("inderface", {})
-        for interface_name, interface_data in interfaces.items():
-    
-            # set neighbors IDs and form structure with "state" key
-            neighbors = interface_data["neighbors"]["neighbor"]
-            interface_data["neighbors"]["neighbor"] = []
-            for id, neigbour in enumerate(neighbors, 1):
-                interface_data["neighbors"]["neighbor"].append(
-                    {
-                        "id": id,
-                        "state": {"id": id, **neigbour}
-                    }            
-                )
-    
-            # form final interface structure
-            ret_template["opencondig-lldp"]["lldp"]["interfaces"]["interface"].append(
-                {
-                    "name": interface_name,
-                    **interface_data
-                }
-            )
-        ret.append(ret_template)
-            
-    return ret
-    
+    return process(data)
+
 def map_capabilities(data):
-    """
-    Function to map capabilities
-    """
     ret = []
-    
-    mapper = {
-        "B": {"name": "MAC_BRIDGE"},
-        "R": {"name": "ROUTER"}
-    }
-    
+    mapper = {"B": {"name": "MAC_BRIDGE"}, "R": {"name": "ROUTER"}}
     for code in data.get("codes", []):
         if code in mapper:
             ret.append(mapper[code])
-    
     return {"capability": ret}
 </macro>
 
@@ -223,5 +167,6 @@ System Capabilities: {{ codes | split(",") }}
 </group>
 
 <output macro="process"/>
+
 ```
 </details>

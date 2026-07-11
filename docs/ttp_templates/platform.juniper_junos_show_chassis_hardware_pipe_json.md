@@ -52,5 +52,6 @@ platform = [
 <output macro="transform_inventory_to_records"/>
 
 </template>
+
 ```
 </details>

@@ -493,5 +493,6 @@ def process(data):
         ret.extend(input_res_item.get("ip", []))
     return ret
 </macro>
+
 ```
 </details>

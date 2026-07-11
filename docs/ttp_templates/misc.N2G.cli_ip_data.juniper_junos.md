@@ -33,19 +33,9 @@ platform = ["juniper_junos"]
 
 <macro>    
 def postprocess(data):
-    for hostname in data.keys():
-        # transform vrf dict to list
-        data[hostname]["vrf"] = [{"name": k, **v} for k, v in data[hostname].get("vrf", {}).items()]
-        
-        # update interfaces with VRF reference
-        for vrf in data[hostname]["vrf"]:
-            for interface in vrf.get("interfaces", []):
-                if data[hostname]["interfaces"].get(interface):
-                    data[hostname]["interfaces"][interface]["vrf"] = vrf["name"]
-        
-        _ = data[hostname].pop("vrf")
-    
-    return data
+    from ttp_templates.utils.n2g_cli_ip_data_juniper_junos import postprocess
+
+    return postprocess(data)
 </macro>
 
 <vars>local_hostname="gethostname"</vars>
@@ -85,5 +75,6 @@ set interfaces {{ interface }} unit {{ unit }} description "{{ port_description 
 <output name="postprocess" macro="postprocess"/>
 
 </template>
+
 ```
 </details>

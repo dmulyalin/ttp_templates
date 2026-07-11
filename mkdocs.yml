@@ -18,7 +18,6 @@ markdown_extensions:
 nav:
 - Overview: index.md
 - Contribute: contribute.md
-- Template Guidelines: template_guidelines.md
 - Writing docs: writing_docs.md
 - API Reference: api_reference.md
 - Release Notes: release_notes.md
@@ -98,6 +97,7 @@ nav:
     - juniper_junos_show_configuration_interfaces_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_interfaces_pipe_display_set.md
     - juniper_junos_show_isis_database_verbose_pipe_no_more: ttp_templates/platform.juniper_junos_show_isis_database_verbose_pipe_no_more.md
     - juniper_junos_show_lldp_neighbors_detail_pipe_display_json: ttp_templates/platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json.md
+    - linux_ip_address_show: ttp_templates/platform.linux_ip_address_show.md
     - test_platform_show_run_pipe_sec_interface: ttp_templates/platform.test_platform_show_run_pipe_sec_interface.md
   - YANG:
     - ietf-interfaces_cisco_ios: ttp_templates/yang.ietf-interfaces_cisco_ios.md

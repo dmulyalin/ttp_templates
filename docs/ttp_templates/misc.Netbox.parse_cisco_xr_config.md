@@ -39,29 +39,16 @@ platform = [
 
 <macro>
 def add_interface_type(data):
-    data["interface_type"] = "other"    
-    if any(
-        i in data["name"].lower() for i in [
-            ".", "loopback", "tunnel"
-        ]
-    ):
-        data["interface_type"] = "virtual"
-    elif any(
-        i in data["name"].lower() for i in [
-            "bvi"
-        ]
-    ):
-        data["interface_type"] = "bridge"
-    elif "bundle" in data["name"].lower():
-        data["interface_type"] = "lag"    
-    return data
+    from ttp_templates.utils.netbox_parse_cisco_xr_config import add_interface_type
+
+    return add_interface_type(data)
     
 def add_parent_interface(data):
     if "lag_id" in data:
         data["parent"] = "Bundle-Ether{}".format(data["lag_id"])
     elif "." in data["name"]:
         data["parent"] = data["name"].split(".")[0]
-    return data    
+    return data
 </macro>
 
 ## ------------------------------------------------------------------------------------------
@@ -567,5 +554,6 @@ router isis {{ isis_process | _start_ }} vrf-context {{ vrf }}
 </group>
 
 </template>
+
 ```
 </details>

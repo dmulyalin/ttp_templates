@@ -192,6 +192,68 @@ Example normalized output (YAML):
 
 
 
+Template to parse Linux `ip address show` command output and normalize it to a
+flat list of dictionaries suitable for the `get/interfaces` getter.
+
+This template requires output of `ip address show`.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the common interfaces getter keys. Linux `ip address show` is
+operational output, so fields that only exist in device configuration are set
+to `null` or empty lists.
+
+- `name`: interface name string (e.g. `ens32`, `brblue`)
+- `type`: `bridge` for Linux bridge-style names, `lag` for bond/team
+    interfaces, `virtual` for loopback/VRF/tunnel-style interfaces, and
+    `other` otherwise
+- `enabled`: boolean derived from the `UP` interface flag
+- `parent`: parent interface name for dotted sub-interface names, or `null`
+- `lag`: always `null`
+- `lag_id`: always `null`
+- `lag_type`: always `null`
+- `lacp_mode`: always `null`
+- `mtu`: integer MTU or `null`
+- `mac_address`: link-layer MAC address or `null`
+- `speed`: always `null`
+- `duplex`: always `null`
+- `description`: empty string
+- `mode`: always `null`
+- `untagged_vlan`: always `null`
+- `tagged_vlans`: empty list
+- `qinq_svlan`: always `null`
+- `vrf`: Linux master interface name when the interface is enslaved to a VRF
+- `ipv4_addresses`: list of strings with IP/prefix
+- `ipv6_addresses`: list of strings with IP/prefix
+
+Example normalized output (YAML):
+
+```yaml
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.168.131.128/24
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: 00:0c:29:56:07:1b
+  mode: null
+  mtu: 1500
+  name: ens32
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
+```
+
+
+
+
 ---
 
 <details><summary>Template Content</summary>
@@ -208,6 +270,7 @@ Supported platforms:
 - Arista EOS
 - Cisco IOS-XR
 - Juniper Junos
+- Linux
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -265,6 +328,9 @@ Example normalized output (YAML):
 
 <extend template="ttp://platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt"/>
 
+<extend template="ttp://platform/linux_ip_address_show.txt"/>
+
 </template>
+
 ```
 </details>

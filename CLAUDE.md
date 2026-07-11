@@ -125,8 +125,7 @@ Use these project documents before adding or changing templates:
 
 | Document | Purpose |
 |---|---|
-| `docs/contribute.md` | Contribution flow, pull request checklist and test basics |
-| `docs/template_guidelines.md` | Template layout, utility function structure, mock data, tests and Pydantic model guidance |
+| `docs/contribute.md` | Contribution flow, template layout, utility function structure, mock data, tests and Pydantic model guidance |
 | `docs/getters_support_matrix.md` | Getter platform support status |
 | `docs/writing_docs.md` | How to regenerate documentation |
 

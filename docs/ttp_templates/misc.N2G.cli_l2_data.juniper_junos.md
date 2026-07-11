@@ -56,19 +56,9 @@ def check_is_physical_port(data):
     return data
     
 def extract_lldp_peer(data):
-    if " " in data["info"]:
-        *port_info, peer_name = data.pop("info").split(" ")
-        data["data.peer_port_description"] = " ".join(port_info).strip()
-    else:
-        port_info, peer_name = data.pop("info"), data["data.chassis_id"]
-        data["data.peer_port_description"] = port_info
-    
-    data["target.id"] = peer_name
-    data["trgt_label"] = ""
-    
-    # check if port_info is name of the interface, use it as link trgt_label
-    if len(port_info) == 1 and not port_info[0].isdigit():
-        data["trgt_label"], _ = _ttp_["match"]["resuball"](port_info[0], "IfsNormalize")
+    from ttp_templates.utils.n2g_cli_l2_data_juniper_junos import extract_lldp_peer
+
+    return extract_lldp_peer(data, _ttp_["match"]["resuball"])
 </macro>
 
 <!-- show lldp local-information - parse global params -->
@@ -104,5 +94,6 @@ Physical interface: {{ interface | _start_ | resuball(IfsNormalize) | macro("che
 {{ source | set("local_hostname") }}
 </group>
 </template>
+
 ```
 </details>

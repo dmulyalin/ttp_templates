@@ -17,6 +17,7 @@ Returns a list of dictionaries with:
 - `slot` - hardware slot name
 
 
+
 ---
 
 <details><summary>Template Content</summary>
@@ -27,17 +28,17 @@ Template to parse A10 "show hardware" command output.
 
 Returns a list of dictionaries with:
 
-- `description` - hardware platform description
-- `module` - hardware model
-- `serial` - device serial number
-- `slot` - hardware slot name
+- 'description' - hardware platform description
+- 'module' - hardware model
+- 'serial' - device serial number
+- 'slot' - hardware slot name
 </doc>
 
 <input>
 commands = [
     "show hardware"
 ]
-platform = ["a10"]
+platform = ["a10", "a10_ssh"]
 </input>
 
 <macro>
@@ -55,5 +56,6 @@ Thunder Series Unified Application Service Gateway {{ module | let("description"
 <output macro="validate_inventory_records"/>
 
 </template>
+
 ```
 </details>

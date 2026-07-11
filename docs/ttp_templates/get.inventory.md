@@ -25,6 +25,12 @@ This template requires output of 'show inventory | json-pretty' command.
 
 
 
+Template to parse Juniper inventory.
+
+This template requires output of 'show inventory' command.
+
+
+
 Template to parse A10 "show hardware" command output.
 
 Returns a list of dictionaries with:
@@ -33,12 +39,6 @@ Returns a list of dictionaries with:
 - `module` - hardware model
 - `serial` - device serial number
 - `slot` - hardware slot name
-
-
-
-Template to parse Juniper inventory.
-
-This template requires output of 'show inventory' command.
 
 
 
@@ -98,5 +98,6 @@ Example data returned by template (YAML):
 <extend template="ttp://platform/a10_show_hardware.txt"/>
 
 </template>
+
 ```
 </details>

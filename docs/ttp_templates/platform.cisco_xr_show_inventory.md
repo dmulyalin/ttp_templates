@@ -63,5 +63,6 @@ PID: {{ module | strip(",") | let("serial", "") }}{{ ignore(".+") }}SN:
 <output macro="transform_inventory_to_records"/>
 
 </template>
+
 ```
 </details>

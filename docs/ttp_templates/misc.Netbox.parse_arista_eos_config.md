@@ -38,22 +38,9 @@ platform = [
 
 <macro>
 def add_interface_type(data):
-    data["interface_type"] = "other"    
-    if any(
-        i in data["name"].lower() for i in [
-            ".", "loopback", "tunnel", "vlan", "vxlan"
-        ]
-    ):
-        data["interface_type"] = "virtual"
-    elif any(
-        i in data["name"].lower() for i in [
-            "vlan", "vxlan"
-        ]
-    ):
-        data["interface_type"] = "bridge"
-    elif "port-channel" in data["name"].lower():
-        data["interface_type"] = "lag"
-    return data
+    from ttp_templates.utils.netbox_parse_arista_eos_config import add_interface_type
+
+    return add_interface_type(data)
 
 def add_parent_interface(data):
     if "lag_id" in data:
@@ -316,5 +303,6 @@ mlag configuration {{ _start_ }}
 !{{ _end_ }}
 </group>
 </template>
+
 ```
 </details>

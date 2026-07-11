@@ -61,10 +61,10 @@
 
 ### DOCS
 
-1. Added `docs/template_guidelines.md` with guidance for template structure,
-   utility functions, Pydantic models, tests and mock data.
-2. Updated `docs/contribute.md`, `CLAUDE.md`, `mkdocs.yml` and generated
-   template reference pages to document the new template workflow.
+1. Merged template guidelines into `docs/contribute.md` and rewrote the
+   guidance as an AI-friendly step-by-step workflow for adding templates.
+2. Updated `CLAUDE.md`, `mkdocs.yml` and generated template reference pages to
+   document the new template workflow.
 3. Updated `docs/getters_support_matrix.md` to note Cisco NX-OS inventory
    getter support with `show inventory | json-pretty`.
 4. Added generated template reference docs and mkdocs navigation entry for

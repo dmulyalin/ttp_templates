@@ -475,5 +475,6 @@ interface {{ name | macro(add_iftype) }}
 <output condition="validate_with_yangson, True">
 validate_yangson="'./yang-modules/ietf/'"
 </output>
+
 ```
 </details>
