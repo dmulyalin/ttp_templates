@@ -62,7 +62,10 @@ To add new template or multiple templates follow these steps:
 6. Add [PyTest](https://pypi.org/project/pytest/) tests under `test` folder.
    Prefer data-driven mock files under `test/platform/<platform>/<command_slug>/`
    for platform templates
-7. Generate documentation using [Writing Docs guide](writing_docs.md), omitting `gh-deploy` portion
+7. Generate documentation using [Writing Docs guide](writing_docs.md), omitting
+   `gh-deploy` portion. Do not manually create or edit generated pages under
+   `docs/ttp_templates/`; they are built from template `<doc>` blocks by
+   `generate_docs.py`
 8. Commit changes and push them to GitHub
 9. Raise GitHub pull request to merge your changes into TTP Templates repository
 

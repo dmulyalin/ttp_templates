@@ -8,6 +8,9 @@ Getter template to parse interface configuration for network devices. Designed t
 Supported platforms:
 
 - Arista EOS
+- Cisco IOS-XR
+- Juniper Junos
+- Linux
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -64,5 +67,7 @@ Example normalized output (YAML):
 <extend template="ttp://platform/cisco_xr_show_running_config_interface.txt"/>
 
 <extend template="ttp://platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt"/>
+
+<extend template="ttp://platform/linux_ip_address_show.txt"/>
 
 </template>

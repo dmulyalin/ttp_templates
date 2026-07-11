@@ -206,6 +206,8 @@ Getter template to parse interface configuration for network devices. Designed t
 Supported platforms:
 
 - Arista EOS
+- Cisco IOS-XR
+- Juniper Junos
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 

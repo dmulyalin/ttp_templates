@@ -148,8 +148,9 @@ The `.txt` file contains raw device output. The `.yml` file contains the exact
 expected parser result, usually a YAML list of dictionaries for `flat_list`
 output.
 
-For getter templates, also update the relevant `test/test_get_*.py` file. Getter
-tests should verify:
+For getter templates, add or update a dedicated `test/test_get_*.py` file only
+when data-driven platform tests do not cover the getter behavior. Getter tests
+should verify:
 
 1. The new platform input is registered in `parser.get_input_load()`.
 2. The getter parses mock data into the normalized output shape.
@@ -173,6 +174,11 @@ After adding templates or changing template docs, regenerate docs:
 ```bash
 poetry run python generate_docs.py
 ```
+
+Do not manually create or edit generated template reference pages under
+`docs/ttp_templates/`, and do not manually add template pages to the `Templates`
+navigation in `mkdocs.yml`. The docs generator rewrites those files and nav
+entries from template docstrings.
 
 For static documentation pages such as this one, add the page to `mkdocs.yml`.
 The docs generator rewrites the `Templates` navigation section only, so static

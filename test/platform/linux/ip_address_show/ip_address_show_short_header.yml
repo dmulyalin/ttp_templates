@@ -1,0 +1,44 @@
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 127.0.0.1/8
+  ipv6_addresses:
+  - ::1/128
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: 65536
+  name: lo
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.168.1.1/24
+  ipv6_addresses:
+  - fe80::302:03ff:fe04:0506/64
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: 01:02:03:04:05:06
+  mode: null
+  mtu: 1500
+  name: eth0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null

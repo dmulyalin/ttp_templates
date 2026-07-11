@@ -13,6 +13,10 @@
    `ttp://platform/a10_show_hardware.txt` for `show hardware` command output.
 4. Updated `ttp://get/inventory.txt` to include A10 inventory parsing through
    the `show hardware` platform template.
+5. Added Linux interface parsing support using
+   `ttp://platform/linux_ip_address_show.txt` for `ip address show` command
+   output.
+6. Updated `ttp://get/interfaces.txt` to include Linux interface parsing.
 
 ### CHANGES
 
@@ -38,6 +42,9 @@
 7. Updated A10 `show hardware` parsing to validate normalized inventory records
    with the existing `InventoryRecord` model using
    `ttp_templates/utils/a10_process_show_hardware.py`.
+8. Added `ttp_templates/utils/linux_process_ip_address_show.py` to normalize
+   Linux operational interface output and validate it with
+   `InterfaceConfigRecord`.
 
 ### TESTS
 
@@ -49,6 +56,8 @@
    `test/platform/a10/show_hardware/`.
 4. Extended `test/test_get_inventory.py` to validate A10 inventory parsing
    through the `get/inventory` getter.
+5. Added Linux `ip address show` mock data and expected output under
+   `test/platform/linux/ip_address_show/`.
 
 ### DOCS
 
@@ -62,6 +71,7 @@
    `ttp://platform/a10_show_hardware.txt`.
 5. Updated getter support matrix and generated inventory getter reference docs
    to include A10 inventory support.
+6. Updated getter support matrix to include Linux interface getter support.
 
 
 
