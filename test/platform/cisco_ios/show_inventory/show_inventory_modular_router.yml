@@ -1,0 +1,24 @@
+- description: "LAB2921/K9 chassis, Hw Serial#: FOC1234L0AB, Hw Revision: 1.0"
+  module: LAB2921/K9
+  serial: FOC1234L0AB
+  slot: LAB2921/K9
+- description: 4 Port GE Non-POE EHWIC Switch
+  module: LAB-EHWIC-4GE
+  serial: FOC2345M1BC
+  slot: 4 Port GE Non-POE EHWIC Switch on Slot 0 SubSlot 0
+- description: 4G WWAN EHWIC - Lab Region Multimode LTE/DC-HSPA+/HSPA+/HSPA/UMTS/EDGE/GPRS
+  module: LAB-EHWIC-LTE
+  serial: FOC3456N2CD
+  slot: 4G WWAN EHWIC - Lab Region Multimode LTE/DC-HSPA+/HSPA+/HSPA/UMTS/EDGE/GPRS on Slot 0 SubSlot 1
+- description: Lab Wireless MC7354 LTE
+  module: MC7354-LAB-LTE
+  serial: FOC4567P3DE
+  slot: Modem 0 on Cellular0/1/0
+- description: "LAB-SM-48-P: EtherSwitch SM L3 + PoEPlus + MACSec + 48 10/100/1000 + 2 SFP"
+  module: LAB-SM-48-P
+  serial: FOC5678Q4EF
+  slot: "LAB-SM-48-P: EtherSwitch SM L3 + PoEPlus + MACSec + 48 10/100/1000 + 2 SFP on Slot 1"
+- description: LAB2921/LAB2951 AC-POE Power Supply
+  module: LAB-PWR-POE
+  serial: FOC6789R5FG
+  slot: LAB2921/LAB2951 AC-POE Power Supply

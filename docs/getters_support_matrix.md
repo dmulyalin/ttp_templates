@@ -1,12 +1,12 @@
 # Getter templates vendor support matrix.
 
-| Getter template | A10 | Arista EOS | Cisco IOS-XR | Cisco NX-OS | Juniper Junos | Opengear | Linux |
-|---|---|---|---|---|---|---|---|
-| bgp_neighbors | ❌ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
-| inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| netbox | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
-| interfaces | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| lldp_neighbors | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| Getter template | A10 | Arista EOS | Cisco IOS | Cisco IOS-XR | Cisco NX-OS | Juniper Junos | Opengear | Linux |
+|---|---|---|---|---|---|---|---|---|
+| bgp_neighbors | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| interfaces | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| lldp_neighbors | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
 
 ## Notes
 
@@ -24,6 +24,7 @@ Collected commands by platform:
 
 - A10: `show hardware`
 - Arista EOS: `show inventory | json`
+- Cisco IOS: `show inventory`
 - Cisco IOS-XR: `show inventory`
 - Cisco NX-OS: `show inventory | json-pretty`
 - Juniper Junos: `show chassis hardware | display json`

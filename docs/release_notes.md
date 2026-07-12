@@ -21,6 +21,10 @@
    `ttp://platform/cisco_nxos_show_running_config_interface.txt` for
    `show running-config interface` command output.
 8. Updated `ttp://get/interfaces.txt` to include Cisco NX-OS interface parsing.
+9. Added Cisco IOS inventory parsing support using
+   `ttp://platform/cisco_ios_show_inventory.txt` for `show inventory` command
+   output.
+10. Updated `ttp://get/inventory.txt` to include Cisco IOS inventory parsing.
 
 ### CHANGES
 
@@ -29,12 +33,13 @@
 2. Moved inventory transformation logic out of TTP template macros and into
    dedicated utility modules:
    - `ttp_templates/utils/arista_eos_process_show_inventory_pipe_json.py`
+   - `ttp_templates/utils/cisco_ios_process_show_inventory.py`
    - `ttp_templates/utils/cisco_nxos_process_show_inventory_pipe_json_pretty.py`
    - `ttp_templates/utils/cisco_xr_process_show_inventory.py`
    - `ttp_templates/utils/juniper_junos_process_show_chassis_hardware_pipe_json.py`
-3. Updated Arista EOS, Cisco NX-OS, Cisco IOS-XR and Juniper Junos inventory
-   templates to import their processing functions from `ttp_templates/utils/`
-   and return validated normalized records.
+3. Updated Arista EOS, Cisco IOS, Cisco NX-OS, Cisco IOS-XR and Juniper Junos
+   inventory templates to import their processing functions from
+   `ttp_templates/utils/` and return validated normalized records.
 4. Added `BgpNeighborRecord` Pydantic model and updated Arista EOS, Cisco IOS-XR
    and Juniper Junos BGP neighbor utility functions to validate normalized
    neighbor records before returning them.
@@ -67,6 +72,8 @@
    `test/platform/linux/ip_address_show/`.
 6. Added Cisco NX-OS `show running-config interface` mock data and expected
    output under `test/platform/cisco_nxos/show_running_config_interface/`.
+7. Added Cisco IOS `show inventory` mock data samples and expected output under
+   `test/platform/cisco_ios/show_inventory/`.
 
 ### DOCS
 
@@ -83,6 +90,7 @@
 6. Updated getter support matrix to include Linux interface getter support.
 7. Updated getter support matrix to include Cisco NX-OS interface getter
    support.
+8. Updated getter support matrix to include Cisco IOS inventory getter support.
 
 
 

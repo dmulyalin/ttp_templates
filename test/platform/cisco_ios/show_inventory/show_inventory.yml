@@ -1,0 +1,16 @@
+- description: 3640 chassis
+  module: ""
+  serial: FF1045C5
+  slot: 3640 chassis
+- description: One port Fastethernet TX
+  module: NM-1FE-TX=
+  serial: "7720321"
+  slot: One port Fastethernet TX
+- description: One port Fastethernet TX
+  module: NM-1FE-TX=
+  serial: "7720321"
+  slot: One port Fastethernet TX
+- description: One port Fastethernet TX
+  module: NM-1FE-TX=
+  serial: "7720321"
+  slot: One port Fastethernet TX

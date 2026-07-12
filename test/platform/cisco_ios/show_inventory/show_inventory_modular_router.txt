@@ -1,0 +1,21 @@
+lab-router-01#show inventory
+NAME: "LAB2921/K9", DESCR: "LAB2921/K9 chassis, Hw Serial#: FOC1234L0AB, Hw Revision: 1.0"
+PID: LAB2921/K9        , VID: V08 , SN: FOC1234L0AB
+
+NAME: "4 Port GE Non-POE EHWIC Switch on Slot 0 SubSlot 0", DESCR: "4 Port GE Non-POE EHWIC Switch"
+PID: LAB-EHWIC-4GE     , VID: V01 , SN: FOC2345M1BC
+
+NAME: "4G WWAN EHWIC - Lab Region Multimode LTE/DC-HSPA+/HSPA+/HSPA/UMTS/EDGE/GPRS on Slot 0 SubSlot 1", DESCR: "4G WWAN EHWIC - Lab Region Multimode LTE/DC-HSPA+/HSPA+/HSPA/UMTS/EDGE/GPRS"
+PID: LAB-EHWIC-LTE     , VID: V01 , SN: FOC3456N2CD
+
+NAME: "Modem 0 on Cellular0/1/0", DESCR: "Lab Wireless MC7354 LTE"
+PID: MC7354-LAB-LTE    , VID: 1.0, SN: FOC4567P3DE
+
+NAME: "LAB-SM-48-P: EtherSwitch SM L3 + PoEPlus + MACSec + 48 10/100/1000 + 2 SFP on Slot 1", DESCR: "LAB-SM-48-P: EtherSwitch SM L3 + PoEPlus + MACSec + 48 10/100/1000 + 2 SFP"
+PID: LAB-SM-48-P       , VID: V01 , SN: FOC5678Q4EF
+
+NAME: "LAB2921/LAB2951 AC-POE Power Supply", DESCR: "LAB2921/LAB2951 AC-POE Power Supply"
+PID: LAB-PWR-POE       , VID: V03 , SN: FOC6789R5FG
+
+
+lab-router-01#

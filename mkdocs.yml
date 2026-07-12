@@ -73,6 +73,7 @@ nav:
     - arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json: ttp_templates/platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.md
     - arista_eos_show_lldp_neighbors_detail_pipe_json: ttp_templates/platform.arista_eos_show_lldp_neighbors_detail_pipe_json.md
     - arista_eos_show_running_config_section_interface: ttp_templates/platform.arista_eos_show_running_config_section_interface.md
+    - cisco_ios_show_inventory: ttp_templates/platform.cisco_ios_show_inventory.md
     - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md
     - cisco_ios_show_ip_ospf_database_external: ttp_templates/platform.cisco_ios_show_ip_ospf_database_external.md
     - cisco_ios_show_ip_ospf_database_router: ttp_templates/platform.cisco_ios_show_ip_ospf_database_router.md
@@ -82,6 +83,7 @@ nav:
     - cisco_ios_show_running_config_pipe_include_source_static: ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static.md
     - cisco_ios_show_running_config_pipe_section_interface: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_interface.md
     - cisco_nxos_show_inventory_pipe_json_pretty: ttp_templates/platform.cisco_nxos_show_inventory_pipe_json_pretty.md
+    - cisco_nxos_show_running_config_interface: ttp_templates/platform.cisco_nxos_show_running_config_interface.md
     - cisco_xr_show_arp_vrf_all: ttp_templates/platform.cisco_xr_show_arp_vrf_all.md
     - cisco_xr_show_bgp_neighbors: ttp_templates/platform.cisco_xr_show_bgp_neighbors.md
     - cisco_xr_show_inventory: ttp_templates/platform.cisco_xr_show_inventory.md
