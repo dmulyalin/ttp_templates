@@ -8,6 +8,7 @@ Getter template to parse interface configuration for network devices. Designed t
 Supported platforms:
 
 - Arista EOS
+- Cisco IOS
 - Cisco IOS-XR
 - Cisco NX-OS
 - Juniper Junos
@@ -64,6 +65,8 @@ Example normalized output (YAML):
 </doc>
 
 <extend template="ttp://platform/arista_eos_show_running_config_section_interface.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_running_config_pipe_section_interface.txt"/>
 
 <extend template="ttp://platform/cisco_xr_show_running_config_interface.txt"/>
 

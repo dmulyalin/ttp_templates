@@ -1,0 +1,82 @@
+Building configuration...
+
+Current configuration : 440 bytes
+!
+interface GigabitEthernet2/0/4.223415
+ description Voice service | 2048K
+ bandwidth 2048
+ encapsulation dot1Q 2234 second-dot1q 15
+ vrf forwarding CLIENT_VOICE:1000
+ ip address 192.0.2.161 255.255.255.252
+ no ip proxy-arp
+ ip verify unicast source reachable-via rx allow-default allow-self-ping
+ service-policy input VOICE_POLICY_2048_IN
+ service-policy output VOICE_POLICY_2048_OUT
+!
+interface GigabitEthernet2/0/4.223427
+ description Data service | 100M
+ bandwidth 100000
+ encapsulation dot1Q 2234 second-dot1q 27
+ vrf forwarding CLIENT_VOICE:1000
+ ip address 192.0.2.165 255.255.255.252
+ no ip proxy-arp
+ ip verify unicast source reachable-via rx allow-default allow-self-ping
+ service-policy input DATA_POLICY_100M_IN
+ service-policy output DATA_POLICY_100M_OUT
+!
+interface GigabitEthernet2/0/4.223436
+ description Branch service | 100M
+ bandwidth 2048
+ encapsulation dot1Q 2234 second-dot1q 36
+ vrf forwarding CLIENT_VOICE:1000
+ ip address 192.0.2.169 255.255.255.252
+ no ip proxy-arp
+ ip verify unicast source reachable-via rx allow-default allow-self-ping
+ ip access-group OUTPUT_ACL out
+ ip access-group INPUT_ACL in
+ service-policy input VOICE_POLICY_2048_IN
+ service-policy output VOICE_POLICY_2048_OUT
+!
+interface GigabitEthernet2/0/4.223449
+ description Remote site service | 1500K
+ bandwidth 2048
+ encapsulation dot1Q 2234 second-dot1q 49
+ vrf forwarding CLIENT_VOICE:1000
+ ip address 192.0.2.173 255.255.255.252
+ no ip proxy-arp
+ ip verify unicast source reachable-via tx allow-default allow-self-ping
+ ip access-group INPUT_ACL in
+ ip access-group OUTPUT_ACL out
+ service-policy input VOICE_POLICY_2048_IN
+ service-policy output VOICE_POLICY_2048_OUT
+!
+interface GigabitEthernet2/0/4.22341011
+ description Test service | 100M
+ mtu 9096
+ bandwidth 1000
+ encapsulation dot1Q 2234 second-dot1q 1011
+ ip vrf forwarding CLIENT_VOICE:1000
+ ip address 192.0.2.177 255.255.255.252
+ ipv6 address 2001:db8:2234:1011::2/126
+ ip flow monitor IPV4_MONITOR sampler FLOW_SAMPLER input
+ no ip proxy-arp
+ no negotiation
+ ip verify unicast source reachable-via rx allow-default allow-self-ping
+ ip access-group INPUT_ACL in
+ service-policy input VOICE_POLICY_1000_IN
+ service-policy output VOICE_POLICY_1000_OUT
+!
+interface GigabitEthernet2/0/4.22341020
+ description Backup service | 800K
+ mtu 1546
+ bandwidth 800
+ encapsulation dot1Q 2234 second-dot1q 1020
+ vrf forwarding CLIENT_VOICE:1000
+ ip flow monitor IPV4_MONITOR sampler FLOW_SAMPLER input
+ ip address 192.0.2.181 255.255.255.252
+ no ip proxy-arp
+ ip verify unicast source reachable-via rx allow-default allow-self-ping
+ ip access-group OUTPUT_ACL out
+ service-policy input VOICE_POLICY_800_IN
+ service-policy output VOICE_POLICY_800_OUT
+!

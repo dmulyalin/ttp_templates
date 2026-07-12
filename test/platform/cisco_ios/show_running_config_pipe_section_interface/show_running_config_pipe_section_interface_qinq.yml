@@ -1,0 +1,133 @@
+- description: Voice service | 2048K
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.161/30
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: GigabitEthernet2/0/4.223415
+  parent: GigabitEthernet2/0/4
+  qinq_svlan: 15
+  speed: null
+  tagged_vlans:
+  - 2234
+  type: virtual
+  untagged_vlan: null
+  vrf: CLIENT_VOICE:1000
+- description: Data service | 100M
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.165/30
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: GigabitEthernet2/0/4.223427
+  parent: GigabitEthernet2/0/4
+  qinq_svlan: 27
+  speed: null
+  tagged_vlans:
+  - 2234
+  type: virtual
+  untagged_vlan: null
+  vrf: CLIENT_VOICE:1000
+- description: Branch service | 100M
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.169/30
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: GigabitEthernet2/0/4.223436
+  parent: GigabitEthernet2/0/4
+  qinq_svlan: 36
+  speed: null
+  tagged_vlans:
+  - 2234
+  type: virtual
+  untagged_vlan: null
+  vrf: CLIENT_VOICE:1000
+- description: Remote site service | 1500K
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.173/30
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: GigabitEthernet2/0/4.223449
+  parent: GigabitEthernet2/0/4
+  qinq_svlan: 49
+  speed: null
+  tagged_vlans:
+  - 2234
+  type: virtual
+  untagged_vlan: null
+  vrf: CLIENT_VOICE:1000
+- description: Test service | 100M
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.177/30
+  ipv6_addresses:
+  - 2001:db8:2234:1011::2/126
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: 9096
+  name: GigabitEthernet2/0/4.22341011
+  parent: GigabitEthernet2/0/4
+  qinq_svlan: 1011
+  speed: null
+  tagged_vlans:
+  - 2234
+  type: virtual
+  untagged_vlan: null
+  vrf: CLIENT_VOICE:1000
+- description: Backup service | 800K
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.181/30
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: 1546
+  name: GigabitEthernet2/0/4.22341020
+  parent: GigabitEthernet2/0/4
+  qinq_svlan: 1020
+  speed: null
+  tagged_vlans:
+  - 2234
+  type: virtual
+  untagged_vlan: null
+  vrf: CLIENT_VOICE:1000

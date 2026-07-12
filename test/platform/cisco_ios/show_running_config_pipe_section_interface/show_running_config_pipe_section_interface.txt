@@ -1,0 +1,123 @@
+device#show running-config | section interface
+interface Loopback1
+ ip address 192.0.2.1 255.255.255.255
+interface Tunnel1
+ ip address 198.51.100.1 255.255.255.252
+ load-interval 30
+ tunnel source Cellular0/1/0
+ tunnel mode ipsec ipv4
+ tunnel destination 203.0.113.1
+ tunnel protection ipsec profile IPSEC-PROFILE
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+interface GigabitEthernet0/0
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+interface GigabitEthernet0/1
+ mtu 9236
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+interface GigabitEthernet0/2
+ description Routed parent interface
+ mtu 9236
+ no ip address
+ ip mtu 9192
+ duplex auto
+ speed auto
+interface GigabitEthernet0/2.301
+ description Customer A subinterface
+ encapsulation dot1Q 301
+ ip vrf forwarding VRF-A
+ ip address 198.51.100.4 255.255.255.254
+ ip mtu 9192
+interface GigabitEthernet0/2.302
+ description Customer B subinterface
+ encapsulation dot1Q 302
+ ip vrf forwarding VRF-B
+ ip address 198.51.100.10 255.255.255.0
+ ip mtu 9192
+interface GigabitEthernet0/0/0
+ description Distribution trunk
+ switchport trunk allowed vlan 1,2,201,204-207,300,2002-2005
+ switchport mode trunk
+ no ip address
+interface GigabitEthernet0/0/1
+ no ip address
+ shutdown
+interface GigabitEthernet0/0/2
+ no ip address
+ shutdown
+interface GigabitEthernet0/0/3
+ description Access port
+ switchport access vlan 201
+ no ip address
+interface GigabitEthernet1/0
+ description Routed uplink
+ mtu 9236
+ ip vrf forwarding VRF-A
+ ip address 203.0.113.64 255.255.255.254
+ ip helper-address 192.0.2.36
+ ip mtu 9192
+interface GigabitEthernet1/1
+ mtu 9236
+ no ip address
+ shutdown
+interface Cellular0/1/0
+ ip address negotiated
+ ip access-group ALLOW-IPSEC in
+ ip virtual-reassembly in
+ encapsulation slip
+ load-interval 30
+ dialer in-band
+ dialer idle-timeout 0
+ dialer string ltescript
+ dialer watch-group 1
+ dialer-group 1
+ async mode interactive
+interface Cellular0/1/1
+ no ip address
+ encapsulation slip
+interface Vlan1
+ no ip address
+interface Vlan201
+ description "Users SVI"
+ mtu 9236
+ ip vrf forwarding VRF-A
+ ip address 192.0.2.65 255.255.255.192
+ ip mtu 9192
+ !
+interface Vlan204
+ description "Voice SVI"
+ mtu 9236
+ ip vrf forwarding VRF-A
+ ip address 192.0.2.161 255.255.255.224
+ ip mtu 9192
+ !
+interface Vlan205
+ description "Server SVI"
+ mtu 9236
+ ip vrf forwarding VRF-A
+ ip address 192.0.2.193 255.255.255.192
+ ip mtu 9192
+ !
+interface Vlan206
+ description "Management SVI"
+ mtu 9236
+ ip vrf forwarding VRF-A
+ ip address 192.0.2.145 255.255.255.248
+ ip helper-address 192.0.2.242
+ ip mtu 9192
+ !
+interface Vlan209
+ description "Transit SVI"
+ mtu 9236
+ ip vrf forwarding VRF-A
+ ip address 203.0.113.85 255.255.255.252
+ ip mtu 9192
+ !
+device#

@@ -25,6 +25,10 @@
    `ttp://platform/cisco_ios_show_inventory.txt` for `show inventory` command
    output.
 10. Updated `ttp://get/inventory.txt` to include Cisco IOS inventory parsing.
+11. Added Cisco IOS interface parsing support using
+   `ttp://platform/cisco_ios_show_running_config_pipe_section_interface.txt`
+   for `show running-config | section interface` command output.
+12. Updated `ttp://get/interfaces.txt` to include Cisco IOS interface parsing.
 
 ### CHANGES
 
@@ -57,6 +61,10 @@
 9. Added `ttp_templates/utils/cisco_nxos_process_show_running_config_interface.py`
    to normalize Cisco NX-OS interface configuration output and validate it with
    `InterfaceConfigRecord`.
+10. Added
+   `ttp_templates/utils/cisco_ios_process_show_running_config_pipe_section_interface.py`
+   to normalize Cisco IOS interface configuration output, including dot1Q and
+   QinQ subinterfaces, and validate it with `InterfaceConfigRecord`.
 
 ### TESTS
 
@@ -74,6 +82,10 @@
    output under `test/platform/cisco_nxos/show_running_config_interface/`.
 7. Added Cisco IOS `show inventory` mock data samples and expected output under
    `test/platform/cisco_ios/show_inventory/`.
+8. Added Cisco IOS `show running-config | section interface` mock data samples
+   and expected output under
+   `test/platform/cisco_ios/show_running_config_pipe_section_interface/`,
+   including a QinQ subinterface sample.
 
 ### DOCS
 
@@ -91,6 +103,7 @@
 7. Updated getter support matrix to include Cisco NX-OS interface getter
    support.
 8. Updated getter support matrix to include Cisco IOS inventory getter support.
+9. Updated getter support matrix to include Cisco IOS interface getter support.
 
 
 
