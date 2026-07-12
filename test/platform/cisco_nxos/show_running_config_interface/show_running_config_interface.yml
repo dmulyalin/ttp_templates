@@ -1,0 +1,172 @@
+- description: OOB Management
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 10.255.0.2/24
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: mgmt0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: management
+- description: Users SVI
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 10.100.0.1/24
+  ipv6_addresses:
+  - 2001:db8:100::1/64
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: Vlan100
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: bridge
+  untagged_vlan: 100
+  vrf: TENANT_A
+- description: Server vPC
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: 10
+  lag_type: mlag
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: port-channel10
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans:
+  - 100
+  - 200
+  - 201
+  - 202
+  type: lag
+  untagged_vlan: 100
+  vrf: null
+- description: Server link 1
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: active
+  lag: Port-channel10
+  lag_id: 10
+  lag_type: lag
+  mac_address: null
+  mode: access
+  mtu: null
+  name: Ethernet1/1
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: 100
+  vrf: null
+- description: Disabled spare
+  duplex: null
+  enabled: false
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: Ethernet1/2
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
+- description: Routed uplink
+  duplex: full
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.1/31
+  ipv6_addresses:
+  - 2001:db8:1::1/64
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: 9216
+  name: Ethernet1/3
+  parent: null
+  qinq_svlan: null
+  speed: 10000000
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
+- description: Customer subinterface
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 198.51.100.1/30
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: Ethernet1/3.200
+  parent: Ethernet1/3
+  qinq_svlan: null
+  speed: null
+  tagged_vlans:
+  - 200
+  type: virtual
+  untagged_vlan: null
+  vrf: CUSTOMER_A
+- description: Router ID
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 203.0.113.1/32
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: loopback0
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null

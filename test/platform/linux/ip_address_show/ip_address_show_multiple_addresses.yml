@@ -100,7 +100,7 @@
   lag_type: null
   mac_address: 00:50:56:37:93:58
   mode: null
-  mtu: 1500
+  mtu: null
   name: ens38
   parent: null
   qinq_svlan: null

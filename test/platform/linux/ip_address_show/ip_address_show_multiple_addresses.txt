@@ -26,7 +26,7 @@
        valid_lft 1541sec preferred_lft 1541sec
     inet6 fe80::6c2a:3447:5d99:700a/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
-5: ens38: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+5: ens38: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 0 qdisc fq_codel state UP group default qlen 1000
     link/ether 00:50:56:37:93:58 brd ff:ff:ff:ff:ff:ff
     altname enp2s6
     inet 192.168.94.135/24 brd 192.168.94.255 scope global dynamic noprefixroute ens38

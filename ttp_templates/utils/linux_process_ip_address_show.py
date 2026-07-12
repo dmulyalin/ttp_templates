@@ -84,7 +84,7 @@ def transform_interfaces(payload: list) -> List[Dict[str, Any]]:
             "lag_id": None,
             "lag_type": None,
             "lacp_mode": None,
-            "mtu": iface.get("mtu"),
+            "mtu": iface.get("mtu") or None,
             "mac_address": iface.get("mac_address"),
             "speed": None,
             "duplex": None,

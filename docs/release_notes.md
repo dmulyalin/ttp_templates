@@ -17,6 +17,10 @@
    `ttp://platform/linux_ip_address_show.txt` for `ip address show` command
    output.
 6. Updated `ttp://get/interfaces.txt` to include Linux interface parsing.
+7. Added Cisco NX-OS interface parsing support using
+   `ttp://platform/cisco_nxos_show_running_config_interface.txt` for
+   `show running-config interface` command output.
+8. Updated `ttp://get/interfaces.txt` to include Cisco NX-OS interface parsing.
 
 ### CHANGES
 
@@ -45,6 +49,9 @@
 8. Added `ttp_templates/utils/linux_process_ip_address_show.py` to normalize
    Linux operational interface output and validate it with
    `InterfaceConfigRecord`.
+9. Added `ttp_templates/utils/cisco_nxos_process_show_running_config_interface.py`
+   to normalize Cisco NX-OS interface configuration output and validate it with
+   `InterfaceConfigRecord`.
 
 ### TESTS
 
@@ -58,6 +65,8 @@
    through the `get/inventory` getter.
 5. Added Linux `ip address show` mock data and expected output under
    `test/platform/linux/ip_address_show/`.
+6. Added Cisco NX-OS `show running-config interface` mock data and expected
+   output under `test/platform/cisco_nxos/show_running_config_interface/`.
 
 ### DOCS
 
@@ -72,6 +81,8 @@
 5. Updated getter support matrix and generated inventory getter reference docs
    to include A10 inventory support.
 6. Updated getter support matrix to include Linux interface getter support.
+7. Updated getter support matrix to include Cisco NX-OS interface getter
+   support.
 
 
 
