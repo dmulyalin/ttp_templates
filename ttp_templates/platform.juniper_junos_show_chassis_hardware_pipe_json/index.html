@@ -1057,6 +1057,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1107,6 +1131,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1215,6 +1251,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1403,6 +1451,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1642,49 +1702,11 @@ This template requires output of &#39;show inventory&#39; command.
 
 &lt;macro&gt;
 def transform_inventory_to_records(payload):
-    import json
+    from ttp_templates.utils.juniper_junos_process_show_chassis_hardware_pipe_json import (
+        transform_inventory,
+    )
 
-    def pick(node, key):
-        value = node.get(key)
-        if not isinstance(value, list):
-            return None
-        for item in value:
-            if isinstance(item, dict):
-                data = item.get(&quot;data&quot;)
-                if isinstance(data, str) and data.strip():
-                    return data.strip()
-        return None
-    if payload:
-        payload = json.loads(&quot;{&quot; + payload[0][&quot;data&quot;] + &quot;}&quot;)
-    else:
-        return []
-    records = []
-    stack = [payload]
-
-    while stack:
-        node = stack.pop()
-        if isinstance(node, list):
-            stack.extend(node)
-            continue
-        if not isinstance(node, dict):
-            continue
-
-        serial = pick(node, &quot;serial-number&quot;)
-        if serial:
-            description = pick(node, &quot;description&quot;) or &quot;&quot;
-            records.append(
-                {
-                    &quot;module&quot;: description or (pick(node, &quot;part-number&quot;) or &quot;&quot;),
-                    &quot;serial&quot;: serial,
-                    &quot;slot&quot;: pick(node, &quot;name&quot;) or &quot;&quot;,
-                    &quot;description&quot;: description,
-                }
-            )
-
-        for value in node.values():
-            stack.append(value)
-
-    return records
+    return transform_inventory(payload)
 &lt;/macro&gt;
 
 &lt;input&gt;

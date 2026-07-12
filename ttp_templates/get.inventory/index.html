@@ -1055,6 +1055,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1105,6 +1129,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1213,6 +1249,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1393,6 +1441,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1631,12 +1691,22 @@
 <hr />
 <p>Template to parse Cisco IOS XR inventory.</p>
 <p>This template requires output of 'show inventory' command.</p>
+<p>Template to parse Cisco IOS inventory.</p>
+<p>This template requires output of 'show inventory' command.</p>
 <p>Template to parse Arista inventory.</p>
 <p>This template requires output of 'show inventory' command.</p>
 <p>Template to parse Cisco NX-OS inventory.</p>
-<p>This template requires output of 'show inventory' command.</p>
+<p>This template requires output of 'show inventory | json-pretty' command.</p>
 <p>Template to parse Juniper inventory.</p>
 <p>This template requires output of 'show inventory' command.</p>
+<p>Template to parse A10 "show hardware" command output.</p>
+<p>Returns a list of dictionaries with:</p>
+<ul>
+<li><code>description</code> - hardware platform description</li>
+<li><code>module</code> - hardware model</li>
+<li><code>serial</code> - device serial number</li>
+<li><code>slot</code> - hardware slot name</li>
+</ul>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name=&quot;inventory&quot; results=&quot;per_template&quot;&gt;
@@ -1648,6 +1718,8 @@ Getter template to parse inventory for network devices. Designed to work with
 
 Supported platforms:
 
+- A10
+- Cisco IOS
 - Cisco IOS-XR
 - Cisco NXOS
 - Arista EOS
@@ -1681,11 +1753,15 @@ Example data returned by template (YAML):
 
 &lt;extend template=&quot;ttp://platform/cisco_xr_show_inventory.txt&quot;/&gt;
 
+&lt;extend template=&quot;ttp://platform/cisco_ios_show_inventory.txt&quot;/&gt;
+
 &lt;extend template=&quot;ttp://platform/arista_eos_show_inventory_pipe_json.txt&quot;/&gt;
 
 &lt;extend template=&quot;ttp://platform/cisco_nxos_show_inventory_pipe_json_pretty.txt&quot;/&gt;
 
 &lt;extend template=&quot;ttp://platform/juniper_junos_show_chassis_hardware_pipe_json.txt&quot;/&gt;
+
+&lt;extend template=&quot;ttp://platform/a10_show_hardware.txt&quot;/&gt;
 
 &lt;/template&gt;
 </code></pre></div>

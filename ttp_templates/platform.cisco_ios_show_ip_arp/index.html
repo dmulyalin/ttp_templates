@@ -1057,6 +1057,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1107,6 +1131,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1223,6 +1259,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1403,6 +1451,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1748,10 +1808,26 @@ TBD
 &#39;&#39;&#39;
 &lt;/doc&gt;
 
+&lt;macro&gt;
+def validate_arp_records(data):
+    from ttp_templates.utils.models import ArpRecord
+
+    def validate_item(item):
+        if isinstance(item, dict):
+            return ArpRecord(**item).model_dump(exclude_unset=True)
+        if isinstance(item, list):
+            return [validate_item(child) for child in item]
+        return item
+
+    return validate_item(data)
+&lt;/macro&gt;
+
 &lt;group method=&quot;table&quot; to_int=&quot;age&quot;&gt;
 {{ protocol }} {{ ip | IP }} {{ age | replace(&quot;-&quot;, &quot;-1&quot;) }} {{ mac | mac_eui }} {{ type | let(&quot;interface&quot;, &quot;Unknown&quot;) }}    
 {{ protocol }} {{ ip | IP }} {{ age | replace(&quot;-&quot;, &quot;-1&quot;) }} {{ mac | mac_eui }} {{ type }} {{ interface | resuball(&quot;short_interface_names&quot;) }}
 &lt;/group&gt;
+
+&lt;output macro=&quot;validate_arp_records&quot;/&gt;
 </code></pre></div>
 </details>
                 
@@ -1778,7 +1854,7 @@ TBD
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-footer__link md-footer__link--prev" aria-label="Previous: arista_eos_show_running_config_section_interface" rel="prev">
+        <a href="../platform.cisco_ios_show_inventory/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cisco_ios_show_inventory" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1787,7 +1863,7 @@ TBD
               <span class="md-footer__direction">
                 Previous
               </span>
-              arista_eos_show_running_config_section_interface
+              cisco_ios_show_inventory
             </div>
           </div>
         </a>

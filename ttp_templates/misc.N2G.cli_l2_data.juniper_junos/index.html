@@ -1067,6 +1067,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1117,6 +1141,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1225,6 +1261,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1405,6 +1453,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1675,19 +1735,9 @@ def check_is_physical_port(data):
     return data
 
 def extract_lldp_peer(data):
-    if &quot; &quot; in data[&quot;info&quot;]:
-        *port_info, peer_name = data.pop(&quot;info&quot;).split(&quot; &quot;)
-        data[&quot;data.peer_port_description&quot;] = &quot; &quot;.join(port_info).strip()
-    else:
-        port_info, peer_name = data.pop(&quot;info&quot;), data[&quot;data.chassis_id&quot;]
-        data[&quot;data.peer_port_description&quot;] = port_info
+    from ttp_templates.utils.n2g_cli_l2_data_juniper_junos import extract_lldp_peer
 
-    data[&quot;target.id&quot;] = peer_name
-    data[&quot;trgt_label&quot;] = &quot;&quot;
-
-    # check if port_info is name of the interface, use it as link trgt_label
-    if len(port_info) == 1 and not port_info[0].isdigit():
-        data[&quot;trgt_label&quot;], _ = _ttp_[&quot;match&quot;][&quot;resuball&quot;](port_info[0], &quot;IfsNormalize&quot;)
+    return extract_lldp_peer(data, _ttp_[&quot;match&quot;][&quot;resuball&quot;])
 &lt;/macro&gt;
 
 &lt;!-- show lldp local-information - parse global params --&gt;

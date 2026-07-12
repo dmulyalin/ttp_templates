@@ -1057,6 +1057,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1107,6 +1131,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1223,6 +1259,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1403,6 +1451,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1629,37 +1689,184 @@
 <div class="highlight"><pre><span></span><code>ttp://platform/cisco_ios_show_running_config_pipe_section_interface.txt
 </code></pre></div></p>
 <hr />
-<p>Template to produce list of dictionaries with interface configuration details using 
-Cisco IOSXE "show running-config | section interface" command output.</p>
-<p>The exact command is "show running-config" and not "show running-configuration",
-as it is changed in later versions of IOSXE.</p>
+<p><em>Authored by Codex GPT-5.</em></p>
+<p>Template to parse Cisco IOS interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.</p>
+<p>This template requires output of 'show running-config | section interface'.</p>
+<p>The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to <code>null</code> / <code>None</code>):</p>
+<ul>
+<li><code>name</code>: interface name string (e.g. GigabitEthernet0/1, Vlan100)</li>
+<li><code>type</code>: <code>other</code> by default; <code>bridge</code> if "vlan" or "bvi" in name;
+    <code>lag</code> if "port-channel" in name; <code>virtual</code> if "loopback", "tunnel",
+    or if the interface name contains a dot (<code>.</code>)</li>
+<li><code>enabled</code>: boolean; interfaces are <code>True</code> by default unless explicitly
+    shutdown in the config</li>
+<li><code>parent</code>: parent interface name or <code>null</code> (if the interface name contains
+    a dot the parent is the part before the dot)</li>
+<li><code>lag_id</code>: lag identifier integer (channel-group number) or <code>null</code></li>
+<li><code>lag_type</code>: <code>lag</code> for standard port channels or <code>null</code></li>
+<li><code>lacp_mode</code>: LACP mode string (e.g. <code>active</code>, <code>passive</code>) or <code>null</code></li>
+<li><code>lag</code>: Name of parent LAG interface e.g. <code>Port-channel10</code> or <code>null</code></li>
+<li><code>mtu</code>: integer MTU or <code>null</code></li>
+<li><code>mac_address</code>: string in MAC EUI format or <code>null</code></li>
+<li><code>speed</code>: integer speed in kbit/s or <code>null</code></li>
+<li><code>duplex</code>: string duplex setting or <code>null</code></li>
+<li><code>description</code>: string (empty string when not set)</li>
+<li><code>mode</code>: <code>tagged</code> / <code>access</code> or <code>null</code></li>
+<li><code>untagged_vlan</code>: integer or <code>null</code></li>
+<li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
+<li><code>qinq_svlan</code>: integer inner VLAN from <code>second-dot1q</code> or <code>null</code></li>
+<li><code>vrf</code>: string or <code>null</code></li>
+<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 10.0.0.1/24)</li>
+<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
+</ul>
+<p>Example normalized output (YAML):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Users SVI</span><span class="w"></span>
+<span class="w">  </span><span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_addresses</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.0.2.1/24</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv6_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lacp_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mac_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">access</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1500</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vlan100</span><span class="w"></span>
+<span class="w">  </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">qinq_svlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">tagged_vlans</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span><span class="w"></span>
+<span class="w">  </span><span class="nt">untagged_vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">USERS</span><span class="w"></span>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;doc&gt;
-Template to produce list of dictionaries with interface configuration details using 
-Cisco IOSXE &quot;show running-config | section interface&quot; command output.
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;cisco_ios_interface_config&quot; results=&quot;per_template&quot;&gt;
+&lt;doc&gt;
+*Authored by Codex GPT-5.*
 
-The exact command is &quot;show running-config&quot; and not &quot;show running-configuration&quot;,
-as it is changed in later versions of IOSXE.
+Template to parse Cisco IOS interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
+
+This template requires output of &#39;show running-config | section interface&#39;.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to &#39;null&#39; / &#39;None&#39;):
+
+- &#39;name&#39;: interface name string (e.g. GigabitEthernet0/1, Vlan100)
+- &#39;type&#39;: &#39;&#39;other&#39;&#39; by default; &#39;&#39;bridge&#39;&#39; if &quot;vlan&quot; or &quot;bvi&quot; in name;
+    &#39;&#39;lag&#39;&#39; if &quot;port-channel&quot; in name; &#39;&#39;virtual&#39;&#39; if &quot;loopback&quot;, &quot;tunnel&quot;,
+    or if the interface name contains a dot (&#39;.&#39;)
+- &#39;enabled&#39;: boolean; interfaces are &#39;True&#39; by default unless explicitly
+    shutdown in the config
+- &#39;parent&#39;: parent interface name or &#39;null&#39; (if the interface name contains
+    a dot the parent is the part before the dot)
+- &#39;lag_id&#39;: lag identifier integer (channel-group number) or &#39;null&#39;
+- &#39;lag_type&#39;: &#39;&#39;lag&#39;&#39; for standard port channels or &#39;null&#39;
+- &#39;lacp_mode&#39;: LACP mode string (e.g. &#39;&#39;active&#39;&#39;, &#39;&#39;passive&#39;&#39;) or &#39;null&#39;
+- &#39;lag&#39;: Name of parent LAG interface e.g. &#39;Port-channel10&#39; or &#39;null&#39;
+- &#39;mtu&#39;: integer MTU or &#39;null&#39;
+- &#39;mac_address&#39;: string in MAC EUI format or &#39;null&#39;
+- &#39;speed&#39;: integer speed in kbit/s or &#39;null&#39;
+- &#39;duplex&#39;: string duplex setting or &#39;null&#39;
+- &#39;description&#39;: string (empty string when not set)
+- &#39;mode&#39;: &#39;&#39;tagged&#39;&#39; / &#39;&#39;access&#39;&#39; or &#39;null&#39;
+- &#39;untagged_vlan&#39;: integer or &#39;null&#39;
+- &#39;tagged_vlans&#39;: list of integers (empty list when none)
+- &#39;qinq_svlan&#39;: integer inner VLAN from &#39;second-dot1q&#39; or &#39;null&#39;
+- &#39;vrf&#39;: string or &#39;null&#39;
+- &#39;ipv4_addresses&#39;: list of strings with IP/prefix (e.g. 10.0.0.1/24)
+- &#39;ipv6_addresses&#39;: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+&#39;&#39;&#39;yaml
+- description: Users SVI
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.1/24
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: 1500
+  name: Vlan100
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: bridge
+  untagged_vlan: 100
+  vrf: USERS
+&#39;&#39;&#39;
+
 &lt;/doc&gt;
 
-&lt;group&gt;
-interface {{ interface }}
- description {{ description | re(&quot;.*&quot;) }}
- ip address {{ ipv4 }} {{ mask_v4 }}
- ipv6 address {{ ipv6 }}/{{ mask_v6 }}
- shutdown {{ disabled | set(True) }}
- mtu {{ mtu }}
- encapsulation dot1Q {{ dot1q }}
- encapsulation dot1q {{ dot1q }}
- vrf forwarding {{ vrf }}
+&lt;input&gt;
+commands = [
+    &quot;show running-config | section interface&quot;
+]
+platform = [
+    &quot;cisco_ios&quot;, # Netmiko and Scrapli
+    &quot;ios&quot;, # NAPALM
+]
+&lt;/input&gt;
+
+&lt;macro&gt;
+def transform_interfaces_to_records(data):
+    from ttp_templates.utils.cisco_ios_process_show_running_config_pipe_section_interface import transform_interfaces_config
+
+    return transform_interfaces_config(data)
+&lt;/macro&gt;
+
+## ------------------------------------------------------------------------------------------
+## Interfaces configuration
+## ------------------------------------------------------------------------------------------
+&lt;group functions=&quot;contains(&#39;name&#39;)&quot;&gt;
+interface {{ name | _start_ }}
+ description {{ description | re(&quot;.*&quot;) | default(&quot;&quot;) }}
+ shutdown {{ enabled | set(False) | default(True) }}
+ no shutdown {{ enabled | set(True) | default(True) }}
+ mtu {{ mtu | to_int }}
  ip vrf forwarding {{ vrf }}
- service-policy input {{ qos_policy_in }}
- service-policy output {{ qos_policy_out }}
- ip access-group {{ acl_in }} in
- ip access-group {{ acl_out }} out
-! {{ _end_ }}
+ vrf forwarding {{ vrf }}
+ encapsulation dot1Q {{ dot1q | to_int | let(&quot;mode&quot;, &quot;tagged&quot;) }} second-dot1q {{ qinq_svlan | to_int }}
+ encapsulation dot1Q {{ dot1q | to_int | let(&quot;mode&quot;, &quot;tagged&quot;) }}
+ switchport mode trunk {{ mode | set(&quot;tagged&quot;) }}
+ switchport mode access {{ mode | set(&quot;access&quot;) }}
+ switchport access vlan {{ untagged_vlan | to_int | let(&quot;mode&quot;, &quot;access&quot;) }}
+ switchport trunk native vlan {{ untagged_vlan | to_int }}
+ switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar=&#39;-&#39;, joinchar=&#39;,&#39;) | split(&quot;,&quot;) | joinmatches }}
+ switchport trunk allowed vlan add {{ tagged_vlans | unrange(rangechar=&#39;-&#39;, joinchar=&#39;,&#39;) | split(&quot;,&quot;) | joinmatches }}
+ channel-group {{ lag_id | to_int | let(&quot;lag_type&quot;, &quot;lag&quot;) }} mode {{ lacp_mode }}
+ mac-address {{ mac_address | mac_eui }}
+ speed {{ speed }}
+ duplex {{ duplex }}
+
+ &lt;group name=&quot;ipv4_addresses*&quot; method=&quot;table&quot;&gt;
+ ip address {{ ip | IP }} {{ mask }}
+ ip address {{ ip | IP }} {{ mask }} secondary
+ &lt;/group&gt;
+
+ &lt;group name=&quot;ipv6_addresses*&quot; method=&quot;table&quot;&gt;
+ ipv6 address {{ ip | IPV6 }}/{{ mask }}
+ &lt;/group&gt;
+
+!{{ _end_ }}
 &lt;/group&gt;
+
+&lt;output macro=&quot;transform_interfaces_to_records&quot;/&gt;
+
+&lt;/template&gt;
 </code></pre></div>
 </details>
                 

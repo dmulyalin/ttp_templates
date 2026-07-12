@@ -1067,6 +1067,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1117,6 +1141,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1225,6 +1261,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1405,6 +1453,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1655,47 +1715,14 @@ platform = [
 
 &lt;macro&gt;
 def process_interface(data):
+    from ttp_templates.utils.netbox_parse_opengear_config import process_interface
 
-    if not data.get(&quot;name&quot;):
-        return False
-
-    data[&quot;description&quot;] = &quot;&quot;
-
-    if data[&quot;disabled&quot;] == &quot;on&quot;:
-        data.pop(&quot;disabled&quot;)
-        data[&quot;enabled&quot;] = False
-    else:
-        data.pop(&quot;disabled&quot;)
-        data[&quot;enabled&quot;] = True
-
-    if data[&quot;name&quot;] == &quot;wan&quot;:
-        data[&quot;name&quot;] = &quot;eth0&quot;
-        data[&quot;label&quot;] = &quot;wan&quot;
-        data[&quot;interface_type&quot;] = &quot;bridge&quot; 
-    elif data[&quot;name&quot;] == &quot;lan&quot;:
-        data[&quot;name&quot;] = &quot;eth1&quot;
-        data[&quot;label&quot;] = &quot;lan&quot;
-        data[&quot;interface_type&quot;] = &quot;bridge&quot; 
-    else:
-        return False
-
-    return data
+    return process_interface(data)
 
 def process_output(data):
+    from ttp_templates.utils.netbox_parse_opengear_config import process_output
 
-    # transform interfaces dictionary into a list
-    interfaces = []
-    for intf_name, intf_data in data.get(&quot;interfaces&quot;, {}).items():
-
-        # transform ipv4 addresses to list
-        if intf_data.get(&quot;ipv4&quot;) and intf_data.get(&quot;maskv4&quot;):
-            intf_data[&quot;ipv4&quot;] = [{&quot;ip&quot;: intf_data.pop(&quot;ipv4&quot;), &quot;mask&quot;: intf_data.pop(&quot;maskv4&quot;)}]
-
-        interfaces.append(intf_data)
-        interfaces[-1][&quot;name&quot;] = intf_name
-    data[&quot;interfaces&quot;] = interfaces
-
-    return data
+    return process_output(data)
 &lt;/macro&gt;
 
 ## ------------------------------------------------------------------------------------------

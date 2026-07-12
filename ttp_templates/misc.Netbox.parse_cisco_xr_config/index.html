@@ -1067,6 +1067,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1117,6 +1141,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1225,6 +1261,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1405,6 +1453,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1657,29 +1717,16 @@ platform = [
 
 &lt;macro&gt;
 def add_interface_type(data):
-    data[&quot;interface_type&quot;] = &quot;other&quot;    
-    if any(
-        i in data[&quot;name&quot;].lower() for i in [
-            &quot;.&quot;, &quot;loopback&quot;, &quot;tunnel&quot;
-        ]
-    ):
-        data[&quot;interface_type&quot;] = &quot;virtual&quot;
-    elif any(
-        i in data[&quot;name&quot;].lower() for i in [
-            &quot;bvi&quot;
-        ]
-    ):
-        data[&quot;interface_type&quot;] = &quot;bridge&quot;
-    elif &quot;bundle&quot; in data[&quot;name&quot;].lower():
-        data[&quot;interface_type&quot;] = &quot;lag&quot;    
-    return data
+    from ttp_templates.utils.netbox_parse_cisco_xr_config import add_interface_type
+
+    return add_interface_type(data)
 
 def add_parent_interface(data):
     if &quot;lag_id&quot; in data:
         data[&quot;parent&quot;] = &quot;Bundle-Ether{}&quot;.format(data[&quot;lag_id&quot;])
     elif &quot;.&quot; in data[&quot;name&quot;]:
         data[&quot;parent&quot;] = data[&quot;name&quot;].split(&quot;.&quot;)[0]
-    return data    
+    return data
 &lt;/macro&gt;
 
 ## ------------------------------------------------------------------------------------------

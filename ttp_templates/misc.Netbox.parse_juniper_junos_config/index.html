@@ -1067,6 +1067,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1117,6 +1141,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1225,6 +1261,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1405,6 +1453,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1656,67 +1716,9 @@ platform = [
 
 &lt;macro&gt;    
 def postprocess(data):
-    # transform vrf dict to list
-    data[&quot;vrf&quot;] = [{&quot;name&quot;: k, **v} for k, v in data.get(&quot;vrf&quot;, {}).items()]
+    from ttp_templates.utils.netbox_parse_juniper_junos_config import postprocess
 
-    # update interfaces with VRF reference
-    for vrf in data[&quot;vrf&quot;]:
-        for interface in vrf.get(&quot;interfaces&quot;, []):
-            if data[&quot;interfaces&quot;].get(interface):
-                data[&quot;interfaces&quot;][interface][&quot;vrf&quot;] = vrf[&quot;name&quot;]
-
-    # transform interfaces dict to list
-    data[&quot;interfaces&quot;] = [
-        {&quot;name&quot;: k, **v} 
-        for k, v in data.get(&quot;interfaces&quot;, {}).items()
-    ]
-
-    # process interfaces further
-    for i in data[&quot;interfaces&quot;]:
-        # add interface type - other, virtual or lag
-        i[&quot;interface_type&quot;] = &quot;other&quot;    
-        if &quot;irb&quot; in i[&quot;name&quot;]:
-            i[&quot;interface_type&quot;] = &quot;bridge&quot;
-            i[&quot;switching&quot;] = {
-                &quot;dot1q_mode&quot;: &quot;access&quot;,
-                &quot;vlans&quot;: [int(i[&quot;name&quot;].split(&quot;.&quot;)[1])]
-            }
-        elif any(
-            k in i[&quot;name&quot;] for k in [&quot;.&quot;, &quot;gr-&quot;, &quot;lo0&quot;, &quot;vlan&quot;]
-        ):
-            i[&quot;interface_type&quot;] = &quot;virtual&quot;
-        elif &quot;ae&quot; in i[&quot;name&quot;]:
-            i[&quot;interface_type&quot;] = &quot;lag&quot;  
-
-        # add interface parent details
-        if &quot;.&quot; in i[&quot;name&quot;] and not any(k in i[&quot;name&quot;] for k in [&quot;lo0&quot;, &quot;vlan&quot;, &quot;irb&quot;, &quot;gr-&quot;]):
-            i[&quot;parent&quot;] = i[&quot;name&quot;].split(&quot;.&quot;)[0]
-
-        # form list of vlans
-        if i.get(&quot;switching&quot;, {}).get(&quot;vlans&quot;, []):
-            vlans = []
-            for vlan in i.get(&quot;switching&quot;, {}).get(&quot;vlans&quot;, []):
-                if isinstance(vlan, dict):
-                    vlans.append(vlan[&quot;vlan&quot;])
-                else:
-                    vlans.append(vlan)
-            i[&quot;switching&quot;][&quot;vlans&quot;] = vlans     
-
-        # calculate dot1q mode
-        switching = i.get(&quot;switching&quot;, {})
-        if switching.get(&quot;dot1q_mode&quot;) == &quot;trunk&quot;:
-            if &quot;all&quot; in switching.get(&quot;vlans&quot;, []):
-                i[&quot;switching&quot;][&quot;dot1q_mode&quot;] = &quot;tagged-all&quot;
-            else:
-                i[&quot;switching&quot;][&quot;dot1q_mode&quot;] = &quot;tagged&quot;
-        elif switching.get(&quot;dot1q_mode&quot;) == &quot;access&quot;:
-            i[&quot;switching&quot;][&quot;dot1q_mode&quot;] = &quot;access&quot;
-
-        # set interface default parameters
-        i.setdefault(&quot;enabled&quot;, True)
-        i.setdefault(&quot;description&quot;, &quot;&quot;)
-
-    return data
+    return postprocess(data)
 &lt;/macro&gt;
 
 ## ------------------------------------------------------------------------------------------

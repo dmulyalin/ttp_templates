@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/misc.N2G.cli_l2_data.cisco_nxos/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.a10_show_hardware/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cli_l2_data.cisco_nxos - TTP Templates Collection</title>
+        <title>a10_show_hardware - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cli_l2_data.cisco_nxos
+              a10_show_hardware
             
           </span>
         </div>
@@ -429,14 +429,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
       
       <label class="md-nav__link" for="__nav_6_1">
         Misc
@@ -452,14 +450,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" >
       
       <label class="md-nav__link" for="__nav_6_1_1">
         N2G
@@ -631,19 +627,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cli_l2_data.cisco_nxos/" class="md-nav__link">
         cli_l2_data.cisco_nxos
       </a>
-      
     </li>
   
 
@@ -1044,12 +1032,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
       
       <label class="md-nav__link" for="__nav_6_2">
         Platform
@@ -1065,11 +1055,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         a10_show_hardware
       </a>
+      
     </li>
   
 
@@ -1680,121 +1678,60 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_l2_data.cisco_nxos.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.a10_show_hardware.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cli_l2_data.cisco_nxos</h1>
+                  <h1>a10_show_hardware</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_l2_data/cisco_nxos.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/a10_show_hardware.txt
 </code></pre></div></p>
 <hr />
-<p>This template designed to parse Cisco NXOS configuration and CDP and LLDP neighbors.</p>
+<p>Template to parse A10 "show hardware" command output.</p>
+<p>Returns a list of dictionaries with:</p>
+<ul>
+<li><code>description</code> - hardware platform description</li>
+<li><code>module</code> - hardware model</li>
+<li><code>serial</code> - device serial number</li>
+<li><code>slot</code> - hardware slot name</li>
+</ul>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;cisco_nxos&quot; results=&quot;per_template&quot;&gt;
-
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;a10_show_hardware&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
-This template designed to parse Cisco NXOS configuration and CDP and LLDP neighbors.
+Template to parse A10 &quot;show hardware&quot; command output.
+
+Returns a list of dictionaries with:
+
+- &#39;description&#39; - hardware platform description
+- &#39;module&#39; - hardware model
+- &#39;serial&#39; - device serial number
+- &#39;slot&#39; - hardware slot name
 &lt;/doc&gt;
 
-&lt;input load=&quot;python&quot;&gt;
+&lt;input&gt;
 commands = [
-    &quot;show cdp neighbor details&quot;,
-    &quot;show lldp neighbor details&quot;,
-    &quot;show running-config&quot;,
-    &quot;show interface&quot;,
+    &quot;show hardware&quot;
 ]
-kwargs = {&quot;strip_prompt&quot;: False}
-method = &quot;send_command&quot;
-platform = [&quot;nxos_ssh&quot;, &quot;cisco_nxos&quot;]
+platform = [&quot;a10&quot;, &quot;a10_ssh&quot;]
 &lt;/input&gt;
 
-&lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
-
 &lt;macro&gt;
-def process_vlans(data):
-    return {data[&quot;vid&quot;]: data[&quot;name&quot;]}
+def validate_inventory_records(data):
+    from ttp_templates.utils.a10_process_show_hardware import transform_inventory
 
-def check_is_physical_port(data):
-    for item in _ttp_[&quot;vars&quot;][&quot;physical_ports&quot;]:
-        if data.startswith(item) and not &quot;.&quot; in data:
-            return data, {&quot;is_physical_port&quot;: True}
-    return data
+    return transform_inventory(data)
 &lt;/macro&gt;
 
-&lt;macro&gt;
-def check_lldp_peer_name(data):
-    undef_names = [&quot;not advertised&quot;, &quot;null&quot;]
-    if data.get(&quot;target.id&quot;, &quot;&quot;).lower() in undef_names:
-        data[&quot;target.id&quot;] = data[&quot;data.chassis_id&quot;]
-    return data
-&lt;/macro&gt;
-
-&lt;!-- Interfaces configuration group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**&quot;&gt;
-interface {{ interface | resuball(IfsNormalize) }}
-  description {{ description | re(&quot;.+&quot;) }}
-  switchport {{ is_l2 | set(True) }}
-  switchport access vlan {{ access_vlan }}
-  switchport mode {{ l2_mode }}
-  switchport trunk allowed vlan {{ trunk_vlans | unrange(&quot;-&quot;, &quot;,&quot;) | joinmatches(&quot;,&quot;) }}
-  switchport trunk allowed vlan add {{ trunk_vlans | unrange(&quot;-&quot;, &quot;,&quot;) | joinmatches(&quot;,&quot;) }}
-  channel-group {{ lag_id | DIGIT }} mode {{ lag_mode }}
-  vpc {{ mlag_id | DIGIT }}
-  mtu {{ mtu }}
-  vrf member {{ vrf }}
-  ip address {{ ip | joinmatches(&quot;,&quot;) }} 
-  ip address {{ ip | joinmatches(&quot;,&quot;) }} secondary 
+&lt;group&gt;
+Thunder Series Unified Application Service Gateway {{ module | let(&quot;description&quot;, &quot;Thunder Series Unified Application Service Gateway&quot;)}}
+{{ ignore(r&quot;\s+&quot;) }}Serial No  : {{ serial | let(&quot;slot&quot;, &quot;chassis&quot;) }}
 &lt;/group&gt;
 
-&lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**.state&quot;&gt;
-{{ interface | _start_ | resuball(IfsNormalize) | macro(&quot;check_is_physical_port&quot;) }} is {{ admin | ORPHRASE }}, line protocol is {{ line }}, autostate enabled
-{{ interface | _start_ | resuball(IfsNormalize) | macro(&quot;check_is_physical_port&quot;) }} is {{ line | ORPHRASE }}
-admin state is {{ admin | ORPHRASE }},{{ ignore(&quot;.*&quot;) }}
-admin state is {{ admin }}
-  Belongs to {{ parent_lag }}
-  Description: {{ description | re(&quot;.+&quot;) }} 
-  Hardware: {{ hardware | ORPHRASE }}, address: {{ mac }} (bia {{ bia }})
-  Hardware is {{ hardware }}, address is  {{ mac }}
-  MTU {{ mtu }} bytes, BW {{ bw_kbits }} Kbit, DLY 10 usec
-  Port mode is {{ mode }}
-  {{ duplex }}-duplex, {{ link_speed | PHRASE }}, media type is {{ media_type }}
-  {{ duplex }}-duplex, {{ link_speed | PHRASE | exclude(&quot;,media&quot;) }}
-  Members in this channel: {{ lag_members | ORPHRASE }}
-&lt;/group&gt;
+&lt;output macro=&quot;validate_inventory_records&quot;/&gt;
 
-&lt;!-- node_facts VLANs group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.node_facts.vlans**&quot; macro=&quot;process_vlans&quot;&gt;
-vlan {{ vid | exclude(&quot;,&quot;) }}
-  name {{ name | ORPHRASE | default(&quot;no name&quot;) }}
-&lt;/group&gt;
-
-&lt;!-- LLDP peers group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.lldp_peers*&quot; chain=&quot;macro(&#39;check_lldp_peer_name&#39;) | expand()&quot;&gt;
-Chassis id: {{ data.chassis_id }}
-Port id: {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
-Local Port id: {{ src_label | resuball(IfsNormalize) }}
-Port Description: {{ data.peer_port_description | re(&quot;.+&quot;) }}
-System Name: {{ target.id | ORPHRASE | split(&quot;.&quot;) | item(0) | split(&quot;(&quot;) | item(0) }}
-System Description: {{ data.peer_system | ORPHRASE}}
-System Capabilities: {{ data.peer_capabilities | ORPHRASE }}
-Management Address: {{ target.top_label }}
-{{ source | set(&quot;local_hostname&quot;) }}
-&lt;/group&gt;
-
-&lt;!-- CDP peers group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.cdp_peers*&quot; expand=&quot;&quot;&gt;
-Device ID:{{ target.id | split(&quot;.&quot;) | item(0) | split(&quot;(&quot;) | item(0) }}
-    IPv4 Address: {{ target.top_label }}
-Platform: {{ target.bottom_label | ORPHRASE }}, Capabilities: {{ data.peer_capabilities | ORPHRASE }}
-Interface: {{ src_label | resuball(IfsNormalize) }}, Port ID (outgoing port): {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
-MTU: {{ data.peer_mtu }}
-Physical Location: {{ data.peer_location | ORPHRASE }}
-{{ source | set(&quot;local_hostname&quot;) }}
-&lt;/group&gt;
 &lt;/template&gt;
 </code></pre></div>
 </details>
@@ -1822,7 +1759,7 @@ Physical Location: {{ data.peer_location | ORPHRASE }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.N2G.cli_l2_data.cisco_ios/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_l2_data.cisco_ios" rel="prev">
+        <a href="../misc.ttp_templates_tests.netmiko_cisco_ios_interfaces/" class="md-footer__link md-footer__link--prev" aria-label="Previous: netmiko_cisco_ios_interfaces" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1831,20 +1768,20 @@ Physical Location: {{ data.peer_location | ORPHRASE }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              cli_l2_data.cisco_ios
+              netmiko_cisco_ios_interfaces
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.N2G.cli_l2_data.cisco_xr/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_l2_data.cisco_xr" rel="next">
+        <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-footer__link md-footer__link--next" aria-label="Next: a10_show_running_config_partition_config_all_pipe_section_interface" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_l2_data.cisco_xr
+              a10_show_running_config_partition_config_all_pipe_section_interface
             </div>
           </div>
           <div class="md-footer__button md-icon">

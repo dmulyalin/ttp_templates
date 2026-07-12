@@ -1067,6 +1067,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1117,6 +1141,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1225,6 +1261,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1405,6 +1453,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1652,19 +1712,9 @@ platform = [&quot;juniper_junos&quot;]
 
 &lt;macro&gt;    
 def postprocess(data):
-    for hostname in data.keys():
-        # transform vrf dict to list
-        data[hostname][&quot;vrf&quot;] = [{&quot;name&quot;: k, **v} for k, v in data[hostname].get(&quot;vrf&quot;, {}).items()]
+    from ttp_templates.utils.n2g_cli_ip_data_juniper_junos import postprocess
 
-        # update interfaces with VRF reference
-        for vrf in data[hostname][&quot;vrf&quot;]:
-            for interface in vrf.get(&quot;interfaces&quot;, []):
-                if data[hostname][&quot;interfaces&quot;].get(interface):
-                    data[hostname][&quot;interfaces&quot;][interface][&quot;vrf&quot;] = vrf[&quot;name&quot;]
-
-        _ = data[hostname].pop(&quot;vrf&quot;)
-
-    return data
+    return postprocess(data)
 &lt;/macro&gt;
 
 &lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;

@@ -13,14 +13,14 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/misc.N2G.cli_l2_data.cisco_nxos/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_section_interface/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.4, mkdocs-material-7.2.2">
     
     
       
-        <title>cli_l2_data.cisco_nxos - TTP Templates Collection</title>
+        <title>a10_show_running_config_partition_config_all_pipe_section_interface - TTP Templates Collection</title>
       
     
     
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              cli_l2_data.cisco_nxos
+              a10_show_running_config_partition_config_all_pipe_section_interface
             
           </span>
         </div>
@@ -429,14 +429,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
       
       <label class="md-nav__link" for="__nav_6_1">
         Misc
@@ -452,14 +450,12 @@
             
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1_1" type="checkbox" id="__nav_6_1_1" >
       
       <label class="md-nav__link" for="__nav_6_1_1">
         N2G
@@ -631,19 +627,11 @@
             
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../misc.N2G.cli_l2_data.cisco_nxos/" class="md-nav__link">
         cli_l2_data.cisco_nxos
       </a>
-      
     </li>
   
 
@@ -1044,12 +1032,14 @@
             
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" checked>
       
       <label class="md-nav__link" for="__nav_6_2">
         Platform
@@ -1077,11 +1067,19 @@
             
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         a10_show_running_config_partition_config_all_pipe_section_interface
       </a>
+      
     </li>
   
 
@@ -1680,121 +1678,219 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/misc.N2G.cli_l2_data.cisco_nxos.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/dmulyalin/ttp_templates/edit/master/docs/ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_section_interface.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                  <h1>cli_l2_data.cisco_nxos</h1>
+                  <h1>a10_show_running_config_partition_config_all_pipe_section_interface</h1>
                 
                 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://misc/N2G/cli_l2_data/cisco_nxos.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/a10_show_running_config_partition_config_all_pipe_section_interface.txt
 </code></pre></div></p>
 <hr />
-<p>This template designed to parse Cisco NXOS configuration and CDP and LLDP neighbors.</p>
+<p>Template to parse A10 interface configuration and normalize it to a flat list
+of dictionaries suitable for Netbox import.</p>
+<p>This template requires output of
+'show running-config partition-config all | section interface'.</p>
+<p>The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to <code>null</code> / <code>None</code>):</p>
+<ul>
+<li><code>name</code>: interface name string (e.g. management, ethernet 1/1, trunk 1/10,
+    ve 1/100)</li>
+<li><code>type</code>: <code>other</code> by default; <code>lag</code> for trunk interfaces; <code>bridge</code> for
+    VE interfaces</li>
+<li><code>enabled</code>: boolean; interfaces are <code>True</code> by default unless explicitly
+    disabled in the config</li>
+<li><code>parent</code>: parent interface name or <code>null</code></li>
+<li><code>lag_id</code>: trunk-group identifier integer or <code>null</code></li>
+<li><code>lag_type</code>: <code>lag</code> for trunk-group member interfaces or <code>null</code></li>
+<li><code>lacp_mode</code>: LACP mode string (e.g. <code>lacp</code>) or <code>null</code></li>
+<li><code>lag</code>: name of parent trunk interface or <code>null</code></li>
+<li><code>mtu</code>: integer MTU or <code>null</code></li>
+<li><code>mac_address</code>: always <code>null</code></li>
+<li><code>speed</code>: always <code>null</code></li>
+<li><code>duplex</code>: always <code>null</code></li>
+<li><code>description</code>: string from A10 interface <code>name</code> command, empty string when
+    not set</li>
+<li><code>mode</code>: <code>tagged</code> for trunk interfaces carrying tagged VLANs, <code>access</code> for
+    VE interfaces, or <code>null</code></li>
+<li><code>untagged_vlan</code>: VLAN ID inferred from VE interface name or <code>null</code></li>
+<li><code>tagged_vlans</code>: list of VLAN IDs tagged on a trunk interface</li>
+<li><code>qinq_svlan</code>: always <code>null</code></li>
+<li><code>vrf</code>: always <code>null</code></li>
+<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 192.0.2.1/30)</li>
+<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
+</ul>
+<p>Example normalized output (YAML):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uplink trunk</span><span class="w"></span>
+<span class="w">  </span><span class="nt">duplex</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv4_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ipv6_addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lacp_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">lag_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mac_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tagged</span><span class="w"></span>
+<span class="w">  </span><span class="nt">mtu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trunk 1/10</span><span class="w"></span>
+<span class="w">  </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">qinq_svlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">speed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">tagged_vlans</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lag</span><span class="w"></span>
+<span class="w">  </span><span class="nt">untagged_vlan</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span><span class="w"></span>
+</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name=&quot;cisco_nxos&quot; results=&quot;per_template&quot;&gt;
-
+<div class="highlight"><pre><span></span><code>&lt;template name=&quot;a10_interface_config&quot; results=&quot;per_template&quot;&gt;
 &lt;doc&gt;
-This template designed to parse Cisco NXOS configuration and CDP and LLDP neighbors.
+Template to parse A10 interface configuration and normalize it to a flat list
+of dictionaries suitable for Netbox import.
+
+This template requires output of
+&#39;show running-config partition-config all | section interface&#39;.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to &#39;null&#39; / &#39;None&#39;):
+
+- &#39;name&#39;: interface name string (e.g. management, ethernet 1/1, trunk 1/10,
+    ve 1/100)
+- &#39;type&#39;: &#39;&#39;other&#39;&#39; by default; &#39;&#39;lag&#39;&#39; for trunk interfaces; &#39;&#39;bridge&#39;&#39; for
+    VE interfaces
+- &#39;enabled&#39;: boolean; interfaces are &#39;True&#39; by default unless explicitly
+    disabled in the config
+- &#39;parent&#39;: parent interface name or &#39;null&#39;
+- &#39;lag_id&#39;: trunk-group identifier integer or &#39;null&#39;
+- &#39;lag_type&#39;: &#39;&#39;lag&#39;&#39; for trunk-group member interfaces or &#39;null&#39;
+- &#39;lacp_mode&#39;: LACP mode string (e.g. &#39;&#39;lacp&#39;&#39;) or &#39;null&#39;
+- &#39;lag&#39;: name of parent trunk interface or &#39;null&#39;
+- &#39;mtu&#39;: integer MTU or &#39;null&#39;
+- &#39;mac_address&#39;: always &#39;null&#39;
+- &#39;speed&#39;: always &#39;null&#39;
+- &#39;duplex&#39;: always &#39;null&#39;
+- &#39;description&#39;: string from A10 interface &#39;name&#39; command, empty string when
+    not set
+- &#39;mode&#39;: &#39;&#39;tagged&#39;&#39; for trunk interfaces carrying tagged VLANs, &#39;&#39;access&#39;&#39; for
+    VE interfaces, or &#39;null&#39;
+- &#39;untagged_vlan&#39;: VLAN ID inferred from VE interface name or &#39;null&#39;
+- &#39;tagged_vlans&#39;: list of VLAN IDs tagged on a trunk interface
+- &#39;qinq_svlan&#39;: always &#39;null&#39;
+- &#39;vrf&#39;: always &#39;null&#39;
+- &#39;ipv4_addresses&#39;: list of strings with IP/prefix (e.g. 192.0.2.1/30)
+- &#39;ipv6_addresses&#39;: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+&#39;&#39;&#39;yaml
+- description: uplink trunk
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: trunk 1/10
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans:
+  - 100
+  type: lag
+  untagged_vlan: null
+  vrf: null
+&#39;&#39;&#39;
+
 &lt;/doc&gt;
 
-&lt;input load=&quot;python&quot;&gt;
+&lt;input&gt;
 commands = [
-    &quot;show cdp neighbor details&quot;,
-    &quot;show lldp neighbor details&quot;,
-    &quot;show running-config&quot;,
-    &quot;show interface&quot;,
+    &quot;show running-config partition-config all | section interface&quot;
 ]
-kwargs = {&quot;strip_prompt&quot;: False}
-method = &quot;send_command&quot;
-platform = [&quot;nxos_ssh&quot;, &quot;cisco_nxos&quot;]
+platform = [
+    &quot;a10&quot;,
+    &quot;a10_ssh&quot;,
+]
 &lt;/input&gt;
 
-&lt;vars&gt;local_hostname=&quot;gethostname&quot;&lt;/vars&gt;
-
 &lt;macro&gt;
-def process_vlans(data):
-    return {data[&quot;vid&quot;]: data[&quot;name&quot;]}
+def transform_interfaces_to_records(data):
+    from ttp_templates.utils.a10_process_show_running_config_partition_config_all_pipe_section_interface import transform_interfaces_config
 
-def check_is_physical_port(data):
-    for item in _ttp_[&quot;vars&quot;][&quot;physical_ports&quot;]:
-        if data.startswith(item) and not &quot;.&quot; in data:
-            return data, {&quot;is_physical_port&quot;: True}
-    return data
+    return transform_interfaces_config(data)
 &lt;/macro&gt;
 
-&lt;macro&gt;
-def check_lldp_peer_name(data):
-    undef_names = [&quot;not advertised&quot;, &quot;null&quot;]
-    if data.get(&quot;target.id&quot;, &quot;&quot;).lower() in undef_names:
-        data[&quot;target.id&quot;] = data[&quot;data.chassis_id&quot;]
-    return data
-&lt;/macro&gt;
+## ------------------------------------------------------------------------------------------
+## Management interface configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;interfaces*&quot;&gt;
+device-context {{ device_context | _start_ }}
+  interface {{ name | re(&quot;management&quot;) | let(&quot;kind&quot;, &quot;management&quot;) }}
+    name {{ description | re(&quot;.+&quot;) }}
+    enable {{ enabled | set(True) | default(True) }}
+    disable {{ enabled | set(False) }}
+    ip default-gateway {{ default_gateway }}
+    lldp enable {{ lldp | re(&quot;.+&quot;) }}
 
-&lt;!-- Interfaces configuration group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**&quot;&gt;
-interface {{ interface | resuball(IfsNormalize) }}
-  description {{ description | re(&quot;.+&quot;) }}
-  switchport {{ is_l2 | set(True) }}
-  switchport access vlan {{ access_vlan }}
-  switchport mode {{ l2_mode }}
-  switchport trunk allowed vlan {{ trunk_vlans | unrange(&quot;-&quot;, &quot;,&quot;) | joinmatches(&quot;,&quot;) }}
-  switchport trunk allowed vlan add {{ trunk_vlans | unrange(&quot;-&quot;, &quot;,&quot;) | joinmatches(&quot;,&quot;) }}
-  channel-group {{ lag_id | DIGIT }} mode {{ lag_mode }}
-  vpc {{ mlag_id | DIGIT }}
-  mtu {{ mtu }}
-  vrf member {{ vrf }}
-  ip address {{ ip | joinmatches(&quot;,&quot;) }} 
-  ip address {{ ip | joinmatches(&quot;,&quot;) }} secondary 
+    &lt;group name=&quot;ipv4_addresses*&quot; method=&quot;table&quot;&gt;
+    ip address {{ ip | _exact_ }} {{ mask }}
+    &lt;/group&gt;
+
+    &lt;group name=&quot;ipv6_addresses*&quot; method=&quot;table&quot;&gt;
+    ipv6 address {{ ip | _exact_ }}/{{ mask }}
+    &lt;/group&gt;
+
+!{{ _end_ }}
 &lt;/group&gt;
 
-&lt;group name=&quot;{{ local_hostname }}.interfaces**.{{ interface }}**.state&quot;&gt;
-{{ interface | _start_ | resuball(IfsNormalize) | macro(&quot;check_is_physical_port&quot;) }} is {{ admin | ORPHRASE }}, line protocol is {{ line }}, autostate enabled
-{{ interface | _start_ | resuball(IfsNormalize) | macro(&quot;check_is_physical_port&quot;) }} is {{ line | ORPHRASE }}
-admin state is {{ admin | ORPHRASE }},{{ ignore(&quot;.*&quot;) }}
-admin state is {{ admin }}
-  Belongs to {{ parent_lag }}
-  Description: {{ description | re(&quot;.+&quot;) }} 
-  Hardware: {{ hardware | ORPHRASE }}, address: {{ mac }} (bia {{ bia }})
-  Hardware is {{ hardware }}, address is  {{ mac }}
-  MTU {{ mtu }} bytes, BW {{ bw_kbits }} Kbit, DLY 10 usec
-  Port mode is {{ mode }}
-  {{ duplex }}-duplex, {{ link_speed | PHRASE }}, media type is {{ media_type }}
-  {{ duplex }}-duplex, {{ link_speed | PHRASE | exclude(&quot;,media&quot;) }}
-  Members in this channel: {{ lag_members | ORPHRASE }}
+## ------------------------------------------------------------------------------------------
+## Ethernet, trunk, and VE interface configuration
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;interfaces*&quot;&gt;
+interface {{ kind }} {{ identifier | _start_ }}
+  name {{ description | re(&quot;.+&quot;) }}
+  enable {{ enabled | set(True) | default(True) }}
+  disable {{ enabled | set(False) }}
+  mtu {{ mtu | to_int }}
+  lldp enable {{ lldp | re(&quot;.+&quot;) }}
+  trunk-group {{ lag_id | to_int | let(&quot;lag_type&quot;, &quot;lag&quot;) }} {{ lacp_mode }}
+  ip nat {{ ip_nat_direction }}
+  ipv6 nat {{ ipv6_nat_direction }}
+
+  &lt;group name=&quot;ipv4_addresses*&quot; method=&quot;table&quot;&gt;
+  ip address {{ ip | _exact_ }} {{ mask }}
+  &lt;/group&gt;
+
+  &lt;group name=&quot;ipv6_addresses*&quot; method=&quot;table&quot;&gt;
+  ipv6 address {{ ip | _exact_ }}/{{ mask }}
+  &lt;/group&gt;
+
+!{{ _end_ }}
 &lt;/group&gt;
 
-&lt;!-- node_facts VLANs group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.node_facts.vlans**&quot; macro=&quot;process_vlans&quot;&gt;
-vlan {{ vid | exclude(&quot;,&quot;) }}
-  name {{ name | ORPHRASE | default(&quot;no name&quot;) }}
+## ------------------------------------------------------------------------------------------
+## VLAN configuration used to enrich trunk and VE records
+## ------------------------------------------------------------------------------------------
+&lt;group name=&quot;vlans*&quot;&gt;
+vlan {{ identifier | _start_ }}
+  tagged trunk {{ tagged_trunk_id | to_int }}
+  untagged trunk {{ untagged_trunk_id | to_int }}
+  router-interface ve {{ router_interface | to_int }}
+  name {{ description | re(&quot;.+&quot;) }}
+!{{ _end_ }}
 &lt;/group&gt;
 
-&lt;!-- LLDP peers group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.lldp_peers*&quot; chain=&quot;macro(&#39;check_lldp_peer_name&#39;) | expand()&quot;&gt;
-Chassis id: {{ data.chassis_id }}
-Port id: {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
-Local Port id: {{ src_label | resuball(IfsNormalize) }}
-Port Description: {{ data.peer_port_description | re(&quot;.+&quot;) }}
-System Name: {{ target.id | ORPHRASE | split(&quot;.&quot;) | item(0) | split(&quot;(&quot;) | item(0) }}
-System Description: {{ data.peer_system | ORPHRASE}}
-System Capabilities: {{ data.peer_capabilities | ORPHRASE }}
-Management Address: {{ target.top_label }}
-{{ source | set(&quot;local_hostname&quot;) }}
-&lt;/group&gt;
+&lt;output macro=&quot;transform_interfaces_to_records&quot;/&gt;
 
-&lt;!-- CDP peers group --&gt;
-&lt;group name=&quot;{{ local_hostname }}.cdp_peers*&quot; expand=&quot;&quot;&gt;
-Device ID:{{ target.id | split(&quot;.&quot;) | item(0) | split(&quot;(&quot;) | item(0) }}
-    IPv4 Address: {{ target.top_label }}
-Platform: {{ target.bottom_label | ORPHRASE }}, Capabilities: {{ data.peer_capabilities | ORPHRASE }}
-Interface: {{ src_label | resuball(IfsNormalize) }}, Port ID (outgoing port): {{ trgt_label | ORPHRASE | resuball(IfsNormalize) }}
-MTU: {{ data.peer_mtu }}
-Physical Location: {{ data.peer_location | ORPHRASE }}
-{{ source | set(&quot;local_hostname&quot;) }}
-&lt;/group&gt;
 &lt;/template&gt;
 </code></pre></div>
 </details>
@@ -1822,7 +1918,7 @@ Physical Location: {{ data.peer_location | ORPHRASE }}
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../misc.N2G.cli_l2_data.cisco_ios/" class="md-footer__link md-footer__link--prev" aria-label="Previous: cli_l2_data.cisco_ios" rel="prev">
+        <a href="../platform.a10_show_hardware/" class="md-footer__link md-footer__link--prev" aria-label="Previous: a10_show_hardware" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1831,20 +1927,20 @@ Physical Location: {{ data.peer_location | ORPHRASE }}
               <span class="md-footer__direction">
                 Previous
               </span>
-              cli_l2_data.cisco_ios
+              a10_show_hardware
             </div>
           </div>
         </a>
       
       
         
-        <a href="../misc.N2G.cli_l2_data.cisco_xr/" class="md-footer__link md-footer__link--next" aria-label="Next: cli_l2_data.cisco_xr" rel="next">
+        <a href="../platform.arista_eos_show_hostname/" class="md-footer__link md-footer__link--next" aria-label="Next: arista_eos_show_hostname" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              cli_l2_data.cisco_xr
+              arista_eos_show_hostname
             </div>
           </div>
           <div class="md-footer__button md-icon">

@@ -1055,6 +1055,30 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_hardware/" class="md-nav__link">
+        a10_show_hardware
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
+        a10_show_running_config_partition_config_all_pipe_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.arista_eos_show_hostname/" class="md-nav__link">
         arista_eos_show_hostname
       </a>
@@ -1105,6 +1129,18 @@
     <li class="md-nav__item">
       <a href="../platform.arista_eos_show_running_config_section_interface/" class="md-nav__link">
         arista_eos_show_running_config_section_interface
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_inventory/" class="md-nav__link">
+        cisco_ios_show_inventory
       </a>
     </li>
   
@@ -1213,6 +1249,18 @@
     <li class="md-nav__item">
       <a href="../platform.cisco_nxos_show_inventory_pipe_json_pretty/" class="md-nav__link">
         cisco_nxos_show_inventory_pipe_json_pretty
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_interface/" class="md-nav__link">
+        cisco_nxos_show_running_config_interface
       </a>
     </li>
   
@@ -1393,6 +1441,18 @@
     <li class="md-nav__item">
       <a href="../platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json/" class="md-nav__link">
         juniper_junos_show_lldp_neighbors_detail_pipe_display_json
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.linux_ip_address_show/" class="md-nav__link">
+        linux_ip_address_show
       </a>
     </li>
   
@@ -1705,72 +1765,16 @@ module: openconfig-lldp
 
 &lt;macro&gt;
 def process(data):
-    &quot;&quot;&quot;
-    Function to process parsing results in a structure
-    compatible with openconfig-lldp YANG module.
+    from ttp_templates.utils.yang_openconfig_lldp_cisco_ios import process
 
-    Parsing results are a dictionary keyed by interface name, that 
-    is done to combine     multiple neighbors in a list under the 
-    interface, while in opencofnig-lldp model structure under 
-    &quot;lldp.interfaces.inderface&quot; must be a list.
-
-    Moreover, neighbors must contain &quot;id&quot; key and use &quot;state&quot; key to
-    store information about neighbour details.
-    &quot;&quot;&quot;
-    ret = []
-
-    for res_item in data:
-        # transform dictionary of interfaces into a list
-        ret_template = {
-                &quot;opencondig-lldp&quot;: {
-                    &quot;lldp&quot;: {
-                        &quot;interfaces&quot;: {&quot;interface&quot;: []},
-                        &quot;config&quot;: {
-                            &quot;system-name&quot;: res_item.get(&quot;system_name&quot;, {}).get(&quot;hostname&quot;)
-                        }
-                    }
-                }
-        }
-        interfaces = res_item.get(&quot;lldp&quot;, {}).get(&quot;interfaces&quot;, {}).get(&quot;inderface&quot;, {})
-        for interface_name, interface_data in interfaces.items():
-
-            # set neighbors IDs and form structure with &quot;state&quot; key
-            neighbors = interface_data[&quot;neighbors&quot;][&quot;neighbor&quot;]
-            interface_data[&quot;neighbors&quot;][&quot;neighbor&quot;] = []
-            for id, neigbour in enumerate(neighbors, 1):
-                interface_data[&quot;neighbors&quot;][&quot;neighbor&quot;].append(
-                    {
-                        &quot;id&quot;: id,
-                        &quot;state&quot;: {&quot;id&quot;: id, **neigbour}
-                    }            
-                )
-
-            # form final interface structure
-            ret_template[&quot;opencondig-lldp&quot;][&quot;lldp&quot;][&quot;interfaces&quot;][&quot;interface&quot;].append(
-                {
-                    &quot;name&quot;: interface_name,
-                    **interface_data
-                }
-            )
-        ret.append(ret_template)
-
-    return ret
+    return process(data)
 
 def map_capabilities(data):
-    &quot;&quot;&quot;
-    Function to map capabilities
-    &quot;&quot;&quot;
     ret = []
-
-    mapper = {
-        &quot;B&quot;: {&quot;name&quot;: &quot;MAC_BRIDGE&quot;},
-        &quot;R&quot;: {&quot;name&quot;: &quot;ROUTER&quot;}
-    }
-
+    mapper = {&quot;B&quot;: {&quot;name&quot;: &quot;MAC_BRIDGE&quot;}, &quot;R&quot;: {&quot;name&quot;: &quot;ROUTER&quot;}}
     for code in data.get(&quot;codes&quot;, []):
         if code in mapper:
             ret.append(mapper[code])
-
     return {&quot;capability&quot;: ret}
 &lt;/macro&gt;
 
