@@ -5,7 +5,7 @@
 | bgp_neighbors | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
 | inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
-| interfaces | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | lldp_neighbors | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
 
 ## Notes
@@ -33,6 +33,7 @@ Collected commands by platform:
 
 Collected commands by platform:
 
+- A10: `show running-config partition-config all | section interface`
 - Arista EOS: `show running-config section interface`
 - Cisco IOS: `show running-config | section interface`
 - Cisco IOS-XR: `show running-config interface`, `show running-config router vrrp`, and `show running-config router hsrp`

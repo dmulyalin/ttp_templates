@@ -67,6 +67,134 @@ Example normalized output (YAML):
 
 
 
+Template to parse A10 interface configuration and normalize it to a flat list
+of dictionaries suitable for Netbox import.
+
+This template requires output of
+'show running-config partition-config all | section interface'.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to `null` / `None`):
+
+- `name`: interface name string (e.g. management, ethernet 1/1, trunk 1/10,
+    ve 1/100)
+- `type`: ``other`` by default; ``lag`` for trunk interfaces; ``bridge`` for
+    VE interfaces
+- `enabled`: boolean; interfaces are `True` by default unless explicitly
+    disabled in the config
+- `parent`: parent interface name or `null`
+- `lag_id`: trunk-group identifier integer or `null`
+- `lag_type`: ``lag`` for trunk-group member interfaces or `null`
+- `lacp_mode`: LACP mode string (e.g. ``lacp``) or `null`
+- `lag`: name of parent trunk interface or `null`
+- `mtu`: integer MTU or `null`
+- `mac_address`: always `null`
+- `speed`: always `null`
+- `duplex`: always `null`
+- `description`: string from A10 interface `name` command, empty string when
+    not set
+- `mode`: ``tagged`` for trunk interfaces carrying tagged VLANs, ``access`` for
+    VE interfaces, or `null`
+- `untagged_vlan`: VLAN ID inferred from VE interface name or `null`
+- `tagged_vlans`: list of VLAN IDs tagged on a trunk interface
+- `qinq_svlan`: always `null`
+- `vrf`: always `null`
+- `ipv4_addresses`: list of strings with IP/prefix (e.g. 192.0.2.1/30)
+- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+```yaml
+- description: uplink trunk
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: trunk 1/10
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans:
+  - 100
+  type: lag
+  untagged_vlan: null
+  vrf: null
+```
+
+
+
+
+*Authored by Codex GPT-5.*
+
+Template to parse Cisco IOS interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
+
+This template requires output of 'show running-config | section interface'.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to `null` / `None`):
+
+- `name`: interface name string (e.g. GigabitEthernet0/1, Vlan100)
+- `type`: ``other`` by default; ``bridge`` if "vlan" or "bvi" in name;
+    ``lag`` if "port-channel" in name; ``virtual`` if "loopback", "tunnel",
+    or if the interface name contains a dot (`.`)
+- `enabled`: boolean; interfaces are `True` by default unless explicitly
+    shutdown in the config
+- `parent`: parent interface name or `null` (if the interface name contains
+    a dot the parent is the part before the dot)
+- `lag_id`: lag identifier integer (channel-group number) or `null`
+- `lag_type`: ``lag`` for standard port channels or `null`
+- `lacp_mode`: LACP mode string (e.g. ``active``, ``passive``) or `null`
+- `lag`: Name of parent LAG interface e.g. `Port-channel10` or `null`
+- `mtu`: integer MTU or `null`
+- `mac_address`: string in MAC EUI format or `null`
+- `speed`: integer speed in kbit/s or `null`
+- `duplex`: string duplex setting or `null`
+- `description`: string (empty string when not set)
+- `mode`: ``tagged`` / ``access`` or `null`
+- `untagged_vlan`: integer or `null`
+- `tagged_vlans`: list of integers (empty list when none)
+- `qinq_svlan`: integer inner VLAN from `second-dot1q` or `null`
+- `vrf`: string or `null`
+- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
+- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+```yaml
+- description: Users SVI
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.1/24
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: 1500
+  name: Vlan100
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: bridge
+  untagged_vlan: 100
+  vrf: USERS
+```
+
+
+
+
 Template to parse Cisco IOS-XR interfaces configuration and normalize it to a
 flat list of dictionaries suitable for Netbox import.
 
@@ -123,6 +251,68 @@ Example normalized output (YAML):
   tagged_vlans: []
   type: virtual
   untagged_vlan: null
+  vrf: null
+```
+
+
+
+
+Template to parse Cisco NX-OS interfaces configuration and normalize it to a
+flat list of dictionaries suitable for Netbox import.
+
+This template requires output of 'show running-config interface'.
+
+The transform macro returns a list of dictionaries where each dictionary
+contains the following keys (missing values are set to `null` / `None`):
+
+- `name`: interface name string (e.g. Ethernet1/1, Port-channel10)
+- `type`: ``other`` by default; ``bridge`` if "vlan" in name;
+    ``lag`` if "port-channel" in name; ``virtual`` if "loopback", "tunnel",
+    or "nve" in name, or if the interface name contains a dot (`.`)
+- `enabled`: boolean; interfaces are `True` by default unless explicitly
+    shutdown in the config
+- `parent`: parent interface name or `null` (if the interface name contains
+    a dot the parent is the part before the dot)
+- `lag_id`: lag identifier integer (channel-group / vPC number) or `null`
+- `lag_type`: ``lag`` for standard port channels, ``mlag`` for vPC port
+    channels, or `null`
+- `lacp_mode`: LACP mode string (e.g. ``active``, ``passive``) or `null`
+- `lag`: Name of parent LAG interface e.g. `Port-channel10` or `null`
+- `mtu`: integer MTU or `null`
+- `mac_address`: string in MAC EUI format or `null`
+- `speed`: integer speed in kbit/s or `null`
+- `duplex`: string or `null`
+- `description`: string (empty string when not set)
+- `mode`: ``tagged`` / ``access`` or `null`
+- `untagged_vlan`: integer or `null`
+- `tagged_vlans`: list of integers (empty list when none)
+- `qinq_svlan`: always `null`
+- `vrf`: string or `null`
+- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
+- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+
+Example normalized output (YAML):
+
+```yaml
+- description: Server access
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: active
+  lag: Port-channel10
+  lag_id: 10
+  lag_type: lag
+  mac_address: null
+  mode: access
+  mtu: null
+  name: Ethernet1/1
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: 100
   vrf: null
 ```
 
@@ -268,7 +458,10 @@ Getter template to parse interface configuration for network devices. Designed t
 Supported platforms:
 
 - Arista EOS
+- A10
+- Cisco IOS
 - Cisco IOS-XR
+- Cisco NX-OS
 - Juniper Junos
 - Linux
 
@@ -324,7 +517,13 @@ Example normalized output (YAML):
 
 <extend template="ttp://platform/arista_eos_show_running_config_section_interface.txt"/>
 
+<extend template="ttp://platform/a10_show_running_config_partition_config_all_pipe_section_interface.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_running_config_pipe_section_interface.txt"/>
+
 <extend template="ttp://platform/cisco_xr_show_running_config_interface.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_running_config_interface.txt"/>
 
 <extend template="ttp://platform/juniper_junos_show_configuration_interfaces_pipe_display_set.txt"/>
 

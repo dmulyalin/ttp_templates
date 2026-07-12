@@ -1,0 +1,106 @@
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.0.2.2/28
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: management
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
+- description: upstream-switch-a
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: trunk 2/24
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans:
+  - 1312
+  type: lag
+  untagged_vlan: null
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: lacp
+  lag: trunk 2/24
+  lag_id: 24
+  lag_type: lag
+  mac_address: null
+  mode: null
+  mtu: null
+  name: ethernet 2/52
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
+- description: customer-edge-a
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 198.51.100.2/28
+  ipv6_addresses:
+  - ::ffff:198.51.100.2/124
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: ve 2/1499
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: bridge
+  untagged_vlan: 1499
+  vrf: null
+- description: service-edge-b
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 203.0.113.2/29
+  ipv6_addresses:
+  - ::ffff:203.0.113.2/125
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: ve 1/1310
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: bridge
+  untagged_vlan: 1310
+  vrf: null

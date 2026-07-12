@@ -29,6 +29,11 @@
    `ttp://platform/cisco_ios_show_running_config_pipe_section_interface.txt`
    for `show running-config | section interface` command output.
 12. Updated `ttp://get/interfaces.txt` to include Cisco IOS interface parsing.
+13. Added A10 interface parsing support using
+   `ttp://platform/a10_show_running_config_partition_config_all_pipe_section_interface.txt`
+   for `show running-config partition-config all | section interface` command
+   output.
+14. Updated `ttp://get/interfaces.txt` to include A10 interface parsing.
 
 ### CHANGES
 
@@ -65,6 +70,10 @@
    `ttp_templates/utils/cisco_ios_process_show_running_config_pipe_section_interface.py`
    to normalize Cisco IOS interface configuration output, including dot1Q and
    QinQ subinterfaces, and validate it with `InterfaceConfigRecord`.
+11. Added
+   `ttp_templates/utils/a10_process_show_running_config_partition_config_all_pipe_section_interface.py`
+   to normalize A10 interface configuration output and validate it with
+   `InterfaceConfigRecord`.
 
 ### TESTS
 
@@ -86,6 +95,9 @@
    and expected output under
    `test/platform/cisco_ios/show_running_config_pipe_section_interface/`,
    including a QinQ subinterface sample.
+9. Added A10 `show running-config partition-config all | section interface`
+   anonymized mock data and expected output under
+   `test/platform/a10/show_running_config_partition_config_all_pipe_section_interface/`.
 
 ### DOCS
 
@@ -104,6 +116,7 @@
    support.
 8. Updated getter support matrix to include Cisco IOS inventory getter support.
 9. Updated getter support matrix to include Cisco IOS interface getter support.
+10. Updated getter support matrix to include A10 interface getter support.
 
 
 

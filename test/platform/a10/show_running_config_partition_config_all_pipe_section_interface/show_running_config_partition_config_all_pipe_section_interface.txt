@@ -1,0 +1,39 @@
+device[1/1]# show running-config partition-config all | section interface
+device-context 1
+  interface management
+    ip address 192.0.2.2 255.255.255.240
+    ip default-gateway 192.0.2.1
+    lldp enable rx tx
+!
+interface trunk 2/24
+  name upstream-switch-a
+!
+interface ethernet 2/52
+  enable
+  lldp enable rx tx
+  trunk-group 24 lacp
+!
+interface ve 2/1499
+  name customer-edge-a
+  ip address 198.51.100.2 255.255.255.240
+  ip nat outside
+  ipv6 address ::ffff:198.51.100.2/124
+!
+vlan 1/1312
+  tagged trunk 24
+  router-interface ve 1312
+  name service-a
+!
+interface ve 1/1310
+  name service-edge-b
+  ip address 203.0.113.2 255.255.255.248
+  ip nat inside
+  ipv6 address ::ffff:203.0.113.2/125
+  ipv6 nat inside
+!
+vlan 2/1312
+  tagged trunk 24
+  router-interface ve 1312
+  name service-b
+!
+device[1/1]#

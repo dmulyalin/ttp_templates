@@ -50,7 +50,7 @@ def validate_inventory_records(data):
 
 <group>
 Thunder Series Unified Application Service Gateway {{ module | let("description", "Thunder Series Unified Application Service Gateway")}}
-{{ ignore("\s+") }}Serial No  : {{ serial | let("slot", "chassis") }}
+{{ ignore(r"\s+") }}Serial No  : {{ serial | let("slot", "chassis") }}
 </group>
 
 <output macro="validate_inventory_records"/>

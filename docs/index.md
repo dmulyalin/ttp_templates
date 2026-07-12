@@ -1,7 +1,7 @@
 
 ---
 
-**Templates count: 80**
+**Templates count: 83**
 
 ---
 

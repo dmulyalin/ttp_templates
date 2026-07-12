@@ -13,6 +13,12 @@ This template requires output of 'show inventory' command.
 
 
 
+Template to parse Cisco IOS inventory.
+
+This template requires output of 'show inventory' command.
+
+
+
 Template to parse Arista inventory.
 
 This template requires output of 'show inventory' command.
@@ -56,6 +62,7 @@ Getter template to parse inventory for network devices. Designed to work with
 Supported platforms:
 
 - A10
+- Cisco IOS
 - Cisco IOS-XR
 - Cisco NXOS
 - Arista EOS
@@ -88,6 +95,8 @@ Example data returned by template (YAML):
 </doc>
 
 <extend template="ttp://platform/cisco_xr_show_inventory.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_inventory.txt"/>
 
 <extend template="ttp://platform/arista_eos_show_inventory_pipe_json.txt"/>
 

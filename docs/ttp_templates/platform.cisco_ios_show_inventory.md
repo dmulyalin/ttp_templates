@@ -1,0 +1,57 @@
+Reference path:
+```
+ttp://platform/cisco_ios_show_inventory.txt
+```
+
+---
+
+
+
+Template to parse Cisco IOS inventory.
+
+This template requires output of 'show inventory' command.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="cisco_ios_inventory" results="per_template">
+<doc>
+Template to parse Cisco IOS inventory.
+
+This template requires output of 'show inventory' command.
+</doc>
+
+<input>
+commands = [
+    "show inventory"
+]
+platform = [
+    "cisco_ios", # netmiko
+    "ios", # napalm
+]
+</input>
+
+<macro>
+def transform_inventory_to_records(payload):
+    from ttp_templates.utils.cisco_ios_process_show_inventory import (
+        transform_inventory,
+    )
+
+    return transform_inventory(payload)
+</macro>
+
+<group>
+NAME: "{{ slot | ORPHRASE }}", DESCR: "{{ description | ORPHRASE }}"
+PID: {{ ignore(r"\s*") }},{{ ignore(".+") }}SN: {{ serial | let("module", "") }}
+PID: {{ module | re(r"[^,\s][^,]*") | strip }}{{ ignore(".+") }}SN: {{ serial }}
+</group>
+
+<output macro="transform_inventory_to_records"/>
+
+</template>
+
+```
+</details>

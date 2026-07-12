@@ -1,43 +1,42 @@
 Reference path:
 ```
-ttp://platform/cisco_ios_show_running_config_pipe_section_interface.txt
+ttp://platform/cisco_nxos_show_running_config_interface.txt
 ```
 
 ---
 
 
 
-*Authored by Codex GPT-5.*
-
-Template to parse Cisco IOS interfaces configuration and normalize it to a
+Template to parse Cisco NX-OS interfaces configuration and normalize it to a
 flat list of dictionaries suitable for Netbox import.
 
-This template requires output of 'show running-config | section interface'.
+This template requires output of 'show running-config interface'.
 
 The transform macro returns a list of dictionaries where each dictionary
 contains the following keys (missing values are set to `null` / `None`):
 
-- `name`: interface name string (e.g. GigabitEthernet0/1, Vlan100)
-- `type`: ``other`` by default; ``bridge`` if "vlan" or "bvi" in name;
+- `name`: interface name string (e.g. Ethernet1/1, Port-channel10)
+- `type`: ``other`` by default; ``bridge`` if "vlan" in name;
     ``lag`` if "port-channel" in name; ``virtual`` if "loopback", "tunnel",
-    or if the interface name contains a dot (`.`)
+    or "nve" in name, or if the interface name contains a dot (`.`)
 - `enabled`: boolean; interfaces are `True` by default unless explicitly
     shutdown in the config
 - `parent`: parent interface name or `null` (if the interface name contains
     a dot the parent is the part before the dot)
-- `lag_id`: lag identifier integer (channel-group number) or `null`
-- `lag_type`: ``lag`` for standard port channels or `null`
+- `lag_id`: lag identifier integer (channel-group / vPC number) or `null`
+- `lag_type`: ``lag`` for standard port channels, ``mlag`` for vPC port
+    channels, or `null`
 - `lacp_mode`: LACP mode string (e.g. ``active``, ``passive``) or `null`
 - `lag`: Name of parent LAG interface e.g. `Port-channel10` or `null`
 - `mtu`: integer MTU or `null`
 - `mac_address`: string in MAC EUI format or `null`
 - `speed`: integer speed in kbit/s or `null`
-- `duplex`: string duplex setting or `null`
+- `duplex`: string or `null`
 - `description`: string (empty string when not set)
 - `mode`: ``tagged`` / ``access`` or `null`
 - `untagged_vlan`: integer or `null`
 - `tagged_vlans`: list of integers (empty list when none)
-- `qinq_svlan`: integer inner VLAN from `second-dot1q` or `null`
+- `qinq_svlan`: always `null`
 - `vrf`: string or `null`
 - `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
 - `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
@@ -45,27 +44,26 @@ contains the following keys (missing values are set to `null` / `None`):
 Example normalized output (YAML):
 
 ```yaml
-- description: Users SVI
+- description: Server access
   duplex: null
   enabled: true
-  ipv4_addresses:
-  - 192.0.2.1/24
+  ipv4_addresses: []
   ipv6_addresses: []
-  lacp_mode: null
-  lag: null
-  lag_id: null
-  lag_type: null
+  lacp_mode: active
+  lag: Port-channel10
+  lag_id: 10
+  lag_type: lag
   mac_address: null
   mode: access
-  mtu: 1500
-  name: Vlan100
+  mtu: null
+  name: Ethernet1/1
   parent: null
   qinq_svlan: null
   speed: null
   tagged_vlans: []
-  type: bridge
+  type: other
   untagged_vlan: 100
-  vrf: USERS
+  vrf: null
 ```
 
 
@@ -75,39 +73,38 @@ Example normalized output (YAML):
 
 <details><summary>Template Content</summary>
 ```
-<template name="cisco_ios_interface_config" results="per_template">
+<template name="cisco_nxos_interface_config" results="per_template">
 <doc>
-*Authored by Codex GPT-5.*
-
-Template to parse Cisco IOS interfaces configuration and normalize it to a
+Template to parse Cisco NX-OS interfaces configuration and normalize it to a
 flat list of dictionaries suitable for Netbox import.
 
-This template requires output of 'show running-config | section interface'.
+This template requires output of 'show running-config interface'.
 
 The transform macro returns a list of dictionaries where each dictionary
 contains the following keys (missing values are set to 'null' / 'None'):
 
-- 'name': interface name string (e.g. GigabitEthernet0/1, Vlan100)
-- 'type': ''other'' by default; ''bridge'' if "vlan" or "bvi" in name;
+- 'name': interface name string (e.g. Ethernet1/1, Port-channel10)
+- 'type': ''other'' by default; ''bridge'' if "vlan" in name;
     ''lag'' if "port-channel" in name; ''virtual'' if "loopback", "tunnel",
-    or if the interface name contains a dot ('.')
+    or "nve" in name, or if the interface name contains a dot ('.')
 - 'enabled': boolean; interfaces are 'True' by default unless explicitly
     shutdown in the config
 - 'parent': parent interface name or 'null' (if the interface name contains
     a dot the parent is the part before the dot)
-- 'lag_id': lag identifier integer (channel-group number) or 'null'
-- 'lag_type': ''lag'' for standard port channels or 'null'
+- 'lag_id': lag identifier integer (channel-group / vPC number) or 'null'
+- 'lag_type': ''lag'' for standard port channels, ''mlag'' for vPC port
+    channels, or 'null'
 - 'lacp_mode': LACP mode string (e.g. ''active'', ''passive'') or 'null'
 - 'lag': Name of parent LAG interface e.g. 'Port-channel10' or 'null'
 - 'mtu': integer MTU or 'null'
 - 'mac_address': string in MAC EUI format or 'null'
 - 'speed': integer speed in kbit/s or 'null'
-- 'duplex': string duplex setting or 'null'
+- 'duplex': string or 'null'
 - 'description': string (empty string when not set)
 - 'mode': ''tagged'' / ''access'' or 'null'
 - 'untagged_vlan': integer or 'null'
 - 'tagged_vlans': list of integers (empty list when none)
-- 'qinq_svlan': integer inner VLAN from 'second-dot1q' or 'null'
+- 'qinq_svlan': always 'null'
 - 'vrf': string or 'null'
 - 'ipv4_addresses': list of strings with IP/prefix (e.g. 10.0.0.1/24)
 - 'ipv6_addresses': list of strings with IP/prefix (e.g. 2001:db8::1/64)
@@ -115,44 +112,43 @@ contains the following keys (missing values are set to 'null' / 'None'):
 Example normalized output (YAML):
 
 '''yaml
-- description: Users SVI
+- description: Server access
   duplex: null
   enabled: true
-  ipv4_addresses:
-  - 192.0.2.1/24
+  ipv4_addresses: []
   ipv6_addresses: []
-  lacp_mode: null
-  lag: null
-  lag_id: null
-  lag_type: null
+  lacp_mode: active
+  lag: Port-channel10
+  lag_id: 10
+  lag_type: lag
   mac_address: null
   mode: access
-  mtu: 1500
-  name: Vlan100
+  mtu: null
+  name: Ethernet1/1
   parent: null
   qinq_svlan: null
   speed: null
   tagged_vlans: []
-  type: bridge
+  type: other
   untagged_vlan: 100
-  vrf: USERS
+  vrf: null
 '''
 
 </doc>
 
 <input>
 commands = [
-    "show running-config | section interface"
+    "show running-config interface"
 ]
 platform = [
-    "cisco_ios", # Netmiko and Scrapli
-    "ios", # NAPALM
+    "cisco_nxos",
+    "nxos",
 ]
 </input>
 
 <macro>
 def transform_interfaces_to_records(data):
-    from ttp_templates.utils.cisco_ios_process_show_running_config_pipe_section_interface import transform_interfaces_config
+    from ttp_templates.utils.cisco_nxos_process_show_running_config_interface import transform_interfaces_config
 
     return transform_interfaces_config(data)
 </macro>
@@ -162,33 +158,35 @@ def transform_interfaces_to_records(data):
 ## ------------------------------------------------------------------------------------------
 <group functions="contains('name')">
 interface {{ name | _start_ }}
- description {{ description | re(".*") | default("") }}
- shutdown {{ enabled | set(False) | default(True) }}
- no shutdown {{ enabled | set(True) | default(True) }}
- mtu {{ mtu | to_int }}
- ip vrf forwarding {{ vrf }}
- vrf forwarding {{ vrf }}
- encapsulation dot1Q {{ dot1q | to_int | let("mode", "tagged") }} second-dot1q {{ qinq_svlan | to_int }}
- encapsulation dot1Q {{ dot1q | to_int | let("mode", "tagged") }}
- switchport mode trunk {{ mode | set("tagged") }}
- switchport mode access {{ mode | set("access") }}
- switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}
- switchport trunk native vlan {{ untagged_vlan | to_int }}
- switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
- switchport trunk allowed vlan add {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
- channel-group {{ lag_id | to_int | let("lag_type", "lag") }} mode {{ lacp_mode }}
- mac-address {{ mac_address | mac_eui }}
- speed {{ speed }}
- duplex {{ duplex }}
+  description {{ description | re(".*") | default("") }}
+  no shutdown {{ enabled | set(True) | default(True) }}
+  shutdown {{ enabled | set(False) }}
+  mtu {{ mtu | to_int }}
+  vrf member {{ vrf }}
+  no switchport {{ is_l3_interface | set(True) }}
+  switchport mode trunk {{ mode | set("tagged") }}
+  switchport mode access {{ mode | set("access") }}
+  switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}
+  switchport trunk native vlan {{ untagged_vlan | to_int }}
+  switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
+  switchport trunk allowed vlan add {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
+  encapsulation dot1q {{ dot1q | to_int | let("mode", "tagged") }}
+  channel-group {{ lag_id | to_int | let("lag_type", "lag") }} mode {{ lacp_mode }}
+  vpc {{ lag_id | to_int | let("lag_type", "mlag") }}
+  mac-address {{ mac_address | mac_eui }}
+  speed {{ speed | to_int }}
+  duplex {{ duplex }}
 
- <group name="ipv4_addresses*" method="table">
- ip address {{ ip | IP }} {{ mask }}
- ip address {{ ip | IP }} {{ mask }} secondary
- </group>
+  <group name="ipv4_addresses*" method="table">
+  ip address {{ ip | _exact_ }}/{{ mask }}
+  ip address {{ ip | _exact_ }}/{{ mask }} secondary
+  ip address {{ ip | _exact_ }} {{ mask }}
+  ip address {{ ip | _exact_ }} {{ mask }} secondary
+  </group>
 
- <group name="ipv6_addresses*" method="table">
- ipv6 address {{ ip | IPV6 }}/{{ mask }}
- </group>
+  <group name="ipv6_addresses*" method="table">
+  ipv6 address {{ ip | _exact_ }}/{{ mask }}
+  </group>
 
 !{{ _end_ }}
 </group>
