@@ -1,0 +1,7 @@
+set vlans USERS vlan-id 10
+set vlans USERS description "User access VLAN"
+set vlans SERVERS vlan-id 20
+set vlans SERVERS description "Application servers"
+set vlans GUEST vlan-id 30
+set vlans GUEST l3-interface irb.30
+set vlans MLAG_PEER vlan-id 4094

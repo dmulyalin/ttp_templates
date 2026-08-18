@@ -1,0 +1,9 @@
+vlan 10
+  name USERS
+vlan 20
+  name Servers and DB
+  description Application servers
+vlan 30
+vlan 40-41
+vlan 4094
+  name MLAG_PEER

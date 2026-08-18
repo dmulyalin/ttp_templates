@@ -100,6 +100,12 @@ class InventoryRecord(BaseModel):
     slot: StrictStr
 
 
+class VlanRecord(BaseModel):
+    vid: StrictInt
+    name: StrictStr
+    description: Union[None, StrictStr]
+
+
 class ArpRecord(BaseModel):
     ip: StrictStr
     age: Union[StrictInt, StrictStr]

@@ -1,0 +1,48 @@
+<template name="juniper_junos_vlans" results="per_template">
+<doc>
+Template to parse Juniper Junos VLAN configuration and normalize it to a flat
+list of VLAN dictionaries.
+
+This template requires output of 'show configuration vlans | display set'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `vid` - VLAN ID as integer
+- `name` - VLAN name string
+- `description` - VLAN description string or `null` when not configured
+
+Example normalized output (YAML):
+
+```yaml
+- vid: 100
+  name: USERS
+  description: User access VLAN
+```
+
+</doc>
+
+<input>
+commands = [
+    "show configuration vlans | display set"
+]
+platform = [
+    "juniper_junos", # scrapli and netmiko
+    "junos", # NAPALM
+]
+</input>
+
+<macro>
+def transform_vlans_to_records(data):
+    from ttp_templates.utils.juniper_junos_process_show_configuration_vlans_pipe_display_set import transform_vlans_config
+
+    return transform_vlans_config(data)
+</macro>
+
+<group name="vlans**.{{ name }}**" method="table">
+set vlans {{ name }} vlan-id {{ vid | to_int }}
+set vlans {{ name }} description "{{ description | re(".+") }}"
+</group>
+
+<output macro="transform_vlans_to_records"/>
+
+</template>

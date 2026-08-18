@@ -1,0 +1,16 @@
+vlan internal order ascending range 1006 1199
+!
+vlan 10
+   name USERS
+!
+vlan 20
+   name Servers and DB
+   description Application servers
+!
+vlan 30
+!
+vlan 2,100-102
+!
+vlan 4094
+   name MLAG_PEER
+!

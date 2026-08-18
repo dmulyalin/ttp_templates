@@ -18,6 +18,8 @@ markdown_extensions:
 nav:
 - Overview: index.md
 - Contribute: contribute.md
+- Development:
+  - Creating Getter Parsers: development/getter_parsers.md
 - Writing docs: writing_docs.md
 - API Reference: api_reference.md
 - Release Notes: release_notes.md

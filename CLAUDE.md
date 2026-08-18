@@ -126,6 +126,7 @@ Use these project documents before adding or changing templates:
 | Document | Purpose |
 |---|---|
 | `docs/contribute.md` | Contribution flow, template layout, utility function structure, mock data, tests and Pydantic model guidance |
+| `docs/development/getter_parsers.md` | Developer guide for creating getter parsers, platform implementations, fixtures, and support matrix updates |
 | `docs/getters_support_matrix.md` | Getter platform support status |
 | `docs/writing_docs.md` | How to regenerate documentation |
 

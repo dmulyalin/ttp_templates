@@ -1,5 +1,26 @@
 # Release Notes
 
+## 0.5.10
+
+### TEMPLATES
+
+1. Added VLAN getter template using `ttp://get/vlans.txt` to return normalized
+   VLAN records with `vid`, `name`, and `description` keys.
+2. Added Arista EOS VLAN parsing support using
+   `ttp://platform/arista_eos_show_running_config_section_vlan.txt` for
+   `show running-config section vlan` command output.
+3. Added Cisco IOS VLAN parsing support using
+   `ttp://platform/cisco_ios_show_running_config_pipe_section_vlan.txt` for
+   `show running-config | section vlan` command output.
+4. Added Cisco NX-OS VLAN parsing support using
+   `ttp://platform/cisco_nxos_show_running_config_vlan.txt` for
+   `show running-config vlan` command output.
+5. Added Juniper Junos VLAN parsing support using
+   `ttp://platform/juniper_junos_show_configuration_vlans_pipe_display_set.txt`
+   for `show configuration vlans | display set` command output.
+
+---
+
 ## 0.5.9
 
 ### TEMPLATES

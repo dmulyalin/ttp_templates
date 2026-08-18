@@ -5,6 +5,7 @@ description = "Template Text Parser Templates collections"
 license = "MIT"
 include = [
     "platform/*.txt",
+    "get/*.txt",
     "yang/*.txt",
     "misc/*/*.txt",
 ]

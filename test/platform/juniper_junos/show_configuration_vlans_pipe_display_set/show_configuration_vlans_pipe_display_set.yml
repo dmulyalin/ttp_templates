@@ -1,0 +1,12 @@
+- description: User access VLAN
+  name: USERS
+  vid: 10
+- description: Application servers
+  name: SERVERS
+  vid: 20
+- description: null
+  name: GUEST
+  vid: 30
+- description: null
+  name: MLAG_PEER
+  vid: 4094

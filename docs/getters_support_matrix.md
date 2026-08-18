@@ -7,6 +7,7 @@
 | netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | lldp_neighbors | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| vlans | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
 
 ## Notes
 
@@ -47,6 +48,15 @@ Collected commands by platform:
 
 - Arista EOS: `show lldp neighbors detail | json`
 - Juniper Junos: `show lldp neighbors detail | display json`
+
+### vlans
+
+Collected commands by platform:
+
+- Arista EOS: `show running-config section vlan`
+- Cisco IOS: `show running-config | section vlan`
+- Cisco NX-OS: `show running-config vlan`
+- Juniper Junos: `show configuration vlans | display set`
 
 ### netbox
 
