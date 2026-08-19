@@ -1,0 +1,26 @@
+vrf CUSTOMER_A
+ description Customer A VRF
+ rd 65000:100
+ address-family ipv4 unicast
+  import route-policy IMPORT-CUSTOMER-A
+  export route-policy EXPORT-CUSTOMER-A
+  import route-target
+   65000:100
+   65000:101
+  !
+  export route-target
+   65000:100
+  !
+ !
+!
+vrf CUSTOMER_B
+ rd 65000:200
+ address-family ipv6 unicast
+  import route-target
+   65000:202
+  !
+  export route-target
+   65000:202
+  !
+ !
+!

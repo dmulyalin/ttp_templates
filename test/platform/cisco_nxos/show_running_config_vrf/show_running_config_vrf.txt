@@ -1,0 +1,15 @@
+vrf context CUSTOMER_A
+  description Customer A VRF
+  rd 65000:100
+  address-family ipv4 unicast
+    route-target import 65000:100
+    route-target export 65000:100
+    route-target import 65000:101 evpn
+    route-target export 65000:101 evpn
+    import map IMPORT-CUSTOMER-A
+    export map EXPORT-CUSTOMER-A
+vrf context CUSTOMER_B
+  rd 65000:200
+  address-family ipv4 unicast
+    route-target both 65000:202 evpn
+vrf context management

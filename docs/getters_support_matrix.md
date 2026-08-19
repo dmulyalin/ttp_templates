@@ -2,12 +2,18 @@
 
 | Getter template | A10 | Arista EOS | Cisco IOS | Cisco IOS-XR | Cisco NX-OS | Juniper Junos | Opengear | Linux |
 |---|---|---|---|---|---|---|---|---|
+| arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | bgp_neighbors | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| communities | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| interfaces_status | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | lldp_neighbors | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| mac-addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | vlans | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
+| vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 
 ## Notes
 
@@ -57,6 +63,16 @@ Collected commands by platform:
 - Cisco IOS: `show running-config | section vlan`
 - Cisco NX-OS: `show running-config vlan`
 - Juniper Junos: `show configuration vlans | display set`
+
+### vrfs
+
+Collected commands by platform:
+
+- Arista EOS: `show running-config section vrf`
+- Cisco IOS: `show running-config | section vrf`
+- Cisco IOS-XR: `show running-config vrf`
+- Cisco NX-OS: `show running-config vrf`
+- Juniper Junos: `show configuration routing-instances | display set`
 
 ### netbox
 

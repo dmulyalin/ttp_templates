@@ -1,0 +1,88 @@
+<template name="cisco_ios_vrfs" results="per_template">
+<doc>
+Template to parse Cisco IOS VRF configuration and normalize it to a flat list
+of VRF dictionaries.
+
+This template requires output of 'show running-config | section vrf'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `name` - VRF name string
+- `description` - VRF description string or `null` when not configured
+- `rd` - route distinguisher string or `null` when not configured
+- `rt_import` - list of import route-target strings
+- `rt_export` - list of export route-target strings
+- `route_policy_import` - import route policy string or `null` when not configured
+- `route_policy_export` - export route policy string or `null` when not configured
+
+Example normalized output (YAML):
+
+```yaml
+- name: CUSTOMER_A
+  description: Customer A VRF
+  rd: 65000:100
+  rt_import:
+  - 65000:100
+  rt_export:
+  - 65000:100
+  route_policy_import: IMPORT-CUSTOMER-A
+  route_policy_export: EXPORT-CUSTOMER-A
+```
+
+</doc>
+
+<input>
+commands = [
+    "show running-config | section vrf"
+]
+platform = [
+    "cisco_ios", # Netmiko and Scrapli
+    "ios", # NAPALM
+]
+</input>
+
+<macro>
+def transform_vrfs_to_records(data):
+    from ttp_templates.utils.cisco_ios_process_show_running_config_pipe_section_vrf import transform_vrfs_config
+
+    return transform_vrfs_config(data)
+</macro>
+
+<group name="vrfs**.{{ name }}**">
+ip vrf {{ name | _start_ }}
+ description {{ description | re(".+") }}
+ rd {{ rd }}
+ route-target export {{ rt_export | to_list | joinmatches }}
+ route-target import {{ rt_import | to_list | joinmatches }}
+ route-target both {{ rt_both | to_list | joinmatches }}
+ export map {{ route_policy_export }}
+ import map {{ route_policy_import }}
+!{{ _end_ }}
+</group>
+
+<group name="vrfs**.{{ name }}**">
+vrf definition {{ name | _start_ }}
+ description {{ description | re(".+") }}
+ rd {{ rd }}
+ route-target export {{ rt_export | to_list | joinmatches }}
+ route-target import {{ rt_import | to_list | joinmatches }}
+ route-target both {{ rt_both | to_list | joinmatches }}
+ export map {{ route_policy_export }}
+ import map {{ route_policy_import }}
+
+ <group name="address_families**.{{ afi }}**">
+ address-family {{ afi | re(".+") | _start_ }}
+  route-target export {{ rt_export | to_list | joinmatches }}
+  route-target import {{ rt_import | to_list | joinmatches }}
+  route-target both {{ rt_both | to_list | joinmatches }}
+  export map {{ route_policy_export }}
+  import map {{ route_policy_import }}
+ exit-address-family {{ _end_ }}
+ </group>
+
+!{{ _end_ }}
+</group>
+
+<output macro="transform_vrfs_to_records"/>
+
+</template>
