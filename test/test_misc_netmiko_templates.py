@@ -8,7 +8,7 @@ from ttp_templates import get_template
 from ttp_templates import ttp_vars
 
 
-def mock_output_cisco_ios(command_string, *args, **kwargs):
+def mock_output_cisco_ios(command_string, *_args, **_kwargs):
     outputs = {
         "show ip arp": """
 Protocol  Address          Age (min)  Hardware Addr   Type   Interface
@@ -114,7 +114,7 @@ ip nat inside source static tcp 30.30.30.30 443 interface TenGigabitEthernet0/0/
     return outputs[command_string]
 
 
-def mock_output_cisco_ios_xr(command_string, *args, **kwargs):
+def mock_output_cisco_ios_xr(command_string, *_args, **_kwargs):
     outputs = {
         "show arp vrf all": """
 -------------------------------------------------------------------------------
@@ -176,7 +176,7 @@ router hsrp
     return outputs[command_string]
 
 
-def mock_output_huawei_vrp(command_string, *args, **kwargs):
+def mock_output_huawei_vrp(command_string, *_args, **_kwargs):
     outputs = {"display current-configuration interface": """
 <router_23>display current-configuration interface
 interface Eth-Trunk1.100

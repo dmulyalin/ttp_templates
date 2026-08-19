@@ -142,12 +142,14 @@ build management.
 poetry install
 
 # run the full test suite
-cd test
-poetry run pytest -vv
+poetry run inv test
 
 # run a specific test file
-cd test
-poetry run pytest test_ttp_templates_methods.py -vv
+poetry run inv test --extra test_ttp_templates_methods.py
+
+# run tests in supported Python Docker containers
+poetry run inv docker-build
+poetry run inv test-docker-all
 
 # build docs locally
 poetry run mkdocs serve
@@ -158,12 +160,14 @@ poetry run mkdocs serve
 | Tool | Purpose |
 |---|---|
 | `pytest` | Test runner |
+| `invoke` | Development task runner |
 | `cerberus` | Schema validation in N2G tests |
 | `deepdiff` | Deep equality assertions |
 | `yangson` | YANG schema validation for yang template tests |
 | `netmiko` | Integration tests against real/mock devices |
-| `black` | Code formatting |
 | `flake8` / `pylint` | Linting |
+| `ruff` | Fast Python lint and format checks |
+| `vulture` | Dead code detection |
 | `bandit` | Security scanning |
 
 ---

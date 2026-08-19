@@ -1,0 +1,187 @@
+Reference path:
+```
+ttp://get/vrfs.txt
+```
+
+---
+
+
+
+Template to parse Arista EOS VRF configuration and normalize it to a flat list
+of VRF dictionaries.
+
+This template requires output of 'show running-config section vrf'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `name` - VRF name string
+- `description` - VRF description string or `null` when not configured
+- `rd` - route distinguisher string or `null` when not configured
+- `rt_import` - list of import route-target strings
+- `rt_export` - list of export route-target strings
+- `route_policy_import` - import route policy string or `null` when not configured
+- `route_policy_export` - export route policy string or `null` when not configured
+
+
+
+
+Template to parse Cisco IOS VRF configuration and normalize it to a flat list
+of VRF dictionaries.
+
+This template requires output of 'show running-config | section vrf'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `name` - VRF name string
+- `description` - VRF description string or `null` when not configured
+- `rd` - route distinguisher string or `null` when not configured
+- `rt_import` - list of import route-target strings
+- `rt_export` - list of export route-target strings
+- `route_policy_import` - import route policy string or `null` when not configured
+- `route_policy_export` - export route policy string or `null` when not configured
+
+Example normalized output (YAML):
+
+```yaml
+- name: CUSTOMER_A
+  description: Customer A VRF
+  rd: 65000:100
+  rt_import:
+  - 65000:100
+  rt_export:
+  - 65000:100
+  route_policy_import: IMPORT-CUSTOMER-A
+  route_policy_export: EXPORT-CUSTOMER-A
+```
+
+
+
+
+Template to parse Cisco IOS-XR VRF configuration and normalize it to a flat
+list of VRF dictionaries.
+
+This template requires output of 'show running-config vrf'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `name` - VRF name string
+- `description` - VRF description string or `null` when not configured
+- `rd` - route distinguisher string or `null` when not configured
+- `rt_import` - list of import route-target strings
+- `rt_export` - list of export route-target strings
+- `route_policy_import` - import route policy string or `null` when not configured
+- `route_policy_export` - export route policy string or `null` when not configured
+
+Example normalized output (YAML):
+
+```yaml
+- name: CUSTOMER_A
+  description: Customer A VRF
+  rd: 65000:100
+  rt_import:
+  - 65000:100
+  rt_export:
+  - 65000:100
+  route_policy_import: IMPORT-CUSTOMER-A
+  route_policy_export: EXPORT-CUSTOMER-A
+```
+
+
+
+
+Template to parse Cisco NX-OS VRF configuration and normalize it to a flat
+list of VRF dictionaries.
+
+This template requires output of 'show running-config vrf'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `name` - VRF name string
+- `description` - VRF description string or `null` when not configured
+- `rd` - route distinguisher string or `null` when not configured
+- `rt_import` - list of import route-target strings
+- `rt_export` - list of export route-target strings
+- `route_policy_import` - import route policy string or `null` when not configured
+- `route_policy_export` - export route policy string or `null` when not configured
+
+
+
+
+Template to parse Juniper Junos routing-instance configuration and normalize
+it to a flat list of VRF dictionaries.
+
+This template requires output of
+'show configuration routing-instances | display set'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `name` - VRF name string
+- `description` - VRF description string or `null` when not configured
+- `rd` - route distinguisher string or `null` when not configured
+- `rt_import` - list of import route-target strings
+- `rt_export` - list of export route-target strings
+- `route_policy_import` - import route policy string or `null` when not configured
+- `route_policy_export` - export route policy string or `null` when not configured
+
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="vrfs" results="per_template">
+<doc>
+Getter template to parse VRFs for network devices. Designed to work with
+[Network Automation Fabric](https://docs.norfablabs.com/)
+[Nornir Service](https://docs.norfablabs.com/workers/nornir/services_nornir_service/)
+[parse TTP task](https://docs.norfablabs.com/workers/nornir/services_nornir_service_tasks_parse/)
+
+Supported platforms:
+
+- Arista EOS
+- Cisco IOS
+- Cisco IOS-XR
+- Cisco NX-OS
+- Juniper Junos
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- 'name' - VRF name string
+- 'description' - VRF description string or 'null' when not configured
+- 'rd' - route distinguisher string or 'null' when not configured
+- 'rt_import' - list of import route-target strings
+- 'rt_export' - list of export route-target strings
+- 'route_policy_import' - import route policy string or 'null' when not configured
+- 'route_policy_export' - export route policy string or 'null' when not configured
+
+Example normalized output (YAML):
+
+'''yaml
+- name: CUSTOMER_A
+  description: Customer A VRF
+  rd: 65000:100
+  rt_import:
+  - 65000:100
+  rt_export:
+  - 65000:100
+  route_policy_import: IMPORT-CUSTOMER-A
+  route_policy_export: EXPORT-CUSTOMER-A
+'''
+
+</doc>
+
+<extend template="ttp://platform/arista_eos_show_running_config_section_vrf.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_running_config_pipe_section_vrf.txt"/>
+
+<extend template="ttp://platform/cisco_xr_show_running_config_vrf.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_running_config_vrf.txt"/>
+
+<extend template="ttp://platform/juniper_junos_show_configuration_routing_instances_pipe_display_set.txt"/>
+
+</template>
+
+```
+</details>

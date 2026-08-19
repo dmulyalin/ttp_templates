@@ -233,7 +233,7 @@ entries.
 After changing templates or template docs, regenerate docs:
 
 ```bash
-poetry run python generate_docs.py
+poetry run inv docs
 ```
 
 For static documentation pages such as this guide, add the page to `mkdocs.yml`.
@@ -245,19 +245,24 @@ top-level pages are preserved.
 Run the smallest useful test set first:
 
 ```bash
-cd test
-poetry run pytest -vv test_platform_dynamic.py -k <platform>
+poetry run inv test --extra "test_platform_dynamic.py -k <platform>"
 ```
 
 For getter-specific behavior, also run the getter test:
 
 ```bash
-cd test
-poetry run pytest -vv test_get_inventory.py
+poetry run inv test --extra test_get_inventory.py
 ```
 
 Then run broader tests if the change touches shared models, shared utility
 logic, or public API behavior.
+
+To run the full test suite in supported Python Docker containers:
+
+```bash
+poetry run inv docker-build
+poetry run inv test-docker-all
+```
 
 ### 10. Final Checklist
 

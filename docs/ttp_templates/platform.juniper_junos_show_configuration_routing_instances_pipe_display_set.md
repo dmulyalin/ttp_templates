@@ -1,0 +1,87 @@
+Reference path:
+```
+ttp://platform/juniper_junos_show_configuration_routing_instances_pipe_display_set.txt
+```
+
+---
+
+
+
+Template to parse Juniper Junos routing-instance configuration and normalize
+it to a flat list of VRF dictionaries.
+
+This template requires output of
+'show configuration routing-instances | display set'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `name` - VRF name string
+- `description` - VRF description string or `null` when not configured
+- `rd` - route distinguisher string or `null` when not configured
+- `rt_import` - list of import route-target strings
+- `rt_export` - list of export route-target strings
+- `route_policy_import` - import route policy string or `null` when not configured
+- `route_policy_export` - export route policy string or `null` when not configured
+
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="juniper_junos_vrfs" results="per_template">
+<doc>
+Template to parse Juniper Junos routing-instance configuration and normalize
+it to a flat list of VRF dictionaries.
+
+This template requires output of
+'show configuration routing-instances | display set'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- 'name' - VRF name string
+- 'description' - VRF description string or 'null' when not configured
+- 'rd' - route distinguisher string or 'null' when not configured
+- 'rt_import' - list of import route-target strings
+- 'rt_export' - list of export route-target strings
+- 'route_policy_import' - import route policy string or 'null' when not configured
+- 'route_policy_export' - export route policy string or 'null' when not configured
+
+</doc>
+
+<input>
+commands = [
+    "show configuration routing-instances | display set"
+]
+platform = [
+    "juniper_junos", # scrapli and netmiko
+    "junos", # NAPALM
+]
+</input>
+
+<macro>
+def transform_vrfs_to_records(data):
+    from ttp_templates.utils.juniper_junos_process_show_configuration_routing_instances_pipe_display_set import transform_vrfs_config
+
+    return transform_vrfs_config(data)
+</macro>
+
+<group name="vrfs**.{{ name }}**" method="table">
+set routing-instances {{ name }} description "{{ description | re(".+") }}"
+set routing-instances {{ name }} description {{ description | re(".+") }}
+set routing-instances {{ name }} instance-type {{ instance_type }}
+set routing-instances {{ name }} route-distinguisher {{ rd }}
+set routing-instances {{ name }} vrf-target {{ rt_both | to_list | joinmatches }}
+set routing-instances {{ name }} vrf-target import {{ rt_import | to_list | joinmatches }}
+set routing-instances {{ name }} vrf-target export {{ rt_export | to_list | joinmatches }}
+set routing-instances {{ name }} vrf-import {{ route_policy_import }}
+set routing-instances {{ name }} vrf-export {{ route_policy_export }}
+</group>
+
+<output macro="transform_vrfs_to_records"/>
+
+</template>
+
+```
+</details>

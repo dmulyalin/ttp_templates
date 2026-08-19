@@ -1,0 +1,130 @@
+Reference path:
+```
+ttp://platform/cisco_xr_show_running_config_vrf.txt
+```
+
+---
+
+
+
+Template to parse Cisco IOS-XR VRF configuration and normalize it to a flat
+list of VRF dictionaries.
+
+This template requires output of 'show running-config vrf'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `name` - VRF name string
+- `description` - VRF description string or `null` when not configured
+- `rd` - route distinguisher string or `null` when not configured
+- `rt_import` - list of import route-target strings
+- `rt_export` - list of export route-target strings
+- `route_policy_import` - import route policy string or `null` when not configured
+- `route_policy_export` - export route policy string or `null` when not configured
+
+Example normalized output (YAML):
+
+```yaml
+- name: CUSTOMER_A
+  description: Customer A VRF
+  rd: 65000:100
+  rt_import:
+  - 65000:100
+  rt_export:
+  - 65000:100
+  route_policy_import: IMPORT-CUSTOMER-A
+  route_policy_export: EXPORT-CUSTOMER-A
+```
+
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="cisco_xr_vrfs" results="per_template">
+<doc>
+Template to parse Cisco IOS-XR VRF configuration and normalize it to a flat
+list of VRF dictionaries.
+
+This template requires output of 'show running-config vrf'.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- 'name' - VRF name string
+- 'description' - VRF description string or 'null' when not configured
+- 'rd' - route distinguisher string or 'null' when not configured
+- 'rt_import' - list of import route-target strings
+- 'rt_export' - list of export route-target strings
+- 'route_policy_import' - import route policy string or 'null' when not configured
+- 'route_policy_export' - export route policy string or 'null' when not configured
+
+Example normalized output (YAML):
+
+'''yaml
+- name: CUSTOMER_A
+  description: Customer A VRF
+  rd: 65000:100
+  rt_import:
+  - 65000:100
+  rt_export:
+  - 65000:100
+  route_policy_import: IMPORT-CUSTOMER-A
+  route_policy_export: EXPORT-CUSTOMER-A
+'''
+
+</doc>
+
+<input>
+commands = [
+    "show running-config vrf"
+]
+platform = [
+    "cisco_xr",
+    "iosxr",
+    "cisco_iosxr",
+]
+</input>
+
+<macro>
+def transform_vrfs_to_records(data):
+    from ttp_templates.utils.cisco_xr_process_show_running_config_vrf import transform_vrfs_config
+
+    return transform_vrfs_config(data)
+</macro>
+
+<group name="vrfs**.{{ name }}**">
+vrf {{ name | _start_ }}
+ description {{ description | re(".+") }}
+ rd {{ rd }}
+
+ <group name="address_families**.{{ afi }}_{{ safi }}**">
+ address-family {{ afi }} {{ safi | _start_ }}
+  import route-policy {{ route_policy_import }}
+  export route-policy {{ route_policy_export }}
+
+  <group name="rt_import*" method="table">
+  import route-target {{ _start_ }}
+   {{ rt | contains(":") }}
+  ! {{ _end_ }}
+  </group>
+
+  <group name="rt_export*" method="table">
+  export route-target {{ _start_ }}
+   {{ rt | contains(":") }}
+  ! {{ _end_ }}
+  </group>
+
+ ! {{ _end_ }}
+ </group>
+
+!{{ _end_ }}
+</group>
+
+<output macro="transform_vrfs_to_records"/>
+
+</template>
+
+```
+</details>

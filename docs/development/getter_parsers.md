@@ -163,7 +163,7 @@ Write useful `<doc>` blocks in templates. The generated template reference docs
 and template navigation are produced from those blocks by:
 
 ```bash
-poetry run python generate_docs.py
+poetry run inv docs
 ```
 
 Static documentation under `docs/`, including this guide, is edited manually

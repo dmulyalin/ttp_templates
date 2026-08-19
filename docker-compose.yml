@@ -1,0 +1,70 @@
+services:
+  py310:
+    image: ttp-templates-test:py310
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.10"
+    working_dir: /app/test
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: pytest -vv
+
+  py311:
+    image: ttp-templates-test:py311
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.11"
+    working_dir: /app/test
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: pytest -vv
+
+  py312:
+    image: ttp-templates-test:py312
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.12"
+    working_dir: /app/test
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: pytest -vv
+
+  py313:
+    image: ttp-templates-test:py313
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.13"
+    working_dir: /app/test
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: pytest -vv
+
+  py314:
+    image: ttp-templates-test:py314
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.14"
+    working_dir: /app/test
+    volumes:
+      - .:/app
+    environment:
+      PYTHONPATH: /app
+    command: pytest -vv

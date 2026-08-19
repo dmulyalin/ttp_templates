@@ -8,7 +8,7 @@ syntaxes used to populate docs.
 TTP Templates use [mkdocs](https://www.mkdocs.org) with [material theme](https://squidfunk.github.io/mkdocs-material/) 
 to produce documentation. 
 
-TTP Templates Collection comes with `generate_docs.py` script, this script iterates over all
+TTP Templates Collection comes with an Invoke docs task. This task iterates over all
 folders within `ttp_templates` repository, loads templates and extracts `<doc>` tags content
 to form `.md` files, saves `.md` files in `docs/ttp_templates` folder and construct navigation tree 
 within `mkdocs.yml` file.
@@ -20,7 +20,7 @@ First, need to write docs within the templates.
 Next, generate `.md` doc files out of TTP templates:
 
 ```bash
-poetry run python generate_docs.py
+poetry run inv docs
 ```
 
 Finally, use `mkdocs` to serve, build, or deploy docs using these commands:

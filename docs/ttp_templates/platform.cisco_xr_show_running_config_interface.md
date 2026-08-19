@@ -101,7 +101,7 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'duplex': string duplex setting or 'null'
 - 'description': string (empty string when not set)
 - 'mode': ''tagged'' when 'encapsulation dot1q' is present; ''access'' for BVI interfaces; 'null' otherwise
-- 'untagged_vlan': integer VLAN derived from BVI interface name (e.g. BVI100 â†’ 100) or 'null'
+- 'untagged_vlan': integer VLAN derived from BVI interface name (e.g. BVI100 → 100) or 'null'
 - 'tagged_vlans': list with the dot1q VLAN integer when 'encapsulation dot1q' is present; empty list otherwise
 - 'qinq_svlan': always 'null'
 - 'vrf': string or 'null'

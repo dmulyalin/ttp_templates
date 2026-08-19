@@ -14,8 +14,9 @@ Used by:
 Produced with Copilot Assistance.
 """
 
+from typing import Any, Dict, List, Optional
+
 from .models import InterfaceConfigRecord
-from typing import Any
 
 # converts interface speed config to kbit/s
 speed_map = {
