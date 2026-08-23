@@ -1,0 +1,87 @@
+Reference path:
+```
+ttp://platform/arista_eos_show_interfaces.txt
+```
+
+---
+
+
+
+Template to parse Arista EOS `show interfaces` output and normalize it for the
+`interfaces_status` getter.
+
+Returns a list of dictionaries with interface identity, state, physical
+properties, counter-clearing information, error and packet counters, and
+averaged input/output rates. `speed_bps`, `rate_bps_in`, and `rate_bps_out`
+are in bit/s. `rate_pps_in` and `rate_pps_out` are in packets/s.
+`rate_interval` is the rate averaging interval in seconds. Values not reported
+for an interface are returned as `null`.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="arista_eos_interfaces_status" results="per_template">
+<doc>
+Template to parse Arista EOS 'show interfaces' output and normalize it for the
+'interfaces_status' getter.
+
+Returns a list of dictionaries with interface identity, state, physical
+properties, counter-clearing information, error and packet counters, and
+averaged input/output rates. 'speed_bps', 'rate_bps_in', and 'rate_bps_out'
+are in bit/s. 'rate_pps_in' and 'rate_pps_out' are in packets/s.
+'rate_interval' is the rate averaging interval in seconds. Values not reported
+for an interface are returned as 'null'.
+</doc>
+
+<input>
+commands = [
+    "show interfaces"
+]
+platform = [
+    "arista_eos", # scrapli and netmiko
+    "eos", # NAPALM
+]
+</input>
+
+<macro>
+def transform_interfaces_to_status_records(payload):
+    from ttp_templates.utils.arista_eos_process_show_interfaces import transform_interfaces_status
+
+    return transform_interfaces_status(payload)
+</macro>
+
+<group>
+{{ name | _start_ }} is {{ interface_status | ORPHRASE }}, line protocol is {{ protocol_status | ORPHRASE }}
+  Hardware is {{ hardware }}, address is {{ mac_address | mac_eui }} (bia {{ bia | mac_eui }})
+  Hardware is {{ hardware }}, address is {{ mac_address | mac_eui }}
+  Hardware is {{ hardware }}
+  Description: {{ description | ORPHRASE }}
+  IP MTU {{ mtu | to_int }} bytes (default), BW {{ speed_kbps | to_int }} kbit
+  IP MTU {{ mtu | to_int }} bytes , BW {{ speed_kbps | to_int }} kbit
+  IP MTU {{ mtu | to_int }} bytes (default)
+  IP MTU {{ mtu | to_int }} bytes
+  Ethernet MTU {{ mtu | to_int }} bytes, BW {{ speed_kbps | to_int }} kbit
+  Ethernet MTU {{ mtu | to_int }} bytes , BW {{ speed_kbps | to_int }} kbit
+  Ethernet MTU {{ mtu | to_int }} bytes
+  {{ duplex }}-duplex, {{ displayed_speed }}, {{ speed_details | ORPHRASE }}
+  {{ duplex }}-duplex, {{ displayed_speed }}
+  {{ transitions | to_int }} link status changes since last clear
+  Last clearing of "show interface" counters {{ last_cleared | ORPHRASE }}
+  {{ rate_interval_in | to_int }} minutes input rate {{ rate_bps_in_value }} {{ rate_bps_in_unit }} ({{ framing_in }} with framing overhead), {{ rate_pps_in | to_int }} packets/sec
+  {{ rate_interval_out | to_int }} minutes output rate {{ rate_bps_out_value }} {{ rate_bps_out_unit }} ({{ framing_out }} with framing overhead), {{ rate_pps_out | to_int }} packets/sec
+     {{ packets_in | to_int }} packets input, {{ bytes_in | to_int }} bytes
+     {{ errors_in | to_int }} input errors, {{ crc_errors | to_int }} CRC, {{ input_error_details | ORPHRASE }}
+     {{ errors_in | to_int }} input errors, {{ input_error_details | ORPHRASE }}
+     {{ packets_out | to_int }} packets output, {{ bytes_out | to_int }} bytes
+     {{ errors_out | to_int }} output errors, {{ output_error_details | ORPHRASE }}
+</group>
+
+<output macro="transform_interfaces_to_status_records"/>
+
+</template>
+
+```
+</details>

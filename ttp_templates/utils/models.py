@@ -25,6 +25,29 @@ class InterfaceConfigRecord(BaseModel):
     vrf: Union[None, StrictStr]
 
 
+class InterfaceStatusRecord(BaseModel):
+    name: StrictStr
+    description: Union[None, StrictStr]
+    mtu: Union[None, StrictInt]
+    mac_address: Union[None, StrictStr]
+    duplex: Union[None, StrictStr]
+    status_admin: StrictStr
+    status_oper: StrictStr
+    speed_bps: Union[None, StrictInt]
+    last_cleared: Union[None, StrictStr]
+    transitions: Union[None, StrictInt]
+    errors_in: Union[None, StrictInt]
+    errors_out: Union[None, StrictInt]
+    crc_errors: Union[None, StrictInt]
+    packets_in: Union[None, StrictInt]
+    packets_out: Union[None, StrictInt]
+    rate_bps_in: Union[None, StrictInt]
+    rate_bps_out: Union[None, StrictInt]
+    rate_pps_in: Union[None, StrictInt]
+    rate_pps_out: Union[None, StrictInt]
+    rate_interval: Union[None, StrictInt]
+
+
 class LldpNeighborRecord(BaseModel):
     interface: StrictStr
     remote_device: Union[None, StrictStr]

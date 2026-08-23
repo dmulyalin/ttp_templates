@@ -1,0 +1,21 @@
+- name: Tunnel1
+  description: null
+  mtu: 1476
+  mac_address: null
+  duplex: null
+  status_admin: up
+  status_oper: up
+  speed_bps: 9000
+  last_cleared: never
+  transitions: null
+  errors_in: null
+  errors_out: null
+  crc_errors: null
+  packets_in: 0
+  packets_out: 0
+  rate_bps_in: null
+  rate_bps_out: null
+  rate_pps_in: null
+  rate_pps_out: null
+  rate_interval: null
+

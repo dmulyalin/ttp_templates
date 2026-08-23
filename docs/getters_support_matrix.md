@@ -4,11 +4,11 @@
 |---|---|---|---|---|---|---|---|---|
 | arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | bgp_neighbors | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
-| communities | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| bgp_communities | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| interfaces_status | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| interfaces_status | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | lldp_neighbors | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
 | mac-addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
@@ -47,6 +47,16 @@ Collected commands by platform:
 - Cisco NX-OS: `show running-config interface`
 - Juniper Junos: `show configuration interfaces | display set` and `show configuration routing-instances | display set | match interface`
 - Linux: `ip address show`
+
+### interfaces_status
+
+Collected commands by platform:
+
+- Arista EOS: `show interfaces`
+- Cisco IOS: `show interfaces`
+- Cisco IOS-XR: `show interfaces`
+- Cisco NX-OS: `show interface`
+- Juniper Junos: `show interfaces`
 
 ### lldp_neighbors
 

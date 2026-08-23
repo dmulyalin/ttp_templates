@@ -1,0 +1,21 @@
+- name: port-channel5
+  description: <<vPC for OTV>>
+  mtu: 9216
+  mac_address: 0c:11:67:ea:61:ff
+  duplex: full
+  status_admin: up
+  status_oper: up
+  speed_bps: 10000000000
+  last_cleared: 18w4d
+  transitions: null
+  errors_in: 0
+  errors_out: 0
+  crc_errors: 0
+  packets_in: 209953670944
+  packets_out: 182751753874
+  rate_bps_in: 6346768
+  rate_bps_out: 79764184
+  rate_pps_in: 2346
+  rate_pps_out: 11521
+  rate_interval: 30
+

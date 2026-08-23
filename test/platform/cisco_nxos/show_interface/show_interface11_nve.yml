@@ -1,0 +1,21 @@
+- name: nve1
+  description: null
+  mtu: 9216
+  mac_address: null
+  duplex: null
+  status_admin: up
+  status_oper: up
+  speed_bps: null
+  last_cleared: null
+  transitions: null
+  errors_in: null
+  errors_out: null
+  crc_errors: null
+  packets_in: null
+  packets_out: null
+  rate_bps_in: null
+  rate_bps_out: null
+  rate_pps_in: null
+  rate_pps_out: null
+  rate_interval: null
+

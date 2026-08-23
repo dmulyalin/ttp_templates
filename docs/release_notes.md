@@ -1,5 +1,15 @@
 # Release Notes
 
+## 0.5.11
+
+### TEMPLATES
+
+1. Added `ttp://get/interfaces_status.txt` getter template for normalized
+   operational interface status, counters, errors, speeds, and rates across
+   Arista EOS, Cisco IOS, Cisco IOS-XR, Cisco NX-OS, and Juniper Junos.
+
+---
+
 ## 0.5.10
 
 ### TEMPLATES

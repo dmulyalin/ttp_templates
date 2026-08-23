@@ -1,0 +1,21 @@
+- name: Ethernet1/50
+  description: null
+  mtu: null
+  mac_address: null
+  duplex: null
+  status_admin: up
+  status_oper: up
+  speed_bps: null
+  last_cleared: null
+  transitions: null
+  errors_in: 0
+  errors_out: 0
+  crc_errors: 0
+  packets_in: 4
+  packets_out: 4
+  rate_bps_in: null
+  rate_bps_out: null
+  rate_pps_in: null
+  rate_pps_out: null
+  rate_interval: null
+

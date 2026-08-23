@@ -72,12 +72,14 @@ nav:
     - a10_show_hardware: ttp_templates/platform.a10_show_hardware.md
     - a10_show_running_config_partition_config_all_pipe_section_interface: ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_section_interface.md
     - arista_eos_show_hostname: ttp_templates/platform.arista_eos_show_hostname.md
+    - arista_eos_show_interfaces: ttp_templates/platform.arista_eos_show_interfaces.md
     - arista_eos_show_inventory_pipe_json: ttp_templates/platform.arista_eos_show_inventory_pipe_json.md
     - arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json: ttp_templates/platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.md
     - arista_eos_show_lldp_neighbors_detail_pipe_json: ttp_templates/platform.arista_eos_show_lldp_neighbors_detail_pipe_json.md
     - arista_eos_show_running_config_section_interface: ttp_templates/platform.arista_eos_show_running_config_section_interface.md
     - arista_eos_show_running_config_section_vlan: ttp_templates/platform.arista_eos_show_running_config_section_vlan.md
     - arista_eos_show_running_config_section_vrf: ttp_templates/platform.arista_eos_show_running_config_section_vrf.md
+    - cisco_ios_show_interfaces: ttp_templates/platform.cisco_ios_show_interfaces.md
     - cisco_ios_show_inventory: ttp_templates/platform.cisco_ios_show_inventory.md
     - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md
     - cisco_ios_show_ip_ospf_database_external: ttp_templates/platform.cisco_ios_show_ip_ospf_database_external.md
@@ -89,12 +91,14 @@ nav:
     - cisco_ios_show_running_config_pipe_section_vlan: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_vlan.md
     - cisco_ios_show_running_config_pipe_section_vrf: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_vrf.md
     - cisco_ios_show_running_configuration_pipe_section_bgp: ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp.md
+    - cisco_nxos_show_interface: ttp_templates/platform.cisco_nxos_show_interface.md
     - cisco_nxos_show_inventory_pipe_json_pretty: ttp_templates/platform.cisco_nxos_show_inventory_pipe_json_pretty.md
     - cisco_nxos_show_running_config_interface: ttp_templates/platform.cisco_nxos_show_running_config_interface.md
     - cisco_nxos_show_running_config_vlan: ttp_templates/platform.cisco_nxos_show_running_config_vlan.md
     - cisco_nxos_show_running_config_vrf: ttp_templates/platform.cisco_nxos_show_running_config_vrf.md
     - cisco_xr_show_arp_vrf_all: ttp_templates/platform.cisco_xr_show_arp_vrf_all.md
     - cisco_xr_show_bgp_neighbors: ttp_templates/platform.cisco_xr_show_bgp_neighbors.md
+    - cisco_xr_show_interfaces: ttp_templates/platform.cisco_xr_show_interfaces.md
     - cisco_xr_show_inventory: ttp_templates/platform.cisco_xr_show_inventory.md
     - cisco_xr_show_isis_database_verbose: ttp_templates/platform.cisco_xr_show_isis_database_verbose.md
     - cisco_xr_show_ospf_database_external: ttp_templates/platform.cisco_xr_show_ospf_database_external.md
@@ -109,6 +113,7 @@ nav:
     - juniper_junos_show_configuration_interfaces_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_interfaces_pipe_display_set.md
     - juniper_junos_show_configuration_routing_instances_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_routing_instances_pipe_display_set.md
     - juniper_junos_show_configuration_vlans_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_vlans_pipe_display_set.md
+    - juniper_junos_show_interfaces: ttp_templates/platform.juniper_junos_show_interfaces.md
     - juniper_junos_show_isis_database_verbose_pipe_no_more: ttp_templates/platform.juniper_junos_show_isis_database_verbose_pipe_no_more.md
     - juniper_junos_show_lldp_neighbors_detail_pipe_display_json: ttp_templates/platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json.md
     - linux_ip_address_show: ttp_templates/platform.linux_ip_address_show.md
@@ -122,6 +127,7 @@ nav:
     - Getters Support Matrix: getters_support_matrix.md
     - bgp_neighbors: ttp_templates/get.bgp_neighbors.md
     - interfaces: ttp_templates/get.interfaces.md
+    - interfaces_status: ttp_templates/get.interfaces_status.md
     - inventory: ttp_templates/get.inventory.md
     - lldp_neighbors: ttp_templates/get.lldp_neighbors.md
     - netbox: ttp_templates/get.netbox.md

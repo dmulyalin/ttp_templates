@@ -1,0 +1,66 @@
+Ethernet1 is up, line protocol is up (connected)
+  Hardware is Ethernet, address is aac1.ab3b.1c7a (bia aac1.ab3b.1c7a)
+  Description: "Test interface Et1"
+  Internet address is 10.0.0.1/30
+  Broadcast address is 255.255.255.255
+  IP MTU 1500 bytes (default), BW 1000000 kbit
+  Full-duplex, 1Gb/s, auto negotiation: off, uni-link: n/a
+  Up 21 minutes, 40 seconds
+  Loopback Mode : None
+  2 link status changes since last clear
+  Last clearing of "show interface" counters never
+  5 minutes input rate 14.3 kbps (0.0% with framing overhead), 14 packets/sec
+  5 minutes output rate 6.34 kbps (0.0% with framing overhead), 4 packets/sec
+     5280 packets input, 381190 bytes
+     Received 1 broadcasts, 273 multicast
+     0 runts, 0 giants
+     2 input errors, 1 CRC, 0 alignment, 0 symbol, 0 input discards
+     0 PAUSE input
+     187 packets output, 16634 bytes
+     Sent 0 broadcasts, 187 multicast
+     3 output errors, 0 collisions
+     0 late collision, 0 deferred, 0 output discards
+     0 PAUSE output
+Ethernet49/1 is administratively down, line protocol is notpresent (disabled)
+  Hardware is Ethernet, address is fcbd.67e2.b922 (bia fcbd.67e2.b922)
+  Ethernet MTU 9214 bytes , BW 100000000 kbit
+  Full-duplex, 100Gb/s, auto negotiation: off, uni-link: n/a
+  Down 6 days, 11 hours, 16 minutes, 54 seconds
+  Loopback Mode : None
+  1 link status changes since last clear
+  Last clearing of "show interface" counters 6 days, 11:19:37 ago
+  5 minutes input rate 0 bps (0.0% with framing overhead), 0 packets/sec
+  5 minutes output rate 0 bps (0.0% with framing overhead), 0 packets/sec
+     0 packets input, 0 bytes
+     Received 0 broadcasts, 0 multicast
+     0 runts, 0 giants
+     0 input errors, 0 CRC, 0 alignment, 0 symbol, 0 input discards
+     0 PAUSE input
+     0 packets output, 0 bytes
+     Sent 0 broadcasts, 0 multicast
+     0 output errors, 0 collisions
+     0 late collision, 0 deferred, 0 output discards
+     0 PAUSE output
+Loopback0 is up, line protocol is up (connected)
+  Hardware is Loopback
+  Internet address is 1.1.1.1/32
+  Broadcast address is 255.255.255.255
+  IP MTU 65535 bytes (default)
+  Up 21 minutes, 51 seconds
+Port-Channel1 is down, line protocol is lowerlayerdown (notconnect)
+  Hardware is Port-Channel, address is 985d.82b8.fb26
+  Ethernet MTU 9214 bytes
+  Full-duplex, Unconfigured
+  Active members in this channel: 0
+  Fallback mode is: off
+  Down 5 hours, 13 minutes, 30 seconds
+  1 link status changes since last clear
+  Last clearing of "show interface" counters never
+  5 minutes input rate 0 bps (- with framing overhead), 0 packets/sec
+  5 minutes output rate 0 bps (- with framing overhead), 0 packets/sec
+     0 packets input, 0 bytes
+     Received 0 broadcasts, 0 multicast
+     0 input errors, 0 input discards
+     0 packets output, 0 bytes
+     Sent 0 broadcasts, 0 multicast
+     0 output errors, 0 output discards

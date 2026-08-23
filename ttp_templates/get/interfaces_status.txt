@@ -1,0 +1,43 @@
+<template name="interfaces_status" results="per_template">
+<doc>
+Getter template to parse operational interface status for network devices.
+
+Supported platforms:
+
+- Arista EOS
+- Cisco IOS
+- Cisco IOS-XR
+- Cisco NX-OS
+- Juniper Junos
+
+Returns a normalized list of dictionaries with these keys:
+
+- `name` - interface name
+- `description` - configured description or `null`
+- `mtu` - MTU in bytes or `null`
+- `mac_address` - MAC address or `null`
+- `duplex` - duplex mode or `null`
+- `status_admin` - administrative state (`up` or `down`)
+- `status_oper` - operational state (`up` or `down`)
+- `speed_bps` - interface speed in bit/s or `null`
+- `last_cleared` - time since counters were cleared, `never`, or `null`
+- `transitions` - link state transition count or `null`
+- `errors_in` / `errors_out` - input/output error counters or `null`
+- `crc_errors` - CRC error counter or `null`
+- `packets_in` / `packets_out` - cumulative packet counters or `null`
+- `rate_bps_in` / `rate_bps_out` - averaged input/output rates in bit/s or `null`
+- `rate_pps_in` / `rate_pps_out` - averaged input/output rates in packets/s or `null`
+- `rate_interval` - rate averaging interval in seconds or `null`
+</doc>
+
+<extend template="ttp://platform/arista_eos_show_interfaces.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_interfaces.txt"/>
+
+<extend template="ttp://platform/cisco_xr_show_interfaces.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_interface.txt"/>
+
+<extend template="ttp://platform/juniper_junos_show_interfaces.txt"/>
+
+</template>

@@ -1,0 +1,21 @@
+- name: mgmt0
+  description: null
+  mtu: 1500
+  mac_address: 34:1b:2d:3a:d7:6c
+  duplex: full
+  status_admin: up
+  status_oper: up
+  speed_bps: 1000000000
+  last_cleared: null
+  transitions: null
+  errors_in: null
+  errors_out: null
+  crc_errors: null
+  packets_in: 129553396
+  packets_out: 411197
+  rate_bps_in: 4416
+  rate_bps_out: 32
+  rate_pps_in: 4
+  rate_pps_out: 0
+  rate_interval: 60
+
