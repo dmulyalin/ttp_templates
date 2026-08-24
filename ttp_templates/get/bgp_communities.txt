@@ -1,0 +1,42 @@
+<template name="bgp_communities" results="per_template">
+<doc>
+Getter template to parse BGP community sets for network devices.
+
+Supported platforms:
+
+- Arista EOS
+- Cisco IOS
+- Cisco IOS-XR
+- Cisco NX-OS
+- Juniper Junos
+
+Returns a normalized list of dictionaries, each dictionary has these keys:
+
+- `value` - one BGP community value
+- `type` - community type, such as `standard`, `rt`, or `large`
+- `name` - community-set name
+
+When a set contains multiple communities, one dictionary is returned for each
+concrete value with the same name and type. Pattern entries are excluded.
+
+Example normalized output (YAML):
+
+```yaml
+- value: 65000:100
+  type: standard
+  name: CUSTOMER_COMMUNITIES
+```
+
+</doc>
+
+<extend template="ttp://platform/arista_eos_show_running_config_pipe_include_community_list.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_running_config_pipe_include_community_list.txt"/>
+
+<extend template="ttp://platform/cisco_xr_show_rpl_community_set.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_running_config_rpm.txt"/>
+
+<extend template="ttp://platform/juniper_junos_show_configuration_policy_options_community_pipe_display_set.txt"/>
+
+</template>

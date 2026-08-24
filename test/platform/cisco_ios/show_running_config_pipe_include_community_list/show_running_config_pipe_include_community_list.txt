@@ -1,0 +1,13 @@
+Router#show running-config | include community-list
+ip community-list standard CUSTOMER permit 65000:100 65000:101
+ip community-list standard CUSTOMER permit no-export
+ip community-list expanded CUSTOMER_REGEX permit ^65000:.*$
+ip community-list 10 permit 65000:200
+ip community-list standard DENIED deny 65000:999
+ip extcommunity-list standard VPN permit rt 65000:300 65000:301
+ip extcommunity-list standard VPN permit soo 65000:400
+ip extcommunity-list standard DENIED_EXT deny rt 65000:999
+ip large-community-list standard LARGE permit 65000:1:100 65000:1:200
+ip large-community-list 20 permit 65000:2:100
+ip large-community-list expanded LARGE_REGEX permit ^65000:.*:100$
+ip large-community-list standard DENIED_LARGE deny 65000:9:999

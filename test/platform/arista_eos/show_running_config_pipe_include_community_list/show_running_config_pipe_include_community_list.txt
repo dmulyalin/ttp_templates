@@ -1,0 +1,9 @@
+switch#show running-config | include community-list
+ip community-list CUSTOMER permit 65000:100 65000:101 no-export
+ip community-list CUSTOMER deny 65000:999
+ip community-list regexp STANDARD_PATTERN permit ^65000:.*$
+ip extcommunity-list VPN permit rt 65000:200 65000:201 soo 65000:300
+ip extcommunity-list BANDWIDTH permit lbw 1000000
+ip extcommunity-list regexp EXT_PATTERN permit RT:65000:.*
+ip large-community-list LARGE permit 65000:1:100 65000:1:200
+ip large-community-list regexp LARGE_PATTERN permit ^65000:.*:100$

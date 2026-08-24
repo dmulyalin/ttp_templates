@@ -16,6 +16,8 @@
   packets_out: null
   rate_bps_in: 648
   rate_bps_out: 968
+  input_utilization: 6.48e-06
+  output_utilization: 9.68e-06
   rate_pps_in: 1
   rate_pps_out: 0
   rate_interval: null

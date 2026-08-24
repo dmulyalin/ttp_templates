@@ -26,6 +26,7 @@ Returns a normalized list of dictionaries with these keys:
 - `crc_errors` - CRC error counter or `null`
 - `packets_in` / `packets_out` - cumulative packet counters or `null`
 - `rate_bps_in` / `rate_bps_out` - averaged input/output rates in bit/s or `null`
+- `input_utilization` / `output_utilization` - input/output rate as a percentage of `speed_bps`, or `null` when the rate or a positive interface speed is unavailable
 - `rate_pps_in` / `rate_pps_out` - averaged input/output rates in packets/s or `null`
 - `rate_interval` - rate averaging interval in seconds or `null`
 </doc>

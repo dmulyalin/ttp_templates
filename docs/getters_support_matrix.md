@@ -2,20 +2,31 @@
 
 | Getter template | A10 | Arista EOS | Cisco IOS | Cisco IOS-XR | Cisco NX-OS | Juniper Junos | Opengear | Linux |
 |---|---|---|---|---|---|---|---|---|
-| arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | bgp_neighbors | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
-| bgp_communities | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| bgp_communities | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | interfaces_status | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| lldp_neighbors | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
-| mac-addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| lldp_neighbors | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
 | vlans | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
 | vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| mac_addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| bgp_asn | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 ## Notes
+
+### bgp_communities
+
+Collected commands by platform:
+
+- Arista EOS: `show running-config | include community-list`
+- Cisco IOS: `show running-config | include community-list`
+- Cisco IOS-XR: `show rpl community-set`, `show rpl extcommunity-set`, and `show rpl large-community-set`
+- Cisco NX-OS: `show running-config rpm`
+- Juniper Junos: `show configuration policy-options community | display set`
 
 ### bgp_neighbors
 
@@ -63,6 +74,7 @@ Collected commands by platform:
 Collected commands by platform:
 
 - Arista EOS: `show lldp neighbors detail | json`
+- Cisco IOS-XR: `show lldp neighbors detail`
 - Juniper Junos: `show lldp neighbors detail | display json`
 
 ### vlans

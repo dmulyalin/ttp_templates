@@ -15,6 +15,8 @@
   packets_out: 0
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300
@@ -35,6 +37,8 @@
   packets_out: 956714742
   rate_bps_in: 1180000
   rate_bps_out: 38000
+  input_utilization: 0.0118
+  output_utilization: 0.00038
   rate_pps_in: 131
   rate_pps_out: 33
   rate_interval: 300
@@ -55,6 +59,8 @@
   packets_out: 237747059
   rate_bps_in: 6000
   rate_bps_out: 6000
+  input_utilization: 6.0e-05
+  output_utilization: 6.0e-05
   rate_pps_in: 10
   rate_pps_out: 10
   rate_interval: 300
@@ -75,6 +81,8 @@
   packets_out: 814075627
   rate_bps_in: 196000
   rate_bps_out: 11000
+  input_utilization: 0.00196
+  output_utilization: 0.00011
   rate_pps_in: 50
   rate_pps_out: 16
   rate_interval: 300
@@ -95,6 +103,8 @@
   packets_out: 37553221421
   rate_bps_in: 419000
   rate_bps_out: 1582000
+  input_utilization: 0.0419
+  output_utilization: 0.1582
   rate_pps_in: 173
   rate_pps_out: 261
   rate_interval: 300
@@ -115,6 +125,8 @@
   packets_out: 0
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300
@@ -135,6 +147,8 @@
   packets_out: 8107505603
   rate_bps_in: 1261000
   rate_bps_out: 1582000
+  input_utilization: 0.1261
+  output_utilization: 0.1582
   rate_pps_in: 243
   rate_pps_out: 200
   rate_interval: 300
@@ -155,6 +169,8 @@
   packets_out: 242553619
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300
@@ -175,6 +191,8 @@
   packets_out: 13861965
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300
@@ -195,6 +213,8 @@
   packets_out: 0
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300
@@ -215,6 +235,8 @@
   packets_out: 0
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300
@@ -235,6 +257,8 @@
   packets_out: 36245627794
   rate_bps_in: 289000
   rate_bps_out: 7166000
+  input_utilization: 0.00289
+  output_utilization: 0.07166
   rate_pps_in: 170
   rate_pps_out: 714
   rate_interval: 300
@@ -255,6 +279,8 @@
   packets_out: 0
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300
@@ -275,6 +301,8 @@
   packets_out: 5030894569
   rate_bps_in: 128000
   rate_bps_out: 897000
+  input_utilization: 0.00128
+  output_utilization: 0.00897
   rate_pps_in: 48
   rate_pps_out: 126
   rate_interval: 300
@@ -295,6 +323,8 @@
   packets_out: 0
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300
@@ -315,6 +345,8 @@
   packets_out: 0
   rate_bps_in: 0
   rate_bps_out: 0
+  input_utilization: 0.0
+  output_utilization: 0.0
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 300

@@ -4,9 +4,10 @@ Template to parse Juniper Junos `show interfaces` output and normalize it for
 the `interfaces_status` getter.
 
 Returns physical and logical interfaces as a list of dictionaries. Interface
-speed and input/output rates are in bit/s, packet rates are in packets/s, and
-values not reported by Junos are returned as `null`. `rate_interval` is `null`
-because this output does not state the rate averaging interval.
+speed and input/output rates are in bit/s, utilization is a percentage of
+interface speed, packet rates are in packets/s, and values not reported by
+Junos are returned as `null`. `rate_interval` is `null` because this output
+does not state the rate averaging interval.
 </doc>
 
 <input>

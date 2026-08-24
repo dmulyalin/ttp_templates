@@ -4,9 +4,13 @@
 
 ### TEMPLATES
 
-1. Added `ttp://get/interfaces_status.txt` getter template for normalized
-   operational interface status, counters, errors, speeds, and rates across
-   Arista EOS, Cisco IOS, Cisco IOS-XR, Cisco NX-OS, and Juniper Junos.
+1. Added `ttp://get/interfaces_status.txt` getter template for normalized operational interface status, counters, errors, speeds, and rates across Arista EOS, Cisco IOS, Cisco IOS-XR, Cisco NX-OS, and Juniper Junos.
+2. Added `ttp://get/bgp_communities.txt` getter template for normalized concrete BGP community-set records with `value`, `type`, and `name` keys; community patterns are excluded.
+3. Added Cisco IOS-XR BGP community parsing using `ttp://platform/cisco_xr_show_rpl_community_set.txt` for `show rpl community-set`, `show rpl extcommunity-set`, and `show rpl large-community-set` command output.
+4. Added Juniper Junos BGP community parsing using `ttp://platform/juniper_junos_show_configuration_policy_options_community_pipe_display_set.txt` for `show configuration policy-options community | display set` command output.
+5. Added Cisco IOS BGP community parsing using `ttp://platform/cisco_ios_show_running_config_pipe_include_community_list.txt` for `show running-config | include community-list` command output.
+6. Added Arista EOS BGP community parsing using `ttp://platform/arista_eos_show_running_config_pipe_include_community_list.txt` for `show running-config | include community-list` command output.
+7. Added Cisco NX-OS BGP community parsing using `ttp://platform/cisco_nxos_show_running_config_rpm.txt` for `show running-config rpm` command output.
 
 ---
 

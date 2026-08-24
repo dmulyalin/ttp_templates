@@ -1,0 +1,32 @@
+RP/0/RP0/CPU0:device1#show rpl community-set
+community-set COMMUNITY_NAME_1
+ 123:123
+end-set
+!
+RP/0/RP0/CPU0:device1#show rpl extcommunity-set
+extcommunity-set rt RT_COM_SET_1
+ 1234:1234
+end-set
+!
+extcommunity-set rt RT_COM_SET_2
+ 5555:55555,
+ 678:12345
+end-set
+!
+RP/0/RP0/CPU0:device1#show rpl large-community-set
+large-community-set LARGE_COM_SET_1
+ 65000:1:100,
+ 65000:1:200
+end-set
+!
+community-set STANDARD_PATTERN
+ ios-regex '^65000:.*$'
+end-set
+!
+extcommunity-set rt RT_PATTERN
+ ios-regex '65000:.*'
+end-set
+!
+large-community-set LARGE_PATTERN
+ ios-regex '65000:.*:100'
+end-set

@@ -1,0 +1,11 @@
+switch# show running-config rpm
+ip community-list standard CUSTOMER seq 5 permit 65000:100 65000:101
+ip community-list standard CUSTOMER seq 10 permit no-export
+ip community-list standard DENIED seq 5 deny 65000:999
+ip community-list expanded STANDARD_PATTERN seq 5 permit ^65000:.*$
+ip extcommunity-list standard VPN seq 5 permit rt 65000:200 65000:201 soo 65000:300
+ip extcommunity-list standard GENERIC permit 4byteas-generic transitive 65536:400
+ip extcommunity-list expanded EXT_PATTERN seq 5 permit RT:65000:.*
+ip large-community-list standard LARGE seq 5 permit 65000:1:100 65000:1:200
+ip large-community-list standard LARGE permit 65000:1:300
+ip large-community-list expanded LARGE_PATTERN seq 5 permit ^65000:.*:100$

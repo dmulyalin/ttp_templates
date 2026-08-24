@@ -15,6 +15,8 @@
   packets_out: null
   rate_bps_in: null
   rate_bps_out: null
+  input_utilization: null
+  output_utilization: null
   rate_pps_in: null
   rate_pps_out: null
   rate_interval: null
@@ -35,6 +37,8 @@
   packets_out: 394746
   rate_bps_in: 744
   rate_bps_out: 1608
+  input_utilization: 0.000744
+  output_utilization: 0.001608
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 60
@@ -55,6 +59,8 @@
   packets_out: 754962
   rate_bps_in: 80
   rate_bps_out: 256
+  input_utilization: 8.0e-07
+  output_utilization: 2.56e-06
   rate_pps_in: 0
   rate_pps_out: 0
   rate_interval: 30

@@ -1,0 +1,21 @@
+RP/0/RP0/CPU0:device1#show rpl community-set
+community-set COMMUNITY_NAME_1
+ 123:123
+end-set
+!
+community-set COMMUNITY_NAME_1
+ 111:111,
+ 1234:5555
+end-set
+!
+community-set COMMUNITY_NAME_4
+ 555:60035
+end-set
+!
+community-set COMMUNITY_NAME_2
+ 12345:12345
+end-set
+!
+community-set COMMUNITY_NAME_1
+ 4444:7777
+end-set

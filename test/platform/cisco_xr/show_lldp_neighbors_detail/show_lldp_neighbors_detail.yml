@@ -1,0 +1,35 @@
+- interface: FourHundredGigE0/0/0/0
+  remote_device: router-400.router.com
+  remote_interface: Fou1/0/22
+  remote_system_description: 'Cisco IOS Software [Cupertino], Catalyst L3 Switch Software (CAT9K_IOSXE), Version 17.9.3, RELEASE SOFTWARE (fc6) Technical Support: http://www.cisco.com/techsupport Copyright (c) 1986-2023 by Cisco Systems, Inc. Compiled Tue 14-Mar-23 18:26 by mcpre'
+  remote_chassi_id: 6c03.b5aa.bbcc
+  remote_interface_description: uplink:router1:FH0/0/0/0
+  remote_device_management_ip: 172.1.1.79
+- interface: FourHundredGigE0/0/0/28
+  remote_device: router2.com
+  remote_interface: FourHundredGigE0/0/0/28
+  remote_system_description: 7.9.2, 8000
+  remote_chassi_id: d0dc.2cdd.aabc
+  remote_interface_description: uplink:router1::FH0/0/0/28
+  remote_device_management_ip: 172.1.1.64
+- interface: FourHundredGigE0/0/0/29
+  remote_device: router66.router.com
+  remote_interface: FourHundredGigE0/0/0/29
+  remote_system_description: 7.9.2, 8000
+  remote_chassi_id: d0dc.abcd.dcba
+  remote_interface_description: uplink:router1:FH0/0/0/29
+  remote_device_management_ip: 172.1.1.66
+- interface: HundredGigE0/0/0/30
+  remote_device: otter-buffy
+  remote_interface: Eth1/4
+  remote_system_description: 'Cisco NX-OS(tm) n7700, Software (n7700-s2-dk9), Version 8.4(3), RELEASE SOFTWARE Copyright (c) 2002-2020 by Cisco Systems, Inc. Compiled 9/4/2020 23:00:00'
+  remote_chassi_id: 247e.32bb.0000
+  remote_interface_description: router1:Hun1/0/30
+  remote_device_management_ip: 172.1.1.158
+- interface: HundredGigE0/0/0/31
+  remote_device: onyx.mgmt.com
+  remote_interface: Eth2/4
+  remote_system_description: 'Cisco NX-OS(tm) n7700, Software (n7700-s2-dk9), Version 8.4(3), RELEASE SOFTWARE Copyright (c) 2002-2020 by Cisco Systems, Inc. Compiled 9/4/2020 23:00:00'
+  remote_chassi_id: 2cab.ebe1.ffff
+  remote_interface_description: uplink:router1:Hun1/0/31
+  remote_device_management_ip: 172.1.1.158

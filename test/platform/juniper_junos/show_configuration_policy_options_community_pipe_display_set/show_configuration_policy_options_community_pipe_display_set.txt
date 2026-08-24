@@ -1,0 +1,10 @@
+user@router> show configuration policy-options community | display set
+set policy-options community STANDARD_ONE members 65000:100
+set policy-options community MIXED members [ 65000:200 target:65000:300 ]
+set policy-options community LARGE_ONE members [ large:65000:1:100 large:65000:1:200 ]
+set policy-options community SITE_ORIGIN members origin:65000:400
+set policy-options community LINK_BANDWIDTH members bandwidth:65000:500
+set policy-options community WELL_KNOWN members no-export
+set policy-options community STANDARD_PATTERN members "^65000:.*$"
+set policy-options community RT_PATTERN members "target:65000:.*"
+set policy-options community LARGE_PATTERN members "large:65000:.*:100"
