@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc/N2G/cli_ip_data/a10.txt
+ttp://misc/N2G/cli_ip_data/A10.txt
 ```
 
 ---

@@ -13,7 +13,8 @@ Template to parse Arista EOS `show interfaces` output and normalize it for the
 Returns a list of dictionaries with interface identity, state, physical
 properties, counter-clearing information, error and packet counters, and
 averaged input/output rates. `speed_bps`, `rate_bps_in`, and `rate_bps_out`
-are in bit/s. `rate_pps_in` and `rate_pps_out` are in packets/s.
+are in bit/s. `input_utilization` and `output_utilization` are percentages of
+interface speed. `rate_pps_in` and `rate_pps_out` are in packets/s.
 `rate_interval` is the rate averaging interval in seconds. Values not reported
 for an interface are returned as `null`.
 
@@ -31,7 +32,8 @@ Template to parse Arista EOS 'show interfaces' output and normalize it for the
 Returns a list of dictionaries with interface identity, state, physical
 properties, counter-clearing information, error and packet counters, and
 averaged input/output rates. 'speed_bps', 'rate_bps_in', and 'rate_bps_out'
-are in bit/s. 'rate_pps_in' and 'rate_pps_out' are in packets/s.
+are in bit/s. 'input_utilization' and 'output_utilization' are percentages of
+interface speed. 'rate_pps_in' and 'rate_pps_out' are in packets/s.
 'rate_interval' is the rate averaging interval in seconds. Values not reported
 for an interface are returned as 'null'.
 </doc>

@@ -12,8 +12,9 @@ Template to parse Cisco NX-OS `show interface` output and normalize it for the
 
 Returns a list of dictionaries with interface state, physical properties,
 counters, errors, and averaged rates. Interface speed and input/output rates
-are in bit/s, packet rates are in packets/s, and `rate_interval` is in seconds.
-Values not reported by NX-OS are returned as `null`.
+are in bit/s, utilization is a percentage of interface speed, packet rates are
+in packets/s, and `rate_interval` is in seconds. Values not reported by NX-OS
+are returned as `null`.
 
 
 
@@ -28,8 +29,9 @@ Template to parse Cisco NX-OS 'show interface' output and normalize it for the
 
 Returns a list of dictionaries with interface state, physical properties,
 counters, errors, and averaged rates. Interface speed and input/output rates
-are in bit/s, packet rates are in packets/s, and 'rate_interval' is in seconds.
-Values not reported by NX-OS are returned as 'null'.
+are in bit/s, utilization is a percentage of interface speed, packet rates are
+in packets/s, and 'rate_interval' is in seconds. Values not reported by NX-OS
+are returned as 'null'.
 </doc>
 
 <input>

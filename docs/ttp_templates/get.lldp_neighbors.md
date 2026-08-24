@@ -27,6 +27,21 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 
 
+Normalizes Cisco IOS-XR `show lldp neighbors detail` output to flat list format.
+
+Returns normalized list of dictionaries, each dictionary has these keys:
+
+- `interface` - local interface on which the LLDP neighbor was discovered
+- `remote_device` - system name of the remote LLDP neighbor
+- `remote_interface` - port ID of the remote neighbor interface
+- `remote_system_description` - system description string advertised by the remote neighbor
+- `remote_chassi_id` - chassis ID of the remote neighbor
+- `remote_interface_description` - port description advertised by the remote neighbor interface, or `null` if none
+- `remote_device_management_ip` - first management IP address advertised by the remote neighbor, or `null` if none
+
+
+
+
 Normalizes Juniper JunOS LLDP neighbors JSON to flat list format.
 
 Transforms the nested lldp-neighbors-information/lldp-neighbor-information structure
@@ -62,6 +77,7 @@ Getter template to parse LLDP neighbors for network devices. Designed to work wi
 Supported platforms:
 
 - Arista EOS
+- Cisco IOS-XR
 - Juniper Junos
 
 Returns normalized list of dictionaries, each dictionary has these keys:
@@ -78,8 +94,11 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 <extend template="ttp://platform/arista_eos_show_lldp_neighbors_detail_pipe_json.txt"/>
 
+<extend template="ttp://platform/cisco_xr_show_lldp_neighbors_detail.txt"/>
+
 <extend template="ttp://platform/juniper_junos_show_lldp_neighbors_detail_pipe_display_json.txt"/>
 
 </template>
+
 ```
 </details>

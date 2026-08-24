@@ -13,7 +13,8 @@ Template to parse Arista EOS `show interfaces` output and normalize it for the
 Returns a list of dictionaries with interface identity, state, physical
 properties, counter-clearing information, error and packet counters, and
 averaged input/output rates. `speed_bps`, `rate_bps_in`, and `rate_bps_out`
-are in bit/s. `rate_pps_in` and `rate_pps_out` are in packets/s.
+are in bit/s. `input_utilization` and `output_utilization` are percentages of
+interface speed. `rate_pps_in` and `rate_pps_out` are in packets/s.
 `rate_interval` is the rate averaging interval in seconds. Values not reported
 for an interface are returned as `null`.
 
@@ -24,8 +25,9 @@ Template to parse Cisco IOS `show interfaces` output and normalize it for the
 
 Returns a list of dictionaries with interface state, physical properties,
 counters, errors, and averaged rates. Interface speed and input/output rates
-are in bit/s, packet rates are in packets/s, and `rate_interval` is in seconds.
-Values not reported by IOS are returned as `null`.
+are in bit/s, utilization is a percentage of interface speed, packet rates are
+in packets/s, and `rate_interval` is in seconds. Values not reported by IOS are
+returned as `null`.
 
 
 
@@ -34,8 +36,9 @@ the `interfaces_status` getter.
 
 Returns a list of dictionaries with interface state, physical properties,
 counters, errors, and averaged rates. Interface speed and input/output rates
-are in bit/s, packet rates are in packets/s, and `rate_interval` is in seconds.
-Values not reported by IOS-XR are returned as `null`.
+are in bit/s, utilization is a percentage of interface speed, packet rates are
+in packets/s, and `rate_interval` is in seconds. Values not reported by IOS-XR
+are returned as `null`.
 
 
 
@@ -44,8 +47,9 @@ Template to parse Cisco NX-OS `show interface` output and normalize it for the
 
 Returns a list of dictionaries with interface state, physical properties,
 counters, errors, and averaged rates. Interface speed and input/output rates
-are in bit/s, packet rates are in packets/s, and `rate_interval` is in seconds.
-Values not reported by NX-OS are returned as `null`.
+are in bit/s, utilization is a percentage of interface speed, packet rates are
+in packets/s, and `rate_interval` is in seconds. Values not reported by NX-OS
+are returned as `null`.
 
 
 
@@ -53,9 +57,10 @@ Template to parse Juniper Junos `show interfaces` output and normalize it for
 the `interfaces_status` getter.
 
 Returns physical and logical interfaces as a list of dictionaries. Interface
-speed and input/output rates are in bit/s, packet rates are in packets/s, and
-values not reported by Junos are returned as `null`. `rate_interval` is `null`
-because this output does not state the rate averaging interval.
+speed and input/output rates are in bit/s, utilization is a percentage of
+interface speed, packet rates are in packets/s, and values not reported by
+Junos are returned as `null`. `rate_interval` is `null` because this output
+does not state the rate averaging interval.
 
 
 
@@ -91,6 +96,7 @@ Returns a normalized list of dictionaries with these keys:
 - 'crc_errors' - CRC error counter or 'null'
 - 'packets_in' / 'packets_out' - cumulative packet counters or 'null'
 - 'rate_bps_in' / 'rate_bps_out' - averaged input/output rates in bit/s or 'null'
+- 'input_utilization' / 'output_utilization' - input/output rate as a percentage of 'speed_bps', or 'null' when the rate or a positive interface speed is unavailable
 - 'rate_pps_in' / 'rate_pps_out' - averaged input/output rates in packets/s or 'null'
 - 'rate_interval' - rate averaging interval in seconds or 'null'
 </doc>

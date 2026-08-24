@@ -1,0 +1,72 @@
+Reference path:
+```
+ttp://platform/cisco_ios_show_running_config_pipe_include_community_list.txt
+```
+
+---
+
+
+
+Template to parse Cisco IOS BGP community-list configuration from
+`show running-config | include community-list`.
+
+Returns a normalized list of dictionaries with `value`, `type`, and `name`
+keys. Each permitted concrete community value is returned as a separate
+dictionary; pattern entries are excluded. Standard, extended (`rt` and `soo`),
+and large community lists are supported.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="cisco_ios_bgp_communities" results="per_template">
+<doc>
+Template to parse Cisco IOS BGP community-list configuration from
+'show running-config | include community-list'.
+
+Returns a normalized list of dictionaries with 'value', 'type', and 'name'
+keys. Each permitted concrete community value is returned as a separate
+dictionary; pattern entries are excluded. Standard, extended ('rt' and 'soo'),
+and large community lists are supported.
+</doc>
+
+<input>
+commands = [
+    "show running-config | include community-list"
+]
+platform = [
+    "cisco_ios",
+    "ios",
+]
+</input>
+
+<macro>
+def transform_communities_to_records(data):
+    from ttp_templates.utils.cisco_ios_process_show_running_config_pipe_include_community_list import transform_community_lists
+
+    return transform_community_lists(data)
+</macro>
+
+<group name="standard_lists*" method="table">
+ip community-list standard {{ name }} permit {{ values | ORPHRASE }}
+ip community-list {{ name }} permit {{ values | ORPHRASE }}
+</group>
+
+<group name="extended_lists*" method="table">
+ip extcommunity-list standard {{ name }} permit {{ values | ORPHRASE }}
+ip extcommunity-list {{ name }} permit {{ values | ORPHRASE }}
+</group>
+
+<group name="large_lists*" method="table">
+ip large-community-list standard {{ name }} permit {{ values | ORPHRASE }}
+ip large-community-list {{ name }} permit {{ values | ORPHRASE }}
+</group>
+
+<output macro="transform_communities_to_records"/>
+
+</template>
+
+```
+</details>

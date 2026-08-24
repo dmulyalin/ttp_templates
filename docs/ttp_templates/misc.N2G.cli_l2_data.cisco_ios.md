@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc/N2G/cli_l2_data/cisco_ios.txt
+ttp://misc/N2G/cli_l2_data/Cisco_IOS.txt
 ```
 
 ---
