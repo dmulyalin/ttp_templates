@@ -151,6 +151,11 @@ class BgpCommunityRecord(BaseModel):
     name: StrictStr
 
 
+class BgpAsnRecord(BaseModel):
+    asn: StrictInt
+    description: Union[None, StrictStr]
+
+
 class InventoryRecord(BaseModel):
     description: StrictStr
     module: StrictStr

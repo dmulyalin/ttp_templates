@@ -5,6 +5,17 @@
 ### TEMPLATES
 
 1. Updated interface getters to set interface type to `virtual` when the interface has a parent.
+2. Added `ttp://get/bgp_asn.txt` getter support for Cisco IOS-XR formal BGP
+   configuration, returning unique `asn` and `description` records from router,
+   `remote-as`, and `local-as` statements.
+3. Added Juniper Junos support to the `bgp_asn` getter for global and
+   routing-instance `autonomous-system`, `local-as`, and `peer-as` statements.
+4. Added Arista EOS support to the `bgp_asn` getter for router, peer-group,
+   neighbor, and VRF `remote-as` and `local-as` configuration.
+5. Added Cisco NX-OS support to the `bgp_asn` getter for router, peer-template,
+   neighbor, and VRF `remote-as` and `local-as` configuration.
+6. Added Cisco IOS support to the `bgp_asn` getter for router, peer-group,
+   neighbor, and VRF address-family `remote-as` and `local-as` configuration.
 
 ---
 

@@ -1,0 +1,42 @@
+<template name="bgp_asn" results="per_template">
+<doc>
+Getter template to parse BGP AS numbers from network-device configuration.
+
+Supported platforms:
+
+- Arista EOS
+- Cisco IOS
+- Cisco IOS-XR
+- Cisco NX-OS
+- Juniper Junos
+
+Returns a normalized list of dictionaries, each dictionary has these keys:
+
+- `asn` - AS number integer
+- `description` - peer-group name or `null`
+
+Records are deduplicated by ASN. The description from the first occurrence is
+retained.
+
+Example normalized output (YAML):
+
+```yaml
+- asn: 12345
+  description: null
+- asn: 54321
+  description: PEER_GROUP_1
+```
+
+</doc>
+
+<extend template="ttp://platform/arista_eos_show_running_config_section_router_bgp.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_running_config_pipe_section_router_bgp.txt"/>
+
+<extend template="ttp://platform/cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_running_config_bgp.txt"/>
+
+<extend template="ttp://platform/juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system.txt"/>
+
+</template>

@@ -1,0 +1,14 @@
+set routing-options autonomous-system 1234
+set routing-instances VRF_1 protocols bgp group GROUP_1 local-as 4321
+set routing-instances VRF_2 protocols bgp group GROUP_1 peer-as 124235353
+set protocols bgp group GLOBAL_LOCAL local-as 64512 private
+set protocols bgp group GLOBAL_LOCAL_BARE local-as 64513
+set protocols bgp group GLOBAL_PEER peer-as 64514
+set protocols bgp group GLOBAL_NEIGHBOR neighbor 192.0.2.1 peer-as 64515
+set routing-instances VRF_3 routing-options autonomous-system 64516 loops 2
+set routing-instances VRF_4 routing-options autonomous-system 64517
+set routing-instances VRF_5 protocols bgp group VRF_LOCAL local-as 64518 no-prepend-global-as
+set routing-instances VRF_6 protocols bgp group VRF_NEIGHBOR neighbor 2001:db8::1 peer-as 64519
+set protocols bgp group FIRST_DESCRIPTION peer-as 64520
+set routing-instances VRF_7 protocols bgp group LATER_DESCRIPTION peer-as 64520
+set protocols bgp group LATER_ROUTER_MATCH peer-as 1234

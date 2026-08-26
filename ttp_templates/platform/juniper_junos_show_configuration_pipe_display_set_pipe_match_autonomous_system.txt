@@ -1,0 +1,64 @@
+<template name="juniper_junos_bgp_asn" results="per_template">
+<doc>
+Template to parse unique BGP ASNs from Juniper Junos configuration.
+
+This template requires output of:
+
+- `show configuration | display set | match "autonomous-system|local-as|peer-as"`
+
+ASNs are collected from global and routing-instance `autonomous-system`,
+`local-as`, and `peer-as` statements. For BGP group and neighbor statements,
+the group name is used as the description. Results are deduplicated by ASN,
+preserving the first occurrence and its description.
+
+Returns a normalized list of dictionaries with these keys:
+
+- `asn` - AS number integer
+- `description` - BGP group name or `null`
+
+Example normalized output (YAML):
+
+```yaml
+- asn: 1234
+  description: null
+- asn: 4321
+  description: GROUP_1
+```
+
+</doc>
+
+<input>
+commands = [
+    'show configuration | display set | match "autonomous-system|local-as|peer-as"'
+]
+platform = [
+    "juniper_junos",
+    "junos",
+]
+</input>
+
+<macro>
+def transform_bgp_asns_to_records(data):
+    from ttp_templates.utils.juniper_junos_process_show_configuration_pipe_display_set_pipe_match_autonomous_system import transform_bgp_asns
+
+    return transform_bgp_asns(data)
+</macro>
+
+<group name="statements*">
+set routing-options autonomous-system {{ asn | _start_ | to_int }} {{ asn_options | ORPHRASE }}
+set routing-options autonomous-system {{ asn | _start_ | to_int }}
+set routing-instances {{ vrf }} routing-options autonomous-system {{ asn | _start_ | to_int }} {{ asn_options | ORPHRASE }}
+set routing-instances {{ vrf }} routing-options autonomous-system {{ asn | _start_ | to_int }}
+set protocols bgp group {{ description }} peer-as {{ asn | _start_ | to_int }}
+set protocols bgp group {{ description }} local-as {{ asn | _start_ | to_int }} {{ local_as_options | ORPHRASE }}
+set protocols bgp group {{ description }} local-as {{ asn | _start_ | to_int }}
+set protocols bgp group {{ description }} neighbor {{ neighbor }} peer-as {{ asn | _start_ | to_int }}
+set routing-instances {{ vrf }} protocols bgp group {{ description }} peer-as {{ asn | _start_ | to_int }}
+set routing-instances {{ vrf }} protocols bgp group {{ description }} local-as {{ asn | _start_ | to_int }} {{ local_as_options | ORPHRASE }}
+set routing-instances {{ vrf }} protocols bgp group {{ description }} local-as {{ asn | _start_ | to_int }}
+set routing-instances {{ vrf }} protocols bgp group {{ description }} neighbor {{ neighbor }} peer-as {{ asn | _start_ | to_int }}
+</group>
+
+<output macro="transform_bgp_asns_to_records"/>
+
+</template>

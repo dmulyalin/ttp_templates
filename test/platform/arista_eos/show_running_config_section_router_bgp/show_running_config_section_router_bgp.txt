@@ -1,0 +1,27 @@
+router bgp 65000
+   router-id 192.0.2.254
+   neighbor TRANSIT peer group
+   neighbor TRANSIT remote-as 64500
+   neighbor 192.0.2.1 peer group TRANSIT
+   neighbor 192.0.2.1 remote-as 64501
+   neighbor 192.0.2.2 remote-as 64502
+   neighbor LOCAL_OVERRIDE local-as 64503 no-prepend replace-as
+   neighbor LOCAL_OVERRIDE peer group
+   neighbor 192.0.2.3 local-as 64504
+   vrf CUSTOMER_A
+      local-as 65001
+      neighbor VRF_TRANSIT peer group
+      neighbor VRF_TRANSIT remote-as 64505
+      neighbor 2001:db8::1 peer group VRF_TRANSIT
+      neighbor 2001:db8::1 remote-as 64506
+      neighbor 2001:db8::2 remote-as 64507
+      neighbor VRF_LOCAL peer group
+      neighbor VRF_LOCAL local-as 64508 dual-as
+   vrf CUSTOMER_B
+      local-as 65002 no-prepend
+      neighbor FIRST_GROUP peer group
+      neighbor FIRST_GROUP remote-as 64509
+      neighbor LATER_GROUP peer group
+      neighbor LATER_GROUP remote-as 64509
+      neighbor ROUTER_AS_MATCH remote-as 65000
+!

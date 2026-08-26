@@ -12,11 +12,21 @@
 | vlans | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
 | vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | mac_addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| bgp_asn | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| bgp_asn | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 ## Notes
+
+### bgp_asn
+
+Collected commands by platform:
+
+- Arista EOS: `show running-config section router bgp`
+- Cisco IOS: `show running-config | section router bgp`
+- Cisco IOS-XR: `show run formal | inc "local-as|remote-as"`
+- Cisco NX-OS: `show running-config bgp`
+- Juniper Junos: `show configuration | display set | match "autonomous-system|local-as|peer-as"`
 
 ### bgp_communities
 

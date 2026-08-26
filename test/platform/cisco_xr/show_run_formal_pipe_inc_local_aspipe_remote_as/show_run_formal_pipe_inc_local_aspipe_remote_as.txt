@@ -1,0 +1,15 @@
+router bgp 12345 neighbor-group PEER_GROUP_1 remote-as 54321
+router bgp 12345 neighbor 1.2.3.4 remote-as 1111
+router bgp 12345 neighbor-group PEER_GROUP_2 local-as 65001 no-prepend replace-as dual-as
+router bgp 12345 neighbor 192.0.2.1 local-as 65002 no-prepend
+router bgp 12345 vrf CUSTOMER_A neighbor-group VRF_PEERS local-as 65003 replace-as dual-as
+router bgp 12345 vrf CUSTOMER_A neighbor 2001:db8::1 local-as 65004 dual-as
+router bgp 12345 neighbor-group BARE_LOCAL_AS local-as 65005
+router bgp 12345 neighbor 5.6.7.8 local-as 65006 replace-as
+router bgp 12345 vrf CUSTOMER_A neighbor-group VRF_REMOTE_PEERS remote-as 65007
+router bgp 12345 vrf CUSTOMER_A neighbor 203.0.113.1 remote-as 65008
+router bgp 12345 neighbor 203.0.113.2 local-as 65009
+router bgp 12345 vrf CUSTOMER_A neighbor-group VRF_BARE_LOCAL_AS local-as 65010
+router bgp 12345 vrf CUSTOMER_A neighbor 203.0.113.3 local-as 65011
+router bgp 12345 neighbor-group LATER_GROUP remote-as 1111
+router bgp 12345 neighbor 5.6.7.9 remote-as 54321

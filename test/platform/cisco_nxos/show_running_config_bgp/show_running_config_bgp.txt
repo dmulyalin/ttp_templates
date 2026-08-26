@@ -1,0 +1,30 @@
+router bgp 65000
+  router-id 192.0.2.254
+  template peer TRANSIT
+    remote-as 64500
+    local-as 64510 no-prepend replace-as
+  neighbor 192.0.2.1
+    inherit peer TRANSIT
+    remote-as 64501
+    local-as 64511
+  neighbor 192.0.2.2
+    remote-as 64502
+  neighbor 192.0.2.3
+    local-as 64512 dual-as
+  vrf CUSTOMER_A
+    local-as 65001
+    neighbor 2001:db8::1
+      inherit peer TRANSIT
+      remote-as 64503
+      local-as 64513 no-prepend
+    neighbor 2001:db8::2
+      remote-as 64504
+  vrf CUSTOMER_B
+    local-as 65002 replace-as
+    neighbor 203.0.113.1
+      inherit peer TRANSIT
+      remote-as 64505
+    neighbor 203.0.113.2
+      remote-as 64505
+    neighbor 203.0.113.3
+      remote-as 65000
