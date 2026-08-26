@@ -42,3 +42,24 @@
   type: other
   untagged_vlan: null
   vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.168.100.1/24
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: 01:02:03:04:05:06
+  mode: null
+  mtu: 1500
+  name: eth0.100
+  parent: eth0
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null

@@ -125,6 +125,7 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
         parent: Optional[str] = None
         if name and "." in str(name):
             parent = str(name).split(".", 1)[0]
+            interface_type = "virtual"
 
         # Convert template-provided tagged VLAN list elements to ints
         raw_tagged = iface.get("tagged_vlans")

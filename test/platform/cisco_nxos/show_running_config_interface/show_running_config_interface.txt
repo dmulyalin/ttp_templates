@@ -53,3 +53,6 @@ interface loopback0
   description Router ID
   ip address 203.0.113.1/32
 !
+interface Ethernet1/9.400
+  description Parent type validation
+!

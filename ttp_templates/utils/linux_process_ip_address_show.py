@@ -74,12 +74,16 @@ def transform_interfaces(payload: list) -> List[Dict[str, Any]]:
         name = iface["name"]
         flags = [flag.strip() for flag in iface.get("flags", "").split(",")]
         master = iface.get("master")
+        parent = name.split(".", 1)[0] if "." in name else None
+        interface_type = _get_interface_type(name, flags)
+        if parent:
+            interface_type = "virtual"
 
         record = {
             "name": name,
-            "type": _get_interface_type(name, flags),
+            "type": interface_type,
             "enabled": "UP" in flags,
-            "parent": name.split(".", 1)[0] if "." in name else None,
+            "parent": parent,
             "lag": None,
             "lag_id": None,
             "lag_type": None,

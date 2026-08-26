@@ -112,6 +112,9 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             # extract parent data, not always device config has configuration for parent though
             parent_interface_data = raw.get(parent, {})
 
+        if parent:
+            interface_type = "virtual"
+
         speed_raw = data.get("speed")
         speed = _SPEED_MAP.get(speed_raw.lower() if speed_raw else "", None)
         description = (data.get("description") or "").strip('"')

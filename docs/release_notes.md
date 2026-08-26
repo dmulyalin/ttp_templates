@@ -1,5 +1,13 @@
 # Release Notes
 
+## 0.5.12
+
+### TEMPLATES
+
+1. Updated interface getters to set interface type to `virtual` when the interface has a parent.
+
+---
+
 ## 0.5.11
 
 ### TEMPLATES

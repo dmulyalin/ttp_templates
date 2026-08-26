@@ -120,4 +120,7 @@ interface Vlan209
  ip address 203.0.113.85 255.255.255.252
  ip mtu 9192
  !
+interface GigabitEthernet0/9.400
+ description Parent type validation
+ !
 device#

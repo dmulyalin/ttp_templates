@@ -118,6 +118,9 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
         name = iface["name"]
         name_lower = name.lower()
         interface_type = _interface_type(name)
+        parent = name.split(".", 1)[0] if "." in name else None
+        if parent:
+            interface_type = "virtual"
         lag_id = iface.get("lag_id")
         lag_type = iface.get("lag_type")
         lag = None
@@ -149,7 +152,7 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
             "name": name,
             "type": interface_type,
             "enabled": iface.get("enabled", True),
-            "parent": name.split(".", 1)[0] if "." in name else None,
+            "parent": parent,
             "lag": lag,
             "lag_id": lag_id,
             "lag_type": lag_type,

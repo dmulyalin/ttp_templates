@@ -69,3 +69,5 @@ interface Vlan200
    ip address 192.168.200.1/24
 interface Management0
    ip address 172.100.100.12/24
+interface Ethernet10.400
+   description Parent type validation

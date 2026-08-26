@@ -10,3 +10,7 @@
        valid_lft forever preferred_lft forever
     inet6 fe80::302:03ff:fe04:0506/64 scope link 
        valid_lft forever preferred_lft forever
+3: eth0.100: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP
+    link/ether 01:02:03:04:05:06 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.1/24 brd 192.168.100.255 scope global eth0.100
+       valid_lft forever preferred_lft forever
