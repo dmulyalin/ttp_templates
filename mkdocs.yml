@@ -26,10 +26,10 @@ nav:
 - Templates:
   - Misc:
     - N2G:
-      - cli_ip_data.A10: ttp_templates/misc.N2G.cli_ip_data.A10.md
-      - cli_ip_data.Cisco_IOS: ttp_templates/misc.N2G.cli_ip_data.Cisco_IOS.md
-      - cli_ip_data.Cisco_NXOS: ttp_templates/misc.N2G.cli_ip_data.Cisco_NXOS.md
-      - cli_ip_data.Huawei: ttp_templates/misc.N2G.cli_ip_data.Huawei.md
+      - cli_ip_data.A10: ttp_templates/misc.N2G.cli_ip_data.a10.md
+      - cli_ip_data.Cisco_IOS: ttp_templates/misc.N2G.cli_ip_data.cisco_ios.md
+      - cli_ip_data.Cisco_NXOS: ttp_templates/misc.N2G.cli_ip_data.cisco_nxos.md
+      - cli_ip_data.Huawei: ttp_templates/misc.N2G.cli_ip_data.huawei.md
       - cli_ip_data.arista_eos: ttp_templates/misc.N2G.cli_ip_data.arista_eos.md
       - cli_ip_data.cisco_xr: ttp_templates/misc.N2G.cli_ip_data.cisco_xr.md
       - cli_ip_data.fortinet: ttp_templates/misc.N2G.cli_ip_data.fortinet.md
@@ -38,14 +38,14 @@ nav:
       - cli_isis_data.cisco_xr: ttp_templates/misc.N2G.cli_isis_data.cisco_xr.md
       - cli_isis_data.juniper_junos: ttp_templates/misc.N2G.cli_isis_data.juniper_junos.md
       - cli_isis_data.readme: ttp_templates/misc.N2G.cli_isis_data.readme.md
-      - cli_l2_data.Cisco_IOS: ttp_templates/misc.N2G.cli_l2_data.Cisco_IOS.md
-      - cli_l2_data.Cisco_NXOS: ttp_templates/misc.N2G.cli_l2_data.Cisco_NXOS.md
-      - cli_l2_data.Huawei: ttp_templates/misc.N2G.cli_l2_data.Huawei.md
+      - cli_l2_data.Cisco_IOS: ttp_templates/misc.N2G.cli_l2_data.cisco_ios.md
+      - cli_l2_data.Cisco_NXOS: ttp_templates/misc.N2G.cli_l2_data.cisco_nxos.md
+      - cli_l2_data.Huawei: ttp_templates/misc.N2G.cli_l2_data.huawei.md
       - cli_l2_data.cisco_xr: ttp_templates/misc.N2G.cli_l2_data.cisco_xr.md
       - cli_l2_data.juniper_junos: ttp_templates/misc.N2G.cli_l2_data.juniper_junos.md
       - cli_l2_data.readme: ttp_templates/misc.N2G.cli_l2_data.readme.md
-      - cli_ospf_data.Cisco_IOS: ttp_templates/misc.N2G.cli_ospf_data.Cisco_IOS.md
-      - cli_ospf_data.Huawei: ttp_templates/misc.N2G.cli_ospf_data.Huawei.md
+      - cli_ospf_data.Cisco_IOS: ttp_templates/misc.N2G.cli_ospf_data.cisco_ios.md
+      - cli_ospf_data.Huawei: ttp_templates/misc.N2G.cli_ospf_data.huawei.md
       - cli_ospf_data.cisco_xr: ttp_templates/misc.N2G.cli_ospf_data.cisco_xr.md
       - cli_ospf_data.readme: ttp_templates/misc.N2G.cli_ospf_data.readme.md
     - Netbox:

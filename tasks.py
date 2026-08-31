@@ -100,6 +100,7 @@ def _generate_docs():
     platform = []
     yang = []
     get = [{"Getters Support Matrix": "getters_support_matrix.md"}]
+    generated_docs = set()
     templates_count = 0
 
     with open("mkdocs.yml", "r", encoding="utf-8") as handle:
@@ -119,10 +120,21 @@ def _generate_docs():
         for filename in sorted(filenames):
             if filename == "readme.md":
                 templates_count += 1
-                _process_readme(dirpath, filename, misc_dict)
+                generated_docs.add(_process_readme(dirpath, filename, misc_dict))
             elif filename.endswith(".txt"):
                 templates_count += 1
-                _process_template(dirpath, filename, misc_dict, platform, yang, get)
+                generated_docs.add(
+                    _process_template(
+                        dirpath, filename, misc_dict, platform, yang, get
+                    )
+                )
+
+    # This directory contains generated pages only. Remove pages whose source
+    # template was renamed or deleted after all current pages were generated.
+    docs_dir = Path("docs") / "ttp_templates"
+    for existing_page in docs_dir.glob("*.md"):
+        if existing_page.name not in generated_docs:
+            existing_page.unlink()
 
     for misc_dir_name, pages in misc_dict.items():
         misc.append({misc_dir_name: pages})
@@ -137,14 +149,20 @@ def _process_readme(dirpath, filename, misc_dict):
         doc_string = handle.read()
 
     splitted_path = Path(dirpath).parts
-    docs_filename = ".".join(splitted_path[1:]) + "." + filename
+    display_filename = ".".join(splitted_path[1:]) + "." + filename
+    docs_filename = ".".join(splitted_path[1:]) + "." + filename.lower()
     _write(Path("docs") / "ttp_templates" / docs_filename, doc_string)
 
     if splitted_path[1] == "misc":
         misc_dict.setdefault(splitted_path[2], [])
         misc_dict[splitted_path[2]].append(
-            {docs_filename.split(".")[2] + ".readme": "ttp_templates/" + docs_filename}
+            {
+                display_filename.split(".")[2] + ".readme": "ttp_templates/"
+                + docs_filename
+            }
         )
+
+    return docs_filename
 
 
 def _process_template(dirpath, filename, misc_dict, platform, yang, get):
@@ -162,7 +180,12 @@ def _process_template(dirpath, filename, misc_dict, platform, yang, get):
         template_content = handle.read()
 
     splitted_path = Path(dirpath).parts
-    docs_filename = ".".join(splitted_path[1:]) + "." + filename.replace(".txt", ".md")
+    display_filename = ".".join(splitted_path[1:]) + "." + filename.replace(
+        ".txt", ".md"
+    )
+    docs_filename = ".".join(splitted_path[1:]) + "." + filename.lower().replace(
+        ".txt", ".md"
+    )
     doc_string = PAGE_TEMPLATE.format(
         path="/".join(splitted_path[1:]) + "/" + filename,
         doc=doc_string if doc_string.strip() else "No `<doc>` tags found",
@@ -173,20 +196,34 @@ def _process_template(dirpath, filename, misc_dict, platform, yang, get):
     if splitted_path[1] == "misc":
         misc_dict.setdefault(splitted_path[2], [])
         misc_dict[splitted_path[2]].append(
-            {".".join(docs_filename.split(".")[2:-1]): "ttp_templates/" + docs_filename}
+            {
+                ".".join(display_filename.split(".")[2:-1]): "ttp_templates/"
+                + docs_filename
+            }
         )
     elif splitted_path[1] == "platform":
         platform.append(
-            {".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename}
+            {
+                ".".join(display_filename.split(".")[1:-1]): "ttp_templates/"
+                + docs_filename
+            }
         )
     elif splitted_path[1] == "yang":
         yang.append(
-            {".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename}
+            {
+                ".".join(display_filename.split(".")[1:-1]): "ttp_templates/"
+                + docs_filename
+            }
         )
     elif splitted_path[1] == "get":
         get.append(
-            {".".join(docs_filename.split(".")[1:-1]): "ttp_templates/" + docs_filename}
+            {
+                ".".join(display_filename.split(".")[1:-1]): "ttp_templates/"
+                + docs_filename
+            }
         )
+
+    return docs_filename
 
 
 def _write_index(templates_count):

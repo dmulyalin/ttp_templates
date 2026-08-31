@@ -31,6 +31,9 @@
 1. Fixed duplicate records from the Cisco NX-OS `vlans` getter when VLAN
    list/range declarations overlap with individual definition blocks. Named
    records are preferred, with the later record retained otherwise.
+2. Fixed generated documentation paths for mixed-case template filenames and
+   removed stale generated pages, preventing missing-nav and orphan-page
+   warnings from MkDocs.
 
 ---
 
