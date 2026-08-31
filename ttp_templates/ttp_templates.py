@@ -56,6 +56,8 @@ def get_template(
         command = command.lower()
         # replace pipe symbol with the word "pipe" to form a valid filename
         command = command.replace("|", "pipe")
+        # quotes may group multi-word CLI arguments but are not part of filenames
+        command = command.replace('"', "").replace("'", "")
         for symbol in [" ", "-"]:
             platform = platform.replace(symbol, "_")
             command = command.replace(symbol, "_")

@@ -56,6 +56,7 @@ Physical interface: {{ name | _start_ }}, {{ status_admin_raw }}, Physical link 
   Logical interface {{ name | _start_ }} (Index {{ index }}) (SNMP ifIndex {{ snmp_index | let("status_admin_raw", "Enabled") }})
   Description: {{ description | ORPHRASE }}
   Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}, MRU: {{ mru }}, LAN-PHY mode, Speed: {{ displayed_speed }}, {{ link_details | ORPHRASE }}
+  Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}, LAN-PHY mode, Speed: {{ displayed_speed }}, {{ link_details | ORPHRASE }}
   Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}, {{ link_details | ORPHRASE }}
   Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}
   Type: {{ interface_type }}, Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}, Speed: {{ displayed_speed }}

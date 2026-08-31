@@ -52,14 +52,22 @@ def transform_vlans_config(payload: list) -> List[Dict[str, Any]]:
         elif item.get("vid") is not None:
             vlans.append(item)
 
-    records: List[Dict[str, Any]] = []
+    records_by_vid: Dict[int, tuple[bool, Dict[str, Any]]] = {}
     for vlan in vlans:
+        has_explicit_name = bool(vlan.get("name"))
         for vid in _expand_vlan_ids(vlan.get("vid")):
             record = {
                 "vid": vid,
                 "name": vlan.get("name") or f"VLAN{vid}",
                 "description": vlan.get("description") or None,
             }
-            records.append(VlanRecord(**record).model_dump())
+            existing = records_by_vid.get(vid)
+            if existing and existing[0] and not has_explicit_name:
+                continue
 
-    return records
+            records_by_vid[vid] = (
+                has_explicit_name,
+                VlanRecord(**record).model_dump(),
+            )
+
+    return [records_by_vid[vid][1] for vid in sorted(records_by_vid)]

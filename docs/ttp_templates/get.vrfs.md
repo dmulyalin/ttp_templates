@@ -92,7 +92,8 @@ Example normalized output (YAML):
 Template to parse Cisco NX-OS VRF configuration and normalize it to a flat
 list of VRF dictionaries.
 
-This template requires output of 'show running-config vrf'.
+This template requires output of
+'show running-config | section "vrf context"'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -177,7 +178,7 @@ Example normalized output (YAML):
 
 <extend template="ttp://platform/cisco_xr_show_running_config_vrf.txt"/>
 
-<extend template="ttp://platform/cisco_nxos_show_running_config_vrf.txt"/>
+<extend template="ttp://platform/cisco_nxos_show_running_config_pipe_section_vrf_context.txt"/>
 
 <extend template="ttp://platform/juniper_junos_show_configuration_routing_instances_pipe_display_set.txt"/>
 

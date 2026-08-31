@@ -7,6 +7,17 @@ ttp://get/interfaces_status.txt
 
 
 
+Template to parse A10 ACOS `show interfaces` output and normalize it for the
+`interfaces_status` getter.
+
+Returns physical Ethernet, Virtual Ethernet (VE), and trunk interfaces as a
+list of dictionaries. Interface speed and input/output rates are in bit/s,
+utilization is a percentage of interface speed, packet rates are in packets/s,
+and `rate_interval` is in seconds. Values not reported by ACOS are returned as
+`null`.
+
+
+
 Template to parse Arista EOS `show interfaces` output and normalize it for the
 `interfaces_status` getter.
 
@@ -74,6 +85,7 @@ Getter template to parse operational interface status for network devices.
 
 Supported platforms:
 
+- A10 ACOS
 - Arista EOS
 - Cisco IOS
 - Cisco IOS-XR
@@ -100,6 +112,8 @@ Returns a normalized list of dictionaries with these keys:
 - 'rate_pps_in' / 'rate_pps_out' - averaged input/output rates in packets/s or 'null'
 - 'rate_interval' - rate averaging interval in seconds or 'null'
 </doc>
+
+<extend template="ttp://platform/a10_show_interfaces.txt"/>
 
 <extend template="ttp://platform/arista_eos_show_interfaces.txt"/>
 

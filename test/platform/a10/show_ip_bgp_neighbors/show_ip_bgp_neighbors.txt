@@ -1,0 +1,117 @@
+BGP neighbor is 192.0.2.101, remote AS 4200001111, local AS 4200009999, external link
+  BGP prioritization is enabled
+ Description: TRANSIT_ALPHA_PRIMARY
+ Member of peer-group EDGE_TRANSIT_A for session parameters
+  BGP version 4, remote router ID 192.0.2.201
+  BGP state = Established, up for 05w3d11h
+  Last read 05w3d11h, hold time is 120, keepalive interval is 40 seconds
+  Connect retry timer is 17 seconds
+  Neighbor capabilities:
+    Route refresh: advertised and received (old and new)
+    4-Octet ASN Capability: advertised and received
+    Address family IPv4 Unicast: advertised and received
+  Received 418275 messages, 6 notifications, 7 in queue
+  Sent 509364 messages, 8 notifications, 9 in queue
+  Route refresh request: received 3, sent 5
+  Peer-group Minimum time between advertisement runs is 22 seconds
+  Bidirectional Forwarding Detection is enabled
+ For address family: IPv4 Unicast
+  BGP table version 238410, neighbor version 238411
+  Index 7, Offset 3, Mask 0x80
+  EDGE_TRANSIT_A peer-group member
+    Graceful restart: received
+  Inbound soft reconfiguration allowed
+  Community attribute sent to this neighbor (both)
+  Inbound path policy configured
+  Outbound path policy configured
+  Route map for incoming advertisements is *IMPORT-CUSTOMER-A
+  Route map for outgoing advertisements is *EXPORT-DEFAULT-ONLY
+  7 accepted prefixes, maximum limit 750
+  Threshold for warning message 68(%)  Restart timer 9 minute
+  3 announced prefixes
+
+ Connections established 8; dropped 6
+Local host: 192.0.2.97, Local port: 31415
+Foreign host: 192.0.2.101, Foreign port: 179
+Nexthop of Advertised Routes (IPv4): 192.0.2.97
+Nexthop of Advertised Routes (IPv6) local: fe80::a8bb:ccff:fedd:1010
+BGP connection: non shared network
+Last Reset: 05w3d11h, due to BGP Notification sent
+Notification Error Message: (Cease/Administrative Reset)
+
+BGP neighbor is 198.51.100.102, remote AS 4200002222, local AS 4200009999, external link
+  BGP prioritization is enabled
+ Description: TRANSIT_BETA_BACKUP
+ Member of peer-group EDGE_TRANSIT_B for session parameters
+  BGP version 4, remote router ID 198.51.100.202
+  BGP state = Established, up for 03w6d04h
+  Last read 03w6d04h, hold time is 105, keepalive interval is 35 seconds
+  Connect retry timer is 19 seconds
+  Neighbor capabilities:
+    Route refresh: advertised and received (old and new)
+    4-Octet ASN Capability: advertised and received
+    Address family IPv4 Unicast: advertised and received
+  Received 627384 messages, 10 notifications, 11 in queue
+  Sent 718493 messages, 12 notifications, 13 in queue
+  Route refresh request: received 7, sent 9
+  Peer-group Minimum time between advertisement runs is 24 seconds
+  Bidirectional Forwarding Detection is enabled
+ For address family: IPv4 Unicast
+  BGP table version 349521, neighbor version 349522
+  Index 9, Offset 5, Mask 0x200
+  EDGE_TRANSIT_B peer-group member
+    Graceful restart: received
+  Inbound soft reconfiguration allowed
+  Community attribute sent to this neighbor (both)
+  Inbound path policy configured
+  Outbound path policy configured
+  Route map for incoming advertisements is *IMPORT-CUSTOMER-B
+  Route map for outgoing advertisements is *EXPORT-SUMMARY
+  11 accepted prefixes, maximum limit 850
+  Threshold for warning message 72(%)  Restart timer 13 minute
+  5 announced prefixes
+
+ Connections established 14; dropped 12
+Local host: 198.51.100.97, Local port: 27182
+Foreign host: 198.51.100.102, Foreign port: 179
+Nexthop of Advertised Routes (IPv4): 198.51.100.97
+Nexthop of Advertised Routes (IPv6) local: fe80::a8bb:ccff:fedd:2020
+BGP connection: non shared network
+Last Reset: 03w6d04h, due to BGP Notification received
+Notification Error Message: (Hold Timer Expired/Unspecific)
+
+BGP neighbor is 203.0.113.103, remote AS 4200009999, local AS 4200009999, internal link
+  BGP prioritization is enabled
+ Description: INTERNAL_RR_GAMMA
+ Member of peer-group IBGP_CORE for session parameters
+  BGP version 4, remote router ID 203.0.113.203
+  BGP state = Established, up for 02w1d06h
+  Last read 02w1d06h, hold time is 180, keepalive interval is 60 seconds
+  Connect retry timer is 23 seconds
+  Neighbor capabilities:
+    Route refresh: advertised and received (old and new)
+    4-Octet ASN Capability: advertised and received
+    Address family IPv4 Unicast: advertised and received
+  Received 836492 messages, 14 notifications, 15 in queue
+  Sent 927501 messages, 16 notifications, 17 in queue
+  Route refresh request: received 11, sent 13
+  Peer-group Minimum time between advertisement runs is 26 seconds
+ For address family: IPv4 Unicast
+  BGP table version 451632, neighbor version 451633
+  Index 11, Offset 7, Mask 0x800
+  IBGP_CORE peer-group member
+  Inbound path policy configured
+  Outbound path policy configured
+  Route map for incoming advertisements is *IMPORT-IBGP-CORE
+  Route map for outgoing advertisements is *EXPORT-IBGP-CORE
+  23 accepted prefixes, maximum limit 950
+  Threshold for warning message 78(%)  Restart timer 15 minute
+  17 announced prefixes
+
+ Connections established 18; dropped 16
+Local host: 203.0.113.97, Local port: 179
+Foreign host: 203.0.113.103, Foreign port: 38291
+Nexthop of Advertised Routes (IPv4): 203.0.113.97
+Nexthop of Advertised Routes (IPv6) local: fe80::a8bb:ccff:fedd:3030
+BGP connection: shared network
+Last Reset: 02w1d06h, due to Manual reset

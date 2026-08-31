@@ -2,13 +2,13 @@
 
 | Getter template | A10 | Arista EOS | Cisco IOS | Cisco IOS-XR | Cisco NX-OS | Juniper Junos | Opengear | Linux |
 |---|---|---|---|---|---|---|---|---|
-| bgp_neighbors | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| bgp_neighbors | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | bgp_communities | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| interfaces_status | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| lldp_neighbors | ❌ | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| interfaces_status | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| lldp_neighbors | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | vlans | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
 | vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | mac_addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
@@ -42,8 +42,10 @@ Collected commands by platform:
 
 Collected commands by platform:
 
+- A10: `show ip bgp neighbors`
 - Arista EOS: `show ip bgp neighbors vrf all | json`
 - Cisco IOS-XR: `show bgp neighbors` or `show bgp vrf all neighbors`
+- Cisco NX-OS: `show ip bgp neighbors vrf all`
 - Juniper Junos: `show bgp neighbor | display json`
 
 ### inventory
@@ -73,6 +75,7 @@ Collected commands by platform:
 
 Collected commands by platform:
 
+- A10: `show interfaces`
 - Arista EOS: `show interfaces`
 - Cisco IOS: `show interfaces`
 - Cisco IOS-XR: `show interfaces`
@@ -83,8 +86,10 @@ Collected commands by platform:
 
 Collected commands by platform:
 
+- A10: `show lldp neighbors`
 - Arista EOS: `show lldp neighbors detail | json`
 - Cisco IOS-XR: `show lldp neighbors detail`
+- Cisco NX-OS: `show lldp neighbors detail`
 - Juniper Junos: `show lldp neighbors detail | display json`
 
 ### vlans
@@ -103,7 +108,7 @@ Collected commands by platform:
 - Arista EOS: `show running-config section vrf`
 - Cisco IOS: `show running-config | section vrf`
 - Cisco IOS-XR: `show running-config vrf`
-- Cisco NX-OS: `show running-config vrf`
+- Cisco NX-OS: `show running-config | section "vrf context"`
 - Juniper Junos: `show configuration routing-instances | display set`
 
 ### netbox

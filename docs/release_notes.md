@@ -1,5 +1,39 @@
 # Release Notes
 
+## 0.5.13
+
+### TEMPLATES
+
+1. Added A10 ACOS `show interfaces` support to the `interfaces_status` getter
+   for normalized physical Ethernet, Virtual Ethernet, and trunk interface
+   state, properties, counters, errors, and rates.
+2. Updated the Juniper Junos `show interfaces` parser to support Ethernet
+   link-level output that reports `LAN-PHY mode` and interface speed without
+   an `MRU` field.
+3. Added A10 ACOS `show lldp neighbors` support to the `lldp_neighbors` getter
+   for normalized local and remote interface details, system identity, chassis
+   ID, port description, and management address.
+4. Added Cisco NX-OS `show ip bgp neighbors vrf all` support to the
+   `bgp_neighbors` getter, including session state, VRF, timers, uptime,
+   interface, multihop TTL, route policies, address families, and prefix counts.
+5. Corrected the Cisco NX-OS `vrfs` getter collection command to
+   `show running-config | section "vrf context"` and aligned the platform
+   template and test fixture names with the command.
+6. Added Cisco NX-OS `show lldp neighbors detail` support to the
+   `lldp_neighbors` getter for normalized local and remote interface details,
+   system identity, chassis ID, port description, and management address.
+7. Added A10 ACOS `show ip bgp neighbors` support to the `bgp_neighbors`
+   getter for normalized session state, addresses, ASNs, peer groups, timers,
+   uptime, route maps, address families, and prefix counts.
+
+### BUGS
+
+1. Fixed duplicate records from the Cisco NX-OS `vlans` getter when VLAN
+   list/range declarations overlap with individual definition blocks. Named
+   records are preferred, with the later record retained otherwise.
+
+---
+
 ## 0.5.12
 
 ### TEMPLATES

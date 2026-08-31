@@ -1,0 +1,47 @@
+Physical interface: et-0/0/51, Enabled, Physical link is Up
+  Interface index: 703, SNMP ifIndex: 528
+  Description: abcdefg01 | ET-0/0/51
+  Link-level type: Ethernet, MTU: 9192, LAN-PHY mode, Speed: 100Gbps, BPDU Error: None, Loop Detect PDU Error: None, Ethernet-Switching Error: None, MAC-REWRITE Error: None, Loopback: Disabled, Source filtering: Disabled, Flow control: Disabled,
+  Media type: Fiber
+  Device flags   : Present Running
+  Interface Specific flags: Internal: 0x100000
+  Interface flags: SNMP-Traps Internal: 0x4000
+  Link flags     : 0x2000
+  CoS queues     : 10 supported, 10 maximum usable queues
+  Current address: 20:93:39:51:f9:c0, Hardware address: 20:93:39:51:f9:41
+  Last flapped   : 2026-08-19 15:47:06 UTC (1w4d 05:51 ago)
+  Input rate     : 769112 bps (274 pps)
+  Output rate    : 47960 bps (69 pps)
+  Active alarms  : None
+  Active defects : None
+  Pre-emphasis(reg 236/237)
+    Register-value                     0
+  Ctle(reg 234/235)
+    Register-value                     0
+  Differential-amplitude(reg 238/239)
+    Register-value                     0
+  PCS statistics                      Seconds
+    Bit errors                             0
+    Errored blocks                         0
+  Ethernet FEC Mode  :                  FEC91
+    FEC Codeword size                     528
+    FEC Codeword rate                   0.973
+  Ethernet FEC statistics              Errors
+    FEC Corrected Errors                    0
+    FEC Uncorrected Errors                  0
+    FEC Corrected Errors Rate               0
+    FEC Uncorrected Errors Rate             0
+  PRBS Mode : Disabled
+  Interface transmit statistics: Disabled
+
+  Logical interface et-0/0/51.0 (Index 886) (SNMP ifIndex 552)
+    Flags: Up SNMP-Traps 0x20024000 Encapsulation: Ethernet-Bridge
+    Input packets : 0
+    Output packets: 0
+    Protocol aenet, AE bundle: ae1.0
+
+  Logical interface et-0/0/51.32767 (Index 887) (SNMP ifIndex 540)
+    Flags: Up SNMP-Traps 0x4004000 VLAN-Tag [ 0x0000.0 ]  Encapsulation: ENET2
+    Input packets : 35004
+    Output packets: 35002
+    Protocol aenet, AE bundle: ae1.32767

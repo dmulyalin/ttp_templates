@@ -13,6 +13,21 @@
 - description: null
   name: VLAN41
   vid: 41
+- description: Storage network
+  name: STORAGE
+  vid: 100
+- description: null
+  name: VLAN101
+  vid: 101
+- description: null
+  name: VLAN102
+  vid: 102
+- description: null
+  name: EDGE_TRANSIT
+  vid: 250
+- description: null
+  name: VLAN300
+  vid: 300
 - description: null
   name: MLAG_PEER
   vid: 4094

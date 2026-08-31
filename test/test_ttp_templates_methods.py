@@ -538,6 +538,16 @@ def test_get_template_get_with_txt_extension():
     assert len(template) > 0
 
 
+def test_get_template_command_with_quoted_argument():
+    """Quoted CLI arguments must resolve to quote-free template filenames."""
+    template = get_template(
+        platform="cisco_nxos",
+        command='show running-config | section "vrf context"',
+    )
+    assert isinstance(template, str)
+    assert 'show running-config | section "vrf context"' in template
+
+
 def test_get_template_get_path_traversal_raises():
     """get_template must reject get= paths that escape the package directory."""
     import pytest

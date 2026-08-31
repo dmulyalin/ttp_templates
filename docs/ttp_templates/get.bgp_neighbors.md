@@ -7,6 +7,16 @@ ttp://get/bgp_neighbors.txt
 
 
 
+Template to parse A10 ACOS `show ip bgp neighbors` output and normalize it for
+the `bgp_neighbors` getter.
+
+Returns one record per BGP neighbor with session state, peering type, local and
+remote addresses and ASNs, router ID, peer group, description, timers, uptime,
+address families, route maps, and sent/received prefix counts. Values not
+reported by ACOS are returned as `null` or empty lists.
+
+
+
 Normalizes Arista EOS BGP neighbors JSON to flat list format.
 
 Transforms nested vrfs-peerList structure into standardized dictionaries with:
@@ -135,6 +145,17 @@ following keys (fields unavailable from this command are set to None/[]):
 
 
 
+Template to parse Cisco NX-OS `show ip bgp neighbors vrf all` output and
+normalize it for the `bgp_neighbors` getter.
+
+Returns one record per BGP neighbor, including session state, peering type,
+addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
+multihop TTL, address families, route maps, and per-address-family sent and
+received prefix counts. NX-OS does not report the local ASN in this command;
+it is derived for iBGP peers and returned as `null` for eBGP peers.
+
+
+
 ---
 
 <details><summary>Template Content</summary>
@@ -148,7 +169,9 @@ Getter template to parse inventory for network devices. Designed to work with
 
 Supported platforms:
 
+- A10 ACOS
 - Arista EOS
+- Cisco NX-OS
 - Juniper Junos
 - Cisco IOS XR
 
@@ -161,7 +184,7 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'remote_address' - IP address of the remote BGP peer
 - 'remote_as' - AS number of the remote peer
 - 'local_address' - local BGP update-source IP address
-- 'local_as' - local AS number
+- 'local_as' - local AS number, or 'null' when the platform command does not report it
 - 'local_interface' - local interface used for the BGP session
 - 'router_id' - router ID of the remote peer
 - 'peer_group' - BGP peer-group name the neighbor belongs to, or 'null'
@@ -180,12 +203,17 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 </doc>
 
+<extend template="ttp://platform/a10_show_ip_bgp_neighbors.txt"/>
+
 <extend template="ttp://platform/arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.txt"/>
 
 <extend template="ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt"/>
 
 <extend template="ttp://platform/cisco_xr_show_bgp_neighbors.txt"/>
 
+<extend template="ttp://platform/cisco_nxos_show_ip_bgp_neighbors_vrf_all.txt"/>
+
 </template>
+
 ```
 </details>

@@ -1,0 +1,80 @@
+Reference path:
+```
+ttp://platform/a10_show_interfaces.txt
+```
+
+---
+
+
+
+Template to parse A10 ACOS `show interfaces` output and normalize it for the
+`interfaces_status` getter.
+
+Returns physical Ethernet, Virtual Ethernet (VE), and trunk interfaces as a
+list of dictionaries. Interface speed and input/output rates are in bit/s,
+utilization is a percentage of interface speed, packet rates are in packets/s,
+and `rate_interval` is in seconds. Values not reported by ACOS are returned as
+`null`.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="a10_interfaces_status" results="per_template">
+<doc>
+Template to parse A10 ACOS 'show interfaces' output and normalize it for the
+'interfaces_status' getter.
+
+Returns physical Ethernet, Virtual Ethernet (VE), and trunk interfaces as a
+list of dictionaries. Interface speed and input/output rates are in bit/s,
+utilization is a percentage of interface speed, packet rates are in packets/s,
+and 'rate_interval' is in seconds. Values not reported by ACOS are returned as
+'null'.
+</doc>
+
+<input>
+commands = [
+    "show interfaces"
+]
+platform = [
+    "a10",
+    "a10_ssh",
+]
+</input>
+
+<macro>
+def transform_interfaces_to_status_records(payload):
+    from ttp_templates.utils.a10_process_show_interfaces import transform_interfaces_status
+
+    return transform_interfaces_status(payload)
+</macro>
+
+<group>
+ Ethernet {{ identifier | _start_ | let("kind", "ethernet") }} is {{ status_admin_raw | ORPHRASE }}, line protocol is {{ status_oper_raw | ORPHRASE }}
+Ethernet {{ identifier | _start_ | let("kind", "ethernet") }} is {{ status_admin_raw | ORPHRASE }}, line protocol is {{ status_oper_raw | ORPHRASE }}
+VirtualEthernet {{ identifier | _start_ | let("kind", "ve") }} is {{ status_admin_raw | ORPHRASE }}, line protocol is {{ status_oper_raw | ORPHRASE }}
+Trunk {{ identifier | _start_ | let("kind", "trunk") }} is {{ status_admin_raw | ORPHRASE }}, line protocol is {{ status_oper_raw | ORPHRASE }}
+  Hardware is {{ hardware | ORPHRASE }}, Address is {{ mac_address | mac_eui }}
+  Configured Speed {{ configured_speed }}, Actual {{ displayed_speed }}, Configured Duplex {{ configured_duplex }}, Actual {{ duplex_raw }}
+  Flow Control is {{ flow_control }}, IP MTU is {{ mtu | to_int }} bytes
+  IP MTU is {{ mtu | to_int }} bytes
+  Last Port Counters Cleared: {{ last_cleared | ORPHRASE }}
+  {{ packets_in | to_int }} packets input  {{ bytes_in | to_int }} bytes
+  {{ errors_in | to_int }} input errors  {{ crc_errors | to_int }} CRC  {{ input_error_details | ORPHRASE }}
+  {{ packets_out | to_int }} packets output  {{ bytes_out | to_int }} bytes
+  {{ errors_out | to_int }} output errors  {{ output_error_details | ORPHRASE }}
+  Interface name is {{ description | ORPHRASE }}
+  {{ rate_interval_in | to_int }} second input rate: {{ rate_bps_in | to_int }} bits/sec, {{ rate_pps_in | to_int }} packets/sec, {{ input_utilization_raw | ORPHRASE }}
+  {{ rate_interval_in | to_int }} second input rate: {{ rate_bps_in | to_int }} bits/sec, {{ rate_pps_in | to_int }} packets/sec
+  {{ rate_interval_out | to_int }} second output rate: {{ rate_bps_out | to_int }} bits/sec, {{ rate_pps_out | to_int }} packets/sec, {{ output_utilization_raw | ORPHRASE }}
+  {{ rate_interval_out | to_int }} second output rate: {{ rate_bps_out | to_int }} bits/sec, {{ rate_pps_out | to_int }} packets/sec
+</group>
+
+<output macro="transform_interfaces_to_status_records"/>
+
+</template>
+
+```
+</details>

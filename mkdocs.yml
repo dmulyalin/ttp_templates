@@ -70,6 +70,9 @@ nav:
       - netmiko_cisco_ios_interfaces: ttp_templates/misc.ttp_templates_tests.netmiko_cisco_ios_interfaces.md
   - Platform:
     - a10_show_hardware: ttp_templates/platform.a10_show_hardware.md
+    - a10_show_interfaces: ttp_templates/platform.a10_show_interfaces.md
+    - a10_show_ip_bgp_neighbors: ttp_templates/platform.a10_show_ip_bgp_neighbors.md
+    - a10_show_lldp_neighbors: ttp_templates/platform.a10_show_lldp_neighbors.md
     - a10_show_running_config_partition_config_all_pipe_section_interface: ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_section_interface.md
     - arista_eos_show_hostname: ttp_templates/platform.arista_eos_show_hostname.md
     - arista_eos_show_interfaces: ttp_templates/platform.arista_eos_show_interfaces.md
@@ -78,6 +81,7 @@ nav:
     - arista_eos_show_lldp_neighbors_detail_pipe_json: ttp_templates/platform.arista_eos_show_lldp_neighbors_detail_pipe_json.md
     - arista_eos_show_running_config_pipe_include_community_list: ttp_templates/platform.arista_eos_show_running_config_pipe_include_community_list.md
     - arista_eos_show_running_config_section_interface: ttp_templates/platform.arista_eos_show_running_config_section_interface.md
+    - arista_eos_show_running_config_section_router_bgp: ttp_templates/platform.arista_eos_show_running_config_section_router_bgp.md
     - arista_eos_show_running_config_section_vlan: ttp_templates/platform.arista_eos_show_running_config_section_vlan.md
     - arista_eos_show_running_config_section_vrf: ttp_templates/platform.arista_eos_show_running_config_section_vrf.md
     - cisco_ios_show_interfaces: ttp_templates/platform.cisco_ios_show_interfaces.md
@@ -90,15 +94,19 @@ nav:
     - cisco_ios_show_running_config_pipe_include_community_list: ttp_templates/platform.cisco_ios_show_running_config_pipe_include_community_list.md
     - cisco_ios_show_running_config_pipe_include_source_static: ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static.md
     - cisco_ios_show_running_config_pipe_section_interface: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_interface.md
+    - cisco_ios_show_running_config_pipe_section_router_bgp: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_router_bgp.md
     - cisco_ios_show_running_config_pipe_section_vlan: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_vlan.md
     - cisco_ios_show_running_config_pipe_section_vrf: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_vrf.md
     - cisco_ios_show_running_configuration_pipe_section_bgp: ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp.md
     - cisco_nxos_show_interface: ttp_templates/platform.cisco_nxos_show_interface.md
     - cisco_nxos_show_inventory_pipe_json_pretty: ttp_templates/platform.cisco_nxos_show_inventory_pipe_json_pretty.md
+    - cisco_nxos_show_ip_bgp_neighbors_vrf_all: ttp_templates/platform.cisco_nxos_show_ip_bgp_neighbors_vrf_all.md
+    - cisco_nxos_show_lldp_neighbors_detail: ttp_templates/platform.cisco_nxos_show_lldp_neighbors_detail.md
+    - cisco_nxos_show_running_config_bgp: ttp_templates/platform.cisco_nxos_show_running_config_bgp.md
     - cisco_nxos_show_running_config_interface: ttp_templates/platform.cisco_nxos_show_running_config_interface.md
+    - cisco_nxos_show_running_config_pipe_section_vrf_context: ttp_templates/platform.cisco_nxos_show_running_config_pipe_section_vrf_context.md
     - cisco_nxos_show_running_config_rpm: ttp_templates/platform.cisco_nxos_show_running_config_rpm.md
     - cisco_nxos_show_running_config_vlan: ttp_templates/platform.cisco_nxos_show_running_config_vlan.md
-    - cisco_nxos_show_running_config_vrf: ttp_templates/platform.cisco_nxos_show_running_config_vrf.md
     - cisco_xr_show_arp_vrf_all: ttp_templates/platform.cisco_xr_show_arp_vrf_all.md
     - cisco_xr_show_bgp_neighbors: ttp_templates/platform.cisco_xr_show_bgp_neighbors.md
     - cisco_xr_show_interfaces: ttp_templates/platform.cisco_xr_show_interfaces.md
@@ -109,6 +117,7 @@ nav:
     - cisco_xr_show_ospf_database_router: ttp_templates/platform.cisco_xr_show_ospf_database_router.md
     - cisco_xr_show_ospf_database_summary: ttp_templates/platform.cisco_xr_show_ospf_database_summary.md
     - cisco_xr_show_rpl_community_set: ttp_templates/platform.cisco_xr_show_rpl_community_set.md
+    - cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as: ttp_templates/platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as.md
     - cisco_xr_show_running_config_interface: ttp_templates/platform.cisco_xr_show_running_config_interface.md
     - cisco_xr_show_running_config_vrf: ttp_templates/platform.cisco_xr_show_running_config_vrf.md
     - huawei_display_current_configuration_interface: ttp_templates/platform.huawei_display_current_configuration_interface.md
@@ -116,6 +125,7 @@ nav:
     - juniper_junos_show_bgp_neighbor_pipe_display_json: ttp_templates/platform.juniper_junos_show_bgp_neighbor_pipe_display_json.md
     - juniper_junos_show_chassis_hardware_pipe_json: ttp_templates/platform.juniper_junos_show_chassis_hardware_pipe_json.md
     - juniper_junos_show_configuration_interfaces_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_interfaces_pipe_display_set.md
+    - juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system: ttp_templates/platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system.md
     - juniper_junos_show_configuration_policy_options_community_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_policy_options_community_pipe_display_set.md
     - juniper_junos_show_configuration_routing_instances_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_routing_instances_pipe_display_set.md
     - juniper_junos_show_configuration_vlans_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_vlans_pipe_display_set.md
@@ -131,6 +141,7 @@ nav:
     - openconfig-lldp_cisco_xr: ttp_templates/yang.openconfig-lldp_cisco_xr.md
   - Getters:
     - Getters Support Matrix: getters_support_matrix.md
+    - bgp_asn: ttp_templates/get.bgp_asn.md
     - bgp_communities: ttp_templates/get.bgp_communities.md
     - bgp_neighbors: ttp_templates/get.bgp_neighbors.md
     - interfaces: ttp_templates/get.interfaces.md
@@ -163,7 +174,6 @@ site_description: Curated TTP templates and a small Python API for parsing netwo
 site_name: TTP Templates Collection
 site_url: https://dmulyalin.github.io/ttp_templates/
 theme:
-  custom_dir: docs/overrides
   features:
   - navigation.tabs
   - navigation.tabs.sticky

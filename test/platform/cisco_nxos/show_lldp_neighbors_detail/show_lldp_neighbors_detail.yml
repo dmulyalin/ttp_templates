@@ -1,0 +1,14 @@
+- interface: Eth1/18
+  remote_device: edge-router-alpha
+  remote_interface: re1:mgmt-1
+  remote_system_description: 'Juniper Networks, Inc. MX304 internet router, JUNOS 24.4R2.9-EVO, Build date: 2026-01-17 08:42:31 UTC Copyright (c) 1996-2026 Juniper Networks, Inc.'
+  remote_chassi_id: 02:a1:b2:c3:d4:e5
+  remote_interface_description: re1:mgmt-1
+  remote_device_management_ip: 192.0.2.61
+- interface: Eth1/27
+  remote_device: access-switch-beta
+  remote_interface: '47'
+  remote_system_description: 'Juniper Networks, Inc. ex4400-48mp Ethernet Switch, kernel JUNOS 24.2R3-S2.7, Build date: 2026-02-19 07:26:14 UTC Copyright (c) 1996-2026 Juniper Networks, Inc.'
+  remote_chassi_id: 0a:b1:c2:d3:e4:f5
+  remote_interface_description: me1
+  remote_device_management_ip: 198.51.100.82

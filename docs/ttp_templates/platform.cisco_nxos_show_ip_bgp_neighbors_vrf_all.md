@@ -1,0 +1,81 @@
+Reference path:
+```
+ttp://platform/cisco_nxos_show_ip_bgp_neighbors_vrf_all.txt
+```
+
+---
+
+
+
+Template to parse Cisco NX-OS `show ip bgp neighbors vrf all` output and
+normalize it for the `bgp_neighbors` getter.
+
+Returns one record per BGP neighbor, including session state, peering type,
+addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
+multihop TTL, address families, route maps, and per-address-family sent and
+received prefix counts. NX-OS does not report the local ASN in this command;
+it is derived for iBGP peers and returned as `null` for eBGP peers.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="cisco_nxos_bgp_neighbors" results="per_template">
+<doc>
+Template to parse Cisco NX-OS 'show ip bgp neighbors vrf all' output and
+normalize it for the 'bgp_neighbors' getter.
+
+Returns one record per BGP neighbor, including session state, peering type,
+addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
+multihop TTL, address families, route maps, and per-address-family sent and
+received prefix counts. NX-OS does not report the local ASN in this command;
+it is derived for iBGP peers and returned as 'null' for eBGP peers.
+</doc>
+
+<input>
+commands = [
+    "show ip bgp neighbors vrf all"
+]
+platform = [
+    "cisco_nxos",
+    "nxos",
+]
+</input>
+
+<macro>
+def transform_bgp_neighbors_to_records(payload):
+    from ttp_templates.utils.cisco_nxos_process_show_ip_bgp_neighbors_vrf_all import transform_bgp_neighbors
+
+    return transform_bgp_neighbors(payload)
+</macro>
+
+<group name="neighbors*">
+BGP neighbor is {{ remote_address | _start_ }}, remote AS {{ remote_as | to_int }}, {{ link_type }} link, Peer index {{ peer_index | to_int }}
+  Description: {{ description | ORPHRASE }}
+  BGP version {{ bgp_version }}, remote router ID {{ router_id }}
+  BGP state = {{ bgp_state | ORPHRASE }}
+  Neighbor vrf: {{ vrf }}
+  Peer is directly attached, interface {{ local_interface }}
+  External BGP neighbor may be up to {{ max_ttl | to_int }} hops away.
+  Last read {{ last_read }}, hold time = {{ hold_time | to_int }}, keepalive interval is {{ keepalive | to_int }} seconds
+
+  <group name="address_families*">
+  For address family: {{ afi_name | ORPHRASE | _start_ }}
+  {{ prefixes_received | to_int }} accepted prefixes ({{ paths_received | to_int }} paths), consuming {{ prefix_memory | to_int }} bytes of memory
+  {{ prefixes_sent | to_int }} sent prefixes ({{ paths_sent | to_int }} paths)
+  Outbound route-map configured is {{ export_policy }}, handle obtained
+  Inbound route-map configured is {{ import_policy }}, handle obtained
+  </group>
+
+  Local host: {{ local_address }}, Local port: {{ local_port | to_int }}
+  Foreign host: {{ foreign_address }}, Foreign port: {{ foreign_port | to_int }}
+</group>
+
+<output macro="transform_bgp_neighbors_to_records"/>
+
+</template>
+
+```
+</details>

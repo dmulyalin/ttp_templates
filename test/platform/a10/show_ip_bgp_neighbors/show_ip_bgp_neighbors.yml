@@ -1,0 +1,78 @@
+- name: default_192.0.2.101
+  vrf: null
+  state: established
+  peering_type: external
+  remote_address: 192.0.2.101
+  remote_as: 4200001111
+  local_address: 192.0.2.97
+  local_as: 4200009999
+  local_interface: null
+  router_id: 192.0.2.201
+  peer_group: EDGE_TRANSIT_A
+  description: TRANSIT_ALPHA_PRIMARY
+  hold_time: 120
+  keepalive: 40
+  uptime_seconds: 3322800
+  max_ttl: null
+  afi:
+  - ipv4_unicast
+  import_policies:
+  - IMPORT-CUSTOMER-A
+  export_policies:
+  - EXPORT-DEFAULT-ONLY
+  prefix_list_in: null
+  prefix_list_out: null
+  ipv4_unicast_prefixes_received: 7
+  ipv4_unicast_prefixes_sent: 3
+- name: default_198.51.100.102
+  vrf: null
+  state: established
+  peering_type: external
+  remote_address: 198.51.100.102
+  remote_as: 4200002222
+  local_address: 198.51.100.97
+  local_as: 4200009999
+  local_interface: null
+  router_id: 198.51.100.202
+  peer_group: EDGE_TRANSIT_B
+  description: TRANSIT_BETA_BACKUP
+  hold_time: 105
+  keepalive: 35
+  uptime_seconds: 2347200
+  max_ttl: null
+  afi:
+  - ipv4_unicast
+  import_policies:
+  - IMPORT-CUSTOMER-B
+  export_policies:
+  - EXPORT-SUMMARY
+  prefix_list_in: null
+  prefix_list_out: null
+  ipv4_unicast_prefixes_received: 11
+  ipv4_unicast_prefixes_sent: 5
+- name: default_203.0.113.103
+  vrf: null
+  state: established
+  peering_type: internal
+  remote_address: 203.0.113.103
+  remote_as: 4200009999
+  local_address: 203.0.113.97
+  local_as: 4200009999
+  local_interface: null
+  router_id: 203.0.113.203
+  peer_group: IBGP_CORE
+  description: INTERNAL_RR_GAMMA
+  hold_time: 180
+  keepalive: 60
+  uptime_seconds: 1317600
+  max_ttl: null
+  afi:
+  - ipv4_unicast
+  import_policies:
+  - IMPORT-IBGP-CORE
+  export_policies:
+  - EXPORT-IBGP-CORE
+  prefix_list_in: null
+  prefix_list_out: null
+  ipv4_unicast_prefixes_received: 23
+  ipv4_unicast_prefixes_sent: 17

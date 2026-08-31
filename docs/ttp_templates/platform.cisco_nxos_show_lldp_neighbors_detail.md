@@ -1,0 +1,68 @@
+Reference path:
+```
+ttp://platform/cisco_nxos_show_lldp_neighbors_detail.txt
+```
+
+---
+
+
+
+Template to parse Cisco NX-OS `show lldp neighbors detail` output and
+normalize it for the `lldp_neighbors` getter.
+
+Returns one dictionary per neighbor with the local interface, remote system
+name, remote port ID and description, remote system description, normalized
+chassis ID, and the first advertised management address. Values reported as
+`not advertised` are returned as `null`.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="cisco_nxos_lldp_neighbors" results="per_template">
+<doc>
+Template to parse Cisco NX-OS 'show lldp neighbors detail' output and
+normalize it for the 'lldp_neighbors' getter.
+
+Returns one dictionary per neighbor with the local interface, remote system
+name, remote port ID and description, remote system description, normalized
+chassis ID, and the first advertised management address. Values reported as
+'not advertised' are returned as 'null'.
+</doc>
+
+<input>
+commands = [
+    "show lldp neighbors detail"
+]
+platform = [
+    "cisco_nxos",
+    "nxos",
+]
+</input>
+
+<macro>
+def transform_lldp_neighbors_to_records(payload):
+    from ttp_templates.utils.cisco_nxos_process_show_lldp_neighbors_detail import transform_lldp_neighbors
+
+    return transform_lldp_neighbors(payload)
+</macro>
+
+<group name="neighbors*">
+Chassis id: {{ remote_chassi_id_raw | ORPHRASE | _start_ }}
+Port id: {{ remote_interface | ORPHRASE }}
+Local Port id: {{ interface | ORPHRASE }}
+Port Description: {{ remote_interface_description | ORPHRASE }}
+System Name: {{ remote_device | ORPHRASE }}
+System Description: {{ remote_system_description | ORPHRASE }}
+Management Address: {{ management_ipv4 | ORPHRASE }}
+Management Address IPV6: {{ management_ipv6 | ORPHRASE }}
+</group>
+
+<output macro="transform_lldp_neighbors_to_records"/>
+
+</template>
+
+```
+</details>

@@ -1,0 +1,35 @@
+ Ethernet 17 is up, line protocol is up
+  Hardware is 40Gig, Address is 02aa.bbcc.ddee
+  Internet address is 0.0.0.0, Subnet mask is 0.0.0.0
+  Configured Speed auto, Actual 40Gbit, Configured Duplex auto, Actual fdx
+  6 Tagged Vlans configured: 110, 120-122, 4090 and 4092
+  Flow Control is disabled, IP MTU is 9100 bytes
+  Port as Mirror disabled, Monitoring this Port disabled
+  Member of trunk group 37, Port state UNBLK
+  Last Up Change:   42 Day,11 Hour,23 Min, 7 Sec ago
+  Last Port Counters Cleared: Never
+  98765432 packets input  12345678901 bytes
+  Received  456789 broadcasts, Received 23456789 multicasts, Received 74851854 unicasts
+  3 input errors  2 CRC  1 frame
+  4 runts  5 input giants
+  87654321 packets output  10987654321 bytes
+  Transmitted  345678 broadcasts, Transmitted 45678901 multicasts, Transmitted 41629742 unicasts
+  6 output errors  7 output giants 8 collisions 
+  300 second input rate: 45678 bits/sec, 37 packets/sec, 1% utilization
+  300 second output rate: 34567 bits/sec, 26 packets/sec, 1% utilization
+
+VirtualEthernet 2450 is up, line protocol is up
+  Hardware is VirtualEthernet, Address is 02bb.ccdd.eeff
+  Internet address is 192.0.2.17, Subnet mask is 255.255.255.240
+  Router Interface for L2 Vlan 2450
+  IP MTU is 1600 bytes
+  1234 packets input  567890 bytes
+  Received  12 broadcasts, Received 345 multicasts, Received 877 unicasts
+  2345 packets output  678901 bytes
+  Transmitted  23 broadcasts, Transmitted 456 multicasts, Transmitted 1866 unicasts
+  Interface name is Customer gateway 42
+  300 second input rate: 1200 bits/sec, 3 packets/sec
+  300 second output rate: 2400 bits/sec, 5 packets/sec
+
+Trunk 37 is up, line protocol is up
+  Members: 13 14 15 17

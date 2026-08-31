@@ -7,6 +7,15 @@ ttp://get/lldp_neighbors.txt
 
 
 
+Template to parse A10 ACOS `show lldp neighbors` output and normalize it for
+the `lldp_neighbors` getter.
+
+Returns one dictionary per neighbor with the local interface, remote system
+name, remote port ID and description, remote system description, chassis ID,
+and management IP address. Missing advertised values are returned as `null`.
+
+
+
 Normalizes Arista EOS LLDP neighbors JSON to flat list format.
 
 Transforms nested lldpNeighbors structure into standardized dictionaries with:
@@ -39,6 +48,16 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `remote_interface_description` - port description advertised by the remote neighbor interface, or `null` if none
 - `remote_device_management_ip` - first management IP address advertised by the remote neighbor, or `null` if none
 
+
+
+
+Template to parse Cisco NX-OS `show lldp neighbors detail` output and
+normalize it for the `lldp_neighbors` getter.
+
+Returns one dictionary per neighbor with the local interface, remote system
+name, remote port ID and description, remote system description, normalized
+chassis ID, and the first advertised management address. Values reported as
+`not advertised` are returned as `null`.
 
 
 
@@ -76,8 +95,10 @@ Getter template to parse LLDP neighbors for network devices. Designed to work wi
 
 Supported platforms:
 
+- A10 ACOS
 - Arista EOS
 - Cisco IOS-XR
+- Cisco NX-OS
 - Juniper Junos
 
 Returns normalized list of dictionaries, each dictionary has these keys:
@@ -92,9 +113,13 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 </doc>
 
+<extend template="ttp://platform/a10_show_lldp_neighbors.txt"/>
+
 <extend template="ttp://platform/arista_eos_show_lldp_neighbors_detail_pipe_json.txt"/>
 
 <extend template="ttp://platform/cisco_xr_show_lldp_neighbors_detail.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_lldp_neighbors_detail.txt"/>
 
 <extend template="ttp://platform/juniper_junos_show_lldp_neighbors_detail_pipe_display_json.txt"/>
 

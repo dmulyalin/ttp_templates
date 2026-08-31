@@ -1,16 +1,10 @@
-Reference path:
-```
-ttp://platform/cisco_nxos_show_running_config_vrf.txt
-```
-
----
-
-
-
+<template name="cisco_nxos_vrfs" results="per_template">
+<doc>
 Template to parse Cisco NX-OS VRF configuration and normalize it to a flat
 list of VRF dictionaries.
 
-This template requires output of 'show running-config vrf'.
+This template requires output of
+'show running-config | section "vrf context"'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -22,35 +16,11 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `route_policy_import` - import route policy string or `null` when not configured
 - `route_policy_export` - export route policy string or `null` when not configured
 
-
-
-
----
-
-<details><summary>Template Content</summary>
-```
-<template name="cisco_nxos_vrfs" results="per_template">
-<doc>
-Template to parse Cisco NX-OS VRF configuration and normalize it to a flat
-list of VRF dictionaries.
-
-This template requires output of 'show running-config vrf'.
-
-Returns normalized list of dictionaries, each dictionary has these keys:
-
-- 'name' - VRF name string
-- 'description' - VRF description string or 'null' when not configured
-- 'rd' - route distinguisher string or 'null' when not configured
-- 'rt_import' - list of import route-target strings
-- 'rt_export' - list of export route-target strings
-- 'route_policy_import' - import route policy string or 'null' when not configured
-- 'route_policy_export' - export route policy string or 'null' when not configured
-
 </doc>
 
 <input>
 commands = [
-    "show running-config vrf"
+    'show running-config | section "vrf context"'
 ]
 platform = [
     "cisco_nxos",
@@ -60,7 +30,7 @@ platform = [
 
 <macro>
 def transform_vrfs_to_records(data):
-    from ttp_templates.utils.cisco_nxos_process_show_running_config_vrf import transform_vrfs_config
+    from ttp_templates.utils.cisco_nxos_process_show_running_config_pipe_section_vrf_context import transform_vrfs_config
 
     return transform_vrfs_config(data)
 </macro>
@@ -83,6 +53,3 @@ vrf context {{ name | _start_ }}
 <output macro="transform_vrfs_to_records"/>
 
 </template>
-
-```
-</details>

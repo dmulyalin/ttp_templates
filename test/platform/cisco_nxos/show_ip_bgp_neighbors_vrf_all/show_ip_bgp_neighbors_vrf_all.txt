@@ -1,0 +1,105 @@
+BGP neighbor is 192.0.2.10, remote AS 4200000100, ibgp link, Peer index 7
+  Description: CORE_RR_ALPHA_FABRIC_BLUE
+  BGP version 4, remote router ID 192.0.2.200
+  Neighbor previous state = OpenConfirm
+  BGP state = Established, up for 1y2w3d
+  Neighbor vrf: FABRIC_BLUE
+  Peer is directly attached, interface Ethernet1/17.210
+  Last read 00:00:13, hold time = 150, keepalive interval is 50 seconds
+  Last written 00:00:09, keepalive timer expiry due 00:00:41
+  Received 456789 messages, 2 notifications, 3 bytes in queue
+  Sent 567890 messages, 1 notifications, 4(5) bytes in queue
+  Connections established 6, dropped 5
+
+  Message statistics:
+                              Sent               Rcvd
+  Opens:                         6                  6
+  Notifications:                 1                  2
+  Updates:                    4321               8765
+  Keepalives:                563560             448016
+  Total:                     567890             456789
+
+  For address family: IPv4 Unicast
+  BGP table version 8123, neighbor version 8123
+  17 accepted prefixes (19 paths), consuming 5576 bytes of memory
+  0 received prefixes treated as withdrawn
+  41 sent prefixes (43 paths)
+  Community attribute sent to this neighbor
+
+  Local host: 192.0.2.9, Local port: 45123
+  Foreign host: 192.0.2.10, Foreign port: 179
+  fd = 73
+
+BGP neighbor is 198.51.100.20, remote AS 4200000200, ibgp link, Peer index 11
+  Description: OVERLAY_RR_BETA_DEFAULT
+  BGP version 4, remote router ID 198.51.100.200
+  Neighbor previous state = OpenConfirm
+  BGP state = Established, up for 18w4d
+  Neighbor vrf: default
+  Peer is directly attached, interface Ethernet1/22.310
+  Last read 00:00:27, hold time = 180, keepalive interval is 60 seconds
+  Last written 00:00:21, keepalive timer expiry due 00:00:39
+  Received 765432 messages, 3 notifications, 6 bytes in queue
+  Sent 876543 messages, 2 notifications, 7(8) bytes in queue
+  Connections established 9, dropped 8
+
+  For address family: IPv4 Unicast
+  BGP table version 21456, neighbor version 21456
+  73 accepted prefixes (79 paths), consuming 23944 bytes of memory
+  2 received prefixes treated as withdrawn
+  88 sent prefixes (91 paths)
+
+  For address family: L2VPN EVPN
+  BGP table version 3456789, neighbor version 3456789
+  412 accepted prefixes (419 paths), consuming 135136 bytes of memory
+  3 received prefixes treated as withdrawn
+  967 sent prefixes (975 paths)
+
+  Local host: 198.51.100.19, Local port: 179
+  Foreign host: 198.51.100.20, Foreign port: 49222
+  fd = 84
+
+BGP neighbor is 203.0.113.30, remote AS 64530, ebgp link, Peer index 13
+  Description: TRANSIT_GAMMA_PRIMARY
+  BGP version 4, remote router ID 203.0.113.230
+  Neighbor previous state = OpenConfirm
+  BGP state = Established, up for 03:14:15
+  Neighbor vrf: default
+  External BGP neighbor may be up to 7 hops away.
+  Last read 00:00:31, hold time = 90, keepalive interval is 30 seconds
+  Last written 00:00:18, keepalive timer expiry due 00:00:12
+  Received 234567 messages, 4 notifications, 9 bytes in queue
+  Sent 345678 messages, 5 notifications, 10(11) bytes in queue
+  Connections established 12, dropped 11
+
+  For address family: IPv4 Unicast
+  BGP table version 45678, neighbor version 45678
+  29 accepted prefixes (31 paths), consuming 9512 bytes of memory
+  4 received prefixes treated as withdrawn
+  12 sent prefixes (14 paths)
+  Outbound route-map configured is EDGE-OUT-FILTER, handle obtained
+  Inbound route-map configured is EDGE-IN-FILTER, handle obtained
+
+  Local host: 203.0.113.29, Local port: 56321
+  Foreign host: 203.0.113.30, Foreign port: 179
+  fd = 95
+
+BGP neighbor is 192.0.2.44, remote AS 64544, ebgp link, Peer index 17
+  Description: TENANT_GREEN_STANDBY
+  BGP version 4, remote router ID 192.0.2.244
+  Neighbor previous state = Active
+  BGP state = Idle, down for 00:17:42
+  Neighbor vrf: TENANT_GREEN
+  External BGP neighbor may be up to 4 hops away.
+  Last read never, hold time = 90, keepalive interval is 30 seconds
+  Received 21 messages, 7 notifications, 12 bytes in queue
+  Sent 34 messages, 8 notifications, 13(14) bytes in queue
+  Connections established 15, dropped 16
+
+  For address family: IPv4 Unicast
+  BGP table version 56789, neighbor version 0
+  0 accepted prefixes (0 paths), consuming 0 bytes of memory
+  0 received prefixes treated as withdrawn
+  0 sent prefixes (0 paths)
+  Outbound route-map configured is STANDBY-OUT, handle obtained
+  Inbound route-map configured is STANDBY-IN, handle obtained

@@ -1,0 +1,50 @@
+<template name="a10_bgp_neighbors" results="per_template">
+<doc>
+Template to parse A10 ACOS `show ip bgp neighbors` output and normalize it for
+the `bgp_neighbors` getter.
+
+Returns one record per BGP neighbor with session state, peering type, local and
+remote addresses and ASNs, router ID, peer group, description, timers, uptime,
+address families, route maps, and sent/received prefix counts. Values not
+reported by ACOS are returned as `null` or empty lists.
+</doc>
+
+<input>
+commands = [
+    "show ip bgp neighbors",
+]
+platform = [
+    "a10",
+    "a10_ssh",
+]
+</input>
+
+<macro>
+def transform_bgp_neighbors_to_records(payload):
+    from ttp_templates.utils.a10_process_show_ip_bgp_neighbors import transform_bgp_neighbors
+
+    return transform_bgp_neighbors(payload)
+</macro>
+
+<group name="neighbors*">
+BGP neighbor is {{ remote_address | _start_ }}, remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ link_type }} link
+ Description: {{ description | ORPHRASE }}
+ Member of peer-group {{ peer_group }} for session parameters
+  BGP version {{ ignore }}, remote router ID {{ router_id }}
+  BGP state = {{ bgp_state | ORPHRASE }}
+  Last read {{ ignore }}, hold time is {{ hold_time | to_int }}, keepalive interval is {{ keepalive | to_int }} seconds
+
+  <group name="address_families*">
+ For address family: {{ afi_name | ORPHRASE | _start_ }}
+  Route map for incoming advertisements is {{ import_policy }}
+  Route map for outgoing advertisements is {{ export_policy }}
+  {{ prefixes_received | to_int }} accepted prefixes, maximum limit {{ ignore }}
+  {{ prefixes_sent | to_int }} announced prefixes
+  </group>
+
+Local host: {{ local_address }}, Local port: {{ ignore }}
+</group>
+
+<output macro="transform_bgp_neighbors_to_records"/>
+
+</template>

@@ -1,0 +1,29 @@
+Total: 1
+interface ethernet 16:
+chassis subtype: 4(MAC address)
+chassis: 02 11 22 33 44 55 
+port subtype: 5(Interface name)
+port: Ethernet27/3
+ttl: 91
+port description: uplink to load-balancer alpha
+system name: lab-edge-alpha
+system description: Arista Networks EOS version 4.31.2F running on an Arista Networks DCS-7050SX3-48YC8
+system capabilities: Bridge  Router  
+enabled system capabilities: Bridge  Router  
+management address type: ipv4
+management address: 192.0.2.44
+
+Total: 1
+interface ethernet 29:
+chassis subtype: 4(MAC address)
+chassis: 0a bb cc dd ee ff 
+port subtype: 5(Interface name)
+port: Ethernet18/7
+ttl: 77
+port description: secondary load-balancer path
+system name: lab-edge-beta
+system description: Arista Networks EOS version 4.30.6M running on an Arista Networks DCS-7060CX2-32S
+system capabilities: Bridge  Router  
+enabled system capabilities: Bridge  Router  
+management address type: ipv4
+management address: 198.51.100.75

@@ -1,10 +1,10 @@
 """Normalize Cisco NX-OS VRF configuration parsed by TTP.
 
-Transforms ``show running-config vrf`` output into a flat list of VRF
-dictionaries suitable for getter-style consumption.
+Transforms ``show running-config | section "vrf context"`` output into a flat
+list of VRF dictionaries suitable for getter-style consumption.
 
 Used by:
-- ttp_templates/platform/cisco_nxos_show_running_config_vrf.txt
+- ttp_templates/platform/cisco_nxos_show_running_config_pipe_section_vrf_context.txt
 """
 
 from typing import Any, Dict, List

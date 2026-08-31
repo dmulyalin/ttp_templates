@@ -1,0 +1,14 @@
+- interface: ethernet 16
+  remote_device: lab-edge-alpha
+  remote_interface: Ethernet27/3
+  remote_system_description: Arista Networks EOS version 4.31.2F running on an Arista Networks DCS-7050SX3-48YC8
+  remote_chassi_id: 02:11:22:33:44:55
+  remote_interface_description: uplink to load-balancer alpha
+  remote_device_management_ip: 192.0.2.44
+- interface: ethernet 29
+  remote_device: lab-edge-beta
+  remote_interface: Ethernet18/7
+  remote_system_description: Arista Networks EOS version 4.30.6M running on an Arista Networks DCS-7060CX2-32S
+  remote_chassi_id: 0a:bb:cc:dd:ee:ff
+  remote_interface_description: secondary load-balancer path
+  remote_device_management_ip: 198.51.100.75

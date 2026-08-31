@@ -62,6 +62,11 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `name` - VLAN name string; defaults to `VLAN<vid>` when no name is configured
 - `description` - VLAN description string or `null` when not configured
 
+Duplicate VLAN IDs produced by overlapping list/range declarations and VLAN
+definition blocks are collapsed into one record. A record with an explicitly
+configured name takes precedence over an unnamed record; otherwise the later
+record takes precedence.
+
 Example normalized output (YAML):
 
 ```yaml
