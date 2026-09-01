@@ -11,7 +11,7 @@ are normalized to `rt`, `soo`, and `large` types respectively.
 
 <input>
 commands = [
-    "show configuration policy-options community | display set"
+    'show configuration | display set | match "policy-options community"'
 ]
 platform = [
     "juniper_junos",

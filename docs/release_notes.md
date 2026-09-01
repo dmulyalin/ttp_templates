@@ -1,5 +1,12 @@
 # Release Notes
 
+## 0.5.14
+
+1. Fixing MTU extraction for juniper show interfaces
+2. Ficing community extraction for Junipers by correcting command to run
+
+---
+
 ## 0.5.13
 
 ### TEMPLATES
