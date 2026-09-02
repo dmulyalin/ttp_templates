@@ -152,20 +152,23 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         if isinstance(switching, dict):
             dot1q_mode = switching.get("dot1q_mode")
             vlans_raw = switching.get("vlans", [])
-            vlan_ints = []
+            vlans = []
             for v in (vlans_raw if isinstance(vlans_raw, list) else []):
                 if isinstance(v, dict) and v.get("vlan"):
                     try:
-                        vlan_ints.append(int(v["vlan"]))
+                        vlans.append(int(v["vlan"]))
                     except (ValueError, TypeError):
-                        pass
+                        vlans.append(v["vlan"])
             if dot1q_mode == "trunk":
                 mode = "tagged"
-                tagged_vlans = sorted(set(tagged_vlans + vlan_ints))
+                tagged_vlans = sorted(
+                    set(tagged_vlans + vlans),
+                    key=lambda vlan: (isinstance(vlan, str), vlan),
+                )
             elif dot1q_mode == "access":
                 mode = "access"
-                if vlan_ints:
-                    untagged_vlan = vlan_ints[0]
+                if vlans:
+                    untagged_vlan = vlans[0]
 
         ipv4_addresses = [
             f"{a['ip']}/{a['mask']}"

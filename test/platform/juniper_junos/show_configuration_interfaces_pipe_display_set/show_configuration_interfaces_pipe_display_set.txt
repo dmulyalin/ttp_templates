@@ -11,8 +11,9 @@ set interfaces xe-0/0/2 description "Trunk to access switch"
 set interfaces xe-0/0/2 unit 0 family ethernet-switching interface-mode trunk
 set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members 100
 set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members 200
+set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members VLAN_NAME123
 set interfaces xe-0/0/3 unit 0 family ethernet-switching interface-mode access
-set interfaces xe-0/0/3 unit 0 family ethernet-switching vlan members 50
+set interfaces xe-0/0/3 unit 0 family ethernet-switching vlan members ACCESS_VLAN
 set interfaces xe-0/0/4 disable
 set interfaces ae0 description "LAG to CE1"
 set interfaces ae0 mtu 9192

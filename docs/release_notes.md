@@ -1,6 +1,16 @@
 # Release Notes
 
+## 0.5.15
+
+### BUGS
+
+1. Fixing juniper vlan parsing for interfaces to extract vlans by name strings
+
+---
+
 ## 0.5.14
+
+### BUGS
 
 1. Fixing MTU extraction for juniper show interfaces
 2. Ficing community extraction for Junipers by correcting command to run

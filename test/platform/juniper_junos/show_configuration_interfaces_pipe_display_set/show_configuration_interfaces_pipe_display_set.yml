@@ -308,6 +308,7 @@
   tagged_vlans:
   - 100
   - 200
+  - VLAN_NAME123
   type: virtual
   untagged_vlan: null
   vrf: null
@@ -329,5 +330,5 @@
   speed: null
   tagged_vlans: []
   type: virtual
-  untagged_vlan: 50
+  untagged_vlan: ACCESS_VLAN
   vrf: null
