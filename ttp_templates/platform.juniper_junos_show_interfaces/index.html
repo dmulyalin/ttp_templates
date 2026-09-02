@@ -4597,6 +4597,7 @@ Physical interface: {{ name | _start_ }}, {{ status_admin_raw }}, Physical link 
   Logical interface {{ name | _start_ }} (Index {{ index }}) (SNMP ifIndex {{ snmp_index | let("status_admin_raw", "Enabled") }})
   Description: {{ description | ORPHRASE }}
   Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}, MRU: {{ mru }}, LAN-PHY mode, Speed: {{ displayed_speed }}, {{ link_details | ORPHRASE }}
+  Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}, Speed: {{ displayed_speed }}, {{ link_details | ORPHRASE }}
   Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}, LAN-PHY mode, Speed: {{ displayed_speed }}, {{ link_details | ORPHRASE }}
   Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}, {{ link_details | ORPHRASE }}
   Link-level type: {{ hardware }}, MTU: {{ mtu_raw }}
@@ -4609,6 +4610,7 @@ Physical interface: {{ name | _start_ }}, {{ status_admin_raw }}, Physical link 
     Input packets : {{ packets_in | to_int }}
     Output packets: {{ packets_out | to_int }}
     Protocol inet, MTU: {{ mtu_raw }}
+    Protocol eth-switch, MTU: {{ mtu_raw }}
 &lt;/group&gt;
 
 &lt;output macro="transform_interfaces_to_status_records"/&gt;
