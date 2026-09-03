@@ -16,21 +16,26 @@ This template requires output of:
 ASNs are collected from the `router bgp` process and global or VRF
 `remote-as` and `local-as` statements. A peer-group name is used as the
 description for ASNs configured on a peer group or on a neighbor assigned to
-one. Results are deduplicated by ASN, preserving the first occurrence and its
-description.
+one. `local_asn` is true for router and `local-as` ASNs, and false for
+`remote-as` ASNs. Results are deduplicated by ASN, preserving the first
+occurrence and its description while keeping `local_asn` true if any occurrence
+marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `asn` - AS number integer
 - `description` - peer-group name or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 ```yaml
 - asn: 65000
   description: null
+  local_asn: true
 - asn: 64500
   description: TRANSIT
+  local_asn: false
 ```
 
 
@@ -45,21 +50,26 @@ This template requires output of:
 ASNs are collected from the `router bgp` process and global or VRF
 `remote-as` and `local-as` statements. A peer-group name is used as the
 description for ASNs configured on a peer group or on a neighbor assigned to
-one. Results are deduplicated by ASN, preserving the first occurrence and its
-description.
+one. `local_asn` is true for router and `local-as` ASNs, and false for
+`remote-as` ASNs. Results are deduplicated by ASN, preserving the first
+occurrence and its description while keeping `local_asn` true if any occurrence
+marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `asn` - AS number integer
 - `description` - peer-group name or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 ```yaml
 - asn: 65000
   description: null
+  local_asn: true
 - asn: 64500
   description: TRANSIT
+  local_asn: false
 ```
 
 
@@ -73,21 +83,26 @@ This template requires output of:
 
 The local router ASN is collected from each `router bgp` prefix. Peer ASNs are
 collected from `remote-as` and `local-as` statements. When a statement belongs
-to a neighbor group, that group name is used as the description. Results are
-deduplicated by ASN, preserving the first occurrence and its description.
+to a neighbor group, that group name is used as the description. `local_asn` is
+true for router and `local-as` ASNs, and false for `remote-as` ASNs. Results
+are deduplicated by ASN, preserving the first occurrence and its description
+while keeping `local_asn` true if any occurrence marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `asn` - AS number integer
 - `description` - peer-group name or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 ```yaml
 - asn: 12345
   description: null
+  local_asn: true
 - asn: 54321
   description: PEER_GROUP_1
+  local_asn: false
 ```
 
 
@@ -102,21 +117,26 @@ This template requires output of:
 ASNs are collected from the `router bgp` process and global or VRF
 `remote-as` and `local-as` statements. A peer-template name is used as the
 description for ASNs configured on a template or on a neighbor that inherits
-one. Results are deduplicated by ASN, preserving the first occurrence and its
-description.
+one. `local_asn` is true for router and `local-as` ASNs, and false for
+`remote-as` ASNs. Results are deduplicated by ASN, preserving the first
+occurrence and its description while keeping `local_asn` true if any occurrence
+marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `asn` - AS number integer
 - `description` - peer-template name or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 ```yaml
 - asn: 65000
   description: null
+  local_asn: true
 - asn: 64500
   description: TRANSIT
+  local_asn: false
 ```
 
 
@@ -130,21 +150,26 @@ This template requires output of:
 
 ASNs are collected from global and routing-instance `autonomous-system`,
 `local-as`, and `peer-as` statements. For BGP group and neighbor statements,
-the group name is used as the description. Results are deduplicated by ASN,
-preserving the first occurrence and its description.
+the group name is used as the description. `local_asn` is true for
+`autonomous-system` and `local-as` ASNs, and false for `peer-as` ASNs. Results
+are deduplicated by ASN, preserving the first occurrence and its description
+while keeping `local_asn` true if any occurrence marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `asn` - AS number integer
 - `description` - BGP group name or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 ```yaml
 - asn: 1234
   description: null
+  local_asn: true
 - asn: 4321
   description: GROUP_1
+  local_asn: false
 ```
 
 
@@ -170,17 +195,20 @@ Returns a normalized list of dictionaries, each dictionary has these keys:
 
 - 'asn' - AS number integer
 - 'description' - peer-group name or 'null'
+- 'local_asn' - boolean indicating ASN belongs to the device
 
 Records are deduplicated by ASN. The description from the first occurrence is
-retained.
+retained, and 'local_asn' is true if any occurrence marks the ASN as local.
 
 Example normalized output (YAML):
 
 '''yaml
 - asn: 12345
   description: null
+  local_asn: true
 - asn: 54321
   description: PEER_GROUP_1
+  local_asn: false
 '''
 
 </doc>

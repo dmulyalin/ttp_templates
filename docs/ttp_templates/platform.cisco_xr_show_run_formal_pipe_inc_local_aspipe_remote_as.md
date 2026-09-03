@@ -15,21 +15,26 @@ This template requires output of:
 
 The local router ASN is collected from each `router bgp` prefix. Peer ASNs are
 collected from `remote-as` and `local-as` statements. When a statement belongs
-to a neighbor group, that group name is used as the description. Results are
-deduplicated by ASN, preserving the first occurrence and its description.
+to a neighbor group, that group name is used as the description. `local_asn` is
+true for router and `local-as` ASNs, and false for `remote-as` ASNs. Results
+are deduplicated by ASN, preserving the first occurrence and its description
+while keeping `local_asn` true if any occurrence marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `asn` - AS number integer
 - `description` - peer-group name or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 ```yaml
 - asn: 12345
   description: null
+  local_asn: true
 - asn: 54321
   description: PEER_GROUP_1
+  local_asn: false
 ```
 
 
@@ -49,21 +54,26 @@ This template requires output of:
 
 The local router ASN is collected from each 'router bgp' prefix. Peer ASNs are
 collected from 'remote-as' and 'local-as' statements. When a statement belongs
-to a neighbor group, that group name is used as the description. Results are
-deduplicated by ASN, preserving the first occurrence and its description.
+to a neighbor group, that group name is used as the description. 'local_asn' is
+true for router and 'local-as' ASNs, and false for 'remote-as' ASNs. Results
+are deduplicated by ASN, preserving the first occurrence and its description
+while keeping 'local_asn' true if any occurrence marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - 'asn' - AS number integer
 - 'description' - peer-group name or 'null'
+- 'local_asn' - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 '''yaml
 - asn: 12345
   description: null
+  local_asn: true
 - asn: 54321
   description: PEER_GROUP_1
+  local_asn: false
 '''
 
 </doc>
@@ -87,18 +97,18 @@ def transform_bgp_asns_to_records(data):
 </macro>
 
 <group name="statements*">
-router bgp {{ router_asn | _start_ | to_int }} neighbor-group {{ description }} remote-as {{ peer_asn | to_int }}
-router bgp {{ router_asn | _start_ | to_int }} neighbor-group {{ description }} local-as {{ peer_asn | to_int }} {{ local_as_options | ORPHRASE }}
-router bgp {{ router_asn | _start_ | to_int }} neighbor-group {{ description }} local-as {{ peer_asn | to_int }}
-router bgp {{ router_asn | _start_ | to_int }} neighbor {{ neighbor }} remote-as {{ peer_asn | to_int }}
-router bgp {{ router_asn | _start_ | to_int }} neighbor {{ neighbor }} local-as {{ peer_asn | to_int }} {{ local_as_options | ORPHRASE }}
-router bgp {{ router_asn | _start_ | to_int }} neighbor {{ neighbor }} local-as {{ peer_asn | to_int }}
-router bgp {{ router_asn | _start_ | to_int }} vrf {{ vrf }} neighbor-group {{ description }} remote-as {{ peer_asn | to_int }}
-router bgp {{ router_asn | _start_ | to_int }} vrf {{ vrf }} neighbor-group {{ description }} local-as {{ peer_asn | to_int }} {{ local_as_options | ORPHRASE }}
-router bgp {{ router_asn | _start_ | to_int }} vrf {{ vrf }} neighbor-group {{ description }} local-as {{ peer_asn | to_int }}
-router bgp {{ router_asn | _start_ | to_int }} vrf {{ vrf }} neighbor {{ neighbor }} remote-as {{ peer_asn | to_int }}
-router bgp {{ router_asn | _start_ | to_int }} vrf {{ vrf }} neighbor {{ neighbor }} local-as {{ peer_asn | to_int }} {{ local_as_options | ORPHRASE }}
-router bgp {{ router_asn | _start_ | to_int }} vrf {{ vrf }} neighbor {{ neighbor }} local-as {{ peer_asn | to_int }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} neighbor-group {{ description }} remote-as {{ peer_asn | to_int | let("local_asn", False) }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} neighbor-group {{ description }} local-as {{ peer_asn | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} neighbor-group {{ description }} local-as {{ peer_asn | to_int | let("local_asn", True) }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} neighbor {{ neighbor }} remote-as {{ peer_asn | to_int | let("local_asn", False) }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} neighbor {{ neighbor }} local-as {{ peer_asn | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} neighbor {{ neighbor }} local-as {{ peer_asn | to_int | let("local_asn", True) }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} vrf {{ vrf }} neighbor-group {{ description }} remote-as {{ peer_asn | to_int | let("local_asn", False) }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} vrf {{ vrf }} neighbor-group {{ description }} local-as {{ peer_asn | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} vrf {{ vrf }} neighbor-group {{ description }} local-as {{ peer_asn | to_int | let("local_asn", True) }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} vrf {{ vrf }} neighbor {{ neighbor }} remote-as {{ peer_asn | to_int | let("local_asn", False) }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} vrf {{ vrf }} neighbor {{ neighbor }} local-as {{ peer_asn | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }} vrf {{ vrf }} neighbor {{ neighbor }} local-as {{ peer_asn | to_int | let("local_asn", True) }}
 </group>
 
 <output macro="transform_bgp_asns_to_records"/>

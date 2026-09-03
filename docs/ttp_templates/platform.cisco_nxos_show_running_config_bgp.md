@@ -16,21 +16,26 @@ This template requires output of:
 ASNs are collected from the `router bgp` process and global or VRF
 `remote-as` and `local-as` statements. A peer-template name is used as the
 description for ASNs configured on a template or on a neighbor that inherits
-one. Results are deduplicated by ASN, preserving the first occurrence and its
-description.
+one. `local_asn` is true for router and `local-as` ASNs, and false for
+`remote-as` ASNs. Results are deduplicated by ASN, preserving the first
+occurrence and its description while keeping `local_asn` true if any occurrence
+marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `asn` - AS number integer
 - `description` - peer-template name or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 ```yaml
 - asn: 65000
   description: null
+  local_asn: true
 - asn: 64500
   description: TRANSIT
+  local_asn: false
 ```
 
 
@@ -51,21 +56,26 @@ This template requires output of:
 ASNs are collected from the 'router bgp' process and global or VRF
 'remote-as' and 'local-as' statements. A peer-template name is used as the
 description for ASNs configured on a template or on a neighbor that inherits
-one. Results are deduplicated by ASN, preserving the first occurrence and its
-description.
+one. 'local_asn' is true for router and 'local-as' ASNs, and false for
+'remote-as' ASNs. Results are deduplicated by ASN, preserving the first
+occurrence and its description while keeping 'local_asn' true if any occurrence
+marks the ASN as local.
 
 Returns a normalized list of dictionaries with these keys:
 
 - 'asn' - AS number integer
 - 'description' - peer-template name or 'null'
+- 'local_asn' - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 '''yaml
 - asn: 65000
   description: null
+  local_asn: true
 - asn: 64500
   description: TRANSIT
+  local_asn: false
 '''
 
 </doc>
@@ -88,7 +98,7 @@ def transform_bgp_asns_to_records(data):
 </macro>
 
 <group name="bgp">
-router bgp {{ router_asn | _start_ | to_int }}
+router bgp {{ router_asn | _start_ | to_int | let("local_asn", True) }}
 
   <group name="peers*">
   template peer {{ neighbor | _start_ | let("is_peer_group", True) }}
@@ -96,9 +106,9 @@ router bgp {{ router_asn | _start_ | to_int }}
     inherit peer {{ peer_group }}
 
     <group name="asns*">
-    remote-as {{ asn | _start_ | to_int }}
-    local-as {{ asn | _start_ | to_int }} {{ local_as_options | ORPHRASE }}
-    local-as {{ asn | _start_ | to_int }}
+    remote-as {{ asn | _start_ | to_int | let("local_asn", False) }}
+    local-as {{ asn | _start_ | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
+    local-as {{ asn | _start_ | to_int | let("local_asn", True) }}
     </group>
   </group>
 
@@ -106,8 +116,8 @@ router bgp {{ router_asn | _start_ | to_int }}
   vrf {{ vrf | _start_ }}
 
     <group name="local_asns*">
-    local-as {{ asn | _start_ | to_int }} {{ local_as_options | ORPHRASE }}
-    local-as {{ asn | _start_ | to_int }}
+    local-as {{ asn | _start_ | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
+    local-as {{ asn | _start_ | to_int | let("local_asn", True) }}
     </group>
 
     <group name="peers*">
@@ -116,9 +126,9 @@ router bgp {{ router_asn | _start_ | to_int }}
       inherit peer {{ peer_group }}
 
       <group name="asns*">
-      remote-as {{ asn | _start_ | to_int }}
-      local-as {{ asn | _start_ | to_int }} {{ local_as_options | ORPHRASE }}
-      local-as {{ asn | _start_ | to_int }}
+      remote-as {{ asn | _start_ | to_int | let("local_asn", False) }}
+      local-as {{ asn | _start_ | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
+      local-as {{ asn | _start_ | to_int | let("local_asn", True) }}
       </group>
     </group>
   </group>
