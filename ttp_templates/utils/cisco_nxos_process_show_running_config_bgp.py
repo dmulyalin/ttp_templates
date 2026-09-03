@@ -22,7 +22,11 @@ def _scope_records(scope: Any) -> List[Dict[str, Any]]:
         return []
 
     records = [
-        {"asn": item.get("asn"), "description": None}
+        {
+            "asn": item.get("asn"),
+            "description": None,
+            "local_asn": item.get("local_asn", True),
+        }
         for item in _as_list(scope.get("local_asns"))
         if isinstance(item, dict)
     ]
@@ -42,6 +46,7 @@ def _scope_records(scope: Any) -> List[Dict[str, Any]]:
                     {
                         "asn": item.get("asn"),
                         "description": description,
+                        "local_asn": item.get("local_asn", False),
                     }
                 )
 
@@ -58,19 +63,27 @@ def transform_bgp_asns(payload: Any) -> List[Dict[str, Any]]:
             continue
 
         bgp = item["bgp"]
-        candidates.append({"asn": bgp.get("router_asn"), "description": None})
+        candidates.append(
+            {"asn": bgp.get("router_asn"), "description": None, "local_asn": True}
+        )
         candidates.extend(_scope_records(bgp))
         for vrf in _as_list(bgp.get("vrfs")):
             candidates.extend(_scope_records(vrf))
 
     records: List[Dict[str, Any]] = []
-    seen_asns = set()
+    seen_asns: Dict[int, Dict[str, Any]] = {}
     for candidate in candidates:
         asn = candidate.get("asn")
-        if asn is None or asn in seen_asns:
+        if asn is None:
+            continue
+        if asn in seen_asns:
+            seen_asns[asn]["local_asn"] = (
+                seen_asns[asn]["local_asn"] or candidate.get("local_asn", False)
+            )
             continue
 
-        records.append(BgpAsnRecord(**candidate).model_dump())
-        seen_asns.add(asn)
+        record = BgpAsnRecord(**candidate).model_dump()
+        records.append(record)
+        seen_asns[asn] = record
 
     return records

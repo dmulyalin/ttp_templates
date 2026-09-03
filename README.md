@@ -175,6 +175,22 @@ pprint.pprint(res)
 ```
 </details>
 
+List getter platforms or check whether a getter supports a platform before
+trying to parse output:
+
+```python
+from ttp_templates import list_getter_platforms, is_getter_supported
+
+list_getter_platforms(getter="interfaces")
+# ["a10", "arista_eos", "cisco_ios", ...]
+
+is_getter_supported(platform="linux", getter="interfaces")
+# True
+
+is_getter_supported(platform="linux", getter="bgp_asn")
+# False
+```
+
 ## How templates collections structured
 
 This repository contains three collections of templates corresponding to folder names:

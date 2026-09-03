@@ -5,6 +5,8 @@ sys.path.insert(0, "..")
 
 from ttp_templates import get_template
 from ttp_templates import parse_output
+from ttp_templates import list_getter_platforms
+from ttp_templates import is_getter_supported
 from ttp_templates import list_templates
 from ttp_templates import list_templates_refs
 
@@ -584,6 +586,58 @@ def test_parse_output_get_unsupported_platform_raises():
 
     with pytest.raises(RuntimeError, match="platform"):
         parse_output(data="some text", get="inventory", platform="unsupported_vendor_os")
+
+
+def test_list_getter_platforms_returns_supported_platforms():
+    """list_getter_platforms must return platforms declared by getter inputs."""
+    platforms = list_getter_platforms(getter="interfaces")
+    assert "linux" in platforms
+    assert "cisco_ios" in platforms
+
+
+def test_list_getter_platforms_accepts_getter_txt_extension():
+    """list_getter_platforms must accept getter names with the .txt extension."""
+    assert "linux" in list_getter_platforms(getter="interfaces.txt")
+
+
+def test_list_getter_platforms_returns_sorted_unique_platforms():
+    """list_getter_platforms must return a sorted list without duplicates."""
+    platforms = list_getter_platforms(getter="inventory")
+    assert platforms == sorted(platforms)
+    assert len(platforms) == len(set(platforms))
+
+
+def test_list_getter_platforms_returns_empty_list_for_missing_getter():
+    """list_getter_platforms must return an empty list for missing getters."""
+    assert list_getter_platforms(getter="missing_getter") == []
+
+
+def test_is_getter_supported_returns_true_for_supported_platform():
+    """is_getter_supported must return True for a supported getter platform."""
+    assert is_getter_supported(platform="linux", getter="interfaces") is True
+
+
+def test_is_getter_supported_accepts_getter_txt_extension():
+    """is_getter_supported must accept getter names with the .txt extension."""
+    assert is_getter_supported(platform="linux", getter="interfaces.txt") is True
+
+
+def test_is_getter_supported_returns_false_for_unsupported_platform():
+    """is_getter_supported must return False for unsupported getter platforms."""
+    assert (
+        is_getter_supported(platform="unsupported_vendor_os", getter="interfaces")
+        is False
+    )
+
+
+def test_is_getter_supported_returns_false_for_missing_getter():
+    """is_getter_supported must return False when getter template does not exist."""
+    assert is_getter_supported(platform="linux", getter="missing_getter") is False
+
+
+def test_is_getter_supported_bgp_asn_linux_is_false():
+    """Linux is not supported by the bgp_asn getter."""
+    assert is_getter_supported(platform="linux", getter="bgp_asn") is False
 
 
 def test_list_templates_includes_get_key():

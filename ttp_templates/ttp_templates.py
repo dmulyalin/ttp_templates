@@ -216,6 +216,71 @@ def parse_output(
     return results
 
 
+def list_getter_platforms(getter: str) -> List[str]:
+    """Return platform names and aliases supported by a getter template.
+
+    The check uses the platform metadata declared in getter input blocks, the
+    same metadata used by :func:`parse_output` to route getter parsing.
+
+    Args:
+        getter: Getter template name, e.g. ``"interfaces"`` or ``"bgp_asn"``.
+            The ``.txt`` extension is optional.
+
+    Returns:
+        Sorted list of platform names and aliases, or an empty list if the
+        getter template does not exist.
+    """
+    try:
+        template = get_template(get=getter)
+    except FileNotFoundError:
+        log.debug("list_getter_platforms: getter '%s' was not found", getter)
+        return []
+
+    parser = ttp(template=template)
+    platforms = set()
+    for inputs in parser.get_input_load().values():
+        for params in inputs.values():
+            platforms.update(params.get("platform", []))
+
+    log.debug(
+        "list_getter_platforms: getter '%s' supports platforms %s",
+        getter,
+        sorted(platforms),
+    )
+    return sorted(platforms)
+
+
+def is_getter_supported(
+    platform: str,
+    getter: str,
+) -> bool:
+    """Return whether a getter template supports a platform.
+
+    Args:
+        platform: Platform name or alias to check, e.g. ``"linux"``.
+        getter: Getter template name, e.g. ``"interfaces"`` or ``"bgp_asn"``.
+            The ``.txt`` extension is optional.
+
+    Returns:
+        ``True`` if the getter exists and one of its inputs lists the platform,
+        otherwise ``False``.
+    """
+    if platform in list_getter_platforms(getter):
+        log.debug(
+            "is_getter_supported: getter '%s' supports platform '%s'",
+            getter,
+            platform,
+        )
+        return True
+
+    log.debug(
+        "is_getter_supported: getter '%s' does not support platform '%s'",
+        getter,
+        platform,
+    )
+    return False
+
+
 def list_templates(pattern: str = "*") -> Dict:
     """List available templates whose filenames match the given glob pattern.
 

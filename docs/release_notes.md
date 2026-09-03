@@ -1,5 +1,23 @@
 # Release Notes
 
+## 0.6.0
+
+### FEATURES
+
+1. Added `list_getter_platforms(getter=...)` to list platform names and aliases
+   supported by a getter template.
+2. Added `is_getter_supported(platform=..., getter=...)` to check whether a
+   getter template supports a platform before parsing output.
+
+### CHANGES
+
+1. Enhanced `bgp_asn` parsing with a required `local_asn` boolean in normalized
+   results and the Pydantic model. Router, `autonomous-system`, and `local-as`
+   values are marked as local, while `remote-as` and `peer-as` values are marked
+   as non-local across all supported platforms.
+
+---
+
 ## 0.5.15
 
 ### BUGS

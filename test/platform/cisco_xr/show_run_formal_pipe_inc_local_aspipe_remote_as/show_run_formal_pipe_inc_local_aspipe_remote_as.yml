@@ -1,28 +1,42 @@
 - asn: 12345
   description: null
+  local_asn: true
 - asn: 54321
   description: PEER_GROUP_1
+  local_asn: false
 - asn: 1111
   description: null
+  local_asn: false
 - asn: 65001
   description: PEER_GROUP_2
+  local_asn: true
 - asn: 65002
   description: null
+  local_asn: true
 - asn: 65003
   description: VRF_PEERS
+  local_asn: true
 - asn: 65004
   description: null
+  local_asn: true
 - asn: 65005
   description: BARE_LOCAL_AS
+  local_asn: true
 - asn: 65006
   description: null
+  local_asn: true
 - asn: 65007
   description: VRF_REMOTE_PEERS
+  local_asn: false
 - asn: 65008
   description: null
+  local_asn: false
 - asn: 65009
   description: null
+  local_asn: true
 - asn: 65010
   description: VRF_BARE_LOCAL_AS
+  local_asn: true
 - asn: 65011
   description: null
+  local_asn: true

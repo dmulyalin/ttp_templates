@@ -35,7 +35,7 @@ def _scope_records(scope: Any) -> List[Dict[str, Any]]:
 
     records: List[Dict[str, Any]] = []
     for statement in statements:
-        if not isinstance(statement, dict) or statement.get("kind") != "asn":
+        if not isinstance(statement, dict) or "asn" not in statement:
             continue
 
         neighbor = statement.get("neighbor")
@@ -49,6 +49,7 @@ def _scope_records(scope: Any) -> List[Dict[str, Any]]:
             {
                 "asn": statement.get("asn"),
                 "description": description,
+                "local_asn": statement.get("local_asn", False),
             }
         )
 
@@ -65,19 +66,27 @@ def transform_bgp_asns(payload: Any) -> List[Dict[str, Any]]:
             continue
 
         bgp = item["bgp"]
-        candidates.append({"asn": bgp.get("router_asn"), "description": None})
+        candidates.append(
+            {"asn": bgp.get("router_asn"), "description": None, "local_asn": True}
+        )
         candidates.extend(_scope_records(bgp))
         for vrf in _as_list(bgp.get("vrfs")):
             candidates.extend(_scope_records(vrf))
 
     records: List[Dict[str, Any]] = []
-    seen_asns = set()
+    seen_asns: Dict[int, Dict[str, Any]] = {}
     for candidate in candidates:
         asn = candidate.get("asn")
-        if asn is None or asn in seen_asns:
+        if asn is None:
+            continue
+        if asn in seen_asns:
+            seen_asns[asn]["local_asn"] = (
+                seen_asns[asn]["local_asn"] or candidate.get("local_asn", False)
+            )
             continue
 
-        records.append(BgpAsnRecord(**candidate).model_dump())
-        seen_asns.add(asn)
+        record = BgpAsnRecord(**candidate).model_dump()
+        records.append(record)
+        seen_asns[asn] = record
 
     return records

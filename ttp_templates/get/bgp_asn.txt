@@ -14,17 +14,20 @@ Returns a normalized list of dictionaries, each dictionary has these keys:
 
 - `asn` - AS number integer
 - `description` - peer-group name or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
 
 Records are deduplicated by ASN. The description from the first occurrence is
-retained.
+retained, and `local_asn` is true if any occurrence marks the ASN as local.
 
 Example normalized output (YAML):
 
 ```yaml
 - asn: 12345
   description: null
+  local_asn: true
 - asn: 54321
   description: PEER_GROUP_1
+  local_asn: false
 ```
 
 </doc>

@@ -154,6 +154,7 @@ class BgpCommunityRecord(BaseModel):
 class BgpAsnRecord(BaseModel):
     asn: StrictInt
     description: Union[None, StrictStr]
+    local_asn: StrictBool
 
 
 class InventoryRecord(BaseModel):

@@ -1,26 +1,39 @@
 - asn: 65000
   description: null
+  local_asn: true
 - asn: 64500
   description: TRANSIT
+  local_asn: false
 - asn: 64501
   description: TRANSIT
+  local_asn: false
 - asn: 64502
   description: null
+  local_asn: false
 - asn: 64503
   description: LOCAL_OVERRIDE
+  local_asn: true
 - asn: 64504
   description: null
+  local_asn: true
 - asn: 65001
   description: null
+  local_asn: true
 - asn: 64505
   description: VRF_TRANSIT
+  local_asn: false
 - asn: 64506
   description: VRF_TRANSIT
+  local_asn: false
 - asn: 64507
   description: null
+  local_asn: false
 - asn: 64508
   description: VRF_LOCAL
+  local_asn: true
 - asn: 65002
   description: null
+  local_asn: true
 - asn: 64509
   description: FIRST_GROUP
+  local_asn: false
