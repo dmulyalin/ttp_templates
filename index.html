@@ -4920,6 +4920,19 @@ Refer to <a href="https://dmulyalin.github.io/ttp_templates/contribute/">Contrib
 </code></pre></div>
 </details>
 
+<p>List getter platforms or check whether a getter supports a platform before
+trying to parse output:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">ttp_templates</span><span class="w"> </span><span class="kn">import</span> <span class="n">list_getter_platforms</span><span class="p">,</span> <span class="n">is_getter_supported</span>
+
+<span class="n">list_getter_platforms</span><span class="p">(</span><span class="n">getter</span><span class="o">=</span><span class="s2">"interfaces"</span><span class="p">)</span>
+<span class="c1"># ["a10", "arista_eos", "cisco_ios", ...]</span>
+
+<span class="n">is_getter_supported</span><span class="p">(</span><span class="n">platform</span><span class="o">=</span><span class="s2">"linux"</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="s2">"interfaces"</span><span class="p">)</span>
+<span class="c1"># True</span>
+
+<span class="n">is_getter_supported</span><span class="p">(</span><span class="n">platform</span><span class="o">=</span><span class="s2">"linux"</span><span class="p">,</span> <span class="n">getter</span><span class="o">=</span><span class="s2">"bgp_asn"</span><span class="p">)</span>
+<span class="c1"># False</span>
+</code></pre></div>
 <h2 id="how-templates-collections-structured">How templates collections structured<a class="headerlink" href="#how-templates-collections-structured" title="Permanent link">&para;</a></h2>
 <p>This repository contains three collections of templates corresponding to folder names:</p>
 <ul>
