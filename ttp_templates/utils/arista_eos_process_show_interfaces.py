@@ -62,7 +62,7 @@ def transform_interfaces_status(payload: list) -> list[dict[str, Any]]:
             "description": item.get("description", "").strip('"') or None,
             "mtu": item.get("mtu"),
             "mac_address": item.get("mac_address"),
-            "duplex": item.get("duplex", "").lower() or None,
+            "duplex": str(item.get("duplex") or "").strip().lower() or None,
             "status_admin": "down"
             if interface_status == "administratively down"
             else "up",

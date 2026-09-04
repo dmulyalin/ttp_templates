@@ -83,6 +83,7 @@ def transform_vrfs_config(payload: list) -> List[Dict[str, Any]]:
     for name, vrf in vrfs.items():
         record = {
             "name": name,
+            "instance_type": "vrf",
             "description": vrf.get("description") or None,
             "rd": vrf.get("rd") or None,
             "rt_import": _as_list(vrf.get("rt_import")),

@@ -172,6 +172,7 @@ class VlanRecord(BaseModel):
 
 class VrfRecord(BaseModel):
     name: StrictStr
+    instance_type: StrictStr
     description: Union[None, StrictStr]
     rd: Union[None, StrictStr]
     rt_import: List[StrictStr]

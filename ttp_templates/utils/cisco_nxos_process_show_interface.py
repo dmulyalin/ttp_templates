@@ -30,13 +30,13 @@ def transform_interfaces_status(payload: list) -> list[dict[str, Any]]:
 
         admin_state = item.get("admin_state", "").lower()
         interface_status = item.get("interface_status", "").lower()
-        duplex = item.get("duplex", "").lower()
+        duplex = str(item.get("duplex") or "").strip().lower() or None
         record = {
             "name": item["name"],
             "description": item.get("description") or None,
             "mtu": item.get("mtu"),
             "mac_address": item.get("mac_address"),
-            "duplex": duplex or None,
+            "duplex": duplex,
             "status_admin": "down"
             if admin_state.startswith("down")
             or "administratively down" in interface_status

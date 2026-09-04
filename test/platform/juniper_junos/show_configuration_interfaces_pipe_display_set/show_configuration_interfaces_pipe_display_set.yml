@@ -140,6 +140,28 @@
   type: virtual
   untagged_vlan: null
   vrf: null
+- description: Unquoted_Description
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 10.100.100.2/29
+  - 10.100.100.1/29
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: xe-0/0/1.1
+  parent: xe-0/0/1
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null
 - description: ae0 main
   duplex: null
   enabled: true
@@ -247,6 +269,71 @@
   type: bridge
   untagged_vlan: 10
   vrf: CUSTOMER_A
+- description: SVI for VLAN 20
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.168.20.1/24
+  ipv6_addresses:
+  - 2001:db8:20::1/64
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: irb.20
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: bridge
+  untagged_vlan: 20
+  vrf: CUSTOMER_A
+- description: SVI for VLAN 30
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 192.168.30.1/24
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: irb.30
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: bridge
+  untagged_vlan: 30
+  vrf: CUSTOMER_B
+- description: SVI for VLAN 1234
+  duplex: null
+  enabled: true
+  ipv4_addresses:
+  - 10.123.123.0/24
+  - 10.123.123.1/24
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: irb.1234
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: bridge
+  untagged_vlan: 1234
+  vrf: CUSTOMER_B
 - description: Parent type validation
   duplex: null
   enabled: true
@@ -261,28 +348,6 @@
   mtu: null
   name: xe-0/0/4.400
   parent: xe-0/0/4
-  qinq_svlan: null
-  speed: null
-  tagged_vlans: []
-  type: virtual
-  untagged_vlan: null
-  vrf: null
-- description: ''
-  duplex: null
-  enabled: true
-  ipv4_addresses:
-  - 10.100.100.2/29
-  - 10.100.100.1/29
-  ipv6_addresses: []
-  lacp_mode: null
-  lag: null
-  lag_id: null
-  lag_type: null
-  mac_address: null
-  mode: null
-  mtu: null
-  name: xe-0/0/1.1
-  parent: xe-0/0/1
   qinq_svlan: null
   speed: null
   tagged_vlans: []

@@ -132,6 +132,7 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
         speed = iface.get("speed")
         if speed is not None:
             speed = speed * 1000
+        duplex = str(iface.get("duplex") or "").strip().lower() or None
 
         record: dict[str, Any] = {
             "name": name,
@@ -145,7 +146,7 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
             "mtu": iface.get("mtu"),
             "mac_address": iface.get("mac_address"),
             "speed": speed,
-            "duplex": iface.get("duplex"),
+            "duplex": duplex,
             "description": iface.get("description") or "",
             "mode": mode,
             "untagged_vlan": untagged_vlan,

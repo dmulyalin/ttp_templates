@@ -7,6 +7,7 @@ set protocols bgp group GLOBAL_PEER peer-as 64514
 set protocols bgp group GLOBAL_NEIGHBOR neighbor 192.0.2.1 peer-as 64515
 set routing-instances VRF_3 routing-options autonomous-system 64516 loops 2
 set routing-instances VRF_4 routing-options autonomous-system 64517
+set routing-instances VRF1 routing-options autonomous-system independent-domain no-attrset
 set routing-instances VRF_5 protocols bgp group VRF_LOCAL local-as 64518 no-prepend-global-as
 set routing-instances VRF_6 protocols bgp group VRF_NEIGHBOR neighbor 2001:db8::1 peer-as 64519
 set protocols bgp group FIRST_DESCRIPTION peer-as 64520

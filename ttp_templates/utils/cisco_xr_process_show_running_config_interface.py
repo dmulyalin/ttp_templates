@@ -84,6 +84,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             speed = speed * 1000
         dot1q = iface.get("dot1q")
         tagged_vlans = [dot1q] if dot1q is not None else []
+        duplex = str(iface.get("duplex") or "").strip().lower() or None
 
         ipv4_addresses = []
         for addr in iface.get("ipv4_addresses", []):
@@ -112,7 +113,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "mtu": iface.get("mtu"),
             "mac_address": iface.get("mac_address"),
             "speed": speed,
-            "duplex": iface.get("duplex"),
+            "duplex": duplex,
             "description": iface.get("description") or "",
             "mode": mode,
             "untagged_vlan": untagged,

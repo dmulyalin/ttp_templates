@@ -1,4 +1,5 @@
 - description: Customer A VRF
+  instance_type: vrf
   name: CUSTOMER_A
   rd: 65000:100
   route_policy_export: EXPORT-CUSTOMER-A
@@ -9,6 +10,7 @@
   - 65000:100
   - 65000:101
 - description: null
+  instance_type: vrf
   name: CUSTOMER_B
   rd: 65000:200
   route_policy_export: null

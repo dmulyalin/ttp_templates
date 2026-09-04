@@ -1,5 +1,24 @@
 # Release Notes
 
+## 0.6.1
+
+### ENHANCEMENTS
+
+1. Enhanced the `vrfs` getter to include `instance_type` in normalized VRF
+   records, preserving Juniper Junos routing-instance types and setting `vrf`
+   for other supported platforms.
+
+### BUGS
+
+1. Fixed Juniper Junos `interfaces` getter parsing for `show configuration
+   interfaces | display set` to extract multiple IRB interfaces, unquoted unit
+   descriptions, and VRRP `virtual-address` IPv4 values.
+2. Fixed interface getter scripts to normalize duplex values to lowercase.
+3. Fixed Juniper Junos `bgp_asn` parsing to ignore non-numeric
+   `autonomous-system` option values.
+
+---
+
 ## 0.6.0
 
 ### FEATURES

@@ -148,6 +148,8 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
         elif tagged_vlans and mode is None:
             mode = "tagged"
 
+        duplex = str(iface.get("duplex") or "").strip().lower() or None
+
         record: dict[str, Any] = {
             "name": name,
             "type": interface_type,
@@ -160,7 +162,7 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
             "mtu": iface.get("mtu") or None,
             "mac_address": iface.get("mac_address"),
             "speed": _normalize_speed(iface.get("speed")),
-            "duplex": iface.get("duplex"),
+            "duplex": duplex,
             "description": iface.get("description") or "",
             "mode": mode,
             "untagged_vlan": untagged_vlan,

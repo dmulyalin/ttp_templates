@@ -117,6 +117,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
 
         speed_raw = data.get("speed")
         speed = _SPEED_MAP.get(speed_raw.lower() if speed_raw else "", None)
+        duplex = str(data.get("duplex") or "").strip().lower() or None
         description = (data.get("description") or "").strip('"')
         enabled = data.get("enabled", True)
         lag_id = data.get("lag_id")
@@ -207,7 +208,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             "mtu": data.get("mtu"),
             "mac_address": data.get("mac_address"),
             "speed": speed,
-            "duplex": data.get("duplex"),
+            "duplex": duplex,
             "description": description,
             "mode": mode,
             "untagged_vlan": untagged_vlan,

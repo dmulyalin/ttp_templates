@@ -6,6 +6,7 @@ set interfaces xe-0/0/1 speed 1g
 set interfaces xe-0/0/1 unit 0 description "L3 to CE1"
 set interfaces xe-0/0/1 unit 0 family inet address 10.0.1.1/30
 set interfaces xe-0/0/1 unit 0 family inet6 address 2001:db8:1::1/64
+set interfaces xe-0/0/1 unit 1 description Unquoted_Description
 set interfaces xe-0/0/1 unit 1 family inet address 10.100.100.2/29 virtual-gateway-address 10.100.100.1
 set interfaces xe-0/0/2 description "Trunk to access switch"
 set interfaces xe-0/0/2 unit 0 family ethernet-switching interface-mode trunk
@@ -34,7 +35,18 @@ set interfaces lo0 unit 0 family inet address 10.0.0.1/32
 set interfaces lo0 unit 0 family inet6 address 2001:db8::1/128
 set interfaces irb unit 10 description "SVI for VLAN 10"
 set interfaces irb unit 10 family inet address 192.168.10.1/24
+set interfaces irb unit 20 description "SVI for VLAN 20"
+set interfaces irb unit 20 family inet address 192.168.20.1/24
+set interfaces irb unit 20 family inet6 address 2001:db8:20::1/64
+set interfaces irb unit 30 description "SVI for VLAN 30"
+set interfaces irb unit 30 family inet address 192.168.30.1/24
+set interfaces irb unit 1234 description "SVI for VLAN 1234"
+set interfaces irb unit 1234 family inet address 10.123.123.0/24 vrrp-group 1 virtual-address 10.123.123.1
 set routing-instances CUSTOMER_A instance-type vrf
 set routing-instances CUSTOMER_A interface ae0.100
 set routing-instances CUSTOMER_A interface irb.10
+set routing-instances CUSTOMER_A interface irb.20
+set routing-instances CUSTOMER_B instance-type vrf
+set routing-instances CUSTOMER_B interface irb.30
+set routing-instances CUSTOMER_B interface irb.1234
 set interfaces xe-0/0/4 unit 400 description "Parent type validation"
