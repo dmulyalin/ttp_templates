@@ -81,7 +81,6 @@ def transform_interfaces_to_records(data):
 </macro>
 
 <group name="interfaces**.{{ name }}**" method="table">
-set interfaces {{ name }} description "{{ description | re(".+") }}"
 set interfaces {{ name }} description {{ description | re(".+") }}
 set interfaces {{ name }} mtu {{ mtu | to_int }}
 set interfaces {{ name | let("enabled", False) }} disable
@@ -94,7 +93,6 @@ set interfaces {{ name }} native-vlan-id {{ untagged_vlan | to_int }}
 </group>
 
 <group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
-set interfaces {{ name }} unit {{ unit }} description "{{ description | re(".+") | default("") }}"
 set interfaces {{ name }} unit {{ unit }} description {{ description | re(".+") | default("") }}
 set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q | to_int }}
 set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}

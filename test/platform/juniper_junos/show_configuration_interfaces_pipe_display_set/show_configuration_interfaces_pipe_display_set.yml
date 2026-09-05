@@ -1,4 +1,4 @@
-- description: P2P to PE1
+- description: '"P2P to PE1"'
   duplex: null
   enabled: true
   ipv4_addresses: []
@@ -18,7 +18,7 @@
   type: other
   untagged_vlan: null
   vrf: null
-- description: Uplink to CE1
+- description: '"Uplink to CE1"'
   duplex: null
   enabled: true
   ipv4_addresses: []
@@ -38,7 +38,7 @@
   type: other
   untagged_vlan: null
   vrf: null
-- description: Trunk to access switch
+- description: '"Trunk to access switch"'
   duplex: null
   enabled: true
   ipv4_addresses: []
@@ -78,7 +78,7 @@
   type: other
   untagged_vlan: null
   vrf: null
-- description: LAG to CE1
+- description: '"LAG to CE1"'
   duplex: null
   enabled: true
   ipv4_addresses: []
@@ -118,7 +118,7 @@
   type: lag
   untagged_vlan: null
   vrf: null
-- description: L3 to CE1
+- description: '"L3 to CE1"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -162,7 +162,7 @@
   type: virtual
   untagged_vlan: null
   vrf: null
-- description: ae0 main
+- description: '"ae0 main"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -183,7 +183,7 @@
   type: virtual
   untagged_vlan: null
   vrf: null
-- description: Customer A VLAN
+- description: '"Customer A VLAN"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -205,7 +205,7 @@
   type: virtual
   untagged_vlan: null
   vrf: CUSTOMER_A
-- description: Customer A VLAN101
+- description: '"Customer A VLAN101"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -226,7 +226,7 @@
   type: virtual
   untagged_vlan: 101
   vrf: null
-- description: Router ID
+- description: '"Router ID"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -248,7 +248,7 @@
   type: virtual
   untagged_vlan: null
   vrf: null
-- description: SVI for VLAN 10
+- description: '"SVI for VLAN 10"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -269,7 +269,7 @@
   type: bridge
   untagged_vlan: 10
   vrf: CUSTOMER_A
-- description: SVI for VLAN 20
+- description: '"SVI for VLAN 20"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -291,7 +291,7 @@
   type: bridge
   untagged_vlan: 20
   vrf: CUSTOMER_A
-- description: SVI for VLAN 30
+- description: '"SVI for VLAN 30"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -312,7 +312,7 @@
   type: bridge
   untagged_vlan: 30
   vrf: CUSTOMER_B
-- description: SVI for VLAN 1234
+- description: '"SVI for VLAN 1234"'
   duplex: null
   enabled: true
   ipv4_addresses:
@@ -334,7 +334,7 @@
   type: bridge
   untagged_vlan: 1234
   vrf: CUSTOMER_B
-- description: Parent type validation
+- description: '"Parent type validation"'
   duplex: null
   enabled: true
   ipv4_addresses: []
