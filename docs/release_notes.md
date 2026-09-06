@@ -5,7 +5,7 @@
 ### BUGS
 
 1. Fixed Juniper Junos `interfaces` getter parsing to preserve quotation marks
-   in quoted `description` values from `display set` output. Removed quote-specific Juniper Junos interface description template patterns so descriptions are captured exactly as they appear in source config.
+   in quoted `description` values from `display set` output.
 
 ---
 
