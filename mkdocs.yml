@@ -118,6 +118,7 @@ nav:
     - cisco_xr_show_ospf_database_summary: ttp_templates/platform.cisco_xr_show_ospf_database_summary.md
     - cisco_xr_show_rpl_community_set: ttp_templates/platform.cisco_xr_show_rpl_community_set.md
     - cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as: ttp_templates/platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as.md
+    - cisco_xr_show_running_config_formal_router_vrrp: ttp_templates/platform.cisco_xr_show_running_config_formal_router_vrrp.md
     - cisco_xr_show_running_config_interface: ttp_templates/platform.cisco_xr_show_running_config_interface.md
     - cisco_xr_show_running_config_vrf: ttp_templates/platform.cisco_xr_show_running_config_vrf.md
     - huawei_display_current_configuration_interface: ttp_templates/platform.huawei_display_current_configuration_interface.md
@@ -126,6 +127,7 @@ nav:
     - juniper_junos_show_chassis_hardware_pipe_json: ttp_templates/platform.juniper_junos_show_chassis_hardware_pipe_json.md
     - juniper_junos_show_configuration_interfaces_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_interfaces_pipe_display_set.md
     - juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system: ttp_templates/platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system.md
+    - juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group: ttp_templates/platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group.md
     - juniper_junos_show_configuration_policy_options_community_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_policy_options_community_pipe_display_set.md
     - juniper_junos_show_configuration_routing_instances_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_routing_instances_pipe_display_set.md
     - juniper_junos_show_configuration_vlans_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_vlans_pipe_display_set.md
@@ -151,6 +153,7 @@ nav:
     - netbox: ttp_templates/get.netbox.md
     - vlans: ttp_templates/get.vlans.md
     - vrfs: ttp_templates/get.vrfs.md
+    - vrrp: ttp_templates/get.vrrp.md
 plugins:
 - search
 - mkdocstrings:

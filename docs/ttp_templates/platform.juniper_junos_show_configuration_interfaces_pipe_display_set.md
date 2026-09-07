@@ -157,7 +157,7 @@ def transform_interfaces_to_records(data):
 </macro>
 
 <group name="interfaces**.{{ name }}**" method="table">
-set interfaces {{ name }} description "{{ description | re(".+") }}"
+set interfaces {{ name }} description {{ description | re(".+") }}
 set interfaces {{ name }} mtu {{ mtu | to_int }}
 set interfaces {{ name | let("enabled", False) }} disable
 set interfaces {{ name }} gigether-options 802.3ad {{ lag_id | let("lag_type", "lag") }}
@@ -169,7 +169,7 @@ set interfaces {{ name }} native-vlan-id {{ untagged_vlan | to_int }}
 </group>
 
 <group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
-set interfaces {{ name }} unit {{ unit }} description "{{ description | re(".+") | default("") }}"
+set interfaces {{ name }} unit {{ unit }} description {{ description | re(".+") | default("") }}
 set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q | to_int }}
 set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 </group>
@@ -177,6 +177,7 @@ set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 <group name="interfaces**.{{ name }}**.ipv4*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ vip }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group {{ vrrp_group }} virtual-address {{ vip }}
 </group>
 
 <group name="interfaces**.{{ name }}**.ipv6*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">

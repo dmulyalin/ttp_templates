@@ -16,6 +16,7 @@ This template requires output of
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - `name` - VRF name string
+- `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
 - `rt_import` - list of import route-target strings
@@ -41,6 +42,7 @@ This template requires output of
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - 'name' - VRF name string
+- 'instance_type' - always 'vrf'
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
 - 'rt_import' - list of import route-target strings

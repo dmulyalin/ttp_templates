@@ -1,0 +1,11 @@
+set interfaces ae123 unit 123 family inet address 123.123.102.234/29 vrrp-group 1 virtual-address 123.123.102.233
+set interfaces ae123 unit 123 family inet address 123.123.102.234/29 vrrp-group 2 virtual-address 123.123.102.232
+set interfaces irb unit 7 family inet address 192.0.2.2/24 vrrp-group 7 virtual-address 192.0.2.1
+set interfaces xe-0/0/0 unit 400 family inet address 198.51.100.2/24 vrrp-group 10 virtual-address 198.51.100.1
+set interfaces xe-0/0/0 unit 400 family inet address 198.51.100.2/24 vrrp-group 11 virtual-address 198.51.100.254
+set interfaces ae123 unit 123 family inet address 123.123.102.234/29 vrrp-group 1 priority 123
+set interfaces ae123 unit 123 family inet address 123.123.102.234/29 vrrp-group 2 priority 110
+set interfaces xe-0/0/0 unit 400 family inet address 198.51.100.2/24 vrrp-group 10 priority 200
+set interfaces ae123 unit 123 family inet address 123.123.102.234/29 vrrp-group 1 authentication-type md5
+set interfaces ae123 unit 123 family inet address 123.123.102.234/29 vrrp-group 2 authentication-type md5
+set interfaces xe-0/0/0 unit 400 family inet address 198.51.100.2/24 vrrp-group 10 authentication-type md5

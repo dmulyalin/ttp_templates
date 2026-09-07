@@ -1,0 +1,61 @@
+<template name="cisco_xr_vrrp" results="per_template">
+<doc>
+Template to parse and normalize Cisco IOS-XR VRRP formal configuration.
+
+This template requires output of:
+
+- `show running-config formal router vrrp`
+
+Configuration belonging to the same interface, address family, and VRRP group
+is combined by the TTP group hierarchy. The default VRRP priority of 100 is
+returned when priority is not explicitly configured. Text authentication
+credentials are not included in the normalized output.
+
+Returns a normalized list of dictionaries with these keys:
+
+- `interface` - interface name string
+- `group` - VRRP group number integer
+- `virtual_address` - virtual IPv4 or IPv6 address string
+- `priority` - VRRP priority integer
+- `authentication_type` - authentication type string or `null`
+
+Example normalized output (YAML):
+
+```yaml
+- interface: BVI123
+  group: 1
+  virtual_address: 123.123.123.97
+  priority: 123
+  authentication_type: text
+```
+
+</doc>
+
+<input>
+commands = [
+    "show running-config formal router vrrp"
+]
+platform = [
+    "cisco_xr",
+    "iosxr",
+    "cisco_iosxr",
+]
+</input>
+
+<macro>
+def transform_vrrp_to_records(data):
+    from ttp_templates.utils.cisco_xr_process_show_running_config_formal_router_vrrp import transform_vrrp_config
+
+    return transform_vrrp_config(data)
+</macro>
+
+<group name="vrrp**.{{ interface }}**.{{ address_family }}**.{{ group }}**" method="table">
+router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} address global {{ virtual_address }}
+router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} address {{ virtual_address }}
+router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
+router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} text-authentication {{ authentication_key | let("authentication_type", "text") }}
+</group>
+
+<output macro="transform_vrrp_to_records"/>
+
+</template>

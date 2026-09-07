@@ -163,6 +163,7 @@ interface {{ name | _start_ | let("l2transport", True) }} l2transport
  service-policy input {{ qos_policy_in }}
  service-policy output {{ qos_policy_out }}
  encapsulation dot1q {{ dot1q | to_int | let("mode", "tagged") }}
+ encapsulation untagged {{ mode | set("access") }}
  vrf {{ vrf }}
  bundle id {{ lag_id | to_int | let("lag_type", "lag") }} mode {{ lacp_mode }}
  lacp period {{ lacp_period }}

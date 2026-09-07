@@ -15,6 +15,7 @@ This template requires output of 'show running-config vrf'.
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - `name` - VRF name string
+- `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
 - `rt_import` - list of import route-target strings
@@ -26,6 +27,7 @@ Example normalized output (YAML):
 
 ```yaml
 - name: CUSTOMER_A
+  instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
   rt_import:
@@ -53,6 +55,7 @@ This template requires output of 'show running-config vrf'.
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - 'name' - VRF name string
+- 'instance_type' - always 'vrf'
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
 - 'rt_import' - list of import route-target strings
@@ -64,6 +67,7 @@ Example normalized output (YAML):
 
 '''yaml
 - name: CUSTOMER_A
+  instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
   rt_import:

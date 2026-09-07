@@ -96,18 +96,18 @@ def transform_bgp_asns_to_records(data):
 </macro>
 
 <group name="statements*">
-set routing-options autonomous-system {{ asn | _start_ | to_int | let("local_asn", True) }} {{ asn_options | ORPHRASE }}
-set routing-options autonomous-system {{ asn | _start_ | to_int | let("local_asn", True) }}
-set routing-instances {{ vrf }} routing-options autonomous-system {{ asn | _start_ | to_int | let("local_asn", True) }} {{ asn_options | ORPHRASE }}
-set routing-instances {{ vrf }} routing-options autonomous-system {{ asn | _start_ | to_int | let("local_asn", True) }}
-set protocols bgp group {{ description }} peer-as {{ asn | _start_ | to_int | let("local_asn", False) }}
-set protocols bgp group {{ description }} local-as {{ asn | _start_ | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
-set protocols bgp group {{ description }} local-as {{ asn | _start_ | to_int | let("local_asn", True) }}
-set protocols bgp group {{ description }} neighbor {{ neighbor }} peer-as {{ asn | _start_ | to_int | let("local_asn", False) }}
-set routing-instances {{ vrf }} protocols bgp group {{ description }} peer-as {{ asn | _start_ | to_int | let("local_asn", False) }}
-set routing-instances {{ vrf }} protocols bgp group {{ description }} local-as {{ asn | _start_ | to_int | let("local_asn", True) }} {{ local_as_options | ORPHRASE }}
-set routing-instances {{ vrf }} protocols bgp group {{ description }} local-as {{ asn | _start_ | to_int | let("local_asn", True) }}
-set routing-instances {{ vrf }} protocols bgp group {{ description }} neighbor {{ neighbor }} peer-as {{ asn | _start_ | to_int | let("local_asn", False) }}
+set routing-options autonomous-system {{ asn | _start_ | DIGIT | to_int | let("local_asn", True) }} {{ ignore(ORPHRASE) }}
+set routing-options autonomous-system {{ asn | _start_ | DIGIT | to_int | let("local_asn", True) }}
+set routing-instances {{ vrf }} routing-options autonomous-system {{ asn | _start_ | DIGIT | to_int | let("local_asn", True) }} {{ ignore(ORPHRASE) }}
+set routing-instances {{ vrf }} routing-options autonomous-system {{ asn | _start_ | DIGIT | to_int | let("local_asn", True) }}
+set protocols bgp group {{ description }} peer-as {{ asn | _start_ | DIGIT | to_int | let("local_asn", False) }}
+set protocols bgp group {{ description }} local-as {{ asn | _start_ | DIGIT | to_int | let("local_asn", True) }} {{ ignore(ORPHRASE) }}
+set protocols bgp group {{ description }} local-as {{ asn | _start_ | DIGIT | to_int | let("local_asn", True) }}
+set protocols bgp group {{ description }} neighbor {{ neighbor }} peer-as {{ asn | _start_ | DIGIT | to_int | let("local_asn", False) }}
+set routing-instances {{ vrf }} protocols bgp group {{ description }} peer-as {{ asn | _start_ | DIGIT | to_int | let("local_asn", False) }}
+set routing-instances {{ vrf }} protocols bgp group {{ description }} local-as {{ asn | _start_ | DIGIT | to_int | let("local_asn", True) }} {{ ignore(ORPHRASE) }}
+set routing-instances {{ vrf }} protocols bgp group {{ description }} local-as {{ asn | _start_ | DIGIT | to_int | let("local_asn", True) }}
+set routing-instances {{ vrf }} protocols bgp group {{ description }} neighbor {{ neighbor }} peer-as {{ asn | _start_ | DIGIT | to_int | let("local_asn", False) }}
 </group>
 
 <output macro="transform_bgp_asns_to_records"/>

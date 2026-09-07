@@ -181,6 +181,14 @@ class VrfRecord(BaseModel):
     route_policy_export: Union[None, StrictStr]
 
 
+class VrrpRecord(BaseModel):
+    interface: StrictStr
+    group: StrictInt
+    virtual_address: StrictStr
+    priority: StrictInt
+    authentication_type: Union[None, StrictStr]
+
+
 class ArpRecord(BaseModel):
     ip: StrictStr
     age: Union[StrictInt, StrictStr]

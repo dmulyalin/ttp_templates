@@ -2,6 +2,12 @@
 
 ## 0.6.2
 
+### FEATURES
+
+1. Added a `vrrp` getter for Cisco IOS-XR and Juniper Junos using
+   `show running-config formal router vrrp` and `show configuration | display
+   set | match vrrp-group` output, respectively.
+
 ### BUGS
 
 1. Fixed Juniper Junos `interfaces` getter parsing to preserve quotation marks

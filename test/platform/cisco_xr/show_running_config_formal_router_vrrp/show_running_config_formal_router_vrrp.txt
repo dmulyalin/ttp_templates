@@ -1,0 +1,14 @@
+router vrrp interface BVI123 address-family ipv4 vrrp 1
+router vrrp interface BVI123 address-family ipv4 vrrp 1 priority 123
+router vrrp interface BVI123 address-family ipv4 vrrp 1 address 123.123.123.97
+router vrrp interface BVI123 address-family ipv4 vrrp 1 text-authentication qwerty12345
+router vrrp interface BVI123 address-family ipv6 vrrp 1
+router vrrp interface BVI123 address-family ipv6 vrrp 1 priority 123
+router vrrp interface BVI123 address-family ipv6 vrrp 1 address global 2123:1231:1231:1231::123
+router vrrp interface Bundle-Ether10.100 address-family ipv4 vrrp 5 address 192.0.2.1
+router vrrp interface BVI456 address-family ipv4 vrrp 10 address 198.51.100.1
+router vrrp interface BVI456 address-family ipv4 vrrp 20 address 198.51.100.254
+router vrrp interface BVI456 address-family ipv4 vrrp 10 priority 90
+router vrrp interface BVI456 address-family ipv4 vrrp 10 text-authentication another-secret
+router vrrp interface BVI456 address-family ipv4 vrrp 20 priority 200
+router vrrp interface BVI456 address-family ipv6 vrrp 10 address global 2001:db8:456::1
