@@ -2560,6 +2560,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_running_config_section_vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    arista_eos_show_running_config_section_vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_interfaces/" class="md-nav__link">
         
   
@@ -3204,6 +3232,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_vrrpv3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_nxos_show_running_config_vrrpv3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         
   
@@ -3512,6 +3568,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_running_config_formal_router_vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_running_config_formal_router_vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_running_config_interface/" class="md-nav__link">
         
   
@@ -3724,6 +3808,34 @@
     
   
     juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
   
 
     
@@ -4497,6 +4609,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get.vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4694,7 +4834,7 @@ def transform_interfaces_to_records(data):
 &lt;/macro&gt;
 
 &lt;group name="interfaces**.{{ name }}**" method="table"&gt;
-set interfaces {{ name }} description "{{ description | re(".+") }}"
+set interfaces {{ name }} description {{ description | re(".+") }}
 set interfaces {{ name }} mtu {{ mtu | to_int }}
 set interfaces {{ name | let("enabled", False) }} disable
 set interfaces {{ name }} gigether-options 802.3ad {{ lag_id | let("lag_type", "lag") }}
@@ -4706,7 +4846,7 @@ set interfaces {{ name }} native-vlan-id {{ untagged_vlan | to_int }}
 &lt;/group&gt;
 
 &lt;group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
-set interfaces {{ name }} unit {{ unit }} description "{{ description | re(".+") | default("") }}"
+set interfaces {{ name }} unit {{ unit }} description {{ description | re(".+") | default("") }}
 set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q | to_int }}
 set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 &lt;/group&gt;
@@ -4714,6 +4854,7 @@ set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 &lt;group name="interfaces**.{{ name }}**.ipv4*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ vip }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group {{ vrrp_group }} virtual-address {{ vip }}
 &lt;/group&gt;
 
 &lt;group name="interfaces**.{{ name }}**.ipv6*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;

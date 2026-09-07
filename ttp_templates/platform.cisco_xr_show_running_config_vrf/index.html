@@ -2560,6 +2560,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_running_config_section_vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    arista_eos_show_running_config_section_vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_interfaces/" class="md-nav__link">
         
   
@@ -3204,6 +3232,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_vrrpv3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_nxos_show_running_config_vrrpv3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         
   
@@ -3512,6 +3568,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_running_config_formal_router_vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_running_config_formal_router_vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_running_config_interface/" class="md-nav__link">
         
   
@@ -3724,6 +3808,34 @@
     
   
     juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
   
 
     
@@ -4497,6 +4609,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get.vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4560,6 +4700,7 @@ list of VRF dictionaries.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>name</code> - VRF name string</li>
+<li><code>instance_type</code> - always <code>vrf</code></li>
 <li><code>description</code> - VRF description string or <code>null</code> when not configured</li>
 <li><code>rd</code> - route distinguisher string or <code>null</code> when not configured</li>
 <li><code>rt_import</code> - list of import route-target strings</li>
@@ -4569,6 +4710,7 @@ list of VRF dictionaries.</p>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CUSTOMER_A</span>
+<span class="w">  </span><span class="nt">instance_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrf</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Customer A VRF</span>
 <span class="w">  </span><span class="nt">rd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65000:100</span>
 <span class="w">  </span><span class="nt">rt_import</span><span class="p">:</span>
@@ -4590,6 +4732,7 @@ This template requires output of 'show running-config vrf'.
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - 'name' - VRF name string
+- 'instance_type' - always 'vrf'
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
 - 'rt_import' - list of import route-target strings
@@ -4601,6 +4744,7 @@ Example normalized output (YAML):
 
 '''yaml
 - name: CUSTOMER_A
+  instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
   rt_import:

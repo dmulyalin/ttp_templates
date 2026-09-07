@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.cisco_xr_show_running_config_interface/">
       
       
-        <link rel="prev" href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/">
+        <link rel="prev" href="../platform.cisco_xr_show_running_config_formal_router_vrrp/">
       
       
         <link rel="next" href="../platform.cisco_xr_show_running_config_vrf/">
@@ -2560,6 +2560,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_running_config_section_vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    arista_eos_show_running_config_section_vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_interfaces/" class="md-nav__link">
         
   
@@ -3204,6 +3232,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_vrrpv3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_nxos_show_running_config_vrrpv3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         
   
@@ -3509,6 +3565,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_running_config_formal_router_vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_running_config_formal_router_vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -3724,6 +3808,34 @@
     
   
     juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
   
 
     
@@ -4497,6 +4609,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get.vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4577,8 +4717,8 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>speed</code>: integer speed in kbit/s or <code>null</code></li>
 <li><code>duplex</code>: string duplex setting or <code>null</code></li>
 <li><code>description</code>: string (empty string when not set)</li>
-<li><code>mode</code>: <code>tagged</code> when <code>encapsulation dot1q</code> is present; <code>access</code> for BVI interfaces; <code>null</code> otherwise</li>
-<li><code>untagged_vlan</code>: integer VLAN derived from BVI interface name (e.g. BVI100 → 100) or <code>null</code></li>
+<li><code>mode</code>: <code>tagged</code> when <code>encapsulation dot1q</code> is present; <code>access</code> for BVI interfaces or when <code>encapsulation untagged</code> is present; <code>null</code> otherwise</li>
+<li><code>untagged_vlan</code>: integer VLAN derived from a BVI name or an untagged subinterface suffix (e.g. BVI100 or Bundle-Ether1.100 → 100), or <code>null</code></li>
 <li><code>tagged_vlans</code>: list with the dot1q VLAN integer when <code>encapsulation dot1q</code> is present; empty list otherwise</li>
 <li><code>qinq_svlan</code>: always <code>null</code></li>
 <li><code>vrf</code>: string or <code>null</code></li>
@@ -4637,8 +4777,8 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'speed': integer speed in kbit/s or 'null'
 - 'duplex': string duplex setting or 'null'
 - 'description': string (empty string when not set)
-- 'mode': ''tagged'' when 'encapsulation dot1q' is present; ''access'' for BVI interfaces; 'null' otherwise
-- 'untagged_vlan': integer VLAN derived from BVI interface name (e.g. BVI100 → 100) or 'null'
+- 'mode': ''tagged'' when 'encapsulation dot1q' is present; ''access'' for BVI interfaces or when 'encapsulation untagged' is present; 'null' otherwise
+- 'untagged_vlan': integer VLAN derived from a BVI name or an untagged subinterface suffix (e.g. BVI100 or Bundle-Ether1.100 → 100), or 'null'
 - 'tagged_vlans': list with the dot1q VLAN integer when 'encapsulation dot1q' is present; empty list otherwise
 - 'qinq_svlan': always 'null'
 - 'vrf': string or 'null'
@@ -4700,6 +4840,7 @@ interface {{ name | _start_ | let("l2transport", True) }} l2transport
  service-policy input {{ qos_policy_in }}
  service-policy output {{ qos_policy_out }}
  encapsulation dot1q {{ dot1q | to_int | let("mode", "tagged") }}
+ encapsulation untagged {{ mode | set("access") }}
  vrf {{ vrf }}
  bundle id {{ lag_id | to_int | let("lag_type", "lag") }} mode {{ lacp_mode }}
  lacp period {{ lacp_period }}

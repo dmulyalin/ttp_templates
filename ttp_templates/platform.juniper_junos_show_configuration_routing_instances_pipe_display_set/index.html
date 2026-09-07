@@ -2560,6 +2560,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.arista_eos_show_running_config_section_vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    arista_eos_show_running_config_section_vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_interfaces/" class="md-nav__link">
         
   
@@ -3204,6 +3232,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_nxos_show_running_config_vrrpv3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_nxos_show_running_config_vrrpv3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_arp_vrf_all/" class="md-nav__link">
         
   
@@ -3512,6 +3568,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_running_config_formal_router_vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_running_config_formal_router_vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_running_config_interface/" class="md-nav__link">
         
   
@@ -3716,6 +3800,34 @@
     
   
     juniper_junos_show_configuration_pipe_display_set_pipe_match_autonomous_system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
   
 
     
@@ -4497,6 +4609,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get.vrrp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vrrp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4561,6 +4701,7 @@ it to a flat list of VRF dictionaries.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>name</code> - VRF name string</li>
+<li><code>instance_type</code> - routing instance type string</li>
 <li><code>description</code> - VRF description string or <code>null</code> when not configured</li>
 <li><code>rd</code> - route distinguisher string or <code>null</code> when not configured</li>
 <li><code>rt_import</code> - list of import route-target strings</li>
@@ -4581,6 +4722,7 @@ This template requires output of
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - 'name' - VRF name string
+- 'instance_type' - routing instance type string
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
 - 'rt_import' - list of import route-target strings
