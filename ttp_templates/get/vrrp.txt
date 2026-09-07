@@ -4,7 +4,9 @@ Getter template to parse VRRP configuration from network devices.
 
 Supported platforms:
 
+- Arista EOS
 - Cisco IOS-XR
+- Cisco NX-OS
 - Juniper Junos
 
 Returns a normalized list of dictionaries, each dictionary has these keys:
@@ -27,7 +29,11 @@ Example normalized output (YAML):
 
 </doc>
 
+<extend template="ttp://platform/arista_eos_show_running_config_section_vrrp.txt"/>
+
 <extend template="ttp://platform/cisco_xr_show_running_config_formal_router_vrrp.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_running_config_vrrpv3.txt"/>
 
 <extend template="ttp://platform/juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group.txt"/>
 

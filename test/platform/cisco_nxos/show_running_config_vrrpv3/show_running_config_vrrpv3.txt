@@ -1,0 +1,40 @@
+interface Vlan20
+  ip address 20.1.1.2/24
+  ipv6 address 2011::2/64
+  vrrpv3 10 address-family ipv4
+    timers advertise 1000
+    priority 150
+    address 20.1.1.1 primary
+    address 20.1.1.5 secondary
+    no shutdown
+  vrrpv3 10 address-family ipv6
+    priority 125
+    address 2011::1 primary
+    address 2011::5 secondary
+    no shutdown
+interface Vlan30
+  ip address 192.0.2.2/24
+  vrrpv3 30 address-family ipv4
+    address 192.0.2.1 primary
+    no shutdown
+interface Ethernet1/1.100
+  encapsulation dot1q 100
+  ip address 198.51.100.2/24
+  vrrpv3 5 address-family ipv4
+    priority 200
+    address 198.51.100.1
+    no shutdown
+interface Vlan40
+  ipv6 address 2001:db8:40::2/64
+  vrrpv3 40 address-family ipv6
+    address 2001:db8:40::1
+    no shutdown
+interface Vlan50
+  ip address 203.0.113.2/24
+  vrrpv3 50 address-family ipv4
+    priority 90
+    address 203.0.113.1 primary
+    no shutdown
+  vrrpv3 51 address-family ipv4
+    address 203.0.113.254 primary
+    no shutdown

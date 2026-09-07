@@ -84,6 +84,7 @@ nav:
     - arista_eos_show_running_config_section_router_bgp: ttp_templates/platform.arista_eos_show_running_config_section_router_bgp.md
     - arista_eos_show_running_config_section_vlan: ttp_templates/platform.arista_eos_show_running_config_section_vlan.md
     - arista_eos_show_running_config_section_vrf: ttp_templates/platform.arista_eos_show_running_config_section_vrf.md
+    - arista_eos_show_running_config_section_vrrp: ttp_templates/platform.arista_eos_show_running_config_section_vrrp.md
     - cisco_ios_show_interfaces: ttp_templates/platform.cisco_ios_show_interfaces.md
     - cisco_ios_show_inventory: ttp_templates/platform.cisco_ios_show_inventory.md
     - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md
@@ -107,6 +108,7 @@ nav:
     - cisco_nxos_show_running_config_pipe_section_vrf_context: ttp_templates/platform.cisco_nxos_show_running_config_pipe_section_vrf_context.md
     - cisco_nxos_show_running_config_rpm: ttp_templates/platform.cisco_nxos_show_running_config_rpm.md
     - cisco_nxos_show_running_config_vlan: ttp_templates/platform.cisco_nxos_show_running_config_vlan.md
+    - cisco_nxos_show_running_config_vrrpv3: ttp_templates/platform.cisco_nxos_show_running_config_vrrpv3.md
     - cisco_xr_show_arp_vrf_all: ttp_templates/platform.cisco_xr_show_arp_vrf_all.md
     - cisco_xr_show_bgp_neighbors: ttp_templates/platform.cisco_xr_show_bgp_neighbors.md
     - cisco_xr_show_interfaces: ttp_templates/platform.cisco_xr_show_interfaces.md

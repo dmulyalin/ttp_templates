@@ -74,6 +74,11 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         parent = name.split(".", 1)[0] if "." in name else None
         if parent:
             interface_type = "virtual"
+            if mode == "access":
+                try:
+                    untagged = int(name.rsplit(".", 1)[1])
+                except ValueError:
+                    pass
 
         lag_id = iface.get("lag_id")
         lag = None

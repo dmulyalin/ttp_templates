@@ -270,3 +270,23 @@
   type: virtual
   untagged_vlan: null
   vrf: null
+- description: Untagged service
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: GigabitEthernet0/0/0/10.123
+  parent: GigabitEthernet0/0/0/10
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: 123
+  vrf: null

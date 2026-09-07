@@ -1,0 +1,24 @@
+interface Vlan50
+   ip address 10.10.4.1/24
+   vrrp 10 priority 200
+   vrrp 10 ip 10.10.4.10
+   vrrp 10 peer authentication text sample-secret
+   vrrp 20 ip 10.10.4.20
+interface Vlan100
+   ip address 10.1.1.2/24
+   vrrp 40 ipv4 10.1.1.5
+   vrrp 40 priority-level 250
+   vrrp 40 peer authentication ietf-md5 key-string 0 md5-secret
+   vrrp 41 ipv6 2001:db8:100::1
+interface Ethernet3
+   no switchport
+   ip address 192.0.2.2/24
+   ipv6 address 2001:db8:3::2/64
+   vrrp 1 ipv4 version 3
+   vrrp 1 ipv6 2001:db8:3::1
+   vrrp 1 priority-level 175
+interface Port-Channel20.200
+   encapsulation dot1q vlan 200
+   ip address 198.51.100.2/24
+   vrrp 200 ipv4 198.51.100.1
+   vrrp 200 peer authentication ietf-md5 key-string encrypted-secret

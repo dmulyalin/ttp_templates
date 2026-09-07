@@ -32,8 +32,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `speed`: integer speed in kbit/s or `null`
 - `duplex`: string duplex setting or `null`
 - `description`: string (empty string when not set)
-- `mode`: ``tagged`` when `encapsulation dot1q` is present; ``access`` for BVI interfaces; `null` otherwise
-- `untagged_vlan`: integer VLAN derived from BVI interface name (e.g. BVI100 → 100) or `null`
+- `mode`: ``tagged`` when `encapsulation dot1q` is present; ``access`` for BVI interfaces or when `encapsulation untagged` is present; `null` otherwise
+- `untagged_vlan`: integer VLAN derived from a BVI name or an untagged subinterface suffix (e.g. BVI100 or Bundle-Ether1.100 → 100), or `null`
 - `tagged_vlans`: list with the dot1q VLAN integer when `encapsulation dot1q` is present; empty list otherwise
 - `qinq_svlan`: always `null`
 - `vrf`: string or `null`
@@ -100,8 +100,8 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'speed': integer speed in kbit/s or 'null'
 - 'duplex': string duplex setting or 'null'
 - 'description': string (empty string when not set)
-- 'mode': ''tagged'' when 'encapsulation dot1q' is present; ''access'' for BVI interfaces; 'null' otherwise
-- 'untagged_vlan': integer VLAN derived from BVI interface name (e.g. BVI100 → 100) or 'null'
+- 'mode': ''tagged'' when 'encapsulation dot1q' is present; ''access'' for BVI interfaces or when 'encapsulation untagged' is present; 'null' otherwise
+- 'untagged_vlan': integer VLAN derived from a BVI name or an untagged subinterface suffix (e.g. BVI100 or Bundle-Ether1.100 → 100), or 'null'
 - 'tagged_vlans': list with the dot1q VLAN integer when 'encapsulation dot1q' is present; empty list otherwise
 - 'qinq_svlan': always 'null'
 - 'vrf': string or 'null'
@@ -188,5 +188,6 @@ interface {{ name | _start_ | let("l2transport", True) }} l2transport
 <output macro="transform_interfaces_to_records"/>
 
 </template>
+
 ```
 </details>

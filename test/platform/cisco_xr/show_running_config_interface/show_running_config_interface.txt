@@ -66,3 +66,7 @@ interface BVI1
 interface GigabitEthernet0/0/0/9.400
  description Parent type validation
 !
+interface GigabitEthernet0/0/0/10.123 l2transport
+ description Untagged service
+ encapsulation untagged
+!

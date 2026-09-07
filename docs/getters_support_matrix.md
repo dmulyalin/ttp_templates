@@ -11,7 +11,7 @@
 | lldp_neighbors | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | vlans | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
 | vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| vrrp | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| vrrp | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | mac_addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | bgp_asn | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
@@ -116,7 +116,9 @@ Collected commands by platform:
 
 Collected commands by platform:
 
+- Arista EOS: `show running-config section vrrp`
 - Cisco IOS-XR: `show running-config formal router vrrp`
+- Cisco NX-OS: `show running-config vrrpv3`
 - Juniper Junos: `show configuration | display set | match vrrp-group`
 
 ### netbox
