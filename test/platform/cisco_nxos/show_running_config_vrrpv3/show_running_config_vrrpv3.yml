@@ -1,35 +1,42 @@
 - interface: Vlan20
   group: 10
+  protocol: vrrpv3
   virtual_address: 20.1.1.1
   priority: 150
   authentication_type: null
 - interface: Vlan20
   group: 10
+  protocol: vrrpv3
   virtual_address: 2011::1
   priority: 125
   authentication_type: null
 - interface: Vlan30
   group: 30
+  protocol: vrrpv3
   virtual_address: 192.0.2.1
   priority: 100
   authentication_type: null
 - interface: Ethernet1/1.100
   group: 5
+  protocol: vrrpv3
   virtual_address: 198.51.100.1
   priority: 200
   authentication_type: null
 - interface: Vlan40
   group: 40
+  protocol: vrrpv3
   virtual_address: 2001:db8:40::1
   priority: 100
   authentication_type: null
 - interface: Vlan50
   group: 50
+  protocol: vrrpv3
   virtual_address: 203.0.113.1
   priority: 90
   authentication_type: null
 - interface: Vlan50
   group: 51
+  protocol: vrrpv3
   virtual_address: 203.0.113.254
   priority: 100
   authentication_type: null

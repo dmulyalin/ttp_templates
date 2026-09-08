@@ -26,6 +26,12 @@ def transform_vrrp_config(payload: Any) -> List[Dict[str, Any]]:
                     record = {
                         "interface": interface,
                         "group": int(group),
+                        "protocol": (
+                            "vrrpv3"
+                            if values.get("version") == 3
+                            or values.get("address_family") == "ipv6"
+                            else "vrrpv2"
+                        ),
                         "virtual_address": values["virtual_address"],
                         "priority": values.get("priority", 100),
                         "authentication_type": values.get(

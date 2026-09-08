@@ -1,0 +1,5 @@
+set protocols vrrp version-3
+set interfaces ae10 unit 10 family inet address 192.0.2.2/24 vrrp-group 10 virtual-address 192.0.2.1
+set interfaces ae10 unit 10 family inet address 192.0.2.2/24 vrrp-group 10 priority 150
+set interfaces irb unit 200 family inet6 address 2001:db8:200::2/64 vrrp-inet6-group 20 virtual-inet6-address 2001:db8:200::1
+set interfaces irb unit 200 family inet6 address 2001:db8:200::2/64 vrrp-inet6-group 20 priority 175

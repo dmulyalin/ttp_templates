@@ -1,0 +1,12 @@
+- interface: ae10.10
+  group: 10
+  protocol: vrrpv3
+  virtual_address: 192.0.2.1
+  priority: 150
+  authentication_type: null
+- interface: irb.200
+  group: 20
+  protocol: vrrpv3
+  virtual_address: 2001:db8:200::1
+  priority: 175
+  authentication_type: null

@@ -19,11 +19,16 @@ def transform_vrrp_config(payload: Any) -> List[Dict[str, Any]]:
             continue
 
         for interface, address_families in item.get("vrrp", {}).items():
-            for groups in address_families.values():
+            for address_family, groups in address_families.items():
                 for group, values in groups.items():
                     record = {
                         "interface": interface,
                         "group": int(group),
+                        "protocol": (
+                            "vrrpv3"
+                            if address_family == "ipv6"
+                            else f"vrrpv{values.get('version', 2)}"
+                        ),
                         "virtual_address": values.get("virtual_address", ""),
                         "priority": values.get("priority", 100),
                         "authentication_type": values.get(

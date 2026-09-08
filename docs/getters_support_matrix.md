@@ -118,8 +118,8 @@ Collected commands by platform:
 
 - Arista EOS: `show running-config section vrrp`
 - Cisco IOS-XR: `show running-config formal router vrrp`
-- Cisco NX-OS: `show running-config vrrpv3`
-- Juniper Junos: `show configuration | display set | match vrrp-group`
+- Cisco NX-OS: `show running-config vrrp` or `show running-config vrrpv3`
+- Juniper Junos: `show configuration | display set | match vrrp`
 
 ### netbox
 

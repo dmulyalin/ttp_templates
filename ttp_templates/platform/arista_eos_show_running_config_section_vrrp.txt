@@ -9,12 +9,14 @@ This template requires output of:
 Both legacy and current EOS syntax are supported, including `ip` and `ipv4`
 virtual addresses, IPv6 virtual addresses, `priority` and `priority-level`,
 and text or IETF MD5 peer authentication. Authentication credentials are not
-included in normalized output. The default VRRP priority is 100.
+included in normalized output. IPv4 defaults to VRRPv2 unless version 3 is
+configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
 - `group` - VRRP group number integer
+- `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
 - `priority` - VRRP priority integer
 - `authentication_type` - authentication type string or `null`
@@ -24,6 +26,7 @@ Example normalized output (YAML):
 ```yaml
 - interface: Vlan50
   group: 10
+  protocol: vrrpv2
   virtual_address: 10.10.4.10
   priority: 200
   authentication_type: text
@@ -52,8 +55,9 @@ def transform_vrrp_to_records(data):
 interface {{ interface | _start_ }}
 
    <group name="ipv4**.{{ group }}**" method="table">
-   vrrp {{ group | DIGIT | to_int }} ip {{ virtual_address }}
-   vrrp {{ group | DIGIT | to_int }} ipv4 {{ virtual_address }}
+   vrrp {{ group | DIGIT | to_int }} ip {{ virtual_address | let("address_family", "ipv4") }}
+   vrrp {{ group | DIGIT | to_int }} {{ address_family | re("ipv4") }} {{ virtual_address }}
+   vrrp {{ group | DIGIT | to_int }} {{ address_family | re("ipv4") }} version {{ version | DIGIT | to_int }}
    vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
    vrrp {{ group | DIGIT | to_int }} priority-level {{ priority | DIGIT | to_int }}
    vrrp {{ group | DIGIT | to_int }} peer authentication text {{ authentication_key | let("authentication_type", "text") }}
@@ -62,7 +66,7 @@ interface {{ interface | _start_ }}
    </group>
 
    <group name="ipv6**.{{ group }}**" method="table">
-   vrrp {{ group | DIGIT | to_int }} ipv6 {{ virtual_address }}
+   vrrp {{ group | DIGIT | to_int }} {{ address_family | re("ipv6") }} {{ virtual_address }}
    vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
    vrrp {{ group | DIGIT | to_int }} priority-level {{ priority | DIGIT | to_int }}
    </group>

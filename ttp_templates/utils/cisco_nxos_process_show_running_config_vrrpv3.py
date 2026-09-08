@@ -26,6 +26,7 @@ def transform_vrrp_config(payload: Any) -> List[Dict[str, Any]]:
                     record = {
                         "interface": interface,
                         "group": int(group),
+                        "protocol": values["protocol"],
                         "virtual_address": values["virtual_address"],
                         "priority": values.get("priority", 100),
                         "authentication_type": None,

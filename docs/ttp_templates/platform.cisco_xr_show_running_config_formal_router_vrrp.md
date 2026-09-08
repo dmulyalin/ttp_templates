@@ -16,12 +16,14 @@ This template requires output of:
 Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
 returned when priority is not explicitly configured. Text authentication
-credentials are not included in the normalized output.
+credentials are not included in the normalized output. IPv4 defaults to
+VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
 - `group` - VRRP group number integer
+- `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
 - `priority` - VRRP priority integer
 - `authentication_type` - authentication type string or `null`
@@ -31,6 +33,7 @@ Example normalized output (YAML):
 ```yaml
 - interface: BVI123
   group: 1
+  protocol: vrrpv2
   virtual_address: 123.123.123.97
   priority: 123
   authentication_type: text
@@ -54,12 +57,14 @@ This template requires output of:
 Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
 returned when priority is not explicitly configured. Text authentication
-credentials are not included in the normalized output.
+credentials are not included in the normalized output. IPv4 defaults to
+VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.
 
 Returns a normalized list of dictionaries with these keys:
 
 - 'interface' - interface name string
 - 'group' - VRRP group number integer
+- 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
 - 'priority' - VRRP priority integer
 - 'authentication_type' - authentication type string or 'null'
@@ -69,6 +74,7 @@ Example normalized output (YAML):
 '''yaml
 - interface: BVI123
   group: 1
+  protocol: vrrpv2
   virtual_address: 123.123.123.97
   priority: 123
   authentication_type: text
@@ -97,6 +103,7 @@ def transform_vrrp_to_records(data):
 <group name="vrrp**.{{ interface }}**.{{ address_family }}**.{{ group }}**" method="table">
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} address global {{ virtual_address }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} address {{ virtual_address }}
+router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} version {{ version | DIGIT | to_int }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} text-authentication {{ authentication_key | let("authentication_type", "text") }}
 </group>

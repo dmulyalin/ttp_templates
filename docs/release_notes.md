@@ -1,21 +1,46 @@
 # Release Notes
 
-## 0.6.2
+## 0.6.4
 
-### FEATURES
+### ENHANCEMENTS
+
+1. Enhanced the `vrrp` getter to extract the VRRP protocol version and return
+   it as `protocol`, normalized to either `vrrpv2` or `vrrpv3`.
+
+### BUGS
+
+1. Fixed the Cisco NX-OS `vrrp` getter to support output collected using
+   `show running-config vrrp`, while retaining support for
+   `show running-config vrrpv3`.
+
+---
+
+## 0.6.3
+
+### TEMPLATES
 
 1. Added a `vrrp` getter for Arista EOS, Cisco IOS-XR, Cisco NX-OS, and Juniper
    Junos using `show running-config section vrrp`, `show running-config formal
    router vrrp`, `show running-config vrrpv3`, and `show configuration |
-   display set | match vrrp-group` output, respectively.
+   display set | match vrrp` output, respectively. Normalized records include
+   the extracted `protocol` as either `vrrpv2` or `vrrpv3`.
+
+### BUGS
+
+1. Fixed Cisco IOS-XR `interfaces` getter parsing for `encapsulation untagged`
+   subinterfaces to set access mode and derive the untagged VLAN ID from the
+   interface suffix.
+
+---
+
+## 0.6.2
+
+
 
 ### BUGS
 
 1. Fixed Juniper Junos `interfaces` getter parsing to preserve quotation marks
    in quoted `description` values from `display set` output.
-2. Fixed Cisco IOS-XR `interfaces` getter parsing for `encapsulation untagged`
-   subinterfaces to set access mode and derive the untagged VLAN ID from the
-   interface suffix.
 
 ---
 

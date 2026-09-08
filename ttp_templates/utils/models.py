@@ -184,6 +184,7 @@ class VrfRecord(BaseModel):
 class VrrpRecord(BaseModel):
     interface: StrictStr
     group: StrictInt
+    protocol: StrictStr
     virtual_address: StrictStr
     priority: StrictInt
     authentication_type: Union[None, StrictStr]

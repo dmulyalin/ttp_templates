@@ -16,12 +16,14 @@ This template requires output of:
 Both legacy and current EOS syntax are supported, including `ip` and `ipv4`
 virtual addresses, IPv6 virtual addresses, `priority` and `priority-level`,
 and text or IETF MD5 peer authentication. Authentication credentials are not
-included in normalized output. The default VRRP priority is 100.
+included in normalized output. IPv4 defaults to VRRPv2 unless version 3 is
+configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
 - `group` - VRRP group number integer
+- `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
 - `priority` - VRRP priority integer
 - `authentication_type` - authentication type string or `null`
@@ -31,6 +33,7 @@ Example normalized output (YAML):
 ```yaml
 - interface: Vlan50
   group: 10
+  protocol: vrrpv2
   virtual_address: 10.10.4.10
   priority: 200
   authentication_type: text
@@ -48,12 +51,14 @@ This template requires output of:
 Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
 returned when priority is not explicitly configured. Text authentication
-credentials are not included in the normalized output.
+credentials are not included in the normalized output. IPv4 defaults to
+VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
 - `group` - VRRP group number integer
+- `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
 - `priority` - VRRP priority integer
 - `authentication_type` - authentication type string or `null`
@@ -63,6 +68,7 @@ Example normalized output (YAML):
 ```yaml
 - interface: BVI123
   group: 1
+  protocol: vrrpv2
   virtual_address: 123.123.123.97
   priority: 123
   authentication_type: text
@@ -73,9 +79,10 @@ Example normalized output (YAML):
 
 Template to parse and normalize Cisco NX-OS VRRPv3 configuration.
 
-This template requires output of:
+This template accepts output collected with any of these commands:
 
 - `show running-config vrrp`
+- `show running-config vrrpv3`
 
 IPv4 and IPv6 address families, multiple interfaces and groups, primary
 addresses with or without the `primary` keyword, and explicit or default
@@ -87,6 +94,7 @@ Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
 - `group` - VRRP group number integer
+- `protocol` - always `vrrpv3`
 - `virtual_address` - primary virtual IPv4 or IPv6 address string
 - `priority` - VRRP priority integer
 - `authentication_type` - always `null`
@@ -96,6 +104,7 @@ Example normalized output (YAML):
 ```yaml
 - interface: Vlan20
   group: 10
+  protocol: vrrpv3
   virtual_address: 20.1.1.1
   priority: 150
   authentication_type: null
@@ -108,17 +117,19 @@ Template to parse and normalize Juniper Junos VRRP configuration.
 
 This template requires output of:
 
-- `show configuration | display set | match vrrp-group`
+- `show configuration | display set | match vrrp`
 
 Statements belonging to the same interface address and VRRP group are merged.
 The default Junos VRRP priority of 100 is returned when priority is not
-explicitly configured.
+explicitly configured. IPv4 defaults to VRRPv2 unless the global
+`set protocols vrrp version-3` statement is present; IPv6 uses VRRPv3.
 
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - logical interface name string
 - `group` - VRRP group number integer
-- `virtual_address` - virtual IPv4 address string
+- `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
+- `virtual_address` - virtual IPv4 or IPv6 address string
 - `priority` - VRRP priority integer
 - `authentication_type` - authentication type string or `null`
 
@@ -127,6 +138,7 @@ Example normalized output (YAML):
 ```yaml
 - interface: ae123.123
   group: 1
+  protocol: vrrpv2
   virtual_address: 123.123.102.233
   priority: 123
   authentication_type: md5
@@ -154,6 +166,7 @@ Returns a normalized list of dictionaries, each dictionary has these keys:
 
 - 'interface' - logical interface name string
 - 'group' - VRRP group number integer
+- 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
 - 'priority' - VRRP priority integer
 - 'authentication_type' - authentication type string or 'null'
@@ -163,6 +176,7 @@ Example normalized output (YAML):
 '''yaml
 - interface: ae123.123
   group: 1
+  protocol: vrrpv2
   virtual_address: 123.123.102.233
   priority: 123
   authentication_type: md5
@@ -176,7 +190,7 @@ Example normalized output (YAML):
 
 <extend template="ttp://platform/cisco_nxos_show_running_config_vrrpv3.txt"/>
 
-<extend template="ttp://platform/juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group.txt"/>
+<extend template="ttp://platform/juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp.txt"/>
 
 </template>
 
