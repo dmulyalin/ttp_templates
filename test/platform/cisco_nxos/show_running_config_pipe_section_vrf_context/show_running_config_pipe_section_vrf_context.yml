@@ -1,5 +1,7 @@
 - description: Customer A VRF
   instance_type: vrf
+  interfaces:
+  - Vlan100
   name: CUSTOMER_A
   rd: 65000:100
   route_policy_export: EXPORT-CUSTOMER-A
@@ -12,6 +14,8 @@
   - 65000:101
 - description: null
   instance_type: vrf
+  interfaces:
+  - Ethernet1/1.200
   name: CUSTOMER_B
   rd: 65000:200
   route_policy_export: null
@@ -22,6 +26,8 @@
   - 65000:202
 - description: null
   instance_type: vrf
+  interfaces:
+  - mgmt0
   name: management
   rd: null
   route_policy_export: null

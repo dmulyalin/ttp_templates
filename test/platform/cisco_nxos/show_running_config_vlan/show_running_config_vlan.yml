@@ -1,33 +1,78 @@
-- description: null
+- vid: 10
   name: USERS
-  vid: 10
-- description: Application servers
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 20
   name: Servers and DB
-  vid: 20
-- description: null
+  description: Application servers
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 30
   name: VLAN30
-  vid: 30
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 40
   name: VLAN40
-  vid: 40
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 41
   name: VLAN41
-  vid: 41
-- description: Storage network
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 100
   name: STORAGE
-  vid: 100
-- description: null
+  description: Storage network
+  tagged_interfaces:
+  - port-channel10
+  untagged_interfaces:
+  - port-channel10
+  - Ethernet1/1
+  - Vlan100
+- vid: 101
   name: VLAN101
-  vid: 101
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 102
   name: VLAN102
-  vid: 102
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 250
   name: EDGE_TRANSIT
-  vid: 250
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 300
   name: VLAN300
-  vid: 300
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 4094
   name: MLAG_PEER
-  vid: 4094
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 200
+  name: VLAN200
+  description: null
+  tagged_interfaces:
+  - port-channel10
+  - Ethernet1/3.200
+  untagged_interfaces: []
+- vid: 201
+  name: VLAN201
+  description: null
+  tagged_interfaces:
+  - port-channel10
+  untagged_interfaces: []
+- vid: 202
+  name: VLAN202
+  description: null
+  tagged_interfaces:
+  - port-channel10
+  untagged_interfaces: []

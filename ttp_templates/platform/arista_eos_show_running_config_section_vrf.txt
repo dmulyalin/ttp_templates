@@ -11,6 +11,7 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
 - `rt_import` - list of import route-target strings
 - `rt_export` - list of export route-target strings
 - `route_policy_import` - import route policy string or `null` when not configured
@@ -57,6 +58,12 @@ router bgp {{ asn | _start_ }}
       export map {{ route_policy_export }}
    !{{ _end_ }}
    </group>
+!{{ _end_ }}
+</group>
+
+<group name="interfaces*">
+interface {{ name | _start_ }}
+   vrf {{ vrf }}
 !{{ _end_ }}
 </group>
 

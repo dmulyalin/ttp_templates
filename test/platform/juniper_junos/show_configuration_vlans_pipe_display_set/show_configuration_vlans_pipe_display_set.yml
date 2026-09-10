@@ -1,12 +1,36 @@
-- description: User access VLAN
+- vid: 10
   name: USERS
-  vid: 10
-- description: Application servers
+  description: User access VLAN
+  tagged_interfaces:
+  - xe-0/0/2.0
+  untagged_interfaces: []
+- vid: 20
   name: SERVERS
-  vid: 20
-- description: null
+  description: Application servers
+  tagged_interfaces:
+  - xe-0/0/2.0
+  untagged_interfaces: []
+- vid: 30
   name: GUEST
-  vid: 30
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - irb.30
+  - xe-0/0/3.0
+- vid: 4094
   name: MLAG_PEER
-  vid: 4094
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 100
+  name: VLAN100
+  description: null
+  tagged_interfaces:
+  - ae0.100
+  untagged_interfaces: []
+- vid: 999
+  name: VLAN999
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - irb.999

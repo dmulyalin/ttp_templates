@@ -9,6 +9,7 @@ Supported platforms:
 
 - Arista EOS
 - Cisco IOS
+- Cisco IOS-XR
 - Cisco NX-OS
 - Juniper Junos
 
@@ -17,6 +18,8 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `vid` - VLAN ID as integer
 - `name` - VLAN name string
 - `description` - VLAN description string or `null` when not configured
+- `tagged_interfaces` - list of interface names carrying the VLAN tagged
+- `untagged_interfaces` - list of interface names carrying the VLAN untagged
 
 Example normalized output (YAML):
 
@@ -24,6 +27,8 @@ Example normalized output (YAML):
 - vid: 100
   name: USERS
   description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
 ```
 
 </doc>
@@ -31,6 +36,8 @@ Example normalized output (YAML):
 <extend template="ttp://platform/arista_eos_show_running_config_section_vlan.txt"/>
 
 <extend template="ttp://platform/cisco_ios_show_running_config_pipe_section_vlan.txt"/>
+
+<extend template="ttp://platform/cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi.txt"/>
 
 <extend template="ttp://platform/cisco_nxos_show_running_config_vlan.txt"/>
 

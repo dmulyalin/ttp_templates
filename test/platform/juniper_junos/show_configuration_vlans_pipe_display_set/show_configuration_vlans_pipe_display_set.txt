@@ -5,3 +5,11 @@ set vlans SERVERS description "Application servers"
 set vlans GUEST vlan-id 30
 set vlans GUEST l3-interface irb.30
 set vlans MLAG_PEER vlan-id 4094
+set interfaces xe-0/0/2 unit 0 family ethernet-switching interface-mode trunk
+set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members USERS
+set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members SERVERS
+set interfaces xe-0/0/3 unit 0 family ethernet-switching interface-mode access
+set interfaces xe-0/0/3 unit 0 family ethernet-switching vlan members GUEST
+set interfaces ae0 unit 100 vlan-id 100
+set interfaces irb unit 30 family inet address 192.0.2.1/24
+set interfaces irb unit 999 family inet address 198.51.100.1/24

@@ -14,3 +14,15 @@ vlan 2,100-102
 vlan 4094
    name MLAG_PEER
 !
+interface Ethernet5
+   switchport trunk allowed vlan 100-102
+   switchport trunk native vlan 10
+!
+interface Ethernet6
+   switchport access vlan 50
+!
+interface Ethernet1.301
+   encapsulation dot1q vlan 301
+!
+interface Vlan200
+!

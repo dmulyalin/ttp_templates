@@ -31,13 +31,14 @@
   lag_id: null
   lag_type: null
   mac_address: null
-  mode: null
+  mode: tagged
   mtu: null
   name: Ethernet1.101
   parent: Ethernet1
   qinq_svlan: null
   speed: null
-  tagged_vlans: []
+  tagged_vlans:
+  - 101
   type: virtual
   untagged_vlan: null
   vrf: CONTROL_PLANE
@@ -73,13 +74,14 @@
   lag_id: null
   lag_type: null
   mac_address: null
-  mode: null
+  mode: tagged
   mtu: null
   name: Ethernet2.101
   parent: Ethernet2
   qinq_svlan: null
   speed: null
-  tagged_vlans: []
+  tagged_vlans:
+  - 101
   type: virtual
   untagged_vlan: null
   vrf: CONTROL_PLANE

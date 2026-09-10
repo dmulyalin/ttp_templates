@@ -24,3 +24,5 @@ vrf CUSTOMER_B
   !
  !
 !
+interface TenGigE0/0/0/20 vrf CUSTOMER_A
+interface Bundle-Ether200.200 vrf CUSTOMER_B

@@ -138,6 +138,12 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
                     continue
             tagged_vlans = sorted(set(tagged_vlans))
 
+        dot1q = iface.get("dot1q")
+        if dot1q is not None and dot1q not in tagged_vlans:
+            tagged_vlans.append(dot1q)
+            tagged_vlans = sorted(set(tagged_vlans))
+            mode = mode or "tagged"
+
         vrf = iface.get("vrf") or None
 
         speed = iface.get("speed")

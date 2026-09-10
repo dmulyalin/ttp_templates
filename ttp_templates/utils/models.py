@@ -168,6 +168,8 @@ class VlanRecord(BaseModel):
     vid: StrictInt
     name: StrictStr
     description: Union[None, StrictStr]
+    tagged_interfaces: List[StrictStr]
+    untagged_interfaces: List[StrictStr]
 
 
 class VrfRecord(BaseModel):
@@ -175,6 +177,7 @@ class VrfRecord(BaseModel):
     instance_type: StrictStr
     description: Union[None, StrictStr]
     rd: Union[None, StrictStr]
+    interfaces: List[StrictStr]
     rt_import: List[StrictStr]
     rt_export: List[StrictStr]
     route_policy_import: Union[None, StrictStr]

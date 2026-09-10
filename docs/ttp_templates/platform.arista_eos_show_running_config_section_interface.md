@@ -163,6 +163,7 @@ interface {{ name | _start_ }}
    switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
    switchport mode trunk {{ mode | set("tagged") }}
    switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}
+   encapsulation dot1q vlan {{ dot1q | to_int | let("mode", "tagged") }}
    mac-address {{ mac_address | mac_eui }}
    duplex {{ duplex }}
 
@@ -183,5 +184,6 @@ interface {{ name | _start_ }}
 <output macro="transform_interfaces_to_records"/>
 
 </template>
+
 ```
 </details>

@@ -33,6 +33,10 @@ For example, the `vlans` getter returns:
 - vid: 100
   name: USERS
   description: null
+  tagged_interfaces:
+  - Ethernet1
+  untagged_interfaces:
+  - Ethernet2
 ```
 
 Add a Pydantic model in `ttp_templates/utils/models.py` for each normalized
@@ -43,6 +47,8 @@ class VlanRecord(BaseModel):
     vid: StrictInt
     name: StrictStr
     description: Union[None, StrictStr]
+    tagged_interfaces: List[StrictStr]
+    untagged_interfaces: List[StrictStr]
 ```
 
 Validate final records in the utility before returning them:

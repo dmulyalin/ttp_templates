@@ -1,24 +1,62 @@
-- description: null
+- vid: 10
   name: USERS
-  vid: 10
-- description: Application servers
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - Ethernet5
+- vid: 20
   name: Servers and DB
-  vid: 20
-- description: null
+  description: Application servers
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 30
   name: VLAN30
-  vid: 30
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 2
   name: VLAN2
-  vid: 2
-- description: null
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 100
   name: VLAN100
-  vid: 100
-- description: null
+  description: null
+  tagged_interfaces:
+  - Ethernet5
+  untagged_interfaces: []
+- vid: 101
   name: VLAN101
-  vid: 101
-- description: null
+  description: null
+  tagged_interfaces:
+  - Ethernet5
+  untagged_interfaces: []
+- vid: 102
   name: VLAN102
-  vid: 102
-- description: null
+  description: null
+  tagged_interfaces:
+  - Ethernet5
+  untagged_interfaces: []
+- vid: 4094
   name: MLAG_PEER
-  vid: 4094
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
+- vid: 50
+  name: VLAN50
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - Ethernet6
+- vid: 301
+  name: VLAN301
+  description: null
+  tagged_interfaces:
+  - Ethernet1.301
+  untagged_interfaces: []
+- vid: 200
+  name: VLAN200
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - Vlan200

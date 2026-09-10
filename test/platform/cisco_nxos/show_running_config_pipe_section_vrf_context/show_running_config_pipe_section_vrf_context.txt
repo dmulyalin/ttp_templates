@@ -13,3 +13,9 @@ vrf context CUSTOMER_B
   address-family ipv4 unicast
     route-target both 65000:202 evpn
 vrf context management
+interface Vlan100
+  vrf member CUSTOMER_A
+interface Ethernet1/1.200
+  vrf member CUSTOMER_B
+interface mgmt0
+  vrf member management

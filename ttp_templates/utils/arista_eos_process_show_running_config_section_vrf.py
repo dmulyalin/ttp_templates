@@ -69,8 +69,19 @@ def transform_vrfs_config(payload: list) -> List[Dict[str, Any]]:
         return []
 
     vrfs: Dict[str, Dict[str, Any]] = {}
+    vrf_interfaces: Dict[str, List[str]] = {}
 
     for item in _walk_items(payload):
+        if isinstance(item.get("interfaces"), list):
+            for interface in item["interfaces"]:
+                if not isinstance(interface, dict):
+                    continue
+                name = interface.get("name")
+                vrf = interface.get("vrf")
+                if name and vrf:
+                    interfaces = vrf_interfaces.setdefault(vrf, [])
+                    if name not in interfaces:
+                        interfaces.append(name)
         parsed_vrfs = item.get("vrfs")
         if not isinstance(parsed_vrfs, dict):
             continue
@@ -86,6 +97,7 @@ def transform_vrfs_config(payload: list) -> List[Dict[str, Any]]:
             "instance_type": "vrf",
             "description": vrf.get("description") or None,
             "rd": vrf.get("rd") or None,
+            "interfaces": vrf_interfaces.get(name, []),
             "rt_import": _as_list(vrf.get("rt_import")),
             "rt_export": _as_list(vrf.get("rt_export")),
             "route_policy_import": vrf.get("route_policy_import") or None,

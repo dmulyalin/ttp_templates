@@ -1,0 +1,8 @@
+interface Bundle-Ether1.100 encapsulation dot1q 100
+interface GigabitEthernet0/0/0/4.10 l2transport encapsulation dot1q 10
+interface Bundle-Ether2.301 encapsulation dot1q 301
+interface Bundle-Ether3.999 encapsulation dot1q 123
+interface Bundle-Ether3.999 encapsulation untagged
+interface GigabitEthernet0/0/0/5.998 l2transport encapsulation dot1q 124
+interface GigabitEthernet0/0/0/5.998 l2transport encapsulation untagged
+interface BVI200

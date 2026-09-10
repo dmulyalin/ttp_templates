@@ -1,5 +1,21 @@
 # Release Notes
 
+## 0.6.5
+
+### ENHANCEMENTS
+
+1. Enhanced the `vlans` getter to return tagged and untagged interface
+   membership, create VLAN records from interface encapsulation and SVI, BVI,
+   or IRB names, resolve Juniper Junos VLAN-name membership, and support Cisco
+   IOS-XR interface encapsulation and BVI output.
+2. Enhanced the `vrfs` getter to return the interfaces assigned to each VRF.
+
+### BUGS
+
+1. Fixed Arista EOS interface parsing for `encapsulation dot1q vlan`.
+
+---
+
 ## 0.6.4
 
 ### ENHANCEMENTS

@@ -1,5 +1,7 @@
 - description: Customer A VRF
   instance_type: vrf
+  interfaces:
+  - TenGigE0/0/0/20
   name: CUSTOMER_A
   rd: 65000:100
   route_policy_export: EXPORT-CUSTOMER-A
@@ -11,6 +13,8 @@
   - 65000:101
 - description: null
   instance_type: vrf
+  interfaces:
+  - Bundle-Ether200.200
   name: CUSTOMER_B
   rd: 65000:200
   route_policy_export: null

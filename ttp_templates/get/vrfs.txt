@@ -19,6 +19,7 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - VRF instance type string
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
 - `rt_import` - list of import route-target strings
 - `rt_export` - list of export route-target strings
 - `route_policy_import` - import route policy string or `null` when not configured
@@ -31,6 +32,8 @@ Example normalized output (YAML):
   instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
+  interfaces:
+  - Ethernet1.100
   rt_import:
   - 65000:100
   rt_export:

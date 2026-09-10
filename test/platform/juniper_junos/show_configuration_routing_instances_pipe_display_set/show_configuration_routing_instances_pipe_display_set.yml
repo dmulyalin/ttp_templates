@@ -1,5 +1,8 @@
 - description: Customer A VRF
   instance_type: vrf
+  interfaces:
+  - ae0.100
+  - irb.10
   name: CUSTOMER_A
   rd: 65000:100
   route_policy_export: EXPORT-CUSTOMER-A
@@ -10,6 +13,8 @@
   - 65000:100
 - description: null
   instance_type: vrf
+  interfaces:
+  - irb.20
   name: CUSTOMER_B
   rd: 65000:200
   route_policy_export: null
@@ -20,6 +25,7 @@
   - 65000:201
 - description: null
   instance_type: virtual-router
+  interfaces: []
   name: Mgmt-vrf
   rd: null
   route_policy_export: null

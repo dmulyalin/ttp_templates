@@ -1,0 +1,36 @@
+- vid: 100
+  name: VLAN100
+  description: null
+  tagged_interfaces:
+  - Bundle-Ether1.100
+  untagged_interfaces: []
+- vid: 10
+  name: VLAN10
+  description: null
+  tagged_interfaces:
+  - GigabitEthernet0/0/0/4.10
+  untagged_interfaces: []
+- vid: 301
+  name: VLAN301
+  description: null
+  tagged_interfaces:
+  - Bundle-Ether2.301
+  untagged_interfaces: []
+- vid: 123
+  name: VLAN123
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - Bundle-Ether3.999
+- vid: 124
+  name: VLAN124
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - GigabitEthernet0/0/0/5.998
+- vid: 200
+  name: VLAN200
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - BVI200

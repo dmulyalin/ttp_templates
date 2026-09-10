@@ -10,13 +10,16 @@ ttp://platform/cisco_ios_show_running_config_pipe_section_vlan.txt
 Template to parse Cisco IOS VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.
 
-This template requires output of 'show running-config | section vlan'.
+This template requires output of `show running-config | section vlan` and
+`show running-config | section interface`.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - `vid` - VLAN ID as integer
 - `name` - VLAN name string; defaults to `VLAN<vid>` when no name is configured
 - `description` - VLAN description string or `null` when not configured
+- `tagged_interfaces` - interface names carrying the VLAN tagged
+- `untagged_interfaces` - interface names carrying the VLAN untagged
 
 Example normalized output (YAML):
 
@@ -24,6 +27,8 @@ Example normalized output (YAML):
 - vid: 100
   name: USERS
   description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
 ```
 
 
@@ -38,13 +43,16 @@ Example normalized output (YAML):
 Template to parse Cisco IOS VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.
 
-This template requires output of 'show running-config | section vlan'.
+This template requires output of 'show running-config | section vlan' and
+'show running-config | section interface'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - 'vid' - VLAN ID as integer
 - 'name' - VLAN name string; defaults to 'VLAN&lt;vid&gt;' when no name is configured
 - 'description' - VLAN description string or 'null' when not configured
+- 'tagged_interfaces' - interface names carrying the VLAN tagged
+- 'untagged_interfaces' - interface names carrying the VLAN untagged
 
 Example normalized output (YAML):
 
@@ -52,13 +60,16 @@ Example normalized output (YAML):
 - vid: 100
   name: USERS
   description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
 '''
 
 </doc>
 
 <input>
 commands = [
-    "show running-config | section vlan"
+    "show running-config | section vlan",
+    "show running-config | section interface"
 ]
 platform = [
     "cisco_ios", # Netmiko and Scrapli
@@ -77,6 +88,17 @@ def transform_vlans_to_records(data):
 vlan {{ vid | re("[0-9,-]+") | _start_ }}
  name {{ name | re(".+") }}
  description {{ description | re(".+") }}
+!{{ _end_ }}
+</group>
+
+<group name="interfaces*">
+interface {{ name | _start_ }}
+ encapsulation dot1Q {{ tagged_vlans | to_int | joinmatches }} second-dot1q {{ qinq_svlan | to_int }}
+ encapsulation dot1Q {{ tagged_vlans | to_int | joinmatches }}
+ switchport access vlan {{ untagged_vlan | to_int }}
+ switchport trunk native vlan {{ untagged_vlan | to_int }}
+ switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
+ switchport trunk allowed vlan add {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
 !{{ _end_ }}
 </group>
 

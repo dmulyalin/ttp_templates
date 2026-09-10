@@ -1,5 +1,8 @@
 - description: Customer A VRF
   instance_type: vrf
+  interfaces:
+  - GigabitEthernet0/0.100
+  - Loopback100
   rd: 65000:100
   route_policy_export: EXPORT-CUSTOMER-A
   route_policy_import: IMPORT-CUSTOMER-A
@@ -10,6 +13,7 @@
   name: CUSTOMER_A
 - description: null
   instance_type: vrf
+  interfaces: []
   name: CUSTOMER_C
   rd: null
   route_policy_export: null
@@ -18,6 +22,7 @@
   rt_import: []
 - description: Management VRF
   instance_type: vrf
+  interfaces: []
   name: Mgmt-vrf
   rd: null
   route_policy_export: null
@@ -26,6 +31,8 @@
   rt_import: []
 - description: Customer B VRF
   instance_type: vrf
+  interfaces:
+  - Vlan200
   rd: 65000:200
   route_policy_export: EXPORT-CUSTOMER-B-V4
   route_policy_import: IMPORT-CUSTOMER-B-V4

@@ -34,3 +34,12 @@ vrf definition CUSTOMER_B
   route-target both 65000:202
  exit-address-family
 !
+interface GigabitEthernet0/0.100
+ ip vrf forwarding CUSTOMER_A
+!
+interface Loopback100
+ vrf forwarding CUSTOMER_A
+!
+interface Vlan200
+ vrf forwarding CUSTOMER_B
+!

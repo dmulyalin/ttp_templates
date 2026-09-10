@@ -9,7 +9,7 @@
 | interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | interfaces_status | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | lldp_neighbors | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| vlans | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ | ❌ |
+| vlans | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | vrrp | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | mac_addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
@@ -97,10 +97,11 @@ Collected commands by platform:
 
 Collected commands by platform:
 
-- Arista EOS: `show running-config section vlan`
-- Cisco IOS: `show running-config | section vlan`
-- Cisco NX-OS: `show running-config vlan`
-- Juniper Junos: `show configuration vlans | display set`
+- Arista EOS: `show run section vlan`
+- Cisco IOS: `show running-config | section vlan` and `show running-config | section interface`
+- Cisco IOS-XR: `show run formal interface | inc "encapsulation|BVI"`
+- Cisco NX-OS: `show running-config vlan` and `show running-config interface`
+- Juniper Junos: `show configuration vlans | display set` and `show configuration interfaces | display set | match "vlan|interface-mode|irb"`
 
 ### vrfs
 
@@ -108,8 +109,8 @@ Collected commands by platform:
 
 - Arista EOS: `show running-config section vrf`
 - Cisco IOS: `show running-config | section vrf`
-- Cisco IOS-XR: `show running-config vrf`
-- Cisco NX-OS: `show running-config | section "vrf context"`
+- Cisco IOS-XR: `show running-config vrf` and `show run formal interface | inc vrf`
+- Cisco NX-OS: `show running-config | section "vrf context"` and `show run interface | include "interface|vrf"`
 - Juniper Junos: `show configuration routing-instances | display set`
 
 ### vrrp

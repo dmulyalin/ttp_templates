@@ -4,8 +4,11 @@ set routing-instances CUSTOMER_A route-distinguisher 65000:100
 set routing-instances CUSTOMER_A vrf-target target:65000:100
 set routing-instances CUSTOMER_A vrf-import IMPORT-CUSTOMER-A
 set routing-instances CUSTOMER_A vrf-export EXPORT-CUSTOMER-A
+set routing-instances CUSTOMER_A interface ae0.100
+set routing-instances CUSTOMER_A interface irb.10
 set routing-instances CUSTOMER_B instance-type vrf
 set routing-instances CUSTOMER_B route-distinguisher 65000:200
 set routing-instances CUSTOMER_B vrf-target import target:65000:201
 set routing-instances CUSTOMER_B vrf-target export target:65000:202
+set routing-instances CUSTOMER_B interface irb.20
 set routing-instances Mgmt-vrf instance-type virtual-router

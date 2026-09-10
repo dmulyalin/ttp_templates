@@ -19,3 +19,12 @@ router bgp 65000
       route-target both evpn 65000:202
    !
 !
+interface Ethernet1.100
+   vrf CUSTOMER_A
+!
+interface Loopback100
+   vrf CUSTOMER_A
+!
+interface Vlan200
+   vrf CUSTOMER_B
+!

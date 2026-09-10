@@ -119,6 +119,7 @@ nav:
     - cisco_xr_show_ospf_database_router: ttp_templates/platform.cisco_xr_show_ospf_database_router.md
     - cisco_xr_show_ospf_database_summary: ttp_templates/platform.cisco_xr_show_ospf_database_summary.md
     - cisco_xr_show_rpl_community_set: ttp_templates/platform.cisco_xr_show_rpl_community_set.md
+    - cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi: ttp_templates/platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi.md
     - cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as: ttp_templates/platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as.md
     - cisco_xr_show_running_config_formal_router_vrrp: ttp_templates/platform.cisco_xr_show_running_config_formal_router_vrrp.md
     - cisco_xr_show_running_config_interface: ttp_templates/platform.cisco_xr_show_running_config_interface.md
