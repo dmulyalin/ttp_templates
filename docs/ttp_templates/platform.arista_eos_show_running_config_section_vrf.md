@@ -18,10 +18,12 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
+
+EVPN route targets are excluded.
 
 
 
@@ -43,10 +45,12 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'instance_type' - always 'vrf'
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
-- 'rt_import' - list of import route-target strings
-- 'rt_export' - list of export route-target strings
-- 'route_policy_import' - import route policy string or 'null' when not configured
-- 'route_policy_export' - export route policy string or 'null' when not configured
+- 'interfaces' - list of interface names assigned to the VRF
+- 'address_families' - dictionary containing 'ipv4' and 'ipv6'; each family
+  contains 'rt_import', 'rt_export', 'route_policy_import', and
+  'route_policy_export'
+
+EVPN route targets are excluded.
 
 </doc>
 
@@ -81,14 +85,20 @@ router bgp {{ asn | _start_ }}
       rd {{ rd }}
       route-target import {{ rt_import | contains(":") | to_list | joinmatches }}
       route-target export {{ rt_export | contains(":") | to_list | joinmatches }}
-      route-target import {{ ignore }} {{ rt_import | contains(":") | to_list | joinmatches }}
-      route-target export {{ ignore }} {{ rt_export | contains(":") | to_list | joinmatches }}
+      route-target import vpn-ipv4 {{ rt_import_ipv4 | contains(":") | to_list | joinmatches }}
+      route-target export vpn-ipv4 {{ rt_export_ipv4 | contains(":") | to_list | joinmatches }}
       route-target both {{ rt_both | contains(":") | to_list | joinmatches }}
-      route-target both {{ ignore }} {{ rt_both | contains(":") | to_list | joinmatches }}
+      route-target both vpn-ipv4 {{ rt_both_ipv4 | contains(":") | to_list | joinmatches }}
       import map {{ route_policy_import }}
       export map {{ route_policy_export }}
    !{{ _end_ }}
    </group>
+!{{ _end_ }}
+</group>
+
+<group name="interfaces*">
+interface {{ name | _start_ }}
+   vrf {{ vrf }}
 !{{ _end_ }}
 </group>
 

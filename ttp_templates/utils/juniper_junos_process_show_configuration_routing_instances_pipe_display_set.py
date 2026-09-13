@@ -28,7 +28,7 @@ def _as_list(value: Any) -> List[str]:
     return result
 
 
-def transform_vrfs_config(payload: list) -> List[Dict[str, Any]]:
+def transform_vrfs_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Convert parsed Juniper Junos routing-instances into normalized VRF records.
 
@@ -41,46 +41,41 @@ def transform_vrfs_config(payload: list) -> List[Dict[str, Any]]:
     if not payload:
         return []
 
-    items = [payload] if isinstance(payload, dict) else payload
-    vrfs: Dict[str, Dict[str, Any]] = {}
+    vrfs = payload.get("vrfs", {})
     vrf_interfaces: Dict[str, List[str]] = {}
 
-    for item in items:
-        if not isinstance(item, dict):
-            continue
-        if isinstance(item.get("vrfs"), dict):
-            vrfs.update(item["vrfs"])
-        if isinstance(item.get("interfaces"), list):
-            for interface in item["interfaces"]:
-                if not isinstance(interface, dict):
-                    continue
-                name = interface.get("name")
-                vrf = interface.get("vrf")
-                if name and vrf:
-                    interfaces = vrf_interfaces.setdefault(vrf, [])
-                    if name not in interfaces:
-                        interfaces.append(name)
+    for interface in payload.get("interfaces", []):
+        interfaces = vrf_interfaces.setdefault(interface["vrf"], [])
+        if interface["name"] not in interfaces:
+            interfaces.append(interface["name"])
 
     records: List[Dict[str, Any]] = []
     for name, vrf in vrfs.items():
-        if not isinstance(vrf, dict):
-            vrf = {}
+        rt_import = _as_list(vrf.get("rt_import"))
+        rt_export = _as_list(vrf.get("rt_export"))
+        for route_target in _as_list(vrf.get("rt_both")):
+            if route_target not in rt_import:
+                rt_import.append(route_target)
+            if route_target not in rt_export:
+                rt_export.append(route_target)
+
+        address_families = {}
+        for afi in ["ipv4", "ipv6"]:
+            address_families[afi] = {
+                "rt_import": rt_import.copy(),
+                "rt_export": rt_export.copy(),
+                "route_policy_import": vrf.get("route_policy_import") or None,
+                "route_policy_export": vrf.get("route_policy_export") or None,
+            }
+
         record = {
             "name": name,
             "instance_type": vrf.get("instance_type") or "vrf",
             "description": (vrf.get("description") or "").strip('"') or None,
             "rd": vrf.get("rd") or None,
             "interfaces": vrf_interfaces.get(name, []),
-            "rt_import": _as_list(vrf.get("rt_import")),
-            "rt_export": _as_list(vrf.get("rt_export")),
-            "route_policy_import": vrf.get("route_policy_import") or None,
-            "route_policy_export": vrf.get("route_policy_export") or None,
+            "address_families": address_families,
         }
-        for route_target in _as_list(vrf.get("rt_both")):
-            if route_target not in record["rt_import"]:
-                record["rt_import"].append(route_target)
-            if route_target not in record["rt_export"]:
-                record["rt_export"].append(route_target)
         records.append(VrfRecord(**record).model_dump())
 
     return records

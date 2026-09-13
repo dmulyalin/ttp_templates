@@ -19,10 +19,13 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - routing instance type string
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
+
+Junos routing-instance route targets and policies are unqualified and are
+returned for both IPv4 and IPv6.
 
 
 
@@ -45,10 +48,13 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'instance_type' - routing instance type string
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
-- 'rt_import' - list of import route-target strings
-- 'rt_export' - list of export route-target strings
-- 'route_policy_import' - import route policy string or 'null' when not configured
-- 'route_policy_export' - export route policy string or 'null' when not configured
+- 'interfaces' - list of interface names assigned to the VRF
+- 'address_families' - dictionary containing 'ipv4' and 'ipv6'; each family
+  contains 'rt_import', 'rt_export', 'route_policy_import', and
+  'route_policy_export'
+
+Junos routing-instance route targets and policies are unqualified and are
+returned for both IPv4 and IPv6.
 
 </doc>
 
@@ -79,6 +85,10 @@ set routing-instances {{ name }} vrf-target import {{ rt_import | to_list | join
 set routing-instances {{ name }} vrf-target export {{ rt_export | to_list | joinmatches }}
 set routing-instances {{ name }} vrf-import {{ route_policy_import }}
 set routing-instances {{ name }} vrf-export {{ route_policy_export }}
+</group>
+
+<group name="interfaces*" method="table">
+set routing-instances {{ vrf }} interface {{ name }}
 </group>
 
 <output macro="transform_vrfs_to_records"/>

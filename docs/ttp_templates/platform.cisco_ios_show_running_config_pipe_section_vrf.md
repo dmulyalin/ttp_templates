@@ -18,10 +18,10 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
 
 Example normalized output (YAML):
 
@@ -30,12 +30,21 @@ Example normalized output (YAML):
   instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
-  rt_import:
-  - 65000:100
-  rt_export:
-  - 65000:100
-  route_policy_import: IMPORT-CUSTOMER-A
-  route_policy_export: EXPORT-CUSTOMER-A
+  interfaces:
+  - GigabitEthernet0/0.100
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:100
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
 ```
 
 
@@ -58,10 +67,10 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'instance_type' - always 'vrf'
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
-- 'rt_import' - list of import route-target strings
-- 'rt_export' - list of export route-target strings
-- 'route_policy_import' - import route policy string or 'null' when not configured
-- 'route_policy_export' - export route policy string or 'null' when not configured
+- 'interfaces' - list of interface names assigned to the VRF
+- 'address_families' - dictionary containing 'ipv4' and 'ipv6'; each family
+  contains 'rt_import', 'rt_export', 'route_policy_import', and
+  'route_policy_export'
 
 Example normalized output (YAML):
 
@@ -70,12 +79,21 @@ Example normalized output (YAML):
   instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
-  rt_import:
-  - 65000:100
-  rt_export:
-  - 65000:100
-  route_policy_import: IMPORT-CUSTOMER-A
-  route_policy_export: EXPORT-CUSTOMER-A
+  interfaces:
+  - GigabitEthernet0/0.100
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:100
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
 '''
 
 </doc>
@@ -129,6 +147,13 @@ vrf definition {{ name | _start_ }}
  exit-address-family {{ _end_ }}
  </group>
 
+!{{ _end_ }}
+</group>
+
+<group name="interfaces*">
+interface {{ name | _start_ }}
+ ip vrf forwarding {{ vrf }}
+ vrf forwarding {{ vrf }}
 !{{ _end_ }}
 </group>
 

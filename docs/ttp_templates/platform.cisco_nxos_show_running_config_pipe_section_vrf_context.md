@@ -11,7 +11,8 @@ Template to parse Cisco NX-OS VRF configuration and normalize it to a flat
 list of VRF dictionaries.
 
 This template requires output of
-'show running-config | section "vrf context"'.
+'show running-config | section "vrf context"' and
+'show run interface | include "interface|vrf"'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -19,10 +20,12 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
+
+EVPN route targets are excluded.
 
 
 
@@ -37,7 +40,8 @@ Template to parse Cisco NX-OS VRF configuration and normalize it to a flat
 list of VRF dictionaries.
 
 This template requires output of
-'show running-config | section "vrf context"'.
+'show running-config | section "vrf context"' and
+'show run interface | include "interface|vrf"'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -45,16 +49,19 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'instance_type' - always 'vrf'
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
-- 'rt_import' - list of import route-target strings
-- 'rt_export' - list of export route-target strings
-- 'route_policy_import' - import route policy string or 'null' when not configured
-- 'route_policy_export' - export route policy string or 'null' when not configured
+- 'interfaces' - list of interface names assigned to the VRF
+- 'address_families' - dictionary containing 'ipv4' and 'ipv6'; each family
+  contains 'rt_import', 'rt_export', 'route_policy_import', and
+  'route_policy_export'
+
+EVPN route targets are excluded.
 
 </doc>
 
 <input>
 commands = [
-    'show running-config | section "vrf context"'
+    'show running-config | section "vrf context"',
+    'show run interface | include "interface|vrf"'
 ]
 platform = [
     "cisco_nxos",
@@ -82,6 +89,11 @@ vrf context {{ name | _start_ }}
     import map {{ route_policy_import }}
     export map {{ route_policy_export }}
   </group>
+</group>
+
+<group name="interfaces*">
+interface {{ name | _start_ }}
+  vrf member {{ vrf }}
 </group>
 
 <output macro="transform_vrfs_to_records"/>

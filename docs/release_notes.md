@@ -8,7 +8,9 @@
    membership, create VLAN records from interface encapsulation and SVI, BVI,
    or IRB names, resolve Juniper Junos VLAN-name membership, and support Cisco
    IOS-XR interface encapsulation and BVI output.
-2. Enhanced the `vrfs` getter to return the interfaces assigned to each VRF.
+2. Enhanced the `vrfs` getter to return the interfaces assigned to each VRF
+   and return route targets and policies under nested `ipv4` and `ipv6`
+   address-family records. Arista and NX-OS EVPN route targets are excluded.
 
 ### BUGS
 

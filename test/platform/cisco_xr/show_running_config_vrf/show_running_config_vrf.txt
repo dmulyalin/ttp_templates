@@ -16,6 +16,8 @@ vrf CUSTOMER_A
 vrf CUSTOMER_B
  rd 65000:200
  address-family ipv6 unicast
+  import route-policy IMPORT-CUSTOMER-B-V6
+  export route-policy EXPORT-CUSTOMER-B-V6
   import route-target
    65000:202
   !

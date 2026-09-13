@@ -1,25 +1,39 @@
-- description: Customer A VRF
+- name: CUSTOMER_A
   instance_type: vrf
+  description: Customer A VRF
+  rd: 65000:100
   interfaces:
   - TenGigE0/0/0/20
-  name: CUSTOMER_A
-  rd: 65000:100
-  route_policy_export: EXPORT-CUSTOMER-A
-  route_policy_import: IMPORT-CUSTOMER-A
-  rt_export:
-  - 65000:100
-  rt_import:
-  - 65000:100
-  - 65000:101
-- description: null
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:100
+      - 65000:101
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
+- name: CUSTOMER_B
   instance_type: vrf
+  description: null
+  rd: 65000:200
   interfaces:
   - Bundle-Ether200.200
-  name: CUSTOMER_B
-  rd: 65000:200
-  route_policy_export: null
-  route_policy_import: null
-  rt_export:
-  - 65000:202
-  rt_import:
-  - 65000:202
+  address_families:
+    ipv4:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
+    ipv6:
+      rt_import:
+      - 65000:202
+      rt_export:
+      - 65000:202
+      route_policy_import: IMPORT-CUSTOMER-B-V6
+      route_policy_export: EXPORT-CUSTOMER-B-V6

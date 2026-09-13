@@ -1,34 +1,59 @@
-- description: Customer A VRF
+- name: CUSTOMER_A
   instance_type: vrf
+  description: Customer A VRF
+  rd: 65000:100
   interfaces:
   - ae0.100
   - irb.10
-  name: CUSTOMER_A
-  rd: 65000:100
-  route_policy_export: EXPORT-CUSTOMER-A
-  route_policy_import: IMPORT-CUSTOMER-A
-  rt_export:
-  - 65000:100
-  rt_import:
-  - 65000:100
-- description: null
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:100
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+    ipv6:
+      rt_import:
+      - 65000:100
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+- name: CUSTOMER_B
   instance_type: vrf
+  description: null
+  rd: 65000:200
   interfaces:
   - irb.20
-  name: CUSTOMER_B
-  rd: 65000:200
-  route_policy_export: null
-  route_policy_import: null
-  rt_export:
-  - 65000:202
-  rt_import:
-  - 65000:201
-- description: null
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:201
+      rt_export:
+      - 65000:202
+      route_policy_import: null
+      route_policy_export: null
+    ipv6:
+      rt_import:
+      - 65000:201
+      rt_export:
+      - 65000:202
+      route_policy_import: null
+      route_policy_export: null
+- name: Mgmt-vrf
   instance_type: virtual-router
-  interfaces: []
-  name: Mgmt-vrf
+  description: null
   rd: null
-  route_policy_export: null
-  route_policy_import: null
-  rt_export: []
-  rt_import: []
+  interfaces: []
+  address_families:
+    ipv4:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null

@@ -172,16 +172,25 @@ class VlanRecord(BaseModel):
     untagged_interfaces: List[StrictStr]
 
 
+class VrfAddressFamilyRecord(BaseModel):
+    rt_import: List[StrictStr]
+    rt_export: List[StrictStr]
+    route_policy_import: Union[None, StrictStr]
+    route_policy_export: Union[None, StrictStr]
+
+
+class VrfAddressFamiliesRecord(BaseModel):
+    ipv4: VrfAddressFamilyRecord
+    ipv6: VrfAddressFamilyRecord
+
+
 class VrfRecord(BaseModel):
     name: StrictStr
     instance_type: StrictStr
     description: Union[None, StrictStr]
     rd: Union[None, StrictStr]
     interfaces: List[StrictStr]
-    rt_import: List[StrictStr]
-    rt_export: List[StrictStr]
-    route_policy_import: Union[None, StrictStr]
-    route_policy_export: Union[None, StrictStr]
+    address_families: VrfAddressFamiliesRecord
 
 
 class VrrpRecord(BaseModel):

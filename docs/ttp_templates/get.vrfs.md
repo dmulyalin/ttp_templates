@@ -18,10 +18,12 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
+
+EVPN route targets are excluded.
 
 
 
@@ -37,10 +39,10 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
 
 Example normalized output (YAML):
 
@@ -49,12 +51,21 @@ Example normalized output (YAML):
   instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
-  rt_import:
-  - 65000:100
-  rt_export:
-  - 65000:100
-  route_policy_import: IMPORT-CUSTOMER-A
-  route_policy_export: EXPORT-CUSTOMER-A
+  interfaces:
+  - GigabitEthernet0/0.100
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:100
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
 ```
 
 
@@ -63,7 +74,8 @@ Example normalized output (YAML):
 Template to parse Cisco IOS-XR VRF configuration and normalize it to a flat
 list of VRF dictionaries.
 
-This template requires output of 'show running-config vrf'.
+This template requires output of 'show running-config vrf' and
+'show run formal interface | inc vrf'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -71,10 +83,10 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
 
 Example normalized output (YAML):
 
@@ -83,12 +95,21 @@ Example normalized output (YAML):
   instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
-  rt_import:
-  - 65000:100
-  rt_export:
-  - 65000:100
-  route_policy_import: IMPORT-CUSTOMER-A
-  route_policy_export: EXPORT-CUSTOMER-A
+  interfaces:
+  - TenGigE0/0/0/20
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:100
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
 ```
 
 
@@ -98,7 +119,8 @@ Template to parse Cisco NX-OS VRF configuration and normalize it to a flat
 list of VRF dictionaries.
 
 This template requires output of
-'show running-config | section "vrf context"'.
+'show running-config | section "vrf context"' and
+'show run interface | include "interface|vrf"'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -106,10 +128,12 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - always `vrf`
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
+
+EVPN route targets are excluded.
 
 
 
@@ -126,10 +150,13 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - `instance_type` - routing instance type string
 - `description` - VRF description string or `null` when not configured
 - `rd` - route distinguisher string or `null` when not configured
-- `rt_import` - list of import route-target strings
-- `rt_export` - list of export route-target strings
-- `route_policy_import` - import route policy string or `null` when not configured
-- `route_policy_export` - export route policy string or `null` when not configured
+- `interfaces` - list of interface names assigned to the VRF
+- `address_families` - dictionary containing `ipv4` and `ipv6`; each family
+  contains `rt_import`, `rt_export`, `route_policy_import`, and
+  `route_policy_export`
+
+Junos routing-instance route targets and policies are unqualified and are
+returned for both IPv4 and IPv6.
 
 
 
@@ -159,10 +186,13 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'instance_type' - VRF instance type string
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
-- 'rt_import' - list of import route-target strings
-- 'rt_export' - list of export route-target strings
-- 'route_policy_import' - import route policy string or 'null' when not configured
-- 'route_policy_export' - export route policy string or 'null' when not configured
+- 'interfaces' - list of interface names assigned to the VRF
+- 'address_families' - dictionary containing 'ipv4' and 'ipv6'; each family
+  contains 'rt_import', 'rt_export', 'route_policy_import', and
+  'route_policy_export'
+
+EVPN route targets are excluded. Juniper Junos routing-instance route targets
+and policies are unqualified and are returned for both IPv4 and IPv6.
 
 Example normalized output (YAML):
 
@@ -171,12 +201,21 @@ Example normalized output (YAML):
   instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
-  rt_import:
-  - 65000:100
-  rt_export:
-  - 65000:100
-  route_policy_import: IMPORT-CUSTOMER-A
-  route_policy_export: EXPORT-CUSTOMER-A
+  interfaces:
+  - Ethernet1.100
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:100
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
 '''
 
 </doc>
