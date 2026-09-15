@@ -25,7 +25,8 @@ def validate_inventory_records(data):
 </macro>
 
 <group>
-Thunder Series Unified Application Service Gateway {{ module | let("description", "Thunder Series Unified Application Service Gateway")}}
+Thunder Series Unified Application Service Gateway {{ module | let("description", "Thunder Series Unified Application Service Gateway") | _start_ }}
+AX Series Advanced Traffic Manager {{ module | let("description", "AX Series Advanced Traffic Manager") | _start_ }}
 {{ ignore(r"\s+") }}Serial No  : {{ serial | let("slot", "chassis") }}
 </group>
 

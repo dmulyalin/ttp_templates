@@ -14,7 +14,8 @@
 
 ### BUGS
 
-1. Fixed Arista EOS interface parsing for `encapsulation dot1q vlan`.
+1. Fixed Arista EOS interface parsing for `encapsulation dot1q vlan`
+2. A10 show hardware parser fixed to include AX platform parsing
 
 ---
 
