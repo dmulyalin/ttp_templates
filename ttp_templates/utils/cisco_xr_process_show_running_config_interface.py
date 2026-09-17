@@ -96,12 +96,28 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
             if isinstance(addr, dict) and addr.get("ip") and addr.get("mask"):
                 try:
                     prefix_len = _dotted_mask_to_prefix_len(str(addr["mask"]))
-                    ipv4_addresses.append(f"{addr['ip']}/{prefix_len}")
                 except (ValueError, TypeError):
-                    ipv4_addresses.append(f"{addr['ip']}/{addr['mask']}")
+                    prefix_len = addr["mask"]
+                ipv4_addresses.append(
+                    {
+                        "ip": f"{addr['ip']}/{prefix_len}",
+                        "ip_address_role": (
+                            "loopback"
+                            if "loopback" in name_lower
+                            else addr.get("ip_address_role", "")
+                        ),
+                    }
+                )
 
         ipv6_addresses = [
-            f"{a['ip']}/{a['mask']}"
+            {
+                "ip": f"{a['ip']}/{a['mask']}",
+                "ip_address_role": (
+                    "loopback"
+                    if "loopback" in name_lower
+                    else a.get("ip_address_role", "")
+                ),
+            }
             for a in iface.get("ipv6_addresses", [])
             if isinstance(a, dict) and a.get("ip") and a.get("mask")
         ]

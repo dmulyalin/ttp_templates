@@ -1,0 +1,2 @@
+ neighbor peergroup1 remote-as 1234
+    neighbor peergroup2 remote-as 1234

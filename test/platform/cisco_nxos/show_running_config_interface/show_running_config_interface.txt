@@ -40,6 +40,7 @@ interface Ethernet1/3
   speed 10000
   duplex full
   ip address 192.0.2.1/31
+  ip address 192.0.2.3/31 secondary
   ipv6 address 2001:db8:1::1/64
   no shutdown
 !

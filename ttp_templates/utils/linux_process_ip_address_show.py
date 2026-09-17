@@ -38,16 +38,35 @@ def _get_interface_type(name: str, flags: List[str]) -> str:
     return "other"
 
 
-def _build_ip_list(items: Any) -> List[str]:
-    """Convert TTP IP/mask dictionaries into ``address/prefix`` strings."""
+def _build_ipv4_list(items: Any, is_loopback: bool) -> List[Dict[str, Any]]:
+    """Normalize TTP IPv4 dictionaries and assign the loopback role."""
     if not isinstance(items, list):
         return []
 
     addresses = []
     for item in items:
         if isinstance(item, dict) and item.get("ip") and item.get("mask"):
-            addresses.append(f"{item['ip']}/{item['mask']}")
+            addresses.append(
+                {
+                    "ip": f"{item['ip']}/{item['mask']}",
+                    "ip_address_role": "loopback" if is_loopback else "",
+                }
+            )
     return addresses
+
+
+def _build_ipv6_list(items: Any, is_loopback: bool) -> List[Dict[str, Any]]:
+    """Normalize TTP IPv6 dictionaries and assign the loopback role."""
+    if not isinstance(items, list):
+        return []
+    return [
+        {
+            "ip": f"{item['ip']}/{item['mask']}",
+            "ip_address_role": "loopback" if is_loopback else "",
+        }
+        for item in items
+        if isinstance(item, dict) and item.get("ip") and item.get("mask")
+    ]
 
 
 def transform_interfaces(payload: list) -> List[Dict[str, Any]]:
@@ -72,6 +91,7 @@ def transform_interfaces(payload: list) -> List[Dict[str, Any]]:
             continue
 
         name = iface["name"]
+        name_lower = name.lower()
         flags = [flag.strip() for flag in iface.get("flags", "").split(",")]
         master = iface.get("master")
         parent = name.split(".", 1)[0] if "." in name else None
@@ -96,8 +116,12 @@ def transform_interfaces(payload: list) -> List[Dict[str, Any]]:
             "mode": None,
             "untagged_vlan": None,
             "tagged_vlans": [],
-            "ipv4_addresses": _build_ip_list(iface.get("ipv4_addresses")),
-            "ipv6_addresses": _build_ip_list(iface.get("ipv6_addresses")),
+            "ipv4_addresses": _build_ipv4_list(
+                iface.get("ipv4_addresses"), name_lower == "lo"
+            ),
+            "ipv6_addresses": _build_ipv6_list(
+                iface.get("ipv6_addresses"), name_lower == "lo"
+            ),
             "qinq_svlan": None,
             "vrf": master if master and master.lower().startswith("vrf") else None,
         }

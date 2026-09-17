@@ -1,0 +1,32 @@
+- name: MANAGEMENT_ONLY
+  instance_type: vrf
+  description: Standalone management VRF
+  rd: "65000:400"
+  interfaces: []
+  address_families:
+    ipv4:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
+- name: CUSTOMER_ONLY
+  instance_type: vrf
+  description: null
+  rd: null
+  interfaces: []
+  address_families:
+    ipv4:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null

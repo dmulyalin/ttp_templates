@@ -4,6 +4,7 @@ Getter template to parse BGP AS numbers from network-device configuration.
 
 Supported platforms:
 
+- A10
 - Arista EOS
 - Cisco IOS
 - Cisco IOS-XR
@@ -31,6 +32,8 @@ Example normalized output (YAML):
 ```
 
 </doc>
+
+<extend template="ttp://platform/a10_show_running_config_partition_config_all_pipe_inc_router_bgp.txt"/>
 
 <extend template="ttp://platform/arista_eos_show_running_config_section_router_bgp.txt"/>
 

@@ -45,6 +45,7 @@ interface Ethernet9
    speed forced 1g
    no switchport
    ip address 10.99.0.1/30
+   ip address 10.99.0.5/30 secondary
 interface Port-Channel10
    description Server1 LAG
    mtu 9214

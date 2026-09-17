@@ -2,7 +2,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 192.0.2.2/28
+  - ip: 192.0.2.2/28
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -64,9 +65,11 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 198.51.100.2/28
+  - ip: 198.51.100.2/28
+    ip_address_role: ''
   ipv6_addresses:
-  - ::ffff:198.51.100.2/124
+  - ip: ::ffff:198.51.100.2/124
+    ip_address_role: ''
   lacp_mode: null
   lag: null
   lag_id: null
@@ -86,9 +89,11 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 203.0.113.2/29
+  - ip: 203.0.113.2/29
+    ip_address_role: ''
   ipv6_addresses:
-  - ::ffff:203.0.113.2/125
+  - ip: ::ffff:203.0.113.2/125
+    ip_address_role: ''
   lacp_mode: null
   lag: null
   lag_id: null

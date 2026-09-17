@@ -1,0 +1,9 @@
+vrf instance MANAGEMENT
+   description Management VRF
+   rd 65000:10
+!
+vrf instance CUSTOMER_NO_BGP
+!
+interface Management1
+   vrf MANAGEMENT
+!

@@ -1,0 +1,2 @@
+router bgp 1234
+   router bgp 12345

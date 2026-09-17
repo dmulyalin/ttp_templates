@@ -13,7 +13,7 @@
 | vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | vrrp | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | mac_addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| bgp_asn | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| bgp_asn | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
@@ -23,6 +23,7 @@
 
 Collected commands by platform:
 
+- A10: `show running-config partition-config all | inc router bgp` and `show running-config partition-config all | inc router remote-as`
 - Arista EOS: `show running-config section router bgp`
 - Cisco IOS: `show running-config | section router bgp`
 - Cisco IOS-XR: `show run formal | inc "local-as|remote-as"`

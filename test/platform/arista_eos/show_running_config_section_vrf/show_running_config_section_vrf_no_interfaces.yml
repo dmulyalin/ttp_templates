@@ -1,0 +1,18 @@
+- name: CUSTOMER_BGP_ONLY
+  instance_type: vrf
+  description: BGP VRF without interfaces
+  rd: "65000:300"
+  interfaces: []
+  address_families:
+    ipv4:
+      rt_import:
+      - "65000:301"
+      rt_export:
+      - "65000:302"
+      route_policy_import: IMPORT-CUSTOMER-BGP-ONLY
+      route_policy_export: EXPORT-CUSTOMER-BGP-ONLY
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null

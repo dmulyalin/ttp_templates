@@ -46,7 +46,7 @@ def _merge_vrf(target: Dict[str, Any], source: Dict[str, Any]) -> None:
                 target[key].append(value)
 
 
-def transform_vrfs_config(payload: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def transform_vrfs_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Convert parsed Arista EOS VRF configuration into normalized VRF records.
 
@@ -62,13 +62,16 @@ def transform_vrfs_config(payload: List[Dict[str, Any]]) -> List[Dict[str, Any]]
     vrfs: Dict[str, Dict[str, Any]] = {}
     vrf_interfaces: Dict[str, List[str]] = {}
 
-    for item in payload:
-        for name, vrf in item.get("vrfs", {}).items():
-            _merge_vrf(vrfs.setdefault(name, {}), vrf)
-        for interface in item.get("interfaces", []):
-            interfaces = vrf_interfaces.setdefault(interface["vrf"], [])
-            if interface["name"] not in interfaces:
-                interfaces.append(interface["name"])
+    for name, vrf in payload.get("bgp", {}).get("vrfs", {}).items():
+        _merge_vrf(vrfs.setdefault(name, {}), vrf)
+
+    for name, vrf in payload.get("vrfs", {}).items():
+        _merge_vrf(vrfs.setdefault(name, {}), vrf)
+
+    for interface in payload.get("interfaces", []):
+        interfaces = vrf_interfaces.setdefault(interface["vrf"], [])
+        if interface["name"] not in interfaces:
+            interfaces.append(interface["name"])
 
     records: List[Dict[str, Any]] = []
     for name, vrf in vrfs.items():

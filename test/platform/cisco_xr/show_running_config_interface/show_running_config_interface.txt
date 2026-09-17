@@ -48,6 +48,7 @@ interface GigabitEthernet0/0/0/3
  speed 1000
  duplex full
  ipv4 address 10.2.0.1 255.255.255.252
+ ipv4 address 10.2.0.5 255.255.255.252 secondary
 !
 interface GigabitEthernet0/0/0/4
  description Disabled interface

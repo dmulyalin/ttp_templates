@@ -1,0 +1,60 @@
+<template name="a10_bgp_asn" results="per_template">
+<doc>
+Template to parse unique BGP ASNs from A10 configuration.
+
+This template requires output of:
+
+- `show running-config partition-config all | inc router bgp`
+- `show running-config partition-config all | inc router remote-as`
+
+ASNs from `router bgp` statements are marked as local. ASNs from neighbor
+`remote-as` statements are marked as remote, with the neighbor or peer-group
+name used as the description. Results are deduplicated by ASN, preserving the
+first occurrence and its description while keeping `local_asn` true if any
+occurrence marks the ASN as local.
+
+Returns a normalized list of dictionaries with these keys:
+
+- `asn` - AS number integer
+- `description` - neighbor or peer-group name, or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
+
+Example normalized output (YAML):
+
+```yaml
+- asn: 1234
+  description: null
+  local_asn: true
+- asn: 64500
+  description: peergroup1
+  local_asn: false
+```
+
+</doc>
+
+<input>
+commands = [
+    "show running-config partition-config all | inc router bgp",
+    "show running-config partition-config all | inc router remote-as",
+]
+platform = [
+    "a10",
+    "a10_ssh",
+]
+</input>
+
+<macro>
+def transform_bgp_asns_to_records(data):
+    from ttp_templates.utils.a10_process_show_running_config_partition_config_all_pipe_inc_router_bgp import transform_bgp_asns
+
+    return transform_bgp_asns(data)
+</macro>
+
+<group name="statements*">
+{{ ignore(r"\s*") }}router bgp {{ asn | _start_ | to_int | let("local_asn", True) }}
+{{ ignore(r"\s*") }}neighbor {{ description | _start_ }} remote-as {{ asn | to_int | let("local_asn", False) }}
+</group>
+
+<output macro="transform_bgp_asns_to_records"/>
+
+</template>

@@ -172,25 +172,45 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
                     untagged_vlan = vlans[0]
 
         ipv4_addresses = [
-            f"{a['ip']}/{a['mask']}"
+            {
+                "ip": f"{a['ip']}/{a['mask']}",
+                "ip_address_role": (
+                    "loopback"
+                    if name_lower.startswith("lo0")
+                    else ""
+                ),
+            }
             for a in data.get("ipv4", [])
             if isinstance(a, dict) and a.get("ip") and a.get("mask")
         ]
         ipv6_addresses = [
-            f"{a['ip']}/{a['mask']}"
+            {
+                "ip": f"{a['ip']}/{a['mask']}",
+                "ip_address_role": (
+                    "loopback"
+                    if name_lower.startswith("lo0")
+                    else ""
+                ),
+            }
             for a in data.get("ipv6", [])
             if isinstance(a, dict) and a.get("ip") and a.get("mask")
         ]
         ipv4_addresses.extend(
             [
-                f"{a['vip']}/{a['mask']}"
+                {
+                    "ip": f"{a['vip']}/{a['mask']}",
+                    "ip_address_role": a.get("ip_address_role", ""),
+                }
                 for a in data.get("ipv4", [])
                 if isinstance(a, dict) and a.get("vip") and a.get("mask")
             ]
         )
         ipv6_addresses.extend(
             [
-                f"{a['vip']}/{a['mask']}"
+                {
+                    "ip": f"{a['vip']}/{a['mask']}",
+                    "ip_address_role": a.get("ip_address_role", ""),
+                }
                 for a in data.get("ipv6", [])
                 if isinstance(a, dict) and a.get("vip") and a.get("mask")
             ]

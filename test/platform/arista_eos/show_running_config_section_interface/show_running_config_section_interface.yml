@@ -3,7 +3,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 10.10.0.1/31
+  - ip: 10.10.0.1/31
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -24,7 +25,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 10.101.0.1/31
+  - ip: 10.101.0.1/31
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -46,7 +48,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 10.10.0.3/31
+  - ip: 10.10.0.3/31
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -67,7 +70,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 10.101.0.3/31
+  - ip: 10.101.0.3/31
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -216,7 +220,10 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 10.99.0.1/30
+  - ip: 10.99.0.1/30
+    ip_address_role: ''
+  - ip: 10.99.0.5/30
+    ip_address_role: secondary
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -261,11 +268,15 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 10.10.10.11/32
-  - 1.1.1.1/32
+  - ip: 10.10.10.11/32
+    ip_address_role: loopback
+  - ip: 1.1.1.1/32
+    ip_address_role: loopback
   ipv6_addresses:
-  - 2001::/128
-  - 2001::1/128
+  - ip: 2001::/128
+    ip_address_role: loopback
+  - ip: 2001::1/128
+    ip_address_role: loopback
   lacp_mode: null
   lag: null
   lag_id: null
@@ -285,7 +296,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 10.101.1.11/32
+  - ip: 10.101.1.11/32
+    ip_address_role: loopback
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -306,7 +318,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 192.168.100.1/24
+  - ip: 192.168.100.1/24
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -327,7 +340,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 192.168.200.1/24
+  - ip: 192.168.200.1/24
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -348,7 +362,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 172.100.100.12/24
+  - ip: 172.100.100.12/24
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null

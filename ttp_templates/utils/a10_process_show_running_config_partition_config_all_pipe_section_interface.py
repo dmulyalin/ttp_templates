@@ -26,12 +26,12 @@ def _mask_to_prefix_len(mask: str) -> int:
     return int(mask)
 
 
-def _normalize_ip_addresses(addresses: Any) -> list[str]:
-    """Return IP addresses as strings in IP/prefix notation."""
+def _normalize_ipv4_addresses(addresses: Any) -> list[dict[str, Any]]:
+    """Return normalized IPv4 address dictionaries with an empty role."""
     if not isinstance(addresses, list):
         return []
 
-    normalized: list[str] = []
+    normalized: list[dict[str, Any]] = []
     for addr in addresses:
         if not isinstance(addr, dict) or not addr.get("ip") or not addr.get("mask"):
             continue
@@ -40,7 +40,9 @@ def _normalize_ip_addresses(addresses: Any) -> list[str]:
             mask = _mask_to_prefix_len(str(addr["mask"]))
         except (TypeError, ValueError):
             mask = addr["mask"]
-        normalized.append(f"{addr['ip']}/{mask}")
+        normalized.append(
+            {"ip": f"{addr['ip']}/{mask}", "ip_address_role": ""}
+        )
 
     return normalized
 
@@ -217,8 +219,15 @@ def transform_interfaces_config(payload: Any) -> list[dict[str, Any]]:
             "mode": mode,
             "untagged_vlan": untagged_vlan,
             "tagged_vlans": interface_tagged_vlans,
-            "ipv4_addresses": _normalize_ip_addresses(iface.get("ipv4_addresses")),
-            "ipv6_addresses": _normalize_ip_addresses(iface.get("ipv6_addresses")),
+            "ipv4_addresses": _normalize_ipv4_addresses(iface.get("ipv4_addresses")),
+            "ipv6_addresses": [
+                {
+                    "ip": f"{addr['ip']}/{addr['mask']}",
+                    "ip_address_role": addr.get("ip_address_role", ""),
+                }
+                for addr in iface.get("ipv6_addresses", [])
+                if isinstance(addr, dict) and addr.get("ip") and addr.get("mask")
+            ],
             "qinq_svlan": None,
             "vrf": None,
         }

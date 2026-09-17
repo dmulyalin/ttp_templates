@@ -61,6 +61,7 @@ interface GigabitEthernet1/0
  mtu 9236
  ip vrf forwarding VRF-A
  ip address 203.0.113.64 255.255.255.254
+ ip address 203.0.113.66 255.255.255.254 secondary
  ip helper-address 192.0.2.36
  ip mtu 9192
 interface GigabitEthernet1/1

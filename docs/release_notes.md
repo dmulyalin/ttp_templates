@@ -1,5 +1,26 @@
 # Release Notes
 
+## 0.6.6
+
+### ENHANCEMENTS
+
+1. Added A10 support to the `bgp_asn` getter using filtered partition
+   configuration output for local `router bgp` and neighbor `remote-as`
+   statements.
+2. Enhanced the `interfaces` getter IPv4 and IPv6 output with an
+   `ip_address_role` field. Roles identify loopback and secondary addresses,
+   plus Juniper Junos anycast virtual-gateway and VRRP virtual addresses;
+   ordinary addresses use an empty role.
+
+### BUGS
+
+1. Fixed the Arista EOS `vrfs` getter failing when a device has VRF
+   configuration without a `router bgp` section. The parser now uses a named
+   BGP group and consistently passes a dictionary to the normalizer, including
+   when BGP or interface configuration is absent.
+
+---
+
 ## 0.6.5
 
 ### ENHANCEMENTS

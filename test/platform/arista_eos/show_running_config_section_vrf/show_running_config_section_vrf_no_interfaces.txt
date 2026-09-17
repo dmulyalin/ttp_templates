@@ -1,0 +1,13 @@
+vrf instance CUSTOMER_BGP_ONLY
+   description BGP VRF without interfaces
+   rd 65000:300
+!
+router bgp 65000
+   vrf CUSTOMER_BGP_ONLY
+      rd 65000:300
+      route-target import vpn-ipv4 65000:301
+      route-target export vpn-ipv4 65000:302
+      import map IMPORT-CUSTOMER-BGP-ONLY
+      export map EXPORT-CUSTOMER-BGP-ONLY
+   !
+!

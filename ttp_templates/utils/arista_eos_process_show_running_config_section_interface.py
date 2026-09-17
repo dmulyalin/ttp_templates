@@ -150,10 +150,28 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
         duplex = str(iface.get("duplex") or "").strip().lower() or None
 
         ipv4_addresses = [
-            f"{i['ip']}/{i['mask']}" for i in iface.get("ipv4_addresses", [])
+            {
+                "ip": f"{i['ip']}/{i['mask']}",
+                "ip_address_role": (
+                    "loopback"
+                    if "loopback" in name_lower
+                    else i.get("ip_address_role", "")
+                ),
+            }
+            for i in iface.get("ipv4_addresses", [])
+            if isinstance(i, dict) and i.get("ip") and i.get("mask")
         ]
         ipv6_addresses = [
-            f"{i['ip']}/{i['mask']}" for i in iface.get("ipv6_addresses", [])
+            {
+                "ip": f"{i['ip']}/{i['mask']}",
+                "ip_address_role": (
+                    "loopback"
+                    if "loopback" in name_lower
+                    else i.get("ip_address_role", "")
+                ),
+            }
+            for i in iface.get("ipv6_addresses", [])
+            if isinstance(i, dict) and i.get("ip") and i.get("mask")
         ]
 
         record: Dict[str, Any] = {

@@ -10,6 +10,11 @@ from pydantic import (
 from typing import Union, List
 
 
+class IpAddressRecord(BaseModel):
+    ip: StrictStr
+    ip_address_role: StrictStr
+
+
 class InterfaceConfigRecord(BaseModel):
     name: StrictStr
     type: StrictStr
@@ -27,8 +32,8 @@ class InterfaceConfigRecord(BaseModel):
     mode: Union[None, StrictStr]
     untagged_vlan: Union[None, StrictInt, StrictStr]
     tagged_vlans: List[Union[StrictInt, StrictStr]]
-    ipv4_addresses: List[StrictStr]
-    ipv6_addresses: List[StrictStr]
+    ipv4_addresses: List[IpAddressRecord]
+    ipv6_addresses: List[IpAddressRecord]
     qinq_svlan: Union[None, StrictInt]
     vrf: Union[None, StrictStr]
 

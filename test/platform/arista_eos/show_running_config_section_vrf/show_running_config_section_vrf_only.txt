@@ -1,0 +1,6 @@
+vrf instance MANAGEMENT_ONLY
+   description Standalone management VRF
+   rd 65000:400
+!
+vrf instance CUSTOMER_ONLY
+!

@@ -2,7 +2,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 192.0.2.1/32
+  - ip: 192.0.2.1/32
+    ip_address_role: loopback
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -23,7 +24,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 198.51.100.1/30
+  - ip: 198.51.100.1/30
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -124,7 +126,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 198.51.100.4/31
+  - ip: 198.51.100.4/31
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -146,7 +149,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 198.51.100.10/24
+  - ip: 198.51.100.10/24
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -260,7 +264,10 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 203.0.113.64/31
+  - ip: 203.0.113.64/31
+    ip_address_role: ''
+  - ip: 203.0.113.66/31
+    ip_address_role: secondary
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -361,7 +368,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 192.0.2.65/26
+  - ip: 192.0.2.65/26
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -382,7 +390,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 192.0.2.161/27
+  - ip: 192.0.2.161/27
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -403,7 +412,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 192.0.2.193/26
+  - ip: 192.0.2.193/26
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -424,7 +434,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 192.0.2.145/29
+  - ip: 192.0.2.145/29
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -445,7 +456,8 @@
   duplex: null
   enabled: true
   ipv4_addresses:
-  - 203.0.113.85/30
+  - ip: 203.0.113.85/30
+    ip_address_role: ''
   ipv6_addresses: []
   lacp_mode: null
   lag: null
