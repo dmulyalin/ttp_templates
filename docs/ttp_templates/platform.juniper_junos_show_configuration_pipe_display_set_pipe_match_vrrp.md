@@ -11,7 +11,7 @@ Template to parse and normalize Juniper Junos VRRP configuration.
 
 This template requires output of:
 
-- `show configuration | display set | match vrrp`
+- `show configuration | display inheritance | display set | match vrrp`
 
 Statements belonging to the same interface address and VRRP group are merged.
 The default Junos VRRP priority of 100 is returned when priority is not
@@ -51,7 +51,7 @@ Template to parse and normalize Juniper Junos VRRP configuration.
 
 This template requires output of:
 
-- 'show configuration | display set | match vrrp'
+- 'show configuration | display inheritance | display set | match vrrp'
 
 Statements belonging to the same interface address and VRRP group are merged.
 The default Junos VRRP priority of 100 is returned when priority is not
@@ -82,7 +82,7 @@ Example normalized output (YAML):
 
 <input>
 commands = [
-    "show configuration | display set | match vrrp"
+    "show configuration | display inheritance | display set | match vrrp"
 ]
 platform = [
     "juniper_junos",

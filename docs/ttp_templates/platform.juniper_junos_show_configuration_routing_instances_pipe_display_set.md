@@ -11,7 +11,7 @@ Template to parse Juniper Junos routing-instance configuration and normalize
 it to a flat list of VRF dictionaries.
 
 This template requires output of
-'show configuration routing-instances | display set'.
+'show configuration routing-instances | display inheritance | display set'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -40,7 +40,7 @@ Template to parse Juniper Junos routing-instance configuration and normalize
 it to a flat list of VRF dictionaries.
 
 This template requires output of
-'show configuration routing-instances | display set'.
+'show configuration routing-instances | display inheritance | display set'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -60,7 +60,7 @@ returned for both IPv4 and IPv6.
 
 <input>
 commands = [
-    "show configuration routing-instances | display set"
+    "show configuration routing-instances | display inheritance | display set"
 ]
 platform = [
     "juniper_junos", # scrapli and netmiko

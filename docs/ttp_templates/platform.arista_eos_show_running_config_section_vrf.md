@@ -78,7 +78,7 @@ vrf instance {{ name | _start_ }}
 !{{ _end_ }}
 </group>
 
-<group>
+<group name="bgp">
 router bgp {{ asn | _start_ }}
    <group name="vrfs**.{{ name }}**">
    vrf {{ name | _start_ }}

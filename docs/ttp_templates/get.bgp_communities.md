@@ -50,7 +50,7 @@ large community lists with optional sequence numbers are supported.
 
 
 Template to parse Juniper Junos BGP community configuration from
-`show configuration policy-options community | display set`.
+`show configuration policy-options community | display inheritance | display set`.
 
 Returns a normalized list of dictionaries with `value`, `type`, and `name`
 keys. Each concrete community value is returned as a separate dictionary;

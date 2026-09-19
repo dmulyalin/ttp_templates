@@ -142,7 +142,7 @@ Template to parse Juniper Junos routing-instance configuration and normalize
 it to a flat list of VRF dictionaries.
 
 This template requires output of
-'show configuration routing-instances | display set'.
+'show configuration routing-instances | display inheritance | display set'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 

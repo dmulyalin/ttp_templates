@@ -73,6 +73,7 @@ nav:
     - a10_show_interfaces: ttp_templates/platform.a10_show_interfaces.md
     - a10_show_ip_bgp_neighbors: ttp_templates/platform.a10_show_ip_bgp_neighbors.md
     - a10_show_lldp_neighbors: ttp_templates/platform.a10_show_lldp_neighbors.md
+    - a10_show_running_config_partition_config_all_pipe_inc_router_bgp: ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp.md
     - a10_show_running_config_partition_config_all_pipe_section_interface: ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_section_interface.md
     - arista_eos_show_hostname: ttp_templates/platform.arista_eos_show_hostname.md
     - arista_eos_show_interfaces: ttp_templates/platform.arista_eos_show_interfaces.md

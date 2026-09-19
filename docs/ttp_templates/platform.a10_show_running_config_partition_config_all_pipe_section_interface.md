@@ -39,8 +39,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list of VLAN IDs tagged on a trunk interface
 - `qinq_svlan`: always `null`
 - `vrf`: always `null`
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 192.0.2.1/30)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -109,8 +109,8 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'tagged_vlans': list of VLAN IDs tagged on a trunk interface
 - 'qinq_svlan': always 'null'
 - 'vrf': always 'null'
-- 'ipv4_addresses': list of strings with IP/prefix (e.g. 192.0.2.1/30)
-- 'ipv6_addresses': list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- 'ipv4_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
+- 'ipv6_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
 
 Example normalized output (YAML):
 
@@ -170,11 +170,11 @@ device-context {{ device_context | _start_ }}
     lldp enable {{ lldp | re(".+") }}
 
     <group name="ipv4_addresses*" method="table">
-    ip address {{ ip | _exact_ }} {{ mask }}
+    ip address {{ ip | _exact_ }} {{ mask }} {{ ip_address_role | set("") }}
     </group>
 
     <group name="ipv6_addresses*" method="table">
-    ipv6 address {{ ip | _exact_ }}/{{ mask }}
+    ipv6 address {{ ip | _exact_ }}/{{ mask | let("ip_address_role", "") }}
     </group>
 
 !{{ _end_ }}
@@ -195,11 +195,11 @@ interface {{ kind }} {{ identifier | _start_ }}
   ipv6 nat {{ ipv6_nat_direction }}
 
   <group name="ipv4_addresses*" method="table">
-  ip address {{ ip | _exact_ }} {{ mask }}
+  ip address {{ ip | _exact_ }} {{ mask }} {{ ip_address_role | set("") }}
   </group>
 
   <group name="ipv6_addresses*" method="table">
-  ipv6 address {{ ip | _exact_ }}/{{ mask }}
+  ipv6 address {{ ip | _exact_ }}/{{ mask | let("ip_address_role", "") }}
   </group>
 
 !{{ _end_ }}

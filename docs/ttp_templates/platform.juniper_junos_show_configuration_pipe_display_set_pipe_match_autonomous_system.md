@@ -11,7 +11,7 @@ Template to parse unique BGP ASNs from Juniper Junos configuration.
 
 This template requires output of:
 
-- `show configuration | display set | match "autonomous-system|local-as|peer-as"`
+- `show configuration | display inheritance | display set | match "autonomous-system|local-as|peer-as"`
 
 ASNs are collected from global and routing-instance `autonomous-system`,
 `local-as`, and `peer-as` statements. For BGP group and neighbor statements,
@@ -50,7 +50,7 @@ Template to parse unique BGP ASNs from Juniper Junos configuration.
 
 This template requires output of:
 
-- 'show configuration | display set | match "autonomous-system|local-as|peer-as"'
+- 'show configuration | display inheritance | display set | match "autonomous-system|local-as|peer-as"'
 
 ASNs are collected from global and routing-instance 'autonomous-system',
 'local-as', and 'peer-as' statements. For BGP group and neighbor statements,
@@ -80,7 +80,7 @@ Example normalized output (YAML):
 
 <input>
 commands = [
-    'show configuration | display set | match "autonomous-system|local-as|peer-as"'
+    'show configuration | display inheritance | display set | match "autonomous-system|local-as|peer-as"'
 ]
 platform = [
     "juniper_junos",

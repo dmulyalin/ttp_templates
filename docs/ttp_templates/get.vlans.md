@@ -117,8 +117,8 @@ Example normalized output (YAML):
 Template to parse Juniper Junos VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.
 
-This template requires output of `show configuration vlans | display set` and
-`show configuration interfaces | display set | match "vlan|interface-mode|irb"`.
+This template requires output of `show configuration vlans | display inheritance | display set` and
+`show configuration interfaces | display inheritance | display set | match "vlan|interface-mode|irb"`.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 

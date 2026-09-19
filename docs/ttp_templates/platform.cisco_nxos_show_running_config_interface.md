@@ -38,8 +38,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list of integers (empty list when none)
 - `qinq_svlan`: always `null`
 - `vrf`: string or `null`
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -106,8 +106,8 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'tagged_vlans': list of integers (empty list when none)
 - 'qinq_svlan': always 'null'
 - 'vrf': string or 'null'
-- 'ipv4_addresses': list of strings with IP/prefix (e.g. 10.0.0.1/24)
-- 'ipv6_addresses': list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- 'ipv4_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
+- 'ipv6_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
 
 Example normalized output (YAML):
 
@@ -178,14 +178,14 @@ interface {{ name | _start_ }}
   duplex {{ duplex }}
 
   <group name="ipv4_addresses*" method="table">
-  ip address {{ ip | _exact_ }}/{{ mask }}
-  ip address {{ ip | _exact_ }}/{{ mask }} secondary
-  ip address {{ ip | _exact_ }} {{ mask }}
-  ip address {{ ip | _exact_ }} {{ mask }} secondary
+  ip address {{ ip | _exact_ }}/{{ mask }} {{ ip_address_role | set("") }}
+  ip address {{ ip | _exact_ }}/{{ mask | let("ip_address_role", "secondary") }} secondary
+  ip address {{ ip | _exact_ }} {{ mask }} {{ ip_address_role | set("") }}
+  ip address {{ ip | _exact_ }} {{ mask | let("ip_address_role", "secondary") }} secondary
   </group>
 
   <group name="ipv6_addresses*" method="table">
-  ipv6 address {{ ip | _exact_ }}/{{ mask }}
+  ipv6 address {{ ip | _exact_ }}/{{ mask | let("ip_address_role", "") }}
   </group>
 
 !{{ _end_ }}

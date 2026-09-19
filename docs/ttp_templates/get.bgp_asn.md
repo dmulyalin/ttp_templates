@@ -7,6 +7,39 @@ ttp://get/bgp_asn.txt
 
 
 
+Template to parse unique BGP ASNs from A10 configuration.
+
+This template requires output of:
+
+- `show running-config partition-config all | inc router bgp`
+- `show running-config partition-config all | inc router remote-as`
+
+ASNs from `router bgp` statements are marked as local. ASNs from neighbor
+`remote-as` statements are marked as remote, with the neighbor or peer-group
+name used as the description. Results are deduplicated by ASN, preserving the
+first occurrence and its description while keeping `local_asn` true if any
+occurrence marks the ASN as local.
+
+Returns a normalized list of dictionaries with these keys:
+
+- `asn` - AS number integer
+- `description` - neighbor or peer-group name, or `null`
+- `local_asn` - boolean indicating ASN belongs to the device
+
+Example normalized output (YAML):
+
+```yaml
+- asn: 1234
+  description: null
+  local_asn: true
+- asn: 64500
+  description: peergroup1
+  local_asn: false
+```
+
+
+
+
 Template to parse unique BGP ASNs from Arista EOS configuration.
 
 This template requires output of:
@@ -146,7 +179,7 @@ Template to parse unique BGP ASNs from Juniper Junos configuration.
 
 This template requires output of:
 
-- `show configuration | display set | match "autonomous-system|local-as|peer-as"`
+- `show configuration | display inheritance | display set | match "autonomous-system|local-as|peer-as"`
 
 ASNs are collected from global and routing-instance `autonomous-system`,
 `local-as`, and `peer-as` statements. For BGP group and neighbor statements,
@@ -185,6 +218,7 @@ Getter template to parse BGP AS numbers from network-device configuration.
 
 Supported platforms:
 
+- A10
 - Arista EOS
 - Cisco IOS
 - Cisco IOS-XR
@@ -212,6 +246,8 @@ Example normalized output (YAML):
 '''
 
 </doc>
+
+<extend template="ttp://platform/a10_show_running_config_partition_config_all_pipe_inc_router_bgp.txt"/>
 
 <extend template="ttp://platform/arista_eos_show_running_config_section_router_bgp.txt"/>
 

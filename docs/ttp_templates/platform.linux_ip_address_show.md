@@ -37,8 +37,8 @@ to `null` or empty lists.
 - `tagged_vlans`: empty list
 - `qinq_svlan`: always `null`
 - `vrf`: Linux master interface name when the interface is enslaved to a VRF
-- `ipv4_addresses`: list of strings with IP/prefix
-- `ipv6_addresses`: list of strings with IP/prefix
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -105,8 +105,8 @@ to 'null' or empty lists.
 - 'tagged_vlans': empty list
 - 'qinq_svlan': always 'null'
 - 'vrf': Linux master interface name when the interface is enslaved to a VRF
-- 'ipv4_addresses': list of strings with IP/prefix
-- 'ipv6_addresses': list of strings with IP/prefix
+- 'ipv4_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
+- 'ipv6_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
 
 Example normalized output (YAML):
 
@@ -158,11 +158,11 @@ def transform_interfaces_to_records(data):
     link/ether {{ mac_address | mac_eui }} {{ ignore(".+") }}
 
     <group name="ipv4_addresses*" method="table">
-    inet {{ ip | IP }}/{{ mask }} {{ ignore(".+") }}
+    inet {{ ip | IP }}/{{ mask | let("ip_address_role", "") }} {{ ignore(".+") }}
     </group>
 
     <group name="ipv6_addresses*" method="table">
-    inet6 {{ ip | IPV6 }}/{{ mask }} {{ ignore(".*") }}
+    inet6 {{ ip | IPV6 }}/{{ mask | let("ip_address_role", "") }} {{ ignore(".*") }}
     </group>
 </group>
 

@@ -8,7 +8,7 @@ ttp://platform/juniper_junos_show_configuration_policy_options_community_pipe_di
 
 
 Template to parse Juniper Junos BGP community configuration from
-`show configuration policy-options community | display set`.
+`show configuration policy-options community | display inheritance | display set`.
 
 Returns a normalized list of dictionaries with `value`, `type`, and `name`
 keys. Each concrete community value is returned as a separate dictionary;
@@ -24,7 +24,7 @@ are normalized to `rt`, `soo`, and `large` types respectively.
 <template name="juniper_junos_bgp_communities" results="per_template">
 <doc>
 Template to parse Juniper Junos BGP community configuration from
-'show configuration policy-options community | display set'.
+'show configuration policy-options community | display inheritance | display set'.
 
 Returns a normalized list of dictionaries with 'value', 'type', and 'name'
 keys. Each concrete community value is returned as a separate dictionary;
@@ -34,7 +34,7 @@ are normalized to 'rt', 'soo', and 'large' types respectively.
 
 <input>
 commands = [
-    'show configuration | display set | match "policy-options community"'
+    'show configuration | display inheritance | display set | match "policy-options community"'
 ]
 platform = [
     "juniper_junos",

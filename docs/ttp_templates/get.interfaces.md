@@ -37,8 +37,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list of integers (empty list when none)
 - `qinq_svlan`: integer or `null`
 - `vrf`: string or `null`
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -99,8 +99,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list of VLAN IDs tagged on a trunk interface
 - `qinq_svlan`: always `null`
 - `vrf`: always `null`
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 192.0.2.1/30)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -163,8 +163,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list of integers (empty list when none)
 - `qinq_svlan`: integer inner VLAN from `second-dot1q` or `null`
 - `vrf`: string or `null`
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -225,8 +225,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list with the dot1q VLAN integer when `encapsulation dot1q` is present; empty list otherwise
 - `qinq_svlan`: always `null`
 - `vrf`: string or `null`
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/30)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -288,8 +288,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list of integers (empty list when none)
 - `qinq_svlan`: always `null`
 - `vrf`: string or `null`
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -322,7 +322,7 @@ Example normalized output (YAML):
 Template to parse Juniper JunOS interfaces configuration and normalize it to a
 flat list of dictionaries suitable for Netbox import.
 
-This template requires output of 'show configuration interfaces | display set'.
+This template requires output of 'show configuration interfaces | display inheritance | display set'.
 
 The transform macro returns a list of dictionaries where each dictionary
 contains the following keys (missing values are set to `null` / `None`):
@@ -351,8 +351,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list of integers or strings (empty list when none)
 - `qinq_svlan`: always `null`
 - `vrf`: always `null` (routing-instance assignment not captured here)
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/24)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -412,8 +412,8 @@ to `null` or empty lists.
 - `tagged_vlans`: empty list
 - `qinq_svlan`: always `null`
 - `vrf`: Linux master interface name when the interface is enslaved to a VRF
-- `ipv4_addresses`: list of strings with IP/prefix
-- `ipv6_addresses`: list of strings with IP/prefix
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
@@ -486,8 +486,11 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'tagged_vlans' - list of integers (empty list when none)
 - 'qinq_svlan' - integer or 'null'
 - 'vrf' - string or 'null'
-- 'ipv4_addresses' - list of strings with IP/prefix (e.g. ''10.0.0.1/24'')
-- 'ipv6_addresses' - list of strings with IP/prefix (e.g. ''2001:db8::1/64'')
+- 'ipv4_addresses' - list of dictionaries with 'ip' in CIDR notation and
+    'ip_address_role' (empty by default; may be 'loopback', 'secondary',
+    'anycast', or 'vrrp')
+- 'ipv6_addresses' - list of dictionaries with 'ip' in CIDR notation and
+    'ip_address_role'
 
 Example normalized output (YAML):
 

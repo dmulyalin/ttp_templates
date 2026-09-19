@@ -10,7 +10,7 @@ ttp://misc/Netbox/parse_juniper_junos_config.txt
 Template to parse Juniper Junos configuration and produce data structure
 that is easy to work with to import data into the Netbox.
 
-This template requires output of 'show configuration | display set' command.
+This template requires output of 'show configuration | display inheritance | display set' command.
 
 
 
@@ -23,12 +23,12 @@ This template requires output of 'show configuration | display set' command.
 Template to parse Juniper Junos configuration and produce data structure
 that is easy to work with to import data into the Netbox.
 
-This template requires output of 'show configuration | display set' command.
+This template requires output of 'show configuration | display inheritance | display set' command.
 </doc>
 
 <input>
 commands = [
-    "show configuration | display set"
+    "show configuration | display inheritance | display set"
 ]
 platform = [
     "juniper_junos", # netmiko sand scrapli

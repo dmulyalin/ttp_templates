@@ -37,8 +37,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `tagged_vlans`: list with the dot1q VLAN integer when `encapsulation dot1q` is present; empty list otherwise
 - `qinq_svlan`: always `null`
 - `vrf`: string or `null`
-- `ipv4_addresses`: list of strings with IP/prefix (e.g. 10.0.0.1/30)
-- `ipv6_addresses`: list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+- `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
 
