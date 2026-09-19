@@ -2252,6 +2252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3548,6 +3576,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3828,14 +3884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4703,22 +4759,31 @@ of VRF dictionaries.</p>
 <li><code>instance_type</code> - always <code>vrf</code></li>
 <li><code>description</code> - VRF description string or <code>null</code> when not configured</li>
 <li><code>rd</code> - route distinguisher string or <code>null</code> when not configured</li>
-<li><code>rt_import</code> - list of import route-target strings</li>
-<li><code>rt_export</code> - list of export route-target strings</li>
-<li><code>route_policy_import</code> - import route policy string or <code>null</code> when not configured</li>
-<li><code>route_policy_export</code> - export route policy string or <code>null</code> when not configured</li>
+<li><code>interfaces</code> - list of interface names assigned to the VRF</li>
+<li><code>address_families</code> - dictionary containing <code>ipv4</code> and <code>ipv6</code>; each family
+  contains <code>rt_import</code>, <code>rt_export</code>, <code>route_policy_import</code>, and
+  <code>route_policy_export</code></li>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CUSTOMER_A</span>
 <span class="w">  </span><span class="nt">instance_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrf</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Customer A VRF</span>
 <span class="w">  </span><span class="nt">rd</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65000:100</span>
-<span class="w">  </span><span class="nt">rt_import</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65000:100</span>
-<span class="w">  </span><span class="nt">rt_export</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65000:100</span>
-<span class="w">  </span><span class="nt">route_policy_import</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IMPORT-CUSTOMER-A</span>
-<span class="w">  </span><span class="nt">route_policy_export</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EXPORT-CUSTOMER-A</span>
+<span class="w">  </span><span class="nt">interfaces</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GigabitEthernet0/0.100</span>
+<span class="w">  </span><span class="nt">address_families</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">ipv4</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">rt_import</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65000:100</span>
+<span class="w">      </span><span class="nt">rt_export</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65000:100</span>
+<span class="w">      </span><span class="nt">route_policy_import</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IMPORT-CUSTOMER-A</span>
+<span class="w">      </span><span class="nt">route_policy_export</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EXPORT-CUSTOMER-A</span>
+<span class="w">    </span><span class="nt">ipv6</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">rt_import</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">      </span><span class="nt">rt_export</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">      </span><span class="nt">route_policy_import</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">      </span><span class="nt">route_policy_export</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 </code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
@@ -4735,10 +4800,10 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'instance_type' - always 'vrf'
 - 'description' - VRF description string or 'null' when not configured
 - 'rd' - route distinguisher string or 'null' when not configured
-- 'rt_import' - list of import route-target strings
-- 'rt_export' - list of export route-target strings
-- 'route_policy_import' - import route policy string or 'null' when not configured
-- 'route_policy_export' - export route policy string or 'null' when not configured
+- 'interfaces' - list of interface names assigned to the VRF
+- 'address_families' - dictionary containing 'ipv4' and 'ipv6'; each family
+  contains 'rt_import', 'rt_export', 'route_policy_import', and
+  'route_policy_export'
 
 Example normalized output (YAML):
 
@@ -4747,12 +4812,21 @@ Example normalized output (YAML):
   instance_type: vrf
   description: Customer A VRF
   rd: 65000:100
-  rt_import:
-  - 65000:100
-  rt_export:
-  - 65000:100
-  route_policy_import: IMPORT-CUSTOMER-A
-  route_policy_export: EXPORT-CUSTOMER-A
+  interfaces:
+  - GigabitEthernet0/0.100
+  address_families:
+    ipv4:
+      rt_import:
+      - 65000:100
+      rt_export:
+      - 65000:100
+      route_policy_import: IMPORT-CUSTOMER-A
+      route_policy_export: EXPORT-CUSTOMER-A
+    ipv6:
+      rt_import: []
+      rt_export: []
+      route_policy_import: null
+      route_policy_export: null
 '''
 
 &lt;/doc&gt;
@@ -4806,6 +4880,13 @@ vrf definition {{ name | _start_ }}
  exit-address-family {{ _end_ }}
  &lt;/group&gt;
 
+!{{ _end_ }}
+&lt;/group&gt;
+
+&lt;group name="interfaces*"&gt;
+interface {{ name | _start_ }}
+ ip vrf forwarding {{ vrf }}
+ vrf forwarding {{ vrf }}
 !{{ _end_ }}
 &lt;/group&gt;
 

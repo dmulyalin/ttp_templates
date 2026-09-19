@@ -2255,6 +2255,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3543,6 +3571,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ttp_templates/platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ttp_templates/platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3823,14 +3879,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../ttp_templates/platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../ttp_templates/platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -5116,7 +5172,7 @@
 <td>❌</td>
 <td>✅</td>
 <td>✅</td>
-<td>❌</td>
+<td>✅</td>
 <td>✅</td>
 <td>✅</td>
 <td>❌</td>
@@ -5157,7 +5213,7 @@
 </tr>
 <tr>
 <td>bgp_asn</td>
-<td>❌</td>
+<td>✅</td>
 <td>✅</td>
 <td>✅</td>
 <td>✅</td>
@@ -5194,11 +5250,12 @@
 <h3 id="bgp_asn">bgp_asn<a class="headerlink" href="#bgp_asn" title="Permanent link">&para;</a></h3>
 <p>Collected commands by platform:</p>
 <ul>
+<li>A10: <code>show running-config partition-config all | inc router bgp</code> and <code>show running-config partition-config all | inc router remote-as</code></li>
 <li>Arista EOS: <code>show running-config section router bgp</code></li>
 <li>Cisco IOS: <code>show running-config | section router bgp</code></li>
 <li>Cisco IOS-XR: <code>show run formal | inc "local-as|remote-as"</code></li>
 <li>Cisco NX-OS: <code>show running-config bgp</code></li>
-<li>Juniper Junos: <code>show configuration | display set | match "autonomous-system|local-as|peer-as"</code></li>
+<li>Juniper Junos: <code>show configuration | display inheritance | display set | match "autonomous-system|local-as|peer-as"</code></li>
 </ul>
 <h3 id="bgp_communities">bgp_communities<a class="headerlink" href="#bgp_communities" title="Permanent link">&para;</a></h3>
 <p>Collected commands by platform:</p>
@@ -5207,7 +5264,7 @@
 <li>Cisco IOS: <code>show running-config | include community-list</code></li>
 <li>Cisco IOS-XR: <code>show rpl community-set</code>, <code>show rpl extcommunity-set</code>, and <code>show rpl large-community-set</code></li>
 <li>Cisco NX-OS: <code>show running-config rpm</code></li>
-<li>Juniper Junos: <code>show configuration policy-options community | display set</code></li>
+<li>Juniper Junos: <code>show configuration policy-options community | display inheritance | display set</code></li>
 </ul>
 <h3 id="bgp_neighbors">bgp_neighbors<a class="headerlink" href="#bgp_neighbors" title="Permanent link">&para;</a></h3>
 <p>Collected commands by platform:</p>
@@ -5236,7 +5293,7 @@
 <li>Cisco IOS: <code>show running-config | section interface</code></li>
 <li>Cisco IOS-XR: <code>show running-config interface</code>, <code>show running-config router vrrp</code>, and <code>show running-config router hsrp</code></li>
 <li>Cisco NX-OS: <code>show running-config interface</code></li>
-<li>Juniper Junos: <code>show configuration interfaces | display set</code> and <code>show configuration routing-instances | display set | match interface</code></li>
+<li>Juniper Junos: <code>show configuration interfaces | display inheritance | display set</code> and <code>show configuration routing-instances | display inheritance | display set | match interface</code></li>
 <li>Linux: <code>ip address show</code></li>
 </ul>
 <h3 id="interfaces_status">interfaces_status<a class="headerlink" href="#interfaces_status" title="Permanent link">&para;</a></h3>
@@ -5261,27 +5318,28 @@
 <h3 id="vlans">vlans<a class="headerlink" href="#vlans" title="Permanent link">&para;</a></h3>
 <p>Collected commands by platform:</p>
 <ul>
-<li>Arista EOS: <code>show running-config section vlan</code></li>
-<li>Cisco IOS: <code>show running-config | section vlan</code></li>
-<li>Cisco NX-OS: <code>show running-config vlan</code></li>
-<li>Juniper Junos: <code>show configuration vlans | display set</code></li>
+<li>Arista EOS: <code>show run section vlan</code></li>
+<li>Cisco IOS: <code>show running-config | section vlan</code> and <code>show running-config | section interface</code></li>
+<li>Cisco IOS-XR: <code>show run formal interface | inc "encapsulation|BVI"</code></li>
+<li>Cisco NX-OS: <code>show running-config vlan</code> and <code>show running-config interface</code></li>
+<li>Juniper Junos: <code>show configuration vlans | display inheritance | display set</code> and <code>show configuration interfaces | display inheritance | display set | match "vlan|interface-mode|irb"</code></li>
 </ul>
 <h3 id="vrfs">vrfs<a class="headerlink" href="#vrfs" title="Permanent link">&para;</a></h3>
 <p>Collected commands by platform:</p>
 <ul>
 <li>Arista EOS: <code>show running-config section vrf</code></li>
 <li>Cisco IOS: <code>show running-config | section vrf</code></li>
-<li>Cisco IOS-XR: <code>show running-config vrf</code></li>
-<li>Cisco NX-OS: <code>show running-config | section "vrf context"</code></li>
-<li>Juniper Junos: <code>show configuration routing-instances | display set</code></li>
+<li>Cisco IOS-XR: <code>show running-config vrf</code> and <code>show run formal interface | inc vrf</code></li>
+<li>Cisco NX-OS: <code>show running-config | section "vrf context"</code> and <code>show run interface | include "interface|vrf"</code></li>
+<li>Juniper Junos: <code>show configuration routing-instances | display inheritance | display set</code></li>
 </ul>
 <h3 id="vrrp">vrrp<a class="headerlink" href="#vrrp" title="Permanent link">&para;</a></h3>
 <p>Collected commands by platform:</p>
 <ul>
 <li>Arista EOS: <code>show running-config section vrrp</code></li>
 <li>Cisco IOS-XR: <code>show running-config formal router vrrp</code></li>
-<li>Cisco NX-OS: <code>show running-config vrrpv3</code></li>
-<li>Juniper Junos: <code>show configuration | display set | match vrrp-group</code></li>
+<li>Cisco NX-OS: <code>show running-config vrrp</code> or <code>show running-config vrrpv3</code></li>
+<li>Juniper Junos: <code>show configuration | display inheritance | display set | match vrrp</code></li>
 </ul>
 <h3 id="netbox">netbox<a class="headerlink" href="#netbox" title="Permanent link">&para;</a></h3>
 <p>Collected commands by platform:</p>
@@ -5289,7 +5347,7 @@
 <li>Arista EOS: <code>show running-config</code></li>
 <li>Cisco IOS-XR: <code>show running-config</code></li>
 <li>Cisco NX-OS: <code>show running-config</code></li>
-<li>Juniper Junos: <code>show configuration | display set</code></li>
+<li>Juniper Junos: <code>show configuration | display inheritance | display set</code></li>
 <li>Opengear: <code>config -g config</code></li>
 </ul>
 

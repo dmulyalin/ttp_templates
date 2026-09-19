@@ -2252,6 +2252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3540,6 +3568,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3828,14 +3884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4696,7 +4752,7 @@
 <hr />
 <p>Template to parse Juniper JunOS interfaces configuration and normalize it to a
 flat list of dictionaries suitable for Netbox import.</p>
-<p>This template requires output of 'show configuration interfaces | display set'.</p>
+<p>This template requires output of 'show configuration interfaces | display inheritance | display set'.</p>
 <p>The transform macro returns a list of dictionaries where each dictionary
 contains the following keys (missing values are set to <code>null</code> / <code>None</code>):</p>
 <ul>
@@ -4724,8 +4780,8 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>tagged_vlans</code>: list of integers or strings (empty list when none)</li>
 <li><code>qinq_svlan</code>: always <code>null</code></li>
 <li><code>vrf</code>: always <code>null</code> (routing-instance assignment not captured here)</li>
-<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 10.0.0.1/24)</li>
-<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
+<li><code>ipv4_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code></li>
+<li><code>ipv6_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code></li>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">P2P to PE1</span>
@@ -4756,7 +4812,7 @@ contains the following keys (missing values are set to <code>null</code> / <code
 Template to parse Juniper JunOS interfaces configuration and normalize it to a
 flat list of dictionaries suitable for Netbox import.
 
-This template requires output of 'show configuration interfaces | display set'.
+This template requires output of 'show configuration interfaces | display inheritance | display set'.
 
 The transform macro returns a list of dictionaries where each dictionary
 contains the following keys (missing values are set to 'null' / 'None'):
@@ -4785,8 +4841,8 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'tagged_vlans': list of integers or strings (empty list when none)
 - 'qinq_svlan': always 'null'
 - 'vrf': always 'null' (routing-instance assignment not captured here)
-- 'ipv4_addresses': list of strings with IP/prefix (e.g. 10.0.0.1/24)
-- 'ipv6_addresses': list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- 'ipv4_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
+- 'ipv6_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
 
 Example normalized output (YAML):
 
@@ -4817,8 +4873,8 @@ Example normalized output (YAML):
 
 &lt;input&gt;
 commands = [
-    "show configuration interfaces | display set",
-    "show configuration routing-instances | display set | match interface"
+    "show configuration interfaces | display inheritance | display set",
+    "show configuration routing-instances | display inheritance | display set | match interface"
 ]
 platform = [
     "juniper_junos",  # scrapli and netmiko
@@ -4852,14 +4908,14 @@ set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 &lt;/group&gt;
 
 &lt;group name="interfaces**.{{ name }}**.ipv4*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
-set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }}
-set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ vip }}
-set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group {{ vrrp_group }} virtual-address {{ vip }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} {{ ip_address_role | set("") }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ vip | let("ip_address_role", "anycast") }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group {{ vrrp_group }} virtual-address {{ vip | let("ip_address_role", "vrrp") }}
 &lt;/group&gt;
 
 &lt;group name="interfaces**.{{ name }}**.ipv6*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
-set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }}
-set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }} virtual-gateway-address {{ vip }}
+set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ | let("ip_address_role", "") }}
+set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }} virtual-gateway-address {{ vip | let("ip_address_role", "anycast") }}
 &lt;/group&gt;
 
 &lt;group name="interfaces**.{{ name }}**.switching**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;

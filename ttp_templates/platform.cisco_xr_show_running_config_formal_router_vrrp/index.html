@@ -2252,6 +2252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3540,6 +3568,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3828,14 +3884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4702,11 +4758,13 @@
 <p>Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
 returned when priority is not explicitly configured. Text authentication
-credentials are not included in the normalized output.</p>
+credentials are not included in the normalized output. IPv4 defaults to
+VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.</p>
 <p>Returns a normalized list of dictionaries with these keys:</p>
 <ul>
 <li><code>interface</code> - interface name string</li>
 <li><code>group</code> - VRRP group number integer</li>
+<li><code>protocol</code> - normalized protocol version (<code>vrrpv2</code> or <code>vrrpv3</code>)</li>
 <li><code>virtual_address</code> - virtual IPv4 or IPv6 address string</li>
 <li><code>priority</code> - VRRP priority integer</li>
 <li><code>authentication_type</code> - authentication type string or <code>null</code></li>
@@ -4714,6 +4772,7 @@ credentials are not included in the normalized output.</p>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BVI123</span>
 <span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+<span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrrpv2</span>
 <span class="w">  </span><span class="nt">virtual_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123.123.123.97</span>
 <span class="w">  </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123</span>
 <span class="w">  </span><span class="nt">authentication_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text</span>
@@ -4731,12 +4790,14 @@ This template requires output of:
 Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
 returned when priority is not explicitly configured. Text authentication
-credentials are not included in the normalized output.
+credentials are not included in the normalized output. IPv4 defaults to
+VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.
 
 Returns a normalized list of dictionaries with these keys:
 
 - 'interface' - interface name string
 - 'group' - VRRP group number integer
+- 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
 - 'priority' - VRRP priority integer
 - 'authentication_type' - authentication type string or 'null'
@@ -4746,6 +4807,7 @@ Example normalized output (YAML):
 '''yaml
 - interface: BVI123
   group: 1
+  protocol: vrrpv2
   virtual_address: 123.123.123.97
   priority: 123
   authentication_type: text
@@ -4774,6 +4836,7 @@ def transform_vrrp_to_records(data):
 &lt;group name="vrrp**.{{ interface }}**.{{ address_family }}**.{{ group }}**" method="table"&gt;
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} address global {{ virtual_address }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} address {{ virtual_address }}
+router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} version {{ version | DIGIT | to_int }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} text-authentication {{ authentication_key | let("authentication_type", "text") }}
 &lt;/group&gt;

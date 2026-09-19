@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_section_interface/">
       
       
-        <link rel="prev" href="../platform.a10_show_lldp_neighbors/">
+        <link rel="prev" href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/">
       
       
         <link rel="next" href="../platform.arista_eos_show_hostname/">
@@ -2249,6 +2249,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -3548,6 +3576,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3828,14 +3884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4724,8 +4780,8 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>tagged_vlans</code>: list of VLAN IDs tagged on a trunk interface</li>
 <li><code>qinq_svlan</code>: always <code>null</code></li>
 <li><code>vrf</code>: always <code>null</code></li>
-<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 192.0.2.1/30)</li>
-<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
+<li><code>ipv4_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code></li>
+<li><code>ipv6_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code></li>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uplink trunk</span>
@@ -4786,8 +4842,8 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'tagged_vlans': list of VLAN IDs tagged on a trunk interface
 - 'qinq_svlan': always 'null'
 - 'vrf': always 'null'
-- 'ipv4_addresses': list of strings with IP/prefix (e.g. 192.0.2.1/30)
-- 'ipv6_addresses': list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- 'ipv4_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
+- 'ipv6_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
 
 Example normalized output (YAML):
 
@@ -4847,11 +4903,11 @@ device-context {{ device_context | _start_ }}
     lldp enable {{ lldp | re(".+") }}
 
     &lt;group name="ipv4_addresses*" method="table"&gt;
-    ip address {{ ip | _exact_ }} {{ mask }}
+    ip address {{ ip | _exact_ }} {{ mask }} {{ ip_address_role | set("") }}
     &lt;/group&gt;
 
     &lt;group name="ipv6_addresses*" method="table"&gt;
-    ipv6 address {{ ip | _exact_ }}/{{ mask }}
+    ipv6 address {{ ip | _exact_ }}/{{ mask | let("ip_address_role", "") }}
     &lt;/group&gt;
 
 !{{ _end_ }}
@@ -4872,11 +4928,11 @@ interface {{ kind }} {{ identifier | _start_ }}
   ipv6 nat {{ ipv6_nat_direction }}
 
   &lt;group name="ipv4_addresses*" method="table"&gt;
-  ip address {{ ip | _exact_ }} {{ mask }}
+  ip address {{ ip | _exact_ }} {{ mask }} {{ ip_address_role | set("") }}
   &lt;/group&gt;
 
   &lt;group name="ipv6_addresses*" method="table"&gt;
-  ipv6 address {{ ip | _exact_ }}/{{ mask }}
+  ipv6 address {{ ip | _exact_ }}/{{ mask | let("ip_address_role", "") }}
   &lt;/group&gt;
 
 !{{ _end_ }}

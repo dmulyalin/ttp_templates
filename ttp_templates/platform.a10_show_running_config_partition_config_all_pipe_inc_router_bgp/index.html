@@ -12,13 +12,13 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.juniper_junos_show_bgp_neighbor_pipe_display_json/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/">
       
       
-        <link rel="prev" href="../platform.huawei_display_ospf_lsdb_router/">
+        <link rel="prev" href="../platform.a10_show_lldp_neighbors/">
       
       
-        <link rel="next" href="../platform.juniper_junos_show_chassis_hardware_pipe_json/">
+        <link rel="next" href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>juniper_junos_show_bgp_neighbor_pipe_display_json - TTP Templates Collection</title>
+        <title>a10_show_running_config_partition_config_all_pipe_inc_router_bgp - TTP Templates Collection</title>
       
     
     
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              juniper_junos_show_bgp_neighbor_pipe_display_json
+              a10_show_running_config_partition_config_all_pipe_inc_router_bgp
             
           </span>
         </div>
@@ -2249,10 +2249,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2268,6 +2275,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -3761,17 +3769,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_bgp_neighbor_pipe_display_json/" class="md-nav__link">
         
   
   
@@ -3787,7 +3788,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -4744,127 +4744,97 @@
   
 
 
-  <h1>juniper_junos_show_bgp_neighbor_pipe_display_json</h1>
+  <h1>a10_show_running_config_partition_config_all_pipe_inc_router_bgp</h1>
 
 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/a10_show_running_config_partition_config_all_pipe_inc_router_bgp.txt
 </code></pre></div></p>
 <hr />
-<p>Normalizes Juniper JunOS BGP neighbors JSON to flat list format.</p>
-<p>Transforms the nested bgp-information/bgp-peer structure returned by
-'show bgp neighbor | display json' into standardized dictionaries with:</p>
+<p>Template to parse unique BGP ASNs from A10 configuration.</p>
+<p>This template requires output of:</p>
 <ul>
-<li>All fields present (missing set to None)</li>
-<li>RFC-normalized state values (established, idle, etc.)</li>
-<li>Per-AFI prefix counts (ipv4_unicast_prefixes_sent, etc.)</li>
-<li>VRF name normalized ('master' -&gt; 'default')</li>
-<li>Peer/local addresses stripped of port suffix (e.g. '10.0.0.1+179' -&gt; '10.0.0.1')</li>
-<li>Consistent field naming matching the Arista EOS BGP neighbor output format</li>
+<li><code>show running-config partition-config all | inc router bgp</code></li>
+<li><code>show running-config partition-config all | inc router remote-as</code></li>
+</ul>
+<p>ASNs from <code>router bgp</code> statements are marked as local. ASNs from neighbor
+<code>remote-as</code> statements are marked as remote, with the neighbor or peer-group
+name used as the description. Results are deduplicated by ASN, preserving the
+first occurrence and its description while keeping <code>local_asn</code> true if any
+occurrence marks the ASN as local.</p>
+<p>Returns a normalized list of dictionaries with these keys:</p>
+<ul>
+<li><code>asn</code> - AS number integer</li>
+<li><code>description</code> - neighbor or peer-group name, or <code>null</code></li>
+<li><code>local_asn</code> - boolean indicating ASN belongs to the device</li>
 </ul>
 <p>Example normalized output (YAML):</p>
-<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">afi</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv4_unicast</span>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1234</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">export_policies</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-10_8</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span>
-<span class="w">  </span><span class="nt">hold_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
-<span class="w">  </span><span class="nt">import_policies</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-10_8</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span>
-<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_received</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-<span class="w">  </span><span class="nt">keepalive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
-<span class="w">  </span><span class="nt">local_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.0.15</span>
-<span class="w">  </span><span class="nt">local_as</span><span class="p">:</span><span class="w"> </span><span class="s">'65104'</span>
-<span class="w">  </span><span class="nt">local_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ge-0/0/0.0</span>
-<span class="w">  </span><span class="nt">max_ttl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default_10.10.0.14</span>
-<span class="w">  </span><span class="nt">peer_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLOS</span>
-<span class="w">  </span><span class="nt">peering_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external</span>
-<span class="w">  </span><span class="nt">prefix_list_in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">prefix_list_out</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">remote_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.0.14</span>
-<span class="w">  </span><span class="nt">remote_as</span><span class="p">:</span><span class="w"> </span><span class="s">'65002'</span>
-<span class="w">  </span><span class="nt">router_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.2</span>
-<span class="w">  </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">established</span>
-<span class="w">  </span><span class="nt">uptime_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">local_asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64500</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peergroup1</span>
+<span class="w">  </span><span class="nt">local_asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name="junper_junos_bgp_neighbors" results="per_template"&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name="a10_bgp_asn" results="per_template"&gt;
 &lt;doc&gt;
-Normalizes Juniper JunOS BGP neighbors JSON to flat list format.
+Template to parse unique BGP ASNs from A10 configuration.
 
-Transforms the nested bgp-information/bgp-peer structure returned by
-'show bgp neighbor | display json' into standardized dictionaries with:
+This template requires output of:
 
-- All fields present (missing set to None)
-- RFC-normalized state values (established, idle, etc.)
-- Per-AFI prefix counts (ipv4_unicast_prefixes_sent, etc.)
-- VRF name normalized ('master' -&gt; 'default')
-- Peer/local addresses stripped of port suffix (e.g. '10.0.0.1+179' -&gt; '10.0.0.1')
-- Consistent field naming matching the Arista EOS BGP neighbor output format
+- 'show running-config partition-config all | inc router bgp'
+- 'show running-config partition-config all | inc router remote-as'
+
+ASNs from 'router bgp' statements are marked as local. ASNs from neighbor
+'remote-as' statements are marked as remote, with the neighbor or peer-group
+name used as the description. Results are deduplicated by ASN, preserving the
+first occurrence and its description while keeping 'local_asn' true if any
+occurrence marks the ASN as local.
+
+Returns a normalized list of dictionaries with these keys:
+
+- 'asn' - AS number integer
+- 'description' - neighbor or peer-group name, or 'null'
+- 'local_asn' - boolean indicating ASN belongs to the device
 
 Example normalized output (YAML):
 
 '''yaml
-- afi:
-  - ipv4_unicast
+- asn: 1234
   description: null
-  export_policies:
-  - ALLOW-10_8
-  - ALLOW-ALL
-  hold_time: 90
-  import_policies:
-  - ALLOW-10_8
-  - ALLOW-ALL
-  ipv4_unicast_prefixes_received: 5
-  ipv4_unicast_prefixes_sent: 2
-  keepalive: 30
-  local_address: 10.10.0.15
-  local_as: '65104'
-  local_interface: ge-0/0/0.0
-  max_ttl: null
-  name: default_10.10.0.14
-  peer_group: CLOS
-  peering_type: external
-  prefix_list_in: null
-  prefix_list_out: null
-  remote_address: 10.10.0.14
-  remote_as: '65002'
-  router_id: 10.10.10.2
-  state: established
-  uptime_seconds: null
-  vrf: default
+  local_asn: true
+- asn: 64500
+  description: peergroup1
+  local_asn: false
 '''
+
 &lt;/doc&gt;
-
-&lt;macro&gt;
-def transform_bgp_neighbors_to_records(json_data):
-    from ttp_templates.utils.junper_junos_process_show_bgp_neighbor_pipe_display_json import transform_bgp_neighbors
-
-    return transform_bgp_neighbors(json_data)
-&lt;/macro&gt;
 
 &lt;input&gt;
 commands = [
-    "show bgp neighbor | display json"
+    "show running-config partition-config all | inc router bgp",
+    "show running-config partition-config all | inc router remote-as",
 ]
 platform = [
-    "juniper_junos",  # scrapli and netmiko
-    "junos",          # NAPALM
+    "a10",
+    "a10_ssh",
 ]
 &lt;/input&gt;
 
-&lt;group&gt;
-{ {{ _start_ }}
-{{ data | _line_ | joinmatches }}
-} {{ _end_ }}
+&lt;macro&gt;
+def transform_bgp_asns_to_records(data):
+    from ttp_templates.utils.a10_process_show_running_config_partition_config_all_pipe_inc_router_bgp import transform_bgp_asns
+
+    return transform_bgp_asns(data)
+&lt;/macro&gt;
+
+&lt;group name="statements*"&gt;
+{{ ignore(r"\s*") }}router bgp {{ asn | _start_ | to_int | let("local_asn", True) }}
+{{ ignore(r"\s*") }}neighbor {{ description | _start_ }} remote-as {{ asn | to_int | let("local_asn", False) }}
 &lt;/group&gt;
 
-&lt;output macro="transform_bgp_neighbors_to_records"/&gt;
+&lt;output macro="transform_bgp_asns_to_records"/&gt;
 
 &lt;/template&gt;
 </code></pre></div>

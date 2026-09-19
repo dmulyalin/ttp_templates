@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.juniper_junos_show_configuration_policy_options_community_pipe_display_set/">
       
       
-        <link rel="prev" href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/">
+        <link rel="prev" href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/">
       
       
         <link rel="next" href="../platform.juniper_junos_show_configuration_routing_instances_pipe_display_set/">
@@ -2252,6 +2252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3540,6 +3568,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3820,14 +3876,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4695,7 +4751,7 @@
 </code></pre></div></p>
 <hr />
 <p>Template to parse Juniper Junos BGP community configuration from
-<code>show configuration policy-options community | display set</code>.</p>
+<code>show configuration policy-options community | display inheritance | display set</code>.</p>
 <p>Returns a normalized list of dictionaries with <code>value</code>, <code>type</code>, and <code>name</code>
 keys. Each concrete community value is returned as a separate dictionary;
 pattern entries are excluded. Junos <code>target</code>, <code>origin</code>, and <code>large</code> prefixes
@@ -4705,7 +4761,7 @@ are normalized to <code>rt</code>, <code>soo</code>, and <code>large</code> type
 <div class="highlight"><pre><span></span><code>&lt;template name="juniper_junos_bgp_communities" results="per_template"&gt;
 &lt;doc&gt;
 Template to parse Juniper Junos BGP community configuration from
-'show configuration policy-options community | display set'.
+'show configuration policy-options community | display inheritance | display set'.
 
 Returns a normalized list of dictionaries with 'value', 'type', and 'name'
 keys. Each concrete community value is returned as a separate dictionary;
@@ -4715,7 +4771,7 @@ are normalized to 'rt', 'soo', and 'large' types respectively.
 
 &lt;input&gt;
 commands = [
-    'show configuration | display set | match "policy-options community"'
+    'show configuration | display inheritance | display set | match "policy-options community"'
 ]
 platform = [
     "juniper_junos",

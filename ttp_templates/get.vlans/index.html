@@ -2250,6 +2250,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3538,6 +3566,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3818,14 +3874,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4696,40 +4752,68 @@
 <hr />
 <p>Template to parse Arista EOS VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.</p>
-<p>This template requires output of 'show running-config section vlan'.</p>
+<p>This template requires output of <code>show run section vlan</code>.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>vid</code> - VLAN ID as integer</li>
 <li><code>name</code> - VLAN name string; defaults to <code>VLAN&lt;vid&gt;</code> when no name is configured</li>
 <li><code>description</code> - VLAN description string or <code>null</code> when not configured</li>
+<li><code>tagged_interfaces</code> - interface names carrying the VLAN tagged</li>
+<li><code>untagged_interfaces</code> - interface names carrying the VLAN untagged</li>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">USERS</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">  </span><span class="nt">tagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">  </span><span class="nt">untagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
 <p>Template to parse Cisco IOS VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.</p>
-<p>This template requires output of 'show running-config | section vlan'.</p>
+<p>This template requires output of <code>show running-config | section vlan</code> and
+<code>show running-config | section interface</code>.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>vid</code> - VLAN ID as integer</li>
 <li><code>name</code> - VLAN name string; defaults to <code>VLAN&lt;vid&gt;</code> when no name is configured</li>
 <li><code>description</code> - VLAN description string or <code>null</code> when not configured</li>
+<li><code>tagged_interfaces</code> - interface names carrying the VLAN tagged</li>
+<li><code>untagged_interfaces</code> - interface names carrying the VLAN untagged</li>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">USERS</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">  </span><span class="nt">tagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">  </span><span class="nt">untagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
+<p>Template to derive Cisco IOS-XR VLANs and interface membership from formal
+interface configuration.</p>
+<p>This template requires output of
+<code>show run formal interface | inc "encapsulation|BVI"</code>.</p>
+<p>Every VLAN referenced by a dot1q or untagged subinterface encapsulation, or by
+a BVI interface name, is returned, including VLANs that do not have a separate
+global VLAN definition. Parsed interface mode uses the existing normalized
+values <code>tagged</code> and <code>access</code>; BVI interfaces are untagged members.</p>
+<p>Returns normalized list of dictionaries with these keys:</p>
+<ul>
+<li><code>vid</code> - VLAN ID as integer</li>
+<li><code>name</code> - defaults to <code>VLAN&lt;vid&gt;</code></li>
+<li><code>description</code> - always <code>null</code></li>
+<li><code>tagged_interfaces</code> - interface names carrying the VLAN tagged</li>
+<li><code>untagged_interfaces</code> - interface names carrying the VLAN untagged</li>
+</ul>
 <p>Template to parse Cisco NX-OS VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.</p>
-<p>This template requires output of 'show running-config vlan'.</p>
+<p>This template requires output of <code>show running-config vlan</code> and
+<code>show running-config interface</code>.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>vid</code> - VLAN ID as integer</li>
 <li><code>name</code> - VLAN name string; defaults to <code>VLAN&lt;vid&gt;</code> when no name is configured</li>
 <li><code>description</code> - VLAN description string or <code>null</code> when not configured</li>
+<li><code>tagged_interfaces</code> - interface names carrying the VLAN tagged</li>
+<li><code>untagged_interfaces</code> - interface names carrying the VLAN untagged</li>
 </ul>
 <p>Duplicate VLAN IDs produced by overlapping list/range declarations and VLAN
 definition blocks are collapsed into one record. A record with an explicitly
@@ -4739,20 +4823,27 @@ record takes precedence.</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">USERS</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">  </span><span class="nt">tagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">  </span><span class="nt">untagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
 <p>Template to parse Juniper Junos VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.</p>
-<p>This template requires output of 'show configuration vlans | display set'.</p>
+<p>This template requires output of <code>show configuration vlans | display inheritance | display set</code> and
+<code>show configuration interfaces | display inheritance | display set | match "vlan|interface-mode|irb"</code>.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>vid</code> - VLAN ID as integer</li>
 <li><code>name</code> - VLAN name string</li>
 <li><code>description</code> - VLAN description string or <code>null</code> when not configured</li>
+<li><code>tagged_interfaces</code> - interface names carrying the VLAN tagged</li>
+<li><code>untagged_interfaces</code> - interface names carrying the VLAN untagged</li>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">USERS</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User access VLAN</span>
+<span class="w">  </span><span class="nt">tagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">  </span><span class="nt">untagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
@@ -4767,6 +4858,7 @@ Supported platforms:
 
 - Arista EOS
 - Cisco IOS
+- Cisco IOS-XR
 - Cisco NX-OS
 - Juniper Junos
 
@@ -4775,6 +4867,8 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'vid' - VLAN ID as integer
 - 'name' - VLAN name string
 - 'description' - VLAN description string or 'null' when not configured
+- 'tagged_interfaces' - list of interface names carrying the VLAN tagged
+- 'untagged_interfaces' - list of interface names carrying the VLAN untagged
 
 Example normalized output (YAML):
 
@@ -4782,6 +4876,8 @@ Example normalized output (YAML):
 - vid: 100
   name: USERS
   description: null
+  tagged_interfaces: []
+  untagged_interfaces: []
 '''
 
 &lt;/doc&gt;
@@ -4789,6 +4885,8 @@ Example normalized output (YAML):
 &lt;extend template="ttp://platform/arista_eos_show_running_config_section_vlan.txt"/&gt;
 
 &lt;extend template="ttp://platform/cisco_ios_show_running_config_pipe_section_vlan.txt"/&gt;
+
+&lt;extend template="ttp://platform/cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi.txt"/&gt;
 
 &lt;extend template="ttp://platform/cisco_nxos_show_running_config_vlan.txt"/&gt;
 

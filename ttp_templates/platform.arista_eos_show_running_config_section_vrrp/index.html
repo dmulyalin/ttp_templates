@@ -2252,6 +2252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3548,6 +3576,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3828,14 +3884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4702,11 +4758,13 @@
 <p>Both legacy and current EOS syntax are supported, including <code>ip</code> and <code>ipv4</code>
 virtual addresses, IPv6 virtual addresses, <code>priority</code> and <code>priority-level</code>,
 and text or IETF MD5 peer authentication. Authentication credentials are not
-included in normalized output. The default VRRP priority is 100.</p>
+included in normalized output. IPv4 defaults to VRRPv2 unless version 3 is
+configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.</p>
 <p>Returns a normalized list of dictionaries with these keys:</p>
 <ul>
 <li><code>interface</code> - interface name string</li>
 <li><code>group</code> - VRRP group number integer</li>
+<li><code>protocol</code> - normalized protocol version (<code>vrrpv2</code> or <code>vrrpv3</code>)</li>
 <li><code>virtual_address</code> - virtual IPv4 or IPv6 address string</li>
 <li><code>priority</code> - VRRP priority integer</li>
 <li><code>authentication_type</code> - authentication type string or <code>null</code></li>
@@ -4714,6 +4772,7 @@ included in normalized output. The default VRRP priority is 100.</p>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vlan50</span>
 <span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrrpv2</span>
 <span class="w">  </span><span class="nt">virtual_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.4.10</span>
 <span class="w">  </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span>
 <span class="w">  </span><span class="nt">authentication_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">text</span>
@@ -4731,12 +4790,14 @@ This template requires output of:
 Both legacy and current EOS syntax are supported, including 'ip' and 'ipv4'
 virtual addresses, IPv6 virtual addresses, 'priority' and 'priority-level',
 and text or IETF MD5 peer authentication. Authentication credentials are not
-included in normalized output. The default VRRP priority is 100.
+included in normalized output. IPv4 defaults to VRRPv2 unless version 3 is
+configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.
 
 Returns a normalized list of dictionaries with these keys:
 
 - 'interface' - interface name string
 - 'group' - VRRP group number integer
+- 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
 - 'priority' - VRRP priority integer
 - 'authentication_type' - authentication type string or 'null'
@@ -4746,6 +4807,7 @@ Example normalized output (YAML):
 '''yaml
 - interface: Vlan50
   group: 10
+  protocol: vrrpv2
   virtual_address: 10.10.4.10
   priority: 200
   authentication_type: text
@@ -4774,8 +4836,9 @@ def transform_vrrp_to_records(data):
 interface {{ interface | _start_ }}
 
    &lt;group name="ipv4**.{{ group }}**" method="table"&gt;
-   vrrp {{ group | DIGIT | to_int }} ip {{ virtual_address }}
-   vrrp {{ group | DIGIT | to_int }} ipv4 {{ virtual_address }}
+   vrrp {{ group | DIGIT | to_int }} ip {{ virtual_address | let("address_family", "ipv4") }}
+   vrrp {{ group | DIGIT | to_int }} {{ address_family | re("ipv4") }} {{ virtual_address }}
+   vrrp {{ group | DIGIT | to_int }} {{ address_family | re("ipv4") }} version {{ version | DIGIT | to_int }}
    vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
    vrrp {{ group | DIGIT | to_int }} priority-level {{ priority | DIGIT | to_int }}
    vrrp {{ group | DIGIT | to_int }} peer authentication text {{ authentication_key | let("authentication_type", "text") }}
@@ -4784,7 +4847,7 @@ interface {{ interface | _start_ }}
    &lt;/group&gt;
 
    &lt;group name="ipv6**.{{ group }}**" method="table"&gt;
-   vrrp {{ group | DIGIT | to_int }} ipv6 {{ virtual_address }}
+   vrrp {{ group | DIGIT | to_int }} {{ address_family | re("ipv6") }} {{ virtual_address }}
    vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
    vrrp {{ group | DIGIT | to_int }} priority-level {{ priority | DIGIT | to_int }}
    &lt;/group&gt;

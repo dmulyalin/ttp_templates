@@ -12,13 +12,13 @@
         <meta name="author" content="Denis Mulyalin">
       
       
-        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.juniper_junos_show_bgp_neighbor_pipe_display_json/">
+        <link rel="canonical" href="https://dmulyalin.github.io/ttp_templates/ttp_templates/platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/">
       
       
-        <link rel="prev" href="../platform.huawei_display_ospf_lsdb_router/">
+        <link rel="prev" href="../platform.cisco_xr_show_rpl_community_set/">
       
       
-        <link rel="next" href="../platform.juniper_junos_show_chassis_hardware_pipe_json/">
+        <link rel="next" href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>juniper_junos_show_bgp_neighbor_pipe_display_json - TTP Templates Collection</title>
+        <title>cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi - TTP Templates Collection</title>
       
     
     
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              juniper_junos_show_bgp_neighbor_pipe_display_json
+              cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
             
           </span>
         </div>
@@ -3565,10 +3565,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3584,6 +3591,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -3761,17 +3769,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../platform.juniper_junos_show_bgp_neighbor_pipe_display_json/" class="md-nav__link">
         
   
   
@@ -3787,7 +3788,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -4744,127 +4744,82 @@
   
 
 
-  <h1>juniper_junos_show_bgp_neighbor_pipe_display_json</h1>
+  <h1>cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi</h1>
 
 <p>Reference path:
-<div class="highlight"><pre><span></span><code>ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt
+<div class="highlight"><pre><span></span><code>ttp://platform/cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi.txt
 </code></pre></div></p>
 <hr />
-<p>Normalizes Juniper JunOS BGP neighbors JSON to flat list format.</p>
-<p>Transforms the nested bgp-information/bgp-peer structure returned by
-'show bgp neighbor | display json' into standardized dictionaries with:</p>
+<p>Template to derive Cisco IOS-XR VLANs and interface membership from formal
+interface configuration.</p>
+<p>This template requires output of
+<code>show run formal interface | inc "encapsulation|BVI"</code>.</p>
+<p>Every VLAN referenced by a dot1q or untagged subinterface encapsulation, or by
+a BVI interface name, is returned, including VLANs that do not have a separate
+global VLAN definition. Parsed interface mode uses the existing normalized
+values <code>tagged</code> and <code>access</code>; BVI interfaces are untagged members.</p>
+<p>Returns normalized list of dictionaries with these keys:</p>
 <ul>
-<li>All fields present (missing set to None)</li>
-<li>RFC-normalized state values (established, idle, etc.)</li>
-<li>Per-AFI prefix counts (ipv4_unicast_prefixes_sent, etc.)</li>
-<li>VRF name normalized ('master' -&gt; 'default')</li>
-<li>Peer/local addresses stripped of port suffix (e.g. '10.0.0.1+179' -&gt; '10.0.0.1')</li>
-<li>Consistent field naming matching the Arista EOS BGP neighbor output format</li>
+<li><code>vid</code> - VLAN ID as integer</li>
+<li><code>name</code> - defaults to <code>VLAN&lt;vid&gt;</code></li>
+<li><code>description</code> - always <code>null</code></li>
+<li><code>tagged_interfaces</code> - interface names carrying the VLAN tagged</li>
+<li><code>untagged_interfaces</code> - interface names carrying the VLAN untagged</li>
 </ul>
-<p>Example normalized output (YAML):</p>
-<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">afi</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv4_unicast</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">export_policies</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-10_8</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span>
-<span class="w">  </span><span class="nt">hold_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">90</span>
-<span class="w">  </span><span class="nt">import_policies</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-10_8</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ALLOW-ALL</span>
-<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_received</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
-<span class="w">  </span><span class="nt">ipv4_unicast_prefixes_sent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
-<span class="w">  </span><span class="nt">keepalive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">30</span>
-<span class="w">  </span><span class="nt">local_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.0.15</span>
-<span class="w">  </span><span class="nt">local_as</span><span class="p">:</span><span class="w"> </span><span class="s">'65104'</span>
-<span class="w">  </span><span class="nt">local_interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ge-0/0/0.0</span>
-<span class="w">  </span><span class="nt">max_ttl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default_10.10.0.14</span>
-<span class="w">  </span><span class="nt">peer_group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CLOS</span>
-<span class="w">  </span><span class="nt">peering_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">external</span>
-<span class="w">  </span><span class="nt">prefix_list_in</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">prefix_list_out</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">remote_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.0.14</span>
-<span class="w">  </span><span class="nt">remote_as</span><span class="p">:</span><span class="w"> </span><span class="s">'65002'</span>
-<span class="w">  </span><span class="nt">router_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.10.2</span>
-<span class="w">  </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">established</span>
-<span class="w">  </span><span class="nt">uptime_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
-</code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
-<div class="highlight"><pre><span></span><code>&lt;template name="junper_junos_bgp_neighbors" results="per_template"&gt;
+<div class="highlight"><pre><span></span><code>&lt;template name="cisco_xr_vlans" results="per_template"&gt;
 &lt;doc&gt;
-Normalizes Juniper JunOS BGP neighbors JSON to flat list format.
+Template to derive Cisco IOS-XR VLANs and interface membership from formal
+interface configuration.
 
-Transforms the nested bgp-information/bgp-peer structure returned by
-'show bgp neighbor | display json' into standardized dictionaries with:
+This template requires output of
+'show run formal interface | inc "encapsulation|BVI"'.
 
-- All fields present (missing set to None)
-- RFC-normalized state values (established, idle, etc.)
-- Per-AFI prefix counts (ipv4_unicast_prefixes_sent, etc.)
-- VRF name normalized ('master' -&gt; 'default')
-- Peer/local addresses stripped of port suffix (e.g. '10.0.0.1+179' -&gt; '10.0.0.1')
-- Consistent field naming matching the Arista EOS BGP neighbor output format
+Every VLAN referenced by a dot1q or untagged subinterface encapsulation, or by
+a BVI interface name, is returned, including VLANs that do not have a separate
+global VLAN definition. Parsed interface mode uses the existing normalized
+values 'tagged' and 'access'; BVI interfaces are untagged members.
 
-Example normalized output (YAML):
+Returns normalized list of dictionaries with these keys:
 
-'''yaml
-- afi:
-  - ipv4_unicast
-  description: null
-  export_policies:
-  - ALLOW-10_8
-  - ALLOW-ALL
-  hold_time: 90
-  import_policies:
-  - ALLOW-10_8
-  - ALLOW-ALL
-  ipv4_unicast_prefixes_received: 5
-  ipv4_unicast_prefixes_sent: 2
-  keepalive: 30
-  local_address: 10.10.0.15
-  local_as: '65104'
-  local_interface: ge-0/0/0.0
-  max_ttl: null
-  name: default_10.10.0.14
-  peer_group: CLOS
-  peering_type: external
-  prefix_list_in: null
-  prefix_list_out: null
-  remote_address: 10.10.0.14
-  remote_as: '65002'
-  router_id: 10.10.10.2
-  state: established
-  uptime_seconds: null
-  vrf: default
-'''
+- 'vid' - VLAN ID as integer
+- 'name' - defaults to 'VLAN&amp;lt;vid&amp;gt;'
+- 'description' - always 'null'
+- 'tagged_interfaces' - interface names carrying the VLAN tagged
+- 'untagged_interfaces' - interface names carrying the VLAN untagged
+
 &lt;/doc&gt;
-
-&lt;macro&gt;
-def transform_bgp_neighbors_to_records(json_data):
-    from ttp_templates.utils.junper_junos_process_show_bgp_neighbor_pipe_display_json import transform_bgp_neighbors
-
-    return transform_bgp_neighbors(json_data)
-&lt;/macro&gt;
 
 &lt;input&gt;
 commands = [
-    "show bgp neighbor | display json"
+    "show run formal interface | inc \"encapsulation|BVI\""
 ]
 platform = [
-    "juniper_junos",  # scrapli and netmiko
-    "junos",          # NAPALM
+    "cisco_xr",
+    "iosxr",
 ]
 &lt;/input&gt;
 
-&lt;group&gt;
-{ {{ _start_ }}
-{{ data | _line_ | joinmatches }}
-} {{ _end_ }}
+&lt;macro&gt;
+def transform_vlans_to_records(data):
+    from ttp_templates.utils.cisco_xr_process_show_run_formal_interface_pipe_inc_encapsulationpipebvi import transform_vlans_config
+
+    return transform_vlans_config(data)
+&lt;/macro&gt;
+
+&lt;group name="interfaces**.{{ name }}**" method="table"&gt;
+interface {{ name }} encapsulation dot1q {{ vlan | to_int }}
+interface {{ name }} l2transport encapsulation dot1q {{ vlan | to_int }}
+interface {{ name | let("mode", "access") }} encapsulation untagged
+interface {{ name | let("mode", "access") }} l2transport encapsulation untagged
 &lt;/group&gt;
 
-&lt;output macro="transform_bgp_neighbors_to_records"/&gt;
+&lt;group name="bvi_interfaces*" method="table"&gt;
+interface BVI{{ vid | DIGIT | to_int }}
+&lt;/group&gt;
+
+&lt;output macro="transform_vlans_to_records"/&gt;
 
 &lt;/template&gt;
 </code></pre></div>

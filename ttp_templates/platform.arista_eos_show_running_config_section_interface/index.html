@@ -2252,6 +2252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3548,6 +3576,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3828,14 +3884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4722,8 +4778,8 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
 <li><code>qinq_svlan</code>: integer or <code>null</code></li>
 <li><code>vrf</code>: string or <code>null</code></li>
-<li><code>ipv4_addresses</code>: list of strings with IP/prefix (e.g. 10.0.0.1/24)</li>
-<li><code>ipv6_addresses</code>: list of strings with IP/prefix (e.g. 2001:db8::1/64)</li>
+<li><code>ipv4_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code></li>
+<li><code>ipv6_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code></li>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Router ID</span>
@@ -4780,8 +4836,8 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'tagged_vlans': list of integers (empty list when none)
 - 'qinq_svlan': integer or 'null'
 - 'vrf': string or 'null'
-- 'ipv4_addresses': list of strings with IP/prefix (e.g. 10.0.0.1/24)
-- 'ipv6_addresses': list of strings with IP/prefix (e.g. 2001:db8::1/64)
+- 'ipv4_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
+- 'ipv6_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
 
 Example normalized output (YAML):
 
@@ -4840,18 +4896,19 @@ interface {{ name | _start_ }}
    switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
    switchport mode trunk {{ mode | set("tagged") }}
    switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}
+   encapsulation dot1q vlan {{ dot1q | to_int | let("mode", "tagged") }}
    mac-address {{ mac_address | mac_eui }}
    duplex {{ duplex }}
 
    &lt;group name="ipv4_addresses*" method="table"&gt;
-   ip address {{ ip | IP }}/{{ mask }}
-   ip address {{ ip | IP }}/{{ mask }} secondary
-   ipv4 address {{ ip | IP }}/{{ mask }}
-   ipv4 address {{ ip | IP }}/{{ mask }} secondary
+   ip address {{ ip | IP }}/{{ mask }} {{ ip_address_role | set("") }}
+   ip address {{ ip | IP }}/{{ mask | let("ip_address_role", "secondary") }} secondary
+   ipv4 address {{ ip | IP }}/{{ mask }} {{ ip_address_role | set("") }}
+   ipv4 address {{ ip | IP }}/{{ mask | let("ip_address_role", "secondary") }} secondary
    &lt;/group&gt;
 
    &lt;group name="ipv6_addresses*" method="table"&gt;
-   ipv6 address {{ ip | IPV6 }}/{{ mask }}
+   ipv6 address {{ ip | IPV6 }}/{{ mask | let("ip_address_role", "") }}
    &lt;/group&gt;
 
 !{{ _end_ }}

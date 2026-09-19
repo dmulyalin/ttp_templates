@@ -2252,6 +2252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3540,6 +3568,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3820,14 +3876,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4696,17 +4752,22 @@
 <hr />
 <p>Template to parse Juniper Junos VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.</p>
-<p>This template requires output of 'show configuration vlans | display set'.</p>
+<p>This template requires output of <code>show configuration vlans | display inheritance | display set</code> and
+<code>show configuration interfaces | display inheritance | display set | match "vlan|interface-mode|irb"</code>.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>vid</code> - VLAN ID as integer</li>
 <li><code>name</code> - VLAN name string</li>
 <li><code>description</code> - VLAN description string or <code>null</code> when not configured</li>
+<li><code>tagged_interfaces</code> - interface names carrying the VLAN tagged</li>
+<li><code>untagged_interfaces</code> - interface names carrying the VLAN untagged</li>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">vid</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">USERS</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">User access VLAN</span>
+<span class="w">  </span><span class="nt">tagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">  </span><span class="nt">untagged_interfaces</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
 </code></pre></div>
 <hr />
 <details><summary>Template Content</summary>
@@ -4715,13 +4776,16 @@ list of VLAN dictionaries.</p>
 Template to parse Juniper Junos VLAN configuration and normalize it to a flat
 list of VLAN dictionaries.
 
-This template requires output of 'show configuration vlans | display set'.
+This template requires output of 'show configuration vlans | display inheritance | display set' and
+'show configuration interfaces | display inheritance | display set | match "vlan|interface-mode|irb"'.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - 'vid' - VLAN ID as integer
 - 'name' - VLAN name string
 - 'description' - VLAN description string or 'null' when not configured
+- 'tagged_interfaces' - interface names carrying the VLAN tagged
+- 'untagged_interfaces' - interface names carrying the VLAN untagged
 
 Example normalized output (YAML):
 
@@ -4729,13 +4793,16 @@ Example normalized output (YAML):
 - vid: 100
   name: USERS
   description: User access VLAN
+  tagged_interfaces: []
+  untagged_interfaces: []
 '''
 
 &lt;/doc&gt;
 
 &lt;input&gt;
 commands = [
-    "show configuration vlans | display set"
+    "show configuration vlans | display inheritance | display set",
+    "show configuration interfaces | display inheritance | display set | match \"vlan|interface-mode|irb\""
 ]
 platform = [
     "juniper_junos", # scrapli and netmiko
@@ -4753,6 +4820,24 @@ def transform_vlans_to_records(data):
 &lt;group name="vlans**.{{ name }}**" method="table"&gt;
 set vlans {{ name }} vlan-id {{ vid | to_int }}
 set vlans {{ name }} description "{{ description | re(".+") }}"
+set vlans {{ name }} l3-interface {{ l3_interface }}
+&lt;/group&gt;
+
+&lt;group name="interfaces**.{{ name }}**" method="table"&gt;
+set interfaces {{ name }} native-vlan-id {{ untagged_vlan | to_int }}
+&lt;/group&gt;
+
+&lt;group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
+set interfaces {{ name }} unit {{ unit }} vlan-id {{ dot1q | to_int }}
+set interfaces {{ name | re("irb") }} unit {{ unit }} {{ irb_config | re(".+") }}
+&lt;/group&gt;
+
+&lt;group name="interfaces**.{{ name }}**.switching**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching interface-mode {{ dot1q_mode }}
+&lt;/group&gt;
+
+&lt;group name="interfaces**.{{ name }}**.switching**.vlans*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
+set interfaces {{ name }} unit {{ unit }} family ethernet-switching vlan members {{ vlan }}
 &lt;/group&gt;
 
 &lt;output macro="transform_vlans_to_records"/&gt;

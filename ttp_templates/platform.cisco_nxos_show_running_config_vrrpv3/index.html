@@ -2252,6 +2252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3548,6 +3576,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3828,14 +3884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4695,9 +4751,10 @@
 </code></pre></div></p>
 <hr />
 <p>Template to parse and normalize Cisco NX-OS VRRPv3 configuration.</p>
-<p>This template requires output of:</p>
+<p>This template accepts output collected with any of these commands:</p>
 <ul>
 <li><code>show running-config vrrp</code></li>
+<li><code>show running-config vrrpv3</code></li>
 </ul>
 <p>IPv4 and IPv6 address families, multiple interfaces and groups, primary
 addresses with or without the <code>primary</code> keyword, and explicit or default
@@ -4708,6 +4765,7 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 <ul>
 <li><code>interface</code> - interface name string</li>
 <li><code>group</code> - VRRP group number integer</li>
+<li><code>protocol</code> - always <code>vrrpv3</code></li>
 <li><code>virtual_address</code> - primary virtual IPv4 or IPv6 address string</li>
 <li><code>priority</code> - VRRP priority integer</li>
 <li><code>authentication_type</code> - always <code>null</code></li>
@@ -4715,6 +4773,7 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vlan20</span>
 <span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+<span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrrpv3</span>
 <span class="w">  </span><span class="nt">virtual_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20.1.1.1</span>
 <span class="w">  </span><span class="nt">priority</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">150</span>
 <span class="w">  </span><span class="nt">authentication_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
@@ -4725,9 +4784,10 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 &lt;doc&gt;
 Template to parse and normalize Cisco NX-OS VRRPv3 configuration.
 
-This template requires output of:
+This template accepts output collected with any of these commands:
 
 - 'show running-config vrrp'
+- 'show running-config vrrpv3'
 
 IPv4 and IPv6 address families, multiple interfaces and groups, primary
 addresses with or without the 'primary' keyword, and explicit or default
@@ -4739,6 +4799,7 @@ Returns a normalized list of dictionaries with these keys:
 
 - 'interface' - interface name string
 - 'group' - VRRP group number integer
+- 'protocol' - always 'vrrpv3'
 - 'virtual_address' - primary virtual IPv4 or IPv6 address string
 - 'priority' - VRRP priority integer
 - 'authentication_type' - always 'null'
@@ -4748,6 +4809,7 @@ Example normalized output (YAML):
 '''yaml
 - interface: Vlan20
   group: 10
+  protocol: vrrpv3
   virtual_address: 20.1.1.1
   priority: 150
   authentication_type: null
@@ -4757,6 +4819,7 @@ Example normalized output (YAML):
 
 &lt;input&gt;
 commands = [
+    "show running-config vrrp",
     "show running-config vrrpv3"
 ]
 platform = [
@@ -4776,7 +4839,7 @@ def transform_vrrp_to_records(data):
 interface {{ interface | _start_ }}
 
   &lt;group name="vrrp**.{{ address_family }}**.{{ group }}**"&gt;
-  vrrpv3 {{ group | _start_ | DIGIT | to_int }} address-family {{ address_family }}
+  {{ protocol | _start_ | re("vrrpv3") }} {{ group | DIGIT | to_int }} address-family {{ address_family }}
     address {{ virtual_address }} primary
     address {{ virtual_address }}
     priority {{ priority | DIGIT | to_int }}

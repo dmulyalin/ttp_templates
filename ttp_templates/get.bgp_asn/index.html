@@ -2250,6 +2250,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.a10_show_running_config_partition_config_all_pipe_inc_router_bgp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    a10_show_running_config_partition_config_all_pipe_inc_router_bgp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.a10_show_running_config_partition_config_all_pipe_section_interface/" class="md-nav__link">
         
   
@@ -3538,6 +3566,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_xr_show_run_formal_interface_pipe_inc_encapsulationpipebvi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_xr_show_run_formal_pipe_inc_local_aspipe_remote_as/" class="md-nav__link">
         
   
@@ -3818,14 +3874,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group/" class="md-nav__link">
+      <a href="../platform.juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp_group
+    juniper_junos_show_configuration_pipe_display_set_pipe_match_vrrp
   
 
     
@@ -4694,6 +4750,31 @@
 <div class="highlight"><pre><span></span><code>ttp://get/bgp_asn.txt
 </code></pre></div></p>
 <hr />
+<p>Template to parse unique BGP ASNs from A10 configuration.</p>
+<p>This template requires output of:</p>
+<ul>
+<li><code>show running-config partition-config all | inc router bgp</code></li>
+<li><code>show running-config partition-config all | inc router remote-as</code></li>
+</ul>
+<p>ASNs from <code>router bgp</code> statements are marked as local. ASNs from neighbor
+<code>remote-as</code> statements are marked as remote, with the neighbor or peer-group
+name used as the description. Results are deduplicated by ASN, preserving the
+first occurrence and its description while keeping <code>local_asn</code> true if any
+occurrence marks the ASN as local.</p>
+<p>Returns a normalized list of dictionaries with these keys:</p>
+<ul>
+<li><code>asn</code> - AS number integer</li>
+<li><code>description</code> - neighbor or peer-group name, or <code>null</code></li>
+<li><code>local_asn</code> - boolean indicating ASN belongs to the device</li>
+</ul>
+<p>Example normalized output (YAML):</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1234</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">  </span><span class="nt">local_asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">64500</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peergroup1</span>
+<span class="w">  </span><span class="nt">local_asn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
 <p>Template to parse unique BGP ASNs from Arista EOS configuration.</p>
 <p>This template requires output of:</p>
 <ul>
@@ -4800,7 +4881,7 @@ marks the ASN as local.</p>
 <p>Template to parse unique BGP ASNs from Juniper Junos configuration.</p>
 <p>This template requires output of:</p>
 <ul>
-<li><code>show configuration | display set | match "autonomous-system|local-as|peer-as"</code></li>
+<li><code>show configuration | display inheritance | display set | match "autonomous-system|local-as|peer-as"</code></li>
 </ul>
 <p>ASNs are collected from global and routing-instance <code>autonomous-system</code>,
 <code>local-as</code>, and <code>peer-as</code> statements. For BGP group and neighbor statements,
@@ -4830,6 +4911,7 @@ Getter template to parse BGP AS numbers from network-device configuration.
 
 Supported platforms:
 
+- A10
 - Arista EOS
 - Cisco IOS
 - Cisco IOS-XR
@@ -4857,6 +4939,8 @@ Example normalized output (YAML):
 '''
 
 &lt;/doc&gt;
+
+&lt;extend template="ttp://platform/a10_show_running_config_partition_config_all_pipe_inc_router_bgp.txt"/&gt;
 
 &lt;extend template="ttp://platform/arista_eos_show_running_config_section_router_bgp.txt"/&gt;
 
