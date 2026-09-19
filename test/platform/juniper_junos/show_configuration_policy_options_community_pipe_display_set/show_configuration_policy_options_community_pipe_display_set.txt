@@ -1,4 +1,4 @@
-user@router> show configuration policy-options community | display set
+user@router> show configuration policy-options community | display inheritance | display set
 set policy-options community STANDARD_ONE members 65000:100
 set policy-options community MIXED members [ 65000:200 target:65000:300 ]
 set policy-options community LARGE_ONE members [ large:65000:1:100 large:65000:1:200 ]

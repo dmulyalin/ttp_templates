@@ -28,7 +28,7 @@ Collected commands by platform:
 - Cisco IOS: `show running-config | section router bgp`
 - Cisco IOS-XR: `show run formal | inc "local-as|remote-as"`
 - Cisco NX-OS: `show running-config bgp`
-- Juniper Junos: `show configuration | display set | match "autonomous-system|local-as|peer-as"`
+- Juniper Junos: `show configuration | display inheritance | display set | match "autonomous-system|local-as|peer-as"`
 
 ### bgp_communities
 
@@ -38,7 +38,7 @@ Collected commands by platform:
 - Cisco IOS: `show running-config | include community-list`
 - Cisco IOS-XR: `show rpl community-set`, `show rpl extcommunity-set`, and `show rpl large-community-set`
 - Cisco NX-OS: `show running-config rpm`
-- Juniper Junos: `show configuration policy-options community | display set`
+- Juniper Junos: `show configuration policy-options community | display inheritance | display set`
 
 ### bgp_neighbors
 
@@ -70,7 +70,7 @@ Collected commands by platform:
 - Cisco IOS: `show running-config | section interface`
 - Cisco IOS-XR: `show running-config interface`, `show running-config router vrrp`, and `show running-config router hsrp`
 - Cisco NX-OS: `show running-config interface`
-- Juniper Junos: `show configuration interfaces | display set` and `show configuration routing-instances | display set | match interface`
+- Juniper Junos: `show configuration interfaces | display inheritance | display set` and `show configuration routing-instances | display inheritance | display set | match interface`
 - Linux: `ip address show`
 
 ### interfaces_status
@@ -102,7 +102,7 @@ Collected commands by platform:
 - Cisco IOS: `show running-config | section vlan` and `show running-config | section interface`
 - Cisco IOS-XR: `show run formal interface | inc "encapsulation|BVI"`
 - Cisco NX-OS: `show running-config vlan` and `show running-config interface`
-- Juniper Junos: `show configuration vlans | display set` and `show configuration interfaces | display set | match "vlan|interface-mode|irb"`
+- Juniper Junos: `show configuration vlans | display inheritance | display set` and `show configuration interfaces | display inheritance | display set | match "vlan|interface-mode|irb"`
 
 ### vrfs
 
@@ -112,7 +112,7 @@ Collected commands by platform:
 - Cisco IOS: `show running-config | section vrf`
 - Cisco IOS-XR: `show running-config vrf` and `show run formal interface | inc vrf`
 - Cisco NX-OS: `show running-config | section "vrf context"` and `show run interface | include "interface|vrf"`
-- Juniper Junos: `show configuration routing-instances | display set`
+- Juniper Junos: `show configuration routing-instances | display inheritance | display set`
 
 ### vrrp
 
@@ -121,7 +121,7 @@ Collected commands by platform:
 - Arista EOS: `show running-config section vrrp`
 - Cisco IOS-XR: `show running-config formal router vrrp`
 - Cisco NX-OS: `show running-config vrrp` or `show running-config vrrpv3`
-- Juniper Junos: `show configuration | display set | match vrrp`
+- Juniper Junos: `show configuration | display inheritance | display set | match vrrp`
 
 ### netbox
 
@@ -130,5 +130,5 @@ Collected commands by platform:
 - Arista EOS: `show running-config`
 - Cisco IOS-XR: `show running-config`
 - Cisco NX-OS: `show running-config`
-- Juniper Junos: `show configuration | display set`
+- Juniper Junos: `show configuration | display inheritance | display set`
 - Opengear: `config -g config`

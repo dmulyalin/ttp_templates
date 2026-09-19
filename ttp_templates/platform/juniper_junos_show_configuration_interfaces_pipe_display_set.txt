@@ -3,7 +3,7 @@
 Template to parse Juniper JunOS interfaces configuration and normalize it to a
 flat list of dictionaries suitable for Netbox import.
 
-This template requires output of 'show configuration interfaces | display set'.
+This template requires output of 'show configuration interfaces | display inheritance | display set'.
 
 The transform macro returns a list of dictionaries where each dictionary
 contains the following keys (missing values are set to `null` / `None`):
@@ -64,8 +64,8 @@ Example normalized output (YAML):
 
 <input>
 commands = [
-    "show configuration interfaces | display set",
-    "show configuration routing-instances | display set | match interface"
+    "show configuration interfaces | display inheritance | display set",
+    "show configuration routing-instances | display inheritance | display set | match interface"
 ]
 platform = [
     "juniper_junos",  # scrapli and netmiko

@@ -1,5 +1,15 @@
 # Release Notes
 
+## 0.6.7
+
+### ENHANCEMENTS
+
+1. Enhanced Juniper Junos getter collection commands that use `display set`
+   to include `display inheritance`, ensuring inherited configuration is
+   included in parser input.
+
+---
+
 ## 0.6.6
 
 ### ENHANCEMENTS
