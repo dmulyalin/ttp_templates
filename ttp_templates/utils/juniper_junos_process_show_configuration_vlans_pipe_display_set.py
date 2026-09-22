@@ -33,6 +33,8 @@ def transform_vlans_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     for name, vlan in payload.get("vlans", {}).items():
         vid = int(vlan["vid"])
+        if not 1 <= vid <= 4095:
+            continue
         records[vid] = {
             "vid": vid,
             "name": name,
@@ -45,15 +47,21 @@ def transform_vlans_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
         if vlan.get("l3_interface"):
             l3_memberships.append((vid, "untagged_interfaces", vlan["l3_interface"]))
 
-    for name, interface in payload.get("interfaces", {}).items():
-        untagged_value = interface.get("untagged_vlan")
+    interfaces = payload.get("interfaces", {})
+    for name, interface in interfaces.items():
+        untagged_value = None
         if name.lower().startswith("irb.") and name[4:].isdigit():
             untagged_value = int(name[4:])
 
         tagged_values = []
         dot1q = interface.get("dot1q")
         if dot1q is not None:
-            tagged_values.append(dot1q)
+            parent = name.split(".", 1)[0] if "." in name else None
+            parent_interface = interfaces.get(parent, {})
+            if parent_interface.get("untagged_vlan") == dot1q:
+                untagged_value = dot1q
+            else:
+                tagged_values.append(dot1q)
 
         switching = interface.get("switching")
         if switching:
@@ -85,6 +93,8 @@ def transform_vlans_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
     memberships.extend(l3_memberships)
 
     for vid, membership_type, name in memberships:
+        if not 1 <= vid <= 4095:
+            continue
         record = records.setdefault(
             vid,
             {

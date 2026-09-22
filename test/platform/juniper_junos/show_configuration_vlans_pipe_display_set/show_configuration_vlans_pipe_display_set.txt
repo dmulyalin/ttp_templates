@@ -11,5 +11,9 @@ set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members SERVERS
 set interfaces xe-0/0/3 unit 0 family ethernet-switching interface-mode access
 set interfaces xe-0/0/3 unit 0 family ethernet-switching vlan members GUEST
 set interfaces ae0 unit 100 vlan-id 100
+set interfaces ae1 native-vlan-id 101
+set interfaces ae1 unit 101 vlan-id 101
+set interfaces ae1 unit 102 vlan-id 102
+set interfaces irb unit 0 family inet
 set interfaces irb unit 30 family inet address 192.0.2.1/24
 set interfaces irb unit 999 family inet address 198.51.100.1/24

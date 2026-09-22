@@ -41,6 +41,8 @@ def transform_vlans_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
     records: Dict[int, Dict[str, Any]] = {}
     for vlan in payload.get("vlans", []):
         for vid in _expand_vlan_ids(vlan.get("vid")):
+            if not 1 <= vid <= 4095:
+                continue
             record = records.setdefault(
                 vid,
                 {
@@ -76,6 +78,8 @@ def transform_vlans_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
             memberships.append((int(value), "tagged_interfaces"))
 
         for vid, membership_type in memberships:
+            if not 1 <= vid <= 4095:
+                continue
             record = records.setdefault(
                 vid,
                 {

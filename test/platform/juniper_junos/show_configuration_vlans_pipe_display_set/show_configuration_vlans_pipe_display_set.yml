@@ -28,6 +28,18 @@
   tagged_interfaces:
   - ae0.100
   untagged_interfaces: []
+- vid: 101
+  name: VLAN101
+  description: null
+  tagged_interfaces: []
+  untagged_interfaces:
+  - ae1.101
+- vid: 102
+  name: VLAN102
+  description: null
+  tagged_interfaces:
+  - ae1.102
+  untagged_interfaces: []
 - vid: 999
   name: VLAN999
   description: null

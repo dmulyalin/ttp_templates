@@ -1,5 +1,18 @@
 # Release Notes
 
+## 0.6.8
+
+### BUGS
+
+1. Fixed VLAN getter processing to silently ignore VLAN IDs outside the valid
+   range of 1 through 4095, including Juniper Junos IRB unit 0 configuration.
+2. Fixed the Juniper Junos VLAN getter to classify a logical interface as
+   untagged when its VLAN ID matches the parent interface's native VLAN ID,
+   instead of marking the logical interface as tagged and the parent as
+   untagged.
+
+---
+
 ## 0.6.7
 
 ### ENHANCEMENTS

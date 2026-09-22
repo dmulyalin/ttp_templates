@@ -140,7 +140,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         # L3 sub-interface with explicit vlan-id tag
         dot1q = data.get("dot1q")
         if dot1q is not None:
-            # handle case with natvie vlan id
+            # handle case with native vlan id
             if parent_interface_data.get("untagged_vlan") == dot1q:
                 untagged_vlan = parent_interface_data["untagged_vlan"]
                 mode = "access"

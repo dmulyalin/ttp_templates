@@ -24,6 +24,8 @@ def transform_vlans_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
             continue
 
         vid = int(vid)
+        if not 1 <= vid <= 4095:
+            continue
         record = records.setdefault(
             vid,
             {
@@ -44,6 +46,8 @@ def transform_vlans_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     for interface in payload.get("bvi_interfaces", []):
         vid = interface["vid"]
+        if not 1 <= vid <= 4095:
+            continue
         record = records.setdefault(
             vid,
             {
