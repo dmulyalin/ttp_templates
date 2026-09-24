@@ -1,5 +1,15 @@
 # Release Notes
 
+## 0.6.9
+
+### BUGS
+
+1. Fixed the Cisco IOS-XR `vrfs` getter to ignore non-unicast address families,
+   such as IPv4 flowspec and multicast, when parsing route targets and route
+   policies.
+
+---
+
 ## 0.6.8
 
 ### BUGS

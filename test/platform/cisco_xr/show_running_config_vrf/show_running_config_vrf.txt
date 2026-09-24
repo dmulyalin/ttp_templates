@@ -12,6 +12,18 @@ vrf CUSTOMER_A
    65000:100
   !
  !
+ address-family ipv4 flowspec
+  import route-policy IMPORT-CUSTOMER-A-FLOWSPEC
+  export route-policy EXPORT-CUSTOMER-A-FLOWSPEC
+ !
+ address-family ipv4 multicast
+  import route-target
+   65000:999
+  !
+  export route-target
+   65000:999
+  !
+ !
 !
 vrf CUSTOMER_B
  rd 65000:200
