@@ -117,6 +117,10 @@ set interfaces {{ name }} unit {{ unit }} family ethernet-switching interface-mo
 set interfaces {{ name }} unit {{ unit }} family ethernet-switching vlan members {{ vlan }}
 </group>
 
+<group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table">
+set interfaces {{ name }} unit {{ unit }} {{ ignore(ORPHRASE) }}
+</group>
+
 <group name="vrf**.{{ vrf }}**.interfaces*" method="table" itemize="interface">
 set routing-instances {{ vrf }} interface {{ interface }}
 </group>

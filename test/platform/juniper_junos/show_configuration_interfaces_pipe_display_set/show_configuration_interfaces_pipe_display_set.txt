@@ -51,3 +51,4 @@ set routing-instances CUSTOMER_B instance-type vrf
 set routing-instances CUSTOMER_B interface irb.30
 set routing-instances CUSTOMER_B interface irb.1234
 set interfaces xe-0/0/4 unit 400 description "Parent type validation"
+set interfaces xe-0/0/5 unit 500 family mpls

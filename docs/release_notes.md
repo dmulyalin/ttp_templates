@@ -1,5 +1,15 @@
 # Release Notes
 
+## 0.6.10
+
+### BUGS
+
+1. Fixed the Juniper Junos `interfaces` getter to detect logical interfaces
+   from any `set interfaces <name> unit <unit> ...` configuration, including
+   statements whose properties are not otherwise parsed by the template.
+
+---
+
 ## 0.6.9
 
 ### BUGS
