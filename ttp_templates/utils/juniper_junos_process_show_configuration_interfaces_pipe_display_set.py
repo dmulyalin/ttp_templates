@@ -160,7 +160,10 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
                         vlans.append(int(v["vlan"]))
                     except (ValueError, TypeError):
                         vlans.append(v["vlan"])
-            if dot1q_mode == "trunk":
+            if "all" in vlans:
+                mode = "tagged-all"
+                tagged_vlans = []
+            elif dot1q_mode == "trunk":
                 mode = "tagged"
                 tagged_vlans = sorted(
                     set(tagged_vlans + vlans),

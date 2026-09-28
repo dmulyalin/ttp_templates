@@ -149,12 +149,12 @@
   - ip: 10.100.100.2/29
     ip_address_role: ''
   - ip: 10.100.100.1/29
-    ip_address_role: anycast
+    ip_address_role: vip
   ipv6_addresses:
   - ip: 2001:db8:100::2/64
     ip_address_role: ''
   - ip: 2001:db8:100::1/64
-    ip_address_role: anycast
+    ip_address_role: vip
   lacp_mode: null
   lag: null
   lag_id: null
@@ -415,6 +415,26 @@
   tagged_vlans: []
   type: virtual
   untagged_vlan: ACCESS_VLAN
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged-all
+  mtu: null
+  name: ae123.0
+  parent: ae123
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
   vrf: null
 - description: ''
   duplex: null

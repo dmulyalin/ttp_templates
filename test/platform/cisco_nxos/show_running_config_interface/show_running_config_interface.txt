@@ -57,3 +57,7 @@ interface loopback0
 interface Ethernet1/9.400
   description Parent type validation
 !
+interface Ethernet1/10
+  switchport mode trunk
+  switchport trunk allowed vlan all
+!

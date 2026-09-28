@@ -124,4 +124,8 @@ interface Vlan209
 interface GigabitEthernet0/9.400
  description Parent type validation
  !
+interface GigabitEthernet0/10
+ switchport mode trunk
+ switchport trunk allowed vlan all
+ !
 device#

@@ -1,5 +1,23 @@
 # Release Notes
 
+## 0.6.11
+
+### BUGS
+
+1. Fixed the Juniper Junos `interfaces` getter to classify
+   `family ethernet-switching vlan members all` as `tagged-all`, with an empty
+   tagged VLAN list, even without an explicit trunk mode statement.
+2. Fixed the Cisco IOS, Cisco NX-OS, and Arista EOS `interfaces` getters to
+   classify explicit `switchport trunk allowed vlan all` configuration as
+   `tagged-all`, with an empty tagged VLAN list.
+
+### CHANGES
+
+1. Changed the Juniper Junos `interfaces` getter to report IPv4 and IPv6
+   `virtual-gateway-address` entries with the `vip` IP address role.
+
+---
+
 ## 0.6.10
 
 ### BUGS

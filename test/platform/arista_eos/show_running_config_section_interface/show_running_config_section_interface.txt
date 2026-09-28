@@ -72,3 +72,6 @@ interface Management0
    ip address 172.100.100.12/24
 interface Ethernet10.400
    description Parent type validation
+interface Ethernet11
+   switchport mode trunk
+   switchport trunk allowed vlan all

@@ -199,3 +199,23 @@
   type: virtual
   untagged_vlan: null
   vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses: []
+  ipv6_addresses: []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged-all
+  mtu: null
+  name: Ethernet1/10
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null

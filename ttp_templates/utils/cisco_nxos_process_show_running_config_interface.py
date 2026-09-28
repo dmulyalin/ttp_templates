@@ -120,6 +120,9 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
         mode = iface.get("mode")
         untagged_vlan = iface.get("untagged_vlan")
         tagged_vlans = _flatten_vlan_values(iface.get("tagged_vlans"))
+        if iface.get("allowed_vlan_all"):
+            mode = "tagged-all"
+            tagged_vlans = []
 
         dot1q = iface.get("dot1q")
         if dot1q is not None and dot1q not in tagged_vlans:
