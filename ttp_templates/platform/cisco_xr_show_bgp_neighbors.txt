@@ -2,10 +2,12 @@
 <doc>
 Template to parse Cisco IOS XR BGP neighbors.
 
-This template requires output of 'show bgp neighbors' command.
+This template requires output of 'show bgp neighbors' and
+'show run formal router bgp | inc neighbor' commands.
 
 Returns a normalized list of dictionaries, one per BGP neighbor, with the
 following keys (fields unavailable from this command are set to None/[]):
+Import and export policies are collected across all address families.
 
 ```yaml
 - afi:
@@ -50,6 +52,7 @@ def transform(data):
 commands = [
     "show bgp neighbors",
     "show bgp vrf all neighbors",
+    "show run formal router bgp | inc neighbor",
 ]
 platform = [
     "cisco_xr",    # netmiko
@@ -78,6 +81,32 @@ BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}
 
   Local host: {{ local_address }}, Local port: {{ ignore }}
   Local host: {{ local_address }}, Local port: {{ ignore }}, IF Handle: {{ ignore }}
+</group>
+
+<group name="peer_group_config*">
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} remote-as {{ remote_as | to_int }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} local-as {{ local_as | to_int }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} description {{ description | ORPHRASE }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} update-source {{ update_source }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} address-family {{ afi }} {{ safi }} route-policy {{ policy }} {{ direction }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} address-family {{ afi }} {{ safi }}
+</group>
+
+<group name="neighbor_config*">
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} use neighbor-group {{ peer_group }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} remote-as {{ remote_as | to_int }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} local-as {{ local_as | to_int }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} description {{ description | ORPHRASE }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} update-source {{ update_source }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }} route-policy {{ policy }} {{ direction }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} use neighbor-group {{ peer_group }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} remote-as {{ remote_as | to_int }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} local-as {{ local_as | to_int }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} description {{ description | ORPHRASE }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} update-source {{ update_source }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }} route-policy {{ policy }} {{ direction }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }}
 </group>
 
 <output macro="transform"/>

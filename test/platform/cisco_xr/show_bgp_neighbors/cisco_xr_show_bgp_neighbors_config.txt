@@ -1,0 +1,77 @@
+BGP neighbor is 192.0.2.11, vrf BLUE_EDGE
+ Remote AS 65211, local AS 65100, external link
+ Description: old description
+ Remote router ID 192.0.2.111
+  BGP state = Established, up for 1d
+  Hold time is 180, keepalive interval is 60 seconds
+ For Address Family: IPv4 Unicast
+  Policy for incoming advertisements is OLD_IN
+  Policy for outgoing advertisements is OLD_OUT
+BGP neighbor is 198.51.100.12, vrf GREEN_EDGE
+ Remote AS 65211, local AS 65100, external link
+ Remote router ID 198.51.100.112
+  BGP state = Established, up for 1d
+  Hold time is 180, keepalive interval is 60 seconds
+BGP neighbor is 203.0.113.13
+ Remote AS 65100, local AS 65100, internal link
+ Remote router ID 203.0.113.113
+  BGP state = Established, up for 1d
+  Hold time is 180, keepalive interval is 60 seconds
+BGP neighbor is 192.0.2.14, vrf PUBLIC_EDGE
+ Remote AS 65314, local AS 65100, external link
+ Remote router ID 192.0.2.114
+  BGP state = Established, up for 1d
+  Hold time is 180, keepalive interval is 60 seconds
+BGP neighbor is 198.51.100.15
+ Remote AS 65415, local AS 65100, external link
+ Remote router ID 198.51.100.115
+  BGP state = Established, up for 1d
+  Hold time is 180, keepalive interval is 60 seconds
+ For Address Family: IPv4 Unicast
+  Policy for incoming advertisements is OP_V4_IN
+  Policy for outgoing advertisements is OP_V4_OUT
+ For Address Family: IPv6 Unicast
+  Policy for incoming advertisements is OP_V6_IN
+  Policy for outgoing advertisements is OP_V6_OUT
+
+router bgp 65100 neighbor-group CORE_GROUP
+router bgp 65100 neighbor-group CORE_GROUP remote-as 65211
+router bgp 65100 neighbor-group CORE_GROUP local-as 65210
+router bgp 65100 neighbor-group CORE_GROUP description group description
+router bgp 65100 neighbor-group CORE_GROUP update-source Loopback88
+router bgp 65100 neighbor-group CORE_GROUP address-family ipv4 unicast
+router bgp 65100 neighbor-group CORE_GROUP address-family ipv4 unicast route-policy CORE_IMPORT in
+router bgp 65100 neighbor-group CORE_GROUP address-family ipv4 unicast route-policy CORE_EXPORT out
+router bgp 65100 neighbor-group CORE_GROUP address-family ipv6 unicast route-policy CORE_V6_IMPORT in
+router bgp 65100 neighbor-group CORE_GROUP address-family ipv6 unicast route-policy CORE_V6_EXPORT out
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11 use neighbor-group CORE_GROUP
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11 remote-as 65212
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11 local-as 65213
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11 description direct description
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11 update-source Loopback89
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11 address-family ipv4 unicast
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11 address-family ipv4 unicast route-policy BLUE_IMPORT in
+router bgp 65100 vrf BLUE_EDGE neighbor 192.0.2.11 address-family ipv4 unicast route-policy BLUE_EXPORT out
+router bgp 65100 vrf GREEN_EDGE neighbor 198.51.100.12
+router bgp 65100 vrf GREEN_EDGE neighbor 198.51.100.12 use neighbor-group CORE_GROUP
+router bgp 65100 neighbor 203.0.113.13
+router bgp 65100 neighbor 203.0.113.13 remote-as 65100
+router bgp 65100 neighbor 203.0.113.13 capability suppress extended-nexthop-encoding
+router bgp 65100 neighbor 203.0.113.13 update-source Loopback77
+router bgp 65100 neighbor 203.0.113.13 address-family ipv4 labeled-unicast
+router bgp 65100 neighbor 203.0.113.13 address-family ipv4 labeled-unicast next-hop-self
+router bgp 65100 neighbor 203.0.113.13 address-family vpnv4 unicast
+router bgp 65100 neighbor 203.0.113.13 address-family vpnv4 unicast route-policy VPN_IMPORT in
+router bgp 65100 neighbor 203.0.113.13 address-family vpnv6 unicast
+router bgp 65100 neighbor 203.0.113.13 address-family vpnv6 unicast route-policy VPN_EXPORT out
+router bgp 65100 neighbor 203.0.113.13 address-family ipv4 rt-filter
+router bgp 65100 neighbor 203.0.113.13 address-family l2vpn evpn
+router bgp 65100 neighbor 203.0.113.13 address-family l2vpn evpn soft-reconfiguration inbound always
+router bgp 65100 vrf PUBLIC_EDGE neighbor 192.0.2.14
+router bgp 65100 vrf PUBLIC_EDGE neighbor 192.0.2.14 use neighbor-group TRANSIT_GROUP
+router bgp 65100 vrf PUBLIC_EDGE neighbor 192.0.2.14 address-family ipv4 unicast
+router bgp 65100 vrf PUBLIC_EDGE neighbor 192.0.2.14 address-family ipv4 unicast route-policy PUBLIC_DROP in
+router bgp 65100 vrf PUBLIC_EDGE neighbor 192.0.2.14 address-family ipv4 unicast route-policy PUBLIC_PASS out
+router bgp 65100 vrf PUBLIC_EDGE neighbor 192.0.2.14 address-family ipv4 flowspec route-policy FLOW_IN in
+router bgp 65100 vrf PUBLIC_EDGE neighbor 192.0.2.14 address-family ipv4 flowspec route-policy FLOW_OUT out

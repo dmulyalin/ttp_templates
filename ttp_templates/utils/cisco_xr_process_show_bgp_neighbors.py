@@ -34,6 +34,12 @@ _AFI_TO_IANA = {
 
 _BGP_STATES = {"idle", "connect", "active", "opensent", "openconfirm", "established"}
 _LINK_TYPES = {"external", "internal"}
+_CONFIG_AFI_TO_IANA = {
+    "vpnv4_unicast": "ipv4_mpls_vpn",
+    "vpnv6_unicast": "ipv6_mpls_vpn",
+    "ipv4_flowspec": "ipv4_flow_spec",
+    "ipv6_flowspec": "ipv6_flow_spec",
+}
 
 
 def _uptime_to_seconds(uptime):
@@ -54,11 +60,33 @@ def _uptime_to_seconds(uptime):
 
 def transform_bgp_neighbors(data):
     if isinstance(data, dict):
-        neighbors = data.get("neighbors") or []
+        payload = data
     elif isinstance(data, list) and data and isinstance(data[0], dict):
-        neighbors = data[0].get("neighbors") or []
+        payload = data[0]
     else:
         return []
+    neighbors = payload.get("neighbors") or []
+
+    # Index formal config by peer group and by (VRF, neighbor address).
+    peer_groups = {}
+    for item in payload.get("peer_group_config") or []:
+        group = peer_groups.setdefault(item["peer_group"], {"families": {}})
+        if "afi" in item:
+            family = group["families"].setdefault((item["afi"], item["safi"]), {})
+            if "policy" in item:
+                family[item["direction"]] = item["policy"]
+        else:
+            group.update({name: value for name, value in item.items() if name not in ("bgp_as", "peer_group")})
+
+    neighbor_configs = {}
+    for item in payload.get("neighbor_config") or []:
+        config = neighbor_configs.setdefault((item.get("vrf"), item["remote_address"]), {"families": {}})
+        if "afi" in item:
+            family = config["families"].setdefault((item["afi"], item["safi"]), {})
+            if "policy" in item:
+                family[item["direction"]] = item["policy"]
+        else:
+            config.update({name: value for name, value in item.items() if name not in ("bgp_as", "vrf", "remote_address")})
 
     result = []
     for n in neighbors:
@@ -74,11 +102,15 @@ def transform_bgp_neighbors(data):
 
         afi_list = []
         per_afi = {}
-        import_policy = None
-        export_policy = None
+        operational_import_policies = []
+        operational_export_policies = []
         local_address = n.get("local_address")
         vrf_raw = n.get("vrf", "default")
         vrf = None if vrf_raw in ("default", "master") else vrf_raw
+        config = neighbor_configs.get((vrf, remote_address), {})
+        group = peer_groups.get(config.get("peer_group"), {})
+        # Direct neighbor settings take precedence over inherited group settings.
+        effective = {**group, **config}
 
         for af in n.get("address_families") or []:
             afi_raw = af.get("afi_name") or ""
@@ -90,22 +122,37 @@ def transform_bgp_neighbors(data):
             if afi_key and afi_key not in afi_list:
                 afi_list.append(afi_key)
             if afi_key:
-                try:
-                    per_afi[f"{afi_key}_prefixes_received"] = int(
-                        af["accepted_prefixes"]
-                    )
-                except (KeyError, TypeError, ValueError):
-                    pass
-                try:
+                if af.get("accepted_prefixes") is not None:
+                    per_afi[f"{afi_key}_prefixes_received"] = int(af["accepted_prefixes"])
+                if af.get("prefixes_sent") is not None:
                     per_afi[f"{afi_key}_prefixes_sent"] = int(af["prefixes_sent"])
-                except (KeyError, TypeError, ValueError):
-                    pass
-            if import_policy is None:
-                import_policy = (af.get("import_policy") or "").strip() or None
-            if export_policy is None:
-                export_policy = (af.get("export_policy") or "").strip() or None
+            for key, policies in (("import_policy", operational_import_policies), ("export_policy", operational_export_policies)):
+                policy = (af.get(key) or "").strip()
+                if policy and policy not in policies:
+                    policies.append(policy)
             if local_address is None:
                 local_address = af.get("local_address")
+
+        # Collect policies across AFIs, keeping group and neighbor lists separate.
+        group_policies = {"in": [], "out": []}
+        neighbor_policies = {"in": [], "out": []}
+        for family_key in dict.fromkeys([*group.get("families", {}), *config.get("families", {})]):
+            afi_key = "_".join(family_key).replace("-", "_")
+            afi_key = _CONFIG_AFI_TO_IANA.get(afi_key, afi_key)
+            if afi_key not in afi_list:
+                afi_list.append(afi_key)
+            for families, policies in (
+                (group.get("families", {}), group_policies),
+                (config.get("families", {}), neighbor_policies),
+            ):
+                for direction in ("in", "out"):
+                    policy = families.get(family_key, {}).get(direction)
+                    if policy and policy not in policies[direction]:
+                        policies[direction].append(policy)
+
+        # A direct policy list replaces the group list for that direction.
+        import_policies = neighbor_policies["in"] or group_policies["in"]
+        export_policies = neighbor_policies["out"] or group_policies["out"]
 
         record = {
             "name": f"{vrf or 'default'}_{remote_address}",
@@ -113,20 +160,20 @@ def transform_bgp_neighbors(data):
             "state": state,
             "peering_type": peering_raw if peering_raw in _LINK_TYPES else None,
             "remote_address": remote_address,
-            "remote_as": int(n.get("remote_as")),
+            "remote_as": int(effective.get("remote_as", n.get("remote_as"))),
             "local_address": local_address,
-            "local_as": int(n.get("local_as")),
-            "local_interface": None,
+            "local_as": int(effective.get("local_as", n.get("local_as"))),
+            "local_interface": effective.get("update_source"),
             "router_id": n.get("router_id"),
-            "peer_group": None,
-            "description": n.get("description"),
+            "peer_group": effective.get("peer_group"),
+            "description": effective.get("description", n.get("description")),
             "hold_time": int(n["hold_time"]) if n.get("hold_time") else None,
             "keepalive": int(n["keepalive"]) if n.get("keepalive") else None,
             "uptime_seconds": uptime,
             "max_ttl": None,
             "afi": afi_list,
-            "import_policies": [import_policy] if import_policy else [],
-            "export_policies": [export_policy] if export_policy else [],
+            "import_policies": import_policies or operational_import_policies,
+            "export_policies": export_policies or operational_export_policies,
             "prefix_list_in": None,
             "prefix_list_out": None,
             **per_afi,

@@ -11,10 +11,14 @@
    classify explicit `switchport trunk allowed vlan all` configuration as
    `tagged-all`, with an empty tagged VLAN list.
 
-### CHANGES
+### ENHANCEMENTS
 
 1. Changed the Juniper Junos `interfaces` getter to report IPv4 and IPv6
    `virtual-gateway-address` entries with the `vip` IP address role.
+2. Enhanced the Cisco IOS-XR `bgp_neighbors` getter with
+   `show run formal router bgp | inc neighbor` output. Neighbor records now
+   include peer group settings, direct neighbor overrides, update source, and
+   import and export policies collected across address families.
 
 ---
 

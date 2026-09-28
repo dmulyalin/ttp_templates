@@ -1,0 +1,134 @@
+- name: BLUE_EDGE_192.0.2.11
+  description: direct description
+  state: established
+  local_address: null
+  local_interface: Loopback89
+  remote_address: 192.0.2.11
+  local_as: 65213
+  remote_as: 65212
+  peer_group: CORE_GROUP
+  import_policies:
+  - BLUE_IMPORT
+  export_policies:
+  - BLUE_EXPORT
+  prefix_list_in: null
+  prefix_list_out: null
+  router_id: 192.0.2.111
+  peering_type: external
+  vrf: BLUE_EDGE
+  hold_time: 180
+  keepalive: 60
+  uptime_seconds: 86400
+  max_ttl: null
+  afi:
+  - ipv4_unicast
+  - ipv6_unicast
+- name: GREEN_EDGE_198.51.100.12
+  description: group description
+  state: established
+  local_address: null
+  local_interface: Loopback88
+  remote_address: 198.51.100.12
+  local_as: 65210
+  remote_as: 65211
+  peer_group: CORE_GROUP
+  import_policies:
+  - CORE_IMPORT
+  - CORE_V6_IMPORT
+  export_policies:
+  - CORE_EXPORT
+  - CORE_V6_EXPORT
+  prefix_list_in: null
+  prefix_list_out: null
+  router_id: 198.51.100.112
+  peering_type: external
+  vrf: GREEN_EDGE
+  hold_time: 180
+  keepalive: 60
+  uptime_seconds: 86400
+  max_ttl: null
+  afi:
+  - ipv4_unicast
+  - ipv6_unicast
+- name: default_203.0.113.13
+  description: null
+  state: established
+  local_address: null
+  local_interface: Loopback77
+  remote_address: 203.0.113.13
+  local_as: 65100
+  remote_as: 65100
+  peer_group: null
+  import_policies:
+  - VPN_IMPORT
+  export_policies:
+  - VPN_EXPORT
+  prefix_list_in: null
+  prefix_list_out: null
+  router_id: 203.0.113.113
+  peering_type: internal
+  vrf: null
+  hold_time: 180
+  keepalive: 60
+  uptime_seconds: 86400
+  max_ttl: null
+  afi:
+  - ipv4_labeled_unicast
+  - ipv4_mpls_vpn
+  - ipv6_mpls_vpn
+  - ipv4_rt_filter
+  - l2vpn_evpn
+- name: PUBLIC_EDGE_192.0.2.14
+  description: null
+  state: established
+  local_address: null
+  local_interface: null
+  remote_address: 192.0.2.14
+  local_as: 65100
+  remote_as: 65314
+  peer_group: TRANSIT_GROUP
+  import_policies:
+  - PUBLIC_DROP
+  - FLOW_IN
+  export_policies:
+  - PUBLIC_PASS
+  - FLOW_OUT
+  prefix_list_in: null
+  prefix_list_out: null
+  router_id: 192.0.2.114
+  peering_type: external
+  vrf: PUBLIC_EDGE
+  hold_time: 180
+  keepalive: 60
+  uptime_seconds: 86400
+  max_ttl: null
+  afi:
+  - ipv4_unicast
+  - ipv4_flow_spec
+- name: default_198.51.100.15
+  description: null
+  state: established
+  local_address: null
+  local_interface: null
+  remote_address: 198.51.100.15
+  local_as: 65100
+  remote_as: 65415
+  peer_group: null
+  import_policies:
+  - OP_V4_IN
+  - OP_V6_IN
+  export_policies:
+  - OP_V4_OUT
+  - OP_V6_OUT
+  prefix_list_in: null
+  prefix_list_out: null
+  router_id: 198.51.100.115
+  peering_type: external
+  vrf: null
+  hold_time: 180
+  keepalive: 60
+  uptime_seconds: 86400
+  max_ttl: null
+  afi:
+  - ipv4_unicast
+  - ipv6_unicast
