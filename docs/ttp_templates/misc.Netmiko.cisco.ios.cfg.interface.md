@@ -34,7 +34,7 @@ contains the following keys (missing values are set to `null` / `None`):
 - `speed`: integer speed in kbit/s or `null`
 - `duplex`: string duplex setting or `null`
 - `description`: string (empty string when not set)
-- `mode`: ``tagged`` / ``access`` or `null`
+- `mode`: ``tagged`` / ``tagged-all`` / ``access`` or `null`
 - `untagged_vlan`: integer or `null`
 - `tagged_vlans`: list of integers (empty list when none)
 - `qinq_svlan`: integer inner VLAN from `second-dot1q` or `null`

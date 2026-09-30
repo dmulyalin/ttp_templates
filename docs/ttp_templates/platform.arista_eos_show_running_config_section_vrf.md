@@ -96,7 +96,7 @@ router bgp {{ asn | _start_ }}
 !{{ _end_ }}
 </group>
 
-<group name="interfaces*">
+<group name="interfaces*" functions="contains('vrf')">
 interface {{ name | _start_ }}
    vrf {{ vrf }}
 !{{ _end_ }}

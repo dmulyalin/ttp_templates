@@ -91,7 +91,7 @@ vrf context {{ name | _start_ }}
   </group>
 </group>
 
-<group name="interfaces*">
+<group name="interfaces*" functions="contains('vrf')">
 interface {{ name | _start_ }}
   vrf member {{ vrf }}
 </group>

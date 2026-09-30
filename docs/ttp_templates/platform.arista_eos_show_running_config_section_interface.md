@@ -32,7 +32,7 @@ contains the following keys (missing values are set to `null` / `None`):
 - `speed`: integer or `null`
 - `duplex`: string or `null`
 - `description`: string (empty string when not set)
-- `mode`: 'tagged' / 'access' or `null`
+- `mode`: 'tagged' / 'tagged-all' / 'access' or `null`
 - `untagged_vlan`: integer or `null`
 - `tagged_vlans`: list of integers (empty list when none)
 - `qinq_svlan`: integer or `null`
@@ -98,7 +98,7 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'speed': integer or 'null'
 - 'duplex': string or 'null'
 - 'description': string (empty string when not set)
-- 'mode': 'tagged' / 'access' or 'null'
+- 'mode': 'tagged' / 'tagged-all' / 'access' or 'null'
 - 'untagged_vlan': integer or 'null'
 - 'tagged_vlans': list of integers (empty list when none)
 - 'qinq_svlan': integer or 'null'
@@ -160,6 +160,7 @@ interface {{ name | _start_ }}
    speed {{ speed }}
    mlag {{ lag_id | to_int | let("lag_type", "mlag") }}
    channel-group {{ lag_id | to_int | let("lag_type", "lag") }} mode {{ lacp_mode }}
+   switchport trunk allowed vlan all {{ allowed_vlan_all | set(True) }}
    switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
    switchport mode trunk {{ mode | set("tagged") }}
    switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}

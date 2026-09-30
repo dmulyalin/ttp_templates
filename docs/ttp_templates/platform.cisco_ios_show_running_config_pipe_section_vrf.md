@@ -150,7 +150,7 @@ vrf definition {{ name | _start_ }}
 !{{ _end_ }}
 </group>
 
-<group name="interfaces*">
+<group name="interfaces*" functions="contains('vrf')">
 interface {{ name | _start_ }}
  ip vrf forwarding {{ vrf }}
  vrf forwarding {{ vrf }}

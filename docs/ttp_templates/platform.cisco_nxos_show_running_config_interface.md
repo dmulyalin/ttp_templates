@@ -33,7 +33,7 @@ contains the following keys (missing values are set to `null` / `None`):
 - `speed`: integer speed in kbit/s or `null`
 - `duplex`: string or `null`
 - `description`: string (empty string when not set)
-- `mode`: ``tagged`` / ``access`` or `null`
+- `mode`: ``tagged`` / ``tagged-all`` / ``access`` or `null`
 - `untagged_vlan`: integer or `null`
 - `tagged_vlans`: list of integers (empty list when none)
 - `qinq_svlan`: always `null`
@@ -101,7 +101,7 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'speed': integer speed in kbit/s or 'null'
 - 'duplex': string or 'null'
 - 'description': string (empty string when not set)
-- 'mode': ''tagged'' / ''access'' or 'null'
+- 'mode': ''tagged'' / ''tagged-all'' / ''access'' or 'null'
 - 'untagged_vlan': integer or 'null'
 - 'tagged_vlans': list of integers (empty list when none)
 - 'qinq_svlan': always 'null'
@@ -168,6 +168,7 @@ interface {{ name | _start_ }}
   switchport mode access {{ mode | set("access") }}
   switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}
   switchport trunk native vlan {{ untagged_vlan | to_int }}
+  switchport trunk allowed vlan all {{ allowed_vlan_all | set(True) }}
   switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
   switchport trunk allowed vlan add {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
   encapsulation dot1q {{ dot1q | to_int | let("mode", "tagged") }}
