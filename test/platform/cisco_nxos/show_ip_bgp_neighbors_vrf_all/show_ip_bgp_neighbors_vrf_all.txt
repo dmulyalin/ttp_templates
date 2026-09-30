@@ -103,3 +103,21 @@ BGP neighbor is 192.0.2.44, remote AS 64544, ebgp link, Peer index 17
   0 sent prefixes (0 paths)
   Outbound route-map configured is STANDBY-OUT, handle obtained
   Inbound route-map configured is STANDBY-IN, handle obtained
+
+router bgp 4200000200
+  template peer OVERLAY_PEERS
+    description "OVERLAY ROUTE REFLECTORS"
+    remote-as 4200000200
+  neighbor 198.51.100.20
+    inherit peer OVERLAY_PEERS
+    description "OVERLAY PEER BETA"
+  neighbor 203.0.113.30
+    remote-as 64530
+    local-as 64531 no-prepend replace-as
+  vrf FABRIC_BLUE
+    local-as 4200000100
+    neighbor 192.0.2.10
+      remote-as 4200000100
+  vrf TENANT_GREEN
+    neighbor 192.0.2.44
+      remote-as 64544

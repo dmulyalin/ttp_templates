@@ -24,3 +24,4 @@ interface Ethernet1/1.200
   vrf member CUSTOMER_B
 interface mgmt0
   vrf member management
+interface Ethernet1/2

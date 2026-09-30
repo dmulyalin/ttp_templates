@@ -1,5 +1,21 @@
 # Release Notes
 
+## 0.6.12
+
+### ENHANCEMENTS
+
+1. Enhanced the Cisco NX-OS `bgp_neighbors` getter with
+   `show running-config section bgp` output. Neighbor records now include
+   local AS numbers and inherited peer-template names from BGP configuration.
+
+### BUGS
+
+1. Fixed the Cisco IOS, Arista EOS, and Cisco NX-OS `vrfs` getters raising
+   `KeyError: 'vrf'` when interface configuration includes an interface without
+   a VRF assignment. Unassigned interfaces are now ignored.
+
+---
+
 ## 0.6.11
 
 ### BUGS

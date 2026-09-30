@@ -47,3 +47,6 @@ interface Loopback100
 interface Vlan200
  vrf forwarding CUSTOMER_B
 !
+interface GigabitEthernet0/1
+ description No VRF assignment
+!

@@ -106,10 +106,12 @@ Example normalized output (YAML):
 
 Template to parse Cisco IOS XR BGP neighbors.
 
-This template requires output of 'show bgp neighbors' command.
+This template requires output of 'show bgp neighbors' and
+'show run formal router bgp | inc neighbor' commands.
 
 Returns a normalized list of dictionaries, one per BGP neighbor, with the
 following keys (fields unavailable from this command are set to None/[]):
+Import and export policies are collected across all address families.
 
 ```yaml
 - afi:
@@ -145,14 +147,15 @@ following keys (fields unavailable from this command are set to None/[]):
 
 
 
-Template to parse Cisco NX-OS `show ip bgp neighbors vrf all` output and
+Template to parse Cisco NX-OS `show ip bgp neighbors vrf all` and
+`show running-config section bgp` output and
 normalize it for the `bgp_neighbors` getter.
 
 Returns one record per BGP neighbor, including session state, peering type,
 addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
 multihop TTL, address families, route maps, and per-address-family sent and
-received prefix counts. NX-OS does not report the local ASN in this command;
-it is derived for iBGP peers and returned as `null` for eBGP peers.
+received prefix counts. The BGP configuration supplies the local ASN and
+inherited peer-template name.
 
 
 

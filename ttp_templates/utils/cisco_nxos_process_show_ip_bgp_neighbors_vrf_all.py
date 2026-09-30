@@ -75,7 +75,36 @@ def _get_neighbors(payload: Any) -> list[dict[str, Any]]:
     return neighbors
 
 
-def _normalize_neighbor(neighbor: dict[str, Any]) -> dict[str, Any]:
+def _as_list(value: Any) -> list[Any]:
+    return value if isinstance(value, list) else [value] if value is not None else []
+
+
+def _get_config(payload: Any) -> tuple[int | None, dict, dict]:
+    """Index BGP config by VRF, template name, and neighbor address."""
+    items = [payload] if isinstance(payload, dict) else payload or []
+    for item in items:
+        bgp = item.get("bgp_config") if isinstance(item, dict) else None
+        if not isinstance(bgp, dict):
+            continue
+        groups, neighbors = {}, {}
+        for scope in [bgp, *_as_list(bgp.get("vrfs"))]:
+            if not isinstance(scope, dict):
+                continue
+            vrf = scope.get("vrf")
+            for peer in _as_list(scope.get("peers")):
+                if not isinstance(peer, dict):
+                    continue
+                key = (vrf, peer.get("neighbor"))
+                (groups if peer.get("is_peer_group") else neighbors)[key] = peer
+            if vrf is not None:
+                neighbors[(vrf, None)] = scope
+        return bgp.get("router_asn"), groups, neighbors
+    return None, {}, {}
+
+
+def _normalize_neighbor(
+    neighbor: dict[str, Any], router_asn: int | None, groups: dict, configs: dict
+) -> dict[str, Any]:
     """Map a parsed NX-OS neighbor to the common BGP getter contract."""
     raw_state = str(neighbor.get("bgp_state") or "")
     state_token = raw_state.split(",", 1)[0].strip().lower()
@@ -84,7 +113,25 @@ def _normalize_neighbor(neighbor: dict[str, Any]) -> dict[str, Any]:
     link_type = str(neighbor.get("link_type") or "").lower()
     peering_type = {"ibgp": "internal", "ebgp": "external"}.get(link_type)
     remote_as = int(neighbor["remote_as"])
-    local_as = remote_as if peering_type == "internal" else None
+    vrf_raw = neighbor.get("vrf") or "default"
+    vrf = None if str(vrf_raw).lower() in {"default", "master"} else vrf_raw
+    config = configs.get((vrf, neighbor["remote_address"]), {})
+    peer_group = config.get("peer_group")
+    group = groups.get((vrf, peer_group), groups.get((None, peer_group), {}))
+    vrf_config = configs.get((vrf, None), {})
+    local_as = next(
+        (
+            value
+            for value in (
+                config.get("local_as"),
+                group.get("local_as"),
+                vrf_config.get("local_as"),
+                router_asn,
+            )
+            if value is not None
+        ),
+        remote_as if peering_type == "internal" else None,
+    )
 
     afi: list[str] = []
     import_policies: list[str] = []
@@ -110,8 +157,6 @@ def _normalize_neighbor(neighbor: dict[str, Any]) -> dict[str, Any]:
         if export_policy and export_policy not in export_policies:
             export_policies.append(export_policy)
 
-    vrf_raw = neighbor.get("vrf") or "default"
-    vrf = None if str(vrf_raw).lower() in {"default", "master"} else vrf_raw
     remote_address = neighbor["remote_address"]
     record = {
         "name": f"{vrf or 'default'}_{remote_address}",
@@ -124,7 +169,7 @@ def _normalize_neighbor(neighbor: dict[str, Any]) -> dict[str, Any]:
         "local_as": local_as,
         "local_interface": neighbor.get("local_interface"),
         "router_id": neighbor.get("router_id"),
-        "peer_group": None,
+        "peer_group": peer_group,
         "description": neighbor.get("description") or None,
         "hold_time": neighbor.get("hold_time"),
         "keepalive": neighbor.get("keepalive"),
@@ -144,4 +189,8 @@ def _normalize_neighbor(neighbor: dict[str, Any]) -> dict[str, Any]:
 
 def transform_bgp_neighbors(payload: Any) -> list[dict[str, Any]]:
     """Return validated normalized NX-OS BGP neighbor records."""
-    return [_normalize_neighbor(neighbor) for neighbor in _get_neighbors(payload)]
+    router_asn, groups, configs = _get_config(payload)
+    return [
+        _normalize_neighbor(neighbor, router_asn, groups, configs)
+        for neighbor in _get_neighbors(payload)
+    ]

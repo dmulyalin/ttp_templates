@@ -11,3 +11,6 @@ router bgp 65000
       export map EXPORT-CUSTOMER-BGP-ONLY
    !
 !
+interface Ethernet2
+   description No VRF assignment
+!

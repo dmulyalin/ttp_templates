@@ -1,18 +1,20 @@
 <template name="cisco_nxos_bgp_neighbors" results="per_template">
 <doc>
-Template to parse Cisco NX-OS `show ip bgp neighbors vrf all` output and
+Template to parse Cisco NX-OS `show ip bgp neighbors vrf all` and
+`show running-config section bgp` output and
 normalize it for the `bgp_neighbors` getter.
 
 Returns one record per BGP neighbor, including session state, peering type,
 addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
 multihop TTL, address families, route maps, and per-address-family sent and
-received prefix counts. NX-OS does not report the local ASN in this command;
-it is derived for iBGP peers and returned as `null` for eBGP peers.
+received prefix counts. The BGP configuration supplies the local ASN and
+inherited peer-template name.
 </doc>
 
 <input>
 commands = [
-    "show ip bgp neighbors vrf all"
+    "show ip bgp neighbors vrf all",
+    "show running-config section bgp"
 ]
 platform = [
     "cisco_nxos",
@@ -47,6 +49,32 @@ BGP neighbor is {{ remote_address | _start_ }}, remote AS {{ remote_as | to_int 
 
   Local host: {{ local_address }}, Local port: {{ local_port | to_int }}
   Foreign host: {{ foreign_address }}, Foreign port: {{ foreign_port | to_int }}
+</group>
+
+<group name="bgp_config">
+router bgp {{ router_asn | _start_ | to_int }}
+
+  <group name="peers*">
+  template peer {{ neighbor | _start_ | let("is_peer_group", True) }}
+  neighbor {{ neighbor | _start_ | let("is_peer_group", False) }}
+    inherit peer {{ peer_group }}
+    local-as {{ local_as | to_int }} {{ local_as_options | ORPHRASE }}
+    local-as {{ local_as | to_int }}
+  </group>
+
+  <group name="vrfs*">
+  vrf {{ vrf | _start_ }}
+    local-as {{ local_as | to_int }} {{ local_as_options | ORPHRASE }}
+    local-as {{ local_as | to_int }}
+
+    <group name="peers*">
+    template peer {{ neighbor | _start_ | let("is_peer_group", True) }}
+    neighbor {{ neighbor | _start_ | let("is_peer_group", False) }}
+      inherit peer {{ peer_group }}
+      local-as {{ local_as | to_int }} {{ local_as_options | ORPHRASE }}
+      local-as {{ local_as | to_int }}
+    </group>
+  </group>
 </group>
 
 <output macro="transform_bgp_neighbors_to_records"/>
