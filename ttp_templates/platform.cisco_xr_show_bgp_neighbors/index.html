@@ -4751,9 +4751,11 @@
 </code></pre></div></p>
 <hr />
 <p>Template to parse Cisco IOS XR BGP neighbors.</p>
-<p>This template requires output of 'show bgp neighbors' command.</p>
+<p>This template requires output of 'show bgp neighbors' and
+'show run formal router bgp | inc neighbor' commands.</p>
 <p>Returns a normalized list of dictionaries, one per BGP neighbor, with the
-following keys (fields unavailable from this command are set to None/[]):</p>
+following keys (fields unavailable from this command are set to None/[]):
+Import and export policies are collected across all address families.</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">afi</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv4_unicast</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv6_unicast</span>
@@ -4790,10 +4792,12 @@ following keys (fields unavailable from this command are set to None/[]):</p>
 &lt;doc&gt;
 Template to parse Cisco IOS XR BGP neighbors.
 
-This template requires output of 'show bgp neighbors' command.
+This template requires output of 'show bgp neighbors' and
+'show run formal router bgp | inc neighbor' commands.
 
 Returns a normalized list of dictionaries, one per BGP neighbor, with the
 following keys (fields unavailable from this command are set to None/[]):
+Import and export policies are collected across all address families.
 
 '''yaml
 - afi:
@@ -4838,6 +4842,7 @@ def transform(data):
 commands = [
     "show bgp neighbors",
     "show bgp vrf all neighbors",
+    "show run formal router bgp | inc neighbor",
 ]
 platform = [
     "cisco_xr",    # netmiko
@@ -4866,6 +4871,32 @@ BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}
 
   Local host: {{ local_address }}, Local port: {{ ignore }}
   Local host: {{ local_address }}, Local port: {{ ignore }}, IF Handle: {{ ignore }}
+&lt;/group&gt;
+
+&lt;group name="peer_group_config*"&gt;
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} remote-as {{ remote_as | to_int }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} local-as {{ local_as | to_int }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} description {{ description | ORPHRASE }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} update-source {{ update_source }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} address-family {{ afi }} {{ safi }} route-policy {{ policy }} {{ direction }}
+router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} address-family {{ afi }} {{ safi }}
+&lt;/group&gt;
+
+&lt;group name="neighbor_config*"&gt;
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} use neighbor-group {{ peer_group }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} remote-as {{ remote_as | to_int }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} local-as {{ local_as | to_int }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} description {{ description | ORPHRASE }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} update-source {{ update_source }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }} route-policy {{ policy }} {{ direction }}
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} use neighbor-group {{ peer_group }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} remote-as {{ remote_as | to_int }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} local-as {{ local_as | to_int }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} description {{ description | ORPHRASE }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} update-source {{ update_source }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }} route-policy {{ policy }} {{ direction }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }}
 &lt;/group&gt;
 
 &lt;output macro="transform"/&gt;

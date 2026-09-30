@@ -4857,8 +4857,8 @@ vrf {{ name | _start_ }}
  description {{ description | re(".+") }}
  rd {{ rd }}
 
- &lt;group name="address_families**.{{ afi }}_{{ safi }}**"&gt;
- address-family {{ afi }} {{ safi | _start_ }}
+ &lt;group name="address_families**.{{ afi }}**"&gt;
+ address-family {{ afi | _start_ }} unicast
   import route-policy {{ route_policy_import }}
   export route-policy {{ route_policy_export }}
 

@@ -4773,7 +4773,7 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>speed</code>: integer or <code>null</code></li>
 <li><code>duplex</code>: string or <code>null</code></li>
 <li><code>description</code>: string (empty string when not set)</li>
-<li><code>mode</code>: 'tagged' / 'access' or <code>null</code></li>
+<li><code>mode</code>: 'tagged' / 'tagged-all' / 'access' or <code>null</code></li>
 <li><code>untagged_vlan</code>: integer or <code>null</code></li>
 <li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
 <li><code>qinq_svlan</code>: integer or <code>null</code></li>
@@ -4882,7 +4882,7 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>speed</code>: integer speed in kbit/s or <code>null</code></li>
 <li><code>duplex</code>: string duplex setting or <code>null</code></li>
 <li><code>description</code>: string (empty string when not set)</li>
-<li><code>mode</code>: <code>tagged</code> / <code>access</code> or <code>null</code></li>
+<li><code>mode</code>: <code>tagged</code> / <code>tagged-all</code> / <code>access</code> or <code>null</code></li>
 <li><code>untagged_vlan</code>: integer or <code>null</code></li>
 <li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
 <li><code>qinq_svlan</code>: integer inner VLAN from <code>second-dot1q</code> or <code>null</code></li>
@@ -4991,7 +4991,7 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>speed</code>: integer speed in kbit/s or <code>null</code></li>
 <li><code>duplex</code>: string or <code>null</code></li>
 <li><code>description</code>: string (empty string when not set)</li>
-<li><code>mode</code>: <code>tagged</code> / <code>access</code> or <code>null</code></li>
+<li><code>mode</code>: <code>tagged</code> / <code>tagged-all</code> / <code>access</code> or <code>null</code></li>
 <li><code>untagged_vlan</code>: integer or <code>null</code></li>
 <li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
 <li><code>qinq_svlan</code>: always <code>null</code></li>
@@ -5046,7 +5046,7 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>speed</code>: integer in kbit/s or <code>null</code></li>
 <li><code>duplex</code>: always <code>null</code> (not exposed in display set format)</li>
 <li><code>description</code>: string (empty string when not set)</li>
-<li><code>mode</code>: 'tagged' / 'access' or <code>null</code></li>
+<li><code>mode</code>: 'tagged' / 'tagged-all' / 'access' or <code>null</code></li>
 <li><code>untagged_vlan</code>: integer, string, or <code>null</code></li>
 <li><code>tagged_vlans</code>: list of integers or strings (empty list when none)</li>
 <li><code>qinq_svlan</code>: always <code>null</code></li>
@@ -5165,14 +5165,14 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'speed' - integer or 'null'
 - 'duplex' - string or 'null'
 - 'description' - string (empty string when not set)
-- 'mode' - ''tagged'' / ''access'' or 'null'
+- 'mode' - ''tagged'' / ''tagged-all'' / ''access'' or 'null'
 - 'untagged_vlan' - integer or 'null'
 - 'tagged_vlans' - list of integers (empty list when none)
 - 'qinq_svlan' - integer or 'null'
 - 'vrf' - string or 'null'
 - 'ipv4_addresses' - list of dictionaries with 'ip' in CIDR notation and
     'ip_address_role' (empty by default; may be 'loopback', 'secondary',
-    'anycast', or 'vrrp')
+    'vip', or 'vrrp')
 - 'ipv6_addresses' - list of dictionaries with 'ip' in CIDR notation and
     'ip_address_role'
 

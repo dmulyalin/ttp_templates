@@ -4775,7 +4775,7 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>speed</code>: integer in kbit/s or <code>null</code></li>
 <li><code>duplex</code>: always <code>null</code> (not exposed in display set format)</li>
 <li><code>description</code>: string (empty string when not set)</li>
-<li><code>mode</code>: 'tagged' / 'access' or <code>null</code></li>
+<li><code>mode</code>: 'tagged' / 'tagged-all' / 'access' or <code>null</code></li>
 <li><code>untagged_vlan</code>: integer, string, or <code>null</code></li>
 <li><code>tagged_vlans</code>: list of integers or strings (empty list when none)</li>
 <li><code>qinq_svlan</code>: always <code>null</code></li>
@@ -4836,7 +4836,7 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'speed': integer in kbit/s or 'null'
 - 'duplex': always 'null' (not exposed in display set format)
 - 'description': string (empty string when not set)
-- 'mode': 'tagged' / 'access' or 'null'
+- 'mode': 'tagged' / 'tagged-all' / 'access' or 'null'
 - 'untagged_vlan': integer, string, or 'null'
 - 'tagged_vlans': list of integers or strings (empty list when none)
 - 'qinq_svlan': always 'null'
@@ -4909,13 +4909,13 @@ set interfaces {{ name }} unit {{ unit }} mac {{ mac_address | mac_eui }}
 
 &lt;group name="interfaces**.{{ name }}**.ipv4*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} {{ ip_address_role | set("") }}
-set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ vip | let("ip_address_role", "anycast") }}
+set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} virtual-gateway-address {{ vip | let("ip_address_role", "vip") }}
 set interfaces {{ name }} unit {{ unit }} family inet address {{ ip }}/{{ mask }} vrrp-group {{ vrrp_group }} virtual-address {{ vip | let("ip_address_role", "vrrp") }}
 &lt;/group&gt;
 
 &lt;group name="interfaces**.{{ name }}**.ipv6*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
 set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ | let("ip_address_role", "") }}
-set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }} virtual-gateway-address {{ vip | let("ip_address_role", "anycast") }}
+set interfaces {{ name }} unit {{ unit }} family inet6 address {{ ip }}/{{ mask | _exact_ }} virtual-gateway-address {{ vip | let("ip_address_role", "vip") }}
 &lt;/group&gt;
 
 &lt;group name="interfaces**.{{ name }}**.switching**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
@@ -4924,6 +4924,10 @@ set interfaces {{ name }} unit {{ unit }} family ethernet-switching interface-mo
 
 &lt;group name="interfaces**.{{ name }}**.switching**.vlans*" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
 set interfaces {{ name }} unit {{ unit }} family ethernet-switching vlan members {{ vlan }}
+&lt;/group&gt;
+
+&lt;group name="interfaces**.{{ name }}**" functions="sformat('{name}.{unit}', 'name') | del('unit')" method="table"&gt;
+set interfaces {{ name }} unit {{ unit }} {{ ignore(ORPHRASE) }}
 &lt;/group&gt;
 
 &lt;group name="vrf**.{{ vrf }}**.interfaces*" method="table" itemize="interface"&gt;

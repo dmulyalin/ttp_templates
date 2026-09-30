@@ -4826,7 +4826,7 @@ vrf context {{ name | _start_ }}
   &lt;/group&gt;
 &lt;/group&gt;
 
-&lt;group name="interfaces*"&gt;
+&lt;group name="interfaces*" functions="contains('vrf')"&gt;
 interface {{ name | _start_ }}
   vrf member {{ vrf }}
 &lt;/group&gt;

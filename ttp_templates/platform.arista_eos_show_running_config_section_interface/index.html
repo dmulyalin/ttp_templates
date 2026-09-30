@@ -4773,7 +4773,7 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>speed</code>: integer or <code>null</code></li>
 <li><code>duplex</code>: string or <code>null</code></li>
 <li><code>description</code>: string (empty string when not set)</li>
-<li><code>mode</code>: 'tagged' / 'access' or <code>null</code></li>
+<li><code>mode</code>: 'tagged' / 'tagged-all' / 'access' or <code>null</code></li>
 <li><code>untagged_vlan</code>: integer or <code>null</code></li>
 <li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
 <li><code>qinq_svlan</code>: integer or <code>null</code></li>
@@ -4831,7 +4831,7 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'speed': integer or 'null'
 - 'duplex': string or 'null'
 - 'description': string (empty string when not set)
-- 'mode': 'tagged' / 'access' or 'null'
+- 'mode': 'tagged' / 'tagged-all' / 'access' or 'null'
 - 'untagged_vlan': integer or 'null'
 - 'tagged_vlans': list of integers (empty list when none)
 - 'qinq_svlan': integer or 'null'
@@ -4893,6 +4893,7 @@ interface {{ name | _start_ }}
    speed {{ speed }}
    mlag {{ lag_id | to_int | let("lag_type", "mlag") }}
    channel-group {{ lag_id | to_int | let("lag_type", "lag") }} mode {{ lacp_mode }}
+   switchport trunk allowed vlan all {{ allowed_vlan_all | set(True) }}
    switchport trunk allowed vlan {{ tagged_vlans | unrange(rangechar='-', joinchar=',') | split(",") | joinmatches }}
    switchport mode trunk {{ mode | set("tagged") }}
    switchport access vlan {{ untagged_vlan | to_int | let("mode", "access") }}

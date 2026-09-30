@@ -4750,30 +4750,33 @@
 <div class="highlight"><pre><span></span><code>ttp://platform/cisco_nxos_show_ip_bgp_neighbors_vrf_all.txt
 </code></pre></div></p>
 <hr />
-<p>Template to parse Cisco NX-OS <code>show ip bgp neighbors vrf all</code> output and
+<p>Template to parse Cisco NX-OS <code>show ip bgp neighbors vrf all</code> and
+<code>show running-config section bgp</code> output and
 normalize it for the <code>bgp_neighbors</code> getter.</p>
 <p>Returns one record per BGP neighbor, including session state, peering type,
 addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
 multihop TTL, address families, route maps, and per-address-family sent and
-received prefix counts. NX-OS does not report the local ASN in this command;
-it is derived for iBGP peers and returned as <code>null</code> for eBGP peers.</p>
+received prefix counts. The BGP configuration supplies the local ASN and
+inherited peer-template name.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name="cisco_nxos_bgp_neighbors" results="per_template"&gt;
 &lt;doc&gt;
-Template to parse Cisco NX-OS 'show ip bgp neighbors vrf all' output and
+Template to parse Cisco NX-OS 'show ip bgp neighbors vrf all' and
+'show running-config section bgp' output and
 normalize it for the 'bgp_neighbors' getter.
 
 Returns one record per BGP neighbor, including session state, peering type,
 addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
 multihop TTL, address families, route maps, and per-address-family sent and
-received prefix counts. NX-OS does not report the local ASN in this command;
-it is derived for iBGP peers and returned as 'null' for eBGP peers.
+received prefix counts. The BGP configuration supplies the local ASN and
+inherited peer-template name.
 &lt;/doc&gt;
 
 &lt;input&gt;
 commands = [
-    "show ip bgp neighbors vrf all"
+    "show ip bgp neighbors vrf all",
+    "show running-config section bgp"
 ]
 platform = [
     "cisco_nxos",
@@ -4808,6 +4811,32 @@ BGP neighbor is {{ remote_address | _start_ }}, remote AS {{ remote_as | to_int 
 
   Local host: {{ local_address }}, Local port: {{ local_port | to_int }}
   Foreign host: {{ foreign_address }}, Foreign port: {{ foreign_port | to_int }}
+&lt;/group&gt;
+
+&lt;group name="bgp_config"&gt;
+router bgp {{ router_asn | _start_ | to_int }}
+
+  &lt;group name="peers*"&gt;
+  template peer {{ neighbor | _start_ | let("is_peer_group", True) }}
+  neighbor {{ neighbor | _start_ | let("is_peer_group", False) }}
+    inherit peer {{ peer_group }}
+    local-as {{ local_as | to_int }} {{ local_as_options | ORPHRASE }}
+    local-as {{ local_as | to_int }}
+  &lt;/group&gt;
+
+  &lt;group name="vrfs*"&gt;
+  vrf {{ vrf | _start_ }}
+    local-as {{ local_as | to_int }} {{ local_as_options | ORPHRASE }}
+    local-as {{ local_as | to_int }}
+
+    &lt;group name="peers*"&gt;
+    template peer {{ neighbor | _start_ | let("is_peer_group", True) }}
+    neighbor {{ neighbor | _start_ | let("is_peer_group", False) }}
+      inherit peer {{ peer_group }}
+      local-as {{ local_as | to_int }} {{ local_as_options | ORPHRASE }}
+      local-as {{ local_as | to_int }}
+    &lt;/group&gt;
+  &lt;/group&gt;
 &lt;/group&gt;
 
 &lt;output macro="transform_bgp_neighbors_to_records"/&gt;

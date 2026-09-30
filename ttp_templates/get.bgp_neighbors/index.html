@@ -4832,9 +4832,11 @@ reported by ACOS are returned as <code>null</code> or empty lists.</p>
 <span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </code></pre></div>
 <p>Template to parse Cisco IOS XR BGP neighbors.</p>
-<p>This template requires output of 'show bgp neighbors' command.</p>
+<p>This template requires output of 'show bgp neighbors' and
+'show run formal router bgp | inc neighbor' commands.</p>
 <p>Returns a normalized list of dictionaries, one per BGP neighbor, with the
-following keys (fields unavailable from this command are set to None/[]):</p>
+following keys (fields unavailable from this command are set to None/[]):
+Import and export policies are collected across all address families.</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">afi</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv4_unicast</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ipv6_unicast</span>
@@ -4865,13 +4867,14 @@ following keys (fields unavailable from this command are set to None/[]):</p>
 <span class="w">  </span><span class="nt">uptime_seconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 <span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
 </code></pre></div>
-<p>Template to parse Cisco NX-OS <code>show ip bgp neighbors vrf all</code> output and
+<p>Template to parse Cisco NX-OS <code>show ip bgp neighbors vrf all</code> and
+<code>show running-config section bgp</code> output and
 normalize it for the <code>bgp_neighbors</code> getter.</p>
 <p>Returns one record per BGP neighbor, including session state, peering type,
 addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
 multihop TTL, address families, route maps, and per-address-family sent and
-received prefix counts. NX-OS does not report the local ASN in this command;
-it is derived for iBGP peers and returned as <code>null</code> for eBGP peers.</p>
+received prefix counts. The BGP configuration supplies the local ASN and
+inherited peer-template name.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name="bgp_neighbors" results="per_template"&gt;
