@@ -347,6 +347,8 @@ contains the following keys (missing values are set to `null` / `None`):
 - `duplex`: always `null` (not exposed in display set format)
 - `description`: string (empty string when not set)
 - `mode`: 'tagged' / 'tagged-all' / 'access' or `null`
+    Ethernet-switching VLAN membership defaults to 'access' when interface-mode
+    is absent, except for 'vlan members all', which remains 'tagged-all'.
 - `untagged_vlan`: integer, string, or `null`
 - `tagged_vlans`: list of integers or strings (empty list when none)
 - `qinq_svlan`: always `null`

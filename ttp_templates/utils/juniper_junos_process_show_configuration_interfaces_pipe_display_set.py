@@ -169,7 +169,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
                     set(tagged_vlans + vlans),
                     key=lambda vlan: (isinstance(vlan, str), vlan),
                 )
-            elif dot1q_mode == "access":
+            elif dot1q_mode == "access" or (dot1q_mode is None and vlans):
                 mode = "access"
                 if vlans:
                     untagged_vlan = vlans[0]
@@ -188,7 +188,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         ]
         ipv6_addresses = [
             {
-                "ip": f"{a['ip']}/{a['mask']}",
+                "ip": f"{a['ip'].lower()}/{a['mask']}",
                 "ip_address_role": (
                     "loopback"
                     if name_lower.startswith("lo0")
@@ -211,7 +211,7 @@ def transform_interfaces_config(payload: list) -> List[Dict[str, Any]]:
         ipv6_addresses.extend(
             [
                 {
-                    "ip": f"{a['vip']}/{a['mask']}",
+                    "ip": f"{a['vip'].lower()}/{a['mask']}",
                     "ip_address_role": a.get("ip_address_role", ""),
                 }
                 for a in data.get("ipv6", [])

@@ -1,5 +1,25 @@
 # Release Notes
 
+## 0.6.13
+
+### ENHANCEMENTS
+
+1. Enhanced the Cisco NX-OS `interfaces` getter to recognize
+   `fabric forwarding mode anycast-gateway` and assign the `anycast` IP address
+   role to IPv4 and IPv6 addresses on the interface, preserving the
+   `secondary` role on secondary addresses.
+
+### BUGS
+
+1. Fixed the Juniper Junos `interfaces` getter to default to `access` mode
+   and populate `untagged_vlan` when ethernet-switching VLAN membership is
+   configured without an explicit `interface-mode`. Explicit trunk mode and
+   `vlan members all` retain their existing behavior.
+2. Fixed the `interfaces` getter to normalize IPv6 address values to lowercase
+   across all supported platforms, including Juniper virtual gateway addresses.
+
+---
+
 ## 0.6.12
 
 ### ENHANCEMENTS

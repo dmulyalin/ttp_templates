@@ -168,7 +168,7 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
             ),
             "ipv6_addresses": [
                 {
-                    "ip": f"{addr['ip']}/{addr['mask']}",
+                    "ip": f"{addr['ip'].lower()}/{addr['mask']}",
                     "ip_address_role": (
                         "loopback"
                         if "loopback" in name_lower
@@ -181,6 +181,11 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
             "qinq_svlan": None,
             "vrf": iface.get("vrf"),
         }
+
+        if iface.get("is_anycast_gateway"):
+            for address in record["ipv4_addresses"] + record["ipv6_addresses"]:
+                if address["ip_address_role"] != "secondary":
+                    address["ip_address_role"] = "anycast"
 
         record = InterfaceConfigRecord(**record).model_dump()
         normalized_interfaces.append(record)

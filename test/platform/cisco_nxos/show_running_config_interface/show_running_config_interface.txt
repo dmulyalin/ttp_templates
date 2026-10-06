@@ -8,8 +8,10 @@ interface Vlan100
   description Users SVI
   no shutdown
   vrf member TENANT_A
+  fabric forwarding mode anycast-gateway
   ip address 10.100.0.1/24
-  ipv6 address 2001:db8:100::1/64
+  ip address 10.100.1.1/24 secondary
+  ipv6 address 2001:DB8:100::1/64
 !
 interface port-channel10
   description Server vPC
@@ -41,7 +43,7 @@ interface Ethernet1/3
   duplex full
   ip address 192.0.2.1/31
   ip address 192.0.2.3/31 secondary
-  ipv6 address 2001:db8:1::1/64
+  ipv6 address 2001:DB8:1::1/64
   no shutdown
 !
 interface Ethernet1/3.200
@@ -60,4 +62,15 @@ interface Ethernet1/9.400
 interface Ethernet1/10
   switchport mode trunk
   switchport trunk allowed vlan all
+!
+interface Vlan200
+  description Anycast command after addresses
+  ip address 10.200.0.1 255.255.255.0
+  ipv6 address 2001:DB8:200::1/64
+  fabric forwarding mode anycast-gateway
+!
+interface Vlan123
+  ip address 1.2.3.4/27
+  ip address 2.2.2.2/24 secondary
+  fabric forwarding mode anycast-gateway
 !

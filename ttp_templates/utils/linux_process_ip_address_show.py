@@ -61,7 +61,7 @@ def _build_ipv6_list(items: Any, is_loopback: bool) -> List[Dict[str, Any]]:
         return []
     return [
         {
-            "ip": f"{item['ip']}/{item['mask']}",
+            "ip": f"{item['ip'].lower()}/{item['mask']}",
             "ip_address_role": "loopback" if is_loopback else "",
         }
         for item in items

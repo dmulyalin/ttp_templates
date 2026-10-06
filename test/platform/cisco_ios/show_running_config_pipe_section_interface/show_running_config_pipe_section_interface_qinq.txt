@@ -57,7 +57,7 @@ interface GigabitEthernet2/0/4.22341011
  encapsulation dot1Q 2234 second-dot1q 1011
  ip vrf forwarding CLIENT_VOICE:1000
  ip address 192.0.2.177 255.255.255.252
- ipv6 address 2001:db8:2234:1011::2/126
+ ipv6 address 2001:DB8:2234:1011::2/126
  ip flow monitor IPV4_MONITOR sampler FLOW_SAMPLER input
  no ip proxy-arp
  no negotiation

@@ -118,6 +118,26 @@
   type: lag
   untagged_vlan: null
   vrf: null
+- description: '"foo"'
+  duplex: null
+  enabled: true
+  ipv4_addresses: &id001 []
+  ipv6_addresses: &id002 []
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: et-0/0/57
+  parent: null
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: other
+  untagged_vlan: null
+  vrf: null
 - description: '"L3 to CE1"'
   duplex: null
   enabled: true
@@ -419,6 +439,47 @@
 - description: ''
   duplex: null
   enabled: true
+  ipv4_addresses: *id001
+  ipv6_addresses: *id002
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged
+  mtu: null
+  name: et-0/0/59.0
+  parent: et-0/0/59
+  qinq_svlan: null
+  speed: null
+  tagged_vlans:
+  - 200
+  type: virtual
+  untagged_vlan: null
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses: *id001
+  ipv6_addresses: *id002
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: et-0/0/60.0
+  parent: et-0/0/60
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: EXPLICIT_ACCESS
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: null
@@ -439,6 +500,66 @@
 - description: ''
   duplex: null
   enabled: true
+  ipv4_addresses: *id001
+  ipv6_addresses: *id002
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: et-0/0/57.0
+  parent: et-0/0/57
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: GCOMP03
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses: *id001
+  ipv6_addresses: *id002
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: access
+  mtu: null
+  name: et-0/0/58.0
+  parent: et-0/0/58
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: 123
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses: *id001
+  ipv6_addresses: *id002
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: tagged-all
+  mtu: null
+  name: et-0/0/62.0
+  parent: et-0/0/62
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
   ipv4_addresses: []
   ipv6_addresses: []
   lacp_mode: null
@@ -450,6 +571,26 @@
   mtu: null
   name: xe-0/0/5.500
   parent: xe-0/0/5
+  qinq_svlan: null
+  speed: null
+  tagged_vlans: []
+  type: virtual
+  untagged_vlan: null
+  vrf: null
+- description: ''
+  duplex: null
+  enabled: true
+  ipv4_addresses: *id001
+  ipv6_addresses: *id002
+  lacp_mode: null
+  lag: null
+  lag_id: null
+  lag_type: null
+  mac_address: null
+  mode: null
+  mtu: null
+  name: et-0/0/61.0
+  parent: et-0/0/61
   qinq_svlan: null
   speed: null
   tagged_vlans: []

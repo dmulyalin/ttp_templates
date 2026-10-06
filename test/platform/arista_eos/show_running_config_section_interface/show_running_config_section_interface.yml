@@ -273,9 +273,9 @@
   - ip: 1.1.1.1/32
     ip_address_role: loopback
   ipv6_addresses:
-  - ip: 2001::/128
+  - ip: 2001:db8::/128
     ip_address_role: loopback
-  - ip: 2001::1/128
+  - ip: 2001:db8::1/128
     ip_address_role: loopback
   lacp_mode: null
   lag: null

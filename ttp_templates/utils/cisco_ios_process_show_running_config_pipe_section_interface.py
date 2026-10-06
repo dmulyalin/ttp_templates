@@ -184,7 +184,7 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
             ),
             "ipv6_addresses": [
                 {
-                    "ip": f"{addr['ip']}/{addr['mask']}",
+                    "ip": f"{addr['ip'].lower()}/{addr['mask']}",
                     "ip_address_role": (
                         "loopback"
                         if "loopback" in name_lower

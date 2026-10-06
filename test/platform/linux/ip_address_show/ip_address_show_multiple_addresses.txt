@@ -10,26 +10,26 @@
        valid_lft 3515sec preferred_lft 3515sec
     inet 192.168.121.45/24 scope global secondary eth0
        valid_lft forever preferred_lft forever
-    inet6 fe80::5054:ff:fe8c:6244/64 scope link
+    inet6 FE80::5054:FF:FE8C:6244/64 scope link
        valid_lft forever preferred_lft forever
 3: ens33: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 00:0c:29:b0:21:7d brd ff:ff:ff:ff:ff:ff
     altname enp2s1
     inet 192.168.94.133/24 brd 192.168.94.255 scope global dynamic noprefixroute ens33
        valid_lft 1541sec preferred_lft 1541sec
-    inet6 fe80::b681:60db:7206:13a0/64 scope link noprefixroute
+    inet6 FE80::B681:60DB:7206:13A0/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
 4: ens37: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
     link/ether 00:50:56:20:47:14 brd ff:ff:ff:ff:ff:ff
     altname enp2s5
     inet 192.168.94.134/24 brd 192.168.94.255 scope global dynamic noprefixroute ens37
        valid_lft 1541sec preferred_lft 1541sec
-    inet6 fe80::6c2a:3447:5d99:700a/64 scope link noprefixroute
+    inet6 FE80::6C2A:3447:5D99:700A/64 scope link noprefixroute
        valid_lft forever preferred_lft forever
 5: ens38: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 0 qdisc fq_codel state UP group default qlen 1000
     link/ether 00:50:56:37:93:58 brd ff:ff:ff:ff:ff:ff
     altname enp2s6
     inet 192.168.94.135/24 brd 192.168.94.255 scope global dynamic noprefixroute ens38
        valid_lft 1540sec preferred_lft 1540sec
-    inet6 fe80::97ef:a3f1:a962:9ef0/64 scope link noprefixroute
+    inet6 FE80::97EF:A3F1:A962:9EF0/64 scope link noprefixroute
        valid_lft forever preferred_lft forever

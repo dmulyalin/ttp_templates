@@ -222,7 +222,7 @@ def transform_interfaces_config(payload: Any) -> list[dict[str, Any]]:
             "ipv4_addresses": _normalize_ipv4_addresses(iface.get("ipv4_addresses")),
             "ipv6_addresses": [
                 {
-                    "ip": f"{addr['ip']}/{addr['mask']}",
+                    "ip": f"{addr['ip'].lower()}/{addr['mask']}",
                     "ip_address_role": addr.get("ip_address_role", ""),
                 }
                 for addr in iface.get("ipv6_addresses", [])

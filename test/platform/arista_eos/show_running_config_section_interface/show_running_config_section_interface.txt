@@ -55,8 +55,8 @@ interface Loopback0
    description Router ID
    ip address 10.10.10.11/32
    ip address 1.1.1.1/32 secondary
-   ipv6 address 2001::/128
-   ipv6 address 2001::1/128
+   ipv6 address 2001:DB8::/128
+   ipv6 address 2001:DB8::1/128
 interface Loopback101
    description Control Plane Router ID
    vrf CONTROL_PLANE

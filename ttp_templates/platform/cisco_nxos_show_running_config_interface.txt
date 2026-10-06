@@ -88,6 +88,7 @@ interface {{ name | _start_ }}
   shutdown {{ enabled | set(False) }}
   mtu {{ mtu | to_int }}
   vrf member {{ vrf }}
+  fabric forwarding mode anycast-gateway {{ is_anycast_gateway | set(True) }}
   no switchport {{ is_l3_interface | set(True) }}
   switchport mode trunk {{ mode | set("tagged") }}
   switchport mode access {{ mode | set("access") }}

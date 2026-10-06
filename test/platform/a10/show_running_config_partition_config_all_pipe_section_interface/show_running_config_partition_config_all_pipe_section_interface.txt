@@ -17,7 +17,7 @@ interface ve 2/1499
   name customer-edge-a
   ip address 198.51.100.2 255.255.255.240
   ip nat outside
-  ipv6 address ::ffff:198.51.100.2/124
+  ipv6 address ::FFFF:198.51.100.2/124
 !
 vlan 1/1312
   tagged trunk 24
@@ -28,7 +28,7 @@ interface ve 1/1310
   name service-edge-b
   ip address 203.0.113.2 255.255.255.248
   ip nat inside
-  ipv6 address ::ffff:203.0.113.2/125
+  ipv6 address ::FFFF:203.0.113.2/125
   ipv6 nat inside
 !
 vlan 2/1312

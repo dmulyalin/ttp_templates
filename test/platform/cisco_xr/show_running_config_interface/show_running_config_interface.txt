@@ -16,7 +16,7 @@ interface Bundle-Ether1
  description LAG to PE1
  mtu 9000
  ipv4 address 10.1.1.1 255.255.255.252
- ipv6 address 2001:db8::1/31
+ ipv6 address 2001:DB8::1/31
 !
 interface Bundle-Ether1.100
  description PE1 Customer A Service
@@ -32,7 +32,7 @@ interface GigabitEthernet0/0/0/0
  ipv4 access-group IPV4_ACL_IN ingress
  ipv4 access-group IPV4_ACL_OUT egress
  ipv4 address 10.1.0.1 255.255.255.252
- ipv6 address 2001:db8:1::1/64
+ ipv6 address 2001:DB8:1::1/64
 !
 interface GigabitEthernet0/0/0/1
  description Bundle-Ether1 member link-1
