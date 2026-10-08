@@ -5262,9 +5262,9 @@
 <ul>
 <li>Arista EOS: <code>show running-config | include community-list</code></li>
 <li>Cisco IOS: <code>show running-config | include community-list</code></li>
-<li>Cisco IOS-XR: <code>show rpl community-set</code>, <code>show rpl extcommunity-set</code>, and <code>show rpl large-community-set</code></li>
+<li>Cisco IOS-XR: <code>show rpl community-set</code>, <code>show rpl extcommunity-set</code>, <code>show rpl large-community-set</code>, and <code>show running-config formal  | inc route-target</code></li>
 <li>Cisco NX-OS: <code>show running-config rpm</code></li>
-<li>Juniper Junos: <code>show configuration policy-options community | display inheritance | display set</code></li>
+<li>Juniper Junos: <code>show configuration | display inheritance | display set | match "policy-options community"</code> and <code>show configuration routing-instances | display inheritance | display set | match "vrf-target|instance-type"</code></li>
 </ul>
 <h3 id="bgp_neighbors">bgp_neighbors<a class="headerlink" href="#bgp_neighbors" title="Permanent link">&para;</a></h3>
 <p>Collected commands by platform:</p>

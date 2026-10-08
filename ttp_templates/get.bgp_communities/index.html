@@ -4767,10 +4767,14 @@ and large community lists are supported.</p>
 <li><code>show rpl community-set</code></li>
 <li><code>show rpl extcommunity-set</code></li>
 <li><code>show rpl large-community-set</code></li>
+<li><code>show running-config formal  | inc route-target</code></li>
 </ul>
 <p>Returns a normalized list of dictionaries with <code>value</code>, <code>type</code>, and <code>name</code>
 keys. Each concrete community value is returned as a separate dictionary;
-pattern entries are excluded.</p>
+pattern entries are excluded.
+Configured route targets absent from RPL sets use names of the form
+<code>&lt;vrf&gt;_L3VPN_RT</code> or <code>&lt;evi&gt;_L2VPN_RT</code>. Repeated route-target
+values are omitted, with RPL community names preferred.</p>
 <p>Template to parse Cisco NX-OS BGP community-list configuration from
 <code>show running-config rpm</code>.</p>
 <p>Returns a normalized list of dictionaries with <code>value</code>, <code>type</code>, and <code>name</code>
@@ -4778,11 +4782,15 @@ keys. Each permitted concrete community value is returned as a separate
 dictionary; deny and expanded entries are excluded. Standard, extended, and
 large community lists with optional sequence numbers are supported.</p>
 <p>Template to parse Juniper Junos BGP community configuration from
-<code>show configuration policy-options community | display inheritance | display set</code>.</p>
+<code>show configuration | display inheritance | display set | match "policy-options community"</code>
+and <code>show configuration routing-instances | display inheritance | display set | match "vrf-target|instance-type"</code>.</p>
 <p>Returns a normalized list of dictionaries with <code>value</code>, <code>type</code>, and <code>name</code>
 keys. Each concrete community value is returned as a separate dictionary;
 pattern entries are excluded. Junos <code>target</code>, <code>origin</code>, and <code>large</code> prefixes
-are normalized to <code>rt</code>, <code>soo</code>, and <code>large</code> types respectively.</p>
+are normalized to <code>rt</code>, <code>soo</code>, and <code>large</code> types respectively.
+Routing-instance targets absent from policy communities use names of the form
+<code>&lt;instance&gt;_L2VPN_RT</code> or <code>&lt;instance&gt;_L3VPN_RT</code>, derived from instance-type.
+Repeated route-target values are omitted, with policy community names preferred.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name="bgp_communities" results="per_template"&gt;
