@@ -36,9 +36,9 @@ Collected commands by platform:
 
 - Arista EOS: `show running-config | include community-list`
 - Cisco IOS: `show running-config | include community-list`
-- Cisco IOS-XR: `show rpl community-set`, `show rpl extcommunity-set`, and `show rpl large-community-set`
+- Cisco IOS-XR: `show rpl community-set`, `show rpl extcommunity-set`, `show rpl large-community-set`, and `show running-config formal  | inc route-target`
 - Cisco NX-OS: `show running-config rpm`
-- Juniper Junos: `show configuration policy-options community | display inheritance | display set`
+- Juniper Junos: `show configuration | display inheritance | display set | match "policy-options community"` and `show configuration routing-instances | display inheritance | display set | match "vrf-target|instance-type"`
 
 ### bgp_neighbors
 

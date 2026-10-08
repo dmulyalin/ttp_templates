@@ -1,5 +1,20 @@
 # Release Notes
 
+## 0.6.14
+
+### ENHANCEMENTS
+
+1. Enhanced the Juniper Junos `bgp_communities` getter to collect routing-instance
+   VRF targets, deduplicate them against policy communities and other instances,
+   and derive missing community names as `<instance>_L2VPN_RT` or
+   `<instance>_L3VPN_RT` from the configured instance type.
+2. Enhanced the Cisco IOS-XR `bgp_communities` getter to collect VRF and EVPN
+   route targets from formal configuration, prefer existing RPL community names,
+   deduplicate target values, and derive missing names as `<vrf>_L3VPN_RT` or
+   `<evi>_L2VPN_RT`.
+
+---
+
 ## 0.6.13
 
 ### ENHANCEMENTS

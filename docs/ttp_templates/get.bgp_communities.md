@@ -32,10 +32,14 @@ Template to parse Cisco IOS-XR BGP community sets from these commands:
 - `show rpl community-set`
 - `show rpl extcommunity-set`
 - `show rpl large-community-set`
+- `show running-config formal  | inc route-target`
 
 Returns a normalized list of dictionaries with `value`, `type`, and `name`
 keys. Each concrete community value is returned as a separate dictionary;
 pattern entries are excluded.
+Configured route targets absent from RPL sets use names of the form
+`<vrf>_L3VPN_RT` or `<evi>_L2VPN_RT`. Repeated route-target
+values are omitted, with RPL community names preferred.
 
 
 
@@ -50,12 +54,16 @@ large community lists with optional sequence numbers are supported.
 
 
 Template to parse Juniper Junos BGP community configuration from
-`show configuration policy-options community | display inheritance | display set`.
+`show configuration | display inheritance | display set | match "policy-options community"`
+and `show configuration routing-instances | display inheritance | display set | match "vrf-target|instance-type"`.
 
 Returns a normalized list of dictionaries with `value`, `type`, and `name`
 keys. Each concrete community value is returned as a separate dictionary;
 pattern entries are excluded. Junos `target`, `origin`, and `large` prefixes
 are normalized to `rt`, `soo`, and `large` types respectively.
+Routing-instance targets absent from policy communities use names of the form
+`<instance>_L2VPN_RT` or `<instance>_L3VPN_RT`, derived from instance-type.
+Repeated route-target values are omitted, with policy community names preferred.
 
 
 

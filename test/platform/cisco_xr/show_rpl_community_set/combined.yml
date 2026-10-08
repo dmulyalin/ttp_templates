@@ -16,3 +16,24 @@
 - value: 65000:1:200
   type: large
   name: LARGE_COM_SET_1
+- value: 12345:54321
+  type: rt
+  name: vrf1_L3VPN_RT
+- value: 12345:54322
+  type: rt
+  name: vrf1_L3VPN_RT
+- value: 12345:54323
+  type: rt
+  name: vrf1_L3VPN_RT
+- value: 12345:54324
+  type: rt
+  name: vrf1_L3VPN_RT
+- value: 123:123
+  type: rt
+  name: vrf1_L3VPN_RT
+- value: 7155:14206
+  type: rt
+  name: 106_L2VPN_RT
+- value: 7155:14207
+  type: rt
+  name: 106_L2VPN_RT

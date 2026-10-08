@@ -7,6 +7,9 @@
 - value: 65000:300
   type: rt
   name: MIXED
+- value: 54321:54321
+  type: rt
+  name: VRF1_POLICY_RT
 - value: 65000:1:100
   type: large
   name: LARGE_ONE
@@ -22,3 +25,18 @@
 - value: no-export
   type: standard
   name: WELL_KNOWN
+- value: 12345:12345
+  type: rt
+  name: l2vpn1_L2VPN_RT
+- value: 12345:12346
+  type: rt
+  name: l2vpn1_L2VPN_RT
+- value: 12345:12347
+  type: rt
+  name: l2vpn1_L2VPN_RT
+- value: 54321:54322
+  type: rt
+  name: vrf1_L3VPN_RT
+- value: 65000:100
+  type: rt
+  name: vrf1_L3VPN_RT

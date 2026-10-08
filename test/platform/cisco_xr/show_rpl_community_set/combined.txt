@@ -30,3 +30,18 @@ end-set
 large-community-set LARGE_PATTERN
  ios-regex '65000:.*:100'
 end-set
+
+RP/0/RP0/CPU0:device1#show running-config formal  | inc route-target
+vrf vrf1 address-family ipv4 unicast import route-target 12345:54321
+vrf vrf1 address-family ipv4 unicast export route-target 12345:54322
+vrf vrf1 address-family ipv4 multicast import route-target 12345:54323
+vrf vrf1 address-family ipv6 multicast export route-target 12345:54324
+vrf vrf1 address-family ipv6 unicast import route-target 12345:54321
+vrf vrf1 address-family ipv4 unicast import route-target 1234:1234
+vrf vrf1 address-family ipv4 unicast export route-target 123:123
+vrf vrf2 address-family ipv4 unicast import route-target 12345:54321
+evpn evi 106 bgp route-target 7155:14206
+evpn evi 106 bgp route-target 7155:14207
+evpn evi 106 bgp route-target 7155:14206
+evpn evi 106 bgp route-target 5555:55555
+evpn evi 107 bgp route-target 7155:14206

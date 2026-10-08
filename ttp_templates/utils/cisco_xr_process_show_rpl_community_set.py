@@ -1,4 +1,4 @@
-"""Normalize Cisco IOS-XR ``show rpl *community-set`` output.
+"""Normalize Cisco IOS-XR RPL community sets and configured route targets.
 
 Used by:
 - ttp_templates/platform/cisco_xr_show_rpl_community_set.txt
@@ -47,5 +47,25 @@ def transform_community_sets(payload: Any) -> List[Dict[str, str]]:
                         "name": community_set["name"],
                     }
                     records.append(BgpCommunityRecord(**record).model_dump())
+
+    # Process all RPL communities first so their names always take precedence.
+    seen_targets = {record["value"] for record in records if record["type"] == "rt"}
+    instance_types = {"vrf": "L3VPN", "l2vpn": "L2VPN"}
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        for config in item.get("routing_instances", []):
+            instance_type = instance_types[config["instance_type"]]
+            for value in config.get("route_targets", []):
+                if value in seen_targets or not is_concrete_community(value, "rt"):
+                    continue
+                records.append(
+                    BgpCommunityRecord(
+                        value=value,
+                        type="rt",
+                        name=f"{config['instance']}_{instance_type}_RT",
+                    ).model_dump()
+                )
+                seen_targets.add(value)
 
     return records

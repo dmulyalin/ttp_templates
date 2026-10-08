@@ -1,4 +1,4 @@
-"""Normalize Junos policy-options community ``display set`` output.
+"""Normalize Junos policy communities and routing-instance targets.
 
 Used by:
 - ttp_templates/platform/juniper_junos_show_configuration_policy_options_community_pipe_display_set.txt
@@ -46,5 +46,37 @@ def transform_community_sets(payload: Any) -> List[Dict[str, str]]:
                     "name": community_set["name"],
                 }
                 records.append(BgpCommunityRecord(**record).model_dump())
+
+    # Process all policy communities first so their names always take precedence.
+    seen_targets = {record["value"] for record in records if record["type"] == "rt"}
+    instance_types = {
+        "virtual-switch": "L2VPN",
+        "evpn": "L2VPN",
+        "vpls": "L2VPN",
+        "vrf": "L3VPN",
+    }
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        for instance, config in item.get("routing_instances", {}).items():
+            instance_type = instance_types.get(config.get("instance_type"))
+            if not instance_type:
+                continue
+            for raw_value in config.get("route_targets", []):
+                value, community_type = _normalize_value(raw_value)
+                if (
+                    community_type != "rt"
+                    or not is_concrete_community(value, community_type)
+                    or value in seen_targets
+                ):
+                    continue
+                records.append(
+                    BgpCommunityRecord(
+                        value=value,
+                        type="rt",
+                        name=f"{instance}_{instance_type}_RT",
+                    ).model_dump()
+                )
+                seen_targets.add(value)
 
     return records

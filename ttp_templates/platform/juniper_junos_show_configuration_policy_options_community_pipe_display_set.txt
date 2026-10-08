@@ -1,17 +1,22 @@
 <template name="juniper_junos_bgp_communities" results="per_template">
 <doc>
 Template to parse Juniper Junos BGP community configuration from
-`show configuration policy-options community | display inheritance | display set`.
+`show configuration | display inheritance | display set | match "policy-options community"`
+and `show configuration routing-instances | display inheritance | display set | match "vrf-target|instance-type"`.
 
 Returns a normalized list of dictionaries with `value`, `type`, and `name`
 keys. Each concrete community value is returned as a separate dictionary;
 pattern entries are excluded. Junos `target`, `origin`, and `large` prefixes
 are normalized to `rt`, `soo`, and `large` types respectively.
+Routing-instance targets absent from policy communities use names of the form
+`&lt;instance&gt;_L2VPN_RT` or `&lt;instance&gt;_L3VPN_RT`, derived from instance-type.
+Repeated route-target values are omitted, with policy community names preferred.
 </doc>
 
 <input>
 commands = [
-    'show configuration | display inheritance | display set | match "policy-options community"'
+    'show configuration | display inheritance | display set | match "policy-options community"',
+    'show configuration routing-instances | display inheritance | display set | match "vrf-target|instance-type"'
 ]
 platform = [
     "juniper_junos",
@@ -28,6 +33,12 @@ def transform_communities_to_records(data):
 
 <group name="community_sets*" method="table">
 set policy-options community {{ name }} members {{ values | ORPHRASE }}
+</group>
+
+<group name="routing_instances**.{{ instance }}**" contains="route_targets">
+set routing-instances {{ instance }} instance-type {{ instance_type | _start_ }}
+set routing-instances {{ ignore }} vrf-target {{ route_targets | to_list | joinmatches }}
+set routing-instances {{ ignore }} protocols evpn vni-options vni {{ ignore }} vrf-target {{ route_targets | to_list | joinmatches }}
 </group>
 
 <output macro="transform_communities_to_records"/>
