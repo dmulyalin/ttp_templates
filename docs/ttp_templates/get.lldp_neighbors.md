@@ -51,6 +51,16 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 
 
+Parse Cisco IOS `show lldp neighbors detail` for the `lldp_neighbors` getter.
+
+Returns one record per neighbor with the local interface, remote system name,
+port ID and description, normalized chassis ID, and first advertised management
+IP. System descriptions are not collected and are returned as null.
+Missing or unadvertised optional fields are null. MAC chassis IDs use lowercase
+colon notation. Multiple neighbors on the same local interface are preserved.
+
+
+
 Template to parse Cisco NX-OS `show lldp neighbors detail` output and
 normalize it for the `lldp_neighbors` getter.
 
@@ -97,6 +107,7 @@ Supported platforms:
 
 - A10 ACOS
 - Arista EOS
+- Cisco IOS
 - Cisco IOS-XR
 - Cisco NX-OS
 - Juniper Junos
@@ -118,6 +129,8 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 <extend template="ttp://platform/arista_eos_show_lldp_neighbors_detail_pipe_json.txt"/>
 
 <extend template="ttp://platform/cisco_xr_show_lldp_neighbors_detail.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_lldp_neighbors_detail.txt"/>
 
 <extend template="ttp://platform/cisco_nxos_show_lldp_neighbors_detail.txt"/>
 

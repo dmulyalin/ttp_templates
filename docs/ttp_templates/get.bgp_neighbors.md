@@ -159,13 +159,24 @@ inherited peer-template name.
 
 
 
+Parse Cisco IOS `show ip bgp all neighbors` for the `bgp_neighbors` getter.
+
+Returns one normalized record per VRF and neighbor address, merging address
+families across repeated neighbor sections. Session state, peering type,
+addresses, remote ASN, router ID, description, timers, BGP uptime, policies,
+and prefix counts are collected when present. Unreported fields are null or
+empty lists. Local AS is null unless explicitly reported. Address families
+come from section headers, rather than advertised capability lines.
+
+
+
 ---
 
 <details><summary>Template Content</summary>
 ```
 <template name="bgp_neighbors" results="per_template">
 <doc>
-Getter template to parse inventory for network devices. Designed to work with 
+Getter template to parse BGP neighbors for network devices. Designed to work with
 [Network Automation Fabric](https://docs.norfablabs.com/) 
 [Nornir Service](https://docs.norfablabs.com/workers/nornir/services_nornir_service/) 
 [parse TTP task](https://docs.norfablabs.com/workers/nornir/services_nornir_service_tasks_parse/)
@@ -175,6 +186,7 @@ Supported platforms:
 - A10 ACOS
 - Arista EOS
 - Cisco NX-OS
+- Cisco IOS
 - Juniper Junos
 - Cisco IOS XR
 
@@ -194,11 +206,11 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 - 'description' - neighbor description string, or 'null'
 - 'hold_time' - negotiated BGP hold-time in seconds
 - 'keepalive' - negotiated BGP keepalive interval in seconds
-- 'uptime' - session uptime in seconds (time since last transition to Established)
+- 'uptime_seconds' - session uptime in seconds (time since last transition to Established)
 - 'max_ttl' - maximum TTL hops configured (relevant for eBGP multihop)
 - 'afi' - list of IANA AFI/SAFI names negotiated for this session (e.g. 'ipv4_unicast', 'l2vpn_evpn')
-- 'import_policies' - inbound route-map name, or 'null' if none configured
-- 'export_policies' - outbound route-map name, or 'null' if none configured
+- 'import_policies' - list of inbound policy names, empty if none reported
+- 'export_policies' - list of outbound policy names, empty if none reported
 - 'prefix_list_in' - inbound prefix-list name, or 'null' if none configured
 - 'prefix_list_out' - outbound prefix-list name, or 'null' if none configured
 - 'afi_prefixes_sent' - number of prefixes advertised for each negotiated AFI/SAFI (e.g. 'ipv4_unicast_prefixes_sent')
@@ -215,6 +227,8 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 <extend template="ttp://platform/cisco_xr_show_bgp_neighbors.txt"/>
 
 <extend template="ttp://platform/cisco_nxos_show_ip_bgp_neighbors_vrf_all.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_ip_bgp_all_neighbors.txt"/>
 
 </template>
 

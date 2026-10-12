@@ -89,10 +89,12 @@ nav:
     - cisco_ios_show_interfaces: ttp_templates/platform.cisco_ios_show_interfaces.md
     - cisco_ios_show_inventory: ttp_templates/platform.cisco_ios_show_inventory.md
     - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md
+    - cisco_ios_show_ip_bgp_all_neighbors: ttp_templates/platform.cisco_ios_show_ip_bgp_all_neighbors.md
     - cisco_ios_show_ip_ospf_database_external: ttp_templates/platform.cisco_ios_show_ip_ospf_database_external.md
     - cisco_ios_show_ip_ospf_database_router: ttp_templates/platform.cisco_ios_show_ip_ospf_database_router.md
     - cisco_ios_show_ip_ospf_database_summary: ttp_templates/platform.cisco_ios_show_ip_ospf_database_summary.md
     - cisco_ios_show_isdn_status: ttp_templates/platform.cisco_ios_show_isdn_status.md
+    - cisco_ios_show_lldp_neighbors_detail: ttp_templates/platform.cisco_ios_show_lldp_neighbors_detail.md
     - cisco_ios_show_running_config_pipe_include_community_list: ttp_templates/platform.cisco_ios_show_running_config_pipe_include_community_list.md
     - cisco_ios_show_running_config_pipe_include_source_static: ttp_templates/platform.cisco_ios_show_running_config_pipe_include_source_static.md
     - cisco_ios_show_running_config_pipe_section_interface: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_interface.md
