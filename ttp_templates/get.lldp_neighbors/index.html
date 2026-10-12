@@ -2698,6 +2698,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_ip_bgp_all_neighbors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_ios_show_ip_bgp_all_neighbors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../platform.cisco_ios_show_ip_ospf_database_external/" class="md-nav__link">
         
   
@@ -2790,6 +2818,34 @@
     
   
     cisco_ios_show_isdn_status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../platform.cisco_ios_show_lldp_neighbors_detail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_ios_show_lldp_neighbors_detail
   
 
     
@@ -4782,6 +4838,12 @@ and management IP address. Missing advertised values are returned as <code>null<
 <li><code>remote_interface_description</code> - port description advertised by the remote neighbor interface, or <code>null</code> if none</li>
 <li><code>remote_device_management_ip</code> - first management IP address advertised by the remote neighbor, or <code>null</code> if none</li>
 </ul>
+<p>Parse Cisco IOS <code>show lldp neighbors detail</code> for the <code>lldp_neighbors</code> getter.</p>
+<p>Returns one record per neighbor with the local interface, remote system name,
+port ID and description, normalized chassis ID, and first advertised management
+IP. System descriptions are not collected and are returned as null.
+Missing or unadvertised optional fields are null. MAC chassis IDs use lowercase
+colon notation. Multiple neighbors on the same local interface are preserved.</p>
 <p>Template to parse Cisco NX-OS <code>show lldp neighbors detail</code> output and
 normalize it for the <code>lldp_neighbors</code> getter.</p>
 <p>Returns one dictionary per neighbor with the local interface, remote system
@@ -4818,6 +4880,7 @@ Supported platforms:
 
 - A10 ACOS
 - Arista EOS
+- Cisco IOS
 - Cisco IOS-XR
 - Cisco NX-OS
 - Juniper Junos
@@ -4839,6 +4902,8 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 &lt;extend template="ttp://platform/arista_eos_show_lldp_neighbors_detail_pipe_json.txt"/&gt;
 
 &lt;extend template="ttp://platform/cisco_xr_show_lldp_neighbors_detail.txt"/&gt;
+
+&lt;extend template="ttp://platform/cisco_ios_show_lldp_neighbors_detail.txt"/&gt;
 
 &lt;extend template="ttp://platform/cisco_nxos_show_lldp_neighbors_detail.txt"/&gt;
 

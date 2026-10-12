@@ -2703,6 +2703,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../ttp_templates/platform.cisco_ios_show_ip_bgp_all_neighbors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_ios_show_ip_bgp_all_neighbors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../ttp_templates/platform.cisco_ios_show_ip_ospf_database_external/" class="md-nav__link">
         
   
@@ -2795,6 +2823,34 @@
     
   
     cisco_ios_show_isdn_status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ttp_templates/platform.cisco_ios_show_lldp_neighbors_detail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    cisco_ios_show_lldp_neighbors_detail
   
 
     
@@ -5094,7 +5150,7 @@
 <td>bgp_neighbors</td>
 <td>✅</td>
 <td>✅</td>
-<td>❌</td>
+<td>✅</td>
 <td>✅</td>
 <td>✅</td>
 <td>✅</td>
@@ -5160,7 +5216,7 @@
 <td>lldp_neighbors</td>
 <td>✅</td>
 <td>✅</td>
-<td>❌</td>
+<td>✅</td>
 <td>✅</td>
 <td>✅</td>
 <td>✅</td>
@@ -5271,6 +5327,7 @@
 <ul>
 <li>A10: <code>show ip bgp neighbors</code></li>
 <li>Arista EOS: <code>show ip bgp neighbors vrf all | json</code></li>
+<li>Cisco IOS: <code>show ip bgp all neighbors</code></li>
 <li>Cisco IOS-XR: <code>show bgp neighbors</code> or <code>show bgp vrf all neighbors</code>, and <code>show run formal router bgp | inc neighbor</code></li>
 <li>Cisco NX-OS: <code>show ip bgp neighbors vrf all</code> and <code>show running-config section bgp</code></li>
 <li>Juniper Junos: <code>show bgp neighbor | display json</code></li>
@@ -5311,6 +5368,7 @@
 <ul>
 <li>A10: <code>show lldp neighbors</code></li>
 <li>Arista EOS: <code>show lldp neighbors detail | json</code></li>
+<li>Cisco IOS: <code>show lldp neighbors detail</code></li>
 <li>Cisco IOS-XR: <code>show lldp neighbors detail</code></li>
 <li>Cisco NX-OS: <code>show lldp neighbors detail</code></li>
 <li>Juniper Junos: <code>show lldp neighbors detail | display json</code></li>
