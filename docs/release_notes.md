@@ -1,6 +1,6 @@
 # Release Notes
 
-## 0.6.15 (Unreleased)
+## 0.6.15
 
 ### TEMPLATES
 
