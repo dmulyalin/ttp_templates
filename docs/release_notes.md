@@ -1,5 +1,24 @@
 # Release Notes
 
+## 0.6.15 (Unreleased)
+
+### TEMPLATES
+
+1. Added Cisco IOS support to the `bgp_neighbors` getter using
+   `show ip bgp all neighbors`, merging repeated neighbors across address families
+   and preserving VRF-specific sessions.
+2. Added Cisco IOS support to the `lldp_neighbors` getter using
+   `show lldp neighbors detail`, including normalized chassis MAC addresses
+   and the first advertised management IP.
+
+### BUGS
+
+1. Fixed the Juniper Junos `vlans` getter raising `KeyError: 'vid'` when a
+   VLAN has a description but no `vlan-id` configured. VLAN entries without
+   an ID are now skipped, allowing valid VLAN records to be returned.
+
+---
+
 ## 0.6.14
 
 ### ENHANCEMENTS

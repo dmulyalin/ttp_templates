@@ -2,13 +2,13 @@
 
 | Getter template | A10 | Arista EOS | Cisco IOS | Cisco IOS-XR | Cisco NX-OS | Juniper Junos | Opengear | Linux |
 |---|---|---|---|---|---|---|---|---|
-| bgp_neighbors | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| bgp_neighbors | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | bgp_communities | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
 | interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | interfaces_status | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| lldp_neighbors | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| lldp_neighbors | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | vlans | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
 | vrrp | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
@@ -46,6 +46,7 @@ Collected commands by platform:
 
 - A10: `show ip bgp neighbors`
 - Arista EOS: `show ip bgp neighbors vrf all | json`
+- Cisco IOS: `show ip bgp all neighbors`
 - Cisco IOS-XR: `show bgp neighbors` or `show bgp vrf all neighbors`, and `show run formal router bgp | inc neighbor`
 - Cisco NX-OS: `show ip bgp neighbors vrf all` and `show running-config section bgp`
 - Juniper Junos: `show bgp neighbor | display json`
@@ -90,6 +91,7 @@ Collected commands by platform:
 
 - A10: `show lldp neighbors`
 - Arista EOS: `show lldp neighbors detail | json`
+- Cisco IOS: `show lldp neighbors detail`
 - Cisco IOS-XR: `show lldp neighbors detail`
 - Cisco NX-OS: `show lldp neighbors detail`
 - Juniper Junos: `show lldp neighbors detail | display json`

@@ -5,6 +5,7 @@ set vlans SERVERS description "Application servers"
 set vlans GUEST vlan-id 30
 set vlans GUEST l3-interface irb.30
 set vlans MLAG_PEER vlan-id 4094
+set vlans INCOMPLETE description "No VLAN ID configured"
 set interfaces xe-0/0/2 unit 0 family ethernet-switching interface-mode trunk
 set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members USERS
 set interfaces xe-0/0/2 unit 0 family ethernet-switching vlan members SERVERS

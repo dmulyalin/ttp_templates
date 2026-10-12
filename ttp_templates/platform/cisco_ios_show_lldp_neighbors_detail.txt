@@ -1,0 +1,37 @@
+<template name="cisco_ios_lldp_neighbors" results="per_template">
+<doc>
+Parse Cisco IOS `show lldp neighbors detail` for the `lldp_neighbors` getter.
+
+Returns one record per neighbor with the local interface, remote system name,
+port ID and description, normalized chassis ID, and first advertised management
+IP. System descriptions are not collected and are returned as null.
+Missing or unadvertised optional fields are null. MAC chassis IDs use lowercase
+colon notation. Multiple neighbors on the same local interface are preserved.
+</doc>
+
+<input>
+commands = ["show lldp neighbors detail"]
+platform = ["cisco_ios", "ios", "cisco_iosxe"]
+</input>
+
+<macro>
+def transform(payload):
+    from ttp_templates.utils.cisco_ios_process_show_lldp_neighbors_detail import transform_lldp_neighbors
+    return transform_lldp_neighbors(payload)
+</macro>
+
+<group name="neighbors*">
+Local Intf: {{ interface | _start_ }}
+Chassis id: {{ remote_chassi_id | ORPHRASE }}
+Port id: {{ remote_interface | ORPHRASE }}
+Port Description: {{ remote_interface_description | ORPHRASE }}
+System Name: {{ remote_device | ORPHRASE }}
+
+<group name="management_addresses*">
+    IP: {{ address | _start_ }}
+    IPV6: {{ address | _start_ }}
+</group>
+</group>
+
+<output macro="transform"/>
+</template>

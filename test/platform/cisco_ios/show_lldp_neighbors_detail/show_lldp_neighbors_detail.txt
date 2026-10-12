@@ -1,0 +1,148 @@
+R1#show lldp neighbors detail
+------------------------------------------------
+Local Intf: Et0/1
+Local Intf service instance: -
+Chassis id: aabb.cc00.0200
+Port id: Et0/1
+Port Description: Ethernet0/1
+System Name: R2.lab
+
+System Description:
+Cisco IOS Software [IOSXE], Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.16.1a, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2024 by Cisco Systems, Inc.
+Compiled Thu 19-Dec-24 17:54 by mcpr
+
+Time remaining: 101 seconds
+System Capabilities: B,R
+Enabled Capabilities: R
+Management Addresses:
+    IP: 10.0.0.10
+Auto Negotiation - not supported
+Physical media capabilities - not advertised
+Media Attachment Unit type - not advertised
+Vlan ID: - not advertised
+Peer Source MAC: aabb.cc00.0210
+
+------------------------------------------------
+Local Intf: Et0/0
+Local Intf service instance: -
+Chassis id: aabb.cc00.0300
+Port id: Et0/0
+Port Description: clab-mgmt
+System Name: R3.lab
+
+System Description:
+Cisco IOS Software [IOSXE], Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.16.1a, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2024 by Cisco Systems, Inc.
+Compiled Thu 19-Dec-24 17:54 by mcpr
+
+Time remaining: 106 seconds
+System Capabilities: B,R
+Enabled Capabilities: R
+Management Addresses:
+    IP: 172.100.101.4
+Auto Negotiation - not supported
+Physical media capabilities - not advertised
+Media Attachment Unit type - not advertised
+Vlan ID: - not advertised
+Peer Source MAC: aabb.cc00.0300
+
+------------------------------------------------
+Local Intf: Et0/0
+Local Intf service instance: -
+Chassis id: aabb.cc00.0200
+Port id: Et0/0
+Port Description: clab-mgmt
+System Name: R2.lab
+
+System Description:
+Cisco IOS Software [IOSXE], Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.16.1a, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2024 by Cisco Systems, Inc.
+Compiled Thu 19-Dec-24 17:54 by mcpr
+
+Time remaining: 104 seconds
+System Capabilities: B,R
+Enabled Capabilities: R
+Management Addresses:
+    IP: 172.100.101.3
+Auto Negotiation - not supported
+Physical media capabilities - not advertised
+Media Attachment Unit type - not advertised
+Vlan ID: - not advertised
+Peer Source MAC: aabb.cc00.0200
+
+------------------------------------------------
+Local Intf: Et0/0
+Local Intf service instance: -
+Chassis id: aabb.cc00.0400
+Port id: Et0/0
+Port Description: clab-mgmt
+System Name: R4.lab
+
+System Description:
+Cisco IOS Software [IOSXE], Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.16.1a, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2024 by Cisco Systems, Inc.
+Compiled Thu 19-Dec-24 17:54 by mcpr
+
+Time remaining: 108 seconds
+System Capabilities: B,R
+Enabled Capabilities: R
+Management Addresses:
+    IP: 172.100.101.5
+Auto Negotiation - not supported
+Physical media capabilities - not advertised
+Media Attachment Unit type - not advertised
+Vlan ID: - not advertised
+Peer Source MAC: aabb.cc00.0400
+
+------------------------------------------------
+Local Intf: Et0/2
+Local Intf service instance: -
+Chassis id: aabb.cc00.0400
+Port id: Et0/2
+Port Description: Ethernet0/2
+System Name: R4.lab
+
+System Description:
+Cisco IOS Software [IOSXE], Linux Software (X86_64BI_LINUX-ADVENTERPRISEK9-M), Version 17.16.1a, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2024 by Cisco Systems, Inc.
+Compiled Thu 19-Dec-24 17:54 by mcpr
+
+Time remaining: 102 seconds
+System Capabilities: B,R
+Enabled Capabilities: R
+Management Addresses:
+    IP: 10.0.0.14
+Auto Negotiation - not supported
+Physical media capabilities - not advertised
+Media Attachment Unit type - not advertised
+Vlan ID: - not advertised
+Peer Source MAC: aabb.cc00.0420
+
+------------------------------------------------
+Local Intf: Et0/3
+Chassis id: AA-BB-CC-00-05-00
+Port id: Et0/3
+Port Description: not advertised
+System Name: not advertised
+Time remaining: 100 seconds
+Management Addresses:
+    IPV6: 2001:db8::5
+    IP: 192.0.2.5
+
+------------------------------------------------
+Local Intf: Et0/4
+Chassis id: neighbor-host
+Port id: Et0/4
+Time remaining: 100 seconds
+Management Addresses:
+    IP: not advertised
+
+Total entries displayed: 7
+
+R1#

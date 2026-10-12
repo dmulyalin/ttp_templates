@@ -32,6 +32,9 @@ def transform_vlans_config(payload: Dict[str, Any]) -> List[Dict[str, Any]]:
     l3_memberships = []
 
     for name, vlan in payload.get("vlans", {}).items():
+        # VLAN entries might have no VLAN-ID configured, in which case we skip them.
+        if "vid" not in vlan:
+            continue
         vid = int(vlan["vid"])
         if not 1 <= vid <= 4095:
             continue
