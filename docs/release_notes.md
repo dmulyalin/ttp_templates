@@ -1,5 +1,22 @@
 # Release Notes
 
+## 0.6.17 (Unreleased)
+
+### ENHANCEMENTS
+
+1. Enhanced Cisco IOS `bgp_neighbors` with `show running-config | section bgp`.
+   Local AS now comes from neighbor or inherited peer-group `local-as`, falling
+   back to the BGP process ASN. Configuration also supplies descriptions,
+   update sources, peer groups, and route maps, with direct neighbor settings
+   taking precedence over inherited settings.
+
+### BUGS
+
+1. Removed unsupported `local AS` patterns from Cisco IOS BGP neighbor output
+   parsing. Local AS values are now collected from BGP configuration.
+
+---
+
 ## 0.6.16
 
 ### BUGS

@@ -1,4 +1,4 @@
-"""Normalize Cisco IOS ``show ip bgp all neighbors`` output.
+"""Normalize Cisco IOS BGP neighbor output and running configuration.
 
 Used by:
 - ttp_templates/platform/cisco_ios_show_ip_bgp_all_neighbors.txt
@@ -39,6 +39,30 @@ def transform_bgp_neighbors(payload: Any) -> list[dict[str, Any]]:
     """Merge address-family sections and validate normalized neighbor records."""
     records = {}
     items = [payload] if isinstance(payload, dict) else payload or []
+    router_asn = None
+    configs = {}
+    for item in items:
+        bgp = item.get("bgp_config", {})
+        if "router_asn" in bgp:
+            asn = bgp["router_asn"].split(".")
+            router_asn = (
+                int(asn[0]) * 65536 + int(asn[1]) if len(asn) == 2 else int(asn[0])
+            )
+        for scope in [bgp, *bgp.get("families", [])]:
+            for statement in scope.get("statements", []):
+                config = configs.setdefault((scope.get("vrf"), statement["peer"]), {})
+                if "policy" in statement:
+                    policies = config.setdefault(statement["direction"], [])
+                    if statement["policy"] not in policies:
+                        policies.append(statement["policy"])
+                else:
+                    config.update(
+                        {
+                            key: value
+                            for key, value in statement.items()
+                            if key != "peer"
+                        }
+                    )
     for item in items:
         for family in item.get("address_families", []):
             afi_name = family["afi_name"].strip()
@@ -81,7 +105,6 @@ def transform_bgp_neighbors(payload: Any) -> list[dict[str, Any]]:
                 for field in (
                     "description",
                     "local_address",
-                    "local_as",
                     "router_id",
                     "peer_group",
                     "hold_time",
@@ -138,6 +161,33 @@ def transform_bgp_neighbors(payload: Any) -> list[dict[str, Any]]:
                     policy = (neighbor.get(source) or "").strip()
                     if policy and policy not in record[target]:
                         record[target].append(policy)
+    # Enrich operational peers only; direct settings override inherited groups.
+    for (vrf, address), record in records.items():
+        config = configs.get((vrf, address), {})
+        peer_group = config.get("peer_group") or record["peer_group"]
+        group = configs.get((vrf, peer_group), {})
+        effective = {**group, **config}
+        local_as = effective.get("local_as")
+        if local_as is not None:
+            asn = local_as.split(".")
+            record["local_as"] = (
+                int(asn[0]) * 65536 + int(asn[1]) if len(asn) == 2 else int(asn[0])
+            )
+        else:
+            record["local_as"] = router_asn
+        record["peer_group"] = peer_group
+        for source, target in (
+            ("description", "description"),
+            ("update_source", "local_interface"),
+        ):
+            if source in effective:
+                record[target] = effective[source]
+        for direction, target in (
+            ("in", "import_policies"),
+            ("out", "export_policies"),
+        ):
+            if direction in effective:
+                record[target] = effective[direction]
     return [
         BgpNeighborRecord(**record).model_dump(exclude_unset=True)
         for record in records.values()

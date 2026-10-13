@@ -46,7 +46,7 @@ Collected commands by platform:
 
 - A10: `show ip bgp neighbors`
 - Arista EOS: `show ip bgp neighbors vrf all | json`
-- Cisco IOS: `show ip bgp all neighbors`
+- Cisco IOS: `show ip bgp all neighbors` and `show running-config | section bgp`
 - Cisco IOS-XR: `show bgp neighbors` or `show bgp vrf all neighbors`, and `show run formal router bgp | inc neighbor`
 - Cisco NX-OS: `show ip bgp neighbors vrf all` and `show running-config section bgp`
 - Juniper Junos: `show bgp neighbor | display json`

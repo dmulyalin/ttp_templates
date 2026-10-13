@@ -217,7 +217,7 @@ Sent: 1935 (retransmit: 0, fastretransmit: 0, partialack: 0, Second Congestion: 
 TCP Semaphore      0x793D485E8AE8  FREE
 
 For address family: IPv4 Unicast
-BGP neighbor is 192.0.2.2, remote AS 65002, local AS 65001, external link
+BGP neighbor is 192.0.2.2, remote AS 65002, external link
  Description: Transit
   BGP version 4, remote router ID 192.0.2.2
   BGP state = Established, up for 1w2d
@@ -230,7 +230,7 @@ BGP neighbor is 192.0.2.2, remote AS 65002, local AS 65001, external link
   3 announced prefixes
 Local host: 192.0.2.1, Local port: 179
 For address family: IPv6 Unicast
-BGP neighbor is 192.0.2.2, remote AS 65002, local AS 65001, external link
+BGP neighbor is 192.0.2.2, remote AS 65002, external link
   BGP state = Established, up for 1w2d
   Route map for incoming advertisements is IMPORT
   0 accepted prefixes
@@ -244,3 +244,48 @@ BGP neighbor is 192.0.2.3, remote AS 65004, external link
   No active TCP connection
 For address family: L2VPN E-VPN
 For address family: IPv4 Multicast
+
+R1#show running-config | section bgp
+router bgp 65222
+ bgp router-id 10.1.0.3
+ bgp log-neighbor-changes
+ network 10.1.0.3 mask 255.255.255.255
+ neighbor 10.1.0.4 remote-as 65222
+ neighbor 10.1.0.4 description iBGP between R1 and R2 loopbacks
+ neighbor 10.1.0.4 update-source Loopback0
+ neighbor 10.1.0.5 remote-as 65222
+ neighbor 10.1.0.5 description iBGP between R1 and R3 loopbacks
+ neighbor 10.1.0.5 update-source Loopback0
+ neighbor 10.1.0.6 remote-as 65222
+ neighbor 10.1.0.6 description iBGP between R1 and R4 loopbacks
+ neighbor 10.1.0.6 update-source Loopback0
+ neighbor TRANSIT peer-group
+ neighbor TRANSIT local-as 65001 no-prepend replace-as dual-as
+ neighbor TRANSIT description Inherited transit description
+ neighbor TRANSIT update-source Loopback1
+ neighbor TRANSIT route-map GROUP-IMPORT in
+ neighbor TRANSIT route-map GROUP-EXPORT out
+ neighbor 192.0.2.2 peer-group TRANSIT
+ neighbor 192.0.2.2 description Transit
+ neighbor 192.0.2.2 update-source GigabitEthernet0/1
+ neighbor 192.0.2.2 route-map IMPORT in
+ neighbor 192.0.2.2 route-map EXPORT out
+ neighbor 192.0.2.3 peer-group TRANSIT
+ neighbor 192.0.2.3 local-as 1.10 no-prepend
+ !
+ address-family ipv4 vrf CUSTOMER-A
+  network 10.100.0.1 mask 255.255.255.255
+  neighbor 172.20.1.2 remote-as 65001
+  neighbor 172.20.1.2 activate
+  neighbor 172.20.1.2 send-community standard
+  neighbor 172.20.1.2 route-map CUSTOMER-A-EXPORT out
+ exit-address-family
+ !
+ address-family ipv4 vrf CUSTOMER-B
+  neighbor TRANSIT peer-group
+  neighbor TRANSIT local-as 65020
+  neighbor 192.0.2.2 peer-group TRANSIT
+  neighbor 192.0.2.2 local-as 65021
+ exit-address-family
+ip bgp-community new-format
+R1#

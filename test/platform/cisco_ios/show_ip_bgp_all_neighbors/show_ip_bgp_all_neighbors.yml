@@ -2,11 +2,11 @@
   vrf: null
   remote_address: 10.1.0.5
   remote_as: 65222
-  description: iBGP between R1 and R2 loopbacks
+  description: iBGP between R1 and R3 loopbacks
   state: established
   local_address: 10.1.0.3
-  local_as: null
-  local_interface: null
+  local_as: 65222
+  local_interface: Loopback0
   router_id: 10.1.0.5
   peer_group: null
   peering_type: internal
@@ -28,7 +28,7 @@
   description: null
   state: active
   local_address: null
-  local_as: null
+  local_as: 65222
   local_interface: null
   router_id: 0.0.0.0
   peer_group: null
@@ -40,7 +40,8 @@
   afi:
   - ipv4_mpls_vpn
   import_policies: []
-  export_policies: []
+  export_policies:
+  - CUSTOMER-A-EXPORT
   prefix_list_in: null
   prefix_list_out: null
 - name: default_192.0.2.2
@@ -79,10 +80,10 @@
   description: null
   state: idle
   local_address: null
-  local_as: null
+  local_as: 65021
   local_interface: null
   router_id: null
-  peer_group: null
+  peer_group: TRANSIT
   peering_type: external
   hold_time: null
   keepalive: null
@@ -98,13 +99,13 @@
   vrf: null
   remote_address: 192.0.2.3
   remote_as: 65004
-  description: null
+  description: Inherited transit description
   state: active
   local_address: null
-  local_as: null
-  local_interface: null
+  local_as: 65546
+  local_interface: Loopback1
   router_id: null
-  peer_group: null
+  peer_group: TRANSIT
   peering_type: external
   hold_time: null
   keepalive: null
@@ -112,7 +113,9 @@
   max_ttl: null
   afi:
   - ipv4_unicast
-  import_policies: []
-  export_policies: []
+  import_policies:
+  - GROUP-IMPORT
+  export_policies:
+  - GROUP-EXPORT
   prefix_list_in: null
   prefix_list_out: null
