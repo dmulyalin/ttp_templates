@@ -1,5 +1,13 @@
 # Release Notes
 
+## 0.6.16
+
+### BUGS
+
+1. Enahnced juniper vlans collection command, to account for legacy devices failures with old command.
+
+---
+
 ## 0.6.15
 
 ### TEMPLATES

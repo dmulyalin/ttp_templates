@@ -28,7 +28,7 @@ Example normalized output (YAML):
 
 <input>
 commands = [
-    "show configuration vlans | display inheritance | display set",
+    "show configuration | display inheritance | display set | match vlans",
     "show configuration interfaces | display inheritance | display set | match \"vlan|interface-mode|irb\""
 ]
 platform = [
