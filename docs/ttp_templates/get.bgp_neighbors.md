@@ -159,13 +159,16 @@ inherited peer-template name.
 
 
 
-Parse Cisco IOS `show ip bgp all neighbors` for the `bgp_neighbors` getter.
+Parse Cisco IOS `show ip bgp all neighbors` and
+`show running-config | section bgp` for the `bgp_neighbors` getter.
 
 Returns one normalized record per VRF and neighbor address, merging address
 families across repeated neighbor sections. Session state, peering type,
 addresses, remote ASN, router ID, description, timers, BGP uptime, policies,
 and prefix counts are collected when present. Unreported fields are null or
-empty lists. Local AS is null unless explicitly reported. Address families
+empty lists. Local AS comes from direct neighbor or inherited peer-group
+`local-as`, falling back to the router BGP ASN. Configuration also supplies
+peer groups, descriptions, update sources, and route maps. Address families
 come from section headers, rather than advertised capability lines.
 
 
