@@ -4931,12 +4931,15 @@ addresses, ASN, VRF, description, timers, uptime, local interface, eBGP
 multihop TTL, address families, route maps, and per-address-family sent and
 received prefix counts. The BGP configuration supplies the local ASN and
 inherited peer-template name.</p>
-<p>Parse Cisco IOS <code>show ip bgp all neighbors</code> for the <code>bgp_neighbors</code> getter.</p>
+<p>Parse Cisco IOS <code>show ip bgp all neighbors</code> and
+<code>show running-config | section bgp</code> for the <code>bgp_neighbors</code> getter.</p>
 <p>Returns one normalized record per VRF and neighbor address, merging address
 families across repeated neighbor sections. Session state, peering type,
 addresses, remote ASN, router ID, description, timers, BGP uptime, policies,
 and prefix counts are collected when present. Unreported fields are null or
-empty lists. Local AS is null unless explicitly reported. Address families
+empty lists. Local AS comes from direct neighbor or inherited peer-group
+<code>local-as</code>, falling back to the router BGP ASN. Configuration also supplies
+peer groups, descriptions, update sources, and route maps. Address families
 come from section headers, rather than advertised capability lines.</p>
 <hr />
 <details><summary>Template Content</summary>

@@ -4806,29 +4806,35 @@
 <div class="highlight"><pre><span></span><code>ttp://platform/cisco_ios_show_ip_bgp_all_neighbors.txt
 </code></pre></div></p>
 <hr />
-<p>Parse Cisco IOS <code>show ip bgp all neighbors</code> for the <code>bgp_neighbors</code> getter.</p>
+<p>Parse Cisco IOS <code>show ip bgp all neighbors</code> and
+<code>show running-config | section bgp</code> for the <code>bgp_neighbors</code> getter.</p>
 <p>Returns one normalized record per VRF and neighbor address, merging address
 families across repeated neighbor sections. Session state, peering type,
 addresses, remote ASN, router ID, description, timers, BGP uptime, policies,
 and prefix counts are collected when present. Unreported fields are null or
-empty lists. Local AS is null unless explicitly reported. Address families
+empty lists. Local AS comes from direct neighbor or inherited peer-group
+<code>local-as</code>, falling back to the router BGP ASN. Configuration also supplies
+peer groups, descriptions, update sources, and route maps. Address families
 come from section headers, rather than advertised capability lines.</p>
 <hr />
 <details><summary>Template Content</summary>
 <div class="highlight"><pre><span></span><code>&lt;template name="cisco_ios_bgp_neighbors" results="per_template"&gt;
 &lt;doc&gt;
-Parse Cisco IOS 'show ip bgp all neighbors' for the 'bgp_neighbors' getter.
+Parse Cisco IOS 'show ip bgp all neighbors' and
+'show running-config | section bgp' for the 'bgp_neighbors' getter.
 
 Returns one normalized record per VRF and neighbor address, merging address
 families across repeated neighbor sections. Session state, peering type,
 addresses, remote ASN, router ID, description, timers, BGP uptime, policies,
 and prefix counts are collected when present. Unreported fields are null or
-empty lists. Local AS is null unless explicitly reported. Address families
+empty lists. Local AS comes from direct neighbor or inherited peer-group
+'local-as', falling back to the router BGP ASN. Configuration also supplies
+peer groups, descriptions, update sources, and route maps. Address families
 come from section headers, rather than advertised capability lines.
 &lt;/doc&gt;
 
 &lt;input&gt;
-commands = ["show ip bgp all neighbors"]
+commands = ["show ip bgp all neighbors", "show running-config | section bgp"]
 platform = ["cisco_ios", "ios", "cisco_iosxe"]
 &lt;/input&gt;
 
@@ -4843,8 +4849,6 @@ For address family: {{ afi_name | ORPHRASE | _start_ }}
   &lt;group name="neighbors*"&gt;
 BGP neighbor is {{ remote_address | _start_ }}, remote AS {{ remote_as | to_int }}, {{ peering_type }} link
 BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}, remote AS {{ remote_as | to_int }}, {{ peering_type }} link
-BGP neighbor is {{ remote_address | _start_ }}, remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ peering_type }} link
-BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}, remote AS {{ remote_as | to_int }}, local AS {{ local_as | to_int }}, {{ peering_type }} link
  Description: {{ description | ORPHRASE }}
   BGP version {{ ignore }}, remote router ID {{ router_id }}
   BGP state = {{ bgp_state | ORPHRASE }}
@@ -4859,6 +4863,35 @@ BGP neighbor is {{ remote_address | _start_ }}, vrf {{ vrf }}, remote AS {{ remo
   {{ prefixes_sent | to_int }} announced prefixes
 Local host: {{ local_address }}, Local port: {{ ignore }}
   &lt;/group&gt;
+&lt;/group&gt;
+
+&lt;group name="bgp_config"&gt;
+router bgp {{ router_asn | _start_ }}
+ &lt;group name="statements*"&gt;
+ neighbor {{ peer | _start_ }} peer-group
+ neighbor {{ peer | _start_ }} peer-group {{ peer_group }}
+ neighbor {{ peer | _start_ }} local-as {{ local_as }}
+ neighbor {{ peer | _start_ }} local-as {{ local_as }} {{ _options | ORPHRASE }}
+ neighbor {{ peer | _start_ }} description {{ description | ORPHRASE }}
+ neighbor {{ peer | _start_ }} update-source {{ update_source }}
+ neighbor {{ peer | _start_ }} route-map {{ policy }} {{ direction }}
+ &lt;/group&gt;
+ &lt;group name="families*"&gt;
+ address-family {{ afi | _start_ }}
+ address-family {{ afi | _start_ }} {{ safi }}
+ address-family {{ afi | _start_ }} vrf {{ vrf }}
+ address-family {{ afi | _start_ }} {{ safi }} vrf {{ vrf }}
+  &lt;group name="statements*"&gt;
+  neighbor {{ peer | _start_ }} peer-group
+  neighbor {{ peer | _start_ }} peer-group {{ peer_group }}
+  neighbor {{ peer | _start_ }} local-as {{ local_as }}
+  neighbor {{ peer | _start_ }} local-as {{ local_as }} {{ _options | ORPHRASE }}
+  neighbor {{ peer | _start_ }} description {{ description | ORPHRASE }}
+  neighbor {{ peer | _start_ }} update-source {{ update_source }}
+  neighbor {{ peer | _start_ }} route-map {{ policy }} {{ direction }}
+  &lt;/group&gt;
+ exit-address-family {{ _end_ }}
+ &lt;/group&gt;
 &lt;/group&gt;
 
 &lt;output macro="transform"/&gt;
