@@ -23,8 +23,8 @@ This template designed to parse Cisco IOS configuration and CDP and LLDP neighbo
 
 <input load="python">
 commands = [
-    "show cdp neighbor details",
-    "show lldp neighbor details",
+    "show cdp neighbor detail",
+    "show lldp neighbor detail",
     "show running-config",
     "show interface",
 ]
