@@ -38,3 +38,14 @@ interface Vlan50
   vrrpv3 51 address-family ipv4
     address 203.0.113.254 primary
     no shutdown
+!
+interface Vlan20
+  vrf member CUSTOMER_A
+interface Vlan30
+interface Ethernet1/1.100
+  vrf member CUSTOMER_B
+interface Vlan40
+interface Vlan50
+  vrf member CUSTOMER_A
+interface Vlan999
+  vrf member NO_VRRP

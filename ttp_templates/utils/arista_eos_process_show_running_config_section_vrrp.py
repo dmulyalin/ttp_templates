@@ -19,12 +19,14 @@ def transform_vrrp_config(payload: Any) -> List[Dict[str, Any]]:
             continue
 
         for interface, address_families in item.get("interfaces", {}).items():
-            for groups in address_families.values():
+            for family in ("ipv4", "ipv6"):
+                groups = address_families.get(family, {})
                 for group, values in groups.items():
                     if not values.get("virtual_address"):
                         continue
                     record = {
                         "interface": interface,
+                        "vrf": address_families.get("vrf") or None,
                         "group": int(group),
                         "protocol": (
                             "vrrpv3"

@@ -1,36 +1,63 @@
 - interface: Vlan50
+  vrf: CUSTOMER_A
   group: 10
   protocol: vrrpv2
   virtual_address: 10.10.4.10
   priority: 200
   authentication_type: text
 - interface: Vlan50
+  vrf: CUSTOMER_A
   group: 20
   protocol: vrrpv2
   virtual_address: 10.10.4.20
   priority: 100
   authentication_type: null
 - interface: Vlan100
+  vrf: CUSTOMER_B
   group: 40
   protocol: vrrpv2
   virtual_address: 10.1.1.5
   priority: 250
   authentication_type: md5
 - interface: Vlan100
+  vrf: CUSTOMER_B
   group: 41
   protocol: vrrpv3
   virtual_address: 2001:db8:100::1
   priority: 100
   authentication_type: null
 - interface: Ethernet3
+  vrf: null
   group: 1
   protocol: vrrpv3
   virtual_address: 2001:db8:3::1
   priority: 175
   authentication_type: null
 - interface: Port-Channel20.200
+  vrf: CUSTOMER_A
   group: 200
   protocol: vrrpv2
   virtual_address: 198.51.100.1
   priority: 100
   authentication_type: md5
+- interface: Vlan300
+  vrf: CUSTOMER_C
+  group: 30
+  protocol: vrrpv2
+  virtual_address: 203.0.113.1
+  priority: 100
+  authentication_type: null
+- interface: Vlan300
+  vrf: CUSTOMER_C
+  group: 31
+  protocol: vrrpv3
+  virtual_address: 2001:db8:300::1
+  priority: 100
+  authentication_type: null
+- interface: Vlan302
+  vrf: null
+  group: 30
+  protocol: vrrpv2
+  virtual_address: 192.0.2.129
+  priority: 100
+  authentication_type: null

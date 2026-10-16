@@ -14,6 +14,12 @@ def transform_vrrp_config(payload: Any) -> List[Dict[str, Any]]:
     items = [payload] if isinstance(payload, dict) else payload or []
     records: List[Dict[str, Any]] = []
 
+    iface_to_vrf = {}
+    for item in items:
+        if isinstance(item, dict):
+            for interface, values in item.get("interfaces", {}).items():
+                iface_to_vrf[interface] = values.get("vrf") or None
+
     for item in items:
         if not isinstance(item, dict):
             continue
@@ -23,6 +29,7 @@ def transform_vrrp_config(payload: Any) -> List[Dict[str, Any]]:
                 for group, values in groups.items():
                     record = {
                         "interface": interface,
+                        "vrf": iface_to_vrf.get(interface),
                         "group": int(group),
                         "protocol": (
                             "vrrpv3"

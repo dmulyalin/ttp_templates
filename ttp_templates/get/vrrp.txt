@@ -12,6 +12,7 @@ Supported platforms:
 Returns a normalized list of dictionaries, each dictionary has these keys:
 
 - `interface` - logical interface name string
+- `vrf` - VRF name or `null`
 - `group` - VRRP group number integer
 - `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
@@ -22,6 +23,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: ae123.123
+  vrf: null
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.102.233

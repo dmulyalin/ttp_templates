@@ -5,6 +5,7 @@ Template to parse and normalize Juniper Junos VRRP configuration.
 This template requires output of:
 
 - `show configuration | display inheritance | display set | match vrrp`
+- `show configuration routing-instances | display inheritance | display set | match interface`
 
 Statements belonging to the same interface address and VRRP group are merged.
 The default Junos VRRP priority of 100 is returned when priority is not
@@ -14,6 +15,7 @@ explicitly configured. IPv4 defaults to VRRPv2 unless the global
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - logical interface name string
+- `vrf` - routing-instance name or `null` when the interface has no assignment
 - `group` - VRRP group number integer
 - `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
@@ -24,6 +26,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: ae123.123
+  vrf: null
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.102.233
@@ -35,7 +38,8 @@ Example normalized output (YAML):
 
 <input>
 commands = [
-    "show configuration | display inheritance | display set | match vrrp"
+    "show configuration | display inheritance | display set | match vrrp",
+    "show configuration routing-instances | display inheritance | display set | match interface"
 ]
 platform = [
     "juniper_junos",
@@ -63,6 +67,10 @@ set interfaces {{ interface }} unit {{ unit }} family inet address {{ address }}
 <group name="vrrp**.{{ interface }}**.{{ unit }}**.ipv6**.{{ address }}**.{{ group }}**" method="table">
 set interfaces {{ interface }} unit {{ unit }} family inet6 address {{ address }} vrrp-inet6-group {{ group | DIGIT | to_int }} virtual-inet6-address {{ virtual_address }}
 set interfaces {{ interface }} unit {{ unit }} family inet6 address {{ address }} vrrp-inet6-group {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
+</group>
+
+<group name="vrf**.{{ vrf }}**.interfaces*" method="table" itemize="interface">
+set routing-instances {{ vrf }} interface {{ interface }}
 </group>
 
 <output macro="transform_vrrp_to_records"/>

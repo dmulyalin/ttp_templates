@@ -320,6 +320,8 @@
   ipv4_addresses:
   - ip: 192.168.100.1/24
     ip_address_role: ''
+  - ip: 192.168.100.254/24
+    ip_address_role: vip
   ipv6_addresses: []
   lacp_mode: null
   lag: null
@@ -342,6 +344,10 @@
   ipv4_addresses:
   - ip: 192.168.200.1/24
     ip_address_role: ''
+  - ip: 10.0.0.2/24
+    ip_address_role: secondary
+  - ip: 10.0.0.1/24
+    ip_address_role: vip
   ipv6_addresses: []
   lacp_mode: null
   lag: null

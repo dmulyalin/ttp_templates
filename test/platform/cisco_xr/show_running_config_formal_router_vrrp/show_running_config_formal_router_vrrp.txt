@@ -14,3 +14,7 @@ router vrrp interface BVI456 address-family ipv4 vrrp 10 text-authentication ano
 router vrrp interface BVI456 address-family ipv4 vrrp 20 priority 200
 router vrrp interface BVI456 address-family ipv4 vrrp 20 version 2
 router vrrp interface BVI456 address-family ipv6 vrrp 10 address global 2001:db8:456::1
+interface BVI123 vrf CUSTOMER_A
+interface Bundle-Ether10.100 vrf CUSTOMER_B
+interface BVI999 vrf NO_VRRP
+interface HundredGigE0/0/0/3.123 vrf VRF1

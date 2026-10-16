@@ -163,6 +163,22 @@ Collected commands by platform:
 - Cisco IOS: `show running-config | section vlan`
 ```
 
+## VRRP Collection Commands
+
+The `vrrp` getter combines VRRP configuration with interface VRF assignments.
+Collect the following outputs for each platform and supply them to the parser:
+
+| Platform | VRRP configuration | Interface VRF assignments |
+|---|---|---|
+| Arista EOS | `show running-config section vrrp` | Captured from `vrf <name>` lines in the same interface sections; no additional command |
+| Cisco IOS-XR | `show running-config formal router vrrp` | `show run formal interface \| inc vrf` |
+| Cisco NX-OS | `show running-config vrrp` or `show running-config vrrpv3` | `show run interface \| inc "interface\|vrf"` |
+| Juniper Junos | `show configuration \| display inheritance \| display set \| match vrrp` | `show configuration routing-instances \| display inheritance \| display set \| match interface` |
+
+Each normalized VRRP record includes `vrf`. The processor matches assignments
+by interface name and applies the VRF to all groups on that interface, including
+IPv4 and IPv6 groups. If no assignment is found, `vrf` is `None` (`null` in YAML).
+
 ## Documentation
 
 Write useful `<doc>` blocks in templates. The generated template reference docs

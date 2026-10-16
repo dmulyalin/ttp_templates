@@ -200,6 +200,7 @@ class VrfRecord(BaseModel):
 
 class VrrpRecord(BaseModel):
     interface: StrictStr
+    vrf: Union[None, StrictStr] = None
     group: StrictInt
     protocol: StrictStr
     virtual_address: StrictStr

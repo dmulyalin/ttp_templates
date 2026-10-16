@@ -1,5 +1,20 @@
 # Release Notes
 
+## 0.6.18 (unreleased)
+
+### ENHANCEMENTS
+
+1. Enhanced the `vrrp` getter with interface VRF data for all supported platforms.
+   Records include `vrf`, defaulting to `null` when no assignment is found.
+
+### BUGS
+
+1. Fixed the Arista EOS `interfaces` getter omitting `ip virtual-router address`
+   values. Virtual addresses now appear in `ipv4_addresses` with role `vip`
+   and the prefix of the matching interface subnet.
+
+---
+
 ## 0.6.17
 
 ### ENHANCEMENTS
@@ -408,7 +423,7 @@
 6. Updated `ttp://get/interfaces.txt` to include Linux interface parsing.
 7. Added Cisco NX-OS interface parsing support using
    `ttp://platform/cisco_nxos_show_running_config_interface.txt` for
-   `show running-config interface` command output.
+   `show run formal interface | inc vrf` command output.
 8. Updated `ttp://get/interfaces.txt` to include Cisco NX-OS interface parsing.
 9. Added Cisco IOS inventory parsing support using
    `ttp://platform/cisco_ios_show_inventory.txt` for `show inventory` command
@@ -476,7 +491,7 @@
    through the `get/inventory` getter.
 5. Added Linux `ip address show` mock data and expected output under
    `test/platform/linux/ip_address_show/`.
-6. Added Cisco NX-OS `show running-config interface` mock data and expected
+6. Added Cisco NX-OS `show run formal interface | inc vrf` mock data and expected
    output under `test/platform/cisco_nxos/show_running_config_interface/`.
 7. Added Cisco IOS `show inventory` mock data samples and expected output under
    `test/platform/cisco_ios/show_inventory/`.
@@ -605,30 +620,30 @@
 
 ### Features
 
-- **`get` template collection** – new `ttp_templates/get/` directory holds getter templates
+- **`get` template collection** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ new `ttp_templates/get/` directory holds getter templates
   modelled after [NAPALM getters](https://napalm.readthedocs.io/en/latest/base.html). Each
   getter bundles platform-specific `<extend>` references and returns a normalised,
   platform-agnostic structure regardless of which vendor's output is supplied.
 
-- **`inventory` getter template** – first getter: `get/inventory.txt` supports
+- **`inventory` getter template** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ first getter: `get/inventory.txt` supports
   Cisco IOS-XR (`cisco_xr`), Cisco NXOS (`cisco_nxos`, `nxos`), Arista EOS
   (`arista_eos`, `eos`), and Juniper Junos (`juniper_junos`, `junos`).
   Returns a list of dicts with keys `slot`, `description`, `module`, `serial`.
 
-- **`get_template(get=...)` argument** – `get_template` now accepts a `get` keyword
+- **`get_template(get=...)` argument** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ `get_template` now accepts a `get` keyword
   argument to load a getter template by name (e.g. `get_template(get="inventory")`).
   The `.txt` extension is optional.
 
-- **`parse_output(get=..., platform=...)` routing** – `parse_output` updated to
+- **`parse_output(get=..., platform=...)` routing** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ `parse_output` updated to
   handle getter templates: when `get` is supplied the `platform` argument is
   **required** and is used to select the correct platform-specific input section
   inside the getter template. Raises `ValueError` when `platform` is omitted and
   `RuntimeError` when no input in the getter supports the given platform.
 
-- **`list_templates()` includes `"get"` key** – the dict returned by `list_templates`
+- **`list_templates()` includes `"get"` key** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ the dict returned by `list_templates`
   now has a `"get"` top-level key listing all getter template filenames.
 
-- **`list_templates_refs()` new function** – returns a flat, sorted list of
+- **`list_templates_refs()` new function** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ returns a flat, sorted list of
   `ttp://` URI strings for every template across all collections (`platform`,
   `yang`, `misc`, `get`). Every URI is directly loadable via
   `get_template(path=ref)`. Supports the same `pattern` glob filter as
@@ -636,14 +651,14 @@
 
 ### Templates
 
-- Added `ttp://get/inventory.txt` – multi-platform inventory getter template.
-- Updated `ttp://platform/cisco_xr_show_inventory.txt` – added `platform` list
+- Added `ttp://get/inventory.txt` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ multi-platform inventory getter template.
+- Updated `ttp://platform/cisco_xr_show_inventory.txt` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ added `platform` list
   to the input block for getter routing compatibility.
-- Updated `ttp://platform/arista_eos_show_inventory_pipe_json.txt` – added
+- Updated `ttp://platform/arista_eos_show_inventory_pipe_json.txt` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ added
   `platform` list with `arista_eos` and `eos` entries.
-- Updated `ttp://platform/cisco_nxos_show_inventory_pipe_json_pretty.txt` – added
+- Updated `ttp://platform/cisco_nxos_show_inventory_pipe_json_pretty.txt` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ added
   `platform` list with `cisco_nxos` and `nxos` entries.
-- Updated `ttp://platform/juniper_junos_show_chassis_hardware_pipe_json.txt` – added
+- Updated `ttp://platform/juniper_junos_show_chassis_hardware_pipe_json.txt` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ added
   `platform` list with `juniper_junos` and `junos` entries.
 
 ---
@@ -652,24 +667,24 @@
 
 ### Bugs
 
-- **Bug 1** – `parse_output` now raises `ValueError` with a descriptive message
+- **Bug 1** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ `parse_output` now raises `ValueError` with a descriptive message
   when called without any valid template-locating argument (previously the
   `None` returned by `get_template` was silently forwarded to the TTP
   constructor, causing confusing downstream errors).
-- **Bug 2** – Fixed path-traversal vulnerability (OWASP A01) in `get_template`.
+- **Bug 2** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ Fixed path-traversal vulnerability (OWASP A01) in `get_template`.
   The resolved template filename is now verified with `os.path.realpath` to
   confirm it falls inside the package directory before the file is opened;
   crafted paths such as `path="../../etc/passwd"` now raise `ValueError`.
-- **Bug 3** – Fixed `list_templates` crashing with `AttributeError` when a
+- **Bug 3** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ Fixed `list_templates` crashing with `AttributeError` when a
   template file is placed directly inside the `misc/` root directory (rather
   than in a subdirectory). The leaf-assignment logic now checks whether the
   target key already holds a dict; if it does, the files are stored under the
   empty-string sub-key instead of overwriting the dict with a list.
-- **Bug 4** – `list_templates` now returns file lists in sorted alphabetical
+- **Bug 4** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ `list_templates` now returns file lists in sorted alphabetical
   order. Previously `os.walk` / `os.listdir` produced non-deterministic
   ordering across operating systems and filesystems, making the output
   unreliable for callers and difficult to test reliably.
-- **Bug 5** – Fixed prefix-ambiguity in `short_interface_names` (`ttp_vars.py`).
+- **Bug 5** ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ Fixed prefix-ambiguity in `short_interface_names` (`ttp_vars.py`).
   The `2GE` patterns `'^Tw'` and `'^Two'` were broad enough to also match
   `TwoHundredGigabitEthernet*` (200GE) names because `2GE` appeared before
   `200GE` in the dict. Negative look-ahead anchors
@@ -736,7 +751,7 @@ Added templates:
 
 Modified templates:
 
-- `ttp://platform/cisco_xr_show_isis_database_verbose.txt` – updated produced data structure to key LSPs by hostname.
+- `ttp://platform/cisco_xr_show_isis_database_verbose.txt` ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“ updated produced data structure to key LSPs by hostname.
 
 ---
 

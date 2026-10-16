@@ -9,3 +9,6 @@ set interfaces xe-0/0/0 unit 400 family inet address 198.51.100.2/24 vrrp-group 
 set interfaces ae123 unit 123 family inet address 123.123.102.234/29 vrrp-group 1 authentication-type md5
 set interfaces ae123 unit 123 family inet address 123.123.102.234/29 vrrp-group 2 authentication-type md5
 set interfaces xe-0/0/0 unit 400 family inet address 198.51.100.2/24 vrrp-group 10 authentication-type md5
+set routing-instances CUSTOMER_A interface ae123.123
+set routing-instances CUSTOMER_B interface xe-0/0/0.400
+set routing-instances CUSTOMER_A interface ge-0/0/1.100

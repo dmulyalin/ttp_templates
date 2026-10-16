@@ -14,6 +14,7 @@ Used by:
 Produced with Copilot Assistance.
 """
 
+from ipaddress import IPv4Address, IPv4Interface
 from typing import Any, Dict, List, Optional
 
 from .models import InterfaceConfigRecord
@@ -165,6 +166,19 @@ def transform_interfaces_config(payload: list) -> list[dict[str, Any]]:
             for i in iface.get("ipv4_addresses", [])
             if isinstance(i, dict) and i.get("ip") and i.get("mask")
         ]
+        vip = iface.get("vip")
+        if vip:
+            matching_subnets = [
+                IPv4Interface(address["ip"]).network
+                for address in ipv4_addresses
+                if IPv4Address(vip) in IPv4Interface(address["ip"]).network
+            ]
+            if matching_subnets:
+                prefix = max(matching_subnets, key=lambda subnet: subnet.prefixlen).prefixlen
+                ipv4_addresses.append(
+                    {"ip": f"{vip}/{prefix}", "ip_address_role": "vip"}
+                )
+
         ipv6_addresses = [
             {
                 "ip": f"{i['ip'].lower()}/{i['mask']}",
