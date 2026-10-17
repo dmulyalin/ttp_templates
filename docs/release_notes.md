@@ -1,6 +1,6 @@
 # Release Notes
 
-## 0.6.18 (unreleased)
+## 0.6.18
 
 ### ENHANCEMENTS
 
