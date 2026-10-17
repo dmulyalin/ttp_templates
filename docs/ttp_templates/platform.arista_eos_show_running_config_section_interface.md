@@ -38,6 +38,7 @@ contains the following keys (missing values are set to `null` / `None`):
 - `qinq_svlan`: integer or `null`
 - `vrf`: string or `null`
 - `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+    Virtual-router addresses use role `vip` and the matching interface subnet prefix.
 - `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):
@@ -104,6 +105,7 @@ contains the following keys (missing values are set to 'null' / 'None'):
 - 'qinq_svlan': integer or 'null'
 - 'vrf': string or 'null'
 - 'ipv4_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
+    Virtual-router addresses use role 'vip' and the matching interface subnet prefix.
 - 'ipv6_addresses': list of dictionaries with CIDR 'ip' and 'ip_address_role'
 
 Example normalized output (YAML):
@@ -167,6 +169,7 @@ interface {{ name | _start_ }}
    encapsulation dot1q vlan {{ dot1q | to_int | let("mode", "tagged") }}
    mac-address {{ mac_address | mac_eui }}
    duplex {{ duplex }}
+   ip virtual-router address {{ vip | IP }}
 
    <group name="ipv4_addresses*" method="table">
    ip address {{ ip | IP }}/{{ mask }} {{ ip_address_role | set("") }}

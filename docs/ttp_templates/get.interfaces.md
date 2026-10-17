@@ -38,6 +38,7 @@ contains the following keys (missing values are set to `null` / `None`):
 - `qinq_svlan`: integer or `null`
 - `vrf`: string or `null`
 - `ipv4_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
+    Virtual-router addresses use role `vip` and the matching interface subnet prefix.
 - `ipv6_addresses`: list of dictionaries with CIDR `ip` and `ip_address_role`
 
 Example normalized output (YAML):

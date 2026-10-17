@@ -14,6 +14,8 @@ This template accepts output collected with any of these commands:
 - `show running-config vrrp`
 - `show running-config vrrpv3`
 
+Also requires `show run interface | inc "interface|vrf"` for interface VRF assignments.
+
 IPv4 and IPv6 address families, multiple interfaces and groups, primary
 addresses with or without the `primary` keyword, and explicit or default
 priorities are supported. Secondary virtual addresses are not returned. The
@@ -23,6 +25,7 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
+- `vrf` - interface VRF name or `null` when no VRF is configured
 - `group` - VRRP group number integer
 - `protocol` - always `vrrpv3`
 - `virtual_address` - primary virtual IPv4 or IPv6 address string
@@ -33,6 +36,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: Vlan20
+  vrf: CUSTOMER_A
   group: 10
   protocol: vrrpv3
   virtual_address: 20.1.1.1
@@ -56,6 +60,8 @@ This template accepts output collected with any of these commands:
 - 'show running-config vrrp'
 - 'show running-config vrrpv3'
 
+Also requires 'show run interface | inc "interface|vrf"' for interface VRF assignments.
+
 IPv4 and IPv6 address families, multiple interfaces and groups, primary
 addresses with or without the 'primary' keyword, and explicit or default
 priorities are supported. Secondary virtual addresses are not returned. The
@@ -65,6 +71,7 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 Returns a normalized list of dictionaries with these keys:
 
 - 'interface' - interface name string
+- 'vrf' - interface VRF name or 'null' when no VRF is configured
 - 'group' - VRRP group number integer
 - 'protocol' - always 'vrrpv3'
 - 'virtual_address' - primary virtual IPv4 or IPv6 address string
@@ -75,6 +82,7 @@ Example normalized output (YAML):
 
 '''yaml
 - interface: Vlan20
+  vrf: CUSTOMER_A
   group: 10
   protocol: vrrpv3
   virtual_address: 20.1.1.1
@@ -87,7 +95,8 @@ Example normalized output (YAML):
 <input>
 commands = [
     "show running-config vrrp",
-    "show running-config vrrpv3"
+    "show running-config vrrpv3",
+    'show run interface | inc "interface|vrf"'
 ]
 platform = [
     "cisco_nxos",
@@ -104,6 +113,7 @@ def transform_vrrp_to_records(data):
 
 <group name="interfaces**.{{ interface }}**">
 interface {{ interface | _start_ }}
+  vrf member {{ vrf }}
 
   <group name="vrrp**.{{ address_family }}**.{{ group }}**">
   {{ protocol | _start_ | re("vrrpv3") }} {{ group | DIGIT | to_int }} address-family {{ address_family }}

@@ -22,6 +22,7 @@ configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
+- `vrf` - interface VRF name or `null` when no VRF is configured
 - `group` - VRRP group number integer
 - `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
@@ -32,6 +33,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: Vlan50
+  vrf: CUSTOMER_A
   group: 10
   protocol: vrrpv2
   virtual_address: 10.10.4.10
@@ -63,6 +65,7 @@ configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.
 Returns a normalized list of dictionaries with these keys:
 
 - 'interface' - interface name string
+- 'vrf' - interface VRF name or 'null' when no VRF is configured
 - 'group' - VRRP group number integer
 - 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
@@ -73,6 +76,7 @@ Example normalized output (YAML):
 
 '''yaml
 - interface: Vlan50
+  vrf: CUSTOMER_A
   group: 10
   protocol: vrrpv2
   virtual_address: 10.10.4.10
@@ -101,6 +105,7 @@ def transform_vrrp_to_records(data):
 
 <group name="interfaces**.{{ interface }}**">
 interface {{ interface | _start_ }}
+   vrf {{ vrf }}
 
    <group name="ipv4**.{{ group }}**" method="table">
    vrrp {{ group | DIGIT | to_int }} ip {{ virtual_address | let("address_family", "ipv4") }}

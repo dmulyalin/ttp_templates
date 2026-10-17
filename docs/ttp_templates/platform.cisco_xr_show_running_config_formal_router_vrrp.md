@@ -12,6 +12,7 @@ Template to parse and normalize Cisco IOS-XR VRRP formal configuration.
 This template requires output of:
 
 - `show running-config formal router vrrp`
+- `show run formal interface | inc vrf`
 
 Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
@@ -22,6 +23,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
+- `vrf` - interface VRF name or `null` when no VRF is configured
 - `group` - VRRP group number integer
 - `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
@@ -32,6 +34,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: BVI123
+  vrf: CUSTOMER_A
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.123.97
@@ -53,6 +56,7 @@ Template to parse and normalize Cisco IOS-XR VRRP formal configuration.
 This template requires output of:
 
 - 'show running-config formal router vrrp'
+- 'show run formal interface | inc vrf'
 
 Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
@@ -63,6 +67,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.
 Returns a normalized list of dictionaries with these keys:
 
 - 'interface' - interface name string
+- 'vrf' - interface VRF name or 'null' when no VRF is configured
 - 'group' - VRRP group number integer
 - 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
@@ -73,6 +78,7 @@ Example normalized output (YAML):
 
 '''yaml
 - interface: BVI123
+  vrf: CUSTOMER_A
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.123.97
@@ -84,7 +90,8 @@ Example normalized output (YAML):
 
 <input>
 commands = [
-    "show running-config formal router vrrp"
+    "show running-config formal router vrrp",
+    "show run formal interface | inc vrf"
 ]
 platform = [
     "cisco_xr",
@@ -106,6 +113,10 @@ router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} version {{ version | DIGIT | to_int }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} text-authentication {{ authentication_key | let("authentication_type", "text") }}
+</group>
+
+<group name="interfaces**.{{ interface }}**" method="table">
+interface {{ interface }} vrf {{ vrf }}
 </group>
 
 <output macro="transform_vrrp_to_records"/>

@@ -22,6 +22,7 @@ configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
+- `vrf` - interface VRF name or `null` when no VRF is configured
 - `group` - VRRP group number integer
 - `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
@@ -32,6 +33,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: Vlan50
+  vrf: CUSTOMER_A
   group: 10
   protocol: vrrpv2
   virtual_address: 10.10.4.10
@@ -47,6 +49,7 @@ Template to parse and normalize Cisco IOS-XR VRRP formal configuration.
 This template requires output of:
 
 - `show running-config formal router vrrp`
+- `show run formal interface | inc vrf`
 
 Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
@@ -57,6 +60,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
+- `vrf` - interface VRF name or `null` when no VRF is configured
 - `group` - VRRP group number integer
 - `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
@@ -67,6 +71,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: BVI123
+  vrf: CUSTOMER_A
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.123.97
@@ -84,6 +89,8 @@ This template accepts output collected with any of these commands:
 - `show running-config vrrp`
 - `show running-config vrrpv3`
 
+Also requires `show run interface | inc "interface|vrf"` for interface VRF assignments.
+
 IPv4 and IPv6 address families, multiple interfaces and groups, primary
 addresses with or without the `primary` keyword, and explicit or default
 priorities are supported. Secondary virtual addresses are not returned. The
@@ -93,6 +100,7 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - interface name string
+- `vrf` - interface VRF name or `null` when no VRF is configured
 - `group` - VRRP group number integer
 - `protocol` - always `vrrpv3`
 - `virtual_address` - primary virtual IPv4 or IPv6 address string
@@ -103,6 +111,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: Vlan20
+  vrf: CUSTOMER_A
   group: 10
   protocol: vrrpv3
   virtual_address: 20.1.1.1
@@ -118,6 +127,7 @@ Template to parse and normalize Juniper Junos VRRP configuration.
 This template requires output of:
 
 - `show configuration | display inheritance | display set | match vrrp`
+- `show configuration routing-instances | display inheritance | display set | match interface`
 
 Statements belonging to the same interface address and VRRP group are merged.
 The default Junos VRRP priority of 100 is returned when priority is not
@@ -127,6 +137,7 @@ explicitly configured. IPv4 defaults to VRRPv2 unless the global
 Returns a normalized list of dictionaries with these keys:
 
 - `interface` - logical interface name string
+- `vrf` - routing-instance name or `null` when the interface has no assignment
 - `group` - VRRP group number integer
 - `protocol` - normalized protocol version (`vrrpv2` or `vrrpv3`)
 - `virtual_address` - virtual IPv4 or IPv6 address string
@@ -137,6 +148,7 @@ Example normalized output (YAML):
 
 ```yaml
 - interface: ae123.123
+  vrf: null
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.102.233
@@ -165,6 +177,7 @@ Supported platforms:
 Returns a normalized list of dictionaries, each dictionary has these keys:
 
 - 'interface' - logical interface name string
+- 'vrf' - VRF name or 'null'
 - 'group' - VRRP group number integer
 - 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
@@ -175,6 +188,7 @@ Example normalized output (YAML):
 
 '''yaml
 - interface: ae123.123
+  vrf: null
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.102.233
