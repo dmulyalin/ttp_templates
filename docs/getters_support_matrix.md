@@ -1,21 +1,21 @@
 # Getter templates vendor support matrix.
 
-| Getter template | A10 | Arista EOS | Cisco IOS | Cisco IOS-XR | Cisco NX-OS | Juniper Junos | Opengear | Linux |
-|---|---|---|---|---|---|---|---|---|
-| bgp_neighbors | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| bgp_communities | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| inventory | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| netbox | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ❌ |
-| interfaces | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
-| interfaces_status | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| lldp_neighbors | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| vlans | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| vrfs | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| vrrp | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| mac_addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| bgp_asn | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
-| prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| Getter template | A10 | Arista EOS | Cisco ASA | Cisco IOS | Cisco IOS-XR | Cisco NX-OS | Fortinet FortiOS | Juniper Junos | Opengear | Linux |
+|---|---|---|---|---|---|---|---|---|---|---|
+| bgp_neighbors | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ❌ |
+| bgp_communities | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| inventory | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| netbox | ❌ | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| interfaces | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ✅ |
+| interfaces_status | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| lldp_neighbors | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| vlans | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| vrfs | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| vrrp | ❌ | ✅ | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| mac_addresses | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| bgp_asn | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
+| prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 
 ## Notes
 
@@ -46,9 +46,11 @@ Collected commands by platform:
 
 - A10: `show ip bgp neighbors`
 - Arista EOS: `show ip bgp neighbors vrf all | json`
+- Cisco ASA: `show bgp neighbors`, `show bgp ipv6 unicast neighbors` and `show running-config router bgp`
 - Cisco IOS: `show ip bgp all neighbors` and `show running-config | section bgp`
 - Cisco IOS-XR: `show bgp neighbors` or `show bgp vrf all neighbors`, and `show run formal router bgp | inc neighbor`
 - Cisco NX-OS: `show ip bgp neighbors vrf all` and `show running-config section bgp`
+- Fortinet FortiOS: `get router info bgp neighbors`
 - Juniper Junos: `show bgp neighbor | display json`
 
 ### inventory
@@ -80,6 +82,7 @@ Collected commands by platform:
 
 - A10: `show interfaces`
 - Arista EOS: `show interfaces`
+- Cisco ASA: `show interface`
 - Cisco IOS: `show interfaces`
 - Cisco IOS-XR: `show interfaces`
 - Cisco NX-OS: `show interface`

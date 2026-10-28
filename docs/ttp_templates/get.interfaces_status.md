@@ -31,6 +31,29 @@ for an interface are returned as `null`.
 
 
 
+Template to parse Cisco ASA `show interface` output and normalize it for the
+`interfaces_status` getter.
+
+Returns a list of dictionaries with interface state, physical properties,
+counters, errors, and averaged rates. Interface speed and input/output rates
+are in bit/s, utilization is a percentage of interface speed, packet rates are
+in packets/s, and `rate_interval` is in seconds. Values not reported by the ASA
+are returned as `null`.
+
+Notes:
+
+- `status_oper` is `up` only when the interface is up and its line protocol is
+  up; ASAv reports `line protocol is up` on an administratively down interface.
+- Rates are the 5 minute rates from the "Traffic Statistics" section, which the
+  ASA prints only for an interface with a `nameif`, in bytes/sec (converted to
+  bit/s here).
+- A VLAN subinterface has no packet or error counters of its own, only its
+  nameif traffic statistics, so its counters are `null`.
+- The ASA indents with both spaces and tabs, so lines after the first match
+  any leading whitespace.
+
+
+
 Template to parse Cisco IOS `show interfaces` output and normalize it for the
 `interfaces_status` getter.
 
@@ -87,6 +110,7 @@ Supported platforms:
 
 - A10 ACOS
 - Arista EOS
+- Cisco ASA
 - Cisco IOS
 - Cisco IOS-XR
 - Cisco NX-OS
@@ -116,6 +140,8 @@ Returns a normalized list of dictionaries with these keys:
 <extend template="ttp://platform/a10_show_interfaces.txt"/>
 
 <extend template="ttp://platform/arista_eos_show_interfaces.txt"/>
+
+<extend template="ttp://platform/cisco_asa_show_interface.txt"/>
 
 <extend template="ttp://platform/cisco_ios_show_interfaces.txt"/>
 

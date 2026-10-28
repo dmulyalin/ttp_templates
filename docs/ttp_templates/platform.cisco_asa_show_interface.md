@@ -1,0 +1,99 @@
+Reference path:
+```
+ttp://platform/cisco_asa_show_interface.txt
+```
+
+---
+
+
+
+Template to parse Cisco ASA `show interface` output and normalize it for the
+`interfaces_status` getter.
+
+Returns a list of dictionaries with interface state, physical properties,
+counters, errors, and averaged rates. Interface speed and input/output rates
+are in bit/s, utilization is a percentage of interface speed, packet rates are
+in packets/s, and `rate_interval` is in seconds. Values not reported by the ASA
+are returned as `null`.
+
+Notes:
+
+- `status_oper` is `up` only when the interface is up and its line protocol is
+  up; ASAv reports `line protocol is up` on an administratively down interface.
+- Rates are the 5 minute rates from the "Traffic Statistics" section, which the
+  ASA prints only for an interface with a `nameif`, in bytes/sec (converted to
+  bit/s here).
+- A VLAN subinterface has no packet or error counters of its own, only its
+  nameif traffic statistics, so its counters are `null`.
+- The ASA indents with both spaces and tabs, so lines after the first match
+  any leading whitespace.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="cisco_asa_interfaces_status" results="per_template">
+<doc>
+Template to parse Cisco ASA 'show interface' output and normalize it for the
+'interfaces_status' getter.
+
+Returns a list of dictionaries with interface state, physical properties,
+counters, errors, and averaged rates. Interface speed and input/output rates
+are in bit/s, utilization is a percentage of interface speed, packet rates are
+in packets/s, and 'rate_interval' is in seconds. Values not reported by the ASA
+are returned as 'null'.
+
+Notes:
+
+- 'status_oper' is 'up' only when the interface is up and its line protocol is
+  up; ASAv reports 'line protocol is up' on an administratively down interface.
+- Rates are the 5 minute rates from the "Traffic Statistics" section, which the
+  ASA prints only for an interface with a 'nameif', in bytes/sec (converted to
+  bit/s here).
+- A VLAN subinterface has no packet or error counters of its own, only its
+  nameif traffic statistics, so its counters are 'null'.
+- The ASA indents with both spaces and tabs, so lines after the first match
+  any leading whitespace.
+</doc>
+
+<input>
+commands = [
+    "show interface"
+]
+platform = [
+    "cisco_asa", # scrapli community and netmiko
+    "asa", # NAPALM community driver
+]
+</input>
+
+<macro>
+def transform_interfaces_to_status_records(payload):
+    from ttp_templates.utils.cisco_asa_process_show_interface import transform_interfaces_status
+
+    return transform_interfaces_status(payload)
+</macro>
+
+<group>
+Interface {{ name | _start_ }} {{ nameif }}, is {{ interface_status | ORPHRASE }}, line protocol is {{ protocol_status | ORPHRASE }}
+{{ ignore("\\s+") }}Hardware is {{ hardware | ORPHRASE }}, BW {{ speed_mbps | to_int }} Mbps, DLY {{ delay | ORPHRASE }}
+{{ ignore("\\s+") }}{{ duplex_status | re(".+-[Dd]uplex.*") }}, {{ speed_status | ORPHRASE }}
+{{ ignore("\\s+") }}VLAN identifier {{ vlan | to_int }}
+{{ ignore("\\s+") }}Description: {{ description | ORPHRASE }}
+{{ ignore("\\s+") }}MAC address {{ mac_address | mac_eui }}, MTU {{ mtu | to_int }}
+{{ ignore("\\s+") }}MAC address {{ mac_address | mac_eui }}, MTU not set
+{{ ignore("\\s+") }}{{ packets_in | to_int }} packets input, {{ bytes_in | to_int }} bytes, {{ input_no_buffer | to_int }} no buffer
+{{ ignore("\\s+") }}{{ errors_in | to_int }} input errors, {{ crc_errors | to_int }} CRC, {{ input_error_details | ORPHRASE }}
+{{ ignore("\\s+") }}{{ packets_out | to_int }} packets output, {{ bytes_out | to_int }} bytes, {{ output_underruns | to_int }} underruns
+{{ ignore("\\s+") }}{{ errors_out | to_int }} output errors, {{ output_error_details | ORPHRASE }}
+{{ ignore("\\s+") }}{{ rate_minutes_in | equal("5") }} minute input rate {{ rate_pps_in | to_int }} pkts/sec, {{ rate_bytes_in | to_int }} bytes/sec
+{{ ignore("\\s+") }}{{ rate_minutes_out | equal("5") }} minute output rate {{ rate_pps_out | to_int }} pkts/sec, {{ rate_bytes_out | to_int }} bytes/sec
+</group>
+
+<output macro="transform_interfaces_to_status_records"/>
+
+</template>
+
+```
+</details>

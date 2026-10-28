@@ -86,6 +86,8 @@ nav:
     - arista_eos_show_running_config_section_vlan: ttp_templates/platform.arista_eos_show_running_config_section_vlan.md
     - arista_eos_show_running_config_section_vrf: ttp_templates/platform.arista_eos_show_running_config_section_vrf.md
     - arista_eos_show_running_config_section_vrrp: ttp_templates/platform.arista_eos_show_running_config_section_vrrp.md
+    - cisco_asa_show_bgp_neighbors: ttp_templates/platform.cisco_asa_show_bgp_neighbors.md
+    - cisco_asa_show_interface: ttp_templates/platform.cisco_asa_show_interface.md
     - cisco_ios_show_interfaces: ttp_templates/platform.cisco_ios_show_interfaces.md
     - cisco_ios_show_inventory: ttp_templates/platform.cisco_ios_show_inventory.md
     - cisco_ios_show_ip_arp: ttp_templates/platform.cisco_ios_show_ip_arp.md
@@ -127,6 +129,7 @@ nav:
     - cisco_xr_show_running_config_formal_router_vrrp: ttp_templates/platform.cisco_xr_show_running_config_formal_router_vrrp.md
     - cisco_xr_show_running_config_interface: ttp_templates/platform.cisco_xr_show_running_config_interface.md
     - cisco_xr_show_running_config_vrf: ttp_templates/platform.cisco_xr_show_running_config_vrf.md
+    - fortinet_get_router_info_bgp_neighbors: ttp_templates/platform.fortinet_get_router_info_bgp_neighbors.md
     - huawei_display_current_configuration_interface: ttp_templates/platform.huawei_display_current_configuration_interface.md
     - huawei_display_ospf_lsdb_router: ttp_templates/platform.huawei_display_ospf_lsdb_router.md
     - juniper_junos_show_bgp_neighbor_pipe_display_json: ttp_templates/platform.juniper_junos_show_bgp_neighbor_pipe_display_json.md
