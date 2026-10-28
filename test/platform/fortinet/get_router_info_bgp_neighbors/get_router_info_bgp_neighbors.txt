@@ -1,0 +1,167 @@
+VRF 0 neighbor table:
+BGP neighbor is 192.168.122.140, remote AS 65140, local AS 65160, external link
+  BGP version 4, remote router ID 192.168.122.140
+  BGP state = Established, up for 00:00:26
+  Last read 00:00:26, hold time is 180, keepalive interval is 60 seconds
+  Configured hold time is 180, keepalive interval is 60 seconds
+  Neighbor capabilities:
+    Route refresh: advertised and received (new)
+    Graceful restart helper
+    Address family IPv4 Unicast: advertised and received
+    Address family VPNv4 Unicast: advertised
+    Address family IPv6 Unicast: advertised
+    Address family VPNv6 Unicast: advertised
+    Address family L2VPN EVPN: advertised
+  Received 3 messages, 0 notifications, 0 in queue
+  Sent 2 messages, 0 notifications, 0 in queue
+  Route refresh request: received 0, sent 0
+  NLRI treated as withdraw: 0
+  Minimum time between advertisement runs is 30 seconds
+
+ For address family: IPv4 Unicast
+  BGP table version 1, neighbor version 0
+  Index 1, Offset 0, Mask 0x2
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: VPNv4 Unicast
+  BGP table version 1, neighbor version 0
+  Index 1, Offset 0, Mask 0x2
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: IPv6 Unicast
+  BGP table version 1, neighbor version 0
+  Index 1, Offset 0, Mask 0x2
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: VPNv6 Unicast
+  BGP table version 1, neighbor version 0
+  Index 1, Offset 0, Mask 0x2
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: L2VPN EVPN
+  BGP table version 1, neighbor version 0
+  Index 1, Offset 0, Mask 0x2
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ Connections established 1; dropped 0
+ Graceful-restart Status:
+  Remote restart-time is 0 sec
+
+Local host: 192.168.122.160, Local port: 3120
+Foreign host: 192.168.122.140, Foreign port: 179
+Egress interface: 3
+Nexthop: 192.168.122.160
+Nexthop interface: port1
+Nexthop global: fe80::200:5eff:fe00:5360
+Nexthop local: ::
+BGP connection: non shared network
+
+BGP neighbor is 198.51.100.99, remote AS 65099, local AS 65160, external link
+  BGP version 4, remote router ID 0.0.0.0
+  BGP state = Idle
+  Not directly connected EBGP
+  Last read         , hold time is 180, keepalive interval is 60 seconds
+  Configured hold time is 180, keepalive interval is 60 seconds
+  Received 0 messages, 0 notifications, 0 in queue
+  Sent 0 messages, 0 notifications, 0 in queue
+  Route refresh request: received 0, sent 0
+  NLRI treated as withdraw: 0
+  Minimum time between advertisement runs is 30 seconds
+
+ For address family: IPv4 Unicast
+  BGP table version 1, neighbor version 0
+  Index 2, Offset 0, Mask 0x4
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: VPNv4 Unicast
+  BGP table version 1, neighbor version 0
+  Index 2, Offset 0, Mask 0x4
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: IPv6 Unicast
+  BGP table version 1, neighbor version 0
+  Index 2, Offset 0, Mask 0x4
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: VPNv6 Unicast
+  BGP table version 1, neighbor version 0
+  Index 2, Offset 0, Mask 0x4
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: L2VPN EVPN
+  BGP table version 1, neighbor version 0
+  Index 2, Offset 0, Mask 0x4
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ Connections established 0; dropped 0
+Egress interface: 0
+
+BGP neighbor is 2001:db8:99::99, remote AS 65099, local AS 65160, external link
+  BGP version 4, remote router ID 0.0.0.0
+  BGP state = Idle
+  Not directly connected EBGP
+  Last read         , hold time is 180, keepalive interval is 60 seconds
+  Configured hold time is 180, keepalive interval is 60 seconds
+  Received 0 messages, 0 notifications, 0 in queue
+  Sent 0 messages, 0 notifications, 0 in queue
+  Route refresh request: received 0, sent 0
+  NLRI treated as withdraw: 0
+  Minimum time between advertisement runs is 30 seconds
+
+ For address family: IPv4 Unicast
+  BGP table version 1, neighbor version 0
+  Index 3, Offset 0, Mask 0x8
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: VPNv4 Unicast
+  BGP table version 1, neighbor version 0
+  Index 3, Offset 0, Mask 0x8
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: IPv6 Unicast
+  BGP table version 1, neighbor version 0
+  Index 3, Offset 0, Mask 0x8
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: VPNv6 Unicast
+  BGP table version 1, neighbor version 0
+  Index 3, Offset 0, Mask 0x8
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ For address family: L2VPN EVPN
+  BGP table version 1, neighbor version 0
+  Index 3, Offset 0, Mask 0x8
+  Community attribute sent to this neighbor (both)
+  0 accepted prefixes, 0 prefixes in rib
+  0 announced prefixes
+
+ Connections established 0; dropped 0
+Egress interface: 0

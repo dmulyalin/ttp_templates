@@ -1,0 +1,75 @@
+Interface GigabitEthernet0/0 "ambit-t", is up, line protocol is up
+  Hardware is net_virtio, BW 1000 Mbps, DLY 10 usec
+	Auto-Duplex(Full-duplex), Auto-Speed(1000 Mbps)
+	Input flow control is unsupported, output flow control is unsupported
+	MAC address 5254.0068.3606, MTU 1500
+	IP address 198.51.100.78, subnet mask 255.255.255.0
+	1432 packets input, 105850 bytes, 0 no buffer
+	Received 0 broadcasts, 0 runts, 0 giants
+	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+	0 pause input, 0 resume input
+	0 L2 decode drops
+	11 packets output, 966 bytes, 0 underruns
+	0 pause output, 0 resume output
+	0 output errors, 0 collisions, 0 interface resets
+	0 late collisions, 0 deferred
+	0 input reset drops, 0 output reset drops
+	input queue (blocks free curr/low): hardware (0/0)
+	output queue (blocks free curr/low): hardware (0/0)
+  Traffic Statistics for "ambit-t":
+	163 packets input, 8670 bytes
+	5 packets output, 392 bytes
+	160 packets dropped
+      1 minute input rate 0 pkts/sec,  0 bytes/sec
+      1 minute output rate 0 pkts/sec,  0 bytes/sec
+      1 minute drop rate, 0 pkts/sec
+      5 minute input rate 0 pkts/sec,  0 bytes/sec
+      5 minute output rate 0 pkts/sec,  0 bytes/sec
+      5 minute drop rate, 0 pkts/sec
+Interface GigabitEthernet0/1 "", is administratively down, line protocol is up
+  Hardware is net_virtio, BW 1000 Mbps, DLY 10 usec
+	Auto-Duplex(Full-duplex), Auto-Speed(1000 Mbps)
+	Input flow control is unsupported, output flow control is unsupported
+	Available but not configured via nameif
+	MAC address 5254.00a7.8a57, MTU not set
+	IP address unassigned
+	1 packets input, 52 bytes, 0 no buffer
+	Received 0 broadcasts, 0 runts, 0 giants
+	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+	0 pause input, 0 resume input
+	0 L2 decode drops
+	0 packets output, 0 bytes, 0 underruns
+	0 pause output, 0 resume output
+	0 output errors, 0 collisions, 0 interface resets
+	0 late collisions, 0 deferred
+	0 input reset drops, 0 output reset drops
+	input queue (blocks free curr/low): hardware (0/0)
+	output queue (blocks free curr/low): hardware (0/0)
+Interface Management0/0 "management", is up, line protocol is up
+  Hardware is net_virtio, BW 1000 Mbps, DLY 10 usec
+	Auto-Duplex(Full-duplex), Auto-Speed(1000 Mbps)
+	Input flow control is unsupported, output flow control is unsupported
+	MAC address 5254.00e7.1f0a, MTU 1500
+	IP address 192.168.122.150, subnet mask 255.255.255.0
+	50388 packets input, 4264954 bytes, 0 no buffer
+	Received 0 broadcasts, 0 runts, 0 giants
+	0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+	0 pause input, 0 resume input
+	0 L2 decode drops
+	38419 packets output, 5389858 bytes, 0 underruns
+	0 pause output, 0 resume output
+	0 output errors, 0 collisions, 0 interface resets
+	0 late collisions, 0 deferred
+	0 input reset drops, 0 output reset drops
+	input queue (blocks free curr/low): hardware (0/0)
+	output queue (blocks free curr/low): hardware (0/0)
+  Traffic Statistics for "management":
+	50225 packets input, 3356870 bytes
+	38419 packets output, 4851992 bytes
+	24953 packets dropped
+      1 minute input rate 0 pkts/sec,  34 bytes/sec
+      1 minute output rate 0 pkts/sec,  0 bytes/sec
+      1 minute drop rate, 0 pkts/sec
+      5 minute input rate 0 pkts/sec,  52 bytes/sec
+      5 minute output rate 0 pkts/sec,  35 bytes/sec
+      5 minute drop rate, 0 pkts/sec

@@ -57,6 +57,21 @@ Example normalized output (YAML):
 
 
 
+Parse Cisco ASA `show bgp neighbors`, `show bgp ipv6 unicast neighbors` and
+`show running-config router bgp` for the `bgp_neighbors` getter.
+
+The ASA has no `show bgp all neighbors`: `show bgp neighbors` lists the IPv4
+unicast neighbors and `show bgp ipv6 unicast neighbors` the IPv6 ones, so both
+outputs are parsed together. Returns one normalized record per neighbor
+address. Session state, peering type, remote ASN, router ID, description,
+timers, BGP uptime, route maps, and prefix counts are collected when present.
+Local AS comes from `router bgp` in the running configuration, which also
+supplies descriptions and route maps; it is `null` without that output. The ASA
+prints no local address or interface for a session, so those are `null`. `vrf`
+is always `null`: the ASA has no VRFs.
+
+
+
 Normalizes Juniper JunOS BGP neighbors JSON to flat list format.
 
 Transforms the nested bgp-information/bgp-peer structure returned by
@@ -173,6 +188,21 @@ come from section headers, rather than advertised capability lines.
 
 
 
+Parse Fortinet FortiOS `get router info bgp neighbors` for the
+`bgp_neighbors` getter.
+
+Returns one normalized record per VRF and neighbor address; FortiOS lists IPv4
+and IPv6 neighbors together, under a `VRF N neighbor table:` heading per VRF.
+VRF 0 is the default (`vrf` is `null`); any other is its number as a string.
+Session state, peering type, remote and local ASN, router ID, local address,
+BGP uptime and per address family prefix counts are collected. Hold time and
+keepalive are read only for an established session: FortiOS prints the
+configured timers for the others. Address families come from the
+`For address family` section headers, rather than capability lines. Values not
+reported are `null` or empty lists. Tested with FortiOS 7.4 output.
+
+
+
 ---
 
 <details><summary>Template Content</summary>
@@ -188,10 +218,12 @@ Supported platforms:
 
 - A10 ACOS
 - Arista EOS
+- Cisco ASA
 - Cisco NX-OS
 - Cisco IOS
 - Juniper Junos
 - Cisco IOS XR
+- Fortinet FortiOS
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -225,6 +257,8 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 <extend template="ttp://platform/arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.txt"/>
 
+<extend template="ttp://platform/cisco_asa_show_bgp_neighbors.txt"/>
+
 <extend template="ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt"/>
 
 <extend template="ttp://platform/cisco_xr_show_bgp_neighbors.txt"/>
@@ -232,6 +266,8 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 <extend template="ttp://platform/cisco_nxos_show_ip_bgp_neighbors_vrf_all.txt"/>
 
 <extend template="ttp://platform/cisco_ios_show_ip_bgp_all_neighbors.txt"/>
+
+<extend template="ttp://platform/fortinet_get_router_info_bgp_neighbors.txt"/>
 
 </template>
 

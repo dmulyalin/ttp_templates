@@ -6,6 +6,7 @@ Supported platforms:
 
 - A10 ACOS
 - Arista EOS
+- Cisco ASA
 - Cisco IOS
 - Cisco IOS-XR
 - Cisco NX-OS
@@ -35,6 +36,8 @@ Returns a normalized list of dictionaries with these keys:
 <extend template="ttp://platform/a10_show_interfaces.txt"/>
 
 <extend template="ttp://platform/arista_eos_show_interfaces.txt"/>
+
+<extend template="ttp://platform/cisco_asa_show_interface.txt"/>
 
 <extend template="ttp://platform/cisco_ios_show_interfaces.txt"/>
 

@@ -9,10 +9,12 @@ Supported platforms:
 
 - A10 ACOS
 - Arista EOS
+- Cisco ASA
 - Cisco NX-OS
 - Cisco IOS
 - Juniper Junos
 - Cisco IOS XR
+- Fortinet FortiOS
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -46,6 +48,8 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 
 <extend template="ttp://platform/arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.txt"/>
 
+<extend template="ttp://platform/cisco_asa_show_bgp_neighbors.txt"/>
+
 <extend template="ttp://platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt"/>
 
 <extend template="ttp://platform/cisco_xr_show_bgp_neighbors.txt"/>
@@ -53,5 +57,7 @@ Returns normalized list of dictionaries, each dictionary has these keys:
 <extend template="ttp://platform/cisco_nxos_show_ip_bgp_neighbors_vrf_all.txt"/>
 
 <extend template="ttp://platform/cisco_ios_show_ip_bgp_all_neighbors.txt"/>
+
+<extend template="ttp://platform/fortinet_get_router_info_bgp_neighbors.txt"/>
 
 </template>
