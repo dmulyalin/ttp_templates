@@ -1,0 +1,41 @@
+<template name="ping" results="per_template">
+<doc>
+Getter template to parse ping results for network devices.
+
+Supported platforms:
+
+- Arista EOS
+- Cisco ASA
+- Cisco IOS
+- Cisco NX-OS
+- Linux
+
+Ping needs a destination, so the collected command is `ping` followed by the
+destination and options, for example `ping 192.0.2.1`. The network platforms
+send 5 echoes by default; on Linux use `ping -c 5 192.0.2.1`, as it otherwise
+pings until interrupted.
+
+Returns a normalized list of dictionaries, one per ping, with these keys:
+
+- `destination` - destination as the device printed it, lowercase
+- `packets_sent` - echo requests sent
+- `packets_received` - echo replies received
+- `packet_loss_percent` - packets lost as a percentage of packets sent
+- `rtt_min_ms` / `rtt_avg_ms` / `rtt_max_ms` - round-trip times in
+  milliseconds, or `null` when no reply was received
+
+Output without ping statistics, such as an invalid command, VRF or interface,
+returns an empty list.
+</doc>
+
+<extend template="ttp://platform/arista_eos_ping.txt"/>
+
+<extend template="ttp://platform/cisco_asa_ping.txt"/>
+
+<extend template="ttp://platform/cisco_ios_ping.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_ping.txt"/>
+
+<extend template="ttp://platform/linux_ping.txt"/>
+
+</template>
