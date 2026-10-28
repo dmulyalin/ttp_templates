@@ -4890,7 +4890,7 @@ def transform_bgp_neighbors_to_records(json_data):
     return transform_bgp_neighbors(json_data)
 &lt;/macro&gt;
 
-&lt;input&gt;
+&lt;input name="ipv4"&gt;
 commands = [
     "show ip bgp neighbors vrf all | json"
 ]
@@ -4900,7 +4900,23 @@ platform = [
 ]
 &lt;/input&gt;
 
-&lt;group&gt;
+&lt;input name="ipv6"&gt;
+commands = [
+    "show ipv6 bgp peers vrf all | json"
+]
+platform = [
+    "arista_eos", # scrapli and netmiko
+    "eos", # NAPALM
+]
+&lt;/input&gt;
+
+&lt;group name="ipv4_peers*" input="ipv4"&gt;
+{ {{ _start_ }}
+{{ data | _line_ | joinmatches }}
+} {{ _end_ }}
+&lt;/group&gt;
+
+&lt;group name="ipv6_peers*" input="ipv6"&gt;
 { {{ _start_ }}
 {{ data | _line_ | joinmatches }}
 } {{ _end_ }}

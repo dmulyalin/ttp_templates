@@ -4808,7 +4808,8 @@
 <hr />
 <p>Template to parse Cisco IOS VRF configuration and normalize it to a flat list
 of VRF dictionaries.</p>
-<p>This template requires output of 'show running-config | section vrf'.</p>
+<p>This template requires output of 'show running-config | section vrf' and
+'show running-config | section interface' to include interface VRF assignments.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>name</code> - VRF name string</li>
@@ -4848,7 +4849,8 @@ of VRF dictionaries.</p>
 Template to parse Cisco IOS VRF configuration and normalize it to a flat list
 of VRF dictionaries.
 
-This template requires output of 'show running-config | section vrf'.
+This template requires output of 'show running-config | section vrf' and
+'show running-config | section interface' to include interface VRF assignments.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
@@ -4889,7 +4891,8 @@ Example normalized output (YAML):
 
 &lt;input&gt;
 commands = [
-    "show running-config | section vrf"
+    "show running-config | section vrf",
+    "show running-config | section interface"
 ]
 platform = [
     "cisco_ios", # Netmiko and Scrapli

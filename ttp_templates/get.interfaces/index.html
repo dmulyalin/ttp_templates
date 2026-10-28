@@ -4834,7 +4834,8 @@ contains the following keys (missing values are set to <code>null</code> / <code
 <li><code>tagged_vlans</code>: list of integers (empty list when none)</li>
 <li><code>qinq_svlan</code>: integer or <code>null</code></li>
 <li><code>vrf</code>: string or <code>null</code></li>
-<li><code>ipv4_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code></li>
+<li><code>ipv4_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code>
+    Virtual-router addresses use role <code>vip</code> and the matching interface subnet prefix.</li>
 <li><code>ipv6_addresses</code>: list of dictionaries with CIDR <code>ip</code> and <code>ip_address_role</code></li>
 </ul>
 <p>Example normalized output (YAML):</p>

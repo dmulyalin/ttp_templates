@@ -4817,6 +4817,7 @@ configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.</p>
 <p>Returns a normalized list of dictionaries with these keys:</p>
 <ul>
 <li><code>interface</code> - interface name string</li>
+<li><code>vrf</code> - interface VRF name or <code>null</code> when no VRF is configured</li>
 <li><code>group</code> - VRRP group number integer</li>
 <li><code>protocol</code> - normalized protocol version (<code>vrrpv2</code> or <code>vrrpv3</code>)</li>
 <li><code>virtual_address</code> - virtual IPv4 or IPv6 address string</li>
@@ -4825,6 +4826,7 @@ configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.</p>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vlan50</span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CUSTOMER_A</span>
 <span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
 <span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrrpv2</span>
 <span class="w">  </span><span class="nt">virtual_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10.10.4.10</span>
@@ -4835,6 +4837,7 @@ configured explicitly; IPv6 uses VRRPv3. The default VRRP priority is 100.</p>
 <p>This template requires output of:</p>
 <ul>
 <li><code>show running-config formal router vrrp</code></li>
+<li><code>show run formal interface | inc vrf</code></li>
 </ul>
 <p>Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
@@ -4844,6 +4847,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.</p>
 <p>Returns a normalized list of dictionaries with these keys:</p>
 <ul>
 <li><code>interface</code> - interface name string</li>
+<li><code>vrf</code> - interface VRF name or <code>null</code> when no VRF is configured</li>
 <li><code>group</code> - VRRP group number integer</li>
 <li><code>protocol</code> - normalized protocol version (<code>vrrpv2</code> or <code>vrrpv3</code>)</li>
 <li><code>virtual_address</code> - virtual IPv4 or IPv6 address string</li>
@@ -4852,6 +4856,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.</p>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BVI123</span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CUSTOMER_A</span>
 <span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrrpv2</span>
 <span class="w">  </span><span class="nt">virtual_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123.123.123.97</span>
@@ -4864,6 +4869,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.</p>
 <li><code>show running-config vrrp</code></li>
 <li><code>show running-config vrrpv3</code></li>
 </ul>
+<p>Also requires <code>show run interface | inc "interface|vrf"</code> for interface VRF assignments.</p>
 <p>IPv4 and IPv6 address families, multiple interfaces and groups, primary
 addresses with or without the <code>primary</code> keyword, and explicit or default
 priorities are supported. Secondary virtual addresses are not returned. The
@@ -4872,6 +4878,7 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 <p>Returns a normalized list of dictionaries with these keys:</p>
 <ul>
 <li><code>interface</code> - interface name string</li>
+<li><code>vrf</code> - interface VRF name or <code>null</code> when no VRF is configured</li>
 <li><code>group</code> - VRRP group number integer</li>
 <li><code>protocol</code> - always <code>vrrpv3</code></li>
 <li><code>virtual_address</code> - primary virtual IPv4 or IPv6 address string</li>
@@ -4880,6 +4887,7 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vlan20</span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CUSTOMER_A</span>
 <span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
 <span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrrpv3</span>
 <span class="w">  </span><span class="nt">virtual_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20.1.1.1</span>
@@ -4890,6 +4898,7 @@ default VRRP priority is 100. VRRPv3 does not provide authentication, so
 <p>This template requires output of:</p>
 <ul>
 <li><code>show configuration | display inheritance | display set | match vrrp</code></li>
+<li><code>show configuration routing-instances | display inheritance | display set | match interface</code></li>
 </ul>
 <p>Statements belonging to the same interface address and VRRP group are merged.
 The default Junos VRRP priority of 100 is returned when priority is not
@@ -4898,6 +4907,7 @@ explicitly configured. IPv4 defaults to VRRPv2 unless the global
 <p>Returns a normalized list of dictionaries with these keys:</p>
 <ul>
 <li><code>interface</code> - logical interface name string</li>
+<li><code>vrf</code> - routing-instance name or <code>null</code> when the interface has no assignment</li>
 <li><code>group</code> - VRRP group number integer</li>
 <li><code>protocol</code> - normalized protocol version (<code>vrrpv2</code> or <code>vrrpv3</code>)</li>
 <li><code>virtual_address</code> - virtual IPv4 or IPv6 address string</li>
@@ -4906,6 +4916,7 @@ explicitly configured. IPv4 defaults to VRRPv2 unless the global
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ae123.123</span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
 <span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrrpv2</span>
 <span class="w">  </span><span class="nt">virtual_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123.123.102.233</span>
@@ -4928,6 +4939,7 @@ Supported platforms:
 Returns a normalized list of dictionaries, each dictionary has these keys:
 
 - 'interface' - logical interface name string
+- 'vrf' - VRF name or 'null'
 - 'group' - VRRP group number integer
 - 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
@@ -4938,6 +4950,7 @@ Example normalized output (YAML):
 
 '''yaml
 - interface: ae123.123
+  vrf: null
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.102.233

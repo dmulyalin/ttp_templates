@@ -678,6 +678,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vrrp-collection-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRRP Collection Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5016,6 +5027,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#vrrp-collection-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VRRP Collection Commands
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#documentation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5208,6 +5230,43 @@ Collected commands by platform:
 
 <span class="k">-</span><span class="w"> </span>Cisco IOS: <span class="sb">`show running-config | section vlan`</span>
 </code></pre></div>
+<h2 id="vrrp-collection-commands">VRRP Collection Commands<a class="headerlink" href="#vrrp-collection-commands" title="Permanent link">&para;</a></h2>
+<p>The <code>vrrp</code> getter combines VRRP configuration with interface VRF assignments.
+Collect the following outputs for each platform and supply them to the parser:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>VRRP configuration</th>
+<th>Interface VRF assignments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista EOS</td>
+<td><code>show running-config section vrrp</code></td>
+<td>Captured from <code>vrf &lt;name&gt;</code> lines in the same interface sections; no additional command</td>
+</tr>
+<tr>
+<td>Cisco IOS-XR</td>
+<td><code>show running-config formal router vrrp</code></td>
+<td><code>show run formal interface \| inc vrf</code></td>
+</tr>
+<tr>
+<td>Cisco NX-OS</td>
+<td><code>show running-config vrrp</code> or <code>show running-config vrrpv3</code></td>
+<td><code>show run interface \| inc "interface\|vrf"</code></td>
+</tr>
+<tr>
+<td>Juniper Junos</td>
+<td><code>show configuration \| display inheritance \| display set \| match vrrp</code></td>
+<td><code>show configuration routing-instances \| display inheritance \| display set \| match interface</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each normalized VRRP record includes <code>vrf</code>. The processor matches assignments
+by interface name and applies the VRF to all groups on that interface, including
+IPv4 and IPv6 groups. If no assignment is found, <code>vrf</code> is <code>None</code> (<code>null</code> in YAML).</p>
 <h2 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Permanent link">&para;</a></h2>
 <p>Write useful <code>&lt;doc&gt;</code> blocks in templates. The generated template reference docs
 and template navigation are produced from those blocks by:</p>

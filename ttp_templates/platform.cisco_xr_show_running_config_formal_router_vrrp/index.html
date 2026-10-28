@@ -4810,6 +4810,7 @@
 <p>This template requires output of:</p>
 <ul>
 <li><code>show running-config formal router vrrp</code></li>
+<li><code>show run formal interface | inc vrf</code></li>
 </ul>
 <p>Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
@@ -4819,6 +4820,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.</p>
 <p>Returns a normalized list of dictionaries with these keys:</p>
 <ul>
 <li><code>interface</code> - interface name string</li>
+<li><code>vrf</code> - interface VRF name or <code>null</code> when no VRF is configured</li>
 <li><code>group</code> - VRRP group number integer</li>
 <li><code>protocol</code> - normalized protocol version (<code>vrrpv2</code> or <code>vrrpv3</code>)</li>
 <li><code>virtual_address</code> - virtual IPv4 or IPv6 address string</li>
@@ -4827,6 +4829,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.</p>
 </ul>
 <p>Example normalized output (YAML):</p>
 <div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">interface</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">BVI123</span>
+<span class="w">  </span><span class="nt">vrf</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CUSTOMER_A</span>
 <span class="w">  </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 <span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vrrpv2</span>
 <span class="w">  </span><span class="nt">virtual_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">123.123.123.97</span>
@@ -4842,6 +4845,7 @@ Template to parse and normalize Cisco IOS-XR VRRP formal configuration.
 This template requires output of:
 
 - 'show running-config formal router vrrp'
+- 'show run formal interface | inc vrf'
 
 Configuration belonging to the same interface, address family, and VRRP group
 is combined by the TTP group hierarchy. The default VRRP priority of 100 is
@@ -4852,6 +4856,7 @@ VRRPv2 unless a version is configured explicitly; IPv6 uses VRRPv3.
 Returns a normalized list of dictionaries with these keys:
 
 - 'interface' - interface name string
+- 'vrf' - interface VRF name or 'null' when no VRF is configured
 - 'group' - VRRP group number integer
 - 'protocol' - normalized protocol version ('vrrpv2' or 'vrrpv3')
 - 'virtual_address' - virtual IPv4 or IPv6 address string
@@ -4862,6 +4867,7 @@ Example normalized output (YAML):
 
 '''yaml
 - interface: BVI123
+  vrf: CUSTOMER_A
   group: 1
   protocol: vrrpv2
   virtual_address: 123.123.123.97
@@ -4873,7 +4879,8 @@ Example normalized output (YAML):
 
 &lt;input&gt;
 commands = [
-    "show running-config formal router vrrp"
+    "show running-config formal router vrrp",
+    "show run formal interface | inc vrf"
 ]
 platform = [
     "cisco_xr",
@@ -4895,6 +4902,10 @@ router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} version {{ version | DIGIT | to_int }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} priority {{ priority | DIGIT | to_int }}
 router vrrp interface {{ interface }} address-family {{ address_family }} vrrp {{ group | DIGIT | to_int }} text-authentication {{ authentication_key | let("authentication_type", "text") }}
+&lt;/group&gt;
+
+&lt;group name="interfaces**.{{ interface }}**" method="table"&gt;
+interface {{ interface }} vrf {{ vrf }}
 &lt;/group&gt;
 
 &lt;output macro="transform_vrrp_to_records"/&gt;

@@ -4823,7 +4823,8 @@ of VRF dictionaries.</p>
 <p>EVPN route targets are excluded.</p>
 <p>Template to parse Cisco IOS VRF configuration and normalize it to a flat list
 of VRF dictionaries.</p>
-<p>This template requires output of 'show running-config | section vrf'.</p>
+<p>This template requires output of 'show running-config | section vrf' and
+'show running-config | section interface' to include interface VRF assignments.</p>
 <p>Returns normalized list of dictionaries, each dictionary has these keys:</p>
 <ul>
 <li><code>name</code> - VRF name string</li>
