@@ -1,6 +1,6 @@
 Reference path:
 ```
-ttp://misc/N2G/cli_ospf_data/huawei.txt
+ttp://misc/N2G/cli_ospf_data/Huawei.txt
 ```
 
 ---

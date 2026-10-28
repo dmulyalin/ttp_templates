@@ -31,7 +31,8 @@ EVPN route targets are excluded.
 Template to parse Cisco IOS VRF configuration and normalize it to a flat list
 of VRF dictionaries.
 
-This template requires output of 'show running-config | section vrf'.
+This template requires output of 'show running-config | section vrf' and
+'show running-config | section interface' to include interface VRF assignments.
 
 Returns normalized list of dictionaries, each dictionary has these keys:
 
