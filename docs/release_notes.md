@@ -1,6 +1,6 @@
 # Release Notes
 
-## 0.6.19 (unreleased)
+## 0.6.19
 
 ### BUGS
 
