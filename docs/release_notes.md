@@ -1,5 +1,15 @@
 # Release Notes
 
+## 0.6.19 (unreleased)
+
+### BUGS
+
+1. Fixed the Cisco IOS `vrfs` getter collection commands to include
+   `show running-config | section interface`, so VRF records include their
+   assigned interfaces.
+
+---
+
 ## 0.6.18
 
 ### ENHANCEMENTS

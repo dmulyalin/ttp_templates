@@ -38,7 +38,8 @@
   instance_type: vrf
   description: Management VRF
   rd: null
-  interfaces: []
+  interfaces:
+  - GigabitEthernet0/2
   address_families:
     ipv4:
       rt_import: []

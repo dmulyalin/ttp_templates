@@ -111,7 +111,7 @@ Collected commands by platform:
 Collected commands by platform:
 
 - Arista EOS: `show running-config section vrf`
-- Cisco IOS: `show running-config | section vrf`
+- Cisco IOS: `show running-config | section vrf` and `show running-config | section interface`
 - Cisco IOS-XR: `show running-config vrf` and `show run formal interface | inc vrf`
 - Cisco NX-OS: `show running-config | section "vrf context"` and `show run interface | include "interface|vrf"`
 - Juniper Junos: `show configuration routing-instances | display inheritance | display set`

@@ -108,26 +108,28 @@ def _normalize_peer(peer: Dict[str, Any], vrf: str) -> Dict[str, Any]:
     }
 
 
-def transform_bgp_neighbors(payload: list) -> List[Dict[str, Any]]:
+def transform_bgp_neighbors(payload: Any) -> List[Dict[str, Any]]:
     """
     Main transformation function to be used as TTP macro.
 
     Args:
-        payload: Parsing results, JSON string of show command output.
+        payload: Dictionary (or list of dictionaries) containing ipv4_peers and
+            ipv6_peers lists of JSON captures from the named TTP inputs.
 
     Returns:
         List of normalized BGP neighbor dictionaries.
     """
-    if payload:
-        payload = json.loads("{" + payload[0]["data"] + "}")
-    else:
-        return []
-
-    if isinstance(payload, list) and payload:
-        payload = payload[0]
-
-    return [
-        BgpNeighborRecord(**_normalize_peer(peer, vrf)).model_dump(exclude_unset=True)
-        for vrf, vrf_data in payload.get("vrfs", {}).items()
-        for peer in vrf_data.get("peerList", [])
-    ]
+    items = [payload] if isinstance(payload, dict) else payload
+    records = []
+    for item in items:
+        for group in ("ipv4_peers", "ipv6_peers"):
+            for capture in item.get(group, []):
+                data = json.loads("{" + capture["data"] + "}")
+                for vrf, vrf_data in data.get("vrfs", {}).items():
+                    for peer in vrf_data.get("peerList", []):
+                        records.append(
+                            BgpNeighborRecord(**_normalize_peer(peer, vrf)).model_dump(
+                                exclude_unset=True
+                            )
+                        )
+    return records

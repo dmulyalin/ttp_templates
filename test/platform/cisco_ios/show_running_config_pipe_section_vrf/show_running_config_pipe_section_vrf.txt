@@ -39,14 +39,35 @@ vrf definition CUSTOMER_B
  exit-address-family
 !
 interface GigabitEthernet0/0.100
+ description Customer A uplink
+ encapsulation dot1Q 100
  ip vrf forwarding CUSTOMER_A
+ ip address 192.0.2.1 255.255.255.252
+ no ip redirects
+ ip mtu 1500
 !
 interface Loopback100
+ description Customer A router ID
  vrf forwarding CUSTOMER_A
+ ip address 192.0.2.100 255.255.255.255
 !
 interface Vlan200
+ description Customer B gateway
  vrf forwarding CUSTOMER_B
+ ip address 198.51.100.1 255.255.255.0
+ ipv6 address 2001:db8:200::1/64
+ no ip redirects
+ no shutdown
+!
+interface GigabitEthernet0/2
+ description Management interface
+ vrf forwarding Mgmt-vrf
+ ip address 203.0.113.2 255.255.255.0
+ negotiation auto
 !
 interface GigabitEthernet0/1
  description No VRF assignment
+ ip address 192.0.2.5 255.255.255.252
+ duplex auto
+ speed auto
 !
