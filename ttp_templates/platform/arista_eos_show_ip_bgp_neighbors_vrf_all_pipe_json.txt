@@ -58,7 +58,7 @@ platform = [
 
 <input name="ipv6">
 commands = [
-    "show ipv6 bgp neighbors vrf all | json"
+    "show ipv6 bgp peers vrf all | json"
 ]
 platform = [
     "arista_eos", # scrapli and netmiko
