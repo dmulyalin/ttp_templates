@@ -1,0 +1,50 @@
+- afi:
+  - ipv6_unicast
+  description: IPv6 default VRF peer
+  export_policies: []
+  hold_time: 180
+  import_policies: []
+  ipv6_unicast_prefixes_received: 7
+  ipv6_unicast_prefixes_sent: 4
+  keepalive: 60
+  local_address: '2001:db8::1'
+  local_as: 65001
+  local_interface: Ethernet1
+  max_ttl: 1
+  name: default_2001:db8::2
+  peer_group: null
+  peering_type: external
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: '2001:db8::2'
+  remote_as: 65002
+  router_id: 192.0.2.2
+  state: established
+  uptime_seconds: 3600
+  vrf: null
+- afi:
+  - ipv6_unicast
+  description: IPv6 customer VRF peer
+  export_policies:
+  - EXPORT-V6
+  hold_time: 90
+  import_policies:
+  - IMPORT-V6
+  ipv6_unicast_prefixes_received: 13
+  ipv6_unicast_prefixes_sent: 11
+  keepalive: 30
+  local_address: '2001:db8:100::1'
+  local_as: 65001
+  local_interface: Ethernet2.100
+  max_ttl: 255
+  name: CUSTOMER_A_2001:db8:100::2
+  peer_group: IPV6-CUSTOMERS
+  peering_type: internal
+  prefix_list_in: null
+  prefix_list_out: null
+  remote_address: '2001:db8:100::2'
+  remote_as: 65001
+  router_id: 192.0.2.100
+  state: established
+  uptime_seconds: 7200
+  vrf: CUSTOMER_A

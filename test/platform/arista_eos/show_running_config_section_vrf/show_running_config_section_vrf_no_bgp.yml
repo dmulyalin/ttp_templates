@@ -19,7 +19,8 @@
   instance_type: vrf
   description: null
   rd: null
-  interfaces: []
+  interfaces:
+  - Ethernet4
   address_families:
     ipv4:
       rt_import: []

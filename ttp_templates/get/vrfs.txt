@@ -55,7 +55,7 @@ Example normalized output (YAML):
 
 <extend template="ttp://platform/arista_eos_show_running_config_section_vrf.txt"/>
 
-<extend template="ttp://platform/cisco_ios_show_running_config_pipe_section_vrf.txt"/>
+<extend template="ttp://platform/cisco_ios_show_running_config_vrf.txt"/>
 
 <extend template="ttp://platform/cisco_xr_show_running_config_vrf.txt"/>
 

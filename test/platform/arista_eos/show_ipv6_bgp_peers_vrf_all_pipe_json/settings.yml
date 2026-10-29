@@ -1,0 +1,7 @@
+# IPv4 and IPv6 commands share the template stored under the IPv4 command name.
+# Override template lookup instead of deriving it from this IPv6 folder's name.
+command: show ip bgp neighbors vrf all | json
+# Route this folder's samples to the shared template's named IPv6 input.
+# Its parsing groups do not consume the dynamic runner's default input.
+input_name: ipv6
+template_name: arista_eos_bgp_neighbors

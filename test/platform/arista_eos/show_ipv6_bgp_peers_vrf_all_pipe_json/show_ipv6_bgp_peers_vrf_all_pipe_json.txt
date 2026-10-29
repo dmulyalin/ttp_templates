@@ -1,0 +1,60 @@
+{
+    "vrfs": {
+        "default": {
+            "peerList": [
+                {
+                    "peerAddress": "2001:db8::2",
+                    "updateSource": "2001:db8::1",
+                    "ifName": "Ethernet1",
+                    "localAsn": "65001",
+                    "asn": "65002",
+                    "description": "IPv6 default VRF peer",
+                    "routerId": "192.0.2.2",
+                    "state": "Established",
+                    "linkType": "external",
+                    "holdTime": 180,
+                    "keepaliveTime": 60,
+                    "establishedTime": 3600,
+                    "maxTtlHops": 1,
+                    "v6PrefixesSent": 4,
+                    "v6PrefixesReceived": 7,
+                    "neighborCapabilities": {
+                        "multiprotocolCaps": {
+                            "ipv6Unicast": {"enabled": true},
+                            "ipv4Unicast": {"enabled": false}
+                        }
+                    }
+                }
+            ]
+        },
+        "CUSTOMER_A": {
+            "peerList": [
+                {
+                    "peerAddress": "2001:db8:100::2",
+                    "updateSource": "2001:db8:100::1",
+                    "ifName": "Ethernet2.100",
+                    "localAsn": "65001",
+                    "asn": "65001",
+                    "description": "IPv6 customer VRF peer",
+                    "routerId": "192.0.2.100",
+                    "state": "Established",
+                    "linkType": "internal",
+                    "holdTime": 90,
+                    "keepaliveTime": 30,
+                    "establishedTime": 7200,
+                    "maxTtlHops": 255,
+                    "peerGroupName": "IPV6-CUSTOMERS",
+                    "routeMapInbound": "IMPORT-V6",
+                    "routeMapOutbound": "EXPORT-V6",
+                    "v6PrefixesSent": 11,
+                    "v6PrefixesReceived": 13,
+                    "neighborCapabilities": {
+                        "multiprotocolCaps": {
+                            "ipv6Unicast": {"enabled": true}
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -56,14 +56,16 @@ def test_named_inputs_merge_all_fixture_records():
         Path(__file__).parent
         / "platform/arista_eos/show_ip_bgp_neighbors_vrf_all_pipe_json"
     )
-    samples = sorted(folder.glob("*.txt"))
+    ipv6_folder = folder.parent / "show_ipv6_bgp_peers_vrf_all_pipe_json"
+    samples = [("ipv4", sample) for sample in sorted(folder.glob("*.txt"))]
+    samples.extend(("ipv6", sample) for sample in sorted(ipv6_folder.glob("*.txt")))
     parser = ttp(
         template=get_template(
             platform="arista_eos", command="show ip bgp neighbors vrf all | json"
         )
     )
     expected = []
-    for input_name, sample in zip(("ipv4", "ipv6"), samples):
+    for input_name, sample in samples:
         parser.add_input(
             sample.read_text(encoding="utf-8"),
             input_name=input_name,

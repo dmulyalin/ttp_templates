@@ -1,12 +1,11 @@
 """
 Normalize Cisco IOS VRF configuration parsed by TTP.
 
-Transforms ``show running-config | section vrf`` and
-``show running-config | section interface`` output into a flat list of VRF
+Transforms ``show running-config vrf`` output into a flat list of VRF
 dictionaries suitable for getter-style consumption.
 
 Used by:
-- ttp_templates/platform/cisco_ios_show_running_config_pipe_section_vrf.txt
+- ttp_templates/platform/cisco_ios_show_running_config_vrf.txt
 """
 
 from typing import Any, Dict, List

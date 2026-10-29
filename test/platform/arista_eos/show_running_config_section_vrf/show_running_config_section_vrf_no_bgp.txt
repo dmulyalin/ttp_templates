@@ -7,3 +7,6 @@ vrf instance CUSTOMER_NO_BGP
 interface Management1
    vrf MANAGEMENT
 !
+interface Ethernet4
+   vrf forwarding CUSTOMER_NO_BGP
+!

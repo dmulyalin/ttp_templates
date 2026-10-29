@@ -28,3 +28,6 @@ interface Loopback100
 interface Vlan200
    vrf CUSTOMER_B
 !
+interface Ethernet3.100
+   vrf forwarding CUSTOMER_A
+!

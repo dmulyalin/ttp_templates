@@ -5,6 +5,7 @@
   interfaces:
   - Ethernet1.100
   - Loopback100
+  - Ethernet3.100
   address_families:
     ipv4:
       rt_import:

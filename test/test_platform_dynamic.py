@@ -10,6 +10,9 @@ To add a test:
     2. Put expected result in  test/platform/<platform>/<command_slug>/<name>.yml
        (YAML list of dicts matching TTP flat_list output)
     3. Optionally add a settings.yml in the command folder to override defaults.
+       Supported keys: command (template lookup override), structure,
+       input_name, template_name. Named inputs need
+       both input_name and the owning template_name.
 
 Run:
     cd test && poetry run pytest test_platform_dynamic.py -vv
@@ -26,7 +29,7 @@ from ttp import ttp
 
 def test_platform_template(platform_test_case):
     """Parse a raw CLI sample and assert the result matches the reference YAML."""
-    platform, command, txt_path, yml_path, structure = platform_test_case
+    platform, command, txt_path, yml_path, structure, input_kwargs = platform_test_case
 
     raw_data = txt_path.read_text(encoding="utf-8")
 
@@ -39,7 +42,11 @@ def test_platform_template(platform_test_case):
         f"Check that ttp_templates/platform/{platform}_{command.replace(' ', '_')}.txt exists."
     )
 
-    parser = ttp(data=raw_data, template=template)
+    if input_kwargs:
+        parser = ttp(template=template)
+        parser.add_input(raw_data, **input_kwargs)
+    else:
+        parser = ttp(data=raw_data, template=template)
     parser.parse()
     result = parser.result(structure=structure)
 

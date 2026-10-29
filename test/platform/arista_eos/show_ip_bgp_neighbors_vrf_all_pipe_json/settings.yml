@@ -1,0 +1,5 @@
+# The template binds its parsing groups to named inputs. The default input
+# used by the dynamic test runner would leave these fixtures unparsed.
+# Route this folder's samples to the IPv4 input in the owning TTP template.
+input_name: ipv4
+template_name: arista_eos_bgp_neighbors

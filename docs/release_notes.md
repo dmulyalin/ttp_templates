@@ -1,5 +1,15 @@
 # Release Notes
 
+## 0.6.20 (draft)
+
+### BUGS
+
+1. Fixed the Arista EOS `vrfs` getter to include interfaces assigned with
+   `vrf forwarding <name>`.
+2. Updated the Cisco IOS `vrfs` getter to collect `show running-config vrf`.
+
+---
+
 ## 0.6.19
 
 ### BUGS

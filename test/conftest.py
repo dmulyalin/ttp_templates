@@ -48,7 +48,13 @@ def _collect_platform_cases():
                 with settings_file.open(encoding="utf-8") as fh:
                     settings = yaml.safe_load(fh) or {}
 
+            command = settings.get("command", command)
             structure = settings.get("structure", "flat_list")
+            input_kwargs = {
+                key: settings[key]
+                for key in ("input_name", "template_name")
+                if key in settings
+            }
 
             # Pair every .txt file with a same-stem .yml file.
             for txt_file in sorted(command_dir.glob("*.txt")):
@@ -60,7 +66,7 @@ def _collect_platform_cases():
                 cases.append(
                     pytest.param(
                         # Wrapped as a single tuple so the fixture receives one value.
-                        (platform, command, txt_file, yml_file, structure),
+                        (platform, command, txt_file, yml_file, structure, input_kwargs),
                         id=test_id,
                     )
                 )
