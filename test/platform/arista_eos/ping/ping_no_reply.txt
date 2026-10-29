@@ -1,0 +1,4 @@
+PING 10.89.10.254 (10.89.10.254) 72(100) bytes of data.
+
+--- 10.89.10.254 ping statistics ---
+5 packets transmitted, 0 received, 100% packet loss, time 42ms

@@ -1,0 +1,7 @@
+- destination: 2001:db8::1
+  packets_sent: 1
+  packets_received: 0
+  packet_loss_percent: 100.0
+  rtt_min_ms: null
+  rtt_avg_ms: null
+  rtt_max_ms: null

@@ -1,0 +1,10 @@
+PING6 2001:db8:77::77 (2001:db8:77::77): 56 data bytes
+64 bytes from 2001:db8:77::77: icmp_seq=0 time=2.62 ms
+64 bytes from 2001:db8:77::77: icmp_seq=1 time=1.032 ms
+64 bytes from 2001:db8:77::77: icmp_seq=2 time=0.944 ms
+64 bytes from 2001:db8:77::77: icmp_seq=3 time=1.367 ms
+64 bytes from 2001:db8:77::77: icmp_seq=4 time=0.464 ms
+
+--- 2001:db8:77::77 ping6 statistics ---
+5 packets transmitted, 5 packets received, 0.00% packet loss
+round-trip min/avg/max = 0.464/1.285/2.62 ms

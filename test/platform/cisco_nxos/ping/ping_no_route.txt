@@ -1,0 +1,14 @@
+PING 198.51.100.77 (198.51.100.77): 56 data bytes
+ping: sendto 198.51.100.77 64 chars, No route to host
+Request 0 timed out
+ping: sendto 198.51.100.77 64 chars, No route to host
+Request 1 timed out
+ping: sendto 198.51.100.77 64 chars, No route to host
+Request 2 timed out
+ping: sendto 198.51.100.77 64 chars, No route to host
+Request 3 timed out
+ping: sendto 198.51.100.77 64 chars, No route to host
+Request 4 timed out
+
+--- 198.51.100.77 ping statistics ---
+5 packets transmitted, 0 packets received, 100.00% packet loss

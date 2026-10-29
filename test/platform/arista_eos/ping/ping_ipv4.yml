@@ -1,0 +1,7 @@
+- destination: 10.89.10.1
+  packets_sent: 5
+  packets_received: 5
+  packet_loss_percent: 0.0
+  rtt_min_ms: 0.011
+  rtt_avg_ms: 0.023
+  rtt_max_ms: 0.063

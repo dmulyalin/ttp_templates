@@ -1,0 +1,42 @@
+<template name="cisco_nxos_ping" results="per_template">
+<doc>
+Template to parse Cisco NX-OS `ping` and `ping6` output and normalize it for
+the `ping` getter.
+
+The command is `ping` (or `ping6` for IPv6) followed by the destination and
+any options, for example `ping 192.0.2.1 vrf management`. NX-OS sends 5
+echoes by default.
+
+Returns a list with one dictionary per ping: destination, packets sent and
+received, packet loss in percent, and round-trip min/avg/max in milliseconds
+(`null` when no reply was received). Output with no statistics, such as an
+invalid VRF, returns an empty list.
+</doc>
+
+<input>
+commands = [
+    "ping"
+]
+platform = [
+    "cisco_nxos", # scrapli and netmiko
+    "nxos", # NAPALM
+]
+</input>
+
+<macro>
+def transform_ping_to_records(payload):
+    from ttp_templates.utils.ping import transform_ping
+
+    return transform_ping(payload)
+</macro>
+
+<group>
+--- {{ destination | _start_ }} ping statistics ---
+--- {{ destination | _start_ }} ping6 statistics ---
+{{ sent | to_int }} packets transmitted, {{ received | to_int }} packets received, {{ ignore }} packet loss
+round-trip min/avg/max = {{ rtt }} ms
+</group>
+
+<output macro="transform_ping_to_records"/>
+
+</template>
