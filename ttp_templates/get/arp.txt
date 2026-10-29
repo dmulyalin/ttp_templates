@@ -1,0 +1,58 @@
+<template name="arp" results="per_template">
+<doc>
+Getter template to parse the IPv4 ARP table and the IPv6 neighbor cache of
+network devices.
+
+Supported platforms:
+
+- Arista EOS
+- Cisco ASA
+- Cisco IOS
+- Cisco IOS-XR
+- Cisco NX-OS
+- Fortinet FortiOS
+- Juniper Junos
+- Linux
+
+Each platform template collects its IPv4 and IPv6 tables, and where those
+don't name the VRF, a command mapping interfaces to VRFs (see the support
+matrix for the commands). Cisco IOS has neither: a VRF's tables are parsed
+with the VRF name in the `vrf` template variable.
+
+Returns a normalized list of dictionaries, one per entry, with these keys:
+
+- `ip` - neighbor IPv4 or IPv6 address, IPv6 in its compressed lowercase form
+- `mac` - MAC address, lowercase and colon-separated, or `null` while
+  unresolved
+- `interface` - interface the entry was learned on, full name, or `null`
+  where the device prints none
+- `vrf` - VRF the entry belongs to, or `null` for the default/global/master
+  table
+- `age` - seconds since the entry was learned or refreshed, or `null` for
+  static entries and where the platform gives no age
+- `state` - one of `incomplete`, `reachable`, `stale`, `delay`, `probe`,
+  `failed`, `static`, or `null` where the platform gives none for a
+  resolved entry
+
+Multicast entries, the devices' own entries where the platform marks them,
+and NOARP entries are left out. Per platform limits are noted in each
+platform template.
+</doc>
+
+<extend template="ttp://platform/arista_eos_show_ip_arp_vrf_all_pipe_json.txt"/>
+
+<extend template="ttp://platform/cisco_asa_show_arp.txt"/>
+
+<extend template="ttp://platform/cisco_ios_show_ip_arp.txt"/>
+
+<extend template="ttp://platform/cisco_nxos_show_ip_arp_detail_vrf_all_pipe_json.txt"/>
+
+<extend template="ttp://platform/cisco_xr_show_arp_vrf_all.txt"/>
+
+<extend template="ttp://platform/fortinet_diagnose_ip_arp_list.txt"/>
+
+<extend template="ttp://platform/juniper_junos_show_arp_no_resolve_pipe_display_json.txt"/>
+
+<extend template="ttp://platform/linux_ip_neigh_show.txt"/>
+
+</template>

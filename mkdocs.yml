@@ -79,6 +79,7 @@ nav:
     - arista_eos_show_hostname: ttp_templates/platform.arista_eos_show_hostname.md
     - arista_eos_show_interfaces: ttp_templates/platform.arista_eos_show_interfaces.md
     - arista_eos_show_inventory_pipe_json: ttp_templates/platform.arista_eos_show_inventory_pipe_json.md
+    - arista_eos_show_ip_arp_vrf_all_pipe_json: ttp_templates/platform.arista_eos_show_ip_arp_vrf_all_pipe_json.md
     - arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json: ttp_templates/platform.arista_eos_show_ip_bgp_neighbors_vrf_all_pipe_json.md
     - arista_eos_show_lldp_neighbors_detail_pipe_json: ttp_templates/platform.arista_eos_show_lldp_neighbors_detail_pipe_json.md
     - arista_eos_show_running_config_pipe_include_community_list: ttp_templates/platform.arista_eos_show_running_config_pipe_include_community_list.md
@@ -88,6 +89,7 @@ nav:
     - arista_eos_show_running_config_section_vrf: ttp_templates/platform.arista_eos_show_running_config_section_vrf.md
     - arista_eos_show_running_config_section_vrrp: ttp_templates/platform.arista_eos_show_running_config_section_vrrp.md
     - cisco_asa_ping: ttp_templates/platform.cisco_asa_ping.md
+    - cisco_asa_show_arp: ttp_templates/platform.cisco_asa_show_arp.md
     - cisco_asa_show_bgp_neighbors: ttp_templates/platform.cisco_asa_show_bgp_neighbors.md
     - cisco_asa_show_interface: ttp_templates/platform.cisco_asa_show_interface.md
     - cisco_ios_ping: ttp_templates/platform.cisco_ios_ping.md
@@ -110,6 +112,7 @@ nav:
     - cisco_nxos_ping: ttp_templates/platform.cisco_nxos_ping.md
     - cisco_nxos_show_interface: ttp_templates/platform.cisco_nxos_show_interface.md
     - cisco_nxos_show_inventory_pipe_json_pretty: ttp_templates/platform.cisco_nxos_show_inventory_pipe_json_pretty.md
+    - cisco_nxos_show_ip_arp_detail_vrf_all_pipe_json: ttp_templates/platform.cisco_nxos_show_ip_arp_detail_vrf_all_pipe_json.md
     - cisco_nxos_show_ip_bgp_neighbors_vrf_all: ttp_templates/platform.cisco_nxos_show_ip_bgp_neighbors_vrf_all.md
     - cisco_nxos_show_lldp_neighbors_detail: ttp_templates/platform.cisco_nxos_show_lldp_neighbors_detail.md
     - cisco_nxos_show_running_config_bgp: ttp_templates/platform.cisco_nxos_show_running_config_bgp.md
@@ -133,9 +136,11 @@ nav:
     - cisco_xr_show_running_config_formal_router_vrrp: ttp_templates/platform.cisco_xr_show_running_config_formal_router_vrrp.md
     - cisco_xr_show_running_config_interface: ttp_templates/platform.cisco_xr_show_running_config_interface.md
     - cisco_xr_show_running_config_vrf: ttp_templates/platform.cisco_xr_show_running_config_vrf.md
+    - fortinet_diagnose_ip_arp_list: ttp_templates/platform.fortinet_diagnose_ip_arp_list.md
     - fortinet_get_router_info_bgp_neighbors: ttp_templates/platform.fortinet_get_router_info_bgp_neighbors.md
     - huawei_display_current_configuration_interface: ttp_templates/platform.huawei_display_current_configuration_interface.md
     - huawei_display_ospf_lsdb_router: ttp_templates/platform.huawei_display_ospf_lsdb_router.md
+    - juniper_junos_show_arp_no_resolve_pipe_display_json: ttp_templates/platform.juniper_junos_show_arp_no_resolve_pipe_display_json.md
     - juniper_junos_show_bgp_neighbor_pipe_display_json: ttp_templates/platform.juniper_junos_show_bgp_neighbor_pipe_display_json.md
     - juniper_junos_show_chassis_hardware_pipe_json: ttp_templates/platform.juniper_junos_show_chassis_hardware_pipe_json.md
     - juniper_junos_show_configuration_interfaces_pipe_display_set: ttp_templates/platform.juniper_junos_show_configuration_interfaces_pipe_display_set.md
@@ -148,6 +153,7 @@ nav:
     - juniper_junos_show_isis_database_verbose_pipe_no_more: ttp_templates/platform.juniper_junos_show_isis_database_verbose_pipe_no_more.md
     - juniper_junos_show_lldp_neighbors_detail_pipe_display_json: ttp_templates/platform.juniper_junos_show_lldp_neighbors_detail_pipe_display_json.md
     - linux_ip_address_show: ttp_templates/platform.linux_ip_address_show.md
+    - linux_ip_neigh_show: ttp_templates/platform.linux_ip_neigh_show.md
     - linux_ping: ttp_templates/platform.linux_ping.md
     - test_platform_show_run_pipe_sec_interface: ttp_templates/platform.test_platform_show_run_pipe_sec_interface.md
   - YANG:
@@ -157,6 +163,7 @@ nav:
     - openconfig-lldp_cisco_xr: ttp_templates/yang.openconfig-lldp_cisco_xr.md
   - Getters:
     - Getters Support Matrix: getters_support_matrix.md
+    - arp: ttp_templates/get.arp.md
     - bgp_asn: ttp_templates/get.bgp_asn.md
     - bgp_communities: ttp_templates/get.bgp_communities.md
     - bgp_neighbors: ttp_templates/get.bgp_neighbors.md

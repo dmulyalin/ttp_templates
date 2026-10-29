@@ -7,65 +7,32 @@ ttp://platform/cisco_ios_show_ip_arp.txt
 
 
 
-TTP Template to parse Cisco IOS "show ip arp output".
+Template to parse Cisco IOS and IOS-XE `show ip arp` and `show ipv6 neighbors`
+output and normalize it for the `arp` getter.
 
-This template produces list of dictionaries results where each
-dictionary item compatible to this model:
-```
-module arp-table {
+Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
+`vrf`, `age` and `state` keys (see the `arp` getter).
 
-yang-version 1.1;
+Notes:
 
-namespace
-  "ttp://platform/cisco_ios_show_ip_arp";
-  
-list entry {
-        config false;
-        key "ip";
-        
-        leaf protocol {
-            type string;
-        }
-        
-        leaf ip {
-            type string;
-            mandatory true;
-            description
-                "IP address";
-        }
-
-        leaf age {
-            type uint32;
-            description
-                "IP address";
-        }
-
-        leaf mac {
-            type string;
-            mandatory "true";
-            description
-                "MAC address";
-        }    
-
-        leaf type {
-            type string;
-        }
-
-        leaf interface {
-            type string;
-            default "Unknown";
-			mandatory false;
-            description
-                "Interface name";
-        }        
-    }
-}
-```
-
-Sample instance data:
-```
-TBD
-```
+- Neither command names the VRF. `show ip arp` and `show ipv6 neighbors`
+  list the global table, and `vrf` is `null`. For a VRF's table, parse
+  `show ip arp vrf NAME` and `show ipv6 neighbors vrf NAME` with the VRF name
+  in the `vrf` template variable, e.g.
+  `parse_output(data, get="arp", platform="cisco_ios", template_vars={"vrf": "NAME"})`;
+  every entry in that parse gets it. IOS has no command listing every VRF's
+  table: `show vrf` lists the VRFs, each read and parsed on its own.
+- Ages are printed in minutes and returned in seconds.
+- A `-` for the age marks a configured entry or one of the router's own
+  addresses; both are returned as `static`, with no age.
+- Incomplete and configured entries have no interface in `show ip arp`, so
+  their `interface` is `null`.
+- `show ipv6 neighbors` abbreviates interface names (`Gi1`); the common
+  abbreviations are expanded (`GigabitEthernet1`), others are returned as
+  printed.
+- `show ip arp` output on its own, parsed with
+  `parse_output(platform="cisco_ios", command="show ip arp")`, gives the IPv4
+  entries.
 
 
 
@@ -73,88 +40,66 @@ TBD
 
 <details><summary>Template Content</summary>
 ```
+<template name="cisco_ios_arp" results="per_template">
 <doc>
-TTP Template to parse Cisco IOS "show ip arp output".
+Template to parse Cisco IOS and IOS-XE 'show ip arp' and 'show ipv6 neighbors'
+output and normalize it for the 'arp' getter.
 
-This template produces list of dictionaries results where each
-dictionary item compatible to this model:
-'''
-module arp-table {
+Returns a list of dictionaries, one per entry, with 'ip', 'mac', 'interface',
+'vrf', 'age' and 'state' keys (see the 'arp' getter).
 
-yang-version 1.1;
+Notes:
 
-namespace
-  "ttp://platform/cisco_ios_show_ip_arp";
-  
-list entry {
-        config false;
-        key "ip";
-        
-        leaf protocol {
-            type string;
-        }
-        
-        leaf ip {
-            type string;
-            mandatory true;
-            description
-                "IP address";
-        }
-
-        leaf age {
-            type uint32;
-            description
-                "IP address";
-        }
-
-        leaf mac {
-            type string;
-            mandatory "true";
-            description
-                "MAC address";
-        }    
-
-        leaf type {
-            type string;
-        }
-
-        leaf interface {
-            type string;
-            default "Unknown";
-			mandatory false;
-            description
-                "Interface name";
-        }        
-    }
-}
-'''
-
-Sample instance data:
-'''
-TBD
-'''
+- Neither command names the VRF. 'show ip arp' and 'show ipv6 neighbors'
+  list the global table, and 'vrf' is 'null'. For a VRF's table, parse
+  'show ip arp vrf NAME' and 'show ipv6 neighbors vrf NAME' with the VRF name
+  in the 'vrf' template variable, e.g.
+  'parse_output(data, get="arp", platform="cisco_ios", template_vars={"vrf": "NAME"})';
+  every entry in that parse gets it. IOS has no command listing every VRF's
+  table: 'show vrf' lists the VRFs, each read and parsed on its own.
+- Ages are printed in minutes and returned in seconds.
+- A '-' for the age marks a configured entry or one of the router's own
+  addresses; both are returned as 'static', with no age.
+- Incomplete and configured entries have no interface in 'show ip arp', so
+  their 'interface' is 'null'.
+- 'show ipv6 neighbors' abbreviates interface names ('Gi1'); the common
+  abbreviations are expanded ('GigabitEthernet1'), others are returned as
+  printed.
+- 'show ip arp' output on its own, parsed with
+  'parse_output(platform="cisco_ios", command="show ip arp")', gives the IPv4
+  entries.
 </doc>
 
+<input name="ipv4">
+commands = ["show ip arp"]
+platform = ["cisco_ios", "ios", "cisco_iosxe"]
+</input>
+
+<input name="ipv6">
+commands = ["show ipv6 neighbors"]
+platform = ["cisco_ios", "ios", "cisco_iosxe"]
+</input>
+
 <macro>
-def validate_arp_records(data):
-    from ttp_templates.utils.models import ArpRecord
+def transform_arp_to_records(payload):
+    from ttp_templates.utils.arp import transform_cisco_ios
 
-    def validate_item(item):
-        if isinstance(item, dict):
-            return ArpRecord(**item).model_dump(exclude_unset=True)
-        if isinstance(item, list):
-            return [validate_item(child) for child in item]
-        return item
-
-    return validate_item(data)
+    return transform_cisco_ios(payload, _ttp_["vars"].get("vrf"))
 </macro>
 
-<group method="table" to_int="age">
-{{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type | let("interface", "Unknown") }}    
-{{ protocol }} {{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }} {{ type }} {{ interface | resuball("short_interface_names") }}
+<!-- not bound to an input, so show ip arp output parses on its own -->
+<group name="ipv4*">
+Internet  {{ ip | IP | _start_ }}  {{ age }}  {{ mac }}  {{ ignore }}  {{ interface }}
+Internet  {{ ip | IP | _start_ }}  {{ age }}  {{ mac }}  {{ ignore }}
 </group>
 
-<output macro="validate_arp_records"/>
+<group name="ipv6*" input="ipv6">
+{{ ip | _start_ }} {{ age }} {{ mac }} {{ state }} {{ interface }}
+</group>
+
+<output macro="transform_arp_to_records"/>
+
+</template>
 
 ```
 </details>

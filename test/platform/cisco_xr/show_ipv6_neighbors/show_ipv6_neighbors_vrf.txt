@@ -1,0 +1,4 @@
+Thu Oct 29 13:33:24.589 UTC
+IPv6 Address                             Age  Link-layer Add State Interface            Location
+2001:db8:10::77                             - 0011.2233.4455 REACH Mg0/RP0/CPU0/0       0/RP0/CPU0
+[Mcast adjacency]                           - 0000.0000.0000 REACH Mg0/RP0/CPU0/0       0/RP0/CPU0

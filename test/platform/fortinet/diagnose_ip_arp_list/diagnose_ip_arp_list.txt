@@ -1,0 +1,6 @@
+index=9 ifname=fortilink 224.0.0.22 01:00:5e:00:00:16 state=00000040 use=91557649 confirm=91563682 update=91557682 ref=0
+index=3 ifname=port1 192.168.122.1 52:54:00:ae:a0:97 state=00000002 use=0 confirm=0 update=904 ref=1
+index=5 ifname=root 0.0.0.0 00:00:00:00:00:00 state=00000040 use=1032 confirm=10396841 update=11571841 ref=0
+index=44 ifname=ambit-v977 192.0.2.113 52:54:00:a0:01:71 state=00000004 use=11999 confirm=11496 update=6760 ref=0
+index=44 ifname=ambit-v977 192.0.2.99 state=00000020 use=1348 confirm=7348 update=1032 ref=0
+index=3 ifname=port1 192.168.122.140 52:54:00:4d:eb:d9 state=00000004 use=9547085 confirm=9547085 update=9543528 ref=0

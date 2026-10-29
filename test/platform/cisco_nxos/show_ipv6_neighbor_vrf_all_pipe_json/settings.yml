@@ -1,0 +1,5 @@
+# The arp template binds its parsing groups to named inputs; route
+# this folder's samples to its input.
+command: "show ip arp detail vrf all | json"
+input_name: ipv6
+template_name: cisco_nxos_arp

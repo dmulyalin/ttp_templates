@@ -1,0 +1,14 @@
+ifindex=5 ifname=root 2001:db8:77::77 00:00:00:00:00:00 state=00000040 use=10396671 confirm=10396671 update=11571540 ref=0
+ifindex=44 ifname=ambit-v977 2001:db8:977::113 52:54:00:a0:01:71 state=00000004 use=11489 confirm=11489 update=9641 ref=0
+ifindex=44 ifname=ambit-v977 ff02::1:ff00:160 33:33:ff:00:01:60 state=00000040 use=14844 confirm=20844 update=14844 ref=0
+ifindex=8 ifname=ssl.root ff02::16  state=00000040 use=91559382 confirm=91565382 update=91559382 ref=0
+ifindex=43 ifname=ambit-lo977 ff02::16  state=00000040 use=15001 confirm=21001 update=15001 ref=0
+ifindex=5 ifname=root ff02::16 00:00:00:00:00:00 state=00000040 use=91557710 confirm=91563755 update=91557755 ref=0
+ifindex=44 ifname=ambit-v977 fe80::5054:ff:fea0:171 52:54:00:a0:01:71 state=00000004 use=10481 confirm=10481 update=8617 ref=0
+ifindex=3 ifname=port1 fe80::5054:ff:fe68:3606 52:54:00:68:36:06 state=00000004 use=11060485 confirm=11066485 update=11060485 ref=0
+ifindex=44 ifname=ambit-v977 ff02::16 33:33:00:00:00:16 state=00000040 use=14679 confirm=20846 update=14846 ref=0
+ifindex=44 ifname=ambit-v977 ff02::1:ff00:5360 33:33:ff:00:53:60 state=00000040 use=14818 confirm=20818 update=14818 ref=0
+ifindex=6 ifname=naf.root ff02::16  state=00000040 use=91559382 confirm=91565382 update=91559382 ref=0
+ifindex=3 ifname=port1 ff02::16 33:33:00:00:00:16 state=00000040 use=91558599 confirm=91564800 update=91558800 ref=0
+ifindex=3 ifname=port1 fe80::5254:ff:fecf:fb01 52:54:00:cf:fb:01 state=00000004 use=91515994 confirm=91521994 update=91515994 ref=0
+ifindex=3 ifname=port1 ff02::1:ff00:5360 33:33:ff:00:53:60 state=00000040 use=91558765 confirm=91564765 update=91558765 ref=0

@@ -1,0 +1,84 @@
+Reference path:
+```
+ttp://platform/cisco_nxos_show_ip_arp_detail_vrf_all_pipe_json.txt
+```
+
+---
+
+
+
+Template to parse Cisco NX-OS `show ip arp detail vrf all | json` and
+`show ipv6 neighbor vrf all | json` output and normalize it for the `arp`
+getter.
+
+Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
+`vrf`, `age` and `state` keys (see the `arp` getter).
+
+Notes:
+
+- These forms name each entry's VRF (`adj-vrf-name`); `show ip arp vrf all`
+  without `detail` doesn't.
+- Ages are returned in seconds (NX-OS prints `PT11M23S` for IPv4 and
+  `00:11:23` for IPv6).
+- NX-OS gives no state; an entry with no MAC address is `incomplete`,
+  others `null`.
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="cisco_nxos_arp" results="per_template">
+<doc>
+Template to parse Cisco NX-OS 'show ip arp detail vrf all | json' and
+'show ipv6 neighbor vrf all | json' output and normalize it for the 'arp'
+getter.
+
+Returns a list of dictionaries, one per entry, with 'ip', 'mac', 'interface',
+'vrf', 'age' and 'state' keys (see the 'arp' getter).
+
+Notes:
+
+- These forms name each entry's VRF ('adj-vrf-name'); 'show ip arp vrf all'
+  without 'detail' doesn't.
+- Ages are returned in seconds (NX-OS prints 'PT11M23S' for IPv4 and
+  '00:11:23' for IPv6).
+- NX-OS gives no state; an entry with no MAC address is 'incomplete',
+  others 'null'.
+</doc>
+
+<input name="ipv4">
+commands = ["show ip arp detail vrf all | json"]
+platform = [
+    "cisco_nxos", # scrapli and netmiko
+    "nxos", # NAPALM
+]
+</input>
+
+<input name="ipv6">
+commands = ["show ipv6 neighbor vrf all | json"]
+platform = ["cisco_nxos", "nxos"]
+</input>
+
+<macro>
+def transform_arp_to_records(payload):
+    from ttp_templates.utils.arp import transform_cisco_nxos
+
+    return transform_cisco_nxos(payload)
+</macro>
+
+<group name="ipv4*" input="ipv4">
+{{ data | _line_ }}
+</group>
+
+<group name="ipv6*" input="ipv6">
+{{ data | _line_ }}
+</group>
+
+<output macro="transform_arp_to_records"/>
+
+</template>
+
+```
+</details>

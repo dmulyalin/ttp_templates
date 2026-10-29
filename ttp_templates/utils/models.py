@@ -210,12 +210,11 @@ class VrrpRecord(BaseModel):
 
 class ArpRecord(BaseModel):
     ip: StrictStr
-    age: Union[StrictInt, StrictStr]
-    mac: StrictStr
-    interface: Union[None, StrictStr] = None
-    protocol: Union[None, StrictStr] = None
-    state: Union[None, StrictStr] = None
-    type: Union[None, StrictStr] = None
+    mac: Union[None, StrictStr]
+    interface: Union[None, StrictStr]
+    vrf: Union[None, StrictStr]
+    age: Union[None, StrictInt]
+    state: Union[None, StrictStr]
 
 
 class PingRecord(BaseModel):

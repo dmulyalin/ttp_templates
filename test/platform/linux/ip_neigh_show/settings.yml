@@ -1,0 +1,5 @@
+# The arp template binds its parsing groups to named inputs; route
+# this folder's samples to its input.
+command: ip neigh show
+input_name: neighbors
+template_name: linux_arp

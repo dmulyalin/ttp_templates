@@ -1,0 +1,5 @@
+# The arp template binds its parsing groups to named inputs; route
+# this folder's samples to its input.
+command: diagnose ip arp list
+input_name: ipv4
+template_name: fortinet_arp
