@@ -15,12 +15,18 @@ Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
 
 Notes:
 
-- These commands list the global table only, so `vrf` is `null`. IOS has no
-  command listing every VRF's table, and `show ip arp vrf NAME` doesn't name
-  the VRF in its output.
+- Neither command names the VRF. `show ip arp` and `show ipv6 neighbors`
+  list the global table, and `vrf` is `null`. For a VRF's table, parse
+  `show ip arp vrf NAME` and `show ipv6 neighbors vrf NAME` with the VRF name
+  in the `vrf` template variable, e.g.
+  `parse_output(data, get="arp", platform="cisco_ios", template_vars={"vrf": "NAME"})`;
+  every entry in that parse gets it. IOS has no command listing every VRF's
+  table: `show vrf` lists the VRFs, each read and parsed on its own.
 - Ages are printed in minutes and returned in seconds.
 - A `-` for the age marks a configured entry or one of the router's own
   addresses; both are returned as `static`, with no age.
+- Incomplete and configured entries have no interface in `show ip arp`, so
+  their `interface` is `null`.
 - `show ipv6 neighbors` abbreviates interface names (`Gi1`); the common
   abbreviations are expanded (`GigabitEthernet1`), others are returned as
   printed.
@@ -44,12 +50,18 @@ Returns a list of dictionaries, one per entry, with 'ip', 'mac', 'interface',
 
 Notes:
 
-- These commands list the global table only, so 'vrf' is 'null'. IOS has no
-  command listing every VRF's table, and 'show ip arp vrf NAME' doesn't name
-  the VRF in its output.
+- Neither command names the VRF. 'show ip arp' and 'show ipv6 neighbors'
+  list the global table, and 'vrf' is 'null'. For a VRF's table, parse
+  'show ip arp vrf NAME' and 'show ipv6 neighbors vrf NAME' with the VRF name
+  in the 'vrf' template variable, e.g.
+  'parse_output(data, get="arp", platform="cisco_ios", template_vars={"vrf": "NAME"})';
+  every entry in that parse gets it. IOS has no command listing every VRF's
+  table: 'show vrf' lists the VRFs, each read and parsed on its own.
 - Ages are printed in minutes and returned in seconds.
 - A '-' for the age marks a configured entry or one of the router's own
   addresses; both are returned as 'static', with no age.
+- Incomplete and configured entries have no interface in 'show ip arp', so
+  their 'interface' is 'null'.
 - 'show ipv6 neighbors' abbreviates interface names ('Gi1'); the common
   abbreviations are expanded ('GigabitEthernet1'), others are returned as
   printed.
@@ -72,7 +84,7 @@ platform = ["cisco_ios", "ios", "cisco_iosxe"]
 def transform_arp_to_records(payload):
     from ttp_templates.utils.arp import transform_cisco_ios
 
-    return transform_cisco_ios(payload)
+    return transform_cisco_ios(payload, _ttp_["vars"].get("vrf"))
 </macro>
 
 <!-- not bound to an input, so show ip arp output parses on its own -->

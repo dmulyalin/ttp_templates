@@ -7,7 +7,7 @@ import pytest
 import yaml
 from ttp import ttp
 
-from ttp_templates import get_template
+from ttp_templates import get_template, parse_output
 from ttp_templates.utils.arp import record, transform_cisco_ios
 
 TEST_DIR = Path(__file__).parent
@@ -77,6 +77,40 @@ def test_get_arp(template_name):
         (EXPECTED / f"{template_name}.yml").read_text(encoding="utf-8")
     )
     assert result[template_name] == expected
+
+
+def test_get_arp_cisco_ios_vrf():
+    # IOS doesn't name the VRF: the caller passes the one it read
+    parser = ttp(template=get_template(get="arp"), vars={"vrf": "TTP-A"})
+    for input_name, fixture in (
+        ("ipv4", "cisco_ios/show_ip_arp/show_ip_arp_vrf.txt"),
+        ("ipv6", "cisco_ios/show_ipv6_neighbors/show_ipv6_neighbors_vrf.txt"),
+    ):
+        parser.add_input(
+            (PLATFORM / fixture).read_text(encoding="utf-8"),
+            input_name=input_name,
+            template_name="cisco_ios_arp",
+        )
+    parser.parse()
+    result = parser.result(structure="dictionary")
+    expected = yaml.safe_load(
+        (EXPECTED / "cisco_ios_arp_vrf.yml").read_text(encoding="utf-8")
+    )
+    assert result["cisco_ios_arp"] == expected
+
+
+@pytest.mark.parametrize(
+    "template_vars, vrf", [({"vrf": "TTP-A"}, "TTP-A"), ({}, None)]
+)
+def test_parse_output_cisco_ios_vrf(template_vars, vrf):
+    data = (PLATFORM / "cisco_ios/show_ip_arp/show_ip_arp_vrf.txt").read_text(
+        encoding="utf-8"
+    )
+    result = parse_output(
+        data, get="arp", platform="cisco_ios", template_vars=template_vars
+    )
+    assert len(result) == 4
+    assert {r["vrf"] for r in result} == {vrf}
 
 
 def test_incomplete_and_static_entries():

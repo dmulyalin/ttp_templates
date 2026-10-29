@@ -10,7 +10,7 @@ Used by:
 - ttp_templates/platform/arista_eos_show_ip_arp_vrf_all_pipe_json.txt
 - ttp_templates/platform/cisco_asa_show_arp.txt
 - ttp_templates/platform/cisco_ios_show_ip_arp.txt
-- ttp_templates/platform/cisco_nxos_show_ip_arp_detail_vrf_all_pipe_json_pretty.txt
+- ttp_templates/platform/cisco_nxos_show_ip_arp_detail_vrf_all_pipe_json.txt
 - ttp_templates/platform/cisco_xr_show_arp_vrf_all.txt
 - ttp_templates/platform/fortinet_diagnose_ip_arp_list.txt
 - ttp_templates/platform/juniper_junos_show_arp_no_resolve_pipe_display_json.txt
@@ -248,10 +248,14 @@ _EOS_NAMES = {
 }
 
 
-def transform_cisco_ios(payload: Any) -> List[Dict[str, Any]]:
-    """`show ip arp` (ages in minutes) and `show ipv6 neighbors` (minutes,
-    abbreviated interface names). A `-` for the age marks a configured entry
-    or one of the router's own addresses; both are static."""
+def transform_cisco_ios(
+    payload: Any, vrf: Optional[str] = None
+) -> List[Dict[str, Any]]:
+    """`show ip arp [vrf NAME]` (ages in minutes) and
+    `show ipv6 neighbors [vrf NAME]` (minutes, abbreviated interface names).
+    Neither names the VRF, so every entry gets ``vrf``, the one the caller
+    read. A `-` for the age marks a configured entry or one of the router's
+    own addresses; both are static."""
     g = groups(payload)
     out = []
     for row in g.get("ipv4", []):
@@ -261,8 +265,9 @@ def transform_cisco_ios(payload: Any) -> List[Dict[str, Any]]:
                 row.get("ip"),
                 row.get("mac"),
                 row.get("interface"),
-                age=_minutes(row.get("age")),
-                state="static" if static else None,
+                vrf,
+                _minutes(row.get("age")),
+                "static" if static else None,
             )
         )
     for row in g.get("ipv6", []):
@@ -272,8 +277,9 @@ def transform_cisco_ios(payload: Any) -> List[Dict[str, Any]]:
                 row.get("ip"),
                 row.get("mac"),
                 _expanded(row.get("interface"), _IOS_NAMES),
-                age=_minutes(row.get("age")),
-                state="static" if static else _state(row.get("state")),
+                vrf,
+                _minutes(row.get("age")),
+                "static" if static else _state(row.get("state")),
             )
         )
     return _kept(out)

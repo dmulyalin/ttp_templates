@@ -27,7 +27,9 @@ those don't name the VRF, the interfaces' VRFs:
 
 - Arista EOS: `show ip arp vrf all | json` and `show ipv6 neighbors vrf all | json`
 - Cisco ASA: `show arp`, `show ipv6 neighbor` and `show nameif`
-- Cisco IOS: `show ip arp` and `show ipv6 neighbors` (the global table only)
+- Cisco IOS: `show ip arp` and `show ipv6 neighbors` for the global table; for a VRF,
+  `show ip arp vrf NAME` and `show ipv6 neighbors vrf NAME`, parsed with
+  `template_vars={"vrf": "NAME"}`
 - Cisco IOS-XR: `show arp vrf all`, `show ipv6 neighbors`, `show ipv4 vrf all interface brief` and `show ipv6 vrf all interface brief`
 - Cisco NX-OS: `show ip arp detail vrf all | json` and `show ipv6 neighbor vrf all | json`
 - Fortinet FortiOS: `diagnose ip arp list`, `diagnose ipv6 neighbor-cache list` and `show system interface`

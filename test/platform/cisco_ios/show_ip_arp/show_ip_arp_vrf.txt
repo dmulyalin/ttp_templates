@@ -1,0 +1,5 @@
+Protocol  Address          Age (min)  Hardware Addr   Type   Interface
+Internet  192.0.2.77              -   0011.2233.4455  ARPA
+Internet  192.0.2.99              0   Incomplete      ARPA
+Internet  192.0.2.110             -   5254.00ad.dc91  ARPA   GigabitEthernet1.977
+Internet  192.0.2.113             0   5254.00a0.0171  ARPA   GigabitEthernet1.977

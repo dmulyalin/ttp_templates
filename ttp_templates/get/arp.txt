@@ -16,7 +16,8 @@ Supported platforms:
 
 Each platform template collects its IPv4 and IPv6 tables, and where those
 don't name the VRF, a command mapping interfaces to VRFs (see the support
-matrix for the commands).
+matrix for the commands). Cisco IOS has neither: a VRF's tables are parsed
+with the VRF name in the `vrf` template variable.
 
 Returns a normalized list of dictionaries, one per entry, with these keys:
 

@@ -54,12 +54,18 @@ Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
 
 Notes:
 
-- These commands list the global table only, so `vrf` is `null`. IOS has no
-  command listing every VRF's table, and `show ip arp vrf NAME` doesn't name
-  the VRF in its output.
+- Neither command names the VRF. `show ip arp` and `show ipv6 neighbors`
+  list the global table, and `vrf` is `null`. For a VRF's table, parse
+  `show ip arp vrf NAME` and `show ipv6 neighbors vrf NAME` with the VRF name
+  in the `vrf` template variable, e.g.
+  `parse_output(data, get="arp", platform="cisco_ios", template_vars={"vrf": "NAME"})`;
+  every entry in that parse gets it. IOS has no command listing every VRF's
+  table: `show vrf` lists the VRFs, each read and parsed on its own.
 - Ages are printed in minutes and returned in seconds.
 - A `-` for the age marks a configured entry or one of the router's own
   addresses; both are returned as `static`, with no age.
+- Incomplete and configured entries have no interface in `show ip arp`, so
+  their `interface` is `null`.
 - `show ipv6 neighbors` abbreviates interface names (`Gi1`); the common
   abbreviations are expanded (`GigabitEthernet1`), others are returned as
   printed.
@@ -184,7 +190,8 @@ Supported platforms:
 
 Each platform template collects its IPv4 and IPv6 tables, and where those
 don't name the VRF, a command mapping interfaces to VRFs (see the support
-matrix for the commands).
+matrix for the commands). Cisco IOS has neither: a VRF's tables are parsed
+with the VRF name in the 'vrf' template variable.
 
 Returns a normalized list of dictionaries, one per entry, with these keys:
 
