@@ -16,6 +16,7 @@
 | bgp_asn | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ |
 | prefixes | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
 | arp | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| ping | ❌ | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ |
 
 ## Notes
 
@@ -98,6 +99,16 @@ Collected commands by platform:
 - Cisco IOS-XR: `show lldp neighbors detail`
 - Cisco NX-OS: `show lldp neighbors detail`
 - Juniper Junos: `show lldp neighbors detail | display json`
+
+### ping
+
+Collected command, followed by the destination and options:
+
+- Arista EOS: `ping`
+- Cisco ASA: `ping`
+- Cisco IOS: `ping`
+- Cisco NX-OS: `ping` or `ping6`
+- Linux: `ping -c 5`
 
 ### vlans
 

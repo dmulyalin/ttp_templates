@@ -1,0 +1,7 @@
+- destination: 2001:db8:77::77
+  packets_sent: 5
+  packets_received: 5
+  packet_loss_percent: 0.0
+  rtt_min_ms: 0.464
+  rtt_avg_ms: 1.285
+  rtt_max_ms: 2.62

@@ -1,0 +1,7 @@
+- destination: 198.51.100.250
+  packets_sent: 5
+  packets_received: 0
+  packet_loss_percent: 100.0
+  rtt_min_ms: null
+  rtt_avg_ms: null
+  rtt_max_ms: null

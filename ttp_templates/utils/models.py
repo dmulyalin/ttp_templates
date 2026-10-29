@@ -216,3 +216,13 @@ class ArpRecord(BaseModel):
     protocol: Union[None, StrictStr] = None
     state: Union[None, StrictStr] = None
     type: Union[None, StrictStr] = None
+
+
+class PingRecord(BaseModel):
+    destination: StrictStr
+    packets_sent: StrictInt
+    packets_received: StrictInt
+    packet_loss_percent: Union[None, StrictFloat]
+    rtt_min_ms: Union[None, StrictFloat]
+    rtt_avg_ms: Union[None, StrictFloat]
+    rtt_max_ms: Union[None, StrictFloat]
