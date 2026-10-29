@@ -98,6 +98,7 @@ router bgp {{ asn | _start_ }}
 
 <group name="interfaces*" functions="contains('vrf')">
 interface {{ name | _start_ }}
+   vrf forwarding {{ vrf }}
    vrf {{ vrf }}
 !{{ _end_ }}
 </group>

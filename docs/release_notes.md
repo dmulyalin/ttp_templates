@@ -1,6 +1,19 @@
 # Release Notes
 
-## 0.6.20 (draft)
+## 0.6.20
+
+### TEMPLATES
+
+New templates contributed by [ggiesen](https://github.com/ggiesen) 🚀:
+
+1. Added Cisco ASA `show bgp neighbors` template for the `bgp_neighbors` getter,
+   including IPv6 neighbors and BGP running configuration.
+2. Added Cisco ASA `show interface` template for the `interfaces_status` getter.
+3. Added Fortinet `get router info bgp neighbors` template for the
+   `bgp_neighbors` getter.
+4. Added the `ping` getter and platform templates for Arista EOS, Cisco ASA,
+   Cisco IOS, Cisco NX-OS, and Linux, with shared normalization of destination,
+   packet counts, packet loss, and round-trip min/avg/max times in milliseconds.
 
 ### BUGS
 

@@ -105,7 +105,7 @@ nav:
     - cisco_ios_show_running_config_pipe_section_interface: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_interface.md
     - cisco_ios_show_running_config_pipe_section_router_bgp: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_router_bgp.md
     - cisco_ios_show_running_config_pipe_section_vlan: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_vlan.md
-    - cisco_ios_show_running_config_pipe_section_vrf: ttp_templates/platform.cisco_ios_show_running_config_pipe_section_vrf.md
+    - cisco_ios_show_running_config_vrf: ttp_templates/platform.cisco_ios_show_running_config_vrf.md
     - cisco_ios_show_running_configuration_pipe_section_bgp: ttp_templates/platform.cisco_ios_show_running_configuration_pipe_section_bgp.md
     - cisco_nxos_ping: ttp_templates/platform.cisco_nxos_ping.md
     - cisco_nxos_show_interface: ttp_templates/platform.cisco_nxos_show_interface.md
