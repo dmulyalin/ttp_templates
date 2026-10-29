@@ -1,0 +1,46 @@
+<template name="linux_arp" results="per_template">
+<doc>
+Template to parse Linux `ip -j -s neigh show` output and normalize it for the
+`arp` getter.
+
+Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
+`vrf`, `age` and `state` keys (see the `arp` getter).
+
+Notes:
+
+- The one command lists IPv4 and IPv6 neighbors together.
+- Each entry takes its link's VRF, the link's master where that is a VRF,
+  from `ip -j -d link show`. Without it `vrf` is `null`.
+- `age` is the kernel's `confirmed` timer, in seconds: the time since the
+  neighbor was last confirmed reachable.
+- NOARP entries (multicast, point-to-point links) are left out.
+</doc>
+
+<input name="neighbors">
+commands = ["ip -j -s neigh show"]
+platform = ["linux"]
+</input>
+
+<input name="links">
+commands = ["ip -j -d link show"]
+platform = ["linux"]
+</input>
+
+<macro>
+def transform_arp_to_records(payload):
+    from ttp_templates.utils.arp import transform_linux
+
+    return transform_linux(payload)
+</macro>
+
+<group name="neighbors*" input="neighbors">
+{{ data | _line_ }}
+</group>
+
+<group name="links*" input="links">
+{{ data | _line_ }}
+</group>
+
+<output macro="transform_arp_to_records"/>
+
+</template>

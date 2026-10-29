@@ -1,0 +1,3 @@
+IPv6 Address                              Age Link-layer Addr State Interface
+2001:DB8:977::77                            - 0011.2233.4455  REACH Gi1.977
+2001:DB8:977::113                           1 5254.00a0.0171  STALE Gi1.977

@@ -1,0 +1,97 @@
+Reference path:
+```
+ttp://platform/juniper_junos_show_arp_no_resolve_pipe_display_json.txt
+```
+
+---
+
+
+
+Template to parse Juniper Junos `show arp no-resolve | display json` and
+`show ipv6 neighbors | display json` output and normalize it for the `arp`
+getter.
+
+Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
+`vrf`, `age` and `state` keys (see the `arp` getter).
+
+Notes:
+
+- Neither table names the routing instance: each entry takes its unit's
+  instance from `show route instance detail | display json`. Without it
+  `vrf` is `null`.
+- Entries on units in Junos's own instances (`__juniper_private1__`, such as
+  `em1.0`) are left out when the instances are given.
+- Junos gives no ARP age, and the IPv6 table's `expire` is a countdown, not
+  an age, so `age` is `null`.
+- ARP entries have no state but `static` (flag `permanent`).
+
+
+
+---
+
+<details><summary>Template Content</summary>
+```
+<template name="juniper_junos_arp" results="per_template">
+<doc>
+Template to parse Juniper Junos 'show arp no-resolve | display json' and
+'show ipv6 neighbors | display json' output and normalize it for the 'arp'
+getter.
+
+Returns a list of dictionaries, one per entry, with 'ip', 'mac', 'interface',
+'vrf', 'age' and 'state' keys (see the 'arp' getter).
+
+Notes:
+
+- Neither table names the routing instance: each entry takes its unit's
+  instance from 'show route instance detail | display json'. Without it
+  'vrf' is 'null'.
+- Entries on units in Junos's own instances ('__juniper_private1__', such as
+  'em1.0') are left out when the instances are given.
+- Junos gives no ARP age, and the IPv6 table's 'expire' is a countdown, not
+  an age, so 'age' is 'null'.
+- ARP entries have no state but 'static' (flag 'permanent').
+</doc>
+
+<input name="ipv4">
+commands = ["show arp no-resolve | display json"]
+platform = [
+    "juniper_junos",  # scrapli and netmiko
+    "junos",          # NAPALM
+]
+</input>
+
+<input name="ipv6">
+commands = ["show ipv6 neighbors | display json"]
+platform = ["juniper_junos", "junos"]
+</input>
+
+<input name="instances">
+commands = ["show route instance detail | display json"]
+platform = ["juniper_junos", "junos"]
+</input>
+
+<macro>
+def transform_arp_to_records(payload):
+    from ttp_templates.utils.arp import transform_juniper_junos
+
+    return transform_juniper_junos(payload)
+</macro>
+
+<group name="ipv4*" input="ipv4">
+{{ data | _line_ }}
+</group>
+
+<group name="ipv6*" input="ipv6">
+{{ data | _line_ }}
+</group>
+
+<group name="instances*" input="instances">
+{{ data | _line_ }}
+</group>
+
+<output macro="transform_arp_to_records"/>
+
+</template>
+
+```
+</details>

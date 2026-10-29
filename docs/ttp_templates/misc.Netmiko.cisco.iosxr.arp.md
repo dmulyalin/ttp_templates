@@ -46,9 +46,6 @@ pprint.pprint(res)
 ```
 
 
-TTP template to parse Cisco IOS XR "show arp vrf all" output. 
-
-
 
 ---
 
@@ -101,6 +98,8 @@ commands = [
 ]
 </input>
 
-<extend template="ttp://platform/cisco_xr_show_arp_vrf_all.txt"/>
+<group method="table" to_int="age">
+{{ ip | IP }} {{ age | replace("-", "-1") }} {{ mac | mac_eui }}  {{ state | lower }}  {{ type }} {{ interface | resuball("short_interface_names") }}
+</group>
 ```
 </details>
