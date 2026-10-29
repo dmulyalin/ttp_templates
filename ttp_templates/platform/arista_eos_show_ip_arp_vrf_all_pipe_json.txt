@@ -15,7 +15,8 @@ Notes:
   are expanded (`Management0`).
 - An entry learned on an SVI names the VLAN interface and the port
   (`Vlan10, Ethernet1`); the VLAN interface is returned.
-- EOS gives no state, so `state` is `null`.
+- EOS gives no state. A static entry has no `age` in the JSON and is
+  returned as `static`; others have `state` `null`.
 </doc>
 
 <input name="ipv4">

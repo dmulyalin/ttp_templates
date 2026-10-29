@@ -22,7 +22,8 @@ Notes:
   are expanded (`Management0`).
 - An entry learned on an SVI names the VLAN interface and the port
   (`Vlan10, Ethernet1`); the VLAN interface is returned.
-- EOS gives no state, so `state` is `null`.
+- EOS gives no state. A static entry has no `age` in the JSON and is
+  returned as `static`; others have `state` `null`.
 
 
 
@@ -93,23 +94,28 @@ Notes:
 
 
 
-Template to parse Cisco IOS XR `show arp vrf all` and `show ipv6 neighbors`
-output and normalize it for the `arp` getter.
+Template to parse Cisco IOS XR `show arp`, `show arp vrf all` and
+`show ipv6 neighbors` output and normalize it for the `arp` getter.
 
 Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
 `vrf`, `age` and `state` keys (see the `arp` getter).
 
 Notes:
 
+- `show arp vrf all` leaves out the default table (XRd 26.2.1), so the IPv4
+  input takes `show arp` too; an entry in both outputs is returned once.
+  `show ipv6 neighbors` lists every VRF's entries.
 - Neither table names the VRF: each entry takes its interface's VRF from
   `show ipv4 vrf all interface brief` and `show ipv6 vrf all interface brief`.
   Without them `vrf` is `null`.
 - `show ipv6 neighbors` abbreviates interface names (`Mg0/RP0/CPU0/0`); they
   are expanded against the interface brief output (`MgmtEth0/RP0/CPU0/0`).
 - ARP ages (`hh:mm:ss`) are returned in seconds. IPv6 entries have no age.
+- Unresolved entries (`Deleted`, no MAC address) are returned as
+  `incomplete`. A configured IPv6 neighbor is printed as `REACH` and returned
+  as `reachable`.
 - The router's own addresses (`Interface`) and multicast adjacencies are left
   out.
-- `show arp` output has the same layout and parses the same way.
 
 
 

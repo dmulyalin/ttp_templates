@@ -1,0 +1,4 @@
+Thu Oct 29 13:33:24.763 UTC
+MgmtEth0/RP0/CPU0/0    [Up/Up]    Vrf-Name: MGMT
+    fe80::9c25:3eff:fe18:f3f2
+    2001:db8:10::10

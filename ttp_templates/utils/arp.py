@@ -176,6 +176,18 @@ def _kept(records: List[Optional[Dict[str, Any]]]) -> List[Dict[str, Any]]:
     return [r for r in records if r is not None]
 
 
+def _unique(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Return ``records`` without repeats, in order."""
+    seen = set()
+    out = []
+    for r in records:
+        key = tuple(r.items())
+        if key not in seen:
+            seen.add(key)
+            out.append(r)
+    return out
+
+
 def _abbreviated(name: str, full: List[str]) -> str:
     """Return the one name in ``full`` that ``name`` abbreviates (``Gi1.977``
     for ``GigabitEthernet1.977``), or ``name`` when there isn't exactly one."""
@@ -320,10 +332,11 @@ def transform_cisco_asa(payload: Any) -> List[Dict[str, Any]]:
 
 
 def transform_cisco_xr(payload: Any) -> List[Dict[str, Any]]:
-    """`show arp vrf all` (ages `h:mm:ss`; the router's own addresses,
-    `Interface`, are left out) and `show ipv6 neighbors` (abbreviated
-    interface names), with each interface's VRF from
-    `show ipv4 vrf all interface brief` and `show ipv6 vrf all interface brief`."""
+    """`show arp` and `show arp vrf all` (ages `h:mm:ss`; the router's own
+    addresses, `Interface`, are left out; an entry in both is kept once) and
+    `show ipv6 neighbors` (abbreviated interface names), with each
+    interface's VRF from `show ipv4 vrf all interface brief` and
+    `show ipv6 vrf all interface brief`."""
     g = groups(payload)
     v4 = {
         r["interface"]: r.get("vrf")
@@ -363,7 +376,7 @@ def transform_cisco_xr(payload: Any) -> List[Dict[str, Any]]:
                 _state(row.get("state")),
             )
         )
-    return _kept(out)
+    return _unique(_kept(out))
 
 
 def _rows(table: Any, key: str) -> List[Dict[str, Any]]:
@@ -410,9 +423,9 @@ def transform_cisco_nxos(payload: Any) -> List[Dict[str, Any]]:
 def transform_arista_eos(payload: Any) -> List[Dict[str, Any]]:
     """`show ip arp vrf all | json` (ages in seconds) and `show ipv6
     neighbors vrf all | json` (abbreviated interface names; its `age` is not
-    an age in seconds, so IPv6 entries have none). An SVI's entry names the
-    VLAN interface and the port (`Vlan10, Ethernet1`); the VLAN interface is
-    kept."""
+    an age in seconds, so IPv6 entries have none). A static entry has no
+    `age` at all. An SVI's entry names the VLAN interface and the port
+    (`Vlan10, Ethernet1`); the VLAN interface is kept."""
     g = groups(payload)
     out = []
     for family, key in (("ipv4", "ipV4Neighbors"), ("ipv6", "ipV6Neighbors")):
@@ -427,6 +440,7 @@ def transform_arista_eos(payload: Any) -> List[Dict[str, Any]]:
                             _expanded(interface, _EOS_NAMES),
                             vrf,
                             _int(row.get("age")) if family == "ipv4" else None,
+                            None if "age" in row else "static",
                         )
                     )
     return _kept(out)

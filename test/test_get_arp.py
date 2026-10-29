@@ -79,24 +79,59 @@ def test_get_arp(template_name):
     assert result[template_name] == expected
 
 
-def test_get_arp_cisco_ios_vrf():
-    # IOS doesn't name the VRF: the caller passes the one it read
-    parser = ttp(template=get_template(get="arp"), vars={"vrf": "TTP-A"})
-    for input_name, fixture in (
-        ("ipv4", "cisco_ios/show_ip_arp/show_ip_arp_vrf.txt"),
-        ("ipv6", "cisco_ios/show_ipv6_neighbors/show_ipv6_neighbors_vrf.txt"),
-    ):
+# VRF tables: template name: (template variables, {input name: fixture});
+# IOS doesn't name the VRF, so the caller passes the one it read
+VRF_INPUTS = {
+    "arista_eos_arp": (
+        {},
+        {
+            "ipv4": "arista_eos/show_ip_arp_vrf_all_pipe_json/show_ip_arp_vrf_all_pipe_json_vrf.txt",
+            "ipv6": "arista_eos/show_ipv6_neighbors_vrf_all_pipe_json/show_ipv6_neighbors_vrf_all_pipe_json_vrf.txt",
+        },
+    ),
+    "cisco_ios_arp": (
+        {"vrf": "TTP-A"},
+        {
+            "ipv4": "cisco_ios/show_ip_arp/show_ip_arp_vrf.txt",
+            "ipv6": "cisco_ios/show_ipv6_neighbors/show_ipv6_neighbors_vrf.txt",
+        },
+    ),
+    "cisco_xr_arp": (
+        {},
+        {
+            "ipv4": "cisco_xr/show_arp_vrf_all/show_arp_vrf_all.txt",
+            "ipv6": "cisco_xr/show_ipv6_neighbors/show_ipv6_neighbors_vrf.txt",
+            "ipv4_interfaces": "cisco_xr/show_ipv4_vrf_all_interface_brief/show_ipv4_vrf_all_interface_brief_vrf.txt",
+            "ipv6_interfaces": "cisco_xr/show_ipv6_vrf_all_interface_brief/show_ipv6_vrf_all_interface_brief_vrf.txt",
+        },
+    ),
+    "juniper_junos_arp": (
+        {},
+        {
+            "ipv4": "juniper_junos/show_arp_no_resolve_pipe_display_json/show_arp_no_resolve_pipe_display_json_vrf.txt",
+            "ipv6": "juniper_junos/show_ipv6_neighbors_pipe_display_json/show_ipv6_neighbors_pipe_display_json_vrf.txt",
+            "instances": "juniper_junos/show_route_instance_detail_pipe_display_json/show_route_instance_detail_pipe_display_json_vrf.txt",
+        },
+    ),
+}
+
+
+@pytest.mark.parametrize("template_name", sorted(VRF_INPUTS))
+def test_get_arp_vrf(template_name):
+    template_vars, inputs = VRF_INPUTS[template_name]
+    parser = ttp(template=get_template(get="arp"), vars=template_vars)
+    for input_name, fixture in inputs.items():
         parser.add_input(
             (PLATFORM / fixture).read_text(encoding="utf-8"),
             input_name=input_name,
-            template_name="cisco_ios_arp",
+            template_name=template_name,
         )
     parser.parse()
     result = parser.result(structure="dictionary")
     expected = yaml.safe_load(
-        (EXPECTED / "cisco_ios_arp_vrf.yml").read_text(encoding="utf-8")
+        (EXPECTED / f"{template_name}_vrf.yml").read_text(encoding="utf-8")
     )
-    assert result["cisco_ios_arp"] == expected
+    assert result[template_name] == expected
 
 
 @pytest.mark.parametrize(
@@ -111,6 +146,21 @@ def test_parse_output_cisco_ios_vrf(template_vars, vrf):
     )
     assert len(result) == 4
     assert {r["vrf"] for r in result} == {vrf}
+
+
+def test_cisco_xr_entry_in_both_outputs():
+    # show arp and show arp vrf all together: an entry in both comes back once
+    show_arp = (PLATFORM / INPUTS["cisco_xr_arp"]["ipv4"]).read_text(encoding="utf-8")
+
+    def parsed(data):
+        parser = ttp(template=get_template(get="arp"))
+        parser.add_input(data, input_name="ipv4", template_name="cisco_xr_arp")
+        parser.parse()
+        return parser.result(structure="dictionary")["cisco_xr_arp"]
+
+    once = parsed(show_arp)
+    assert once
+    assert parsed(show_arp + "\n" + show_arp) == once
 
 
 def test_incomplete_and_static_entries():

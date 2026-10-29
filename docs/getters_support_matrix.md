@@ -30,7 +30,7 @@ those don't name the VRF, the interfaces' VRFs:
 - Cisco IOS: `show ip arp` and `show ipv6 neighbors` for the global table; for a VRF,
   `show ip arp vrf NAME` and `show ipv6 neighbors vrf NAME`, parsed with
   `template_vars={"vrf": "NAME"}`
-- Cisco IOS-XR: `show arp vrf all`, `show ipv6 neighbors`, `show ipv4 vrf all interface brief` and `show ipv6 vrf all interface brief`
+- Cisco IOS-XR: `show arp`, `show arp vrf all`, `show ipv6 neighbors`, `show ipv4 vrf all interface brief` and `show ipv6 vrf all interface brief`
 - Cisco NX-OS: `show ip arp detail vrf all | json` and `show ipv6 neighbor vrf all | json`
 - Fortinet FortiOS: `diagnose ip arp list`, `diagnose ipv6 neighbor-cache list` and `show system interface`
 - Juniper Junos: `show arp no-resolve | display json`, `show ipv6 neighbors | display json` and `show route instance detail | display json`
