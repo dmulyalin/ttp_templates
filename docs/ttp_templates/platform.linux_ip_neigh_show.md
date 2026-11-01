@@ -58,7 +58,7 @@ platform = ["linux"]
 
 <macro>
 def transform_arp_to_records(payload):
-    from ttp_templates.utils.arp import transform_linux
+    from ttp_templates.utils.linux_process_ip_neigh_show import transform_linux
 
     return transform_linux(payload)
 </macro>

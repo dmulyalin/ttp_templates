@@ -15,6 +15,9 @@ Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
 
 Notes:
 
+- Command outputs may be concatenated with newlines and parsed through the
+  default input, including the optional interface mapping command.
+
 - Both tables name the interface by its nameif; with `show nameif` output
   the interface's name is returned instead (`GigabitEthernet0/1.977` for
   `inside`), without it the nameif.
@@ -41,6 +44,9 @@ Returns a list of dictionaries, one per entry, with 'ip', 'mac', 'interface',
 
 Notes:
 
+- Command outputs may be concatenated with newlines and parsed through the
+  default input, including the optional interface mapping command.
+
 - Both tables name the interface by its nameif; with 'show nameif' output
   the interface's name is returned instead ('GigabitEthernet0/1.977' for
   'inside'), without it the nameif.
@@ -52,41 +58,28 @@ Notes:
   left out.
 </doc>
 
-<input name="ipv4">
-commands = ["show arp"]
-platform = [
-    "cisco_asa", # scrapli community and netmiko
-    "asa", # NAPALM community driver
-]
-</input>
-
-<input name="ipv6">
-commands = ["show ipv6 neighbor"]
-platform = ["cisco_asa", "asa"]
-</input>
-
-<input name="nameif">
-commands = ["show nameif"]
-platform = ["cisco_asa", "asa"]
+<input>
+commands = ['show arp', 'show ipv6 neighbor', 'show nameif']
+platform = ['cisco_asa', 'asa']
 </input>
 
 <macro>
 def transform_arp_to_records(payload):
-    from ttp_templates.utils.arp import transform_cisco_asa
+    from ttp_templates.utils.cisco_asa_process_show_arp import transform_cisco_asa
 
     return transform_cisco_asa(payload)
 </macro>
 
-<group name="ipv4*" input="ipv4">
+<group name="ipv4*">
 {{ ignore("\\s+") }}{{ interface | _start_ }} {{ ip | IP }} {{ mac }} {{ age }}
 {{ interface | _start_ }} {{ ip | IP }} {{ mac }} {{ age }}
 </group>
 
-<group name="ipv6*" input="ipv6">
+<group name="ipv6*">
 {{ ip | _start_ }} {{ age }} {{ mac }} {{ state }} {{ interface }}
 </group>
 
-<group name="nameif*" input="nameif">
+<group name="nameif*">
 {{ interface | _start_ }} {{ name }} {{ security | DIGIT }}
 </group>
 

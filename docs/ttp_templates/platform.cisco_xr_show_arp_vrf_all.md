@@ -88,13 +88,12 @@ platform = ["cisco_xr", "iosxr", "cisco_iosxr"]
 
 <macro>
 def transform_arp_to_records(payload):
-    from ttp_templates.utils.arp import transform_cisco_xr
+    from ttp_templates.utils.cisco_xr_process_show_arp_vrf_all import transform_cisco_xr
 
     return transform_cisco_xr(payload)
 </macro>
 
-<!-- not bound to an input, so show arp vrf all output parses on its own -->
-<group name="ipv4*">
+<group name="ipv4*" input="ipv4">
 {{ ip | IP | _start_ }} {{ age }} {{ mac }} {{ state }} {{ ignore }} {{ interface }}
 </group>
 

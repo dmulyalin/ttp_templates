@@ -35,6 +35,9 @@ Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
 
 Notes:
 
+- Command outputs may be concatenated with newlines and parsed through the
+  default input, including the optional interface mapping command.
+
 - Both tables name the interface by its nameif; with `show nameif` output
   the interface's name is returned instead (`GigabitEthernet0/1.977` for
   `inside`), without it the nameif.
@@ -70,9 +73,8 @@ Notes:
 - `show ipv6 neighbors` abbreviates interface names (`Gi1`); the common
   abbreviations are expanded (`GigabitEthernet1`), others are returned as
   printed.
-- `show ip arp` output on its own, parsed with
-  `parse_output(platform="cisco_ios", command="show ip arp")`, gives the IPv4
-  entries.
+- Supply IPv4 and IPv6 output separately or concatenate output from both
+  commands with a newline and parse it through the default input.
 
 
 
@@ -127,6 +129,9 @@ Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
 `vrf`, `age` and `state` keys (see the `arp` getter).
 
 Notes:
+
+- Command outputs may be concatenated with newlines and parsed through the
+  default input, including the optional interface mapping command.
 
 - These are the kernel's tables: `state` comes from its hex NUD flags, and
   `age` from `confirm` (hundredths of a second), returned in seconds.

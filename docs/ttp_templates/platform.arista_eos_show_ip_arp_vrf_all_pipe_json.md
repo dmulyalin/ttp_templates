@@ -67,7 +67,7 @@ platform = ["arista_eos", "eos"]
 
 <macro>
 def transform_arp_to_records(payload):
-    from ttp_templates.utils.arp import transform_arista_eos
+    from ttp_templates.utils.arista_eos_process_show_ip_arp_vrf_all_pipe_json import transform_arista_eos
 
     return transform_arista_eos(payload)
 </macro>
