@@ -1,0 +1,4 @@
+# Mapping input alone produces no neighbor records.
+command: show arp no-resolve | display json
+input_name: instances
+template_name: juniper_junos_arp

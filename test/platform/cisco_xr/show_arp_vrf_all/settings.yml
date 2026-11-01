@@ -1,0 +1,3 @@
+command: show arp vrf all
+input_name: ipv4
+template_name: cisco_xr_arp

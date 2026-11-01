@@ -23,35 +23,28 @@ Notes:
 - `show ipv6 neighbors` abbreviates interface names (`Gi1`); the common
   abbreviations are expanded (`GigabitEthernet1`), others are returned as
   printed.
-- `show ip arp` output on its own, parsed with
-  `parse_output(platform="cisco_ios", command="show ip arp")`, gives the IPv4
-  entries.
+- Supply IPv4 and IPv6 output separately or concatenate output from both
+  commands with a newline and parse it through the default input.
 </doc>
 
-<input name="ipv4">
-commands = ["show ip arp"]
-platform = ["cisco_ios", "ios", "cisco_iosxe"]
-</input>
-
-<input name="ipv6">
-commands = ["show ipv6 neighbors"]
-platform = ["cisco_ios", "ios", "cisco_iosxe"]
+<input>
+commands = ['show ip arp', 'show ipv6 neighbors']
+platform = ['cisco_ios', 'ios', 'cisco_iosxe']
 </input>
 
 <macro>
 def transform_arp_to_records(payload):
-    from ttp_templates.utils.arp import transform_cisco_ios
+    from ttp_templates.utils.cisco_ios_process_show_ip_arp import transform_cisco_ios
 
     return transform_cisco_ios(payload, _ttp_["vars"].get("vrf"))
 </macro>
 
-<!-- not bound to an input, so show ip arp output parses on its own -->
 <group name="ipv4*">
 Internet  {{ ip | IP | _start_ }}  {{ age }}  {{ mac }}  {{ ignore }}  {{ interface }}
 Internet  {{ ip | IP | _start_ }}  {{ age }}  {{ mac }}  {{ ignore }}
 </group>
 
-<group name="ipv6*" input="ipv6">
+<group name="ipv6*">
 {{ ip | _start_ }} {{ age }} {{ mac }} {{ state }} {{ interface }}
 </group>
 

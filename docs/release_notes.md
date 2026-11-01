@@ -1,5 +1,22 @@
 # Release Notes
 
+## 0.6.21 (draft)
+
+### TEMPLATES
+
+New templates contributed by [**ggiesen**](https://github.com/ggiesen) 🚀:
+
+1. Added the `arp` getter for Arista EOS, Cisco ASA, Cisco IOS, Cisco IOS-XR,
+   Cisco NX-OS, Fortinet FortiOS, Juniper Junos, and Linux. Records include
+   IPv4 and IPv6 neighbors, normalized MAC addresses, interfaces, VRFs, ages
+   in seconds, and neighbor states.
+2. Added interface-to-VRF mapping support where neighbor tables do not identify
+   the VRF. Cisco IOS accepts the VRF name through the `vrf` template variable.
+3. Cisco IOS, Cisco ASA, and Fortinet templates accept combined command output
+   through a single default input.
+
+---
+
 ## 0.6.20
 
 ### TEMPLATES

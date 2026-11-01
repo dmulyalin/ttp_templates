@@ -32,7 +32,7 @@ platform = ["cisco_nxos", "nxos"]
 
 <macro>
 def transform_arp_to_records(payload):
-    from ttp_templates.utils.arp import transform_cisco_nxos
+    from ttp_templates.utils.cisco_nxos_process_show_ip_arp_detail_vrf_all_pipe_json import transform_cisco_nxos
 
     return transform_cisco_nxos(payload)
 </macro>

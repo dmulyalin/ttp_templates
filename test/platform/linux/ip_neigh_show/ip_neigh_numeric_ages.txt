@@ -1,0 +1,1 @@
+[{"dst": "192.0.2.1", "lladdr": "00:11:22:33:44:55", "dev": "eth0", "confirmed": 12.0, "state": ["REACHABLE"]}, {"dst": "192.0.2.2", "lladdr": "00:11:22:33:44:55", "dev": "eth0", "confirmed": 12.5, "state": ["REACHABLE"]}]

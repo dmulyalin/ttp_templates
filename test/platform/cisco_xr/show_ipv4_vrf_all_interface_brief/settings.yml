@@ -1,0 +1,4 @@
+# Mapping input alone produces no neighbor records.
+command: show arp vrf all
+input_name: ipv4_interfaces
+template_name: cisco_xr_arp

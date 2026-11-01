@@ -1,0 +1,85 @@
+index=9 ifname=fortilink 224.0.0.22 01:00:5e:00:00:16 state=00000040 use=91557649 confirm=91563682 update=91557682 ref=0
+index=3 ifname=port1 192.168.122.1 52:54:00:ae:a0:97 state=00000002 use=0 confirm=0 update=904 ref=1
+index=5 ifname=root 0.0.0.0 00:00:00:00:00:00 state=00000040 use=1032 confirm=10396841 update=11571841 ref=0
+index=44 ifname=ambit-v977 192.0.2.113 52:54:00:a0:01:71 state=00000004 use=11999 confirm=11496 update=6760 ref=0
+index=44 ifname=ambit-v977 192.0.2.99 state=00000020 use=1348 confirm=7348 update=1032 ref=0
+index=3 ifname=port1 192.168.122.140 52:54:00:4d:eb:d9 state=00000004 use=9547085 confirm=9547085 update=9543528 ref=0
+
+ifindex=5 ifname=root 2001:db8:77::77 00:00:00:00:00:00 state=00000040 use=10396671 confirm=10396671 update=11571540 ref=0
+ifindex=44 ifname=ambit-v977 2001:db8:977::113 52:54:00:a0:01:71 state=00000004 use=11489 confirm=11489 update=9641 ref=0
+ifindex=44 ifname=ambit-v977 ff02::1:ff00:160 33:33:ff:00:01:60 state=00000040 use=14844 confirm=20844 update=14844 ref=0
+ifindex=8 ifname=ssl.root ff02::16  state=00000040 use=91559382 confirm=91565382 update=91559382 ref=0
+ifindex=43 ifname=ambit-lo977 ff02::16  state=00000040 use=15001 confirm=21001 update=15001 ref=0
+ifindex=5 ifname=root ff02::16 00:00:00:00:00:00 state=00000040 use=91557710 confirm=91563755 update=91557755 ref=0
+ifindex=44 ifname=ambit-v977 fe80::5054:ff:fea0:171 52:54:00:a0:01:71 state=00000004 use=10481 confirm=10481 update=8617 ref=0
+ifindex=3 ifname=port1 fe80::5054:ff:fe68:3606 52:54:00:68:36:06 state=00000004 use=11060485 confirm=11066485 update=11060485 ref=0
+ifindex=44 ifname=ambit-v977 ff02::16 33:33:00:00:00:16 state=00000040 use=14679 confirm=20846 update=14846 ref=0
+ifindex=44 ifname=ambit-v977 ff02::1:ff00:5360 33:33:ff:00:53:60 state=00000040 use=14818 confirm=20818 update=14818 ref=0
+ifindex=6 ifname=naf.root ff02::16  state=00000040 use=91559382 confirm=91565382 update=91559382 ref=0
+ifindex=3 ifname=port1 ff02::16 33:33:00:00:00:16 state=00000040 use=91558599 confirm=91564800 update=91558800 ref=0
+ifindex=3 ifname=port1 fe80::5254:ff:fecf:fb01 52:54:00:cf:fb:01 state=00000004 use=91515994 confirm=91521994 update=91515994 ref=0
+ifindex=3 ifname=port1 ff02::1:ff00:5360 33:33:ff:00:53:60 state=00000040 use=91558765 confirm=91564765 update=91558765 ref=0
+
+config system interface
+    edit "port1"
+        set vdom "root"
+        set ip 192.168.122.160 255.255.255.0
+        set allowaccess ping https ssh
+        set type physical
+        set snmp-index 1
+    next
+    edit "naf.root"
+        set vdom "root"
+        set type tunnel
+        set src-check disable
+        set snmp-index 2
+    next
+    edit "l2t.root"
+        set vdom "root"
+        set type tunnel
+        set snmp-index 3
+    next
+    edit "ssl.root"
+        set vdom "root"
+        set type tunnel
+        set alias "SSL VPN interface"
+        set snmp-index 4
+    next
+    edit "fortilink"
+        set vdom "root"
+        set fortilink enable
+        set ip 10.255.1.1 255.255.255.0
+        set allowaccess ping fabric
+        set type aggregate
+        set lldp-reception enable
+        set lldp-transmission enable
+        set snmp-index 5
+    next
+    edit "ambit-lo977"
+        set vdom "root"
+        set vrf 7
+        set ip 198.51.100.77 255.255.255.255
+        set allowaccess ping
+        set type loopback
+        set snmp-index 6
+        config ipv6
+            set ip6-address 2001:db8:77::77/128
+            set ip6-allowaccess ping
+        end
+    next
+    edit "ambit-v977"
+        set vdom "root"
+        set vrf 7
+        set ip 192.0.2.160 255.255.255.0
+        set allowaccess ping
+        set device-identification enable
+        set role lan
+        set snmp-index 7
+        config ipv6
+            set ip6-address 2001:db8:977::160/64
+            set ip6-allowaccess ping
+        end
+        set interface "port1"
+        set vlanid 977
+    next
+end

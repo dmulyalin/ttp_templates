@@ -9,6 +9,9 @@ Returns a list of dictionaries, one per entry, with `ip`, `mac`, `interface`,
 
 Notes:
 
+- Command outputs may be concatenated with newlines and parsed through the
+  default input, including the optional interface mapping command.
+
 - These are the kernel's tables: `state` comes from its hex NUD flags, and
   `age` from `confirm` (hundredths of a second), returned in seconds.
   NOARP entries, such as multicast and the VDOM's own, are left out.
@@ -17,43 +20,29 @@ Notes:
   as it is for VRF 0.
 </doc>
 
-<input name="ipv4">
-commands = ["diagnose ip arp list"]
-platform = [
-    "fortinet", # netmiko
-    "fortinet_fortios", # scrapli community
-    "fortios", # NAPALM community driver
-]
-</input>
-
-<input name="ipv6">
-commands = ["diagnose ipv6 neighbor-cache list"]
-platform = ["fortinet", "fortinet_fortios", "fortios"]
-</input>
-
-<input name="interfaces">
-commands = ["show system interface"]
-platform = ["fortinet", "fortinet_fortios", "fortios"]
+<input>
+commands = ['diagnose ip arp list', 'diagnose ipv6 neighbor-cache list', 'show system interface']
+platform = ['fortinet', 'fortinet_fortios', 'fortios']
 </input>
 
 <macro>
 def transform_arp_to_records(payload):
-    from ttp_templates.utils.arp import transform_fortinet
+    from ttp_templates.utils.fortinet_process_diagnose_ip_arp_list import transform_fortinet
 
     return transform_fortinet(payload)
 </macro>
 
-<group name="ipv4*" input="ipv4">
+<group name="ipv4*">
 index={{ ignore }} ifname={{ interface | _start_ }} {{ ip }} {{ mac }} state={{ state }} use={{ ignore }} confirm={{ confirm }} update={{ ignore }} ref={{ ignore }}
 index={{ ignore }} ifname={{ interface | _start_ }} {{ ip }} state={{ state }} use={{ ignore }} confirm={{ confirm }} update={{ ignore }} ref={{ ignore }}
 </group>
 
-<group name="ipv6*" input="ipv6">
+<group name="ipv6*">
 ifindex={{ ignore }} ifname={{ interface | _start_ }} {{ ip }} {{ mac }} state={{ state }} use={{ ignore }} confirm={{ confirm }} update={{ ignore }} ref={{ ignore }}
 ifindex={{ ignore }} ifname={{ interface | _start_ }} {{ ip }} state={{ state }} use={{ ignore }} confirm={{ confirm }} update={{ ignore }} ref={{ ignore }}
 </group>
 
-<group name="interfaces*" input="interfaces">
+<group name="interfaces*">
     edit "{{ interface | _start_ }}"
         set vrf {{ vrf }}
     next {{ _end_ }}

@@ -39,7 +39,7 @@ platform = ["juniper_junos", "junos"]
 
 <macro>
 def transform_arp_to_records(payload):
-    from ttp_templates.utils.arp import transform_juniper_junos
+    from ttp_templates.utils.juniper_junos_process_show_arp_no_resolve_pipe_display_json import transform_juniper_junos
 
     return transform_juniper_junos(payload)
 </macro>
