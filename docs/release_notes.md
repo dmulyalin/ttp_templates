@@ -1,6 +1,6 @@
 # Release Notes
 
-## 0.6.21 (draft)
+## 0.6.21
 
 ### TEMPLATES
 
