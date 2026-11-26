@@ -1,6 +1,6 @@
 # Release Notes
 
-## 0.6.21 (Draft)
+## 0.6.22
 
 ### BUGS
 
@@ -15,6 +15,10 @@
 2. Enhanced Juniper Junos BGP configuration parsing to collect group settings
    and combine repeated import and export policies.
    Global Junos BGP records now report `vrf: default`.
+
+---
+
+## 0.6.21
 
 ### TEMPLATES
 
