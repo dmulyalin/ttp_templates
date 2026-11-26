@@ -164,6 +164,7 @@ def _normalize_neighbor(
         "state": state_token if state_token in _BGP_STATES else None,
         "peering_type": peering_type,
         "remote_address": remote_address,
+        "remote_address_range": None,
         "remote_as": remote_as,
         "local_address": neighbor.get("local_address"),
         "local_as": local_as,

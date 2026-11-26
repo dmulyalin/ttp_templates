@@ -186,16 +186,17 @@ def parse_output(
                 f"'{get}' getter need platform name to parse provided data"
             )
         parser = ttp(template=template, vars=template_vars)
-        # sort input data across inputs
+        # Route concatenated output to the primary input and any inputs that opt in.
         input_found = False
         for template_name, inputs in parser.get_input_load().items():
             for input_name, params in inputs.items():
-                if platform in params.get("platform", []):
+                if platform in params.get("platform", []) and (
+                    not input_found or params.get("combined_data")
+                ):
                     parser.add_input(
                         template_name=template_name, input_name=input_name, data=data
                     )
                     input_found = True
-                    break
             if input_found:
                 break
         else:

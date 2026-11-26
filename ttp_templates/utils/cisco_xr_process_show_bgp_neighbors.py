@@ -9,6 +9,7 @@ Used by:
 """
 
 import re
+from ipaddress import ip_address, ip_network
 
 from ttp_templates.utils.models import BgpNeighborRecord
 
@@ -42,6 +43,17 @@ _CONFIG_AFI_TO_IANA = {
 }
 
 
+def _match_range(address, ranges):
+    try:
+        host = ip_address(address)
+    except ValueError:
+        return None
+    for prefix, network in ranges.items():
+        if host in network:
+            return prefix
+    return None
+
+
 def _uptime_to_seconds(uptime):
     if not uptime:
         return None
@@ -65,8 +77,6 @@ def transform_bgp_neighbors(data):
         payload = data[0]
     else:
         return []
-    neighbors = payload.get("neighbors") or []
-
     # Index formal config by peer group and by (VRF, neighbor address).
     peer_groups = {}
     for item in payload.get("peer_group_config") or []:
@@ -80,7 +90,12 @@ def transform_bgp_neighbors(data):
 
     neighbor_configs = {}
     for item in payload.get("neighbor_config") or []:
-        config = neighbor_configs.setdefault((item.get("vrf"), item["remote_address"]), {"families": {}})
+        vrf_raw = item.get("vrf")
+        vrf = None if vrf_raw in ("default", "master") else vrf_raw
+        key = (vrf, item["remote_address"])
+        config = neighbor_configs.setdefault(
+            key, {"families": {}, "bgp_as": item.get("bgp_as")}
+        )
         if "afi" in item:
             family = config["families"].setdefault((item["afi"], item["safi"]), {})
             if "policy" in item:
@@ -88,31 +103,56 @@ def transform_bgp_neighbors(data):
         else:
             config.update({name: value for name, value in item.items() if name not in ("bgp_as", "vrf", "remote_address")})
 
+    # Index configured ranges by VRF and include them even when no operational record exists.
+    neighbors = []
+    operational_keys = set()
+    for neighbor in payload.get("neighbors") or []:
+        vrf_raw = neighbor.get("vrf", "default")
+        vrf = None if vrf_raw in ("default", "master") else vrf_raw
+        neighbors.append((vrf, neighbor))
+        operational_keys.add((vrf, neighbor["remote_address"]))
+
+    ranges_by_vrf = {}
+    for vrf, address in neighbor_configs:
+        if "/" not in address:
+            continue
+        try:
+            network = ip_network(address, strict=False)
+        except ValueError:
+            continue
+        ranges_by_vrf.setdefault(vrf, {})[address] = network
+        if (vrf, address) not in operational_keys:
+            neighbors.append((vrf, {"remote_address": address}))
+
     result = []
-    for n in neighbors:
-        raw_state = n.get("bgp_state") or ""
+    for vrf, neighbor in neighbors:
+        raw_state = neighbor.get("bgp_state") or ""
         state_token = raw_state.split(",")[0].strip().lower()
         state = state_token if state_token in _BGP_STATES else None
 
         uptime_match = re.search(r"up for\s+(\S+)", raw_state)
         uptime = _uptime_to_seconds(uptime_match.group(1) if uptime_match else None)
 
-        peering_raw = (n.get("peering_type") or "").lower()
-        remote_address = n.get("remote_address")
+        peering_raw = (neighbor.get("peering_type") or "").lower()
+        remote_address = neighbor.get("remote_address")
 
         afi_list = []
         per_afi = {}
         operational_import_policies = []
         operational_export_policies = []
-        local_address = n.get("local_address")
-        vrf_raw = n.get("vrf", "default")
-        vrf = None if vrf_raw in ("default", "master") else vrf_raw
+        local_address = neighbor.get("local_address")
         config = neighbor_configs.get((vrf, remote_address), {})
+        ranges = ranges_by_vrf.get(vrf, {})
+        remote_address_range = None
+        if remote_address in ranges:
+            remote_address_range = remote_address
+        elif ranges and not config:
+            remote_address_range = _match_range(remote_address, ranges)
         group = peer_groups.get(config.get("peer_group"), {})
         # Direct neighbor settings take precedence over inherited group settings.
         effective = {**group, **config}
 
-        for af in n.get("address_families") or []:
+        for af in neighbor.get("address_families") or []:
             afi_raw = af.get("afi_name") or ""
             afi_key = (
                 _AFI_TO_IANA.get(afi_raw, afi_raw.lower().replace(" ", "_"))
@@ -160,15 +200,16 @@ def transform_bgp_neighbors(data):
             "state": state,
             "peering_type": peering_raw if peering_raw in _LINK_TYPES else None,
             "remote_address": remote_address,
-            "remote_as": int(effective.get("remote_as", n.get("remote_as"))),
+            "remote_address_range": remote_address_range,
+            "remote_as": int(effective.get("remote_as", neighbor.get("remote_as"))),
             "local_address": local_address,
-            "local_as": int(effective.get("local_as", n.get("local_as"))),
+            "local_as": effective.get("local_as", neighbor.get("local_as", config.get("bgp_as"))),
             "local_interface": effective.get("update_source"),
-            "router_id": n.get("router_id"),
+            "router_id": neighbor.get("router_id"),
             "peer_group": effective.get("peer_group"),
-            "description": effective.get("description", n.get("description")),
-            "hold_time": int(n["hold_time"]) if n.get("hold_time") else None,
-            "keepalive": int(n["keepalive"]) if n.get("keepalive") else None,
+            "description": effective.get("description", neighbor.get("description")),
+            "hold_time": int(neighbor["hold_time"]) if neighbor.get("hold_time") else None,
+            "keepalive": int(neighbor["keepalive"]) if neighbor.get("keepalive") else None,
             "uptime_seconds": uptime,
             "max_ttl": None,
             "afi": afi_list,

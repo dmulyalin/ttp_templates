@@ -1,0 +1,14 @@
+BGP neighbor is 10.1.2.42
+ Remote AS 54321, local AS 12345, external link
+BGP neighbor is 10.1.2.43
+ Remote AS 54321, local AS 12345, external link
+BGP neighbor is 10.1.2.42, vrf BLUE
+ Remote AS 54321, local AS 12345, external link
+BGP neighbor is 2001:db8:42::7, vrf BLUE
+ Remote AS 54321, local AS 12345, external link
+router bgp 12345 neighbor 10.1.2.0/23 remote-as 54321
+router bgp 12345 neighbor 10.1.2.0/24 remote-as 54321
+router bgp 12345 neighbor 10.1.2.43
+router bgp 12345 vrf BLUE neighbor 2001:db8:42::/64 use neighbor-group DYNAMIC_V6
+router bgp 12345 neighbor-group DYNAMIC_V6 remote-as 54321
+router bgp 12345 neighbor-group DYNAMIC_V6 address-family ipv6 unicast route-policy V6_IN in

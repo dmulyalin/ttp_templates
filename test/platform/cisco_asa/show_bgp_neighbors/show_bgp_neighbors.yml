@@ -4,6 +4,7 @@
   local_address: null
   local_interface: null
   remote_address: 198.51.100.99
+  remote_address_range: null
   local_as: 65150
   remote_as: 65099
   peer_group: null
@@ -28,6 +29,7 @@
   local_address: null
   local_interface: null
   remote_address: 192.168.122.140
+  remote_address_range: null
   local_as: 65150
   remote_as: 65140
   peer_group: null
@@ -54,6 +56,7 @@
   local_address: null
   local_interface: null
   remote_address: 2001:db8:99::99
+  remote_address_range: null
   local_as: 65150
   remote_as: 65099
   peer_group: null

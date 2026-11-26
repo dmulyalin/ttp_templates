@@ -72,6 +72,7 @@ def transform_bgp_neighbors(payload: Any) -> list[dict[str, Any]]:
                     "name": f"default_{address}",
                     "vrf": None,
                     "remote_address": address,
+                    "remote_address_range": None,
                     "remote_as": neighbor["remote_as"],
                     "description": neighbor.get("description"),
                     "state": state if state in _STATES else None,

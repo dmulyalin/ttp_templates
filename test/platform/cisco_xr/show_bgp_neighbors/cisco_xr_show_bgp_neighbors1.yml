@@ -20,6 +20,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.1
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.0.0.1
   state: established
@@ -46,6 +47,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.3.3
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.0.3.3
   state: established
@@ -72,6 +74,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 192.168.100.1
+  remote_address_range: null
   remote_as: 65011
   router_id: 192.168.100.1
   state: established
@@ -98,6 +101,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.100.2.44
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.100.2.44
   state: established
@@ -124,6 +128,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.12.41
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.0.12.41
   state: established
@@ -150,6 +155,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 192.168.1.142
+  remote_address_range: null
   remote_as: 65011
   router_id: 192.168.1.142
   state: established
@@ -174,6 +180,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.100.100.124
+  remote_address_range: null
   remote_as: 65011
   router_id: 0.0.0.0
   state: null
@@ -198,6 +205,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 172.16.105.21
+  remote_address_range: null
   remote_as: 65011
   router_id: 172.16.105.21
   state: established
@@ -222,6 +230,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 172.16.21.222
+  remote_address_range: null
   remote_as: 65011
   router_id: 172.16.21.222
   state: established
@@ -243,6 +252,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.152
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.0.0.152
   state: established
@@ -268,6 +278,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.123
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.0.0.123
   state: established
@@ -294,6 +305,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:e01a:204::1
+  remote_address_range: null
   remote_as: 65011
   router_id: 192.168.100.1
   state: established
@@ -320,6 +332,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::6a
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.100.2.44
   state: established
@@ -346,6 +359,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::6b
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.0.142.12
   state: established
@@ -372,6 +386,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::6c
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.0.12.41
   state: established
@@ -398,6 +413,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::6d
+  remote_address_range: null
   remote_as: 65011
   router_id: 192.168.1.142
   state: established
@@ -423,6 +439,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::7fa
+  remote_address_range: null
   remote_as: 65011
   router_id: 0.0.0.0
   state: null
@@ -448,6 +465,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::7fb
+  remote_address_range: null
   remote_as: 65011
   router_id: 0.0.0.0
   state: null
@@ -473,6 +491,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::987
+  remote_address_range: null
   remote_as: 65011
   router_id: 172.16.105.21
   state: established
@@ -498,6 +517,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::988
+  remote_address_range: null
   remote_as: 65011
   router_id: 172.16.21.222
   state: established
@@ -524,6 +544,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 2001:fec0::a0d
+  remote_address_range: null
   remote_as: 65011
   router_id: 10.0.0.1
   state: established

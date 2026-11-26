@@ -110,6 +110,7 @@ def _normalize_neighbor(neighbor: dict[str, Any]) -> dict[str, Any]:
         "state": state_token if state_token in _BGP_STATES else None,
         "peering_type": peering_type,
         "remote_address": remote_address,
+        "remote_address_range": None,
         "remote_as": neighbor["remote_as"],
         "local_address": neighbor.get("local_address"),
         "local_as": neighbor["local_as"],

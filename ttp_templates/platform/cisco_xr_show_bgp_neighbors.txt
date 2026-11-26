@@ -8,6 +8,10 @@ This template requires output of 'show bgp neighbors' and
 Returns a normalized list of dictionaries, one per BGP neighbor, with the
 following keys (fields unavailable from this command are set to None/[]):
 Import and export policies are collected across all address families.
+Formal configuration supplies dynamic neighbor ranges. Standalone range records
+require a configured or inherited remote ASN. Existing operational
+peers receive the first matching range in their VRF in configuration order unless explicitly
+configured as host neighbors.
 
 ```yaml
 - afi:
@@ -34,6 +38,7 @@ Import and export policies are collected across all address families.
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.0.0.42
+  remote_address_range: null
   remote_as: '65001'
   router_id: 0.0.0.0
   state: opensent
@@ -93,6 +98,7 @@ router bgp {{ bgp_as | to_int }} neighbor-group {{ peer_group | _start_ }} addre
 </group>
 
 <group name="neighbor_config*">
+router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }}
 router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} use neighbor-group {{ peer_group }}
 router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} remote-as {{ remote_as | to_int }}
 router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} local-as {{ local_as | to_int }}
@@ -100,6 +106,7 @@ router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _sta
 router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} update-source {{ update_source }}
 router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }} route-policy {{ policy }} {{ direction }}
 router bgp {{ bgp_as | to_int }} vrf {{ vrf }} neighbor {{ remote_address | _start_ }} address-family {{ afi }} {{ safi }}
+router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }}
 router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} use neighbor-group {{ peer_group }}
 router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} remote-as {{ remote_as | to_int }}
 router bgp {{ bgp_as | to_int }} neighbor {{ remote_address | _start_ }} local-as {{ local_as | to_int }}

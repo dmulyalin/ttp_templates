@@ -101,6 +101,7 @@ class BgpNeighborRecord(BaseModel):
     local_address: Union[None, StrictStr]
     local_interface: Union[None, StrictStr]
     remote_address: Union[None, StrictStr]
+    remote_address_range: Union[None, StrictStr] = None
     local_as: Union[None, StrictInt]
     remote_as: StrictInt
     peer_group: Union[None, StrictStr]

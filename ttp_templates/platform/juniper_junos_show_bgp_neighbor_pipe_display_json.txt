@@ -11,6 +11,11 @@ Transforms the nested bgp-information/bgp-peer structure returned by
 - VRF name normalized ('master' -> 'default')
 - Peer/local addresses stripped of port suffix (e.g. '10.0.0.1+179' -> '10.0.0.1')
 - Consistent field naming matching the Arista EOS BGP neighbor output format
+- `remote_address_range` from group-level BGP `allow` prefixes in the optional
+  configuration output, including routing instances. Configured ranges are
+  returned when a remote ASN is configured, even without a connected peer. Operational peers receive the first
+  matching range in their routing instance and peer group.
+- Group import and export policies are collected in configuration order.
 
 Example normalized output (YAML):
 
@@ -38,6 +43,7 @@ Example normalized output (YAML):
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.10.0.14
+  remote_address_range: null
   remote_as: '65002'
   router_id: 10.10.10.2
   state: established
@@ -53,7 +59,7 @@ def transform_bgp_neighbors_to_records(json_data):
     return transform_bgp_neighbors(json_data)
 </macro>
 
-<input>
+<input name="operational">
 commands = [
     "show bgp neighbor | display json"
 ]
@@ -63,10 +69,54 @@ platform = [
 ]
 </input>
 
-<group>
+<input name="configuration">
+commands = [
+    'show configuration | display inheritance | display set | match "protocols bgp group"'
+]
+platform = ["juniper_junos", "junos"]
+combined_data = True
+</input>
+
+<group name="operational_peers*" input="operational">
 { {{ _start_ }}
 {{ data | _line_ | joinmatches }}
 } {{ _end_ }}
+</group>
+
+<group name="bgp_peers_config**.{{ vrf }}**.{{ peer_group }}**" input="configuration" method="table">
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} allow {{ remote_address_range | ORPHRASE }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} peer-as {{ remote_as }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} local-as {{ local_as }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} local-address {{ local_address }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} description {{ description | ORPHRASE }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} type {{ peering_type }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} hold-time {{ hold_time }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} multihop ttl {{ max_ttl }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} family {{ afi }} {{ safi }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} family {{ afi }} {{ safi }} {{ ignore(ORPHRASE) }}
+</group>
+
+<group name="bgp_peers_config**.default**.{{ peer_group }}**" input="configuration" method="table">
+set protocols bgp group {{ peer_group }} allow {{ remote_address_range | ORPHRASE }}
+set protocols bgp group {{ peer_group }} peer-as {{ remote_as }}
+set protocols bgp group {{ peer_group }} local-as {{ local_as }}
+set protocols bgp group {{ peer_group }} local-address {{ local_address }}
+set protocols bgp group {{ peer_group }} description {{ description | ORPHRASE }}
+set protocols bgp group {{ peer_group }} type {{ peering_type }}
+set protocols bgp group {{ peer_group }} hold-time {{ hold_time }}
+set protocols bgp group {{ peer_group }} multihop ttl {{ max_ttl }}
+set protocols bgp group {{ peer_group }} family {{ afi }} {{ safi }}
+set protocols bgp group {{ peer_group }} family {{ afi }} {{ safi }} {{ ignore(ORPHRASE) }}
+</group>
+
+<group name="bgp_peers_config**.{{ vrf }}**.{{ peer_group }}**.policy_lines*" input="configuration" method="table">
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} import {{ import_policies | ORPHRASE }}
+set routing-instances {{ vrf }} protocols bgp group {{ peer_group }} export {{ export_policies | ORPHRASE }}
+</group>
+
+<group name="bgp_peers_config**.default**.{{ peer_group }}**.policy_lines*" input="configuration" method="table">
+set protocols bgp group {{ peer_group }} import {{ import_policies | ORPHRASE }}
+set protocols bgp group {{ peer_group }} export {{ export_policies | ORPHRASE }}
 </group>
 
 <output macro="transform_bgp_neighbors_to_records"/>

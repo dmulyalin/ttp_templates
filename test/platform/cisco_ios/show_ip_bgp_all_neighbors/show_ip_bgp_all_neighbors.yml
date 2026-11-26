@@ -1,6 +1,7 @@
 - name: default_10.1.0.5
   vrf: null
   remote_address: 10.1.0.5
+  remote_address_range: null
   remote_as: 65222
   description: iBGP between R1 and R3 loopbacks
   state: established
@@ -24,6 +25,7 @@
 - name: CUSTOMER-A_172.20.1.2
   vrf: CUSTOMER-A
   remote_address: 172.20.1.2
+  remote_address_range: null
   remote_as: 65001
   description: null
   state: active
@@ -47,6 +49,7 @@
 - name: default_192.0.2.2
   vrf: null
   remote_address: 192.0.2.2
+  remote_address_range: null
   remote_as: 65002
   description: Transit
   state: established
@@ -76,6 +79,7 @@
 - name: CUSTOMER-B_192.0.2.2
   vrf: CUSTOMER-B
   remote_address: 192.0.2.2
+  remote_address_range: null
   remote_as: 65003
   description: null
   state: idle
@@ -98,6 +102,7 @@
 - name: default_192.0.2.3
   vrf: null
   remote_address: 192.0.2.3
+  remote_address_range: null
   remote_as: 65004
   description: Inherited transit description
   state: active

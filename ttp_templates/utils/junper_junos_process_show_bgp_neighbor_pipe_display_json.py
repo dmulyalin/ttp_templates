@@ -1,8 +1,8 @@
 """
-Normalize Juniper JunOS BGP neighbors JSON output to a standardized format.
+Normalize Junos BGP neighbors and configured dynamic peer ranges.
 
-Transforms raw JSON output from 'show bgp neighbor | display json' into a
-normalized list of dictionaries suitable for further processing and integrations.
+Combines 'show bgp neighbor | display json' with optional group configuration
+from 'show configuration | display inheritance | display set'.
 
 Used by:
 - ttp_templates/platform/juniper_junos_show_bgp_neighbor_pipe_display_json.txt
@@ -11,7 +11,8 @@ Produced with Copilot Assistance.
 """
 
 import json
-from typing import Any, Dict, List, Optional
+from ipaddress import ip_address, ip_network
+from typing import Any, Dict, List, Optional, Union
 
 from ttp_templates.utils.models import BgpNeighborRecord
 
@@ -34,6 +35,19 @@ _RIB_NAME_TO_AFI = {
     "bgp.flow.0": "ipv4_flow_spec",
     "bgp.flow6.0": "ipv6_flow_spec",
     "lsdist.0": "link_state",
+}
+
+_JUNOS_FAMILY_TO_AFI = {
+    ("inet", "unicast"): "ipv4_unicast",
+    ("inet6", "unicast"): "ipv6_unicast",
+    ("inet", "multicast"): "ipv4_multicast",
+    ("inet6", "multicast"): "ipv6_multicast",
+    ("inet", "labeled-unicast"): "ipv4_labeled_unicast",
+    ("inet6", "labeled-unicast"): "ipv6_labeled_unicast",
+    ("inet-vpn", "unicast"): "ipv4_mpls_vpn",
+    ("inet6-vpn", "unicast"): "ipv6_mpls_vpn",
+    ("evpn", "signaling"): "l2vpn_evpn",
+    ("l2vpn", "signaling"): "l2vpn_vpls",
 }
 
 _BGP_STATES = {"idle", "connect", "active", "opensent", "openconfirm", "established"}
@@ -68,9 +82,9 @@ def _strip_port(address: Optional[str]) -> Optional[str]:
 
 
 def _normalize_peer(peer: Dict[str, Any]) -> Dict[str, Any]:
-    # VRF: peer-cfg-rti "master" or "default" -> None (default VRF)
-    vrf_raw = _get_data(peer, "peer-cfg-rti") or "master"
-    vrf = None if vrf_raw in ("master", "default") else vrf_raw
+    vrf = _get_data(peer, "peer-cfg-rti") or "default"
+    if vrf == "master":
+        vrf = "default"
 
     remote_address = _strip_port(_get_data(peer, "peer-address"))
     local_address = _strip_port(_get_data(peer, "local-address"))
@@ -116,19 +130,23 @@ def _normalize_peer(peer: Dict[str, Any]) -> Dict[str, Any]:
             if sent is not None:
                 per_afi[f"{afi}_prefixes_sent"] = int(sent)
 
+    local_as = _get_data(peer, "local-as")
+    remote_as = _get_data(peer, "peer-as")
+
     return {
         "state": state if state in _BGP_STATES else None,
         "local_address": local_address,
         "local_interface": _get_data(peer, "local-interface-name"),
         "remote_address": remote_address,
-        "local_as": int(_get_data(peer, "local-as")),
-        "remote_as": int(_get_data(peer, "peer-as")),
+        "remote_address_range": None,
+        "local_as": int(local_as) if local_as is not None else None,
+        "remote_as": int(remote_as) if remote_as is not None else None,
         "peer_group": _get_data(peer, "peer-group"),
         "import_policies": import_policies,
         "export_policies": export_policies,
         "prefix_list_in": None,
         "prefix_list_out": None,
-        "name": f"{vrf or 'default'}_{remote_address}",
+        "name": f"{vrf}_{remote_address}",
         "description": _get_data(peer, "description"),
         "router_id": _get_data(peer, "peer-id"),
         "peering_type": peer_type if peer_type in _LINK_TYPES else None,
@@ -142,29 +160,83 @@ def _normalize_peer(peer: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def transform_bgp_neighbors(payload: list) -> List[Dict[str, Any]]:
-    """
-    Main transformation function to be used as TTP macro.
-
-    Args:
-        payload: Parsing results, JSON string of show command output.
-
-    Returns:
-        List of normalized BGP neighbor dictionaries.
-    """
-    if payload:
-        payload = json.loads("{" + payload[0]["data"] + "}")
-    else:
-        return []
-
-    if isinstance(payload, list) and payload:
-        payload = payload[0]
+def transform_bgp_neighbors(payload: Union[dict, list]) -> List[Dict[str, Any]]:
+    """Normalize operational neighbors and configured dynamic ranges."""
+    items = [payload] if isinstance(payload, dict) else payload or []
+    ranges = {}
+    group_settings = {}
+    # Parse each distinct allow/dynamic peer prefix once and keep its VRF and peer-group associations.
+    for item in items:
+        for vrf, configs in item.get("bgp_peers_config", {}).items():
+            for peer_group, config in configs.items():
+                group = (vrf, peer_group)
+                for prefix in config.get("remote_address_range", "").strip("[] ").split():
+                    if "/" not in prefix:
+                        continue
+                    if prefix not in ranges:
+                        try:
+                            ranges[prefix] = (ip_network(prefix, strict=False), {})
+                        except ValueError:
+                            continue
+                    _, groups = ranges[prefix]
+                    groups[group] = None
+                    group_settings[group] = config
 
     peers = []
-    for bgp_info in payload.get("bgp-information") or []:
-        for peer in bgp_info.get("bgp-peer") or []:
-            record = BgpNeighborRecord(**_normalize_peer(peer)).model_dump(
-                exclude_unset=True
-            )
+    # Restore the JSON braces stripped by the template and normalize the operational peers.
+    for item in items:
+        for output in item.get("operational_peers", []):
+            operational = json.loads("{" + output["data"] + "}")
+            for bgp_info in operational.get("bgp-information") or []:
+                peers.extend(
+                    _normalize_peer(peer) for peer in bgp_info.get("bgp-peer") or []
+                )
+
+    # Attribute each operational peer to the first containing dynamic peers range in its VRF and group.
+    for peer in peers:
+        if not ranges:
+            break
+        try:
+            address = ip_address(peer["remote_address"])
+        except ValueError:
+            continue
+        group = (peer["vrf"], peer["peer_group"])
+        for prefix, (network, groups) in ranges.items():
+            if group in groups and address in network:
+                peer["remote_address_range"] = prefix
+                break
+
+    # Emit configured peer ranges even without active sessions, using the peer group's settings.
+    defaults = _normalize_peer({})
+    for prefix, (_, groups) in ranges.items():
+        for vrf, peer_group in groups:
+            settings = group_settings[(vrf, peer_group)]
+            record = {
+                **defaults,
+                "name": f"{vrf}_{prefix}",
+                "vrf": vrf,
+                "peer_group": peer_group,
+                "remote_address": prefix,
+                "remote_address_range": prefix,
+                "remote_as": int(settings["remote_as"]),
+            }
+            for field in ("local_as", "hold_time", "max_ttl"):
+                value = settings.get(field, "")
+                if value.isascii() and value.isdigit():
+                    record[field] = int(value)
+            for field in ("local_address", "description", "peering_type"):
+                if field in settings:
+                    record[field] = settings[field].strip('"')
+            # Combine repeated policy lines and bracketed lists in configuration order.
+            for field in ("import_policies", "export_policies"):
+                record[field] = list(dict.fromkeys(
+                    policy.strip('"')
+                    for line in settings.get("policy_lines", [])
+                    for policy in line.get(field, "").strip("[] ").split()
+                ))
+            afi = _JUNOS_FAMILY_TO_AFI.get((settings.get("afi"), settings.get("safi")))
+            if afi:
+                record["afi"] = [afi]
             peers.append(record)
-    return peers
+
+    return [BgpNeighborRecord(**peer).model_dump(exclude_unset=True) for peer in peers]

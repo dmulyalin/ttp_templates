@@ -52,7 +52,7 @@ Collected commands by platform:
 - Cisco IOS-XR: `show bgp neighbors` or `show bgp vrf all neighbors`, and `show run formal router bgp | inc neighbor`
 - Cisco NX-OS: `show ip bgp neighbors vrf all` and `show running-config section bgp`
 - Fortinet FortiOS: `get router info bgp neighbors`
-- Juniper Junos: `show bgp neighbor | display json`
+- Juniper Junos: `show bgp neighbor | display json` and optionally `show configuration | display inheritance | display set | match "protocols bgp group"`
 
 ### inventory
 

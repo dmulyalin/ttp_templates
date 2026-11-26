@@ -19,11 +19,12 @@ Supported platforms:
 Returns normalized list of dictionaries, each dictionary has these keys:
 
 - `name` - unique neighbor identifier composed as `vrf_remote_address`
-- `vrf` - VRF the BGP session belongs to or None if belongs to default/master/global VRF
+- `vrf` - VRF the BGP session belongs to. The global VRF is `default` on Junos and may be `null` on other platforms.
 - `state` - BGP session state (idle, connect, active, opensent, openconfirm, established)
 - `peering_type` - peering relationship type: `external` or `internal`
-- `remote_address` - IP address of the remote BGP peer
-- `remote_as` - AS number of the remote peer
+- `remote_address` - IP address of the remote peer or prefix of a configured dynamic neighbor
+- `remote_address_range` - configured dynamic neighbor prefix or `null` when no range applies
+- `remote_as` - required AS number of the remote peer
 - `local_address` - local BGP update-source IP address
 - `local_as` - local AS number, or `null` when the platform command does not report it
 - `local_interface` - local interface used for the BGP session

@@ -3,6 +3,7 @@
   state: established
   peering_type: internal
   remote_address: 192.0.2.10
+  remote_address_range: null
   remote_as: 4200000100
   local_address: 192.0.2.9
   local_as: 4200000100
@@ -27,6 +28,7 @@
   state: established
   peering_type: internal
   remote_address: 198.51.100.20
+  remote_address_range: null
   remote_as: 4200000200
   local_address: 198.51.100.19
   local_as: 4200000200
@@ -54,6 +56,7 @@
   state: established
   peering_type: external
   remote_address: 203.0.113.30
+  remote_address_range: null
   remote_as: 64530
   local_address: 203.0.113.29
   local_as: 64531
@@ -80,6 +83,7 @@
   state: idle
   peering_type: external
   remote_address: 192.0.2.44
+  remote_address_range: null
   remote_as: 64544
   local_address: null
   local_as: 4200000200

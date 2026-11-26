@@ -1,0 +1,22 @@
+set routing-instances vrf-1 protocols bgp group grp-2 peer-as 1234
+set routing-instances vrf-1 protocols bgp group grp-2 neighbor 10.1.2.3 description foo
+set routing-instances vrf-1 protocols bgp group grp-2 neighbor 10.1.2.3 family inet unicast
+
+set protocols bgp group grp-2 peer-as 4321
+set protocols bgp group grp-2 local-as 65000
+set protocols bgp group grp-2 local-address 192.0.2.1
+set protocols bgp group grp-2 type external
+set protocols bgp group grp-2 description "Dynamic transit"
+set protocols bgp group grp-2 hold-time 90
+set protocols bgp group grp-2 multihop ttl 3
+set protocols bgp group grp-2 family inet unicast
+set protocols bgp group grp-2 import [ IMPORT-A IMPORT-B ]
+set protocols bgp group grp-2 import [ IMPORT-B IMPORT-C ]
+set protocols bgp group grp-2 export EXPORT-A
+set protocols bgp group grp-2 export EXPORT-B
+set protocols bgp group grp-2 allow 10.2.2.0/24
+set protocols bgp group static-only peer-as 64512
+set protocols bgp group host-only allow 10.2.3.4
+set routing-instances vrf-1 protocols bgp group grp-2 allow 10.1.2.0/24
+set routing-instances vrf-1 protocols bgp group grp-2 import VRF-IMPORT-A
+set routing-instances vrf-1 protocols bgp group grp-2 import VRF-IMPORT-B

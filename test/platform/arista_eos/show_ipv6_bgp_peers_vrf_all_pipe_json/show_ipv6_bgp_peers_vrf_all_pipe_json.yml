@@ -17,6 +17,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: '2001:db8::2'
+  remote_address_range: null
   remote_as: 65002
   router_id: 192.0.2.2
   state: established
@@ -43,6 +44,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: '2001:db8:100::2'
+  remote_address_range: null
   remote_as: 65001
   router_id: 192.0.2.100
   state: established

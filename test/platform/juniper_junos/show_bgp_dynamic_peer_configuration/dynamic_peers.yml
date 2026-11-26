@@ -1,0 +1,52 @@
+- description: null
+  state: null
+  local_address: null
+  local_interface: null
+  local_as: null
+  prefix_list_in: null
+  prefix_list_out: null
+  router_id: null
+  peering_type: null
+  hold_time: null
+  keepalive: null
+  uptime_seconds: null
+  max_ttl: null
+  afi: []
+  import_policies:
+  - VRF-IMPORT-A
+  - VRF-IMPORT-B
+  export_policies: []
+  name: vrf-1_10.1.2.0/24
+  vrf: vrf-1
+  peer_group: grp-2
+  remote_address: 10.1.2.0/24
+  remote_address_range: 10.1.2.0/24
+  remote_as: 1234
+- description: Dynamic transit
+  state: null
+  local_address: 192.0.2.1
+  local_interface: null
+  local_as: 65000
+  prefix_list_in: null
+  prefix_list_out: null
+  router_id: null
+  peering_type: external
+  hold_time: 90
+  keepalive: null
+  uptime_seconds: null
+  max_ttl: 3
+  afi:
+  - ipv4_unicast
+  import_policies:
+  - IMPORT-A
+  - IMPORT-B
+  - IMPORT-C
+  export_policies:
+  - EXPORT-A
+  - EXPORT-B
+  name: default_10.2.2.0/24
+  vrf: default
+  peer_group: grp-2
+  remote_address: 10.2.2.0/24
+  remote_address_range: 10.2.2.0/24
+  remote_as: 4321

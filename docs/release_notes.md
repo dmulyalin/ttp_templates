@@ -1,5 +1,23 @@
 # Release Notes
 
+## 0.6.21 (Draft)
+
+### BUGS
+
+1. Fixed the Cisco IOS XR and Juniper Junos `bgp_neighbors` getter omitting
+   configured dynamic peer ranges when no operational session exists.
+
+### ENHANCEMENTS
+
+1. Added `remote_address_range` to BGP neighbor records. Cisco IOS XR and
+   Juniper Junos report configured ranges and populate the field on matching
+   operational peers. Peers without a resolved range return `null`.
+2. Enhanced Juniper Junos BGP configuration parsing to collect group settings
+   and combine repeated import and export policies.
+   Global Junos BGP records now report `vrf: default`.
+
+---
+
 ## 0.6.20
 
 ### TEMPLATES

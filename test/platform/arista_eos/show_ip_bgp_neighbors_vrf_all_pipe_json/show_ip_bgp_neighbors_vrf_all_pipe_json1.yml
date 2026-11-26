@@ -17,6 +17,7 @@
   prefix_list_in: ALLOW-ALL
   prefix_list_out: ALLOW-ALL
   remote_address: 10.0.0.0
+  remote_address_range: null
   remote_as: 65001
   router_id: 10.10.10.1
   state: established
@@ -41,6 +42,7 @@
   prefix_list_in: ALLOW-ALL
   prefix_list_out: ALLOW-ALL
   remote_address: 10.0.0.2
+  remote_address_range: null
   remote_as: 65002
   router_id: 10.10.10.2
   state: established
@@ -68,6 +70,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.10.10.1
+  remote_address_range: null
   remote_as: 65001
   router_id: 10.10.10.1
   state: established
@@ -95,6 +98,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.10.10.2
+  remote_address_range: null
   remote_as: 65002
   router_id: 10.10.10.2
   state: established
@@ -119,6 +123,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.101.0.0
+  remote_address_range: null
   remote_as: 65001
   router_id: 10.101.0.8
   state: established
@@ -143,6 +148,7 @@
   prefix_list_in: null
   prefix_list_out: null
   remote_address: 10.101.0.2
+  remote_address_range: null
   remote_as: 65002
   router_id: 10.101.0.10
   state: established

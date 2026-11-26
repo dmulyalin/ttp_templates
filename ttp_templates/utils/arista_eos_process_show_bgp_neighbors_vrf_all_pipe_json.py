@@ -87,6 +87,7 @@ def _normalize_peer(peer: Dict[str, Any], vrf: str) -> Dict[str, Any]:
         "local_address": peer.get("updateSource"),
         "local_interface": peer.get("ifName"),
         "remote_address": remote_address,
+        "remote_address_range": None,
         "local_as": int(peer["localAsn"]),
         "remote_as": int(peer["asn"]),
         "peer_group": peer.get("peerGroupName") or peer.get("peerGroup"),
