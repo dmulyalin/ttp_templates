@@ -1,0 +1,6 @@
+- ip: fe80::5254:ff:fecf:fb01
+  mac: 52:54:00:cf:fb:01
+  interface: mgmt0
+  vrf: management
+  age: 13
+  state: null

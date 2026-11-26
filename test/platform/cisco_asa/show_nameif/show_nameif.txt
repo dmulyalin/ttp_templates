@@ -1,0 +1,3 @@
+Interface                Name                     Security
+GigabitEthernet0/1.977   ambit-v977                50
+Management0/0            management               100

@@ -1,0 +1,1 @@
+{"TABLE_vrf": {"ROW_vrf": {"vrf-name-out": "all", "TABLE_afi": {"ROW_afi": {"afi": "ipv6", "count": "1", "TABLE_adj": {"ROW_adj": {"intf-out": "mgmt0", "ipv6-addr": "fe80::5254:ff:fecf:fb01", "time-stamp": "00:00:13", "mac": "5254.00cf.fb01", "pref": "50", "owner": "icmpv6", "flags": null, "adj-vrf-name": "management"}}}}}}}

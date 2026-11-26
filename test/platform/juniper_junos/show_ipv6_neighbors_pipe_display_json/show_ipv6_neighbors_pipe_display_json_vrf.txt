@@ -1,0 +1,91 @@
+{
+    "ipv6-nd-information" : [
+    {
+        "attributes" : {"xmlns" : "http://xml.juniper.net/junos/25.4R0/junos-ipv6-nd",
+                        "junos:style" : "normal"
+                       },
+        "ipv6-nd-entry" : [
+        {
+            "ipv6-nd-neighbor-address" : [
+            {
+                "data" : "2001:db8:78:0:5054:ff:fea0:1a0",
+                "attributes" : {"junos:emit" : "emit"}
+            }
+            ],
+            "ipv6-nd-neighbor-l2-address" : [
+            {
+                "data" : "52:54:00:a0:01:a0"
+            }
+            ],
+            "ipv6-nd-state" : [
+            {
+                "data" : "stale"
+            }
+            ],
+            "ipv6-nd-expire" : [
+            {
+                "data" : "967"
+            }
+            ],
+            "ipv6-nd-isrouter" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-issecure" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ]
+        },
+        {
+            "ipv6-nd-neighbor-address" : [
+            {
+                "data" : "fe80::5054:ff:fea0:1a0"
+            }
+            ],
+            "ipv6-nd-neighbor-l2-address" : [
+            {
+                "data" : "52:54:00:a0:01:a0"
+            }
+            ],
+            "ipv6-nd-state" : [
+            {
+                "data" : "stale"
+            }
+            ],
+            "ipv6-nd-expire" : [
+            {
+                "data" : "961"
+            }
+            ],
+            "ipv6-nd-isrouter" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-issecure" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ]
+        }
+        ],
+        "ipv6-nd-total" : [
+        {
+            "data" : "2"
+        }
+        ]
+    }
+    ]
+}

@@ -1,0 +1,6 @@
+- ip: 2001:db8:10::77
+  mac: 00:11:22:33:44:55
+  interface: Management0
+  vrf: MGMT
+  age: null
+  state: static

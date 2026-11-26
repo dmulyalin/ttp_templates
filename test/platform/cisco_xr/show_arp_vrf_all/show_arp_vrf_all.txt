@@ -1,0 +1,11 @@
+Thu Oct 29 13:33:24.433 UTC
+
+-------------------------------------------------------------------------------
+0/RP0/CPU0
+-------------------------------------------------------------------------------
+Address         Age        Hardware Addr   State      Type  Interface
+10.89.10.1      00:03:52   2654.b936.ee7b  Dynamic    ARPA  MgmtEth0/RP0/CPU0/0
+10.89.10.10     -          9e25.3e18.f3f2  Interface  ARPA  MgmtEth0/RP0/CPU0/0
+10.89.10.20     00:00:19   ee24.9af0.e5f7  Dynamic    ARPA  MgmtEth0/RP0/CPU0/0
+10.89.10.77     -          0011.2233.4455  Static     ARPA  MgmtEth0/RP0/CPU0/0
+10.89.10.99     -          0000.0000.0000  Deleted    ARPA  MgmtEth0/RP0/CPU0/0

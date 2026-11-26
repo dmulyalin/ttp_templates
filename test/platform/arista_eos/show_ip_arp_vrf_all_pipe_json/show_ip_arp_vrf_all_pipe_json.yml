@@ -1,0 +1,12 @@
+- ip: 10.89.10.1
+  mac: 26:54:b9:36:ee:7b
+  interface: Management0
+  vrf: null
+  age: 0
+  state: null
+- ip: 10.89.10.10
+  mac: 9e:25:3e:18:f3:f2
+  interface: Management0
+  vrf: null
+  age: 102
+  state: null

@@ -1,0 +1,12 @@
+- ip: 2001:db8:977::77
+  mac: 00:11:22:33:44:55
+  interface: GigabitEthernet1.977
+  vrf: null
+  age: null
+  state: static
+- ip: 2001:db8:977::113
+  mac: 52:54:00:a0:01:71
+  interface: GigabitEthernet1.977
+  vrf: null
+  age: 60
+  state: stale

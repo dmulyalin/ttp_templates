@@ -1,0 +1,18 @@
+{
+    "vrfs": {
+        "default": {
+            "ipV6Neighbors": [
+                {
+                    "address": "fe80::2454:b9ff:fe36:ee7b",
+                    "age": 16953014,
+                    "hwAddress": "2654.b936.ee7b",
+                    "interface": "Ma0"
+                }
+            ],
+            "totalEntries": 1,
+            "staticEntries": 0,
+            "dynamicEntries": 1,
+            "notLearnedEntries": 0
+        }
+    }
+}

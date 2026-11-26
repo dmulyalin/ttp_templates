@@ -1,0 +1,3 @@
+Thu Oct 29 10:07:01.682 UTC
+MgmtEth0/RP0/CPU0/0    [Up/Up]    Vrf-Name: default
+    fe80::9c25:3eff:fe18:f3f2

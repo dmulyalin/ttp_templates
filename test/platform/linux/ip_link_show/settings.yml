@@ -1,0 +1,4 @@
+# Mapping input alone produces no neighbor records.
+command: ip neigh show
+input_name: links
+template_name: linux_arp

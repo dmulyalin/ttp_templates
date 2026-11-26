@@ -1,0 +1,3 @@
+Thu Oct 29 10:07:01.741 UTC
+IPv6 Address                             Age  Link-layer Add State Interface            Location
+[Mcast adjacency]                           - 0000.0000.0000 REACH Mg0/RP0/CPU0/0       0/RP0/CPU0

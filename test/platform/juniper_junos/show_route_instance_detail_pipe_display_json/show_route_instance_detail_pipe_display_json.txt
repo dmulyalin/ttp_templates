@@ -1,0 +1,369 @@
+{
+    "instance-information" : [
+    {
+        "attributes" : {"xmlns" : "http://xml.juniper.net/junos/25.4R0/junos-routing",
+                        "junos:style" : "detail"
+                       },
+        "instance-core" : [
+        {
+            "instance-name" : [
+            {
+                "data" : "master"
+            }
+            ],
+            "router-id" : [
+            {
+                "data" : "192.168.122.120"
+            }
+            ],
+            "ipv6-router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "instance-type" : [
+            {
+                "data" : "forwarding"
+            }
+            ],
+            "instance-state" : [
+            {
+                "data" : "Active"
+            }
+            ],
+            "instance-lsi-state" : [
+            {
+                "data" : "Complete"
+            }
+            ],
+            "instance-rib" : [
+            {
+                "irib-name" : [
+                {
+                    "data" : "inet.0"
+                }
+                ],
+                "irib-route-count" : [
+                {
+                    "data" : "3"
+                }
+                ],
+                "irib-active-count" : [
+                {
+                    "data" : "3"
+                }
+                ],
+                "irib-holddown-count" : [
+                {
+                    "data" : "0"
+                }
+                ],
+                "irib-hidden-count" : [
+                {
+                    "data" : "0"
+                }
+                ]
+            },
+            {
+                "irib-name" : [
+                {
+                    "data" : "inet6.0"
+                }
+                ],
+                "irib-route-count" : [
+                {
+                    "data" : "2"
+                }
+                ],
+                "irib-active-count" : [
+                {
+                    "data" : "2"
+                }
+                ],
+                "irib-holddown-count" : [
+                {
+                    "data" : "0"
+                }
+                ],
+                "irib-hidden-count" : [
+                {
+                    "data" : "0"
+                }
+                ]
+            }
+            ]
+        },
+        {
+            "instance-name" : [
+            {
+                "data" : "__juniper_private1__"
+            }
+            ],
+            "router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "ipv6-router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "instance-type" : [
+            {
+                "data" : "forwarding"
+            }
+            ],
+            "instance-state" : [
+            {
+                "data" : "Active"
+            }
+            ],
+            "instance-lsi-state" : [
+            {
+                "data" : "Complete"
+            }
+            ],
+            "instance-interface" : [
+            {
+                "interface-name" : [
+                {
+                    "data" : "lo0.16385"
+                }
+                ]
+            },
+            {
+                "interface-name" : [
+                {
+                    "data" : "em1.0"
+                }
+                ]
+            }
+            ],
+            "instance-rib" : [
+            {
+                "irib-name" : [
+                {
+                    "data" : "__juniper_private1__.inet.0"
+                }
+                ],
+                "irib-route-count" : [
+                {
+                    "data" : "6"
+                }
+                ],
+                "irib-active-count" : [
+                {
+                    "data" : "5"
+                }
+                ],
+                "irib-holddown-count" : [
+                {
+                    "data" : "0"
+                }
+                ],
+                "irib-hidden-count" : [
+                {
+                    "data" : "0"
+                }
+                ]
+            },
+            {
+                "irib-name" : [
+                {
+                    "data" : "__juniper_private1__.inet6.0"
+                }
+                ],
+                "irib-route-count" : [
+                {
+                    "data" : "3"
+                }
+                ],
+                "irib-active-count" : [
+                {
+                    "data" : "3"
+                }
+                ],
+                "irib-holddown-count" : [
+                {
+                    "data" : "0"
+                }
+                ],
+                "irib-hidden-count" : [
+                {
+                    "data" : "0"
+                }
+                ]
+            }
+            ]
+        },
+        {
+            "instance-name" : [
+            {
+                "data" : "__juniper_private2__"
+            }
+            ],
+            "router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "ipv6-router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "instance-type" : [
+            {
+                "data" : "forwarding"
+            }
+            ],
+            "instance-state" : [
+            {
+                "data" : "Active"
+            }
+            ],
+            "instance-lsi-state" : [
+            {
+                "data" : "Complete"
+            }
+            ],
+            "instance-interface" : [
+            {
+                "interface-name" : [
+                {
+                    "data" : "lo0.16384"
+                }
+                ]
+            }
+            ],
+            "instance-rib" : [
+            {
+                "irib-name" : [
+                {
+                    "data" : "__juniper_private2__.inet.0"
+                }
+                ],
+                "irib-route-count" : [
+                {
+                    "data" : "1"
+                }
+                ],
+                "irib-active-count" : [
+                {
+                    "data" : "0"
+                }
+                ],
+                "irib-holddown-count" : [
+                {
+                    "data" : "0"
+                }
+                ],
+                "irib-hidden-count" : [
+                {
+                    "data" : "1"
+                }
+                ]
+            }
+            ]
+        },
+        {
+            "instance-name" : [
+            {
+                "data" : "__juniper_private4__"
+            }
+            ],
+            "router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "ipv6-router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "instance-type" : [
+            {
+                "data" : "forwarding"
+            }
+            ],
+            "instance-state" : [
+            {
+                "data" : "Active"
+            }
+            ],
+            "instance-lsi-state" : [
+            {
+                "data" : "Complete"
+            }
+            ]
+        },
+        {
+            "instance-name" : [
+            {
+                "data" : "__master.anon__"
+            }
+            ],
+            "router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "ipv6-router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "instance-type" : [
+            {
+                "data" : "forwarding"
+            }
+            ],
+            "instance-state" : [
+            {
+                "data" : "Active"
+            }
+            ],
+            "instance-lsi-state" : [
+            {
+                "data" : "Complete"
+            }
+            ]
+        },
+        {
+            "instance-name" : [
+            {
+                "data" : "mgmt_junos"
+            }
+            ],
+            "router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "ipv6-router-id" : [
+            {
+                "data" : "0.0.0.0"
+            }
+            ],
+            "instance-type" : [
+            {
+                "data" : "forwarding"
+            }
+            ],
+            "instance-state" : [
+            {
+                "data" : "Active"
+            }
+            ],
+            "instance-lsi-state" : [
+            {
+                "data" : "Complete"
+            }
+            ]
+        }
+        ]
+    }
+    ]
+}

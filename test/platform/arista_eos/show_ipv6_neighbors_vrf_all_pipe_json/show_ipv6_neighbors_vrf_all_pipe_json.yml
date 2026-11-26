@@ -1,0 +1,6 @@
+- ip: fe80::2454:b9ff:fe36:ee7b
+  mac: 26:54:b9:36:ee:7b
+  interface: Management0
+  vrf: null
+  age: null
+  state: null

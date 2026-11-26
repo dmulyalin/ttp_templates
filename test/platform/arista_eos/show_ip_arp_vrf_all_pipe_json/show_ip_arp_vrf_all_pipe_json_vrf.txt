@@ -1,0 +1,36 @@
+{
+    "vrfs": {
+        "MGMT": {
+            "ipV4Neighbors": [
+                {
+                    "address": "10.89.10.1",
+                    "age": 0,
+                    "hwAddress": "2654.b936.ee7b",
+                    "interface": "Management0"
+                },
+                {
+                    "address": "10.89.10.10",
+                    "age": 2,
+                    "hwAddress": "9e25.3e18.f3f2",
+                    "interface": "Management0"
+                },
+                {
+                    "address": "10.89.10.77",
+                    "hwAddress": "0011.2233.4455",
+                    "interface": "Management0"
+                }
+            ],
+            "totalEntries": 3,
+            "staticEntries": 1,
+            "dynamicEntries": 2,
+            "notLearnedEntries": 0
+        },
+        "default": {
+            "ipV4Neighbors": [],
+            "totalEntries": 0,
+            "staticEntries": 0,
+            "dynamicEntries": 0,
+            "notLearnedEntries": 0
+        }
+    }
+}

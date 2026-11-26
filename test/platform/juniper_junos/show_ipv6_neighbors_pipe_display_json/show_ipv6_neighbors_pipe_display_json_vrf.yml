@@ -1,0 +1,12 @@
+- ip: 2001:db8:78:0:5054:ff:fea0:1a0
+  mac: 52:54:00:a0:01:a0
+  interface: fxp0.0
+  vrf: null
+  age: null
+  state: stale
+- ip: fe80::5054:ff:fea0:1a0
+  mac: 52:54:00:a0:01:a0
+  interface: fxp0.0
+  vrf: null
+  age: null
+  state: stale

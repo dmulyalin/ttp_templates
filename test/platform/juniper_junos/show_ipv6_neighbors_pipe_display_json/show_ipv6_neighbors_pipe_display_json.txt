@@ -1,0 +1,238 @@
+{
+    "ipv6-nd-information" : [
+    {
+        "attributes" : {"xmlns" : "http://xml.juniper.net/junos/25.4R0/junos-ipv6-nd",
+                        "junos:style" : "normal"
+                       },
+        "ipv6-nd-entry" : [
+        {
+            "ipv6-nd-neighbor-address" : [
+            {
+                "data" : "fe80::5054:ff:fea0:16c"
+            }
+            ],
+            "ipv6-nd-neighbor-l2-address" : [
+            {
+                "data" : "52:54:00:a0:01:6c"
+            }
+            ],
+            "ipv6-nd-state" : [
+            {
+                "data" : "stale"
+            }
+            ],
+            "ipv6-nd-expire" : [
+            {
+                "data" : "55"
+            }
+            ],
+            "ipv6-nd-isrouter" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-issecure" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ]
+        },
+        {
+            "ipv6-nd-neighbor-address" : [
+            {
+                "data" : "fe80::5054:ff:fea0:16e"
+            }
+            ],
+            "ipv6-nd-neighbor-l2-address" : [
+            {
+                "data" : "52:54:00:a0:01:6e"
+            }
+            ],
+            "ipv6-nd-state" : [
+            {
+                "data" : "stale"
+            }
+            ],
+            "ipv6-nd-expire" : [
+            {
+                "data" : "433"
+            }
+            ],
+            "ipv6-nd-isrouter" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-issecure" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ]
+        },
+        {
+            "ipv6-nd-neighbor-address" : [
+            {
+                "data" : "fe80::5054:ff:fea0:17c"
+            }
+            ],
+            "ipv6-nd-neighbor-l2-address" : [
+            {
+                "data" : "52:54:00:a0:01:7c"
+            }
+            ],
+            "ipv6-nd-state" : [
+            {
+                "data" : "stale"
+            }
+            ],
+            "ipv6-nd-expire" : [
+            {
+                "data" : "251"
+            }
+            ],
+            "ipv6-nd-isrouter" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-issecure" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ]
+        },
+        {
+            "ipv6-nd-neighbor-address" : [
+            {
+                "data" : "fe80::5054:ff:fea0:19c"
+            }
+            ],
+            "ipv6-nd-neighbor-l2-address" : [
+            {
+                "data" : "52:54:00:a0:01:9c"
+            }
+            ],
+            "ipv6-nd-state" : [
+            {
+                "data" : "stale"
+            }
+            ],
+            "ipv6-nd-expire" : [
+            {
+                "data" : "1189"
+            }
+            ],
+            "ipv6-nd-isrouter" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-issecure" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ]
+        },
+        {
+            "ipv6-nd-neighbor-address" : [
+            {
+                "data" : "fe80::5054:ff:fea0:1a0"
+            }
+            ],
+            "ipv6-nd-neighbor-l2-address" : [
+            {
+                "data" : "52:54:00:a0:01:a0"
+            }
+            ],
+            "ipv6-nd-state" : [
+            {
+                "data" : "stale"
+            }
+            ],
+            "ipv6-nd-expire" : [
+            {
+                "data" : "51"
+            }
+            ],
+            "ipv6-nd-isrouter" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-issecure" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ]
+        },
+        {
+            "ipv6-nd-neighbor-address" : [
+            {
+                "data" : "fe80::dc09:6b85:c36d:dfb1"
+            }
+            ],
+            "ipv6-nd-neighbor-l2-address" : [
+            {
+                "data" : "52:54:00:a0:01:71"
+            }
+            ],
+            "ipv6-nd-state" : [
+            {
+                "data" : "stale"
+            }
+            ],
+            "ipv6-nd-expire" : [
+            {
+                "data" : "731"
+            }
+            ],
+            "ipv6-nd-isrouter" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-issecure" : [
+            {
+                "data" : "no"
+            }
+            ],
+            "ipv6-nd-interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ]
+        }
+        ],
+        "ipv6-nd-total" : [
+        {
+            "data" : "6"
+        }
+        ]
+    }
+    ]
+}

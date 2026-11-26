@@ -1,0 +1,94 @@
+{
+    "arp-table-information" : [
+    {
+        "attributes" : {"xmlns" : "http://xml.juniper.net/junos/25.4R0/junos-arp",
+                        "junos:style" : "no-resolve"
+                       },
+        "arp-table-entry" : [
+        {
+            "mac-address" : [
+            {
+                "data" : "02:00:00:00:00:10"
+            }
+            ],
+            "ip-address" : [
+            {
+                "data" : "128.0.0.16"
+            }
+            ],
+            "interface-name" : [
+            {
+                "data" : "em1.0"
+            }
+            ],
+            "arp-table-entry-flags" : [
+            {
+                "none" : [
+                {
+                    "data" : [null]
+                }
+                ]
+            }
+            ]
+        },
+        {
+            "mac-address" : [
+            {
+                "data" : "52:54:00:ae:a0:97"
+            }
+            ],
+            "ip-address" : [
+            {
+                "data" : "192.168.122.1"
+            }
+            ],
+            "interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ],
+            "arp-table-entry-flags" : [
+            {
+                "none" : [
+                {
+                    "data" : [null]
+                }
+                ]
+            }
+            ]
+        },
+        {
+            "mac-address" : [
+            {
+                "data" : "52:54:00:4d:eb:d9"
+            }
+            ],
+            "ip-address" : [
+            {
+                "data" : "192.168.122.140"
+            }
+            ],
+            "interface-name" : [
+            {
+                "data" : "fxp0.0"
+            }
+            ],
+            "arp-table-entry-flags" : [
+            {
+                "none" : [
+                {
+                    "data" : [null]
+                }
+                ]
+            }
+            ]
+        }
+        ],
+        "arp-entry-count" : [
+        {
+            "data" : "3"
+        }
+        ]
+    }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "vrfs": {
+        "MGMT": {
+            "ipV6Neighbors": [
+                {
+                    "address": "2001:db8:10::77",
+                    "hwAddress": "0011.2233.4455",
+                    "interface": "Ma0"
+                }
+            ],
+            "totalEntries": 1,
+            "staticEntries": 1,
+            "dynamicEntries": 0,
+            "notLearnedEntries": 0
+        },
+        "default": {
+            "ipV6Neighbors": [],
+            "totalEntries": 0,
+            "staticEntries": 0,
+            "dynamicEntries": 0,
+            "notLearnedEntries": 0
+        }
+    }
+}
